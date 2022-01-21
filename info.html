@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Info</title>
+</head>
+
+<body id="body">
+
+<h1>Airbrush</h1>
+  
+<p>Use this tool to for image manipulation and texture generation.</p>
+
+<h2>Main slider controls </h2>
+
+<ul>
+<li>canvas size - some preset canvas sizes</li>
+<li>feature size - size of textures and other features</li>
+<li>quantity - controls the number of items drawn</li>
+<li>opacity - controls transparency of drawing</li>
+</ul>
+
+<h2>Basic features: Row of icons</h2>
+
+<ul>
+<li>Select color</li>
+<li>Random color</li>
+<li>Load image: select an image file to load into the canvas</li>
+<li>Download the canvas as a PNG file</li>
+<li>Flip canvas horizontally</li>
+<li>Flip canvas vertically</li>
+<li>Rotate 90 degrees</li>
+<li>Rotate -90 degrees</li>
+<li>Expand canvas</li>
+<li>Shrink canvas</li>
+<li>Add margins: all 4 sides</li>
+<li>Add bottom margin only</li>
+<li>Paintbucket: fill the canvas</li>
+<li>Convert to greyscale.</li>
+<li>Invert colors</li>
+<li>Clear the canvas</li>
+<li>Info: show this page</li>
+<li>Debug: show canvas properties</li>
+</ul>
+
+<h2>Basic image adjustments</h2>
+
+Click the plus and minus buttons next to an adjustment to increase or decrease the effect.
+<ul>
+<li>sharpness</li>
+<li>saturation</li>
+<li>contrast</li>
+<li>brightnesss</li>
+<li>warmth</li>
+</ul>
+
+<h2>Effects</h2>
+
+There are five types of effects. Select an effect and then click the icon to the left of the effect to draw it.
+
+<ul>
+<li>Transformations</li>
+<li>Textures</li>
+<li>Lighten/darken/fade</li>
+<li>Paint</li>
+<li>Filters</li>
+</ul>
+
+<h2>Mode</h2>
+
+Refer to 'globalCompositeOperation' and use the default unless you know how to use this feature.
+<ul>
+<li>Use destination-over to draw only on transparent areas. Usefull if you want to fill in a background withot overwriting existing drawing.</li>
+<li>User source-atop to only draw on non-transparent areas. This leaves transparent areas unchanged.</li>
+<li>Use destination-out to 'erase'. Drawing a texture in this mode removes it from the drawing. </li>
+<li>Use color mode to tint the canvas to the selected color (with the paintbucket tool).</li>
+</ul>
+
+<h2>Other functions</h2>
+<p><b>Text tool:</b> links to the Text tool page, where you can generate text in different styles and colors.</p>
+<p><b>grunge:</b> when this is enabled most effects are modified - generally adding more randomness to the result.</p>
+<p>Touch or click the canvas to select the left-most point for the "left clip" and "left rip" functions. The red indicator bar above the canvas, shows the area that will be deleted or cleared</p>
+
+
+<h2>How to make a paper-like texture</h2>
+
+<ul>
+    <li>Clear the canvas.</li>
+    <li>Set feature size, quantity and opacity sliders to the middle.</li>
+    <li>Set the paint color to white.</li>
+    <li>Select and draw the streaks texture two or three times.</li>
+    <li>Change the paint color to black.</li>
+    <li>Draw streaks two or three times.</li>
+    <li>Experiment with the three slider settings and try the different textures.</li>
+</ul>
+
+<h2>How to make a background transparent</h2>
+
+Assumes you have a picture where you want to remove the sky from the background.
+<ul>
+    <li>Use the color selector to select the same color as the sky. Maybe white or light blue.</li>
+    <li>In the filter drop-down, select "filter selected".</li>
+    <li>Adjust the opacity slider to about 2/3.</li>
+    <li>Click the filter button.</li>
+</ul>
+This should remove some of the sky's color. If there are darker shades in the sky, reselect the color and repeat the filter. You can also try a lower opacity threshold. Save the image as a PNG file.
+<p>If grungy is checked, the background color will only become partially transparent.</p>
+
+
+<h2>How to make a double exposure</h2>
+
+<ul>
+  <li>Start with two images that are close to the same size.</li>
+  <li>Open the first image.</li>
+  <Li>Click the blue clipboard button. This copies the image to an offscreen buffer.</Li>
+  <li>Open the second image.</li>
+  <li>Set the opacity slider to half and mode to "source-over".</li>
+  <li>Click the blue paste button (to the right of the clipboard).</li>
+  <li>The images are combined.</li>
+  <li>Try differnt modes: lighten, darken, color, etc.</li>
+</ul>
+</body>
+</html>
+
