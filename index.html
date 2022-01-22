@@ -1669,7 +1669,7 @@ function stipple () {
     radius = lightness/255 * w/2
     if (radius > 0) {
       offctx.beginPath()
-      offctx.arc(x+w/2+pet(D), y+h/2+pet(D), radius+Math.random()*D/2, 0, Math.PI*2)
+      offctx.arc(x+w/2+pet(D), y+h/2+pet(D), radius+Math.random()*D/4, 0, Math.PI*2)
       offctx.closePath()
       offctx.fill()
     }
