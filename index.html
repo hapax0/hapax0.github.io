@@ -1667,10 +1667,12 @@ function stipple () {
     // invert scale
     lightness = 255 - lightness
     radius = lightness/255 * w/2
-    offctx.beginPath()
-    offctx.arc(x+w/2+pet(D), y+h/2+pet(D), radius+Math.random()*D/2, 0, Math.PI*2)
-    offctx.closePath()
-    offctx.fill()
+    if (radius > 0) {
+      offctx.beginPath()
+      offctx.arc(x+w/2+pet(D), y+h/2+pet(D), radius+Math.random()*D/2, 0, Math.PI*2)
+      offctx.closePath()
+      offctx.fill()
+    }
   }
   ctx.clearRect(0,0,canvas.width,canvas.height)
   ctx.drawImage(off, 0, 0)
