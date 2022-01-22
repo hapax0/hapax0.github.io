@@ -26,7 +26,7 @@
 <div style="font-size:32px;font-weight:bold;">Airbrush</div>
 <table border="0" cellpadding="6" style="margin-left:6px;">
   <tr><td style="text-align:right;"><button onclick="resizeFromDialog()">resize</button></td><td>W: <input type="number" id="canvaswidth" min="40" size="6" onchange="checkWidth()">
-    H: <input type="number" id="canvasheight" min="40" size="6" onchange="checkHeight()"></td><td style="text-align:right;"></td><td>01-21-22
+    H: <input type="number" id="canvasheight" min="40" size="6" onchange="checkHeight()"></td><td style="text-align:right;"></td><td>01-22-22
   </td><td><!--dot mode: <input type="checkbox" id="dotmode"--></td>
   <td rowspan='7'>
     <div style="border-style:solid;margin:10px;padding:10px;">
@@ -106,9 +106,6 @@
       <option value="dashes">dashes</option>
       <option value="holes">holes</option>
       <option value="holes2">holes2</option>
-      <!--option value="swap">swap squares</option>
-      <option value="swapDiag">swap diagonal</option>
-      <option value="rectify">shade squares</option-->
       <option value="tatter">tatter</option>
     </select>
   </td></tr>
@@ -236,11 +233,12 @@
     <option value="posterize">posterize</option>
     <option value="colorSample">simplify colors</option>
     <option value="sample3colors">CYM</option>
-    <option value="sampleImageData">sample lightness</option>
+    <option value="stipple" selected>stipple</option>
+    <option value="sampleImageData">sample dark</option>
     <option value="sampleImageDataColor">sample colors</option>
     <option value="sampleImageDataColor2" >sample colors2</option>
-    <option value="pointillism" selected>pointillism</option>
-    <option value="pointillism2" selected>pointillism2</option>
+    <option value="pointillism">pointillism</option>
+    <option value="pointillism2">pointillism2</option>
 
 </select>
 
@@ -1558,7 +1556,7 @@ function ripSide () {
   ctx.restore()
 }
 
-function sampleImageData () {
+function sampleImageData () { // darkness
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let off = document.createElement('CANVAS')
@@ -1589,8 +1587,11 @@ function sampleImageData () {
     let i = 0, lightness = 0
     for (; i < pixels.length; i += 4) {
       lightness += parseInt((pixels[i] + pixels[i + 1] + pixels[i + 2]) / 3)
+      
     }
     lightness /= (pixels.length/4) //avg = 0 to 255
+    // invert scale
+    lightness = 255 - lightness
     radius = lightness/255 * w/2
     offctx.beginPath()
     offctx.arc(x+w/2, y+h/2, radius, 0, Math.PI*2)
@@ -1609,6 +1610,69 @@ function sampleImageData () {
   ctx.clearRect(0,0,canvas.width,canvas.height)
   ctx.drawImage(off, 0, 0)
 }
+
+function stipple () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let off = document.createElement('CANVAS')
+  off.width = canvas.width
+  off.height = canvas.height
+  let offctx = off.getContext("2d")
+  offctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.globalAlpha = document.getElementById("speck_opacity").value/100
+  let grunge = document.getElementById("grungy").checked
+  // set above as in rectify
+  let W = 0.5 + Math.floor(document.getElementById("speck_size").value/2)
+  //invert range of W [2- 102] => [102 - 2]
+  W = 251 - W + 0.5
+  let wdivs = W
+  let cw = canvas.width
+  let ch = canvas.height
+  let w = cw/wdivs
+  let hdivs = Math.round(wdivs * ch/cw)
+  let h = ch/hdivs
+  let i = 0, x = 0, y = 0
+  let numsquares = (1+wdivs) * (1+hdivs)
+  let radius = w/6, linecount = 0
+  let r0 = radius
+  let D = radius * 4
+  let lightness = 0
+  
+  let points = [], j = 0
+  for (;j < numsquares; j++) {
+    points[j] = [x, y]
+    x += w
+    if (x >= (wdivs)*w) {
+      linecount++
+      x = 0
+      y += h
+    }
+  }
+  points = shuffle(points)
+  j = 0
+  for (;j < points.length; j++) {
+    x = points[j][0]
+    y = points[j][1]
+    let imgData = ctx.getImageData(x, y, w, h)
+    let threshold = 127 - document.getElementById("speck_opacity").value * 1.27
+    let pixels = imgData.data
+    let i = 0, lightness = 0
+    for (; i < pixels.length; i += 4) {
+      lightness += parseInt((pixels[i] + pixels[i + 1] + pixels[i + 2]) / 3)
+    }
+    lightness /= (pixels.length/4) //avg = 0 to 255
+    // invert scale
+    lightness = 255 - lightness
+    radius = lightness/255 * w/2
+    offctx.beginPath()
+    offctx.arc(x+w/2+pet(D), y+h/2+pet(D), radius+Math.random()*D/2, 0, Math.PI*2)
+    offctx.closePath()
+    offctx.fill()
+  }
+  ctx.clearRect(0,0,canvas.width,canvas.height)
+  ctx.drawImage(off, 0, 0)
+}
+
 
 function pointillism2 () { // five sided
   let canvas = document.getElementById("myCanvas")
@@ -1633,7 +1697,7 @@ function pointillism2 () { // five sided
   let i = 0, x = 0, y = 0
   let numsquares = (1+wdivs) * (1+hdivs)
   let radius = w/4, j = 0
-  let lightness = 0, linecount = 0
+  let linecount = 0
   let r = 0, g = 0, b = 0
   let D = radius * 5
   let r0 = radius
