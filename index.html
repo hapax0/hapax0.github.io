@@ -1635,7 +1635,7 @@ function stipple () {
   let numsquares = (1+wdivs) * (1+hdivs)
   let radius = w/6, linecount = 0
   let r0 = radius
-  let D = radius * 4
+  let D = radius * 6
   let lightness = 0
   
   let points = [], j = 0
@@ -1644,7 +1644,10 @@ function stipple () {
     x += w
     if (x >= (wdivs)*w) {
       linecount++
-      x = 0
+      if (linecount % 2 == 1)
+        x = -w/2
+      else
+        x = 0
       y += h
     }
   }
