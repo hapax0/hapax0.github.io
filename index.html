@@ -45,7 +45,7 @@
   </td>
   <td rowspan='5'>
     <div style="border-style:solid;margin:10px;padding:10px;">
-    <span style="color:red">touch to place text:</span> <input type="checkbox" id="textmode"><br>
+    <span style="color:red">touch to place text:</span> <input type="checkbox" id="textmode" onchange="uncheckDotMode()"><br>
     text: &nbsp;<input type="text" id="caption" value="your text here" style="width:10em;"><br>
     font size: &nbsp;<input type="number" id="textsize" value="48" style="width:4em;"><br>
     font: <input list='facelist' id="face" style="width:10em;"><input type='button' class='mockbb' value='X' onclick="clearFace()" title="clear the face field">&nbsp;
@@ -200,7 +200,6 @@
     <option value="strokes2">strokes2</option>
     <option value="birds">birds</option>
     <option value="grid">grid</option>
-    <!--option value="dotmode" style="color:red">dot mode</option-->
     <!--option value="rothko">rothko</option-->
   </select>
 </td>
@@ -256,7 +255,7 @@
 
 </td>
 <td>
-  &nbsp;<span style="color:red;">dot mode:</span>&nbsp;<input type="checkbox" id="dotmode">
+  &nbsp;<span style="color:red;">dot mode:</span>&nbsp;<input type="checkbox" id="dotmode" onchange="uncheckTextMode()">
 </td>
 </tr>
 </table>
@@ -445,6 +444,14 @@ marker.addEventListener('click', function(event) {
   filePicker.addEventListener("click", function(){this.value = null;}, false);
   });
   syncMarker()
+}
+
+function uncheckTextMode () {
+  document.getElementById("textmode").checked = false
+}
+
+function uncheckDotMode () {
+  document.getElementById("dotmode").checked = false
 }
 
 function dotmode () {
