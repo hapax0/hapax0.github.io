@@ -26,8 +26,23 @@
 <div style="font-size:32px;font-weight:bold;">Airbrush</div>
 <table border="0" cellpadding="6" style="margin-left:6px;">
   <tr><td style="text-align:right;"><button onclick="resizeFromDialog()">resize</button></td><td>W: <input type="number" id="canvaswidth" min="40" size="6" onchange="checkWidth()">
-    H: <input type="number" id="canvasheight" min="40" size="6" onchange="checkHeight()"></td><td style="text-align:right;"></td><td>01-23-22
-  </td><td><!--dot mode: <input type="checkbox" id="dotmode"--></td>
+    H: <input type="number" id="canvasheight" min="40" size="6" onchange="checkHeight()"></td><td style="text-align:right;">grunge: <input type="checkbox" id="grungy"></td><td>01-23-22
+  </td><td>
+  &nbsp;<button id="ff" onclick="testImage('framefunctions')" title="frame functions"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow" viewBox="0 0 16 16">
+<path d="M 15,2 C 15,1.4477153 14.552285,1 14,1 H 2 C 1.4477153,1 1,1.4477153 1,2 v 12 c 0,0.552285 0.4477153,1 1,1 h 12 c 0.552285,0 1,-0.447715 1,-1 z M 0,2 C 0,0.8954305 0.8954305,0 2,0 h 12 c 1.104569,0 2,0.8954305 2,2 v 12 c 0,1.104569 -0.895431,2 -2,2 H 2 C 0.8954305,16 0,15.104569 0,14 Z" id="path2" style="fill-rule:evenodd" />
+  <rect style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.93606186;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="rect839" width="8.4021072" height="8.7749891" x="3.6633532" y="3.595556" />
+</svg></button>
+<select id="framefunctions">
+  <option value="rectFrame">rect frame</option>
+    <option value="framePolaroid">polaroid frame</option>
+    <option value="frame">jaggy frame</option>
+    <option value="ripFrame">rip frame</option>
+    <option value="makeSquare" selected>pad to square</option>
+    <option value="makeSquare2">skewed square</option>
+    <option value="expandMarginsAll">expand margins</option>
+    <option value="expandMarginsDown">expand bottom</option>
+</select>
+  </td>
   <td rowspan='5'>
     <div style="border-style:solid;margin:10px;padding:10px;">
     <span style="color:red">touch to place text:</span> <input type="checkbox" id="textmode"><br>
@@ -190,7 +205,7 @@
   </select>
 </td>
 </tr>
-<tr><td>grunge: <input type="checkbox" id="grungy">
+<tr><td>color: <input type="color" id="paintcolor" style="margin-bottom:6px;">
 </td><td style="text-align:right;">
   mode: <select id="mode">
     <option value="source-over" selected>source-over</option>
@@ -240,34 +255,11 @@
 </select>
 
 </td>
-<td><button id="ff" onclick="testImage('framefunctions')" title="frame functions"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" class="bi bi-arrow" viewBox="0 0 16 16">
-<path d="M 15,2 C 15,1.4477153 14.552285,1 14,1 H 2 C 1.4477153,1 1,1.4477153 1,2 v 12 c 0,0.552285 0.4477153,1 1,1 h 12 c 0.552285,0 1,-0.447715 1,-1 z M 0,2 C 0,0.8954305 0.8954305,0 2,0 h 12 c 1.104569,0 2,0.8954305 2,2 v 12 c 0,1.104569 -0.895431,2 -2,2 H 2 C 0.8954305,16 0,15.104569 0,14 Z" id="path2" style="fill-rule:evenodd" />
-  <rect style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.93606186;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="rect839" width="8.4021072" height="8.7749891" x="3.6633532" y="3.595556" />
-</svg></button>
-<select id="framefunctions">
-  <option value="rectFrame">rect frame</option>
-    <option value="framePolaroid">polaroid frame</option>
-    <option value="frame">jaggy frame</option>
-    <option value="ripFrame">rip frame</option>
-    <option value="makeSquare" selected>pad to square</option>
-    <option value="makeSquare2">skewed square</option>
-    <option value="expandMarginsAll">expand margins</option>
-    <option value="expandMarginsDown">expand bottom</option>
-</select>
+<td>
 </td>
 </tr>
 </table>
 <div style='margin:4px;'>
-  
-<span>color: <input type="color" id="paintcolor" style="margin-bottom:6px;">&nbsp;</span>
-<a href="javascript:randomPickColor()" title='random color'>
-<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-palette" viewBox="0 0 16 16">
-  <path d="M8 5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm4 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM5.5 7a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm.5 6a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-  <path d="M16 8c0 3.15-1.866 2.585-3.567 2.07C11.42 9.763 10.465 9.473 10 10c-.603.683-.475 1.819-.351 2.92C9.826 14.495 9.996 16 8 16a8 8 0 1 1 8-8zm-8 7c.611 0 .654-.171.655-.176.078-.146.124-.464.07-1.119-.014-.168-.037-.37-.061-.591-.052-.464-.112-1.005-.118-1.462-.01-.707.083-1.61.704-2.314.369-.417.845-.578 1.272-.618.404-.038.812.026 1.16.104.343.077.702.186 1.025.284l.028.008c.346.105.658.199.953.266.653.148.904.083.991.024C14.717 9.38 15 9.161 15 8a7 7 0 1 0-7 7z"/>
-</svg></a>
-&nbsp;
-<a href="javascript:fill()" title="fill"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-bucket-fill" viewBox="0 0 16 16">
-  <path d="M2.522 5H2a.5.5 0 0 0-.494.574l1.372 9.149A1.5 1.5 0 0 0 4.36 16h7.278a1.5 1.5 0 0 0 1.483-1.277l1.373-9.149A.5.5 0 0 0 14 5h-.522A5.5 5.5 0 0 0 2.522 5zm1.005 0a4.5 4.5 0 0 1 8.945 0H3.527z"/></svg></a>
 &nbsp;<input type='file' name='img' size='65' id='uploadimage' style="display:none;">
   <span onclick="openFile()" id="imgloader" title="open image file..."><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-upload" viewBox="0 0 16 16">
     <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
@@ -279,6 +271,15 @@
   <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
   <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
 </svg></a>
+&nbsp;
+<a href="javascript:randomPickColor()" title='random color'>
+<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-palette" viewBox="0 0 16 16">
+  <path d="M8 5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm4 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM5.5 7a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm.5 6a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+  <path d="M16 8c0 3.15-1.866 2.585-3.567 2.07C11.42 9.763 10.465 9.473 10 10c-.603.683-.475 1.819-.351 2.92C9.826 14.495 9.996 16 8 16a8 8 0 1 1 8-8zm-8 7c.611 0 .654-.171.655-.176.078-.146.124-.464.07-1.119-.014-.168-.037-.37-.061-.591-.052-.464-.112-1.005-.118-1.462-.01-.707.083-1.61.704-2.314.369-.417.845-.578 1.272-.618.404-.038.812.026 1.16.104.343.077.702.186 1.025.284l.028.008c.346.105.658.199.953.266.653.148.904.083.991.024C14.717 9.38 15 9.161 15 8a7 7 0 1 0-7 7z"/>
+</svg></a>
+&nbsp;
+<a href="javascript:fill()" title="fill"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-bucket-fill" viewBox="0 0 16 16">
+  <path d="M2.522 5H2a.5.5 0 0 0-.494.574l1.372 9.149A1.5 1.5 0 0 0 4.36 16h7.278a1.5 1.5 0 0 0 1.483-1.277l1.373-9.149A.5.5 0 0 0 14 5h-.522A5.5 5.5 0 0 0 2.522 5zm1.005 0a4.5 4.5 0 0 1 8.945 0H3.527z"/></svg></a>
 &nbsp;
 <span onclick="copyToOff()" id="copybutton" title="copy canvas offscreen">
  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#087aea" class="bi bi-clipboard-check" viewBox="0 0 64 64">
@@ -372,29 +373,6 @@
   <path d="M4.978.855a.5.5 0 1 0-.956.29l.41 1.352A4.985 4.985 0 0 0 3 6h10a4.985 4.985 0 0 0-1.432-3.503l.41-1.352a.5.5 0 1 0-.956-.29l-.291.956A4.978 4.978 0 0 0 8 1a4.979 4.979 0 0 0-2.731.811l-.29-.956z"/>
   <path d="M13 6v1H8.5v8.975A5 5 0 0 0 13 11h.5a.5.5 0 0 1 .5.5v.5a.5.5 0 1 0 1 0v-.5a1.5 1.5 0 0 0-1.5-1.5H13V9h1.5a.5.5 0 0 0 0-1H13V7h.5A1.5 1.5 0 0 0 15 5.5V5a.5.5 0 0 0-1 0v.5a.5.5 0 0 1-.5.5H13zm-5.5 9.975V7H3V6h-.5a.5.5 0 0 1-.5-.5V5a.5.5 0 0 0-1 0v.5A1.5 1.5 0 0 0 2.5 7H3v1H1.5a.5.5 0 0 0 0 1H3v1h-.5A1.5 1.5 0 0 0 1 11.5v.5a.5.5 0 1 0 1 0v-.5a.5.5 0 0 1 .5-.5H3a5 5 0 0 0 4.5 4.975z"/>
 </svg></a>
-<!--
-<a href="javascript:flipStrip()" title='flip random strip vertical'>
-<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="30" height="30" fill="black" class="bi bi-square" viewBox="0 0 16 16" version="1.1" id="svg4" sodipodi:docname="randomrectH.svg" inkscape:version="0.92.4 (5da689c313, 2019-01-14)">
-  <metadata   id="metadata10">  <rdf:RDF>    <cc:Work       rdf:about="">      <dc:format>image/svg+xml</dc:format>      <dc:type         rdf:resource="http://purl.org/dc/dcmitype/StillImage" />      <dc:title></dc:title>    </cc:Work>  </rdf:RDF>
-  </metadata>
-  <defs   id="defs8">  <linearGradient     inkscape:collect="always"     id="linearGradient4624">    <stop       style="stop-color:#930000;stop-opacity:0"       offset="0"       id="stop4620" />    <stop       style="stop-color:#000000;stop-opacity:0;"       offset="1"       id="stop4622" />  </linearGradient>  <linearGradient     inkscape:collect="always"     xlink:href="#linearGradient4624"     id="linearGradient4626"     x1="-15.254237"     y1="-3.9322028"     x2="-7.0847454"     y2="-3.9661012"     gradientUnits="userSpaceOnUse"     gradientTransform="matrix(0.95034692,0,0,1.1975809,5.8033975,-1.9426262)" />
-  </defs>
-  <sodipodi:namedview   pagecolor="#ffffff"   bordercolor="#666666"   borderopacity="1"   objecttolerance="10"   gridtolerance="10"   guidetolerance="10"   inkscape:pageopacity="0"   inkscape:pageshadow="2"   inkscape:window-width="2072"   inkscape:window-height="1160"   id="namedview6"   showgrid="false"   inkscape:zoom="19.666667"   inkscape:cx="-6.3050839"   inkscape:cy="10.77966"   inkscape:window-x="30"   inkscape:window-y="20"   inkscape:window-maximized="1"   inkscape:current-layer="svg4" />
-  <rect   style="fill:#8f8f8f;fill-opacity:0.95692306;stroke:url(#linearGradient4626);stroke-width:0.71121722"   id="rect4618"   width="14.303526"   height="3.6536365"   x="-15.136449"   y="-8.3567896"   transform="matrix(0,-1,-1,0,0,0)" />
-  <path   d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"   id="path2"   style="fill:#000000;fill-opacity:1" />
-</svg></a>
-&nbsp;
-<a href="javascript:flipStripH()" title='flip random strip horizontal'>
-<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="30" height="30" fill="black" class="bi bi-square" viewBox="0 0 16 16" version="1.1" id="svg4" sodipodi:docname="randomrectH.svg" inkscape:version="0.92.4 (5da689c313, 2019-01-14)">
-  <metadata   id="metadata10">  <rdf:RDF>    <cc:Work       rdf:about="">      <dc:format>image/svg+xml</dc:format>      <dc:type         rdf:resource="http://purl.org/dc/dcmitype/StillImage" />      <dc:title></dc:title>    </cc:Work>  </rdf:RDF>
-  </metadata>
-  <defs   id="defs8">  <linearGradient     inkscape:collect="always"     id="linearGradient4624">    <stop       style="stop-color:#930000;stop-opacity:0"       offset="0"       id="stop4620" />    <stop       style="stop-color:#000000;stop-opacity:0;"       offset="1"       id="stop4622" />  </linearGradient>  <linearGradient     inkscape:collect="always"     xlink:href="#linearGradient4624"     id="linearGradient4626"     x1="-15.254237"     y1="-3.9322028"     x2="-7.0847454"     y2="-3.9661012"     gradientUnits="userSpaceOnUse"     gradientTransform="matrix(0.95034692,0,0,1.1975809,5.8343839,10.843218)" />
-  </defs>
-  <sodipodi:namedview   pagecolor="#ffffff"   bordercolor="#666666"   borderopacity="1"   objecttolerance="10"   gridtolerance="10"   guidetolerance="10"   inkscape:pageopacity="0"   inkscape:pageshadow="2"   inkscape:window-width="2072"   inkscape:window-height="1160"   id="namedview6"   showgrid="false"   inkscape:zoom="19.666667"   inkscape:cx="-6.3050839"   inkscape:cy="10.77966"   inkscape:window-x="30"   inkscape:window-y="20"   inkscape:window-maximized="1"   inkscape:current-layer="svg4" />
-  <rect   style="fill:#8f8f8f;fill-opacity:0.95692307;stroke:url(#linearGradient4626);stroke-width:0.71121722"   id="rect4618"   width="14.303526"   height="3.6536365"   x="-15.105463"   y="4.4290547"   transform="scale(-1,1)" />
-  <path   d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"   id="path2"   style="fill:#000000;fill-opacity:1" />
-</svg></a-->
-<br>
 <canvas id="marker" width='512' height='6' style="border:1px solid #000000;" title="touch canvas: red mark shows location of clip or rip"></canvas>
 <div id="background" style="width:1024px;height:1024px;float:left;position:absolute;">
 <canvas id="myCanvas" width="512" height="512" style="border:1px solid #000000;">
