@@ -733,6 +733,7 @@ function pasteFromOffColorC () {
 function coloringbook () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
+  clearOff()
   let mode = ctx.globalCompositeOperation
   const myPromise = new Promise((copyToOff) => {
     setTimeout(() => {
