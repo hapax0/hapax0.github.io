@@ -250,9 +250,7 @@
     <option value="sampleImageDataColor2" >sample colors2</option>
     <option value="pointillism">pointillism</option>
     <option value="pointillism2">pointillism2</option>
-
 </select>
-
 </td>
 <td>
   &nbsp;<span style="color:red;">dot mode:</span>&nbsp;<input type="checkbox" id="dotmode" onchange="uncheckTextMode()">
@@ -329,17 +327,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-arrows-angle-contract" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M.172 15.828a.5.5 0 0 0 .707 0l4.096-4.096V14.5a.5.5 0 1 0 1 0v-3.975a.5.5 0 0 0-.5-.5H1.5a.5.5 0 0 0 0 1h2.768L.172 15.121a.5.5 0 0 0 0 .707zM15.828.172a.5.5 0 0 0-.707 0l-4.096 4.096V1.5a.5.5 0 1 0-1 0v3.975a.5.5 0 0 0 .5.5H14.5a.5.5 0 0 0 0-1h-2.768L15.828.879a.5.5 0 0 0 0-.707z"/>
 </svg></a>
-<!--a href="javascript:expandMargins(true)" title="add/increase margins">
-<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-arrow" viewBox="0 0 16 16">
-<path d="M 15,2 C 15,1.4477153 14.552285,1 14,1 H 2 C 1.4477153,1 1,1.4477153 1,2 v 12 c 0,0.552285 0.4477153,1 1,1 h 12 c 0.552285,0 1,-0.447715 1,-1 z M 0,2 C 0,0.8954305 0.8954305,0 2,0 h 12 c 1.104569,0 2,0.8954305 2,2 v 12 c 0,1.104569 -0.895431,2 -2,2 H 2 C 0.8954305,16 0,15.104569 0,14 Z" id="path2" style="fill-rule:evenodd" />
-  <rect style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.93606186;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="rect839" width="8.4021072" height="8.7749891" x="3.6633532" y="3.595556" />
-</svg></a>
-&nbsp;
-<a href="javascript:expandMargins()" title="increase bottom margin">
-<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-arrow-down-square" viewBox="0 0 16 16">
-<path d="M 15,2 C 15,1.4477153 14.552285,1 14,1 H 2 C 1.4477153,1 1,1.4477153 1,2 v 12 c 0,0.552285 0.4477153,1 1,1 h 12 c 0.552285,0 1,-0.447715 1,-1 z M 0,2 C 0,0.8954305 0.8954305,0 2,0 h 12 c 1.104569,0 2,0.8954305 2,2 v 12 c 0,1.104569 -0.895431,2 -2,2 H 2 C 0.8954305,16 0,15.104569 0,14 Z" id="path2" style="fill-rule:evenodd" />
-  <rect style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1.30432093;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="rect839" width="13.72476" height="10.430133" x="1.3377649" y="1.2764586" />
-</svg></a-->
 &nbsp;
 <a href="javascript:greyScale()" title="convert to greyscale">
 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="grey" class="bi bi-palette-fill" viewBox="0 0 16 16">
@@ -699,7 +686,6 @@ function diss () {
 function dissOver () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
-
   functions = ["smudge", "smudge", "smudge"]
   let args = ["", "streaks", "streaks2", "arcs", "arcs2", "stars", "horizontal"]
   let nf = 3 + Math.floor(Math.random() * 5)
@@ -711,7 +697,6 @@ function dissOver () {
       a = randomPick(args)
     window[f](a)
   }
- // contrastImage(5 + Math.random() *11)
 }
 
 function pasteFromOffColor () {
@@ -774,7 +759,6 @@ function c2 () {
   ctx.fillRect(0,0,canvas.width,canvas.height)
   return true
 }
-
 
 function landscape () {
   let canvas = document.getElementById("myCanvas")
@@ -1035,12 +1019,6 @@ function impasto (soft) {
   let checked = document.getElementById("grungy").checked
   document.getElementById("grungy").checked = false
   let mode = ctx.globalCompositeOperation
-  /*
-  ctx.shadowColor = "#ffaa00"
-  ctx.shadowOffsetX = 1
-  ctx.shadowOffsety = 1
-  ctx.shadowBlur = 0
-  */
   functions = ["dotblur", "jaggyblur", "dirblur"]
   //document.getElementById("speck_size").value = 280 + pet(30)
   document.getElementById("speck_opacity").value = 50 + pet(10)
@@ -1125,8 +1103,6 @@ function randomTexture () {
 function draw (canvas, ctx, temp, tempctx) {
   var img = new Image();
   img.onload = function () {
-   // var canvas = document.getElementById('canvas');
-   // var context = canvas.getContext('2d');
     ctx.drawImage(img, 0, 0);
   };
 }
@@ -1167,9 +1143,6 @@ function swap () {// number to divide height by, to match width's divisor
     sx = src %W, sy = Math.floor(src/W)
     dest = Math.floor(Math.random() * N)
     dx = dest % W, dy = Math.floor(dest/W)
-    //console.log(sx,sy,dx,dy)
-    //tempctx.imageSmoothingEnabled = false
-    //ctx.imageSmoothingEnabled = false
     if (grunge)
       tempctx.translate(pt(2), pt(2))
     ctx.drawImage(temp, sx*w, sy*h, w, h, dx*w, dy*h, w, h)
@@ -1236,12 +1209,6 @@ function showColors () {
       ctx.lineTo(x, y+40)
       ctx.closePath()
       ctx.fillStyle = colors[i]
-      /*
-      let cl = []
-      cl.push(hexToR(colors[i]))
-      cl.push(hexToG(colors[i]))
-      cl.push(hexToB(colors[i]))
-      console.log(colors[i], interesting(cl))*/
       ctx.fill()
       y += 44
     }
@@ -1455,9 +1422,6 @@ function leftClip (cut) {
     ctx.drawImage(off, 0, 0)
   else
     ctx.drawImage(off, x, 0)
-  //if (canvas.width >= LASTCLICK[0] && cut)
-  //  LASTCLICK[0] = canvas.width/3
-  //syncMarker()
 }
 
 function halfCurve () {
@@ -1585,7 +1549,6 @@ function sampleImageData () { // darkness
     let i = 0, lightness = 0
     for (; i < pixels.length; i += 4) {
       lightness += parseInt((pixels[i] + pixels[i + 1] + pixels[i + 2]) / 3)
-      
     }
     lightness /= (pixels.length/4) //avg = 0 to 255
     // invert scale
@@ -2018,7 +1981,6 @@ function sampleAColor (targetcolor) {
   return off
 }
 
-
 function sampleImageDataColor2 () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -2072,7 +2034,6 @@ function sampleImageDataColor2 () {
     }
     dist /= pixels.length/4
     offctx.fillStyle = targetcolor
-    //console.log(Math.round(dist), (1-(dist/maxdist)))
     radius = w/2 * (1-(dist/maxdist))
     if (radius < 0)
       radius = 0.01
@@ -2303,7 +2264,6 @@ function blockish () {
     ctx.fillStyle - petColor(color, 60)
     ctx.fill()
   }
-
 }
 
 function paperish () {
@@ -2327,8 +2287,6 @@ function paperish () {
     for (; i < nf; i++) {
       document.getElementById("paintcolor").value = petColor(color0, 90)
       let f = randomPick(shapes)
-       //document.getElementById("number").value = 3 + Math.random() * 10000
-     // document.getElementById("speck_size").value = 100 + Math.random() * 100
       document.getElementById("speck_opacity").value = 30 + Math.random() + 25
       window[f]()
       if (Math.random() > 0.5)
@@ -2353,21 +2311,7 @@ function paperish () {
       document.getElementById("speck_opacity").value = 50 + Math.random() + 50
       window[f](a)
     }
-    /*
-    ctx.globalCompositeOperation = "destination-over"
-    pasteFromOff()
-    ctx.globalCompositeOperation = "source-over"
-    copyToOff()
-    ctx.clearRect(0,0,canvas.width, canvas.height)
-    */
-  }/*
-  ctx.globalCompositeOperation = "destination-over"
-  pasteFromOff()
-  ctx.globalCompositeOperation = "color"
-  document.getElementById("speck_opacity").value = a0
-  document.getElementById("paintcolor").value = color0*/
- // fill()
-  //restore
+  }
   ctx.restore()
   document.getElementById("speck_opacity").value = a0
   ctx.globalCompositeOperation = mode
@@ -2678,8 +2622,7 @@ function colorFilterOff () {
     dist += Math.abs(d[i] - r)
     dist += Math.abs(d[i+1] - g)
     dist += Math.abs(d[i+2] - b)
-    let lightness = parseInt((d[i] + d[i + 1] + d[i + 2]) / 3);
-    
+  //  let lightness = parseInt((d[i] + d[i + 1] + d[i + 2]) / 3);
     if (dist/3 > threshold) {
         d[i + 3] = 0.0
     }
@@ -2709,7 +2652,6 @@ function colorFilterOff () {
     dist += Math.abs(d[i+1] - g)
     dist += Math.abs(d[i+2] - b)
     let lightness = parseInt((d[i] + d[i + 1] + d[i + 2]) / 3);
-    
     if (dist/3 > threshold) {
         d[i + 3] = 0.0
     }
@@ -2745,7 +2687,7 @@ function colorFilter () {
     dist += Math.abs(d[i] - r)
     dist += Math.abs(d[i+1] - g)
     dist += Math.abs(d[i+2] - b)
-    let lightness = parseInt((d[i] + d[i + 1] + d[i + 2]) / 3);
+   // let lightness = parseInt((d[i] + d[i + 1] + d[i + 2]) / 3);
     if (dist/3 > threshold) {
       if (grunge) {
         d[i + 3] *= 0.8
@@ -2758,7 +2700,6 @@ function colorFilter () {
 
 function highContrast () {
   let canvas = document.getElementById("myCanvas")
-  
   greyScale(canvas)
   contrastImage(40, canvas)
   adjustBrightness(-30, canvas)
@@ -2793,7 +2734,6 @@ function openFile () {
   ctx.globalCompositeOperation = mode
 }
 
-
 function drawFile () {
   let canvas = document.getElementById('myCanvas')
   let ctx = canvas.getContext('2d')
@@ -2825,22 +2765,19 @@ function drawFile () {
   refreshMode()
 }
 
-//let OC = null
-
 function clearOff () {
- // OC = null
  let OC = document.getElementById('OC')
  let octx = OC.getContext('2d')
  octx.clearRect(0, 0, OC.width, OC.height)
 }
 
 function copyToOff () {
- // if (!OC)
-  //  OC = document.createElement('CANVAS')
   let OC = document.getElementById('OC')
   let canvas = document.getElementById('myCanvas')
-  OC.height = canvas.height
-  OC.width = canvas.width
+  if (isCanvasBlank(canvas)) {
+    OC.height = canvas.height
+    OC.width = canvas.width
+  }
   let ctx = canvas.getContext('2d')
   let OCctx = OC.getContext('2d')
   ctx.globalAlpha = 1.0
@@ -9185,10 +9122,8 @@ function smearzoom () {
   let y = LASTCLICK[1]//off.height/2
   let xoffset = (canvas.width - off.width)/2
   let yoffset = (canvas.height - off.height)/2
-  
   xoffset += (canvas.width/2 - x)/2
   yoffset += (canvas.height/2 - y)/2
-  
   let angle = 2
   offctx = off.getContext("2d")
   offctx.drawImage(canvas, xoffset, yoffset, off.width, off.height)
