@@ -251,6 +251,7 @@
     <option value="pointillism">pointillism</option>
     <option value="pointillism2">pointillism2</option>
     <option value="mosaic" selected>mosaic</option>
+    <option value="nearest">mosaic2</option>
 </select>
 </td>
 <td>
@@ -1895,6 +1896,135 @@ function pointillism () {
     offctx.fill()
   }
   if (grunge)
+    ctx.clearRect(0,0,canvas.width,canvas.height)
+  ctx.drawImage(off, 0, 0)
+}
+
+function neighbors (points, canvas) {
+  let i = 0, j = 0
+  let min_dist = 5//Math.sqrt(canvas.height * canvas.width)/50
+  for (; i < points.length; i++) {
+    j = 0
+    let close = 1000000// +canvas.height * +canvas.width
+    for (; j < points.length; j++) {
+      if (i !== j) {
+        let d = distance (points[i][0], points[i][1], points[j][0], points[j][1])
+        if (d < close) {
+          points[i][2] = d
+          close = d
+        }
+      }
+    }
+  }
+  let points2 = []
+  i = 0
+  for (; i < points.length; i++) {
+    if (points[i][2] > min_dist) {
+      points2.push(points[i])
+    }
+  }
+  i = 0
+  for (; i < points2.length; i++) {
+    j = 0
+    let close = 1000000// +canvas.height * +canvas.width
+    for (; j < points2.length; j++) {
+      if (i !== j) {
+        let d = distance (points2[i][0], points2[i][1], points2[j][0], points2[j][1])
+        if (d < close) {
+          points2[i][2] = d
+          close = d
+        }
+      }
+    }
+  }
+  return points2
+}
+
+function nearest () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let off = document.createElement('CANVAS')
+  off.width = canvas.width
+  off.height = canvas.height
+  let offctx = off.getContext("2d")
+  offctx.fillStyle = document.getElementById("paintcolor").value
+  let grunge = document.getElementById("grungy").checked
+  ctx.globalAlpha = document.getElementById("speck_opacity").value/100
+  // set above as in rectify
+  let W = 2 + Math.floor(document.getElementById("speck_size").value/4)
+  //invert range of W [2 - W] => [W - 2]
+  W = 128 - W + 2
+  let wdivs = W
+  let cw = canvas.width
+  let ch = canvas.height
+  let w = cw/wdivs
+  let hdivs = Math.round(wdivs * ch/cw)
+  let h = ch/hdivs
+  let i = 0, x = 0, y = 0
+  let numsquares = (1+wdivs) * (1+hdivs)
+  let radius = w/4, j = 0
+  let lightness = 0, linecount = 0
+  let r = 0, g = 0, b = 0
+  let D = radius * 5
+  let angle = Math.random() * 2 * Math.PI
+
+  // outer loop
+  let points = []
+  for (;j < numsquares; j++) {
+    points[j] = [x+Math.random()*D, y+Math.random()*D/3, r]
+    x += w
+    if (x >= (wdivs)*w) {
+      linecount++
+      if (linecount % 2 == 1)
+        x = -w/2
+      else
+        x = 0
+      y += h
+    }
+  }
+  /*
+  for (;j < 6000; j++) {
+    x = Math.random() * canvas.width
+    y = Math.random() *canvas.height
+    points[j] = [x, y, r]
+  }*/
+  points = neighbors(points, canvas)
+  j = 0
+  for (;j < points.length; j++) {
+    x = points[j][0]
+    y = points[j][1]
+    radius = points[j][2]*0.9
+    let imgData = ctx.getImageData(x, y, w, h)
+    let threshold = 127 - document.getElementById("speck_opacity").value * 1.27
+    let pixels = imgData.data
+    let i = 0, r = 0, g = 0, b = 0
+    for (; i < pixels.length; i += 4) {
+      r += parseInt(pixels[i])
+      g += parseInt(pixels[i+1])
+      b += parseInt(pixels[i+2])
+    }
+    r /= pixels.length/4
+    g /= pixels.length/4
+    b /= pixels.length/4
+    let R = ('0'+(Math.round(r)).toString(16)).slice(-2),
+      G = ('0'+(Math.round(g)).toString(16)).slice(-2),
+      B = ('0'+(Math.round(b)).toString(16)).slice(-2);
+    offctx.fillStyle = "#"+R+G+B
+    offctx.beginPath()
+    let sides = 4 //+ Math.floor(Math.random() * 2) // 4 or 5
+    let inc = Math.PI/(sides/2)
+    let x1 = x, y1 = y
+    let k = 0
+    for (; k < sides; k++) {
+      x = x1 + radius * Math.cos(angle);
+      y = y1 + radius * Math.sin(angle);
+      offctx.lineTo(x, y)
+      angle += inc
+    }
+    offctx.closePath()
+    offctx.fill()
+  }
+ // if (grunge)
     ctx.clearRect(0,0,canvas.width,canvas.height)
   ctx.drawImage(off, 0, 0)
 }
