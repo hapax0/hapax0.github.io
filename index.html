@@ -244,12 +244,13 @@
     <option value="posterize">posterize</option>
     <option value="colorSample">simplify colors</option>
     <option value="sample3colors">CYM</option>
-    <option value="stipple" selected>stipple</option>
+    <option value="stipple">stipple</option>
     <option value="sampleImageData">sample dark</option>
     <option value="sampleImageDataColor">sample colors</option>
     <option value="sampleImageDataColor2" >sample colors2</option>
     <option value="pointillism">pointillism</option>
     <option value="pointillism2">pointillism2</option>
+    <option value="mosaic" selected>mosaic</option>
 </select>
 </td>
 <td>
@@ -1653,6 +1654,91 @@ function stipple () {
       offctx.fill()
     }
   }
+  ctx.clearRect(0,0,canvas.width,canvas.height)
+  ctx.drawImage(off, 0, 0)
+}
+
+function mosaic () { // 4 sided
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let off = document.createElement('CANVAS')
+  off.width = canvas.width
+  off.height = canvas.height
+  let offctx = off.getContext("2d")
+  offctx.fillStyle = document.getElementById("paintcolor").value
+  let grunge = document.getElementById("grungy").checked
+  ctx.globalAlpha = document.getElementById("speck_opacity").value/100
+  // set above as in rectify
+  let W = 2 + Math.floor(document.getElementById("speck_size").value/4)
+  //invert range of W [2 - W] => [W - 2]
+  W = 128 - W + 2
+  let wdivs = W
+  let cw = canvas.width
+  let ch = canvas.height
+  let w = cw/wdivs
+  let hdivs = Math.round(wdivs * ch/cw)
+  let h = ch/hdivs
+  let i = 0, x = 0, y = 0
+  let numsquares = (1+wdivs) * (1+hdivs)
+  let radius = w*0.475, j = 0
+  let linecount = 0
+  let r = 0, g = 0, b = 0
+  let D = radius * 1
+  let r0 = radius
+  let points = []
+  for (;j < numsquares; j++) {
+    points[j] = [x, y]
+    x += w
+    if (x >= (wdivs)*w) {
+      linecount++
+      if (linecount % 2 == 1)
+        x = -w/2
+      else
+        x = 0
+      y += h
+    }
+  }
+  points = shuffle(points)
+  let angle = Math.random() * 2 * Math.PI
+  j = 0
+  for (;j < points.length; j++) {
+    x = points[j][0]
+    y = points[j][1]
+    let imgData = ctx.getImageData(x, y, w, h)
+    let threshold = 127 - document.getElementById("speck_opacity").value * 1.27
+    let pixels = imgData.data
+    let i = 0, r = 0, g = 0, b = 0
+    for (; i < pixels.length; i += 4) {
+      r += parseInt(pixels[i])
+      g += parseInt(pixels[i+1])
+      b += parseInt(pixels[i+2])
+    }
+    r /= pixels.length/4
+    g /= pixels.length/4
+    b /= pixels.length/4
+    let R = ('0'+(Math.round(r)).toString(16)).slice(-2),
+      G = ('0'+(Math.round(g)).toString(16)).slice(-2),
+      B = ('0'+(Math.round(b)).toString(16)).slice(-2);
+    offctx.fillStyle = "#"+R+G+B
+    offctx.beginPath()
+    let k = 0
+    let x1 = x+w/2+pet(D)
+    let y1 = y+h/2+pet(D)
+    let sides = 4 + Math.floor(Math.random() * 2) // 4 or 5
+    let inc = Math.PI/(sides/2)
+    
+    radius = r0 + Math.random()*D/2
+    angle = Math.random() * 2 * Math.PI
+    for (; k < sides; k++) {
+      x = x1 + radius * Math.cos(angle);
+      y = y1 + radius * Math.sin(angle);
+      offctx.lineTo(x, y)
+      angle += inc
+    }
+    offctx.closePath()
+    offctx.fill()
+  }
+  //if (grunge)
   ctx.clearRect(0,0,canvas.width,canvas.height)
   ctx.drawImage(off, 0, 0)
 }
