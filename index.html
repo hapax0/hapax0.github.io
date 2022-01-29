@@ -252,6 +252,8 @@
     <option value="pointillism2">pointillism2</option>
     <option value="mosaic" selected>mosaic</option>
     <option value="nearest">mosaic2</option>
+    <option value="dotmosaic" selected>dot mosaic</option>
+
 </select>
 </td>
 <td>
@@ -1900,6 +1902,100 @@ function pointillism () {
   ctx.drawImage(off, 0, 0)
 }
 
+function dotmosaic () {
+  let off = document.createElement('CANVAS')
+  let offctx = off.getContext('2d')
+  let canvas = document.getElementById('myCanvas')
+  off.width = canvas.width
+  off.height = canvas.height
+  let ctx = canvas.getContext('2d'),
+      cw = canvas.width,
+      ch = canvas.height
+      
+  let W = 10 + Math.floor(document.getElementById("speck_size").value/10)
+  //invert range of W [2 - W] => [W - 2]
+  W = 50 - W + 10
+  let wdivs = W
+  let w = cw/wdivs
+  let hdivs = Math.round(wdivs * ch/cw)
+  let h = ch/hdivs
+  let i = 0, x = 0, y = 0
+  let dotCount = (1+wdivs) * (1+hdivs)
+  let dotRadius = w/2
+  let twoPi = Math.PI * 2,
+      dotColor = '#0AA594',
+      samples = 33, // candidate dots attempted, higher is better
+      placedDots = [], // a dot is represented as [x, y]
+      initialize = function () {
+        var dotsDrawn = 0,
+        interval = setInterval(function () {
+            placeNewDot();
+            dotsDrawn++;
+            if (dotsDrawn === dotCount) {
+              clearInterval(interval);
+              console.log("x")
+              ctx.clearRect(0,0,canvas.width,canvas.height)
+              ctx.drawImage(off,0,0)
+            }
+        }, 0);
+      },
+
+      generateRandomPosition = function () {
+        return [
+        Math.round(Math.random() * cw),
+        Math.round(Math.random() * ch),
+        1];
+      },
+
+      getDistanceToNearestDot = function (dot) {
+        var shortest;
+        for (var i = placedDots.length - 1; i >= 0; i--) {
+          var distance = getDistance(placedDots[i], dot);
+          if (!shortest || distance < shortest)
+            shortest = distance;
+        }
+        return shortest;
+      },
+
+      getDistance = function (dot1, dot2) {
+        var xDistance = Math.abs(dot1[0] - dot2[0]),
+            yDistance = Math.abs(dot1[1] - dot2[1]),
+            distance = Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
+        return Math.floor(distance);
+      },
+
+      generateBestDot = function () {
+        var bestDot, bestDotDistance;
+        for (var i = 0; i < samples; i++) {
+          var candidateDot = generateRandomPosition(),
+              distance;
+          if (!placedDots.length) return candidateDot;
+          distance = getDistanceToNearestDot(candidateDot);
+          if (!bestDot || distance > bestDotDistance) {
+              bestDot = candidateDot;
+              bestDotDistance = distance;
+          }
+        }
+        bestDot[2] = dotRadius
+        return bestDot;
+      },
+
+      placeNewDot = function () {
+        var dot = generateBestDot();
+        placedDots.push(dot);
+        drawDot(dot);
+      },
+
+      drawDot = function (dot) {
+        offctx.beginPath();
+        offctx.arc(dot[0], dot[1], dot[2], 0, twoPi);
+        offctx.fillStyle = sampleRectColor(dot, ctx)//randomColor()
+        offctx.fill();
+      };
+      
+    initialize();
+}
+
 function neighbors (points, canvas) {
   let i = 0, j = 0
   let min_dist = 5//Math.sqrt(canvas.height * canvas.width)/50
@@ -1940,6 +2036,27 @@ function neighbors (points, canvas) {
   }*/
   return points//2
 }
+
+function sampleRectColor (p, ctx) {
+  let x = p[0], y = p[1], w = p[2], h = w
+  let imgData = ctx.getImageData(x, y, w, h)
+  let pixels = imgData.data
+  let i = 0, r = 0, g = 0, b = 0
+  for (; i < pixels.length; i += 4) {
+    r += parseInt(pixels[i])
+    g += parseInt(pixels[i+1])
+    b += parseInt(pixels[i+2])
+  }
+  r /= pixels.length/4
+  g /= pixels.length/4
+  b /= pixels.length/4
+  let R = ('0'+(Math.round(r)).toString(16)).slice(-2),
+    G = ('0'+(Math.round(g)).toString(16)).slice(-2),
+    B = ('0'+(Math.round(b)).toString(16)).slice(-2);
+//  console.log("#"+R+G+B)
+  return ("#"+R+G+B)
+}
+    
 
 function nearest () {
   let canvas = document.getElementById("myCanvas")
