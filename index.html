@@ -1910,12 +1910,13 @@ function neighbors (points, canvas) {
       if (i !== j) {
         let d = distance (points[i][0], points[i][1], points[j][0], points[j][1])
         if (d < close) {
-          points[i][2] = d
+          points[i][2] = d * 0.84
           close = d
         }
       }
     }
   }
+  /*
   let points2 = []
   i = 0
   for (; i < points.length; i++) {
@@ -1936,8 +1937,8 @@ function neighbors (points, canvas) {
         }
       }
     }
-  }
-  return points2
+  }*/
+  return points//2
 }
 
 function nearest () {
@@ -1967,11 +1968,10 @@ function nearest () {
   let r = 0, g = 0, b = 0
   let D = radius * 5
   let angle = Math.random() * 2 * Math.PI
-
   // outer loop
   let points = []
   for (;j < numsquares; j++) {
-    points[j] = [x+Math.random()*D, y+Math.random()*D/3, r]
+    points[j] = [x+Math.random()*D/3, y+Math.random()*D/3, r]
     x += w
     if (x >= (wdivs)*w) {
       linecount++
@@ -1982,12 +1982,6 @@ function nearest () {
       y += h
     }
   }
-  /*
-  for (;j < 6000; j++) {
-    x = Math.random() * canvas.width
-    y = Math.random() *canvas.height
-    points[j] = [x, y, r]
-  }*/
   points = neighbors(points, canvas)
   j = 0
   for (;j < points.length; j++) {
