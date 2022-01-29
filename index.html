@@ -1912,9 +1912,9 @@ function dotmosaic () {
       cw = canvas.width,
       ch = canvas.height
       
-  let W = 10 + Math.floor(document.getElementById("speck_size").value/10)
+  let W = 3 + Math.floor(document.getElementById("speck_size").value/10)
   //invert range of W [2 - W] => [W - 2]
-  W = 50 - W + 10
+  W = 50 - W + 3
   let wdivs = W
   let w = cw/wdivs
   let hdivs = Math.round(wdivs * ch/cw)
@@ -1922,6 +1922,7 @@ function dotmosaic () {
   let i = 0, x = 0, y = 0
   let dotCount = (1+wdivs) * (1+hdivs)
   let dotRadius = w/2
+  let halfRadius = dotRadius/2
   let twoPi = Math.PI * 2,
       dotColor = '#0AA594',
       samples = 33, // candidate dots attempted, higher is better
@@ -1988,7 +1989,7 @@ function dotmosaic () {
 
       drawDot = function (dot) {
         offctx.beginPath();
-        offctx.arc(dot[0], dot[1], dot[2], 0, twoPi);
+        offctx.arc(dot[0], dot[1], dotRadius+pet(halfRadius), 0, twoPi);
         offctx.fillStyle = sampleRectColor(dot, ctx)//randomColor()
         offctx.fill();
       };
