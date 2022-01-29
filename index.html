@@ -1912,9 +1912,9 @@ function dotmosaic () {
       cw = canvas.width,
       ch = canvas.height
       
-  let W = 3 + Math.floor(document.getElementById("speck_size").value/10)
+  let W = 2 + Math.floor(document.getElementById("speck_size").value/25)
   //invert range of W [2 - W] => [W - 2]
-  W = 50 - W + 3
+  W = 50 - W + 2
   let wdivs = W
   let w = cw/wdivs
   let hdivs = Math.round(wdivs * ch/cw)
@@ -1934,7 +1934,7 @@ function dotmosaic () {
             dotsDrawn++;
             if (dotsDrawn === dotCount) {
               clearInterval(interval);
-              console.log("x")
+              console.log(dotRadius)
               ctx.clearRect(0,0,canvas.width,canvas.height)
               ctx.drawImage(off,0,0)
             }
