@@ -190,9 +190,10 @@
     <option value="hrips">rips</option>
     <option value="land">land</option>
     <option value="spiral4">scribble</option>
-    <option value="script" selected>script</option>
+    <option value="script">script</option>
     <option value="diagonal">diagonal</option>
     <option value="randomTexture" >random texture</option>
+    <option value="randomTexture2" selected>random texture2</option>
     <option value="landscape2">landscape</option>
     <option value="landscape3">landscape2</option>
     <option value="paperish">paperish</option>
@@ -1100,6 +1101,41 @@ function randomTexture () {
     document.getElementById("speck_opacity").value = 25 + Math.random() + 70
     window[f](a)
   }
+  document.getElementById("speck_opacity").value = val
+  document.getElementById("number").value = num
+  document.getElementById("speck_size").value = size
+  document.getElementById("paintcolor").value = color
+  ctx.globalCompositeOperation = mode
+  refreshMode()
+}
+
+function randomTexture2 () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let val = document.getElementById("speck_opacity").value
+  let num = document.getElementById("number").value
+  let size = document.getElementById("speck_size").value
+  let color = document.getElementById("paintcolor").value
+  let mode = ctx.globalCompositeOperation
+  functions = ["smudge", "smudge", "smudge", "smudge", "smudge", "blobs", "specksRadial", "rays", "strokes2"]
+  let args = ["", "streaks", "arcs", "arcs2", "stars", "horizontal"]
+  let i = 0
+  ctx.globalAlpha = val/100
+  ctx.fillStyle = color
+  ctx.fillRect(0,0,canvas.width, canvas.height)
+  ctx.globalCompositeOperation = "destination-out"
+
+  for (; i < 5; i++) {
+    let f = randomPick(functions)
+    let a = ''
+    if (f == "smudge")
+      a = randomPick(args)
+    document.getElementById("number").value = 33 + Math.random() * 10000
+    document.getElementById("speck_size").value = 250 + Math.random() * 200
+    document.getElementById("speck_opacity").value = 60 + Math.random() + 40
+    window[f](a)
+  }
+  
   document.getElementById("speck_opacity").value = val
   document.getElementById("number").value = num
   document.getElementById("speck_size").value = size
@@ -5624,6 +5660,7 @@ function roundedFrame () {
   ctx.quadraticCurveTo(x, y, x+radius, y);
   ctx.closePath()
   ctx.clip()
+  ctx.globalAlpha = 1
   ctx.drawImage(off, 0, 0)
   ctx.restore()
 }
