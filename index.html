@@ -29,11 +29,12 @@
     H: <input type="number" id="canvasheight" min="40" size="6" onchange="checkHeight()"></td><td style="text-align:right;">grunge: <input type="checkbox" id="grungy"></td><td>01-23-22
   </td><td>
   &nbsp;<button id="ff" onclick="testImage('framefunctions')" title="frame functions"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow" viewBox="0 0 16 16">
-<path d="M 15,2 C 15,1.4477153 14.552285,1 14,1 H 2 C 1.4477153,1 1,1.4477153 1,2 v 12 c 0,0.552285 0.4477153,1 1,1 h 12 c 0.552285,0 1,-0.447715 1,-1 z M 0,2 C 0,0.8954305 0.8954305,0 2,0 h 12 c 1.104569,0 2,0.8954305 2,2 v 12 c 0,1.104569 -0.895431,2 -2,2 H 2 C 0.8954305,16 0,15.104569 0,14 Z" id="path2" style="fill-rule:evenodd" />
-  <rect style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.93606186;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="rect839" width="8.4021072" height="8.7749891" x="3.6633532" y="3.595556" />
-</svg></button>
-<select id="framefunctions">
-  <option value="rectFrame">rect frame</option>
+  <path d="M 15,2 C 15,1.4477153 14.552285,1 14,1 H 2 C 1.4477153,1 1,1.4477153 1,2 v 12 c 0,0.552285 0.4477153,1 1,1 h 12 c 0.552285,0 1,-0.447715 1,-1 z M 0,2 C 0,0.8954305 0.8954305,0 2,0 h 12 c 1.104569,0 2,0.8954305 2,2 v 12 c 0,1.104569 -0.895431,2 -2,2 H 2 C 0.8954305,16 0,15.104569 0,14 Z" id="path2" style="fill-rule:evenodd" />
+    <rect style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.93606186;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="rect839" width="8.4021072" height="8.7749891" x="3.6633532" y="3.595556" />
+  </svg></button>
+  <select id="framefunctions">
+    <option value="rectFrame">rect frame</option>
+    <option value="roundedFrame">rounded frame</option>
     <option value="framePolaroid">polaroid frame</option>
     <option value="frame">jaggy frame</option>
     <option value="ripFrame">rip frame</option>
@@ -41,7 +42,7 @@
     <option value="makeSquare2">skewed square</option>
     <option value="expandMarginsAll">expand margins</option>
     <option value="expandMarginsDown">expand bottom</option>
-</select>
+  </select>
   </td>
   <td rowspan='5'>
     <div style="border-style:solid;margin:10px;padding:10px;">
@@ -250,8 +251,8 @@
     <option value="sampleImageDataColor2" >sample colors2</option>
     <option value="pointillism">pointillism</option>
     <option value="pointillism2">pointillism2</option>
-    <option value="mosaic" selected>mosaic</option>
-    <option value="nearest">mosaic2</option>
+    <option value="mosaic">mosaic</option>
+    <option value="nearest">squares mosaic</option>
     <option value="dotmosaic" selected>dot mosaic</option>
 
 </select>
@@ -5584,6 +5585,47 @@ function frame () {
   ctx.restore()
 }
 
+function roundedFrame () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let off = document.createElement('CANVAS')
+  let ctxoff = off.getContext("2d");
+  let D =  (5 + Math.floor(document.getElementById("speck_size").value/3))
+  let grunge = document.getElementById("grungy").checked
+  let W = canvas.width
+  let H = canvas.height
+  off.height = H
+  off.width = W
+  ctx.globalAlpha = document.getElementById("speck_opacity").value/100
+  ctx.save()
+  ctx.fillStyle = document.getElementById("paintcolor").value
+  let radius = 40
+  if (grunge)
+    radius *= 2
+  let x = D, y = D
+  let w = W - 2*D, h = H - 2*D
+  var r = x + w;
+  var b = y + h;
+  ctxoff.drawImage(canvas, 0, 0)
+  ctx.clearRect(0, 0, W, H)
+  ctx.fillRect(0,0,W,H)
+  ctx.beginPath();
+  ctx.lineWidth="4";
+  ctx.moveTo(x+radius, y);
+  ctx.lineTo(r-radius, y);
+  ctx.quadraticCurveTo(r, y, r, y+radius);
+  ctx.lineTo(r, y+h-radius);
+  ctx.quadraticCurveTo(r, b, r-radius, b);
+  ctx.lineTo(x+radius, b);
+  ctx.quadraticCurveTo(x, b, x, b-radius);
+  ctx.lineTo(x, y+radius);
+  ctx.quadraticCurveTo(x, y, x+radius, y);
+  ctx.closePath()
+  ctx.clip()
+  ctx.drawImage(off, 0, 0)
+  ctx.restore()
+}
+
 function rectFrame () {
   const rect = true
   framePolaroid(rect)
@@ -5604,7 +5646,6 @@ function framePolaroid (rect) {
   let wobble = 8
   if (document.getElementById("grungy").checked)
     wobble = 4
-  
   let i = 0
   while (y < canvas.height) {
     w = D +Math.random()*D/wobble
@@ -5635,7 +5676,6 @@ function framePolaroid (rect) {
     ctx.lineTo(x, y+w)
     ctx.closePath()
     ctx.fill()
-    
     if (rect) {
       ctx.beginPath()
       ctx.moveTo(x, H)
