@@ -1118,22 +1118,27 @@ function randomTexture2 () {
   let size = document.getElementById("speck_size").value
   let color = document.getElementById("paintcolor").value
   let mode = ctx.globalCompositeOperation
-  functions = ["smudge", "smudge", "smudge", "smudge", "smudge", "blobs", "specksRadial", "rays", "strokes2"]
-  let args = ["", "streaks", "arcs", "arcs2", "stars", "horizontal"]
+  functions = ["smudge", "smudge", "smudge", "smudge", "smudge", "blobs", "rays", "strokes2"]
+  let args = ["", "streaks", "arcs", "arcs2", "stars", "horizontal", "watercolor"]
   let i = 0
   ctx.globalAlpha = val/100
   ctx.fillStyle = color
   ctx.fillRect(0,0,canvas.width, canvas.height)
   ctx.globalCompositeOperation = "destination-out"
-  for (; i < 5; i++) {
+  for (; i < 6; i++) {
     let f = randomPick(functions)
     let a = ''
     if (f == "smudge")
       a = randomPick(args)
     document.getElementById("number").value = 33 + Math.random() * 10000
-    document.getElementById("speck_size").value = 250 + Math.random() * 200
-    document.getElementById("speck_opacity").value = 60 + Math.random() + 40
-    window[f](a)
+    document.getElementById("speck_size").value = 200 + Math.random() * 200
+    document.getElementById("speck_opacity").value = 50 + Math.random() + 30
+    window[f](a)/*
+    if (i == 3) {
+      sobel()
+      document.getElementById("speck_opacity").value = 77// + Math.random() + 30
+      alphaWhite()
+    }*/
   }
   document.getElementById("speck_opacity").value = val
   document.getElementById("number").value = num
@@ -7768,7 +7773,7 @@ function smudge (type) {
   let shapemultiplier = area/(1024*1024)
   smudge_ct *= shapemultiplier
   if (type == "watercolor")
-    smudge_ct /= 4
+    smudge_ct /= 6
   //clip()
   for (; n < smudge_ct; n++) {
     if (type === "streaks")
@@ -7868,7 +7873,7 @@ function offwatercolor (colors) {
   let x = 0, y = 0
   ctx.clearRect(0,0,ctx.canvas.width,ctx.canvas.height)
   ctx.globalAlpha = 0.02
-  let maxradius = 20 + document.getElementById("speck_size").value/4
+  let maxradius = 20 + document.getElementById("speck_size").value/11
   let d = 14 + Math.random() * maxradius
   d *= 5
   let count = 10
@@ -7882,7 +7887,7 @@ function offwatercolor (colors) {
   }
   let size = document.getElementById("speck_size").value
   document.getElementById("speck_size").value = 30
-  dirblur(canvas)
+  //dirblur(canvas)
   document.getElementById("speck_size").value = size
   smearrandom(canvas)
 }
