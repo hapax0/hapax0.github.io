@@ -23,10 +23,10 @@
 </head>
 <body>
 <div style="margin-left:8px;">
-<div style="font-size:32px;font-weight:bold;">Airbrush</div>
+<!--div style="font-size:32px;font-weight:bold;">Airbrush</div-->
 <table border="0" cellpadding="6" style="margin-left:6px;">
   <tr><td style="text-align:right;"><button onclick="resizeFromDialog()">resize</button></td><td>W: <input type="number" id="canvaswidth" min="40" size="6" onchange="checkWidth()">
-    H: <input type="number" id="canvasheight" min="40" size="6" onchange="checkHeight()"></td><td style="text-align:right;">grunge: <input type="checkbox" id="grungy"></td><td>01-30-22
+    H: <input type="number" id="canvasheight" min="40" size="6" onchange="checkHeight()"></td><td style="text-align:right;">grunge:<input type="checkbox" id="grungy"></td><td>01-31-22
   </td><td>
   &nbsp;<button id="ff" onclick="testImage('framefunctions')" title="frame functions"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow" viewBox="0 0 16 16">
   <path d="M 15,2 C 15,1.4477153 14.552285,1 14,1 H 2 C 1.4477153,1 1,1.4477153 1,2 v 12 c 0,0.552285 0.4477153,1 1,1 h 12 c 0.552285,0 1,-0.447715 1,-1 z M 0,2 C 0,0.8954305 0.8954305,0 2,0 h 12 c 1.104569,0 2,0.8954305 2,2 v 12 c 0,1.104569 -0.895431,2 -2,2 H 2 C 0.8954305,16 0,15.104569 0,14 Z" id="path2" style="fill-rule:evenodd" />
@@ -38,15 +38,16 @@
     <option value="framePolaroid">polaroid frame</option>
     <option value="frame">jaggy frame</option>
     <option value="ripFrame">rip frame</option>
-    <option value="makeSquare" selected>pad to square</option>
+    <option value="makeSquare" >pad to square</option>
     <option value="makeSquare2">skewed square</option>
+    <option value="make4to5" selected>pad to 4:5</option>
     <option value="expandMarginsAll">expand margins</option>
     <option value="expandMarginsDown">expand bottom</option>
   </select>
   </td>
   <td rowspan='5'>
     <div style="border-style:solid;margin:10px;padding:10px;">
-    <span style="color:red">touch to place text:</span> <input type="checkbox" id="textmode" onchange="uncheckDotMode()"><br>
+    <span style="color:red">touch to place text:</span><input type="checkbox" id="textmode" onchange="uncheckDotMode()"><br>
     text: &nbsp;<input type="text" id="caption" value="your text here" style="width:10em;"><br>
     font size: &nbsp;<input type="number" id="textsize" value="48" style="width:4em;"><br>
     font: <input list='facelist' id="face" style="width:10em;"><input type='button' class='mockbb' value='X' onclick="clearFace()" title="clear the face field">&nbsp;
@@ -76,7 +77,7 @@
       <option value= "italic">italic</option>
       <option value="lighter">lighter</option>
     </select>
-    angle: <input type="number" id ="angle" value="0" style="width:4em;" min="0", max="360">
+    <br>angle: <input type="number" id ="angle" value="0" style="width:4em;" min="0", max="360">&nbsp;&#177;90&#176;:<input type="checkbox" id="randomangle">
 
   </div>
   </td>
@@ -261,7 +262,7 @@
 </select>
 </td>
 <td>
-  &nbsp;<span style="color:red;">dot mode:</span>&nbsp;<input type="checkbox" id="dotmode" onchange="uncheckTextMode()">
+  &nbsp;<span style="color:red;">dot mode:</span><input type="checkbox" id="dotmode" onchange="uncheckTextMode()">
 </td>
 </tr>
 </table>
@@ -1124,7 +1125,6 @@ function randomTexture2 () {
   ctx.fillStyle = color
   ctx.fillRect(0,0,canvas.width, canvas.height)
   ctx.globalCompositeOperation = "destination-out"
-
   for (; i < 5; i++) {
     let f = randomPick(functions)
     let a = ''
@@ -1135,7 +1135,6 @@ function randomTexture2 () {
     document.getElementById("speck_opacity").value = 60 + Math.random() + 40
     window[f](a)
   }
-  
   document.getElementById("speck_opacity").value = val
   document.getElementById("number").value = num
   document.getElementById("speck_size").value = size
@@ -1287,7 +1286,6 @@ function colorSample () {
     }
   }
   let threshold = m/sample.length/sample.length * 0.8
-  //console.log(threshold)
   let bins = [], bc = 0
   i = 0
   for (;i < sample.length; i++) {
@@ -1973,7 +1971,6 @@ function dotmosaic () {
             dotsDrawn++;
             if (dotsDrawn === dotCount) {
               clearInterval(interval);
-              console.log(dotRadius)
               ctx.clearRect(0,0,canvas.width,canvas.height)
               ctx.drawImage(off,0,0)
             }
@@ -2093,7 +2090,6 @@ function sampleRectColor (p, ctx) {
   let R = ('0'+(Math.round(r)).toString(16)).slice(-2),
     G = ('0'+(Math.round(g)).toString(16)).slice(-2),
     B = ('0'+(Math.round(b)).toString(16)).slice(-2);
-//  console.log("#"+R+G+B)
   return ("#"+R+G+B)
 }
     
@@ -5661,6 +5657,7 @@ function roundedFrame () {
   ctx.closePath()
   ctx.clip()
   ctx.globalAlpha = 1
+  ctx.clearRect(0, 0, W, H)
   ctx.drawImage(off, 0, 0)
   ctx.restore()
 }
@@ -6525,6 +6522,42 @@ function haze () {
   ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
   ctx.fillRect(0,0,canvas.width, canvas.height)
   ctx.restore()
+}
+
+function make4to5 (all) {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let mode = ctx.globalCompositeOperation
+  W = canvas.width
+  H = canvas.height
+  let ratio = W/H
+  if (ratio == 0.8)
+    return
+  ctx.globalAlpha = document.getElementById("speck_opacity").value/100
+  let canvasoff = document.getElementById("off")
+  let ctxoff = canvasoff.getContext("2d")
+  canvasoff.width = canvas.width
+  canvasoff.height = canvas.height
+  ctxoff.drawImage(canvas,0,0)
+  let pad = 0, x = 0, y = 0
+  if (ratio > 0.8) { // too wide: increase height
+    pad = 5 * W/4
+    canvas.height = pad
+    y = (canvas.height-H)/2
+  } else
+  if (ratio < 0.8) { // too tall: increase width
+    pad = 4 * H/5
+    canvas.width = pad
+    x = (canvas.width-W)/2
+  }
+  syncBackground(canvas)
+  document.getElementById("canvaswidth").value = canvas.width
+  document.getElementById("canvasheight").value = canvas.height
+  ctx.drawImage(canvasoff, x, y)
+  canvasoff.width = canvas.width
+  canvasoff.height = canvas.height
+  ctx.globalCompositeOperation = mode
+  console.log(canvas.width/canvas.height)
 }
 
 function makeSquare (all) {
@@ -7604,8 +7637,6 @@ function randomGradientLeft(canvas, col1) {
   y1 = 0//radius * Math.sin(angle)+centy;
   x2 = radius * Math.cos(angle+3.14)+centx;
   y2 = 0//radius * Math.sin(angle+3.14)+centy;
-  
-  console.log(x1,x2)
   let my_gradient = canvas.getContext('2d').createLinearGradient(x1, y1, x2, y2);
   if (col1 === undefined)
     col1 = randomColor();
@@ -9055,26 +9086,20 @@ function drawTextAt () {
   let angle = +document.getElementById("angle").value
   angle = angle%360
   angle *= Math.PI/180
+  let randomangle = document.getElementById("randomangle").checked
+  if (randomangle)
+    angle += pet(3.14)
   if (!faces || faces.length < 1)
     return
   let x = LASTCLICK[0]
   let y = LASTCLICK[1]
   let word = document.getElementById("caption").value
- //   ctx.moveT0(x, y)
-
   ctx.save();
   ctx.translate(x, y);
   ctx.rotate(angle);
   ctx.font = (styles)+" "+size+"pt " + (faces)
   ctx.fillText(word, 0, 0);
-//this.context.textAlign = 'right';
-//this.context.fillText('right', 0, lineHeight / 2);
-
   ctx.restore();
-/*
-  ctx.moveTo(x, y)
-  ctx.font = (styles)+" "+size+"pt " + (faces)
-  ctx.fillText(word, x, y);*/
 }
 
 function stem (x,y,r, m) {
@@ -9099,7 +9124,6 @@ function branching () {
   let x = w/2 + pet(w/2), y = h /* 4/5 + pet(h/5)*/, r = w/130 + pet(w/120)
   let s = new stem (x,y,r, m)
   branches.push(s)
-  //ctx.clearRect(0,0,canvas.width,canvas.height)
   let i = 0
   let n = 0
   for (; n < 1700; n++) {
@@ -9116,8 +9140,6 @@ function branching () {
         if (Math.random() > 0.997)
           branches[i].bias *= 0.9
         m *= 0.995
-       // if (branches[i].r < 0.1)
-       //  break
         if (Math.random() > 0.95 && branches.length < 90) {
           branches.push(new stem(branches[i].x, branches[i].y, branches[i].r, m))
         }
@@ -9558,7 +9580,6 @@ function smearzoom () {
   let n = 2 //+ Math.random() * 17
   ctx.save()
   for (; i < n; i++) {
-    console.log(jump)
     if (Math.random() > 0.5)
       jump2 *= -1
     if (Math.random() > 0.5)
@@ -10000,8 +10021,7 @@ function randomKernel () {
       k[i] /= sum
       sum2 += k[i]
     }
-      console.log(k, sum2)
-
+    console.log(k, sum2)
   }
   return k
 }
