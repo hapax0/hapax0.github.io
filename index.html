@@ -5086,15 +5086,14 @@ function strokes2 () {
   ctx.strokeStyle = document.getElementById("paintcolor").value
   let color = document.getElementById("paintcolor").value
   ctx.save()
-  ctx.globalAlpha = document.getElementById("speck_opacity").value/100
+  ctx.globalAlpha = document.getElementById("speck_opacity").value/200
   let maxalpha = ctx.globalAlpha
   ctx.lineCap = 'round';
   ctx.lineJoin = 'round';
   let grunge = document.getElementById("grungy").checked
   let stroke_width = 11+ document.getElementById("speck_size").value/20
-  let stroke_ct = +document.getElementById("number").value/200
+  let stroke_ct = +document.getElementById("number").value/400 + 1
   for (let t = 0; t < stroke_ct; t++) {
-    
     let paths = [];
     let radius = Math.floor(Math.random() * 50) + 20;
     x = 0;
@@ -5102,7 +5101,7 @@ function strokes2 () {
     angle = Math.floor(Math.random() * 6.42);
     let centx = Math.random()*canvas.width/2;
     let centy = Math.random()*canvas.height/2;
-    let edges = (9 * (Math.floor(Math.random()*6))+6);
+    let edges = (9 * (Math.floor(Math.random()*6))+2);
     let maxradius = Math.random() * 5 + canvas.width/10;
     increase = Math.PI * 2/edges*0.52;
     points = [];
@@ -5126,7 +5125,7 @@ function strokes2 () {
     let pop = 60
     if (grunge)
       pop *= 2
-    let offset = 10 + stroke_width * 11;
+    let offset = 50 + stroke_width * 50;
     let numpaths = 10 + Math.random()*30;
     for (let s = 0; s < numpaths; s++) {
       let path = [];
@@ -7773,7 +7772,7 @@ function smudge (type) {
   let shapemultiplier = area/(1024*1024)
   smudge_ct *= shapemultiplier
   if (type == "watercolor")
-    smudge_ct /= 6
+    smudge_ct /= 2
   //clip()
   for (; n < smudge_ct; n++) {
     if (type === "streaks")
@@ -7872,7 +7871,7 @@ function offwatercolor (colors) {
   let cy = ctx.canvas.height/2;
   let x = 0, y = 0
   ctx.clearRect(0,0,ctx.canvas.width,ctx.canvas.height)
-  ctx.globalAlpha = 0.02
+  ctx.globalAlpha = 0.05
   let maxradius = 20 + document.getElementById("speck_size").value/11
   let d = 14 + Math.random() * maxradius
   d *= 5
@@ -8497,7 +8496,7 @@ function blobs () {
   let area = canvas.width * canvas.height
   let shapemultiplier = area/(1024*1024)
   let cx = centx, cy = centy
-  ctx.globalAlpha = (document.getElementById("speck_opacity").value)/100
+  ctx.globalAlpha = (document.getElementById("speck_opacity").value)/200
   let alpha0 = ctx.globalAlpha
   let numshapes = 25
   ctx.fillStyle = document.getElementById("paintcolor").value
