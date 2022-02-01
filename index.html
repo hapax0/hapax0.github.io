@@ -108,6 +108,7 @@
       <option value="leftCut" style="color:red">left cut</option>
       <option value="nudgeUp" style="color:red">nudge up</option>
       <option value="nudgeDown" style="color:red">nudge down</option>
+      <option value="nudgeCW">nudge angle</option>
       <!--option value="smear">smear shake</option-->
       <option value="smearside">smear right</option>
       <option value="smearrandom">smear random</option>
@@ -6671,6 +6672,35 @@ function expandMargins (all) {
   canvasoff.height = canvas.height
   ctx.globalCompositeOperation = mode
   syncBackground(canvas)
+}
+
+function nudgeCW () {
+  nudgeCWorCCW()
+}
+
+function nudgeCCW () {
+  nudgeCWorCCW(true)
+}
+
+function nudgeCWorCCW (cc) {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let h = canvas.height;
+  let w = canvas.width;
+  ctx.globalAlpha = (document.getElementById("speck_opacity").value)/100
+  ctx.fillStyle = document.getElementById("paintcolor").value
+  let angle = +document.getElementById("angle").value
+  angle *= Math.PI/180
+  if (cc)
+    angle *= -1
+  let x = LASTCLICK[0]
+  let y = LASTCLICK[1]
+  let word = document.getElementById("caption").value
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.rotate(angle);
+  ctx.drawImage(canvas,-x,-y,canvas.width, canvas.height)
+  ctx.restore();
 }
 
 function nudgeUp () {
