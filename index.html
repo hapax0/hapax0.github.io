@@ -169,6 +169,7 @@
     <option value="vig" style="color:red">fade center</option>
     <option value="haze">haze</option>
     <option value="transparenter">fade all</option>
+    <option value="opaqueer">unfade all</option>
     <option value="leftFade">fade left</option>
     <option value="downFade">fade dowm</option>
     <option value="chaze">edge haze</option>
@@ -9852,6 +9853,18 @@ function transparenter () {
   let i = 0
   for (; i < pixels.length; i += 4) {
     pixels[i + 3] *= 0.9;
+  }
+  ctx.putImageData(imgData, 0, 0);
+}
+
+function opaqueer () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
+  let pixels = imgData.data;
+  let i = 0
+  for (; i < pixels.length; i += 4) {
+    pixels[i + 3] *= 1.1;
   }
   ctx.putImageData(imgData, 0, 0);
 }
