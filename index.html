@@ -249,6 +249,7 @@
     <option value="filterBlue">filter blue</option>
     <option value="highContrast">high contrast</option>
     <option value="threshold">threshold</option>
+    <option value="threshold_soft">threshold soft</option>
     <option value="posterize">posterize</option>
     <option value="colorSample">simplify colors</option>
     <option value="sample3colors">CYM</option>
@@ -3114,9 +3115,9 @@ function drawFile () {
   let url = window.URL || window.webkitURL
   let src = url.createObjectURL(f);
   img.src = src;
-  let mode = ctx.globalCompositeOperation
   let a = ctx.globalAlpha
   ctx.globalAlpha = 1
+  let mode = ctx.globalCompositeOperation
   ctx.globalCompositeOperation = "source-over"
   document.getElementById('mode')
   img.onload = function() {
@@ -10042,6 +10043,33 @@ function lum () {
       s = 0,
       l = 0;
   return ((cmax + cmin) / 2)
+}
+
+function threshold_soft () {
+  let threshold = lum() * 255
+  let low = threshold - threshold/3
+  let high = threshold + threshold/3
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  let d = imageData.data; // raw pixel data in array
+  let v = 0, l = 0
+  for (var i=0; i<d.length; i+=4) {
+    var r = d[i];
+    var g = d[i+1];
+    var b = d[i+2];
+    l = 0.2126*r + 0.7152*g + 0.0722*b
+    v = 0
+    if (l >= high)
+      v = 255
+    else
+    if (l < low)
+      v = 0
+    else
+      v = l
+    d[i] = d[i+1] = d[i+2] = v
+  }
+  ctx.putImageData(imageData, 0, 0);
 }
 
 function threshold () {
