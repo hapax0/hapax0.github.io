@@ -26,7 +26,7 @@
 <!--div style="font-size:32px;font-weight:bold;">Airbrush</div-->
 <table border="0" cellpadding="6" style="margin-left:6px;">
   <tr><td style="text-align:right;"><button onclick="resizeFromDialog()">resize</button></td><td>W: <input type="number" id="canvaswidth" min="40" size="6" onchange="checkWidth()">
-    H: <input type="number" id="canvasheight" min="40" size="6" onchange="checkHeight()"></td><td style="text-align:right;">grunge:<input type="checkbox" id="grungy"></td><td>01-31-22
+    H: <input type="number" id="canvasheight" min="40" size="6" onchange="checkHeight()"></td><td style="text-align:right;">grunge:<input type="checkbox" id="grungy"></td><td>02-06-22
   </td><td>
   &nbsp;<button id="ff" onclick="testImage('framefunctions')" title="frame functions"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow" viewBox="0 0 16 16">
   <path d="M 15,2 C 15,1.4477153 14.552285,1 14,1 H 2 C 1.4477153,1 1,1.4477153 1,2 v 12 c 0,0.552285 0.4477153,1 1,1 h 12 c 0.552285,0 1,-0.447715 1,-1 z M 0,2 C 0,0.8954305 0.8954305,0 2,0 h 12 c 1.104569,0 2,0.8954305 2,2 v 12 c 0,1.104569 -0.895431,2 -2,2 H 2 C 0.8954305,16 0,15.104569 0,14 Z" id="path2" style="fill-rule:evenodd" />
@@ -39,6 +39,7 @@
     <option value="frame">jaggy frame</option>
     <option value="ripFrame">rip frame</option>
     <option value="makeSquare" >pad to square</option>
+    <option value="cropSquare" >crop to square</option>
     <option value="makeSquare2">skewed square</option>
     <option value="make4to5" selected>pad to 4:5</option>
     <option value="expandMarginsAll">expand margins</option>
@@ -77,8 +78,7 @@
       <option value= "italic">italic</option>
       <option value="lighter">lighter</option>
     </select>
-    <br>angle: <input type="number" id ="angle" value="0" style="width:4em;" min="0", max="360">&nbsp;&#177;90&#176;:<input type="checkbox" id="randomangle">
-
+    <br>angle: <input type="number" id ="angle" value="0" style="width:4em;" >&nbsp;&#177;90&#176;:<input type="checkbox" id="randomangle">
   </div>
   </td>
   </tr>
@@ -206,9 +206,9 @@
     <option value="smeardownOff">vertical streaks</option>
     <option value="strokes">strokes</option>
     <option value="strokes2">strokes2</option>
-    <option value="birds">birds</option>
+    <!--option value="birds">birds</option>
     <option value="grid">grid</option>
-    <!--option value="rothko">rothko</option-->
+    <option value="rothko">rothko</option-->
   </select>
 </td>
 </tr>
@@ -6566,6 +6566,38 @@ function make4to5 (all) {
   canvasoff.height = canvas.height
   ctx.globalCompositeOperation = mode
   console.log(canvas.width/canvas.height)
+}
+
+function cropSquare (all) {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let mode = ctx.globalCompositeOperation
+  W = canvas.width
+  H = canvas.height
+  if (W == H)
+    return
+  ctx.globalAlpha = document.getElementById("speck_opacity").value/100
+  let canvasoff = document.getElementById("off")
+  let ctxoff = canvasoff.getContext("2d")
+  canvasoff.width = canvas.width
+  canvasoff.height = canvas.height
+  ctxoff.drawImage(canvas,0,0)
+  let pad = 0, x = 0, y = 0
+  if (H > W) {
+    y -= (H-W)/2
+    canvas.height -= (H-W)
+  } else
+  if (W > H) {
+    x -= (W-H)/2
+    canvas.width -= (W-H)
+  }
+  syncBackground(canvas)
+  document.getElementById("canvaswidth").value = canvas.width
+  document.getElementById("canvasheight").value = canvas.height
+  ctx.drawImage(canvasoff, x, y)
+  canvasoff.width = canvas.width
+  canvasoff.height = canvas.height
+  ctx.globalCompositeOperation = mode
 }
 
 function makeSquare (all) {
