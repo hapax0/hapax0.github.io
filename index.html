@@ -9122,7 +9122,7 @@ function clearDotAt () {
   ctx.fillStyle = document.getElementById("paintcolor").value
   let x = LASTCLICK[0]
   let y = LASTCLICK[1]
-  let r = 2 + document.getElementById("speck_size").value
+  let r = 2 + +document.getElementById("speck_size").value
   //if (document.getElementById("grungy").checked)
   r += pet(r/3)
   ctx.beginPath()
