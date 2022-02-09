@@ -26,7 +26,7 @@
 <!--div style="font-size:32px;font-weight:bold;">Airbrush</div-->
 <table border="0" cellpadding="6" style="margin-left:6px;">
   <tr><td style="text-align:right;"><button onclick="resizeFromDialog()">resize</button></td><td>W: <input type="number" id="canvaswidth" min="40" size="6" onchange="checkWidth()">
-    H: <input type="number" id="canvasheight" min="40" size="6" onchange="checkHeight()"></td><td style="text-align:right;">grunge:<input type="checkbox" id="grungy"></td><td>02-08-22
+    H: <input type="number" id="canvasheight" min="40" size="6" onchange="checkHeight()"></td><td style="text-align:right;">grunge:<input type="checkbox" id="grungy"></td><td>02-06-22
   </td><td>
   &nbsp;<button id="ff" onclick="testImage('framefunctions')" title="frame functions"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow" viewBox="0 0 16 16">
   <path d="M 15,2 C 15,1.4477153 14.552285,1 14,1 H 2 C 1.4477153,1 1,1.4477153 1,2 v 12 c 0,0.552285 0.4477153,1 1,1 h 12 c 0.552285,0 1,-0.447715 1,-1 z M 0,2 C 0,0.8954305 0.8954305,0 2,0 h 12 c 1.104569,0 2,0.8954305 2,2 v 12 c 0,1.104569 -0.895431,2 -2,2 H 2 C 0.8954305,16 0,15.104569 0,14 Z" id="path2" style="fill-rule:evenodd" />
@@ -1433,6 +1433,7 @@ function posterize () {
 function leftCut () {
   const cut = true
   leftClip(cut)
+  syncMarker()
 }
 
 function leftClip (cut) {
@@ -6599,6 +6600,7 @@ function cropSquare (all) {
   canvasoff.width = canvas.width
   canvasoff.height = canvas.height
   ctx.globalCompositeOperation = mode
+  syncMarker()
 }
 
 function makeSquare (all) {
@@ -9123,7 +9125,9 @@ function clearDotAt () {
   ctx.fillStyle = document.getElementById("paintcolor").value
   let x = LASTCLICK[0]
   let y = LASTCLICK[1]
-  let r = 2 + +document.getElementById("speck_size").value
+  let r = 1 + +document.getElementById("speck_size").value
+  if (+document.getElementById("speck_size").value > 300)
+    r *=3
   //if (document.getElementById("grungy").checked)
   r += pet(r/3)
   ctx.beginPath()
@@ -10174,12 +10178,6 @@ function emboseCanvas () {
     convolutionMatrix(randomPick(k), 0)
 }
 
-function dilateCanvas () {
-  let k = [0,1,0,
-           1,1,1,
-           0,1,0]
-    convolutionMatrix(k, 0)
-}
 
 function sharpenCanvas () {
   let k = [0,-1,0,
