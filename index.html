@@ -256,6 +256,7 @@
     <option value="sample3colors">CYM</option>
     <option value="stipple">stipple</option>
     <option value="hatches">hatches</option>
+    <option value="hatchescolor">hatches color</option>
     <option value="sampleImageData">sample dark</option>
     <option value="sampleImageDataColor">sample colors</option>
     <option value="sampleImageDataColor2" >sample colors2</option>
@@ -1626,7 +1627,11 @@ function sampleImageData () { // darkness
   ctx.drawImage(off, 0, 0)
 }
 
-function hatches () {
+function hatchescolor() {
+  hatches(true)
+}
+
+function hatches (color) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let off = document.createElement('CANVAS')
@@ -1691,7 +1696,8 @@ function hatches () {
   let D8 = D/8
   j = 0
   let h2 = h
-  if (Math.random() > 0.5)
+  let xf = 0, yf = 0
+  if (Math.random() > 0.95)
         h2 *= -1
   for (;j < points.length; j++) {
     x = points[j][0]
@@ -1699,22 +1705,39 @@ function hatches () {
     let imgData = ctx.getImageData(x, y, w, h)
     let threshold = 127 - document.getElementById("speck_opacity").value * 1.27
     let pixels = imgData.data
-    let i = 0, lightness = 0
+    let i = 0, lightness = 0, r = 0, g = 0, b = 0
     for (; i < pixels.length; i += 4) {
+      r += parseInt(pixels[i])
+      g += parseInt(pixels[i+1])
+      b += parseInt(pixels[i+2])
       lightness += parseInt((pixels[i] + pixels[i + 1] + pixels[i + 2]) / 3)
+    }
+    if (color) {
+      r /= pixels.length/4
+      g /= pixels.length/4
+      b /= pixels.length/4
+      let R = ('0'+(Math.round(r)).toString(16)).slice(-2),
+        G = ('0'+(Math.round(g)).toString(16)).slice(-2),
+        B = ('0'+(Math.round(b)).toString(16)).slice(-2);
+      offctx.strokeStyle = "#"+R+G+B
     }
     lightness /= (pixels.length/4) //avg = 0 to 255
     // invert scale
     lightness = 255 - lightness
     radius = lightness/255 * w/2
+    if (color)
+      radius = w/2
     if (radius > 0) {
       if (j % 2 == 0)
         h2 *= -1
       offctx.lineWidth = radius
       offctx.beginPath()
       offctx.moveTo(x,y+pet(D))
+      xf = x+h2
+      yf = y-h+pet(D)
+     // offctx.bezierCurveTo(x+pet(D), y+pet(D), xf+pet(D), yf+pet(D), xf, yf)
+      //offctx.quadraticCurveTo(x+pet(D/2), y+pet(D/2), xf, yf)
       offctx.lineTo(x+h2, y-h+pet(D))
-     // offctx.closePath()
       offctx.stroke()
     }
   }
@@ -3204,6 +3227,7 @@ function openFile () {
   let mode = ctx.globalCompositeOperation
   document.getElementById('uploadimage').click();
   ctx.globalCompositeOperation = mode
+  syncMarker()
 }
 
 function drawFile () {
@@ -3231,10 +3255,12 @@ function drawFile () {
     LASTCLICK[1] = canvas.height/2
     ctx.globalCompositeOperation = mode
     ctx.globalAlpha = a
+    syncMarker()
   }
   document.getElementById("uploadimage").value = ""
   ctx.globalCompositeOperation = mode
   refreshMode()
+  syncMarker()
 }
 
 function clearOff () {
