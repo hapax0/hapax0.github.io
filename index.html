@@ -56,8 +56,8 @@
       <option value="square">square</option>
     </select>
     <br>
+    size: &nbsp;<input type="number" id="textsize" value="48" style="width:4em;"> px<br>
     text: &nbsp;<input type="text" id="caption" value="your text here" style="width:10em;"><br>
-    font size: &nbsp;<input type="number" id="textsize" value="48" style="width:4em;"><br>
     font: <input list='facelist' id="face" style="width:10em;"><input type='button' class='mockbb' value='X' onclick="clearFace()" title="clear the face field">&nbsp;
     <datalist id="facelist">
       <option value="arial">arial</option>
@@ -9274,14 +9274,9 @@ function placeSquareAt () {
   ctx.fillStyle = document.getElementById("paintcolor").value
   let x = LASTCLICK[0]
   let y = LASTCLICK[1]
-  let r = 1 + +document.getElementById("speck_size").value
-  r *= 2 // square
-  if (+document.getElementById("speck_size").value > 300)
-    r *=3
-  //if (document.getElementById("grungy").checked)
+  let r = 1 + +document.getElementById("textsize").value
   r += pet(r/3)
-  // offset x & y for center touch placement x-= 1'2 y += 1/2
-  x -= r/2, y += r/2
+  x -= r/2, y += r/ // offset to place center aligned
   ctx.moveTo(x,y)
   ctx.beginPath()
   ctx.lineTo(x+r,y)
@@ -9290,20 +9285,6 @@ function placeSquareAt () {
   ctx.lineTo(x,y)
   ctx.closePath()
   ctx.fill()
-  /*
-  if (document.getElementById("grungy").checked) {
-    ctx.globalAlpha = 0.15
-    r *= 1.1
-    ctx.beginPath()
-    ctx.arc(x+pet(2), y, r, 0, Math.PI*2);
-    ctx.closePath()
-    ctx.fill()
-    r*= 1.1
-    ctx.beginPath()
-    ctx.arc(x, y+pet(2), r, 0, Math.PI*2);
-    ctx.closePath()
-    ctx.fill()
-  }*/
 }
 
 
@@ -9316,10 +9297,8 @@ function placeDotAt () {
   ctx.fillStyle = document.getElementById("paintcolor").value
   let x = LASTCLICK[0]
   let y = LASTCLICK[1]
-  let r = 1 + +document.getElementById("speck_size").value
-  if (+document.getElementById("speck_size").value > 300)
-    r *=3
-  //if (document.getElementById("grungy").checked)
+  let r = 1 + +document.getElementById("textsize").value
+  r /= 2
   r += pet(r/3)
   ctx.beginPath()
   ctx.arc(x, y, r, 0, Math.PI*2);
