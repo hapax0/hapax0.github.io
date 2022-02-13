@@ -85,7 +85,7 @@
       <option value= "italic">italic</option>
       <option value="lighter">lighter</option>
     </select>
-    <br>angle: <input type="number" id ="angle" value="0" style="width:4em;" >&nbsp;&#177;90&#176;:<input type="checkbox" id="randomangle">
+    <br>angle: <input type="number" id ="angle" value="0" style="width:4em;" >&nbsp;&nbsp;&#177;90&#176;:<input type="checkbox" id="randomangle">
   </div>
   </td>
   </tr>
@@ -9265,6 +9265,13 @@ function diagonal () {
   flipH()
 }
 
+function rotatePoint(x, y, centerx, centery, degrees) {
+    let newx = (x - centerx) * Math.cos(degrees * Math.PI / 180) - (y - centery) * Math.sin(degrees * Math.PI / 180) + centerx;
+    let newy = (x - centerx) * Math.sin(degrees * Math.PI / 180) + (y - centery) * Math.cos(degrees * Math.PI / 180) + centery;
+    return [newx, newy];
+}
+
+
 function placeSquareAt () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
@@ -9277,12 +9284,20 @@ function placeSquareAt () {
   let r = 1 + +document.getElementById("textsize").value
   r += pet(r/3)
   x -= r/2, y += r/2 // offset to place center aligned
-  ctx.moveTo(x,y)
+  let angle = +document.getElementById("angle").value
+  if (document.getElementById("randomangle").checked)
+    angle += pet(90)
+  let p = rotatePoint(x,y,LASTCLICK[0], LASTCLICK[1], angle)
+  ctx.moveTo(p[0], p[1])
   ctx.beginPath()
-  ctx.lineTo(x+r,y)
-  ctx.lineTo(x+r,y-r)
-  ctx.lineTo(x,y-r)
-  ctx.lineTo(x,y)
+  p = rotatePoint(x+r,y,LASTCLICK[0], LASTCLICK[1], angle)
+  ctx.lineTo(p[0], p[1])
+  p = rotatePoint(x+r,y-r,LASTCLICK[0], LASTCLICK[1], angle)
+  ctx.lineTo(p[0], p[1])
+  p = rotatePoint(x,y-r,LASTCLICK[0], LASTCLICK[1], angle)
+  ctx.lineTo(p[0], p[1])
+  p = rotatePoint(x,y,LASTCLICK[0], LASTCLICK[1], angle)
+  ctx.lineTo(p[0], p[1])
   ctx.closePath()
   ctx.fill()
 }
