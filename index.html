@@ -48,7 +48,14 @@
   </td>
   <td rowspan='5'>
     <div style="border-style:solid;margin:10px;padding:10px;">
-    <span style="color:red">touch to place text:</span><input type="checkbox" id="textmode" onchange="uncheckDotMode()"><br>
+    <span style="color:red">touch to place: </span>
+    <select id="touchmode">
+      <option value="none" selected>nothing</option>
+      <option value="text">text</option>
+      <option value="dot">dot</option>
+      <option value="square">square</option>
+    </select>
+    <br>
     text: &nbsp;<input type="text" id="caption" value="your text here" style="width:10em;"><br>
     font size: &nbsp;<input type="number" id="textsize" value="48" style="width:4em;"><br>
     font: <input list='facelist' id="face" style="width:10em;"><input type='button' class='mockbb' value='X' onclick="clearFace()" title="clear the face field">&nbsp;
@@ -269,7 +276,8 @@
 </select>
 </td>
 <td>
-  &nbsp;<span style="color:red;">dot mode:</span><input type="checkbox" id="dotmode" onchange="uncheckTextMode()">
+ 
+ 
 </td>
 </tr>
 </table>
@@ -414,11 +422,15 @@ window.onload = function () {
     LASTCLICK.push(x)
     LASTCLICK.push(y)
     syncMarker()
-    let textmode = document.getElementById("textmode").checked
-    if (textmode)
-      drawTextAt()
-    if (document.getElementById("dotmode").checked && !textmode)
-      clearDotAt()
+    let tmode = document.getElementById("touchmode").value
+    if (tmode == "text")
+      placeTextAt()
+    else
+    if (tmode == "dot")
+      placeDotAt()
+    else
+    if (tmode == "square")
+      placeSquareAt()
 }, false);
 let marker = document.getElementById("marker")
 marker.addEventListener('click', function(event) {
@@ -447,18 +459,6 @@ marker.addEventListener('click', function(event) {
   filePicker.addEventListener("click", function(){this.value = null;}, false);
   });
   syncMarker()
-}
-
-function uncheckTextMode () {
-  document.getElementById("textmode").checked = false
-}
-
-function uncheckDotMode () {
-  document.getElementById("dotmode").checked = false
-}
-
-function dotmode () {
-  alert("Dot mode is enabled.\nClick or tap the canvas to draw a dot.")
 }
 
 function showResize() {
@@ -9265,7 +9265,49 @@ function diagonal () {
   flipH()
 }
 
-function clearDotAt () {
+function placeSquareAt () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let h = canvas.height;
+  let w = canvas.width;
+  ctx.globalAlpha = (document.getElementById("speck_opacity").value)/100
+  ctx.fillStyle = document.getElementById("paintcolor").value
+  let x = LASTCLICK[0]
+  let y = LASTCLICK[1]
+  let r = 1 + +document.getElementById("speck_size").value
+  r *= 2 // square
+  if (+document.getElementById("speck_size").value > 300)
+    r *=3
+  //if (document.getElementById("grungy").checked)
+  r += pet(r/3)
+  // offset x & y for center touch placement x-= 1'2 y += 1/2
+  x -= r/2, y += r/2
+  ctx.moveTo(x,y)
+  ctx.beginPath()
+  ctx.lineTo(x+r,y)
+  ctx.lineTo(x+r,y-r)
+  ctx.lineTo(x,y-r)
+  ctx.lineTo(x,y)
+  ctx.closePath()
+  ctx.fill()
+  /*
+  if (document.getElementById("grungy").checked) {
+    ctx.globalAlpha = 0.15
+    r *= 1.1
+    ctx.beginPath()
+    ctx.arc(x+pet(2), y, r, 0, Math.PI*2);
+    ctx.closePath()
+    ctx.fill()
+    r*= 1.1
+    ctx.beginPath()
+    ctx.arc(x, y+pet(2), r, 0, Math.PI*2);
+    ctx.closePath()
+    ctx.fill()
+  }*/
+}
+
+
+function placeDotAt () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let h = canvas.height;
@@ -9302,7 +9344,7 @@ function clearFace () {
   document.getElementById("face").value = ""
 }
 
-function drawTextAt () {
+function placeTextAt () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let h = canvas.height;
@@ -9313,6 +9355,9 @@ function drawTextAt () {
   let faces = document.getElementById("face").value
   let size = +document.getElementById("textsize").value
   let angle = +document.getElementById("angle").value
+  
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle'
   angle = angle%360
   angle *= Math.PI/180
   let randomangle = document.getElementById("randomangle").checked
