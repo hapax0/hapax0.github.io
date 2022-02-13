@@ -9276,7 +9276,7 @@ function placeSquareAt () {
   let y = LASTCLICK[1]
   let r = 1 + +document.getElementById("textsize").value
   r += pet(r/3)
-  x -= r/2, y += r/ // offset to place center aligned
+  x -= r/2, y += r/2 // offset to place center aligned
   ctx.moveTo(x,y)
   ctx.beginPath()
   ctx.lineTo(x+r,y)
