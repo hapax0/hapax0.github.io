@@ -26,7 +26,7 @@
 <!--div style="font-size:32px;font-weight:bold;">Airbrush</div-->
 <table border="0" cellpadding="6" style="margin-left:6px;">
   <tr><td style="text-align:right;"><button onclick="resizeFromDialog()">resize</button></td><td>W: <input type="number" id="canvaswidth" min="40" size="6" onchange="checkWidth()">
-    H: <input type="number" id="canvasheight" min="40" size="6" onchange="checkHeight()"></td><td style="text-align:right;">grunge:<input type="checkbox" id="grungy"></td><td>02-06-22
+    H: <input type="number" id="canvasheight" min="40" size="6" onchange="checkHeight()"></td><td style="text-align:right;"><span id="aspectratio"></span></td><td>02-18-22
   </td><td>
   &nbsp;<button id="ff" onclick="testImage('framefunctions')" title="frame functions"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow" viewBox="0 0 16 16">
   <path d="M 15,2 C 15,1.4477153 14.552285,1 14,1 H 2 C 1.4477153,1 1,1.4477153 1,2 v 12 c 0,0.552285 0.4477153,1 1,1 h 12 c 0.552285,0 1,-0.447715 1,-1 z M 0,2 C 0,0.8954305 0.8954305,0 2,0 h 12 c 1.104569,0 2,0.8954305 2,2 v 12 c 0,1.104569 -0.895431,2 -2,2 H 2 C 0.8954305,16 0,15.104569 0,14 Z" id="path2" style="fill-rule:evenodd" />
@@ -276,7 +276,7 @@
 </select>
 </td>
 <td>
- 
+ &nbsp;grunge:<input type="checkbox" id="grungy">
  
 </td>
 </tr>
@@ -483,6 +483,19 @@ function getRatio () {
   return canvas.width/canvas.height
 }
 
+function gcd (a,b) {
+  return (b == 0)? a: gcd(b, a%b)
+}
+
+function displayRatio () {
+  let canvas = document.getElementById("myCanvas");
+  let w = canvas.width, h = canvas.height
+  let d = gcd(w,h)
+//  console.log(w/d+":"+h/d)
+  document.getElementById("aspectratio").innerHTML = w/d+":"+h/d
+
+}
+
 function checkWidth () {
   if (isCanvasBlank(document.getElementById("myCanvas")))
     return
@@ -589,6 +602,7 @@ function syncMarker () {
   ctx.lineTo(0,6)
   ctx.closePath()
   ctx.fill()
+  displayRatio()
 }
 
 function showMode () {
@@ -10030,6 +10044,7 @@ function syncBackground (canvas) {
   let bkg = document.getElementById("background");
   bkg.style.height = canvas.height +"px"
   bkg.style.width = canvas.width +"px"
+  displayRatio()
   //syncMarker()
 }
 
@@ -10073,6 +10088,7 @@ function resizeCanvas () {
  // LASTCLICK[1] = myCanvas.height/2
   ctx.globalCompositeOperation = mode
   //syncMarker()
+  displayRatio()
 }
 
 function clearCanvas () {
