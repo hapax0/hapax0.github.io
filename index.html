@@ -1693,11 +1693,11 @@ function etch (color) {
   points = shuffle(points)
   let D8 = D/8
   j = 0
-  let h2 = h, w2 = w
-  if (Math.random() > 0.5)
+  let h2 = 0, w2 = w
+ /* if (Math.random() > 0.5)
     w2 = 0
   else
-    h2 = 0
+    h2 = 0*/
   for (;j < points.length; j++) {
     x = points[j][0]
     y = points[j][1]
