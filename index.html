@@ -262,6 +262,7 @@
     <option value="colorSample">simplify colors</option>
     <option value="sample3colors">CYM</option>
     <option value="stipple">stipple</option>
+    <option value="etch">etch</option>
     <option value="hatches">hatches</option>
     <option value="hatchescolor">hatches color</option>
     <option value="sampleImageData">sample dark</option>
@@ -1640,6 +1641,102 @@ function sampleImageData () { // darkness
   ctx.clearRect(0,0,canvas.width,canvas.height)
   ctx.drawImage(off, 0, 0)
 }
+
+function etch (color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let off = document.createElement('CANVAS')
+  off.width = canvas.width
+  off.height = canvas.height
+  let offctx = off.getContext("2d")
+  offctx.strokeStyle = document.getElementById("paintcolor").value
+  offctx.lineCap = "round"
+  ctx.globalAlpha = document.getElementById("speck_opacity").value/100
+  let grunge = document.getElementById("grungy").checked
+  // set above as in rectify
+  let W = 0.5 + Math.floor(document.getElementById("speck_size").value/2)
+  //invert range of W [2- 102] => [102 - 2]
+  W = 251 - W + 0.5
+  let wdivs = W
+  let cw = canvas.width
+  let ch = canvas.height
+  let w = cw/wdivs
+  let hdivs = Math.round(wdivs * ch/cw)
+  let h = ch/hdivs
+  let i = 0, j = 0, x = 0, y = 0, ct = 1+ Math.floor(Math.random() * 5)
+  let angle = Math.PI * 2 * Math.random()
+  let d = h/ct
+  
+  let numsquares = (1+wdivs) * (1+hdivs) * 1.2
+  let radius = w/6, linecount = 0
+  let r0 = radius
+  let D = 0//radius * 6
+  let lightness = 0
+  
+  let points = []
+  for (;j < numsquares; j++) {
+    points[j] = [x, y]
+    x += w
+    if (x >= (wdivs)*w) {
+      linecount++
+      if (linecount % 2 == 1)
+        x = 0
+      y += h/2
+    }
+  }
+  points = shuffle(points)
+  let D8 = D/8
+  j = 0
+  let h2 = h
+  let xf = 0, yf = 0
+  if (Math.random() > 0.5)
+        h2 *= -1
+  for (;j < points.length; j++) {
+    x = points[j][0]
+    y = points[j][1]
+    let imgData = ctx.getImageData(x, y, w, h)
+    let threshold = 127 - document.getElementById("speck_opacity").value * 1.27
+    let pixels = imgData.data
+    let i = 0, lightness = 0, r = 0, g = 0, b = 0
+    for (; i < pixels.length; i += 4) {
+      r += parseInt(pixels[i])
+      g += parseInt(pixels[i+1])
+      b += parseInt(pixels[i+2])
+      lightness += parseInt((pixels[i] + pixels[i + 1] + pixels[i + 2]) / 3)
+    }
+    if (color) {
+      r /= pixels.length/4
+      g /= pixels.length/4
+      b /= pixels.length/4
+      let R = ('0'+(Math.round(r)).toString(16)).slice(-2),
+        G = ('0'+(Math.round(g)).toString(16)).slice(-2),
+        B = ('0'+(Math.round(b)).toString(16)).slice(-2);
+      offctx.strokeStyle = "#"+R+G+B
+    }
+    lightness /= (pixels.length/4) //avg = 0 to 255
+    // invert scale
+    lightness = 255 - lightness
+    radius = lightness/255 * w/2
+    if (color)
+      radius = w/2
+    if (radius > 0) {
+     // if (j % 2 == 0)
+     //   h2 *= -1
+      offctx.lineWidth = radius
+      offctx.beginPath()
+      offctx.moveTo(x,y)
+      xf = x+h2
+      yf = y-h
+     // offctx.bezierCurveTo(x+pet(D), y+pet(D), xf+pet(D), yf+pet(D), xf, yf)
+      //offctx.quadraticCurveTo(x+pet(D/2), y+pet(D/2), xf, yf)
+      offctx.lineTo(x+h2, y-h)
+      offctx.stroke()
+    }
+  }
+  ctx.clearRect(0,0,canvas.width,canvas.height)
+  ctx.drawImage(off, 0, 0)
+}
+
 
 function hatchescolor() {
   hatches(true)
