@@ -1674,8 +1674,6 @@ function etch (color) {
   let numsquares = (1+wdivs) * (1+hdivs) * 1.2
   let radius = w/6, linecount = 0
   let r0 = radius
-  if(color)
-    radius *= 2
   let D = 0//radius * 6
   let lightness = 0
   
@@ -1725,7 +1723,7 @@ function etch (color) {
     lightness = 255 - lightness
     radius = lightness/255 * h
     if(color)
-      radius *= 2
+      radius = h
     if (radius > 0) {
       offctx.lineWidth = radius
       offctx.beginPath()
@@ -2736,7 +2734,6 @@ function filterRed () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
-  let threshold = 127 + document.getElementById("speck_opacity").value * 1.27
   let pixels = imgData.data
   let i = 0
   for (; i < pixels.length; i += 4) {
@@ -2749,7 +2746,6 @@ function filterGreen () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
-  let threshold = 127 + document.getElementById("speck_opacity").value * 1.27
   let pixels = imgData.data
   let i = 0
   for (; i < pixels.length; i += 4) {
@@ -2762,7 +2758,6 @@ function filterBlue () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
-  let threshold = 127 + document.getElementById("speck_opacity").value * 1.27
   let pixels = imgData.data
   let i = 0
   for (; i < pixels.length; i += 4) {
@@ -2776,7 +2771,7 @@ function testImage (id) {
   window[f]()
 }
 
-function invertColors() {
+function invertColors () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height)
@@ -2797,7 +2792,7 @@ function invertColors() {
   ctx.putImageData(imgData, 0, 0)
 }
 
-function ellipse1(ctx, x, y, rx, ry, rot) {
+function ellipse1 (ctx, x, y, rx, ry, rot) {
   ry*=4/3;
   var p1_x=x-rx, p1_y=y,
       p2_x=x+rx, p2_y=y,
