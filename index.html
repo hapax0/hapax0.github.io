@@ -134,7 +134,6 @@
       <option value="dashes">dashes</option>
       <option value="holes">holes</option>
       <option value="holes2">holes2</option>
-      <option value="tatter">tatter</option>
     </select>
   </td>
   
@@ -213,6 +212,7 @@
     <option value="smeardownOff">vertical streaks</option>
     <option value="strokes">strokes</option>
     <option value="strokes2">strokes2</option>
+    <option value="scratch">scratch</option>
     <!--option value="birds">birds</option>
     <option value="grid">grid</option>
     <option value="rothko">rothko</option-->
@@ -8924,7 +8924,7 @@ function scratch () { // based on blobs
   let x = 0, y = 0, angle = 4.7;
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  let centx = 20 + Math.random() * canvas.width - 40
+  let centx = LASTCLICK[0] //20 + Math.random() * canvas.width - 40
   let centy = ctx.canvas.height/2;
   let cx = centx, cy = centy
   ctx.globalAlpha = (document.getElementById("speck_opacity").value)/100
