@@ -44,6 +44,8 @@
     <option value="make4to5" selected>pad to 4:5</option>
     <option value="expandMarginsAll">expand margins</option>
     <option value="expandMarginsDown">expand bottom</option>
+    <option value="zoomImage">zoom in</option>
+    <option value="zoomOutImage">zoom out</option>
   </select>
   </td>
   <td rowspan='5'>
@@ -7872,6 +7874,10 @@ function sample () {
   octx.clearRect(0,0,ocanvas.width,ocanvas.height)
 }
 
+function zoomOutImage () {
+  zoomImage(true)
+}
+
 function zoomImage (out) {
   let ocanvas = document.getElementById('off')
   let octx = ocanvas.getContext('2d')
@@ -7885,12 +7891,22 @@ function zoomImage (out) {
   ocanvas.width = canvas.width
   octx.drawImage(canvas, 0, 0)
   
+ // let dx = (out)? canvas.width * 0.8: canvas.width * 1.2
+//  let dy = (out)? canvas.height * 0.8: canvas.height * 1.2
+  
   let dx = (out)? canvas.width * 0.8: canvas.width * 1.2
   let dy = (out)? canvas.height * 0.8: canvas.height * 1.2
   
+  let diffx = dx - W
+  let diffy = dy - H
+  
+  let ox = (LASTCLICK[0]/W * diffx)
+  let oy = (LASTCLICK[1]/H * diffy)
+  
   //syncBackground(canvas)
   ctx.clearRect(0,0,canvas.width,canvas.height)
-  ctx.drawImage(ocanvas,-(dx-W)/2,-(dy-H)/2,dx,dy)
+ // ctx.drawImage(ocanvas,-(dx-W)/2,-(dy-H)/2, dx, dy)
+  ctx.drawImage(ocanvas, -ox, -oy, dx, dy)
   octx.clearRect(0,0,ocanvas.width,ocanvas.height)
  // LASTCLICK[0] = myCanvas.width/2
  // LASTCLICK[1] = myCanvas.height/2
