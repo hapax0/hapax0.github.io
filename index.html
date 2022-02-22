@@ -210,8 +210,9 @@
     <option value="coloringbook">coloring book</option>
     <option value="edgeSmear">streak left</option>
     <option value="smeardownOff">vertical streaks</option>
-    <option value="strokes">strokes</option>
-    <option value="strokes2">strokes2</option>
+    <!--option value="strokes">strokes</option-->
+    <option value="strokes2">strokes</option>
+    <option value="strokesH">strokes horizontal</option>
     <option value="scratch">scratch</option>
     <!--option value="birds">birds</option>
     <option value="grid">grid</option>
@@ -1086,7 +1087,7 @@ function randomTexture () {
   let num = document.getElementById("number").value
   let size = document.getElementById("speck_size").value
   let color = document.getElementById("paintcolor").value
-  functions = ["smudge", "smudge", "smudge", "smudge", "smudge", "blobs", "specksRadial", "strokes2", "strokes"]
+  functions = ["smudge", "smudge", "smudge", "smudge", "smudge", "blobs", "specksRadial", "strokes2", "strokesH"]
   let args = ["", "streaks", "arcs", "arcs2", "stars", "horizontal"]
   let i = 0
   for (; i < 4; i++) {
@@ -1140,7 +1141,7 @@ function randomTexture2 () {
   let size = document.getElementById("speck_size").value
   let color = document.getElementById("paintcolor").value
   let mode = ctx.globalCompositeOperation
-  functions = ["smudge", "smudge", "smudge", "smudge", "smudge", "blobs", "rays", "strokes2"]
+  functions = ["smudge", "smudge", "smudge", "smudge", "smudge", "blobs", "rays", "strokes2", "strokesH"]
   let args = ["", "streaks", "arcs", "arcs2", "stars", "horizontal", "watercolor"]
   let i = 0
   ctx.globalAlpha = val/100
@@ -5401,6 +5402,79 @@ function strokes2 () {
   ctx.restore()
 }
 
+function strokesH () {
+  let increase = Math.PI * 2 / 40;
+  let x = 0, y = 0, angle = 4.7;
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.strokeStyle = document.getElementById("paintcolor").value
+  let color = document.getElementById("paintcolor").value
+  ctx.save()
+  ctx.globalAlpha = document.getElementById("speck_opacity").value/200
+  let maxalpha = ctx.globalAlpha
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  let grunge = document.getElementById("grungy").checked
+  let stroke_width = 11 + document.getElementById("speck_size").value/10
+  let stroke_ct = +document.getElementById("number").value/400 + 1
+  let P = 81
+  if (grunge)
+    P *= 2
+  for (let t = 0; t < stroke_ct; t++) {
+    let paths = [];
+    x = 0;
+    y = 0;
+    let centx = Math.random()*canvas.width/2;
+    let centy = Math.random()*canvas.height/2;
+    let edges =  (9 * (Math.floor(Math.random()*6))+2);
+    points = [];
+    let xmut = -1;
+    let ymut = -1;
+    if (Math.random() < 0.5)
+      xmut *= -1;
+    if (Math.random() < 0.5)
+      ymut *= -1;
+    for (let i = 0; i < edges; i++) {
+      x = -10 + pet (P)
+      y = Math.random()*ctx.canvas.height;
+      points.push([x, y]);
+      points.push([canvas.width/4+pet(P), y+pet(P*2)]);
+      points.push([canvas.width*3/4+pet(P), y-pet(P*2)]);
+      points.push([canvas.width-10, y+pet(P)]);
+    }
+    paths.push(points);
+    let pop = 30
+    if (grunge)
+      pop *= 2
+    let offset = 10 + stroke_width * 2;
+    let numpaths = 10 + Math.random()*30;
+    for (let s = 0; s < numpaths; s++) {
+      let path = [];
+      for (let c = 0; c < points.length; c++) {
+        path.push([points[c][0] +pet(21), points[c][1] + ymut*(offset + (pop * (Math.random()-0.5)))]);
+      }
+      offset += (Math.random()-0.5) * 2;
+      paths.push(path);
+    }
+    for (let f = 0; f < paths.length; f++) {
+      let pts = paths[f];
+      ctx.beginPath();
+      ctx.lineWidth = 4 + Math.random() * stroke_width;
+      x = pts[0][0] + pet(13)
+      y = pts[0][1] + pet(13)
+      ctx.moveTo(x, y);
+      ctx.bezierCurveTo(pts[1][0], pts[1][1], pts[2][0], pts[2][1], pts[3][0], pts[3][1]);
+      if (grunge)
+        ctx.strokeStyle = petColor(color, 81)
+      else
+        ctx.strokeStyle = petColor(color, 51)
+      ctx.globalAlpha = (maxalpha * 0.4 + Math.random() * maxalpha * 0.2)
+      ctx.stroke();
+    }
+  }
+  ctx.restore()
+}
+
 function birds () {
   var increase = Math.PI * 2 / 40;
   let x = 0, y = 0
@@ -7798,6 +7872,32 @@ function sample () {
   octx.clearRect(0,0,ocanvas.width,ocanvas.height)
 }
 
+function zoomImage (out) {
+  let ocanvas = document.getElementById('off')
+  let octx = ocanvas.getContext('2d')
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let mode = ctx.globalCompositeOperation
+  let a = ctx.globalAlpha
+  ctx.globalAlpha = 1.0
+  let W = canvas.width, H = canvas.height
+  ocanvas.height = canvas.height
+  ocanvas.width = canvas.width
+  octx.drawImage(canvas, 0, 0)
+  
+  let dx = (out)? canvas.width * 0.8: canvas.width * 1.2
+  let dy = (out)? canvas.height * 0.8: canvas.height * 1.2
+  
+  //syncBackground(canvas)
+  ctx.clearRect(0,0,canvas.width,canvas.height)
+  ctx.drawImage(ocanvas,-(dx-W)/2,-(dy-H)/2,dx,dy)
+  octx.clearRect(0,0,ocanvas.width,ocanvas.height)
+ // LASTCLICK[0] = myCanvas.width/2
+ // LASTCLICK[1] = myCanvas.height/2
+  ctx.globalCompositeOperation = mode
+  //syncMarker()
+}
+
 function zoom () {
   let ocanvas = document.getElementById('off')
   let octx = ocanvas.getContext('2d')
@@ -10090,7 +10190,7 @@ function smeardownOff () {
   for (; i < numshapes; i++) {
     octx.fillStyle = randomGradient(ocanvas, document.getElementById("paintcolor").value)
     octx.globalAlpha = Math.random()
-    drawBlobAt (octx, x+pet(p), y, r+pet(17))
+    drawBlobAt (octx, x+pet(p), y+pet(p), r+pet(17))
   }
   i = 0
   let N = (Math.log(canvas.height+1) * 11.3) - 46
