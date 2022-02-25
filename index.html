@@ -59,7 +59,9 @@
     </select>
     <br>
     size: &nbsp;<input type="number" id="textsize" value="48" style="width:4em;"> px<br>
-    text: &nbsp;<textarea id="caption" value="your text here" style="width:10em;" row=""2" cols="36"></textarea><br>
+    text: &nbsp;<textarea id="caption" value="your text here" style="width:10em;" row=""2" cols="36">a
+few
+words</textarea><br>
     font: <input list='facelist' id="face" style="width:10em;"><input type='button' class='mockbb' value='X' onclick="clearFace()" title="clear the face field">&nbsp;
     <datalist id="facelist">
       <option value="arial">arial</option>
@@ -438,13 +440,9 @@ window.onload = function () {
 }, false);
 let marker = document.getElementById("marker")
 marker.addEventListener('click', function(event) {
-    var rect = marker.getBoundingClientRect();
-    var x = event.clientX - rect.left;
-   // var y = event.clientY - rect.top;
-    //LASTCLICK = []
+    let rect = marker.getBoundingClientRect();
+    let x = event.clientX - rect.left;
     LASTCLICK[0] = x
-    //LASTCLICK.push(y)
-    
     syncMarker()
 }, false);
 
@@ -9427,7 +9425,6 @@ function card2 () {
   ctx.restore()
 }
 
-
 function randomWord () {
   return randomPick(words.split("\n"))
 }
@@ -9474,11 +9471,10 @@ function diagonal () {
 }
 
 function rotatePoint(x, y, centerx, centery, degrees) {
-    let newx = (x - centerx) * Math.cos(degrees * Math.PI / 180) - (y - centery) * Math.sin(degrees * Math.PI / 180) + centerx;
-    let newy = (x - centerx) * Math.sin(degrees * Math.PI / 180) + (y - centery) * Math.cos(degrees * Math.PI / 180) + centery;
-    return [newx, newy];
+  let newx = (x - centerx) * Math.cos(degrees * Math.PI / 180) - (y - centery) * Math.sin(degrees * Math.PI / 180) + centerx;
+  let newy = (x - centerx) * Math.sin(degrees * Math.PI / 180) + (y - centery) * Math.cos(degrees * Math.PI / 180) + centery;
+  return [newx, newy];
 }
-
 
 function placeSquareAt () {
   let canvas = document.getElementById("myCanvas");
@@ -9509,7 +9505,6 @@ function placeSquareAt () {
   ctx.closePath()
   ctx.fill()
 }
-
 
 function placeDotAt () {
   let canvas = document.getElementById("myCanvas");
@@ -9547,6 +9542,68 @@ function clearFace () {
 }
 
 function placeTextAt () {
+  let lines = document.getElementById("caption").value.split("\n")
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let h = canvas.height;
+  let w1 = canvas.width;
+  let W = w1
+  ctx.globalAlpha = (document.getElementById("speck_opacity").value)/100
+  ctx.fillStyle = document.getElementById("paintcolor").value
+  let styles = document.getElementById("style").value
+  let faces = document.getElementById("face").value
+  let size0 = +document.getElementById("textsize").value
+  let angle = +document.getElementById("angle").value
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle'
+  angle = angle%360
+  angle *= Math.PI/180
+  let randomangle = document.getElementById("randomangle").checked
+  if (randomangle)
+    angle += pet(3.14/2)
+  if (!faces || faces.length < 1)
+    return
+  let x = LASTCLICK[0]
+  let y = LASTCLICK[1]
+  if (!faces || faces.length < 1)
+    return
+  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = document.getElementById("paintcolor").value
+  size = 24
+  ctx.font = (styles)+" "+size+"pt " + (faces)
+  let i = 0, w = 10
+  let H = 0, CW = 0, CH = 0
+  let sizes = [], widths = []
+  let maxH = 24
+  for (;i < lines.length; i++) {
+    w = ctx.measureText(lines[i]).width
+    CH += 12 + 28 * (W/w)
+    CW =  w * (W/w)
+    maxH = (12 + 28 * (W/w) > maxH)? 12 + 28 * (W/w): maxH;
+    sizes[i] = size0//24*W/w
+    if (w <= 0)
+      sizes[i]=10
+  }
+  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.globalAlpha = (document.getElementById("speck_opacity").value)/100
+  let center = lines.length * size0 / 2
+  i = 0
+  for (; i < lines.length; i++) {
+    x = LASTCLICK[0]
+    y = i*sizes[i] * 1.2 + LASTCLICK[1] 
+    ctx.save()
+    ctx.translate(x, y)
+    ctx.rotate(angle) // need to adjust x & y offsets per line
+    ctx.font = (styles)+" "+sizes[i]+"pt " + (faces)
+    ctx.fillText(lines[i], 0, 0)
+    ctx.restore()
+  }
+  
+//  if (angle != 0)
+  //  nudgeCW()
+}
+
+function placeTextAt_OG () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let h = canvas.height;
