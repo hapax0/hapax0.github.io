@@ -5417,7 +5417,7 @@ function strokesH () {
   let grunge = document.getElementById("grungy").checked
   let stroke_width = 11 + document.getElementById("speck_size").value/10
   let stroke_ct = +document.getElementById("number").value/400 + 1
-  let P = 81
+  let P = 121
   if (grunge)
     P *= 2
   for (let t = 0; t < stroke_ct; t++) {
@@ -5435,12 +5435,12 @@ function strokesH () {
     if (Math.random() < 0.5)
       ymut *= -1;
     for (let i = 0; i < edges; i++) {
-      x = -10 + pet (P)
+      x = -10 + pet(P)
       y = Math.random()*ctx.canvas.height;
       points.push([x, y]);
-      points.push([canvas.width/4+pet(P), y+pet(P*2)]);
-      points.push([canvas.width*3/4+pet(P), y-pet(P*2)]);
-      points.push([canvas.width+10, y+pet(P)]);
+      points.push([canvas.width/3+pet(P), y+pet(P*2)]);
+      points.push([canvas.width*2/3+pet(P), y-pet(P*2)]);
+      points.push([canvas.width+10+pet(10), y+pet(P)]);
     }
     paths.push(points);
     let pop = 10
@@ -9600,7 +9600,7 @@ function placeTextAt () {
   }
   
 //  if (angle != 0)
-  //  nudgeCW()
+  //  nudgeCW() // works with destination atop
 }
 
 function placeTextAt_OG () {
