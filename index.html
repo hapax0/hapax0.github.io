@@ -7050,17 +7050,21 @@ function motionblur () {
   let stepsize = step
 
   let grunge = document.getElementById("grungy").checked
-  let maxangle = 12
+  let maxangle = 9
   if (grunge) {
     stepsize *= 1.5
     maxangle *= 2
   }
   ctx.globalAlpha = document.getElementById("speck_opacity").value/100
-  document.getElementById("angle").value = Math.floor((Math.random()-0.5) * 12)
+  document.getElementById("angle").value = Math.floor((Math.random()-0.5) * maxangle)
   nudgeCWorCCW()
   //document.getElementById("speck_size").value = 450
-  ctx.globalAlpha *= 0.75 // document.getElementById("speck_opacity").value = 30
+  //ctx.globalAlpha *= 0.75 // document.getElementById("speck_opacity").value = 30
   let dir = [5 + (Math.random()-0.5) * stepsize, 5 + (Math.random()-0.5) * stepsize]
+  smearrandom(canvas, dir)
+  dir[0] += pet(23), dir[1] += pet(23)
+  smearrandom(canvas, dir)
+  dir[0] += pet(23), dir[1] += pet(23)
   smearrandom(canvas, dir)
   dir[0] += pet(23), dir[1] += pet(23)
   smearrandom(canvas, dir)
