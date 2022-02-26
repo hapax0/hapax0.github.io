@@ -38,10 +38,10 @@
     <option value="framePolaroid">polaroid frame</option>
     <option value="frame">jaggy frame</option>
     <option value="ripFrame">rip frame</option>
-    <option value="makeSquare" >pad to square</option>
+    <option value="makeSquare" selected>pad to square</option>
     <option value="cropSquare" >crop to square</option>
     <option value="makeSquare2">skewed square</option>
-    <option value="make4to5" selected>pad to 4:5</option>
+    <option value="make4to5">pad to 4:5</option>
     <option value="expandMarginsAll">expand margins</option>
     <option value="expandMarginsDown">expand bottom</option>
     <option value="zoomImage">zoom in</option>
@@ -106,7 +106,7 @@ words</textarea><br>
       <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
     </svg></button>
     <select id="transformfunctions">
-      <option value="diss" selected>distress</option>
+      <option value="diss">distress</option>
       <option value="impasto">impasto</option>
       <option value="dotblur" >dot blur</option>
       <option value="dirblur">dir blur</option>
@@ -125,6 +125,7 @@ words</textarea><br>
       <option value="smearrandom">smear random</option>
       <option value="smearrandomoc">smear from off</option>
       <option value="smearzoom">smear zoom</option>
+      <option value="motionblur" selected>motion blur</option>
       <option value="reverse">reversible</option>
       <option value="pasta">pasta</option>
       <option value="blasco">blasco</option>
@@ -7040,6 +7041,32 @@ function expandMargins (all) {
   syncBackground(canvas)
 }
 
+function motionblur () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let alpha = ctx.globalAlpha = document.getElementById("speck_opacity").value
+  let angle = document.getElementById("angle").value
+  let step = document.getElementById("speck_size").value
+
+  ctx.globalAlpha = document.getElementById("speck_opacity").value = 30
+  document.getElementById("angle").value = Math.floor((Math.random()-0.5) * 12)
+  nudgeCWorCCW()
+  //document.getElementById("speck_size").value = 450
+  ctx.globalAlpha = document.getElementById("speck_opacity").value = 30
+  let dir = [5 + (Math.random()-0.5) * 140, 5 + (Math.random()-0.5) * 140]
+  smearrandom(canvas, dir)
+  dir[0] += pet(23), dir[1] += pet(23)
+  smearrandom(canvas, dir)
+  dir[0] += pet(23), dir[1] += pet(23)
+  smearrandom(canvas, dir)
+  dir[0] += pet(23), dir[1] += pet(23)
+  smearrandom(canvas, dir)
+  //restore
+  document.getElementById("speck_siaze").value = step
+  document.getElementById("angle").value = angle
+  ctx.globalAlpha = document.getElementById("speck_opacity").value = alpha
+}
+
 function nudgeCW () {
   nudgeCWorCCW()
 }
@@ -10036,7 +10063,7 @@ function pasteFromOff () {
   }
 }
 
-function smearrandom (c) {
+function smearrandom (c, d) {
   if (c)
     canvas = c
   else
@@ -10049,6 +10076,10 @@ function smearrandom (c) {
   offctx.drawImage(canvas, 0, 0)
   let jump = 1 + document.getElementById("speck_size").value/2
   let jump2 = jump
+  if (d) {
+    jump = d[0]
+    jump2 = d[1]
+  }
   ctx.globalAlpha = (document.getElementById("speck_opacity").value)/400
   let i = 0
   let n = 2
