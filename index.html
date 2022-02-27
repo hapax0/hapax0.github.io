@@ -123,9 +123,9 @@ words</textarea><br>
       <!--option value="smear">smear shake</option-->
       <option value="smearside">smear right</option>
       <option value="smearrandom">smear random</option>
-      <option value="smearrandomoc">smear from off</option>
       <option value="smearzoom">smear zoom</option>
       <option value="motionblur" selected>motion blur</option>
+      <option value="tiltshift">tilt-shift</option>
       <option value="reverse">reversible</option>
       <option value="pasta">pasta</option>
       <option value="blasco">blasco</option>
@@ -4849,12 +4849,13 @@ function house () {
   let w4 = (W-2*margin)/(4 +(2+Math.floor(Math.random() * 10)))
   ctx.globalAlpha = document.getElementById("speck_opacity").value/100
   let colors = shuffle(['red', 'blue', 'yellow', 'orange', 'purple', "green", "gray"])
+  colors = shuffle(['blue', 'yellow','blue', 'yellow'], 'blue', 'yellow','blue', 'yellow')
   let grunge = document.getElementById("grungy").checked
   w8 = w4*3
 
   let xf = W-w8
   let yf = W -(2*margin) - w8 - w8/2
-  
+  ctx.clearRect(0,0,W,W)
   if (Math.random() > 0.6) {
     // upper right face
     ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
@@ -7039,6 +7040,39 @@ function expandMargins (all) {
   canvasoff.height = canvas.height
   ctx.globalCompositeOperation = mode
   syncBackground(canvas)
+}
+
+function tiltshift () { //upper third blur up. bottom third blur dowm
+  //need blurrect. maybe nudgeCanvas (down) after fade top
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let mode = ctx.globalCompositeOperation
+  let alpha = document.getElementById("speck_opacity").value
+  clearOff()
+  copyToOff()
+  downFade2()
+  rc()
+  smearside()
+  rcc()
+  ctx.globalCompositeOperation = "destination-over"
+  document.getElementById("speck_opacity").value = 100
+  pasteFromOff()
+  ctx.globalCompositeOperation = "source-over"
+  flipV()
+  clearOff()
+  copyToOff()
+  downFade2()
+  rc()
+  smearside()
+  rcc()
+  ctx.globalCompositeOperation = "destination-over"
+  document.getElementById("speck_opacity").value = 100
+  pasteFromOff()
+  flipV()
+  ctx.globalCompositeOperation = "source-over"
+  copyToOff()
+  document.getElementById("speck_opacity").value = alpha
+  ctx.globalCompositeOperation = mode
 }
 
 function motionblur () {
@@ -9628,7 +9662,7 @@ function placeTextAt () {
   i = 0
   for (; i < lines.length; i++) {
     x = LASTCLICK[0]
-    y = i*sizes[i] * 1.2 + LASTCLICK[1] 
+    y = i*sizes[i] * 1.2 + LASTCLICK[1]
     ctx.save()
     ctx.translate(x, y)
     ctx.rotate(angle) // need to adjust x & y offsets per line
@@ -9932,6 +9966,40 @@ function fade () {
   ctx.putImageData(data, 0, 0);
 }
 
+function downFade2 () {
+  rc()
+  leftFade2()
+  rcc()
+}
+
+function leftFade2 () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let cx = 5*ctx.canvas.width/6 + pet(150)
+  let cy = ctx.canvas.height/2 + pet(150)
+  let rightx = canvas.width
+  let w = canvas.width, h = canvas.height
+  let maxdist = Math.pow(Math.pow(cx, 2) + Math.pow(cy, 2), 0.5)
+  let d = 1000
+  let data = ctx.getImageData(0,0,canvas.width,canvas.height)
+  let i = 0, x = 0, y = 0
+  let len = w * h
+  let dmin = 1000, dmax = 0
+  for (;i < len; i++) {
+    x = i % w
+    if (x === 0)
+      y += 1
+    d = lindistance((x*2), 0)/2
+   // dmin = (d < dmin)? d:dmin;
+   // dmax = (d > dmax)? d:dmax;
+    let px = data.data.slice(i*4, i*4+4)
+    px[3] *= d/(maxdist*2)
+    data.data.set(px, i*4)
+  }
+  ctx.putImageData(data, 0, 0);
+  ctx.clearRect(0,0,canvas.width*0.55, canvas.height)
+}
+
 function downFade () {
   rc()
   leftFade()
@@ -10183,10 +10251,7 @@ function smearside () {
   let n = 2 //+ Math.random() * 17
   ctx.save()
   for (; i < n; i++) {
-   // offctx.translate(x,y)
-   // offctx.rotate(-angle);
-   // offctx.translate(-x,-y)
-    ctx.drawImage(off, jump/2 + pet(jump/2), pet(jump/2))
+    ctx.drawImage(off, jump/2 + pet(jump/2), 0)//pet(jump/2))
   }
   ctx.restore()
 }
