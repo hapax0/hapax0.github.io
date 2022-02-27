@@ -10247,7 +10247,7 @@ function smearside () {
   let jump = 1 + document.getElementById("speck_size").value/5
   ctx.globalAlpha = (document.getElementById("speck_opacity").value)/200
   let i = 0
-  let n = 3 //+ Math.random() * 17
+  let n = 2 //+ Math.random() * 17
   ctx.save()
   for (; i < n; i++) {
     ctx.drawImage(off, jump/2 + pet(jump/2), 0)//pet(jump/2))
