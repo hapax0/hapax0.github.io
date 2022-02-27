@@ -7050,7 +7050,7 @@ function tiltshift () { //upper third blur up. bottom third blur dowm
   let alpha = document.getElementById("speck_opacity").value
   clearOff()
   copyToOff()
-  downFade2()
+  fadeDown()
   rc()
   smearside()
   rcc()
@@ -7061,7 +7061,7 @@ function tiltshift () { //upper third blur up. bottom third blur dowm
   flipV()
   clearOff()
   copyToOff()
-  downFade2()
+  fadeDown()
   rc()
   smearside()
   rcc()
@@ -9967,37 +9967,36 @@ function fade () {
 }
 
 function downFade2 () {
-  rc()
+//  rc()
   leftFade2()
-  rcc()
+//  rcc()
 }
 
-function leftFade2 () {
+function fadeDown () { //switch to down
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
-  let cx = 5*ctx.canvas.width/6 + pet(150)
-  let cy = ctx.canvas.height/2 + pet(150)
-  let rightx = canvas.width
+  let touchy = LASTCLICK[1]//Math.floor(canvas.height - LASTCLICK[1])
   let w = canvas.width, h = canvas.height
-  let maxdist = Math.pow(Math.pow(cx, 2) + Math.pow(cy, 2), 0.5)
+  let maxdist = canvas.height*2//Math.pow(Math.pow(cx, 2) + Math.pow(cy, 2), 0.5)
   let d = 1000
   let data = ctx.getImageData(0,0,canvas.width,canvas.height)
   let i = 0, x = 0, y = 0
   let len = w * h
   let dmin = 1000, dmax = 0
   for (;i < len; i++) {
-    x = i % w
-    if (x === 0)
-      y += 1
-    d = lindistance((x*2), 0)/2
+    y = i % h
+    if (y === 0)
+      x += 1
+    d = lindistance(x, 0)
+    d = h - d
    // dmin = (d < dmin)? d:dmin;
    // dmax = (d > dmax)? d:dmax;
     let px = data.data.slice(i*4, i*4+4)
-    px[3] *= d/(maxdist*2)
+    px[3] *= d/(maxdist*1.1)
     data.data.set(px, i*4)
   }
   ctx.putImageData(data, 0, 0);
-  ctx.clearRect(0,0,canvas.width*0.55, canvas.height)
+  ctx.clearRect(0,LASTCLICK[1],canvas.width, canvas.height)
 }
 
 function downFade () {
@@ -10248,7 +10247,7 @@ function smearside () {
   let jump = 1 + document.getElementById("speck_size").value/5
   ctx.globalAlpha = (document.getElementById("speck_opacity").value)/200
   let i = 0
-  let n = 2 //+ Math.random() * 17
+  let n = 3 //+ Math.random() * 17
   ctx.save()
   for (; i < n; i++) {
     ctx.drawImage(off, jump/2 + pet(jump/2), 0)//pet(jump/2))
