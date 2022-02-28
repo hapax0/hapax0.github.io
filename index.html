@@ -124,8 +124,9 @@ words</textarea><br>
       <option value="smearside">smear right</option>
       <option value="smearrandom">smear random</option>
       <option value="smearzoom">smear zoom</option>
-      <option value="motionblur" selected>motion blur</option>
-      <option value="tiltshift">tilt-shift</option>
+      <option value="motionblur" >motion blur</option>
+      <option value="tiltshift" selected>tilt-shift</option>
+      <option value="fadeDown" >fade down</option>
       <option value="reverse">reversible</option>
       <option value="pasta">pasta</option>
       <option value="blasco">blasco</option>
@@ -7042,8 +7043,7 @@ function expandMargins (all) {
   syncBackground(canvas)
 }
 
-function tiltshift () { //upper third blur up. bottom third blur dowm
-  //need blurrect. maybe nudgeCanvas (down) after fade top
+function tiltshift () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let mode = ctx.globalCompositeOperation
@@ -7051,24 +7051,28 @@ function tiltshift () { //upper third blur up. bottom third blur dowm
   clearOff()
   copyToOff()
   fadeDown()
+  smeardown2()/*
   rc()
   smearside()
-  rcc()
+  rcc()*/
   ctx.globalCompositeOperation = "destination-over"
   document.getElementById("speck_opacity").value = 100
   pasteFromOff()
   ctx.globalCompositeOperation = "source-over"
   flipV()
+  LASTCLICK[1] = canvas.height - LASTCLICK[1]
   clearOff()
   copyToOff()
   fadeDown()
+  smeardown2()/*
   rc()
   smearside()
-  rcc()
+  rcc()*/
   ctx.globalCompositeOperation = "destination-over"
   document.getElementById("speck_opacity").value = 100
   pasteFromOff()
   flipV()
+  LASTCLICK[1] = canvas.height - LASTCLICK[1]
   ctx.globalCompositeOperation = "source-over"
   copyToOff()
   document.getElementById("speck_opacity").value = alpha
@@ -7082,7 +7086,6 @@ function motionblur () {
   let angle = document.getElementById("angle").value
   let step = document.getElementById("speck_size").value
   let stepsize = step
-
   let grunge = document.getElementById("grungy").checked
   let maxangle = 9
   if (grunge) {
@@ -7092,8 +7095,6 @@ function motionblur () {
   ctx.globalAlpha = document.getElementById("speck_opacity").value/100
   document.getElementById("angle").value = Math.floor((Math.random()-0.5) * maxangle)
   nudgeCWorCCW()
-  //document.getElementById("speck_size").value = 450
-  //ctx.globalAlpha *= 0.75 // document.getElementById("speck_opacity").value = 30
   let dir = [5 + (Math.random()-0.5) * stepsize, 5 + (Math.random()-0.5) * stepsize]
   smearrandom(canvas, dir)
   dir[0] += pet(23), dir[1] += pet(23)
@@ -9966,18 +9967,14 @@ function fade () {
   ctx.putImageData(data, 0, 0);
 }
 
-function downFade2 () {
-//  rc()
-  leftFade2()
-//  rcc()
-}
-
 function fadeDown () { //switch to down
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
-  let touchy = LASTCLICK[1]//Math.floor(canvas.height - LASTCLICK[1])
+  if (LASTCLICK[1] > canvas.height)
+    LASTCLICK[1] = canvas.height/2
+  let touchy = LASTCLICK[1]
   let w = canvas.width, h = canvas.height
-  let maxdist = canvas.height*2//Math.pow(Math.pow(cx, 2) + Math.pow(cy, 2), 0.5)
+  let maxdist = touchy
   let d = 1000
   let data = ctx.getImageData(0,0,canvas.width,canvas.height)
   let i = 0, x = 0, y = 0
@@ -9987,16 +9984,15 @@ function fadeDown () { //switch to down
     y = i % h
     if (y === 0)
       x += 1
-    d = lindistance(x, 0)
-    d = h - d
-   // dmin = (d < dmin)? d:dmin;
-   // dmax = (d > dmax)? d:dmax;
+    d = (touchy - x)
+    if (x > touchy )
+      d = 0
     let px = data.data.slice(i*4, i*4+4)
-    px[3] *= d/(maxdist*1.1)
+    px[3] *= d/(maxdist*1)
     data.data.set(px, i*4)
   }
   ctx.putImageData(data, 0, 0);
-  ctx.clearRect(0,LASTCLICK[1],canvas.width, canvas.height)
+  //ctx.clearRect(0,LASTCLICK[1],canvas.width, canvas.height)
 }
 
 function downFade () {
@@ -10231,6 +10227,24 @@ function smearzoom () {
   ctx.restore()
 }
 
+function smeardown2 () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let off = document.createElement('CANVAS')
+  off.height = canvas.height
+  off.width = canvas.width
+  offctx = off.getContext("2d")
+  offctx.drawImage(canvas, 0, 0)
+  let jump = 1 + document.getElementById("speck_size").value/5
+  ctx.globalAlpha = (document.getElementById("speck_opacity").value)/200
+  let i = 0
+  let n = 2
+  ctx.save()
+  for (; i < n; i++) {
+    ctx.drawImage(off, 0, -jump/2 + pet(jump/2))
+  }
+  ctx.restore()
+}
 
 function smearside () {
   let canvas = document.getElementById("myCanvas");
@@ -10238,19 +10252,15 @@ function smearside () {
   let off = document.createElement('CANVAS')
   off.height = canvas.height
   off.width = canvas.width
-  let x = off.width/2
-  let y = off.height/2
-  let angle = 2
   offctx = off.getContext("2d")
   offctx.drawImage(canvas, 0, 0)
-  let c = canvas.width/3
   let jump = 1 + document.getElementById("speck_size").value/5
   ctx.globalAlpha = (document.getElementById("speck_opacity").value)/200
   let i = 0
-  let n = 2 //+ Math.random() * 17
+  let n = 2
   ctx.save()
   for (; i < n; i++) {
-    ctx.drawImage(off, jump/2 + pet(jump/2), 0)//pet(jump/2))
+    ctx.drawImage(off, jump/2 + pet(jump/2), 0)
   }
   ctx.restore()
 }
