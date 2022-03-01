@@ -7083,7 +7083,8 @@ function tiltshift () {
   .then(destinationOver)
   .then(opacity100)
   .then(pasteFromOff)
-  .then(sourceOver)
+  .then(pass)
+  //.then(sourceOver)
   return true
   .then(flipV)
   .then(invertLASTCLICK)
@@ -7103,6 +7104,10 @@ function tiltshift () {
   return true
 }
 
+function pass () {
+  setTimeout(sourceOver, 100)
+  return true
+}
 function opacity100 () {
   document.getElementById("speck_opacity").value = 100
   return true
