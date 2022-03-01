@@ -7069,20 +7069,20 @@ function tiltshift () {
   let mode = ctx.globalCompositeOperation
   let alpha = document.getElementById("speck_opacity").value
 
-  clearOff()
   const myPromise = new Promise((copyToOff) => {
     setTimeout(() => {
       copyToOff()
     }, 50);
   });
-  
-  //copyToOff()
-  //myPromise
+  alert("x")
+  clearOff()
   copyToOff()
   fadeDown()
   smeardown2()
   destinationOver()
   opacity100()
+  
+  return
   pasteFromOff()
   pass()
   sourceOver()
@@ -10020,7 +10020,7 @@ function fade () {
   ctx.putImageData(data, 0, 0);
 }
 
-async function fadeDown () { //switch to down
+async function fadeDown () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   if (LASTCLICK[1] > canvas.height)
