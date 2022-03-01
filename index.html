@@ -7073,11 +7073,12 @@ function tiltshift () {
   const myPromise = new Promise((copyToOff) => {
     setTimeout(() => {
       copyToOff()
-    }, 300);
+    }, 1000);
   });
   
-  copyToOff()
+  //copyToOff()
   myPromise
+  .then(copyToOff)
   .then(fadeDown)
   .then(smeardown2)
   return true
