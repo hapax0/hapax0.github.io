@@ -7074,14 +7074,14 @@ function tiltshift () {
     setTimeout(() => {
       copyToOff()
     }, 1000);
-    alert("c")
+    alert("a")
   });
   
   //copyToOff()
   myPromise
   .then(copyToOff)
   .then(pass)
-  //.then(fadeDown)
+  .then(fadeDown)
   .then(smeardown2)
   return true
   .then(destinationOver)
@@ -10049,6 +10049,7 @@ function fadeDown () { //switch to down
     data.data.set(px, i*4)
   }
   ctx.putImageData(data, 0, 0);
+  pass()
   //ctx.clearRect(0,LASTCLICK[1],canvas.width, canvas.height)
   return true
 }
