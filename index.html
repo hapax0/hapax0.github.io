@@ -7078,8 +7078,8 @@ function tiltshift () {
   .then(invertLASTCLICK)
   .then(sourceOver)
   .then(copyToOff)
-  document.getElementById("speck_opacity").value = alpha
-  ctx.globalCompositeOperation = mode
+ // document.getElementById("speck_opacity").value = alpha
+ // ctx.globalCompositeOperation = mode
   return true
 }
 
@@ -7315,6 +7315,7 @@ function flipH () {
   ctx.setTransform(1,0,0,1,0,0)
   ctx.globalAlpha = a
   refreshMode()
+  return true
 }
 
 function flipV () {
@@ -10267,7 +10268,7 @@ function smeardown2 () {
   let jump = 1 + document.getElementById("speck_size").value/5
   ctx.globalAlpha = (document.getElementById("speck_opacity").value)/200
   let i = 0
-  let n = 2
+  let n = 1
   ctx.save()
   for (; i < n; i++) {
     ctx.drawImage(off, 0, -jump/2 + pet(jump/2))
