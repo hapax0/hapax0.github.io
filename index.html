@@ -3394,6 +3394,15 @@ function copyToOff () {
   OCctx.globalAlpha = 1.0
   OCctx.globalCompositeOperation = "source-over"
   OCctx.drawImage(canvas, 0, 0)
+/*
+  //copy canvas by DataUrl
+  let sourceImageData = canvas.toDataURL("image/png");
+  let destinationImage = new Image;
+  destinationImage.onload = function() {
+    OCctx.drawImage(destinationImage,0,0);
+  };
+  destinationImage.src = sourceImageData
+*/
   ctx.globalCompositeOperation = mode
   return true
 }
@@ -3407,7 +3416,17 @@ function pasteFromOff () {
     OCctx.globalAlpha = document.getElementById("speck_opacity").value/100
     ctx.globalAlpha = document.getElementById("speck_opacity").value/100
     ctx.drawImage(OC, 0, 0)
+/*
+    //copy canvas by DataUrl
+    let sourceImageData = OC.toDataURL("image/png");
+    let destinationImage = new Image;
+    destinationImage.onload = function() {
+      ctx.drawImage(destinationImage,0,0);
+    };
+    destinationImage.src = sourceImageData
+*/
   }
+  return true
 }
 
 document.getElementById("uploadimage").addEventListener("change", drawFile, true)
