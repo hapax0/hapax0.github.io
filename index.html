@@ -26,7 +26,7 @@
 <!--div style="font-size:32px;font-weight:bold;">Airbrush</div-->
 <table border="0" cellpadding="6" style="margin-left:6px;">
   <tr><td style="text-align:right;"><button onclick="resizeFromDialog()">resize</button></td><td>W: <input type="number" id="canvaswidth" min="40" size="6" onchange="checkWidth()">
-    H: <input type="number" id="canvasheight" min="40" size="6" onchange="checkHeight()"></td><td style="text-align:left;"><span id="aspectratio"></span></td><td>02-28-22
+    H: <input type="number" id="canvasheight" min="40" size="6" onchange="checkHeight()"></td><td style="text-align:left;"><span id="aspectratio"></span></td><td>03-01-22
   </td><td>
   &nbsp;<button id="ff" onclick="testImage('framefunctions')" title="frame functions"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow" viewBox="0 0 16 16">
   <path d="M 15,2 C 15,1.4477153 14.552285,1 14,1 H 2 C 1.4477153,1 1,1.4477153 1,2 v 12 c 0,0.552285 0.4477153,1 1,1 h 12 c 0.552285,0 1,-0.447715 1,-1 z M 0,2 C 0,0.8954305 0.8954305,0 2,0 h 12 c 1.104569,0 2,0.8954305 2,2 v 12 c 0,1.104569 -0.895431,2 -2,2 H 2 C 0.8954305,16 0,15.104569 0,14 Z" id="path2" style="fill-rule:evenodd" />
@@ -124,9 +124,9 @@ words</textarea><br>
       <option value="smearside">smear right</option>
       <option value="smearrandom">smear random</option>
       <option value="smearzoom">smear zoom</option>
-      <option value="motionblur" >motion blur</option>
+      <option value="motionblur">motion blur</option>
       <option value="tiltshift" selected>tilt-shift</option>
-      <option value="fadeDown" >fade down</option>
+      <option value="fadeDown">fade down</option>
       <option value="reverse">reversible</option>
       <option value="pasta">pasta</option>
       <option value="blasco">blasco</option>
@@ -3376,6 +3376,7 @@ function clearOff () {
  let OC = document.getElementById('OC')
  let octx = OC.getContext('2d')
  octx.clearRect(0, 0, OC.width, OC.height)
+ return true
 }
 
 function copyToOff () {
@@ -7043,40 +7044,65 @@ function expandMargins (all) {
   syncBackground(canvas)
 }
 
-function tiltshift () {
+function tiltshift () { 
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let mode = ctx.globalCompositeOperation
   let alpha = document.getElementById("speck_opacity").value
+
   clearOff()
+  const myPromise = new Promise((copyToOff) => {
+    setTimeout(() => {
+      copyToOff()
+    }, 300);
+  });
+  
   copyToOff()
-  fadeDown()
-  //smeardown2()
-  rc()
-  smearside()
-  rcc()
-  ctx.globalCompositeOperation = "destination-over"
-  document.getElementById("speck_opacity").value = 100
-  pasteFromOff()
-  ctx.globalCompositeOperation = "source-over"
-  flipV()
-  LASTCLICK[1] = canvas.height - LASTCLICK[1]
-  clearOff()
-  copyToOff()
-  fadeDown()
-  //smeardown2()
-  rc()
-  smearside()
-  rcc()
-  ctx.globalCompositeOperation = "destination-over"
-  document.getElementById("speck_opacity").value = 100
-  pasteFromOff()
-  flipV()
-  LASTCLICK[1] = canvas.height - LASTCLICK[1]
-  ctx.globalCompositeOperation = "source-over"
-  copyToOff()
+  myPromise
+  .then(fadeDown)
+  .then(smeardown2)
+  .then(destinationOver)
+  .then(opacity100)
+  .then(pasteFromOff)
+  .then(sourceOver)
+  .then(flipV)
+  .then(invertLASTCLICK)
+  .then(clearOff)
+  .then(copyToOff)
+  .then(fadeDown)
+  .then(smeardown2)
+  .then(destinationOver)
+  .then(opacity100)
+  .then(pasteFromOff)
+  .then(flipV)
+  .then(invertLASTCLICK)
+  .then(sourceOver)
+  .then(copyToOff)
   document.getElementById("speck_opacity").value = alpha
   ctx.globalCompositeOperation = mode
+  return true
+}
+
+function opacity100 () {
+  document.getElementById("speck_opacity").value = 100
+  return true
+}
+function invertLASTCLICK () {
+  let h = document.getElementById("myCanvas").height
+  LASTCLICK[1] = h - LASTCLICK[1]
+  return true
+}
+
+function sourceOver () {
+  let ctx = document.getElementById("myCanvas").getContext("2d")
+  ctx.globalCompositeOperation = "source-over"
+  return true
+}
+
+function destinationOver () {
+  let ctx = document.getElementById("myCanvas").getContext("2d")
+  ctx.globalCompositeOperation = "destination-over"
+  return true
 }
 
 function motionblur () {
@@ -7311,6 +7337,7 @@ function flipV () {
   ctx.setTransform(1,0,0,1,0,0)
   ctx.globalAlpha = a
   refreshMode()
+  return true
 }
 
 function flipStrip () {
@@ -9985,7 +10012,7 @@ function fadeDown () { //switch to down
     if (y === 0)
       x += 1
     d = (touchy - x)
-    if (x > touchy )
+    if (x > touchy ) 
       d = 0
     let px = data.data.slice(i*4, i*4+4)
     px[3] *= d/(maxdist*1)
@@ -9993,6 +10020,7 @@ function fadeDown () { //switch to down
   }
   ctx.putImageData(data, 0, 0);
   //ctx.clearRect(0,LASTCLICK[1],canvas.width, canvas.height)
+  return true
 }
 
 function downFade () {
@@ -10135,6 +10163,7 @@ function pasteFromOff () {
     ctx.globalAlpha = document.getElementById("speck_opacity").value/100
     ctx.drawImage(OC, 0, 0)
   }
+  return true
 }
 
 function smearrandom (c, d) {
@@ -10244,6 +10273,7 @@ function smeardown2 () {
     ctx.drawImage(off, 0, -jump/2 + pet(jump/2))
   }
   ctx.restore()
+  return true
 }
 
 function smearside () {
@@ -10257,7 +10287,7 @@ function smearside () {
   let jump = 1 + document.getElementById("speck_size").value/5
   ctx.globalAlpha = (document.getElementById("speck_opacity").value)/200
   let i = 0
-  let n = 2
+  let n = 2 
   ctx.save()
   for (; i < n; i++) {
     ctx.drawImage(off, jump/2 + pet(jump/2), 0)
