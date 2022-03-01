@@ -7063,13 +7063,13 @@ function expandMargins (all) {
   syncBackground(canvas)
 }
 
-function tiltshift () { 
+function tiltshift () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let mode = ctx.globalCompositeOperation
   let alpha = document.getElementById("speck_opacity").value
 
-  clearOff()
+  //clearOff()
   const myPromise = new Promise((copyToOff) => {
     setTimeout(() => {
       copyToOff()
@@ -7079,6 +7079,7 @@ function tiltshift () {
   copyToOff()
   myPromise
   .then(fadeDown)
+  return true
   .then(smeardown2)
   .then(destinationOver)
   .then(opacity100)
@@ -10038,7 +10039,7 @@ function fadeDown () { //switch to down
     if (y === 0)
       x += 1
     d = (touchy - x)
-    if (x > touchy ) 
+    if (x > touchy )
       d = 0
     let px = data.data.slice(i*4, i*4+4)
     px[3] *= d/(maxdist*1)
@@ -10188,6 +10189,7 @@ function pasteFromOff () {
     OCctx.globalAlpha = document.getElementById("speck_opacity").value/100
     ctx.globalAlpha = document.getElementById("speck_opacity").value/100
     ctx.drawImage(OC, 0, 0)
+    return true
   }
   return true
 }
@@ -10313,7 +10315,7 @@ function smearside () {
   let jump = 1 + document.getElementById("speck_size").value/5
   ctx.globalAlpha = (document.getElementById("speck_opacity").value)/200
   let i = 0
-  let n = 2 
+  let n = 2
   ctx.save()
   for (; i < n; i++) {
     ctx.drawImage(off, jump/2 + pet(jump/2), 0)
