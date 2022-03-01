@@ -3379,7 +3379,7 @@ function clearOff () {
  return true
 }
 
-function copyToOff () {
+async function copyToOff () {
   let OC = document.getElementById('OC')
   let canvas = document.getElementById('myCanvas')
   if (isCanvasBlank(OC)) {
@@ -3393,7 +3393,7 @@ function copyToOff () {
   ctx.globalCompositeOperation = "source-over"
   OCctx.globalAlpha = 1.0
   OCctx.globalCompositeOperation = "source-over"
-  OCctx.drawImage(canvas, 0, 0)
+  await OCctx.drawImage(canvas, 0, 0)
 /*
   //copy canvas by DataUrl
   let sourceImageData = canvas.toDataURL("image/png");
@@ -7074,10 +7074,11 @@ function tiltshift () {
       copyToOff()
     }, 50);
   });
-  alert("x")
-  clearOff()
+  alert("3")
+  //clearOff()
   copyToOff()
   fadeDown()
+  pass()
   smeardown2()
   destinationOver()
   opacity100()
@@ -10044,7 +10045,7 @@ async function fadeDown () {
     px[3] *= d/(maxdist*1)
     data.data.set(px, i*4)
   }
-   ctx.putImageData(data, 0, 0);
+  await ctx.putImageData(data, 0, 0);
   //ctx.clearRect(0,LASTCLICK[1],canvas.width, canvas.height)
   return true
 }
