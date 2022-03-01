@@ -7069,7 +7069,7 @@ function tiltshift () {
   let mode = ctx.globalCompositeOperation
   let alpha = document.getElementById("speck_opacity").value
 
-  //clearOff()
+  clearOff()
   const myPromise = new Promise((copyToOff) => {
     setTimeout(() => {
       copyToOff()
@@ -7077,28 +7077,28 @@ function tiltshift () {
   });
   
   //copyToOff()
-  myPromise
-  .then(copyToOff)
-  .then(fadeDown)
-  .then(smeardown2)
-  .then(destinationOver)
-  .then(opacity100)
-  .then(pasteFromOff)
-  .then(pass)
-  .then(sourceOver)
-  .then(flipV)
-  .then(invertLASTCLICK)
-  .then(clearOff)
-  .then(copyToOff)
-  .then(fadeDown)
-  .then(smeardown2)
-  .then(destinationOver)
-  .then(opacity100)
-  .then(pasteFromOff)
-  .then(flipV)
-  .then(invertLASTCLICK)
-  .then(sourceOver)
-  .then(copyToOff)
+  //myPromise
+  copyToOff()
+  fadeDown()
+  smeardown2()
+  destinationOver()
+  opacity100()
+  pasteFromOff()
+  pass()
+  sourceOver()
+  flipV()
+  invertLASTCLICK()
+  clearOff()
+  copyToOff()
+  fadeDown()
+  smeardown2()
+  destinationOver()
+  opacity100()
+  pasteFromOff()
+  flipV()
+  invertLASTCLICK()
+  sourceOver()
+  copyToOff()
  // document.getElementById("speck_opacity").value = alpha
  // ctx.globalCompositeOperation = mode
   return true
