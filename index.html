@@ -7074,12 +7074,13 @@ function tiltshift () {
     setTimeout(() => {
       copyToOff()
     }, 1000);
-    alert("a")
+    alert("b")
   });
   
   //copyToOff()
   myPromise
   .then(copyToOff)
+  .then(pass)
   .then(fadeDown)
   .then(smeardown2)
   return true
