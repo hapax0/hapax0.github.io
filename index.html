@@ -10296,11 +10296,11 @@ function smeardown2 () {
   ctx.globalAlpha = (document.getElementById("speck_opacity").value)/200
   let i = 0
   let n = 1
-  ctx.save()
-  for (; i < n; i++) {
+ // ctx.save()
+//  for (; i < n; i++) {
     ctx.drawImage(off, 0, -jump/2 + pet(jump/2))
-  }
-  ctx.restore()
+//  }
+//  ctx.restore()
   return true
 }
 
