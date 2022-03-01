@@ -7073,15 +7073,15 @@ function tiltshift () {
   const myPromise = new Promise((copyToOff) => {
     setTimeout(() => {
       copyToOff()
-    }, 1000);
-    alert("a")
+    }, 50);
+    alert("x")
   });
   
   //copyToOff()
   myPromise
   .then(copyToOff)
-  .then(pass)
   .then(fadeDown)
+  .then(pass)
   .then(smeardown2)
   return true
   .then(destinationOver)
@@ -7109,7 +7109,7 @@ function tiltshift () {
 }
 
 function pass () {
-  setTimeout(sourceOver, 100)
+  setTimeout(sourceOver, 1000)
   return true
 }
 function opacity100 () {
