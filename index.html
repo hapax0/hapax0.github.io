@@ -10044,7 +10044,7 @@ async function fadeDown () { //switch to down
     px[3] *= d/(maxdist*1)
     data.data.set(px, i*4)
   }
-  await ctx.putImageData(data, 0, 0);
+   ctx.putImageData(data, 0, 0);
   //ctx.clearRect(0,LASTCLICK[1],canvas.width, canvas.height)
   return true
 }
