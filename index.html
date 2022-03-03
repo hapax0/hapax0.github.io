@@ -3385,8 +3385,7 @@ function clearOff () {
 async function copyToOff () {
   let OC = document.getElementById('OC')
   let canvas = document.getElementById('myCanvas')
-  console.log(OCISCLEAR)
-  if (OCISCLEAR){//isCanvasBlank(OC)) {
+  if (isCanvasBlank(OC)) {
     OC.height = canvas.height
     OC.width = canvas.width
     OCISCLEAR = false
