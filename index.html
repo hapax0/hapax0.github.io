@@ -413,6 +413,7 @@ words</textarea><br>
 <script>
 let BLACK = 0
 let LASTCLICK = [512,512]
+let OCISBLANK = true
 
 window.onload = function () {
   let myCanvas = document.getElementById("myCanvas")
@@ -3377,13 +3378,15 @@ function clearOff () {
  let OC = document.getElementById('OC')
  let octx = OC.getContext('2d')
  octx.clearRect(0, 0, OC.width, OC.height)
+ OCISBLANK = true
  return true
 }
 
 async function copyToOff () {
   let OC = document.getElementById('OC')
   let canvas = document.getElementById('myCanvas')
-  if (isCanvasBlank(OC)) {
+ // if (isCanvasBlank(OC)) {
+ if (OCISBLANK) {
     OC.height = canvas.height
     OC.width = canvas.width
   }
@@ -3396,6 +3399,7 @@ async function copyToOff () {
   OCctx.globalCompositeOperation = "source-over"
   await OCctx.drawImage(canvas, 0, 0)
   ctx.globalCompositeOperation = mode
+  OCISBLANK = false
   return true
 }
 
@@ -7054,7 +7058,7 @@ function tiltshift () {
   // alert("aaa")
   
   clearOff()
-  copyToOff()
+  //copyToOff()
   copyToOff()
   fadeDown()
   smeardown2()
@@ -7065,11 +7069,11 @@ function tiltshift () {
   flipV()
   invertLASTCLICK()
   // flipped and faded on one side
-  copyToOff()
+ // copyToOff()
   copyToOff()
   fadeDown()
   smeardown2()
-  copyToOff()
+  //copyToOff()
   copyToOff()
   // flipped and faded other side
   destinationOver()
