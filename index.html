@@ -55,6 +55,7 @@
       <option value="none" selected>nothing</option>
       <option value="text">text</option>
       <option value="dot">dot</option>
+      <option value="bokeh">bokeh</option>
       <option value="square">square</option>
     </select>
     <br>
@@ -437,6 +438,9 @@ window.onload = function () {
     else
     if (tmode == "dot")
       placeDotAt()
+    else
+    if (tmode == "bokeh")
+      placeBokehAt()
     else
     if (tmode == "square")
       placeSquareAt()
@@ -9610,6 +9614,32 @@ function placeSquareAt () {
   ctx.lineTo(p[0], p[1])
   p = rotatePoint(x,y,LASTCLICK[0], LASTCLICK[1], angle)
   ctx.lineTo(p[0], p[1])
+  ctx.closePath()
+  ctx.fill()
+}
+
+function placeBokehAt () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let h = canvas.height;
+  let w = canvas.width;
+  ctx.globalAlpha = (document.getElementById("speck_opacity").value)/100
+  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = document.getElementById("paintcolor").value
+  
+  let x = LASTCLICK[0]
+  let y = LASTCLICK[1]
+  let r = 1 + +document.getElementById("textsize").value
+  r /= 2
+  r += pet(r/3)
+  
+  let color = document.getElementById("paintcolor").value
+  let grd = ctx.createRadialGradient(x+pet(r*1.2), y+pet(r*1.2), 0, x+pet(r*1.2), y+pet(r*1.2), r*1.2);
+  grd.addColorStop(0, "rgba("+hexToR(color)+", "+hexToG(color)+", "+hexToB(color)+", 0.5)");
+  grd.addColorStop(1, document.getElementById("paintcolor").value);
+  ctx.fillStyle = grd
+  ctx.beginPath()
+  ctx.arc(x, y, r, 0, Math.PI*2);
   ctx.closePath()
   ctx.fill()
 }
