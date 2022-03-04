@@ -9634,14 +9634,41 @@ function placeBokehAt () {
   r += pet(r/3)
   
   let color = document.getElementById("paintcolor").value
-  let grd = ctx.createRadialGradient(x+pet(r*1.2), y+pet(r*1.2), 0, x+pet(r*1.2), y+pet(r*1.2), r*1.2);
-  grd.addColorStop(0, "rgba("+hexToR(color)+", "+hexToG(color)+", "+hexToB(color)+", 0.5)");
+  
+  let a = 0.5 + Math.random() * 0.3
+  console.log(a)
+  
+  let grd = ctx.createRadialGradient(x+pet(r*1.2), y+pet(r*1.2), 0, x+pet(r*1.2), y+pet(r*1.1), r*1.5);
+  grd.addColorStop(0, "rgba("+hexToR(color)+", "+hexToG(color)+", "+hexToB(color)+", "+a+")");
   grd.addColorStop(1, document.getElementById("paintcolor").value);
+  
   ctx.fillStyle = grd
   ctx.beginPath()
   ctx.arc(x, y, r, 0, Math.PI*2);
   ctx.closePath()
   ctx.fill()
+  let i = 0
+ // if (Math.random() > 0.5) {
+    ctx.globalAlpha /= 10
+    for (; i < 5; i++) {
+      ctx.beginPath()
+      ctx.arc(x+pet(r/2), y+pet(r/2), r, 0, Math.PI*2);
+      ctx.closePath()
+      ctx.fill()
+    }
+    ctx.globalAlpha *= 10
+ // }
+  
+  ctx.globalAlpha *= 0.4
+  ctx.lineCap = "round"
+  i = 0, start = 0
+  for (; i < 9; i++) {
+    ctx.beginPath()
+    start = Math.random() * 2 * Math.PI
+    ctx.arc(x, y, r * 0.97, start, start + Math.PI * Math.random()/6);
+    ctx.lineWidth = r/50 + Math.random() * 1
+    ctx.stroke()
+  }
 }
 
 function placeDotAt () {
