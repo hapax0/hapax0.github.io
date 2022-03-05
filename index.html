@@ -59,8 +59,8 @@
       <option value="square">square</option>
     </select>
     <br>
-    size: &nbsp;<input type="number" id="textsize" value="48" style="width:4em;"> px<br>
-    text: &nbsp;<textarea id="caption" value="your text here" style="width:10em;" row=""2" cols="36">a
+    size: &nbsp;<input type="range" id="textsize" style="width:8em;" min='5' max='500' value="100" onchange="updatetxtsize()"><span id="txtsize">100</span><br>
+    text: &nbsp;<textarea id="caption" value="your text here" style="width:10em;" row="2" cols="36">a
 few
 words</textarea><br>
     font: <input list='facelist' id="face" style="width:10em;"><input type='button' class='mockbb' value='X' onclick="clearFace()" title="clear the face field">&nbsp;
@@ -112,6 +112,8 @@ words</textarea><br>
       <option value="dotblur" >dot blur</option>
       <option value="dirblur">dir blur</option>
       <option value="jaggyblur">jaggy blur</option>
+      <option value="randomBokeh">faux bokeh</option>
+
       <option value="haloblur" style="color:red">halo dot</option>
       <option value="halojaggy" style="color:red">halo jaggy</option>
       <option value="halfRip" style="color:red">left rip</option>
@@ -1408,6 +1410,14 @@ function interesting (color) {
   return Math.abs(color[0] - average) + Math.abs(color[1] - average) + Math.abs(color[2] - average)
 }
 
+function interestingB (color) {
+  let average = (color[0] + color[1] + color[2])/3
+  let colorful = Math.abs(color[0] - average) + Math.abs(color[1] - average) + Math.abs(color[2] - average)
+  if (average > 200)
+    colorful += 25
+  return colorful
+}
+
 function posterize () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -2424,6 +2434,71 @@ function nearest () {
     ctx.clearRect(0,0,canvas.width,canvas.height)
   ctx.drawImage(off, 0, 0)
 }
+
+
+function randomBokeh () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let alpha = document.getElementById("speck_opacity").value/100
+  let grunge = document.getElementById("grungy").checked
+  // set above as in rectify
+  let W = 20 + Math.floor(document.getElementById("speck_size").value/2)
+  //invert range of W [2- 102] => [102 - 2]
+  W = 251 - W + 2
+  let wdivs = W
+  let cw = canvas.width
+  let ch = canvas.height
+  let w = cw/wdivs
+  let hdivs = Math.round(wdivs * ch/cw)
+  let h = ch/hdivs
+  let i = 0, x = 0, y = 0
+  let numsquares = (1+wdivs) * (1+hdivs)
+  let radius = w, j = 0
+  let lightness = 0, linecount = 0
+  let r = 0, g = 0, b = 0
+  // outer loop
+  for (;j < numsquares; j++) {
+    let imgData = ctx.getImageData(x, y, w, h)
+    let threshold = 127 - document.getElementById("speck_opacity").value * 1.27
+    let pixels = imgData.data
+    let i = 0, r = 0, g = 0, b = 0
+    for (; i < pixels.length; i += 4) {
+      r += parseInt(pixels[i])
+      g += parseInt(pixels[i+1])
+      b += parseInt(pixels[i+2])
+    }
+    r /= pixels.length/4
+    g /= pixels.length/4
+    b /= pixels.length/4
+    let R = ('0'+(Math.round(r)).toString(16)).slice(-2),
+      G = ('0'+(Math.round(g)).toString(16)).slice(-2),
+      B = ('0'+(Math.round(b)).toString(16)).slice(-2);
+    //offctx.fillStyle = "#"+R+G+B
+    
+    radius = 2//w/2
+    let IN = interestingB([r,g,b])
+    if (Math.random() > 0.90 && IN > 50) {
+      bokehAt(x+w/2, y+h/2,radius*IN/10,"#"+R+G+B, alpha, ctx)
+     // console.log(interesting([r,g,b]))
+    }
+   /* offctx.beginPath()
+    offctx.arc(x+w/2, y+h/2, radius, 0, Math.PI*2)
+    offctx.closePath()
+    offctx.fill()*/
+    x += w
+    if (x >= (wdivs)*w) {
+      linecount++
+      if (!grunge && linecount % 2 == 1)
+        x = -w/2
+      else
+        x = 0
+      y += h
+    }
+  }
+  
+  
+}
+
 
 function sampleImageDataColor () {
   let canvas = document.getElementById("myCanvas")
@@ -9588,6 +9663,11 @@ function rotatePoint(x, y, centerx, centery, degrees) {
   return [newx, newy];
 }
 
+function updatetxtsize () {
+  let v = document.getElementById("textsize").value
+  document.getElementById("txtsize").innerHTML = v
+}
+
 function placeSquareAt () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
@@ -9618,11 +9698,52 @@ function placeSquareAt () {
   ctx.fill()
 }
 
+function bokehAt (x,y,r,c,a,ctx) {
+  
+  //console.log(x,y,r,c,a)
+  
+  ctx.globalAlpha = a
+  ctx.fillStyle = c
+  ctx.strokeStyle = c
+  let color = c
+  
+  let grd = ctx.createRadialGradient(x+pet(r*1.2), y+pet(r*1.2), 0, x+pet(r*1.2), y+pet(r*1.1), r*1.5);
+  grd.addColorStop(0, "rgba("+hexToR(color)+", "+hexToG(color)+", "+hexToB(color)+", "+a+")");
+  grd.addColorStop(1,c);
+  
+  ctx.fillStyle = grd
+  ctx.beginPath()
+  ctx.arc(x, y, r, 0, Math.PI*2);
+  ctx.closePath()
+  ctx.fill()
+  
+  let i = 0
+  ctx.globalAlpha /= 10
+  for (; i < 5; i++) {
+    ctx.beginPath()
+    ctx.arc(x+pet(r/2), y+pet(r/2), r, 0, Math.PI*2);
+    ctx.closePath()
+    ctx.fill()
+  }
+  ctx.globalAlpha *= 10
+  
+  ctx.globalAlpha *= 0.4
+  ctx.lineCap = "round"
+  i = 0, start = 0
+  for (; i < 9; i++) {
+    ctx.beginPath()
+    start = Math.random() * 2 * Math.PI
+    ctx.arc(x, y, r * 0.97, start, start + Math.PI * Math.random()/6);
+    ctx.lineWidth = r/50 + Math.random() * 1
+    ctx.stroke()
+  }
+}
+
 function placeBokehAt () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
-  let h = canvas.height;
-  let w = canvas.width;
+  //let h = canvas.height;
+  //let w = canvas.width;
   ctx.globalAlpha = (document.getElementById("speck_opacity").value)/100
   ctx.fillStyle = document.getElementById("paintcolor").value
   ctx.strokeStyle = document.getElementById("paintcolor").value
@@ -9635,9 +9756,8 @@ function placeBokehAt () {
   
   let color = document.getElementById("paintcolor").value
   
-  let a = 0.5 + Math.random() * 0.3
-  console.log(a)
-  
+  let a = 0.4 + Math.random() * 0.3
+
   let grd = ctx.createRadialGradient(x+pet(r*1.2), y+pet(r*1.2), 0, x+pet(r*1.2), y+pet(r*1.1), r*1.5);
   grd.addColorStop(0, "rgba("+hexToR(color)+", "+hexToG(color)+", "+hexToB(color)+", "+a+")");
   grd.addColorStop(1, document.getElementById("paintcolor").value);
@@ -9647,17 +9767,16 @@ function placeBokehAt () {
   ctx.arc(x, y, r, 0, Math.PI*2);
   ctx.closePath()
   ctx.fill()
+  
   let i = 0
- // if (Math.random() > 0.5) {
-    ctx.globalAlpha /= 10
-    for (; i < 5; i++) {
-      ctx.beginPath()
-      ctx.arc(x+pet(r/2), y+pet(r/2), r, 0, Math.PI*2);
-      ctx.closePath()
-      ctx.fill()
-    }
-    ctx.globalAlpha *= 10
- // }
+  ctx.globalAlpha /= 10
+  for (; i < 5; i++) {
+    ctx.beginPath()
+    ctx.arc(x+pet(r/2), y+pet(r/2), r, 0, Math.PI*2);
+    ctx.closePath()
+    ctx.fill()
+  }
+  ctx.globalAlpha *= 10
   
   ctx.globalAlpha *= 0.4
   ctx.lineCap = "round"
