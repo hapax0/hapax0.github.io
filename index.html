@@ -112,7 +112,7 @@ words</textarea><br>
       <option value="dotblur" >dot blur</option>
       <option value="dirblur">dir blur</option>
       <option value="jaggyblur">jaggy blur</option>
-      <option value="randomBokeh">faux bokeh</option>
+      <option value="randomBokeh" selected>faux bokeh</option>
 
       <option value="haloblur" style="color:red">halo dot</option>
       <option value="halojaggy" style="color:red">halo jaggy</option>
@@ -128,7 +128,7 @@ words</textarea><br>
       <option value="smearrandom">smear random</option>
       <option value="smearzoom">smear zoom</option>
       <option value="motionblur">motion blur</option>
-      <option value="tiltshift" selected>tilt-shift</option>
+      <option value="tiltshift" >tilt-shift</option>
       <option value="fadeDown">fade down</option>
       <option value="reverse">reversible</option>
       <option value="pasta">pasta</option>
@@ -1412,10 +1412,10 @@ function interesting (color) {
 
 function interestingB (color) {
   let average = (color[0] + color[1] + color[2])/3
-  let colorful = Math.abs(color[0] - average) + Math.abs(color[1] - average) + Math.abs(color[2] - average)
-  if (average > 200)
-    colorful += 25
-  return colorful
+//  let colorful = Math.abs(color[0] - average) + Math.abs(color[1] - average) + Math.abs(color[2] - average)
+ // if (average > 190)
+ //   colorful += 90
+  return  average //+ colorful
 }
 
 function posterize () {
@@ -2442,9 +2442,9 @@ function randomBokeh () {
   let alpha = document.getElementById("speck_opacity").value/100
   let grunge = document.getElementById("grungy").checked
   // set above as in rectify
-  let W = 20 + Math.floor(document.getElementById("speck_size").value/2)
+  let baser = 4 + Math.floor(document.getElementById("speck_size").value/4)
   //invert range of W [2- 102] => [102 - 2]
-  W = 251 - W + 2
+  let W = 500// - W + 20
   let wdivs = W
   let cw = canvas.width
   let ch = canvas.height
@@ -2473,26 +2473,20 @@ function randomBokeh () {
     let R = ('0'+(Math.round(r)).toString(16)).slice(-2),
       G = ('0'+(Math.round(g)).toString(16)).slice(-2),
       B = ('0'+(Math.round(b)).toString(16)).slice(-2);
-    //offctx.fillStyle = "#"+R+G+B
-    
-    radius = 2//w/2
+
     let IN = interestingB([r,g,b])
-    if (Math.random() > 0.90 && IN > 50) {
-      bokehAt(x+w/2, y+h/2,radius*IN/10,"#"+R+G+B, alpha, ctx)
-     // console.log(interesting([r,g,b]))
+    if (Math.random() > 0.90 && IN > 90) {
+      bokehAt(x+w/2+pet(21), y+h/2+pet(21) ,baser*IN/40,"#"+R+G+B, alpha, ctx)
+      //console.log("#"+R+G+B,IN)
     }
-   /* offctx.beginPath()
-    offctx.arc(x+w/2, y+h/2, radius, 0, Math.PI*2)
-    offctx.closePath()
-    offctx.fill()*/
-    x += w
+    x += w * 2
     if (x >= (wdivs)*w) {
       linecount++
       if (!grunge && linecount % 2 == 1)
         x = -w/2
       else
         x = 0
-      y += h
+      y += h*2
     }
   }
   
