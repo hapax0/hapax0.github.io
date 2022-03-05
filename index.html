@@ -2444,7 +2444,7 @@ function randomBokeh () {
   // set above as in rectify
   let baser = 4 + Math.floor(document.getElementById("speck_size").value/4)
   //invert range of W [2- 102] => [102 - 2]
-  let W = 500// - W + 20
+  let W = 400// - W + 20
   let wdivs = W
   let cw = canvas.width
   let ch = canvas.height
@@ -2488,6 +2488,8 @@ function randomBokeh () {
         x = 0
       y += h*2
     }
+    if (y > ch)
+      break
   }
   
   
