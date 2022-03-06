@@ -2441,10 +2441,8 @@ function randomBokeh () {
   let ctx = canvas.getContext("2d")
   let alpha = document.getElementById("speck_opacity").value/100
   let grunge = document.getElementById("grungy").checked
-  // set above as in rectify
   let baser = 4 + Math.floor(document.getElementById("speck_size").value/4)
-  //invert range of W [2- 102] => [102 - 2]
-  let W = 400// - W + 20
+  let W = 500
   let wdivs = W
   let cw = canvas.width
   let ch = canvas.height
@@ -2452,10 +2450,13 @@ function randomBokeh () {
   let hdivs = Math.round(wdivs * ch/cw)
   let h = ch/hdivs
   let i = 0, x = 0, y = 0
-  let numsquares = (1+wdivs) * (1+hdivs)
+  let numsquares = ((1+wdivs) * (1+hdivs))/4
   let radius = w, j = 0
   let lightness = 0, linecount = 0
   let r = 0, g = 0, b = 0
+  let threshold = 170
+  if (grunge)
+    threshold = 140
   // outer loop
   for (;j < numsquares; j++) {
     let imgData = ctx.getImageData(x, y, w, h)
@@ -2474,10 +2475,9 @@ function randomBokeh () {
       G = ('0'+(Math.round(g)).toString(16)).slice(-2),
       B = ('0'+(Math.round(b)).toString(16)).slice(-2);
 
-    let IN = interestingB([r,g,b])
-    if (Math.random() > 0.90 && IN > 90) {
+    let IN = (r+g+b)/3
+    if (Math.random() > 0.90 && IN > threshold) {
       bokehAt(x+w/2+pet(21), y+h/2+pet(21) ,baser*IN/40,"#"+R+G+B, alpha, ctx)
-      //console.log("#"+R+G+B,IN)
     }
     x += w * 2
     if (x >= (wdivs)*w) {
@@ -2486,13 +2486,11 @@ function randomBokeh () {
         x = -w/2
       else
         x = 0
-      y += h*2
+      y += h * 2
     }
     if (y > ch)
       break
   }
-  
-  
 }
 
 
@@ -10179,7 +10177,7 @@ async function fadeDown () {
   let ctx = canvas.getContext("2d")
   if (LASTCLICK[1] > canvas.height)
     LASTCLICK[1] = canvas.height/2
-  let touchy = LASTCLICK[1] - canvas.height/12
+  let touchy = LASTCLICK[1] - canvas.height/17
   let w = canvas.width, h = canvas.height
   let maxdist = touchy
   let d = 1000
