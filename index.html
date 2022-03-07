@@ -112,7 +112,8 @@ words</textarea><br>
       <option value="dotblur" >dot blur</option>
       <option value="dirblur">dir blur</option>
       <option value="jaggyblur">jaggy blur</option>
-      <option value="randomBokeh" selected>faux bokeh</option>
+      <option value="randomBokeh" selected>bokeh</option>
+      <option value="flares" selected>flares</option>
 
       <option value="haloblur" style="color:red">halo dot</option>
       <option value="halojaggy" style="color:red">halo jaggy</option>
@@ -2435,12 +2436,89 @@ function nearest () {
   ctx.drawImage(off, 0, 0)
 }
 
+function flares () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let off = document.createElement('CANVAS')
+  let offctx = off.getContext("2d")
+  off.width = canvas.width
+  off.height = canvas.height
+  let alpha = document.getElementById("speck_opacity").value/100
+  let grunge = document.getElementById("grungy").checked
+  let baser = 4 + Math.floor(document.getElementById("speck_size").value/4)
+  let mode = ctx.globalCompositeOperation
+  ctx.globalCompositeOperation = "lighten"
+  let W = 500
+  let wdivs = W
+  let cw = canvas.width
+  let ch = canvas.height
+  let w = cw/wdivs
+  let hdivs = Math.round(wdivs * ch/cw)
+  let h = ch/hdivs
+  let i = 0, x = 0, y = 0
+  let numsquares = ((1+wdivs) * (1+hdivs))/4
+  let radius = w, j = 0
+  let lightness = 0, linecount = 0
+  let r = 0, g = 0, b = 0
+  let flares = []
+  let threshold = 170
+  if (grunge)
+    threshold = 140
+  let offsets = []
+  for (; i < 6; i++)
+    offsets.push((Math.random() - 0.5) * (1 + Math.random()*3))
+  for (;j < numsquares; j++) {
+    let imgData = ctx.getImageData(x, y, w, h)
+    let threshold = 127 - document.getElementById("speck_opacity").value * 1.27
+    let pixels = imgData.data
+    i = 0, r = 0, g = 0, b = 0
+    for (; i < pixels.length; i += 4) {
+      r += parseInt(pixels[i])
+      g += parseInt(pixels[i+1])
+      b += parseInt(pixels[i+2])
+    }
+    r /= pixels.length/4
+    g /= pixels.length/4
+    b /= pixels.length/4
+    let R = ('0'+(Math.round(r)).toString(16)).slice(-2),
+      G = ('0'+(Math.round(g)).toString(16)).slice(-2),
+      B = ('0'+(Math.round(b)).toString(16)).slice(-2);
+    let IN = (r+g+b)/3
+    if (Math.random() > 0.90 && IN > threshold) {
+      flares.push([x+w/2, y+h/2, baser*IN/40,"#"+R+G+B])
+    }
+    x += w * 2
+    if (x >= (wdivs)*w) {
+      linecount++
+      if (!grunge && linecount % 2 == 1)
+        x = -w/2
+      else
+        x = 0
+      y += h * 2
+    }
+    if (y > ch)
+      break
+  }
+  flares = shuffle(flares)
+  i = 0
+  for ( ; i < flares.length; i++)
+    flareAt(flares[i][0], flares[i][1], flares[i][2], flares[i][3], alpha, offctx, offsets)
+  ctx.globalAlpha = alpha
+  ctx.drawImage(off, 0, 0)
+  ctx.globalCompositeOperation = mode
+}
 
 function randomBokeh () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
+  let off = document.createElement('CANVAS')
+  let offctx = off.getContext("2d")
+  off.width = canvas.width
+  off.height = canvas.height
   let alpha = document.getElementById("speck_opacity").value/100
   let grunge = document.getElementById("grungy").checked
+  let mode = ctx.globalCompositeOperation
+  ctx.globalCompositeOperation = "lighten"
   let baser = 4 + Math.floor(document.getElementById("speck_size").value/4)
   let W = 500
   let wdivs = W
@@ -2454,10 +2532,10 @@ function randomBokeh () {
   let radius = w, j = 0
   let lightness = 0, linecount = 0
   let r = 0, g = 0, b = 0
+  let flares = []
   let threshold = 170
   if (grunge)
     threshold = 140
-  // outer loop
   for (;j < numsquares; j++) {
     let imgData = ctx.getImageData(x, y, w, h)
     let threshold = 127 - document.getElementById("speck_opacity").value * 1.27
@@ -2474,10 +2552,9 @@ function randomBokeh () {
     let R = ('0'+(Math.round(r)).toString(16)).slice(-2),
       G = ('0'+(Math.round(g)).toString(16)).slice(-2),
       B = ('0'+(Math.round(b)).toString(16)).slice(-2);
-
     let IN = (r+g+b)/3
     if (Math.random() > 0.90 && IN > threshold) {
-      bokehAt(x+w/2+pet(21), y+h/2+pet(21) ,baser*IN/40,"#"+R+G+B, alpha, ctx)
+      flares.push([x+w/2+pet(21), y+h/2+pet(21) ,baser*IN/40,"#"+R+G+B])
     }
     x += w * 2
     if (x >= (wdivs)*w) {
@@ -2491,8 +2568,13 @@ function randomBokeh () {
     if (y > ch)
       break
   }
+  flares = shuffle(flares)
+  i = 0
+  for ( ; i < flares.length; i++)
+    bokehAt(flares[i][0], flares[i][1], flares[i][2], flares[i][3], alpha, offctx)
+  ctx.drawImage(off, 0, 0)
+  ctx.globalCompositeOperation = mode
 }
-
 
 function sampleImageDataColor () {
   let canvas = document.getElementById("myCanvas")
@@ -9692,10 +9774,35 @@ function placeSquareAt () {
   ctx.fill()
 }
 
+function flareAt (x,y,r,c,a,ctx, offsets) {
+  ctx.globalAlpha = a
+  ctx.fillStyle = c
+  ctx.strokeStyle = c
+  let color = c
+  let grd = ctx.createRadialGradient(x, y, 0.1, x, y, r*2);
+  grd.addColorStop(0,c);
+  a = 0.1
+  grd.addColorStop(0.5, "rgba("+hexToR(color)+", "+hexToG(color)+", "+hexToB(color)+", "+a+")");
+  a = 0
+  grd.addColorStop(0.75, "rgba("+hexToR(color)+", "+hexToG(color)+", "+hexToB(color)+", "+a+")");
+  ctx.fillStyle = grd
+  ctx.beginPath()
+  ctx.arc(x, y, r, 0, Math.PI*2);
+  ctx.closePath()
+  ctx.fill()
+  let i = 0
+  for (; i < offsets.length; i += 2) {
+    ctx.lineWidth = 1 + r/44
+    ctx.strokeStyle = grd
+    ctx.beginPath()
+    ctx.moveTo(x+offsets[i]*r, y+offsets[i+1]*r)
+    ctx.lineTo(x-offsets[i]*r, y-offsets[i+1]*r)
+    ctx.closePath()
+    ctx.stroke()
+  }
+}
+
 function bokehAt (x,y,r,c,a,ctx) {
-  
-  //console.log(x,y,r,c,a)
-  
   ctx.globalAlpha = a
   ctx.fillStyle = c
   ctx.strokeStyle = c
