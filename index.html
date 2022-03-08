@@ -7208,15 +7208,17 @@ function expandMargins (all) {
 function tiltshift () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
+  let grunge = document.getElementById("grungy").checked
   let mode = ctx.globalCompositeOperation
   let alpha = document.getElementById("speck_opacity").value
-  // alert("aaa")
-  
   clearOff()
   copyToOff()
   copyToOff()
   fadeDown()
-  smeardown2()
+  if (grunge)
+    motionblur()
+  else
+    smeardown2()
   destinationOver()
   opacity100()
   pasteFromOff()
@@ -7227,20 +7229,21 @@ function tiltshift () {
   copyToOff()
   copyToOff()
   fadeDown()
-  smeardown2()
+  if (grunge)
+    motionblur()
+  else
+    smeardown2()
   copyToOff()
   copyToOff()
   // flipped and faded other side
   destinationOver()
   opacity100()
   pasteFromOff()
-  
   // ready to flip back
   flipV()
   invertLASTCLICK()
   sourceOver()
   copyToOff()
-
   document.getElementById("speck_opacity").value = alpha
   ctx.globalCompositeOperation = mode
 }
@@ -7278,10 +7281,13 @@ function motionblur () {
   let maxangle = 9
   if (grunge) {
     stepsize *= 1.5
-    maxangle *= 2
+    //maxangle *= 2
   }
-  ctx.globalAlpha = document.getElementById("speck_opacity").value/100
-  document.getElementById("angle").value = Math.floor((Math.random()-0.5) * maxangle)
+  if (Math.random() > 0.5)
+    maxangle *= -1
+  ctx.globalAlpha = document.getElementById("speck_opacity").value/200
+  newangle = Math.floor((Math.random()-0.5) * maxangle)
+  document.getElementById("angle").value = newangle
   nudgeCWorCCW()
   let dir = [5 + (Math.random()-0.5) * stepsize, 5 + (Math.random()-0.5) * stepsize]
   smearrandom(canvas, dir)
@@ -7291,12 +7297,7 @@ function motionblur () {
   smearrandom(canvas, dir)
   dir[0] += pet(23), dir[1] += pet(23)
   smearrandom(canvas, dir)
-  dir[0] += pet(23), dir[1] += pet(23)
-  smearrandom(canvas, dir)
-  dir[0] += pet(23), dir[1] += pet(23)
-  smearrandom(canvas, dir)
-  //restore
- // document.getElementById("speck_siaze").value = step
+
   document.getElementById("angle").value = angle
   document.getElementById("speck_opacity").value = alpha
 }
@@ -10293,14 +10294,14 @@ async function fadeDown () {
   let len = w * h
   let dmin = 1000, dmax = 0
   for (;i < len; i++) {
-    y = i % h
+    y = i % w
     if (y === 0)
       x += 1
     d = (touchy - x)
-    if (x > touchy )
+    if (x > touchy)
       d = 0
     let px = data.data.slice(i*4, i*4+4)
-    px[3] *= d/(maxdist*1)
+    px[3] *= d/(maxdist)
     data.data.set(px, i*4)
   }
   await ctx.putImageData(data, 0, 0);
