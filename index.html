@@ -7211,6 +7211,7 @@ function tiltshift () {
   let grunge = document.getElementById("grungy").checked
   let mode = ctx.globalCompositeOperation
   let alpha = document.getElementById("speck_opacity").value
+  
   clearOff()
   copyToOff()
   copyToOff()
@@ -10285,7 +10286,9 @@ async function fadeDown () {
   let ctx = canvas.getContext("2d")
   if (LASTCLICK[1] > canvas.height)
     LASTCLICK[1] = canvas.height/2
-  let touchy = LASTCLICK[1] - canvas.height/17
+  let spread = Math.floor(1 + document.getElementById("number").value/2000)
+  // tie spread to canvas.height?
+  let touchy = LASTCLICK[1] - canvas.height/60*spread
   let w = canvas.width, h = canvas.height
   let maxdist = touchy
   let d = 1000
