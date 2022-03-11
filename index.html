@@ -113,8 +113,8 @@ words</textarea><br>
       <option value="dirblur">dir blur</option>
       <option value="jaggyblur">jaggy blur</option>
       <option value="randomBokeh" selected>bokeh</option>
-      <option value="flares" selected>flares</option>
-
+      <option value="flares">flares</option>
+      <option value="findBrightSpots" selected>flares 2</option>
       <option value="haloblur" style="color:red">halo dot</option>
       <option value="halojaggy" style="color:red">halo jaggy</option>
       <option value="halfRip" style="color:red">left rip</option>
@@ -130,7 +130,7 @@ words</textarea><br>
       <option value="smearzoom">smear zoom</option>
       <option value="motionblur">motion blur</option>
       <option value="tiltshift" >tilt-shift</option>
-      <option value="fadeDown">fade down</option>
+      <!--option value="fadeDown">fade down</option-->
       <option value="reverse">reversible</option>
       <option value="pasta">pasta</option>
       <option value="blasco">blasco</option>
@@ -191,7 +191,6 @@ words</textarea><br>
     <option value="leftFade">fade left</option>
     <option value="downFade">fade dowm</option>
     <option value="chaze">edge haze</option>
-    
     </select>
   </td></tr>
   <tr>
@@ -216,7 +215,7 @@ words</textarea><br>
     <option value="randomTexture2" selected>random texture2</option>
     <option value="landscape2">landscape</option>
     <option value="landscape3">landscape2</option>
-    <option value="paperish">paperish</option>
+    <!--option value="paperish">paperish</option-->
     <option value="coloringbook">coloring book</option>
     <option value="edgeSmear">streak left</option>
     <option value="smeardownOff">vertical streaks</option>
@@ -1606,6 +1605,88 @@ function ripSide () {
   else
     ctx.fill()
   ctx.restore()
+}
+
+function findBrightSpots () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let off = document.createElement('CANVAS')
+  off.width = canvas.width
+  off.height = canvas.height
+  let offctx = off.getContext("2d")
+  offctx.drawImage(canvas,0,0)
+  offctx.fillStyle = document.getElementById("paintcolor").value
+  let grunge = document.getElementById("grungy").checked
+  // set above as in rectify
+  let W = 1 + Math.floor(document.getElementById("speck_size").value)
+  //invert range of W [2- 102] => [102 - 2]
+  W = 501 - W + 1
+  let wdivs = W
+  let cw = canvas.width
+  let ch = canvas.height
+  let w = cw/wdivs
+  let hdivs = Math.round(wdivs * ch/cw)
+  let h = ch/hdivs
+  let i = 0, x = 0, y = 0
+  let numsquares = (1+wdivs) * (1+hdivs)
+  let radius = w, j = 0, linecount = 0
+  let lightness = 0
+  
+  threshold(220)
+  let points = []
+  let colors = []
+  let offsets = []
+  for (; i < 6; i++)
+    offsets.push((Math.random() - 0.5) * (1 + Math.random()*3))
+  // outer loop
+  for (;j < numsquares; j++) {
+    let imgData = ctx.getImageData(x, y, w, h)
+    let threshold = 127 - document.getElementById("speck_opacity").value * 1.27
+    let pixels = imgData.data
+    i = 0, lightness = 0
+    let r = 0, g = 0, b = 0
+    for (; i < pixels.length; i += 4) {
+      r += parseInt(pixels[i])
+      g += parseInt(pixels[i+1])
+      b += parseInt(pixels[i+2])
+      lightness += parseInt((pixels[i] + pixels[i + 1] + pixels[i + 2]) / 3)
+    }
+    lightness /= (pixels.length/4) //avg = 0 to 255
+    
+    if (lightness > 200) {
+      r /= pixels.length/4
+      g /= pixels.length/4
+      b /= pixels.length/4
+      let R = ('0'+(Math.round(r)).toString(16)).slice(-2),
+          G = ('0'+(Math.round(g)).toString(16)).slice(-2),
+          B = ('0'+(Math.round(b)).toString(16)).slice(-2);
+      points.push([x+w,y+h,"#"+R+G+B,lightness/2])
+    }
+    x += w
+    if (x >= (wdivs)*w) {
+      linecount++
+      if (!grunge && linecount % 2 == 1)
+        x = -w/2
+      else
+        x = 0
+      y += h
+    }
+  }
+ // console.log(points)
+  // filter points that are too close togeteher
+  let filteredpoints = []
+  i = 0
+  for (; i < points.length; i++) {
+    if (i == 0 || distance(points[i-1][0], points[i-1][1], points[i][0], points[i][1] ) > 90)
+      filteredpoints.push(points[i])
+  }
+  console.log(filteredpoints)
+  i = 0
+  for (; i < filteredpoints.length; i++) {
+    flareAt(filteredpoints[i][0],filteredpoints[i][1],filteredpoints[i][3],filteredpoints[i][2],ctx.globalAlpha/3,offctx, offsets)
+  }
+  //ctx.clearRect(0,0,canvas.width,canvas.height)
+  ctx.drawImage(off, 0, 0)
 }
 
 function sampleImageData () { // darkness
@@ -9776,7 +9857,7 @@ function placeSquareAt () {
   ctx.fill()
 }
 
-function flareAt (x,y,r,c,a,ctx, offsets) {
+function flareAt (x, y, r, c, a, ctx, offsets) {
   ctx.globalAlpha = a
   ctx.fillStyle = c
   ctx.strokeStyle = c
@@ -9804,7 +9885,7 @@ function flareAt (x,y,r,c,a,ctx, offsets) {
   }
 }
 
-function bokehAt (x,y,r,c,a,ctx) {
+function bokehAt (x, y, r, c, a, ctx) {
   ctx.globalAlpha = a
   ctx.fillStyle = c
   ctx.strokeStyle = c
@@ -10998,8 +11079,10 @@ function threshold_soft () {
   ctx.putImageData(imageData, 0, 0);
 }
 
-function threshold () {
+function threshold (L) {
   let threshold = lum() * 255
+  if (L)
+    threshold = L
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
