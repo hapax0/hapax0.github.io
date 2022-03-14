@@ -21,7 +21,7 @@
     background-size: 20px 20px;
   }
   .collapsible {
-    display: none;
+    /*display: none*/
     overflow: hidden;
   }
 </style>
@@ -31,7 +31,7 @@
 <!--div style="font-size:32px;font-weight:bold;">Airbrush</div-->
 <table border="1" cellpadding="4" style="margin-left:6px;">
   <tr><td style="text-align:right;"><button onclick="resizeFromDialog()">resize</button></td><td>W: <input type="number" id="canvaswidth" min="40" size="4" onchange="checkWidth()">
-    H: <input type="number" id="canvasheight" min="40" size="4" onchange="checkHeight()"></td><td style="text-align:left;"><span id="aspectratio"></span></td><td>03-12-22
+    H: <input type="number" id="canvasheight" min="40" size="4" onchange="checkHeight()"></td><td style="text-align:left;"><span id="aspectratio"></span></td><td>03-13-22
   </td><td>
   &nbsp;<button id="ff" onclick="testImage('framefunctions')" title="frame functions"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow" viewBox="0 0 16 16">
   <path d="M 15,2 C 15,1.4477153 14.552285,1 14,1 H 2 C 1.4477153,1 1,1.4477153 1,2 v 12 c 0,0.552285 0.4477153,1 1,1 h 12 c 0.552285,0 1,-0.447715 1,-1 z M 0,2 C 0,0.8954305 0.8954305,0 2,0 h 12 c 1.104569,0 2,0.8954305 2,2 v 12 c 0,1.104569 -0.895431,2 -2,2 H 2 C 0.8954305,16 0,15.104569 0,14 Z" id="path2" style="fill-rule:evenodd" />
@@ -157,9 +157,9 @@ words</textarea><br>
   </td>
   
   </tr>
-  <tr><td style="text-align:right;">feature size</td><td><input type="range" id="speck_size" min="0" max="500" value="25"></td><td style="text-align:right;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-palette" viewBox="0 0 16 16">
-  <path d="M8 5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm4 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM5.5 7a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm.5 6a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-  <path d="M16 8c0 3.15-1.866 2.585-3.567 2.07C11.42 9.763 10.465 9.473 10 10c-.603.683-.475 1.819-.351 2.92C9.826 14.495 9.996 16 8 16a8 8 0 1 1 8-8zm-8 7c.611 0 .654-.171.655-.176.078-.146.124-.464.07-1.119-.014-.168-.037-.37-.061-.591-.052-.464-.112-1.005-.118-1.462-.01-.707.083-1.61.704-2.314.369-.417.845-.578 1.272-.618.404-.038.812.026 1.16.104.343.077.702.186 1.025.284l.028.008c.346.105.658.199.953.266.653.148.904.083.991.024C14.717 9.38 15 9.161 15 8a7 7 0 1 0-7 7z"/>
+  <tr><td style="text-align:right;">feature size</td><td><input type="range" id="speck_size" min="0" max="500" value="25"></td><td style="text-align:right;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-droplet" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M7.21.8C7.69.295 8 0 8 0c.109.363.234.708.371 1.038.812 1.946 2.073 3.35 3.197 4.6C12.878 7.096 14 8.345 14 10a6 6 0 0 1-12 0C2 6.668 5.58 2.517 7.21.8zm.413 1.021A31.25 31.25 0 0 0 5.794 3.99c-.726.95-1.436 2.008-1.96 3.07C3.304 8.133 3 9.138 3 10a5 5 0 0 0 10 0c0-1.201-.796-2.157-2.181-3.7l-.03-.032C9.75 5.11 8.5 3.72 7.623 1.82z"/>
+  <path fill-rule="evenodd" d="M4.553 7.776c.82-1.641 1.717-2.753 2.093-3.13l.708.708c-.29.29-1.128 1.311-1.907 2.87l-.894-.448z"/>
 </svg></td><td><button onclick="saturationScale(1.1)">+</button>&nbsp;&nbsp;<button onclick="saturationScale(0.9)">-</button>
   </td><td>
     &nbsp;<button onclick="testImage('patternfunctions')" title="patterns"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-bricks" viewBox="0 0 16 16">
@@ -315,10 +315,8 @@ words</textarea><br>
 </div>
 <div style='margin:4px;'>
   
-  &nbsp;
-  
-  <a href="javascript:showtools()" title="show tools"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-arrows-expand" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zM7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10z"/>
+  &nbsp;&nbsp;<a href="javascript:showtools()" title="show tools"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-sliders" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3h9.05zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8h2.05zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1h9.05z"/>
 </svg></a>
 
 &nbsp;<input type='file' name='img' size='65' id='uploadimage' style="display:none;">
