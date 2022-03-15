@@ -13,6 +13,9 @@
   input[type='number']{
     width: 50px;
   }
+  input[type='color'] {
+    display:inline-block;
+  }
   div[id='background'] {
     background-color: #ffffff;
     opacity: 0.8;
@@ -246,7 +249,7 @@ words</textarea><br>
   </select>
 </td>
 </tr>
-<tr><td>color: <input type="color" id="paintcolor" style="margin-bottom:6px;">
+<tr><td> <!--color: <input type="color" id="paintcolor" style="margin-bottom:6px;"-->
 </td><td style="text-align:right;">
   mode: <select id="mode">
     <option value="source-over" selected>source-over</option>
@@ -330,6 +333,8 @@ words</textarea><br>
   <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
   <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
 </svg></a>
+&nbsp;
+<input type="color" id="paintcolor" style="margin-bottom:6px;">
 &nbsp;
 <a href="javascript:randomPickColor()" title='random color'>
 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-palette" viewBox="0 0 16 16">
