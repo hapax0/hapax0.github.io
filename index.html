@@ -24,16 +24,12 @@
     background-position: 0 0, 10px 10px;
     background-size: 20px 20px;
   }
-  .collapsible {
-    /*display: none*/
-    overflow: hidden;
-  }
 </style>
 </head>
 <body>
-<div style="margin-left:8px;" class="collapsible" id="tools">
+<div style="margin-left:8px;display:block;" id="tools">
 <!--div style="font-size:32px;font-weight:bold;">Airbrush</div-->
-<table border="1" cellpadding="4" style="margin-left:6px;">
+<table border="0" cellpadding="4" style="margin-left:6px;">
   <tr><td style="text-align:right;"><button onclick="resizeFromDialog()">resize</button></td><td>W: <input type="number" id="canvaswidth" min="40" size="4" onchange="checkWidth()">
     H: <input type="number" id="canvasheight" min="40" size="4" onchange="checkHeight()"></td><td style="text-align:left;"><span id="aspectratio"></span></td><td>03-13-22
   </td><td>
@@ -58,7 +54,7 @@
   </select>
   </td>
   <td rowspan='6'>
-    <div style="border-style:solid;margin:10px;padding:10px;">
+    <div style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:10px;">
     <span style="color:red">touch to place: </span>
     <select id="touchmode">
       <option value="none" selected>nothing</option>
@@ -99,9 +95,9 @@ words</textarea><br>
       <option value= "italic">italic</option>
       <option value="lighter">lighter</option>
     </select>
-    <br>angle: <input type="number" id ="angle" value="0" style="width:4em;" >&nbsp;&nbsp;&#177;90&#176;:<input type="checkbox" id="randomangle">
+    <br>angle: <input type="number" id="angle" value="0" style="width:4em;" >&nbsp;&nbsp;&#177;45&#176;:<input type="checkbox" id="randomangle">
   </div>
-   &nbsp;&nbsp;grunge:<input type="checkbox" id="grungy">
+   
   </td>
   </tr>
   <tr><td style="text-align:right;">canvas size </td><td>
@@ -126,7 +122,6 @@ words</textarea><br>
       <option value="dirblur">dir blur</option>
       <option value="jaggyblur">jaggy blur</option>
       <option value="randomBokeh" selected>bokeh</option>
-      <!--option value="flares">flares</option-->
       <option value="findBrightSpots" selected>flares</option>
       <option value="haloblur" style="color:red">halo dot</option>
       <option value="halojaggy" style="color:red">halo jaggy</option>
@@ -250,7 +245,7 @@ words</textarea><br>
   </select>
 </td>
 </tr>
-<tr><td> <!--color: <input type="color" id="paintcolor" style="margin-bottom:6px;"-->
+<tr><td style="text-align:right;"> &nbsp;&nbsp;alt:<input type="checkbox" id="grungy" title="alternate behaviour"><!--color: <input type="color" id="paintcolor" style="margin-bottom:6px;"-->
 </td><td style="text-align:right;">
   mode: <select id="mode">
     <option value="source-over" selected>source-over</option>
@@ -289,7 +284,7 @@ words</textarea><br>
     <option value="filterRed">filter red</option>
     <option value="filterGreen">filter green</option>
     <option value="filterBlue">filter blue</option>
-    <option value="highContrast">high contrast</option>
+    <option value="highContrast" selected>high contrast</option>
     <option value="threshold">threshold</option>
     <option value="threshold_soft">threshold soft</option>
     <option value="posterize">posterize</option>
@@ -302,23 +297,16 @@ words</textarea><br>
     <option value="sampleImageData">sample dark</option>
     <option value="sampleImageDataColor">sample colors</option>
     <option value="sampleImageDataColor2" >sample colors2</option>
-    <!--option value="pointillism">pointillism</option-->
     <option value="pointillism2">pointillism</option>
     <option value="mosaic">mosaic</option>
     <option value="nearest">squares mosaic</option>
-    <option value="dotmosaic" selected>dot mosaic</option>
-
+    <option value="dotmosaic">dot mosaic</option>
 </select>
 </td>
-<!--td>
-
- 
-</td-->
 </tr>
 </table>
 </div>
 <div style='margin:4px;'>
-  
   &nbsp;&nbsp;<a href="javascript:showtools()" title="show tools"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-sliders" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3h9.05zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8h2.05zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1h9.05z"/>
 </svg></a>
@@ -504,11 +492,8 @@ marker.addEventListener('click', function(event) {
   syncMarker()
 }
 
-
 function showtools () {
   let d = document.getElementById("tools")
-  console.log(d.style.display)
-  //d.style.maxHeight = "400px"
   if (d.style.display == "block")
     d.style.display = "none"
   else
@@ -532,7 +517,6 @@ function isCanvasBlank(canvas) {
   return !pixelBuffer.some(color => color !== 0);
 }
 
-
 function getRatio () {
   let canvas = document.getElementById("myCanvas");
   return canvas.width/canvas.height
@@ -546,9 +530,7 @@ function displayRatio () {
   let canvas = document.getElementById("myCanvas");
   let w = canvas.width, h = canvas.height
   let d = gcd(w,h)
-//  console.log(w/d+":"+h/d)
   document.getElementById("aspectratio").innerHTML = w/d+":"+h/d
-
 }
 
 function checkWidth () {
@@ -605,8 +587,6 @@ function resizeFromDialog () {
   octx.clearRect(0,0,ocanvas.width,ocanvas.height)
   document.getElementById("canvaswidth").value = canvas.width
   document.getElementById("canvasheight").value = canvas.height
- // LASTCLICK[0] = myCanvas.width/2
- // LASTCLICK[1] = myCanvas.height/2
   ctx.globalCompositeOperation = mode
 }
 
@@ -667,15 +647,11 @@ function showCanvasSettings () {
 }
 
 function objToString (obj) {
-    var str = '';
-    for (var p in obj) {
-      str += p + '::' + obj[p] + '\n';
-    }
-    return str;
-}
-
-function textTool () {
-  window.open("text tool.html")
+  let str = '';
+  for (var p in obj) {
+    str += p + '::' + obj[p] + '\n';
+  }
+  return str;
 }
 
 function setDate () {
@@ -1209,12 +1185,11 @@ function randomTexture2 () {
     document.getElementById("number").value = 33 + Math.random() * 10000
     document.getElementById("speck_size").value = 200 + Math.random() * 200
     document.getElementById("speck_opacity").value = 50 + Math.random() + 30
-    window[f](a)/*
-    if (i == 3) {
-      sobel()
-      document.getElementById("speck_opacity").value = 77// + Math.random() + 30
-      alphaWhite()
-    }*/
+    if (f == "strokes2" || f == "strokesH" || f == "blobs") {
+      document.getElementById("speck_opacity").value = 9 + Math.random() + 15
+    
+    }
+    window[f](a)
   }
   document.getElementById("speck_opacity").value = val
   document.getElementById("number").value = num
@@ -1675,9 +1650,6 @@ function findBrightSpots () {
   let numsquares = (1+wdivs) * (1+hdivs)
   let radius = w, j = 0, linecount = 0
   let lightness = 0
-  
-  //threshold(220)
-  
   let points = []
   let colors = []
   let offsets = []
@@ -1717,7 +1689,6 @@ function findBrightSpots () {
       y += h
     }
   }
- // console.log(points)
   // filter points that are too close togeteher
   let filteredpoints = []
   i = 0
@@ -1725,12 +1696,10 @@ function findBrightSpots () {
     if (i == 0 || distance(points[i-1][0], points[i-1][1], points[i][0], points[i][1] ) > 90)
       filteredpoints.push(points[i])
   }
-  console.log(filteredpoints)
   i = 0
   for (; i < filteredpoints.length; i++) {
     flareAt(filteredpoints[i][0],filteredpoints[i][1],filteredpoints[i][3],filteredpoints[i][2],ctx.globalAlpha/3,offctx, offsets)
   }
-  //ctx.clearRect(0,0,canvas.width,canvas.height)
   ctx.drawImage(off, 0, 0)
 }
 
@@ -2561,7 +2530,7 @@ function nearest () {
     ctx.clearRect(0,0,canvas.width,canvas.height)
   ctx.drawImage(off, 0, 0)
 }
-
+/*
 function flares () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -2632,7 +2601,7 @@ function flares () {
   ctx.globalAlpha = alpha
   ctx.drawImage(off, 0, 0)
   ctx.globalCompositeOperation = mode
-}
+}*/
 
 function randomBokeh () {
   let canvas = document.getElementById("myCanvas")
@@ -4269,7 +4238,7 @@ function drawLine (ctx, pt1, pt2) {
   ctx.lineTo(pt2.x, pt2.y)
   ctx.stroke()
 }
-
+/*
 function person () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -5330,12 +5299,6 @@ function origamir () {
   ctx.restore()
 }
 
-function grunge33 () {
-  let grunge = document.getElementById("grungy").checked
-  return (!grunge || (grunge && Math.random() < 0.33))
-
-}
-
 function origami () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -5520,7 +5483,7 @@ function origami4by4 () {
   if (grunge33())
     ctx.fill()
 }
-
+*/
 function strokes () {
   let increase = Math.PI * 2 / 40;
   let x = 0, y = 0, angle = 4.7;
@@ -5974,41 +5937,6 @@ function rothko () {
   refreshMode()
 }
 
-function seedRect () {
-  let canvas = document.getElementById("myCanvas");
-  let ctx = canvas.getContext("2d");
-  let w = canvas.width
-  let rows = 1
-  let margin = 4 + Math.random() * 11
-  let gap = margin/2
-  ctx.fillStyle = document.getElementById("paintcolor").value
-  ctx.globalAlpha = document.getElementById("speck_opacity").value/100
-  let grunge = document.getElementById("grungy").checked
-  clip()
-  let h = 17, H = 23
-  let shapeheight = 17 + Math.random() * 50
-  let i = 0, g = 0
-  let colors = shuffle(['red', 'blue', 'yellow', 'orange', 'white', 'purple', "green", 'black'])
-  let top = margin + 9
-  let points = []
-  ctx.beginPath();
-  ctx.moveTo(margin, top)
-  ctx.lineTo(w-margin, top)
-  ctx.lineTo(w-margin, top+shapeheight-margin)
-  ctx.lineTo(margin, top+shapeheight-margin)
-  points.push(margin, top)
-  points.push(w-margin, top)
-  points.push(w-margin, top+shapeheight-margin)
-  points.push(margin, top+shapeheight-margin)
-  ctx.closePath()
-  if (grunge)
-    ctx.fillStyle = randomPick(colors)
-  ctx.globalAlpha = document.getElementById("speck_opacity").value/400
-  frameRect(points, ctx.fillStyle, margin)
-    ctx.fillStyle = randomColor()
-  ctx.globalAlpha = document.getElementById("speck_opacity").value/100
-  ctx.restore()
-}
 
 function grid () {
   let canvas = document.getElementById("myCanvas");
@@ -6047,46 +5975,6 @@ function grid () {
   }
 }
 
-function gridOG () {
-  let canvas = document.getElementById("myCanvas");
-  let ctx = canvas.getContext("2d");
-  let w = canvas.width
-  let r = 2 + Math.floor(Math.random() * 7)
-  let margin = w/10
-  let n = (canvas.width-margin/2)/r
-  let noff = n/4
-  ctx.globalAlpha = document.getElementById("speck_opacity").value/100
-  //ctx.save()
-  clip()
-  let grunge = document.getElementById("grungy").checked
-  let colors = shuffle(['red', 'blue', 'yellow', 'orange', 'white', 'purple', "green", 'black'])
-  let type = (Math.random() > 0.5)? "r": "c"
-  let numshapes = r*r
-  let i = 0, x = noff*1.25, y = noff*1.25
-  for (; i < numshapes; i++) {
-    ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
-    if (grunge) {
-      shuffle(colors)
-      ctx.fillStyle = colors[0]
-    }
-    ctx.beginPath();
-    if (type == "rxxxxxxx") {
-      ctx.moveTo(x, y)
-      ctx.lineTo(x + n*0.75, y)
-      ctx.lineTo(x + n*0.75, y + n*0.75)
-      ctx.lineTo(x, y + n*0.75)
-    } else
-      ctx.arc(x+noff,y+noff, noff, 0, 2*Math.PI);
-    ctx.closePath()
-    ctx.fill()
-    x += n
-    if (i > 0 && i % r === (r-1)) {
-      y += n
-      x = noff*1.25
-    }
-  }
-  ctx.restore()
-}
 
 function rays () {
   let canvas = document.getElementById("myCanvas");
@@ -6420,65 +6308,6 @@ function frameRect (points, c, margin) {
   }
 }
 
-function tile (type) {
-  let canvas = document.getElementById("myCanvas");
-  let ctx = canvas.getContext("2d");
-  let sides =  (2 + Math.floor(document.getElementById("speck_size").value/20))
-  let w = canvas.width
-  let n = canvas.width/sides
-  ctx.globalAlpha = document.getElementById("speck_opacity").value/100
-  clip()
-  let colors = []
-  let c = 0
-  let nc = 1 + (Math.floor(Math.random() * 3))
-  for (; c < nc; c++)
-    colors.push(randomColor())
-  if (type == "C2" || type == "B2") {
-    colors.push(randomColor())
-    colors.push(randomColor())
-    colors.push(randomColor())
-  }
-  let numshapes = sides*sides
-  let i = 0, x = 0, y = 0
-  ctx.fillStyle = document.getElementById("paintcolor").value
-  if (type != "W")
-    ctx.fillRect(0, 0, w, w)
-  ctx.fillStyle = randomColor()//randomGradient(canvas, document.getElementById("paintcolor").value)
-  let grunge = document.getElementById("grungy").checked
-  let rc = randomColor()
-  let pattern = [0,1,2,3,4,5,6,7,8,9,10,11]
-  shuffle(pattern)
-  for (; i < numshapes; i++) {
-    ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)]
-    if (grunge)
-        ctx.fillStyle = randomGradient(canvas, colors[Math.floor(Math.random() * colors.length)])
-    if (type == "D")
-      dtile(x,y,n,pattern[i%5])
-    else
-    if (type == "M")
-      mtile(x,y,n, pattern[i%8])
-    else
-    if (type == "C")
-      ctile(x,y,n,pattern[i%4])
-    else
-    if (type == "C2") {
-      ctile2(x,y,n, colors, grunge, pattern[i%4])
-    } else
-    if (type == "B2") {
-      btile(x,y,n, colors, grunge)
-    } else
-    if (type == "W") {
-      bwash(x,y,n)
-    } else
-      triangle(x, y, n, pattern[i%4])
-    x += n
-    if (i > 0 && i % sides === (sides-1)) {
-      y += n
-      x = 0
-    }
-  }
-  ctx.restore()
-}
 
 function shuffle (array) {
   return array.sort(() => Math.random() - 0.5);
@@ -6582,6 +6411,67 @@ function bwash (x, y, w) {
     ctx.lineTo(x, y+w)
     ctx.closePath()
     ctx.fill()
+  }
+  ctx.restore()
+}
+
+/*
+function tile (type) {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let sides =  (2 + Math.floor(document.getElementById("speck_size").value/20))
+  let w = canvas.width
+  let n = canvas.width/sides
+  ctx.globalAlpha = document.getElementById("speck_opacity").value/100
+  clip()
+  let colors = []
+  let c = 0
+  let nc = 1 + (Math.floor(Math.random() * 3))
+  for (; c < nc; c++)
+    colors.push(randomColor())
+  if (type == "C2" || type == "B2") {
+    colors.push(randomColor())
+    colors.push(randomColor())
+    colors.push(randomColor())
+  }
+  let numshapes = sides*sides
+  let i = 0, x = 0, y = 0
+  ctx.fillStyle = document.getElementById("paintcolor").value
+  if (type != "W")
+    ctx.fillRect(0, 0, w, w)
+  ctx.fillStyle = randomColor()//randomGradient(canvas, document.getElementById("paintcolor").value)
+  let grunge = document.getElementById("grungy").checked
+  let rc = randomColor()
+  let pattern = [0,1,2,3,4,5,6,7,8,9,10,11]
+  shuffle(pattern)
+  for (; i < numshapes; i++) {
+    ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)]
+    if (grunge)
+        ctx.fillStyle = randomGradient(canvas, colors[Math.floor(Math.random() * colors.length)])
+    if (type == "D")
+      dtile(x,y,n,pattern[i%5])
+    else
+    if (type == "M")
+      mtile(x,y,n, pattern[i%8])
+    else
+    if (type == "C")
+      ctile(x,y,n,pattern[i%4])
+    else
+    if (type == "C2") {
+      ctile2(x,y,n, colors, grunge, pattern[i%4])
+    } else
+    if (type == "B2") {
+      btile(x,y,n, colors, grunge)
+    } else
+    if (type == "W") {
+      bwash(x,y,n)
+    } else
+      triangle(x, y, n, pattern[i%4])
+    x += n
+    if (i > 0 && i % sides === (sides-1)) {
+      y += n
+      x = 0
+    }
   }
   ctx.restore()
 }
@@ -6864,7 +6754,9 @@ function triangle (x, y, w, i) {
   ctx.closePath()
   ctx.fill()
 }
+*/
 
+/*
 function albers () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -7040,7 +6932,7 @@ function concentricrect () {
   ctx.closePath()
   ctx.fill()
   ctx.restore()
-}
+}*/
 
 function chips () {
   let canvas = document.getElementById("myCanvas");
@@ -9272,39 +9164,6 @@ function skinnyLines () { // vertical lines
   ctx.restore()
 }
 
-function eye () { // vertical lines
-  let grunge = document.getElementById("grungy").checked
- // clearCanvas()
-  let canvas = document.getElementById("myCanvas")
-  let ctx = canvas.getContext('2d')
-  let x = canvas.width/2 + pet(9), y = canvas.height/2 + pet(9);
-  let r = 0.5, rinc = 3.9
-  ctx.globalAlpha = (document.getElementById("speck_opacity").value) /100
-  alpha0 = ctx.globalAlpha
-  ctx.strokeStyle = document.getElementById("paintcolor").value
-  ctx.lineWidth = 0.5
-  linewidth0 = ctx.lineWidth
-  let radius = document.getElementById("speck_size").value/(2*6.25)
-  let rows = (2+Math.floor(Math.random() * 10))*8//document.getElementById("rows").value*8
-  numlines = 0;
-  let end = 0, start = 0
-  clip()
-  let i = 0
-  for (; i < 1000; i++) {
-    if (grunge) {
-      ctx.globalAlpha = alpha0 + (Math.random() - 0.5) * alpha0/1.3
-      ctx.lineWidth = linewidth0 + Math.random() * linewidth0/4
-    }
-    ctx.beginPath();
-    start = Math.random() *2 * Math.PI
-    end = start + 3.14
-    ctx.arc(x,y, r, start, end)
-    ctx.stroke();
-    r += rinc + pet(1)
-  }
-  ctx.restore()
-}
-
 function blobs () {
   let grunge = document.getElementById("grungy").checked
   let increase = Math.PI * 2 / 40;
@@ -9580,7 +9439,7 @@ function drawTriangleAt(ctx,x,y,r) {
   ctx.closePath()
   ctx.fill()
 }
-
+/*
 function card () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
@@ -9815,6 +9674,7 @@ function card2 () {
   //pushColor(randomPick(colors))
   ctx.restore()
 }
+*/
 
 function randomWord () {
   return randomPick(words.split("\n"))
@@ -9886,7 +9746,7 @@ function placeSquareAt () {
   x -= r/2, y += r/2 // offset to place center aligned
   let angle = +document.getElementById("angle").value
   if (document.getElementById("randomangle").checked)
-    angle += pet(90)
+    angle += pet(45)
   let p = rotatePoint(x,y,LASTCLICK[0], LASTCLICK[1], angle)
   ctx.moveTo(p[0], p[1])
   ctx.beginPath()
@@ -10073,7 +9933,7 @@ function placeTextAt () {
   angle *= Math.PI/180
   let randomangle = document.getElementById("randomangle").checked
   if (randomangle)
-    angle += pet(3.14/2)
+    angle += pet(3.14/4)
   if (!faces || faces.length < 1)
     return
   let x = LASTCLICK[0]
@@ -10111,7 +9971,6 @@ function placeTextAt () {
     ctx.fillText(lines[i], 0, 0)
     ctx.restore()
   }
-  
 //  if (angle != 0)
   //  nudgeCW() // works with destination atop
 }
@@ -10134,7 +9993,7 @@ function placeTextAt_OG () {
   angle *= Math.PI/180
   let randomangle = document.getElementById("randomangle").checked
   if (randomangle)
-    angle += pet(3.14)
+    angle += pet(3.14/4)
   if (!faces || faces.length < 1)
     return
   let x = LASTCLICK[0]
@@ -10147,7 +10006,7 @@ function placeTextAt_OG () {
   ctx.fillText(word, 0, 0);
   ctx.restore();
 }
-
+/*
 function stem (x,y,r, m) {
   this.x = x
   this.y = y
@@ -10167,7 +10026,7 @@ function branching () {
   let w = canvas.width;
   let branches = []
   let m = 2150, yf = 1
-  let x = w/2 + pet(w/2), y = h /* 4/5 + pet(h/5)*/, r = w/130 + pet(w/120)
+  let x = w/2 + pet(w/2), y = h, r = w/130 + pet(w/120)
   let s = new stem (x,y,r, m)
   branches.push(s)
   let i = 0
@@ -10193,7 +10052,7 @@ function branching () {
     }
   }
 }
-
+*/
 function land () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
@@ -10319,7 +10178,7 @@ function shape () {// right side only
   if (grunge)
     ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
   for (var t = 0; t < numshapes; t++) {
-    let radius = 10//Math.floor(Math.random() * 350) + 320;
+    let radius = 10
     x = 0;
     y = 0;
     var x0 = x;
@@ -10327,7 +10186,7 @@ function shape () {// right side only
     let turn = 0
     angle = Math.floor(Math.random() * 6.42);
     ctx.beginPath();
-    var centx = canvas.width + 260 //(Math.random() > 0.5)? ctx.canvas.width + 50 * Math.random(): Math.random() * -50;
+    var centx = canvas.width + 260
     var centy = canvas.height/2 + pet(canvas.height/2);
     var edges = Math.random()*121+Math.random()*121;
     var maxradius = canvas.height/2 + Math.random() * canvas.height/3;
@@ -10502,10 +10361,7 @@ function edgeBlur () {
   ocanvas.width = canvas.width
   ocanvas.height = canvas.height
   octx.drawImage(canvas,0,0)
- // blurCanvas(ocanvas)
- // blurCanvas(ocanvas)
- 
-smearrandom(ocanvas)
+  smearrandom(ocanvas)
   vig(ocanvas)
   ctx.drawImage(ocanvas,0,0)
 }
@@ -10538,32 +10394,6 @@ function vig (canvas) {
     data.data.set(px, i*4)
   }
   ctx.putImageData(data, 0, 0);
-}
-
-function jump () {
-  let canvas = document.getElementById("myCanvas");
-  let ctx = canvas.getContext("2d");
-  let c = canvas.width/2
-  ctx.globalAlpha = (document.getElementById("speck_opacity").value)/100
-  let i = 0
-  let px = canvas.width/4 +Math.random() * canvas.width/3
-  let py = canvas.height/4 +Math.random() * canvas.height/3
-  if (Math.random() > 0.5)
-    px *= -1
-    
-  if (Math.random() > 0.5)
-    py *= -1
-  if (document.getElementById("grungy").checked) {
-    //p = 100
-  }
-  ctx.save()
-  for (; i < 1; i++) {
-    ctx.translate(px, py)
-    //ctx.rotate((Math.random() - 0.5) * rotation * Math.PI);
-    
-    ctx.drawImage(ctx.canvas, 0,0)
-  }
-  ctx.restore()
 }
 
 function pasteFromOff () {
@@ -10887,16 +10717,12 @@ function resizeCanvas () {
   syncBackground(canvas)
   document.getElementById("canvaswidth").value = canvas.width
   document.getElementById("canvasheight").value = canvas.height
-//  LASTCLICK[0] = myCanvas.width/2
-//  LASTCLICK[1] = myCanvas.height/2
   ctx.imageSmoothingEnabled = false
   syncBackground(canvas)
   ctx.drawImage(ocanvas,0,0,canvas.width,canvas.height)
   octx.clearRect(0,0,ocanvas.width,ocanvas.height)
   document.getElementById("canvaswidth").value = canvas.width
   document.getElementById("canvasheight").value = canvas.height
- // LASTCLICK[0] = myCanvas.width/2
- // LASTCLICK[1] = myCanvas.height/2
   ctx.globalCompositeOperation = mode
   //syncMarker()
   displayRatio()
@@ -10909,7 +10735,6 @@ function clearCanvas () {
 }
 
 function saveAs () {
-  //console.log(document.getElementById("myCanvas").height)
   document.getElementById("downloader").download = "image.png";
   document.getElementById("downloader").href = document.getElementById("myCanvas").toDataURL("image/png").replace(/^data:image\/[^;]/, 'data:application/octet-stream');
 }
@@ -11062,7 +10887,6 @@ function greyScale_fancy (canvas) {
     }
   }
   context.putImageData(output, 0, 0);
-  //return context.canvas;
 }
 
 function greyScale (canvas) {
