@@ -10273,7 +10273,7 @@ async function fadeDown () {
     LASTCLICK[1] = canvas.height/2
   let spread = Math.floor(1 + document.getElementById("number").value/2000)
   // tie spread to canvas.height?
-  let touchy = LASTCLICK[1] - canvas.height/60*spread
+  let touchy = LASTCLICK[1] - canvas.height/250*spread
   let w = canvas.width, h = canvas.height
   let maxdist = touchy
   let d = 1000
@@ -10514,7 +10514,7 @@ function smeardown2 () {
   let n = 2
   for (; i < n; i++) {
     ctx.drawImage(off, 0, -jump/2 + pet(jump/2))
-    jump += pet(13)
+    jump += pet(33)
   }
   return true
 }
