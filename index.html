@@ -132,80 +132,155 @@
 </svg></a>
 
 &nbsp;
-<a href="javascript:showCanvasSettings()" title="show canvas info">
-<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="blue" class="bi bi-bug-fill" viewBox="0 0 16 16">
-  <path d="M4.978.855a.5.5 0 1 0-.956.29l.41 1.352A4.985 4.985 0 0 0 3 6h10a4.985 4.985 0 0 0-1.432-3.503l.41-1.352a.5.5 0 1 0-.956-.29l-.291.956A4.978 4.978 0 0 0 8 1a4.979 4.979 0 0 0-2.731.811l-.29-.956z"/>
-  <path d="M13 6v1H8.5v8.975A5 5 0 0 0 13 11h.5a.5.5 0 0 1 .5.5v.5a.5.5 0 1 0 1 0v-.5a1.5 1.5 0 0 0-1.5-1.5H13V9h1.5a.5.5 0 0 0 0-1H13V7h.5A1.5 1.5 0 0 0 15 5.5V5a.5.5 0 0 0-1 0v.5a.5.5 0 0 1-.5.5H13zm-5.5 9.975V7H3V6h-.5a.5.5 0 0 1-.5-.5V5a.5.5 0 0 0-1 0v.5A1.5 1.5 0 0 0 2.5 7H3v1H1.5a.5.5 0 0 0 0 1H3v1h-.5A1.5 1.5 0 0 0 1 11.5v.5a.5.5 0 1 0 1 0v-.5a.5.5 0 0 1 .5-.5H3a5 5 0 0 0 4.5 4.975z"/>
+ <a href="javascript:showCanvasSettings()" title="show canvas info">
+<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="blue"
+class="bi bi-bug-fill" viewBox="0 0 16 16">
+   <path d="M4.978.855a.5.5 0 1
+0-.956.29l.41 1.352A4.985 4.985 0 0 0 3 6h10a4.985 4.985 0 0
+0-1.432-3.503l.41-1.352a.5.5 0 1 0-.956-.29l-.291.956A4.978 4.978 0 0 0 8
+1a4.979 4.979 0 0 0-2.731.811l-.29-.956z"/>
+   <path d="M13 6v1H8.5v8.975A5 5
+0 0 0 13 11h.5a.5.5 0 0 1 .5.5v.5a.5.5 0 1 0 1 0v-.5a1.5 1.5 0 0
+0-1.5-1.5H13V9h1.5a.5.5 0 0 0 0-1H13V7h.5A1.5 1.5 0 0 0 15 5.5V5a.5.5 0 0 0-1
+0v.5a.5.5 0 0 1-.5.5H13zm-5.5 9.975V7H3V6h-.5a.5.5 0 0 1-.5-.5V5a.5.5 0 0 0-1
+0v.5A1.5 1.5 0 0 0 2.5 7H3v1H1.5a.5.5 0 0 0 0 1H3v1h-.5A1.5 1.5 0 0 0 1
+11.5v.5a.5.5 0 1 0 1 0v-.5a.5.5 0 0 1 .5-.5H3a5 5 0 0 0 4.5 4.975z"/>
 </svg></a>
-</div>
-<div style="margin-left:8px;display:block;" id="tools">
+ </div>
+ <div style="margin-left:8px;display:block;" id="tools">
 <!--div style="font-size:32px;font-weight:bold;">Airbrush</div-->
-<table border="0" cellpadding="4" style="margin-left:6px;">
-  <tr><td style="text-align:right;"><button onclick="resizeFromDialog()">resize</button></td><td>W: <input type="number" id="canvaswidth" min="40" size="4" onchange="checkWidth()">
-    H: <input type="number" id="canvasheight" min="40" size="4" onchange="checkHeight()"></td><td style="text-align:left;"><span id="aspectratio"></span></td><td>03-13-22
-  </td><td>
-  &nbsp;<button id="ff" onclick="testImage('framefunctions')" title="frame functions"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow" viewBox="0 0 16 16">
-  <path d="M 15,2 C 15,1.4477153 14.552285,1 14,1 H 2 C 1.4477153,1 1,1.4477153 1,2 v 12 c 0,0.552285 0.4477153,1 1,1 h 12 c 0.552285,0 1,-0.447715 1,-1 z M 0,2 C 0,0.8954305 0.8954305,0 2,0 h 12 c 1.104569,0 2,0.8954305 2,2 v 12 c 0,1.104569 -0.895431,2 -2,2 H 2 C 0.8954305,16 0,15.104569 0,14 Z" id="path2" style="fill-rule:evenodd" />
-    <rect style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.93606186;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="rect839" width="8.4021072" height="8.7749891" x="3.6633532" y="3.595556" />
-  </svg></button>
-  <select id="framefunctions">
-    <option value="rectFrame">rect frame</option>
-    <option value="roundedFrame">rounded frame</option>
-    <option value="framePolaroid">polaroid frame</option>
-    <option value="frame">jaggy frame</option>
-    <option value="ripFrame">rip frame</option>
-    <option value="makeSquare" selected>pad to square</option>
-    <option value="cropSquare" >crop to square</option>
-    <option value="makeSquare2">skewed square</option>
-    <option value="make4to5">pad to 4:5</option>
-    <option value="expandMarginsAll">expand margins</option>
+ <table
+border="0" cellpadding="4" style="margin-left:6px;">
+   <tr><td
+style="text-align:right;"><button
+onclick="resizeFromDialog()">resize</button></td><td>W: <input type="number"
+id="canvaswidth" min="40" size="4" onchange="checkWidth()">
+     H: <input
+type="number" id="canvasheight" min="40" size="4"
+onchange="checkHeight()"></td><td style="text-align:left;"><span
+id="aspectratio"></span></td><td>03-13-22
+   </td><td>
+   &nbsp;<button
+id="ff" onclick="testImage('framefunctions')" title="frame functions"><svg
+xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+class="bi bi-arrow" viewBox="0 0 16 16">
+   <path d="M 15,2 C 15,1.4477153
+14.552285,1 14,1 H 2 C 1.4477153,1 1,1.4477153 1,2 v 12 c 0,0.552285
+0.4477153,1 1,1 h 12 c 0.552285,0 1,-0.447715 1,-1 z M 0,2 C 0,0.8954305
+0.8954305,0 2,0 h 12 c 1.104569,0 2,0.8954305 2,2 v 12 c 0,1.104569
+-0.895431,2 -2,2 H 2 C 0.8954305,16 0,15.104569 0,14 Z" id="path2"
+style="fill-rule:evenodd" />
+     <rect
+style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.93606186;stroke-
+linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+id="rect839" width="8.4021072" height="8.7749891" x="3.6633532" y="3.595556"
+/>
+   </svg></button>
+   <select id="framefunctions">
+     <option
+value="rectFrame">rect frame</option>
+     <option
+value="roundedFrame">rounded frame</option>
+     <option
+value="framePolaroid">polaroid frame</option>
+     <option value="frame">jaggy
+frame</option>
+     <option value="ripFrame">rip frame</option>
+     <option
+value="makeSquare" selected>pad to square</option>
+     <option
+value="cropSquare" >crop to square</option>
+     <option
+value="makeSquare2">skewed square</option>
+     <option value="make4to5">pad
+to 4:5</option>
+     <option value="expandMarginsAll">expand margins</option>
     <option value="expandMarginsDown">expand bottom</option>
-    <option value="zoomImage">zoom in</option>
-    <option value="zoomOutImage">zoom out</option>
-  </select>
-  </td>
-  <td rowspan='6'>
-    <div style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:10px;">
-    <span style="color:red">touch to place: </span>
-    <select id="touchmode">
-      <option value="none" selected>nothing</option>
-      <option value="text">text</option>
-      <option value="dot">dot</option>
-      <option value="bokeh">bokeh</option>
-      <option value="square">square</option>
-    </select>
-    <br>
-    size: &nbsp;<input type="range" id="textsize" style="width:8em;" min='5' max='500' value="100" onchange="updatetxtsize()"><span id="txtsize">100</span><br>
-    text: &nbsp;<textarea id="caption" value="your text here" style="width:10em;" row="2" cols="36">Call me Ishmael. Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world. It is a way I have of driving off the spleen and regulating the circulation. Whenever I find myself growing grim about the mouth; whenever it is a damp, drizzly November in my soul; whenever I find myself involuntarily pausing before coffin warehouses, and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle to prevent me from deliberately stepping into the street, and methodically knocking people’s hats off—then, I account it high time to get to sea as soon as I can. This is my substitute for pistol and ball. With a philosophical flourish Cato throws himself upon his sword; I quietly take to the ship. There is nothing surprising in this. If they but knew it, almost all men in their degree, some time or other, cherish very nearly the same feelings towards the ocean with me.</textarea><br>
-    font: <input list='facelist' id="face" style="width:10em;"><input type='button' class='mockbb' value='X' onclick="clearFace()" title="clear the face field">&nbsp;
-    <datalist id="facelist">
-      <option value="arial">arial</option>
-      <option value="bookman">bookman</option>
-      <option value="calibri">calibri</option>
-      <option value="century gothic">century gothic</option>
-      <option value="courier new">courier new</option>
-      <option value="garamond">garamond</option>
-      <option value="georgia">georgia</option>
-      <option value="palatino">palatino</option>
-      <option value="tahoma">tahoma</option>
-      <option value="times new roman">times new roman</option>
-      <option value="monospace">monospace</option>
-      <option value="sans-serif">sans-serif</option>
-      <option value="serif">serif</option>
-      <option value="cursive">cursive</option>
-    </datalist><br>weight:
-    <select id="style">
-      <option value="normal">normal</option>
-      <option value="100">100</option>
-      <option value="500">500</option>
-      <option value="900">900</option>
-      <option value="bold">bold</option>
-      <option value="bold italic">bold italic</option>
-      <option value= "italic">italic</option>
-      <option value="lighter">lighter</option>
-    </select>
-    <br>angle: <input type="number" id="angle" value="0" style="width:4em;" >&nbsp;&nbsp;&#177;45&#176;:<input type="checkbox" id="randomangle">
-  </div>
+     <option
+value="zoomImage">zoom in</option>
+     <option value="zoomOutImage">zoom
+out</option>
+   </select>
+   </td>
+   <td rowspan='6'>
+     <div
+style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:10px;">
+<span style="color:red">touch to place: </span>
+     <select id="touchmode">
+     <option value="none" selected>nothing</option>
+       <option
+value="text">text</option>
+       <option value="dot">dot</option>
+<option value="bokeh">bokeh</option>
+       <option
+value="square">square</option>
+     </select>
+     <br>
+     size:
+&nbsp;<input type="range" id="textsize" style="width:8em;" min='5' max='500'
+value="100" onchange="updatetxtsize()"><span id="txtsize">100</span><br>
+text: &nbsp;<textarea id="caption" value="your text here" style="width:10em;"
+row="2" cols="36">Call me Ishmael. Some years ago—never mind how long
+precisely—having little or no money in my purse, and nothing particular to
+interest me on shore, I thought I would sail about a little and see the watery
+part of the world. It is a way I have of driving off the spleen and regulating
+the circulation. Whenever I find myself growing grim about the mouth; whenever
+it is a damp, drizzly November in my soul; whenever I find myself
+involuntarily pausing before coffin warehouses, and bringing up the rear of
+every funeral I meet; and especially whenever my hypos get such an upper hand
+of me, that it requires a strong moral principle to prevent me from
+deliberately stepping into the street, and methodically knocking people’s hats
+off—then, I account it high time to get to sea as soon as I can. This is my
+substitute for pistol and ball. With a philosophical flourish Cato throws
+himself upon his sword; I quietly take to the ship. There is nothing
+surprising in this. If they but knew it, almost all men in their degree, some
+time or other, cherish very nearly the same feelings towards the ocean with
+me.</textarea><br>
+     font: <input list='facelist' id="face"
+style="width:10em;"><input type='button' class='mockbb' value='X'
+onclick="clearFace()" title="clear the face field">&nbsp;
+     <datalist
+id="facelist">
+       <option value="arial">arial</option>
+       <option
+value="bookman">bookman</option>
+       <option
+value="calibri">calibri</option>
+       <option value="century gothic">century
+gothic</option>
+       <option value="courier new">courier new</option>
+<option value="garamond">garamond</option>
+       <option
+value="georgia">georgia</option>
+       <option
+value="palatino">palatino</option>
+       <option
+value="tahoma">tahoma</option>
+       <option value="times new roman">times
+new roman</option>
+       <option value="monospace">monospace</option>
+<option value="sans-serif">sans-serif</option>
+       <option
+value="serif">serif</option>
+       <option value="cursive">cursive</option>
+   </datalist><br>weight:
+     <select id="style">
+       <option
+value="normal">normal</option>
+       <option value="100">100</option>
+<option value="500">500</option>
+       <option value="900">900</option>
+ <option value="bold">bold</option>
+       <option value="bold italic">bold
+italic</option>
+       <option value= "italic">italic</option>
+       <option
+value="lighter">lighter</option>
+     </select>
+     <br>angle: <input
+type="number" id="angle" value="0" style="width:4em;"
+>&nbsp;&nbsp;&#177;45&#176;:<input type="checkbox" id="randomangle">
+</div>
    
   </td>
   </tr>
@@ -3533,18 +3608,23 @@ function colorFilter () {
   let g = hexToG(target)
   let b = hexToB(target)
   let pixels = imgData.data
-  let i = 0
+  let i = 0, ct = 0
   let d = imgData.data
-  let dist = 0
+  let dist = 0, lightness
   for( ;i < d.length; i +=4) {
     dist = 0
     dist += Math.abs(d[i] - r)
     dist += Math.abs(d[i+1] - g)
     dist += Math.abs(d[i+2] - b)
-   // let lightness = parseInt((d[i] + d[i + 1] + d[i + 2]) / 3);
     if (dist/3 > threshold) {
       if (grunge) {
-        d[i + 3] *= 0.8
+        lightness = parseInt((d[i] + d[i + 1] + d[i + 2]) / 3);
+        d[i] = lightness
+        d[i + 1] = lightness
+        d[i + 2] = lightness
+        
+        //grayscale
+        //d[i + 3] *= 0.8
       } else
         d[i + 3] = 0.0
     }
