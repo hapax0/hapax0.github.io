@@ -24,6 +24,8 @@
     background-position: 0 0, 10px 10px;
     background-size: 20px 20px;
   }
+  svg { background-color:#ccc; }
+  svg[class=white] { background-color:#fff; }
 </style>
 </head>
 <body>
@@ -163,7 +165,7 @@ id="aspectratio"></span></td><td>03-13-22
    &nbsp;<button
 id="ff" onclick="testImage('framefunctions')" title="frame functions"><svg
 xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
-class="bi bi-arrow" viewBox="0 0 16 16">
+class="white" viewBox="0 0 16 16">
    <path d="M 15,2 C 15,1.4477153
 14.552285,1 14,1 H 2 C 1.4477153,1 1,1.4477153 1,2 v 12 c 0,0.552285
 0.4477153,1 1,1 h 12 c 0.552285,0 1,-0.447715 1,-1 z M 0,2 C 0,0.8954305
@@ -171,8 +173,7 @@ class="bi bi-arrow" viewBox="0 0 16 16">
 -0.895431,2 -2,2 H 2 C 0.8954305,16 0,15.104569 0,14 Z" id="path2"
 style="fill-rule:evenodd" />
      <rect
-style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.93606186;stroke-
-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.93606186;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;"
 id="rect839" width="8.4021072" height="8.7749891" x="3.6633532" y="3.595556"
 />
    </svg></button>
@@ -295,7 +296,7 @@ type="number" id="angle" value="0" style="width:4em;"
   <path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1v6zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2z"/>
   <path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
 </svg></td><td><button onclick="sharpenCanvas()">+</button>&nbsp;&nbsp;<button onclick="blurCanvas()">-</button></td><td>
-    &nbsp;<button onclick="testImage('transformfunctions')" title="transformations"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-shuffle" viewBox="0 0 16 16">
+    &nbsp;<button onclick="testImage('transformfunctions')" title="transformations"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="white" viewBox="0 0 16 16">
       <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
       <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
     </svg></button>
@@ -345,7 +346,7 @@ type="number" id="angle" value="0" style="width:4em;"
   <path fill-rule="evenodd" d="M4.553 7.776c.82-1.641 1.717-2.753 2.093-3.13l.708.708c-.29.29-1.128 1.311-1.907 2.87l-.894-.448z"/>
 </svg></td><td><button onclick="saturationScale(1.1)">+</button>&nbsp;&nbsp;<button onclick="saturationScale(0.9)">-</button>
   </td><td>
-    &nbsp;<button onclick="testImage('patternfunctions')" title="patterns"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-bricks" viewBox="0 0 16 16">
+    &nbsp;<button onclick="testImage('patternfunctions')" title="patterns"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="white" viewBox="0 0 16 16">
   <path d="M0 .5A.5.5 0 0 1 .5 0h15a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H14v2h1.5a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H14v2h1.5a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5H2v-2H.5a.5.5 0 0 1-.5-.5v-3A.5.5 0 0 1 .5 6H2V4H.5a.5.5 0 0 1-.5-.5v-3zM3 4v2h4.5V4H3zm5.5 0v2H13V4H8.5zM3 10v2h4.5v-2H3zm5.5 0v2H13v-2H8.5zM1 1v2h3.5V1H1zm4.5 0v2h5V1h-5zm6 0v2H15V1h-3.5zM1 7v2h3.5V7H1zm4.5 0v2h5V7h-5zm6 0v2H15V7h-3.5zM1 13v2h3.5v-2H1zm4.5 0v2h5v-2h-5zm6 0v2H15v-2h-3.5z"/>
 </svg></button>
     <select id="patternfunctions">
@@ -372,7 +373,7 @@ type="number" id="angle" value="0" style="width:4em;"
   <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
 </svg></td><td><button onclick="contrastImage(5)">+</button>&nbsp;&nbsp;<button onclick="contrastImage(-5)">-</button></td>
   <td>
-    &nbsp;<button onclick="testImage('fadefunctions')" title="fade, darken, blur, gray"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-lightbulb" viewBox="0 0 16 16">
+    &nbsp;<button onclick="testImage('fadefunctions')" title="fade, darken, blur, gray"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="white" viewBox="0 0 16 16">
       <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z"/>
     </svg></button>
     <select id="fadefunctions">
@@ -400,7 +401,7 @@ type="number" id="angle" value="0" style="width:4em;"
 </td>
 <td>
   &nbsp;<button onclick="testImage('drawingfunctions')" title="drawing functions">
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-brush" viewBox="0 0 16 16">
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="white" viewBox="0 0 16 16">
       <path d="M15.825.12a.5.5 0 0 1 .132.584c-1.53 3.43-4.743 8.17-7.095 10.64a6.067 6.067 0 0 1-2.373 1.534c-.018.227-.06.538-.16.868-.201.659-.667 1.479-1.708 1.74a8.118 8.118 0 0 1-3.078.132 3.659 3.659 0 0 1-.562-.135 1.382 1.382 0 0 1-.466-.247.714.714 0 0 1-.204-.288.622.622 0 0 1 .004-.443c.095-.245.316-.38.461-.452.394-.197.625-.453.867-.826.095-.144.184-.297.287-.472l.117-.198c.151-.255.326-.54.546-.848.528-.739 1.201-.925 1.746-.896.126.007.243.025.348.048.062-.172.142-.38.238-.608.261-.619.658-1.419 1.187-2.069 2.176-2.67 6.18-6.206 9.117-8.104a.5.5 0 0 1 .596.04zM4.705 11.912a1.23 1.23 0 0 0-.419-.1c-.246-.013-.573.05-.879.479-.197.275-.355.532-.5.777l-.105.177c-.106.181-.213.362-.32.528a3.39 3.39 0 0 1-.76.861c.69.112 1.736.111 2.657-.12.559-.139.843-.569.993-1.06a3.122 3.122 0 0 0 .126-.75l-.793-.792zm1.44.026c.12-.04.277-.1.458-.183a5.068 5.068 0 0 0 1.535-1.1c1.9-1.996 4.412-5.57 6.052-8.631-2.59 1.927-5.566 4.66-7.302 6.792-.442.543-.795 1.243-1.042 1.826-.121.288-.214.54-.275.72v.001l.575.575zm-4.973 3.04.007-.005a.031.031 0 0 1-.007.004zm3.582-3.043.002.001h-.002z"/>
     </svg></button>
   <select id="drawingfunctions" >
@@ -456,7 +457,7 @@ type="number" id="angle" value="0" style="width:4em;"
   <td>
     <button onclick="adjustWarmth(5)">+</button>&nbsp;&nbsp;<button onclick="adjustWarmth(-5)">-</button>
 </td><td>
-&nbsp;<button id="cf" onclick="testImage('colorfunctions')" title="color functions"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-funnel" viewBox="0 0 16 16">
+&nbsp;<button id="cf" onclick="testImage('colorfunctions')" title="color functions"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="white" viewBox="0 0 16 16">
   <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z"/>
 </svg></button>
 <select id='colorfunctions'>
@@ -3462,8 +3463,8 @@ function colorFilterOut () {
   let ctx = canvas.getContext("2d")
   let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height)
   let target = document.getElementById("paintcolor").value
-  let threshold = +document.getElementById("speck_opacity").value
-  threshold = 100 - threshold
+  let threshold = +document.getElementById("speck_opacity").value * 2.55
+  threshold = 255 - threshold
   let grunge = document.getElementById("grungy").checked
   let mode = ctx.globalCompositeOperation
   let r = hexToR(target)
@@ -3474,13 +3475,8 @@ function colorFilterOut () {
   let d = imgData.data
   let dist = 0
   for( ;i < d.length; i +=4) {
-    dist = 0
-    dist += Math.abs(d[i] - r)
-    dist += Math.abs(d[i+1] - g)
-    dist += Math.abs(d[i+2] - b)
-   // if (i == 0)
-   //   alert(threshold+", d:"+dist)
-    if (dist/3 <= threshold) {
+    dist = Math.sqrt(Math.pow(d[i] - r, 2) + Math.pow(d[i+1] - g, 2) + Math.pow(d[i+2] - b, 2))
+    if (dist <= threshold) {
       if (grunge) {
         d[i + 3] *= 0.8
       } else
@@ -3490,7 +3486,7 @@ function colorFilterOut () {
   ctx.putImageData(imgData, 0, 0)
   refreshMode()
 }
-
+/*
 function colorFilterOff () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -3595,14 +3591,14 @@ function colorFilterOff () {
   
   ctx.clearRect(0,0,canvas.width, canvas.height)
   ctx.drawImage(off2, 0,0,off2.width,off2.height)
-}
+}*/
 
 function colorFilter () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height)
-  let target = document.getElementById("paintcolor").value
-  let threshold = document.getElementById("speck_opacity").value
+  let target = document.getElementById("paintcolor").valu
+  let threshold = +document.getElementById("speck_opacity").value * 2.55
   let grunge = document.getElementById("grungy").checked
   let r = hexToR(target)
   let g = hexToG(target)
@@ -3612,19 +3608,13 @@ function colorFilter () {
   let d = imgData.data
   let dist = 0, lightness
   for( ;i < d.length; i +=4) {
-    dist = 0
-    dist += Math.abs(d[i] - r)
-    dist += Math.abs(d[i+1] - g)
-    dist += Math.abs(d[i+2] - b)
-    if (dist/3 > threshold) {
+    dist = Math.sqrt(Math.pow(d[i] - r, 2) + Math.pow(d[i+1] - g, 2) + Math.pow(d[i+2] - b, 2))
+    if (dist >= threshold) {
       if (grunge) {
         lightness = parseInt((d[i] + d[i + 1] + d[i + 2]) / 3);
         d[i] = lightness
         d[i + 1] = lightness
         d[i + 2] = lightness
-        
-        //grayscale
-        //d[i + 3] *= 0.8
       } else
         d[i + 3] = 0.0
     }
@@ -9766,7 +9756,6 @@ function diagonal () {
   let centerx = ctx.canvas.width / 2;
   let centery = ctx.canvas.height / 2;
   ctx.globalAlpha = (document.getElementById("speck_opacity").value)/100
-  //document.getElementById("paintcolor").value = randomColor()
   ctx.fillStyle = document.getElementById("paintcolor").value
   let baseline = h * 4/5
   let x =-10
@@ -9909,8 +9898,6 @@ function bokehAt (x, y, r, c, a, ctx) {
 function placeBokehAt () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
-  //let h = canvas.height;
-  //let w = canvas.width;
   ctx.globalAlpha = (document.getElementById("speck_opacity").value)/100
   ctx.fillStyle = document.getElementById("paintcolor").value
   ctx.strokeStyle = document.getElementById("paintcolor").value
@@ -9922,9 +9909,7 @@ function placeBokehAt () {
   r += pet(r/3)
   
   let color = document.getElementById("paintcolor").value
-  
   let a = 0.4 + Math.random() * 0.3
-
   let grd = ctx.createRadialGradient(x+pet(r*1.2), y+pet(r*1.2), 0, x+pet(r*1.2), y+pet(r*1.1), r*1.5);
   grd.addColorStop(0, "rgba("+hexToR(color)+", "+hexToG(color)+", "+hexToB(color)+", "+a+")");
   grd.addColorStop(1, document.getElementById("paintcolor").value);
@@ -9943,9 +9928,8 @@ function placeBokehAt () {
     ctx.closePath()
     ctx.fill()
   }
-  ctx.globalAlpha *= 10
-  
-  ctx.globalAlpha *= 0.4
+  ctx.globalAlpha *= 4
+  //ctx.globalAlpha *= 0.4
   ctx.lineCap = "round"
   i = 0, start = 0
   for (; i < 9; i++) {
@@ -9993,7 +9977,7 @@ function clearFace () {
 }
 
 function placeTextAt () {
-  let lines = document.getElementById("caption").value.split("\n")
+  let lines = document.getElementById("caption").value.split(/[\r\n]+/)
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let h = canvas.height;
@@ -10049,8 +10033,6 @@ function placeTextAt () {
     ctx.fillText(lines[i], 0, 0)
     ctx.restore()
   }
-//  if (angle != 0)
-  //  nudgeCW() // works with destination atop
 }
 
 function placeTextAt_OG () {
@@ -10247,7 +10229,6 @@ function shape () {// right side only
   var centerx = ctx.canvas.width / 2;
   var centery = ctx.canvas.height / 2;
   ctx.fillStyle = randomGradient(canvas);
- // ctx.save()
   ctx.globalAlpha = (document.getElementById("speck_opacity").value)/100
   let grunge = document.getElementById("grungy").checked
   let numshapes = 1;//Math.random() * max_shapes() + 2;
@@ -10298,7 +10279,7 @@ function shape () {// right side only
   }
 }
 
-function drawPath(points, offsetX, offsetY, c) {
+function drawPath (points, offsetX, offsetY, c) {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   if (c)
@@ -10816,7 +10797,7 @@ function saveAs () {
   document.getElementById("downloader").href = document.getElementById("myCanvas").toDataURL("image/png").replace(/^data:image\/[^;]/, 'data:application/octet-stream');
 }
 
-function pet(v) {
+function pet (v) {
   return (Math.random() -0.5) * v;
 }
 
@@ -10824,7 +10805,7 @@ function distance (x1, y1, x2, y2) {
   return Math.pow(Math.pow(x1-x2, 2) + Math.pow(y1-y2, 2), 0.5)
 }
 
-function lindistance(x1,x2) {
+function lindistance (x1,x2) {
   return Math.abs(x1,x2)
 }
 
@@ -10938,32 +10919,6 @@ function gray (r, g, b) {
   const kg = 0.7152
   const kb = 0.0722
   return lrgb_rgb1(kr * rgb_lrgb1(r) + kg * rgb_lrgb1(g) + kb * rgb_lrgb1(b));
-}
-
-function greyScale_fancy (canvas) {
-  if (!canvas)
-    canvas = document.getElementById("myCanvas");
-  const context = canvas.getContext("2d");
-  const kr = 0.2126
-  const kg = 0.7152
-  const kb = 0.0722
-  //context.canvas.style = "max-width: 100%;";
-  //context.drawImage(image, 0, 0, width, height);
-  const input = context.getImageData(0, 0, canvas.width, canvas.height);
-  const output = context.createImageData(canvas.width, canvas.height);
-  for (let y = 0, i = 0; y < canvas.height; ++y) {
-    for (let x = 0; x < canvas.width; ++x, i += 4) {
-      const r = rgb_lrgb1(input.data[i + 0]);
-      const g = rgb_lrgb1(input.data[i + 1]);
-      const b = rgb_lrgb1(input.data[i + 2]);
-      const a = lrgb_rgb1(kr * r + kg * g + kb * b);
-      output.data[i + 0] = r
-      output.data[i + 1] = g
-      output.data[i + 2] = b
-      output.data[i + 3] = 255;
-    }
-  }
-  context.putImageData(output, 0, 0);
 }
 
 function greyScale (canvas) {
@@ -11160,7 +11115,6 @@ function convolutionMatrix (kernel, offset, canvas, div) {
   ctx.putImageData(output, 0, 0)
 }
 
-// ====================
 function sobel () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -11262,7 +11216,6 @@ function FakeImageData(data, width, height) {
     data: data
   };
 }
-  
 </script>
 <!--script src="wordlist2.js"></script-->
 </body>
