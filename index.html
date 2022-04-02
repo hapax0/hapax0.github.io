@@ -208,6 +208,7 @@ out</option>
    </select>
    </td>
    <td rowspan='6'>
+       shadows<input type="checkbox" id="shadows" checked> mid <input type="checkbox" id="midtones" checked> highlights <input type="checkbox" id="highlights" checked>
      <div
 style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:10px;">
 <span style="color:red">touch to place: </span>
@@ -10857,14 +10858,25 @@ function opaqueer () {
 function adjustBrightness (n, canvas) {
   if (!canvas)
     canvas = document.getElementById("myCanvas");
+  let shadows = document.getElementById("shadows").checked
+  let midtones = document.getElementById("midtones").checked
+  let highlights = document.getElementById("highlights").checked
+  let brightness = 0
   let ctx = canvas.getContext("2d");
   let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
   let pixels = imgData.data;
   let i = 0
   for (; i < pixels.length; i += 4) {
-    pixels[i] += n;
-    pixels[i + 1] += n;
-    pixels[i + 2] += n;
+    brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3)
+    
+    if ((shadows && brightness >= 0 && brightness < 0.333) ||
+        (midtones && brightness >=0.333 && brightness < 0.667) ||
+        (highlights && brightness >= 0.667 && brightness <= 1)
+      ) {
+      pixels[i] += n;
+      pixels[i + 1] += n;
+      pixels[i + 2] += n;
+    }
   }
   ctx.putImageData(imgData, 0, 0);
 }
@@ -10890,6 +10902,12 @@ function saturationScale (sv) {
   let ctx = canvas.getContext("2d");
   let imageData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
   let dA = imageData.data; // raw pixel data in array
+  
+  let shadows = document.getElementById("shadows").checked
+  let midtones = document.getElementById("midtones").checked
+  let highlights = document.getElementById("highlights").checked
+  let brightness = 0
+  
   //var sv = 1.25; // saturation value. 0 = grayscale, 1 = original
   var luR = 0.3086; // constant to determine luminance of red. Similarly, for green and blue
   var luG = 0.6094;
@@ -10908,12 +10926,22 @@ function saturationScale (sv) {
       var red = dA[i]; // Extract original red color [0 to 255]. Similarly for green and blue below
       var green = dA[i + 1];
       var blue = dA[i + 2];
-      var saturatedRed = (az*red + bz*green + cz*blue);
-      var saturatedGreen = (dz*red + ez*green + fz*blue);
-      var saturateddBlue = (gz*red + hz*green + iz*blue);
-      dA[i] = saturatedRed;
-      dA[i + 1] = saturatedGreen;
-      dA[i + 2] = saturateddBlue;
+      
+      brightness = (dA[i]+dA[i+1]+dA[i+2])/(255*3)
+    
+    if ((shadows && brightness >= 0 && brightness < 0.333) ||
+        (midtones && brightness >=0.333 && brightness < 0.667) ||
+        (highlights && brightness >= 0.667 && brightness <= 1)
+      ) {
+        var saturatedRed = (az*red + bz*green + cz*blue);
+        var saturatedGreen = (dz*red + ez*green + fz*blue);
+        var saturateddBlue = (gz*red + hz*green + iz*blue);
+        
+        
+        dA[i] = saturatedRed;
+        dA[i + 1] = saturatedGreen;
+        dA[i + 2] = saturateddBlue;
+    }
   }
   ctx.putImageData(imageData, 0, 0);
 }
