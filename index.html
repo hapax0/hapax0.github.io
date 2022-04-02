@@ -395,6 +395,7 @@ type="number" id="angle" value="0" style="width:4em;"
     <option value="downFade">fade dowm</option>
     <option value="chaze">edge haze</option>
     <option value="pop">pop</option>
+    <option value="tint" selected>tint</option>
     </select>
   </td></tr>
   <tr>
@@ -10885,6 +10886,37 @@ function adjustBrightness (n, canvas) {
       pixels[i] += n;
       pixels[i + 1] += n;
       pixels[i + 2] += n;
+    }
+  }
+  ctx.putImageData(imgData, 0, 0);
+}
+
+function tint (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
+  let n = 10
+  let color = document.getElementById("paintcolor").value
+  let r = hexToR(color)
+  let g = hexToG(color)
+  let b = hexToB(color)
+  let ctx = canvas.getContext("2d");
+  let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
+  let pixels = imgData.data;
+  let i = 0
+  let shadows = document.getElementById("shadows").checked
+  let midtones = document.getElementById("midtones").checked
+  let highlights = document.getElementById("highlights").checked
+  let brightness = 0
+  
+  for (; i < pixels.length; i += 4) {
+    brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3)
+    if ((shadows && brightness >= 0 && brightness < 0.333) ||
+        (midtones && brightness >=0.333 && brightness < 0.667) ||
+        (highlights && brightness >= 0.667 && brightness <= 1)
+    ) {
+      pixels[i] =     Math.min(pixels[i] * 0.9 + r * 0.1, 255);
+      pixels[i + 1] = Math.min(pixels[i+1] * 0.9 + g * 0.1, 255);
+      pixels[i + 2] = Math.min(pixels[i+2] * 0.9 + b * 0.1, 255);
     }
   }
   ctx.putImageData(imgData, 0, 0);
