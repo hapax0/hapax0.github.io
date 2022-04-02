@@ -3646,12 +3646,22 @@ function contrastImage (contrast, canvas) {  //input range [-100..100]
   let pixels = imgData.data
   let i = 0
   let d = imgData.data
+  let shadows = document.getElementById("shadows").checked
+  let midtones = document.getElementById("midtones").checked
+  let highlights = document.getElementById("highlights").checked
+  let brightness = 0
   contrast = (contrast/100) + 1;  //convert to decimal & shift range: [0..2]
   let intercept = 128 * (1 - contrast)
   for( ;i < d.length; i +=4){   //r,g,b,a
-    d[i] =   d[i]*contrast + intercept
-    d[i+1] = d[i+1]*contrast + intercept
-    d[i+2] = d[i+2]*contrast + intercept
+    brightness = (d[i]+d[i+1]+d[i+2])/(255*3)
+    if ((shadows && brightness >= 0 && brightness < 0.333) ||
+        (midtones && brightness >=0.333 && brightness < 0.667) ||
+        (highlights && brightness >= 0.667 && brightness <= 1)
+      ) {
+      d[i] =   d[i]*contrast + intercept
+      d[i+1] = d[i+1]*contrast + intercept
+      d[i+2] = d[i+2]*contrast + intercept
+    }
   }
   ctx.putImageData(imgData, 0, 0)
 }
@@ -10868,7 +10878,6 @@ function adjustBrightness (n, canvas) {
   let i = 0
   for (; i < pixels.length; i += 4) {
     brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3)
-    
     if ((shadows && brightness >= 0 && brightness < 0.333) ||
         (midtones && brightness >=0.333 && brightness < 0.667) ||
         (highlights && brightness >= 0.667 && brightness <= 1)
@@ -10889,10 +10898,21 @@ function adjustWarmth (n, canvas) {
   let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
   let pixels = imgData.data;
   let i = 0
+  let shadows = document.getElementById("shadows").checked
+  let midtones = document.getElementById("midtones").checked
+  let highlights = document.getElementById("highlights").checked
+  let brightness = 0
+  
   for (; i < pixels.length; i += 4) {
-    pixels[i] += n;
-   // pixels[i + 1] += g;
-    pixels[i + 2] -= n;
+    brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3)
+    if ((shadows && brightness >= 0 && brightness < 0.333) ||
+        (midtones && brightness >=0.333 && brightness < 0.667) ||
+        (highlights && brightness >= 0.667 && brightness <= 1)
+    ) {
+      pixels[i] += n;
+     // pixels[i + 1] += g;
+      pixels[i + 2] -= n;
+    }
   }
   ctx.putImageData(imgData, 0, 0);
 }
