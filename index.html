@@ -8448,6 +8448,13 @@ function randomGradientLeft(canvas, col1) {
   return my_gradient;
 }
 
+//  input: r,g,b in [0,1], out: h in [0,360) and s,v in [0,1]
+function rgb2hsv(r,g,b) {
+  let v=Math.max(r,g,b), c=v-Math.min(r,g,b);
+  let h= c && ((v==r) ? (g-b)/c : ((v==g) ? 2+(b-r)/c : 4+(r-g)/c));
+  return [60*(h<0?h+6:h), v&&c/v, v];
+}
+
 function hexToR(h) { return parseInt((cutHex(h)).substring(0,2),16) }
 function hexToG(h) { return parseInt((cutHex(h)).substring(2,4),16) }
 function hexToB(h) { return parseInt((cutHex(h)).substring(4,6),16) }
@@ -10893,13 +10900,18 @@ function adjustBrightness (n, canvas) {
 
 function tint (canvas) {
   if (!canvas)
-    canvas = document.getElementById("myCanvas");
+    canvas = document.getElementById("myCanvas")
+  let offcanvas = document.createElement('CANVAS')
+  offcanvas.width = canvas.width
+  offcanvas.height = canvas.height
+  let offctx = offcanvas.getContext("2d");
   let n = 10
   let color = document.getElementById("paintcolor").value
   let r = hexToR(color)
   let g = hexToG(color)
   let b = hexToB(color)
   let ctx = canvas.getContext("2d");
+  let mode = ctx.globalCompositeOperation
   let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
   let pixels = imgData.data;
   let i = 0
@@ -10919,7 +10931,10 @@ function tint (canvas) {
       pixels[i + 2] = Math.min(pixels[i+2] * 0.9 + b * 0.1, 255);
     }
   }
-  ctx.putImageData(imgData, 0, 0);
+  offctx.putImageData(imgData, 0, 0);
+  ctx.globalCompositeOperation = "color"
+  ctx.drawImage(offcanvas,0,0)
+  ctx.globalCompositeOperation = mode
 }
 
 function adjustWarmth (n, canvas) {
