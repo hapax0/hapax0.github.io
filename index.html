@@ -1405,7 +1405,6 @@ function exposureInfo () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
-  saturationScale(1.1)
   let mind = 1000000
   let maxd = -1000000
   let minbright = 1, maxbright = 0, b = 0, colorfull = 0, averageb = 0
