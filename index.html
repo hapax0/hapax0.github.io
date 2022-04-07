@@ -312,7 +312,7 @@ type="number" id="angle" value="0" style="width:4em;"
   </td><td style="text-align:right;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-camera" viewBox="0 0 16 16">
   <path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1v6zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2z"/>
   <path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
-</svg></td><td><button onclick="sharpenCanvas()">+</button>&nbsp;&nbsp;<button onclick="blurCanvas()">-</button></td><td>
+</svg></td><td><button onclick="sharpen2()">+</button>&nbsp;&nbsp;<button onclick="blurCanvas()">-</button></td><td>
     &nbsp;<button onclick="testImage('transformfunctions')" title="transformations"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="white" viewBox="0 0 16 16">
       <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
       <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
@@ -11265,6 +11265,29 @@ function emboseCanvas () {
     convolutionMatrix(randomPick(k), 0)
 }
 
+function sharpen2 () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let mode = document.getElementById("mode").value
+  let opacity = document.getElementById("speck_opacity").value
+  // opacity 1.0, source-over
+  //document.getElementById("mode").value = "source-over"
+  document.getElementById("mode").value = "source-over"
+  clearOff()
+  copyToOff()
+  gaussianBlur()
+  document.getElementById("mode").value = "difference"
+  ctx.globalCompositeOperation = "difference"
+  document.getElementById("speck_opacity").value = 100
+  pasteFromOff()
+  // unsharp mask ready
+  document.getElementById("speck_opacity").value = 75
+  swapWithOff()
+  pasteFromOff()
+  document.getElementById("mode").value = mode
+  document.getElementById("speck_opacity").value = opacity
+  ctx.globalAlpha = opacity/100
+}
 
 function sharpenCanvas () {
   let k = [0,-1,0,
