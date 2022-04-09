@@ -407,6 +407,7 @@ type="number" id="angle" value="0" style="width:4em;"
     <option value="downFade">fade dowm</option>
     <option value="chaze">edge haze</option>
     <option value="pop">pop</option>
+    <option value="adjustExposure">adjust exposure</option>
     <option value="tint" selected>tint</option>
     </select>
   </td></tr>
@@ -3699,6 +3700,74 @@ function highContrast () {
   }
 }
 
+function mapRanges (start, end, startF, endF, val) { // F is full range 0 to 255*3
+ // r = (endF - startF)/(end - start)
+ // console.log(r)
+  return(((val-start)*(endF-startF))/(end-start) + startF)
+}
+
+function adjustRangeXXX (n, canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
+  let shadows = document.getElementById("shadows").checked
+  let midtones = document.getElementById("midtones").checked
+  let highlights = document.getElementById("highlights").checked
+  let brightness = 0, maxb = -1, minb = 100000
+  let ctx = canvas.getContext("2d");
+  let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
+  let pixels = imgData.data;
+  let i = 0
+  for (; i < pixels.length; i += 4) {
+    brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/3
+    maxb = (maxb > brightness)? maxb : brightness;
+    minb = (minb < brightness)? minb : brightness;
+  }
+  
+  console.log(minb, maxb)
+  
+  i = 0
+  for (; i < pixels.length; i += 4) {
+    brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/3
+    n = mapRanges (minb, maxb, 0, 255, brightness) / 3
+    if (i < 13)
+      console.log(n, brightness)
+    pixels[i] = n;
+    pixels[i + 1] = n;
+    pixels[i + 2] = n;
+    
+  }
+  ctx.putImageData(imgData, 0, 0);
+}
+
+function adjustExposure (n, canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
+  let shadows = document.getElementById("shadows").checked
+  let midtones = document.getElementById("midtones").checked
+  let highlights = document.getElementById("highlights").checked
+  let brightness = 0, maxb = -1, minb = 100000
+  let ctx = canvas.getContext("2d");
+  let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
+  let pixels = imgData.data;
+  let i = 0
+  for (; i < pixels.length; i += 4) {
+    brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/3
+    maxb = (maxb > brightness)? maxb : brightness;
+    minb = (minb < brightness)? minb : brightness;
+  }
+  
+  //console.log(minb, maxb)
+  if (minb > 0) {
+    adjustBrightness(-10)
+    contrastImage(10)
+  } else
+  if (maxb < 255) {
+    adjustBrightness(10)
+    contrastImage(10)
+  }
+}
+
+
 function contrastImage (contrast, canvas) {  //input range [-100..100]
   if (!canvas)
     canvas = document.getElementById("myCanvas")
@@ -3824,7 +3893,7 @@ function swapWithOff () {
     temp.width = canvas.width
     temp.height = canvas.height
     tempctx.globalAlpha = 1//document.getElementById("speck_opacity").value/100
-    tempctx.drawImage(canvas,0,0) 
+    tempctx.drawImage(canvas,0,0)
     ctx.clearRect(0,0,canvas.width,canvas.height)
     ctx.drawImage(OC, 0, 0)
     OCctx.clearRect(0,0,canvas.width,canvas.height)
@@ -11221,11 +11290,11 @@ function gaussianBlur () {
   let i = 0, len= px.length
   for (; i < len; i++) {
      if (i % 4 === 3) {continue;}
-     px[i] = ( tmpPx[i] 
+     px[i] = ( tmpPx[i]
         + (tmpPx[i - 4] || tmpPx[i])
-        + (tmpPx[i + 4] || tmpPx[i]) 
+        + (tmpPx[i + 4] || tmpPx[i])
         + (tmpPx[i - 4 * data.width] || tmpPx[i])
-        + (tmpPx[i + 4 * data.width] || tmpPx[i]) 
+        + (tmpPx[i + 4 * data.width] || tmpPx[i])
         + (tmpPx[i - 4 * data.width - 4] || tmpPx[i])
         + (tmpPx[i + 4 * data.width + 4] || tmpPx[i])
         + (tmpPx[i + 4 * data.width - 4] || tmpPx[i])
