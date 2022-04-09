@@ -3745,7 +3745,7 @@ function adjustExposure (n, canvas) {
   let shadows = document.getElementById("shadows").checked
   let midtones = document.getElementById("midtones").checked
   let highlights = document.getElementById("highlights").checked
-  let brightness = 0, maxb = -1, minb = 100000
+  let brightness = 0, maxb = -1, minb = 100000, avg = 0
   let ctx = canvas.getContext("2d");
   let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
   let pixels = imgData.data;
@@ -3754,14 +3754,16 @@ function adjustExposure (n, canvas) {
     brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/3
     maxb = (maxb > brightness)? maxb : brightness;
     minb = (minb < brightness)? minb : brightness;
+    avg += brightness
   }
+  avg /= pixels.length/4
   
-  //console.log(minb, maxb)
-  if (minb > 0) {
+  console.log(minb, maxb, avg)
+  if (minb > 0 || avg > 127 * 1.2) {
     adjustBrightness(-10)
     contrastImage(10)
-  } else
-  if (maxb < 255) {
+  }
+  if (maxb < 255 || avg < 0.8 * 127) {
     adjustBrightness(10)
     contrastImage(10)
   }
