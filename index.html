@@ -2880,6 +2880,8 @@ function sample3colors () {
   let off = document.createElement('CANVAS')
   off.width = canvas.width
   off.height = canvas.height
+  let w2 = canvas.width/2
+  let h2 = canvas.height/2
   let offctx = off.getContext("2d")
   let targets = shuffle(["#FF00FF", "#00FFFF", "#FFFF00"])
   let i = 0
@@ -2898,12 +2900,26 @@ function sample3colors () {
   i = 0
   offs = shuffle(offs)
   for (;i < offs.length; i++) {
-    if (i == 0)
+    if (i == 0) {
+      ctx.save()
+      ctx.translate(w2, h2);
+      ctx.rotate(0.1+Math.random()/15);
+      ctx.translate(-w2, -h2);
       ctx.drawImage(offs[i], pet(w),pet(3))
-    if (i == 1)
+      ctx.restore()
+    }
+    if (i == 1) {
+    
       ctx.drawImage(offs[i], pet(w),pet(w))
-    if (i == 2)
-      ctx.drawImage(offs[i], pet(3),pet(w))
+    }
+    if (i == 2) {
+      ctx.save()
+      ctx.translate(w2, h2);
+      ctx.rotate(-(0.1+Math.random()/15));
+      ctx.translate(-w2, -h2);
+      ctx.drawImage(offs[i], pet(w),pet(3))
+      ctx.restore()
+    }
   }
 }
 
