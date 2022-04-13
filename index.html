@@ -2877,12 +2877,13 @@ function sampleImageDataColor () {
 function cymb () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
-  let off = document.createElement('CANVAS')
+  /*let off = document.createElement('CANVAS')
   off.width = canvas.width
-  off.height = canvas.height
+  off.height = canvas.height*/
   let w2 = canvas.width/2
   let h2 = canvas.height/2
-  let offctx = off.getContext("2d")
+ // let offctx = off.getContext("2d")
+  let mode = ctx.globalCompositeOperation
   let targets = shuffle(["#FF00FF", "#00FFFF", "#FFFF00"])
   let i = 0
   let offs = []
@@ -2891,8 +2892,7 @@ function cymb () {
   let black = sampleAColor("#000000")
   ctx.globalAlpha = 1.0
   ctx.clearRect(0,0,canvas.width,canvas.height)
-  ctx.fillStyle = "#FFFFFF"
-  ctx.fillRect(0,0,canvas.width,canvas.height)
+  ctx.globalCompositeOperation = "darken"
   let W = 1 + Math.floor(document.getElementById("speck_size").value/2)
   //invert range of W [2- 102] => [102 - 2]
   W = 251 - W + 1
@@ -2900,42 +2900,42 @@ function cymb () {
   let cw = canvas.width
   let ch = canvas.height
   let w = cw/wdivs * 2
-  
-  ctx.save()
-  ctx.translate(w2, h2);
-  ctx.rotate(0.01+Math.random()/30);
-  ctx.translate(-w2, -h2);
-  ctx.drawImage(black, pet(w),pet(3))
-  ctx.restore()
-  
-  
   i = 0
   offs = shuffle(offs)
   for (;i < offs.length; i++) {
     if (i == 0) {
       ctx.save()
       ctx.translate(w2, h2);
-      ctx.rotate(0.01+Math.random()/30);
+      ctx.rotate(Math.random()/30);
       ctx.translate(-w2, -h2);
       ctx.drawImage(offs[i], pet(w),pet(3))
       ctx.restore()
     }
     if (i == 1) {
-    
       ctx.drawImage(offs[i], pet(w),pet(w))
     }
     if (i == 2) {
       ctx.save()
       ctx.translate(w2, h2);
-      ctx.rotate(-(0.01+Math.random()/30));
+      ctx.rotate(-(Math.random()/30));
       ctx.translate(-w2, -h2);
       ctx.drawImage(offs[i], pet(w),pet(3))
       ctx.restore()
     }
   }
+  ctx.globalCompositeOperation = "destination-over"
+  ctx.save()
+  ctx.translate(w2, h2);
+  ctx.rotate(Math.random()/30);
+  ctx.translate(-w2, -h2);
+  ctx.drawImage(black, pet(w),pet(3))
+  ctx.restore()
+  ctx.fillStyle = "#FFFFFF"
+  ctx.fillRect(0,0,canvas.width,canvas.height)
+  ctx.globalCompositeOperation = mode
 }
 
-function sampleAColor (targetcolor) {
+function sampleAColor (targetcolor, small) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let off = document.createElement('CANVAS')
@@ -2989,6 +2989,8 @@ function sampleAColor (targetcolor) {
     dist /= pixels.length/4
     offctx.fillStyle = targetcolor
     radius = w/2 * (1-(dist/maxdist))
+    if (small)
+      radius /= 2
     if (radius < 0)
       radius = 0.01
     if (radius > 0) {
