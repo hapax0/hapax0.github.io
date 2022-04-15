@@ -433,7 +433,8 @@ type="number" id="angle" value="0" style="width:4em;"
     <option value="spiral4">scribble</option>
     <option value="script">script</option>
     <option value="randomTexture" >random texture</option>
-    <option value="randomTexture2" selected>random texture2</option>
+    <option value="randomTexture2">random texture2</option>
+    <option value="testPattern" selected>test pattern</option>
     <option value="landscape2">landscape</option>
     <option value="landscape3">landscape2</option>
     <!--option value="paperish">paperish</option-->
@@ -6187,6 +6188,18 @@ function rothko () {
   refreshMode()
 }
 
+function testPattern () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.fillStyle = "#ffffff"
+  ctx.fillRect(0,0,canvas.width, canvas.height)
+  ctx.fillStyle = randomGradient(canvas);
+  ctx.fillRect(0,0,canvas.width, canvas.height)
+  grid()
+  rcc()
+  grid()
+  rc()
+}
 
 function grid () {
   let canvas = document.getElementById("myCanvas");
@@ -6194,8 +6207,8 @@ function grid () {
   let w = canvas.width, h = canvas.height
   ctx.globalAlpha = document.getElementById("speck_opacity").value/100
   ctx.strokeStyle = document.getElementById("paintcolor").value
-  ctx.lineWidth = Math.floor(1 +  document.getElementById("speck_size").value/10)
-  let spacing = Math.floor(1 + (document.getElementById("number").value/100))
+  ctx.lineWidth = Math.floor(1 +  document.getElementById("speck_size").value/100)
+  let spacing = Math.floor(1 + (document.getElementById("number").value/200))
   let ratio = 1
   if (document.getElementById("grungy").checked)
     ratio = 3
@@ -9696,7 +9709,7 @@ function drawTriangleAt(ctx,x,y,r) {
   ctx.closePath()
   ctx.fill()
 }
-/*
+
 function card () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
@@ -9792,7 +9805,11 @@ function card2 () {
   let i = 0
   for (; i < 3; i++)
     colors.push(randomColor())
+  ctx.fillStyle = "#ffffff"
+  ctx.fillRect(0,0,canvas.width, canvas.height)
+
   ctx.fillStyle = randomGradient(canvas);
+  ctx.fillRect(0,0,canvas.width, canvas.height)
   //ctx.save()
   clip()
   ctx.globalAlpha = (document.getElementById("speck_opacity").value)/100
@@ -9931,7 +9948,7 @@ function card2 () {
   //pushColor(randomPick(colors))
   ctx.restore()
 }
-*/
+
 
 function randomWord () {
   return randomPick(words.split("\n"))
