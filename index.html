@@ -6191,10 +6191,11 @@ function rothko () {
 function testPattern () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  ctx.fillStyle = "#ffffff"
+  ctx.fillStyle = randomColor()
   ctx.fillRect(0,0,canvas.width, canvas.height)
   ctx.fillStyle = randomGradient(canvas);
-  ctx.fillRect(0,0,canvas.width, canvas.height)
+  drawCircleAt(ctx,canvas.width/2, canvas.height/2, canvas.width/3)
+  //ctx.fillRect(0,0,canvas.width, canvas.height)
   grid()
   rcc()
   grid()
