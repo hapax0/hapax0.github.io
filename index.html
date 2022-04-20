@@ -176,7 +176,7 @@ id="canvaswidth" min="40" size="4" onchange="checkWidth()">
      H: <input
 type="number" id="canvasheight" min="40" size="4"
 onchange="checkHeight()"></td><td style="text-align:left;"><span
-id="aspectratio"></span></td><td>04-06-22
+id="aspectratio"></span></td><td>04-20-22
    </td><td>
    &nbsp;<button
 id="ff" onclick="testImage('framefunctions')" title="frame functions"><svg
@@ -241,19 +241,7 @@ text: &nbsp;<textarea id="caption" value="your text here" style="width:10em;"
 row="2" cols="36">Call me Ishmael. Some years ago—never mind how long
 precisely—having little or no money in my purse, and nothing particular to
 interest me on shore, I thought I would sail about a little and see the watery
-part of the world. It is a way I have of driving off the spleen and regulating
-the circulation. Whenever I find myself growing grim about the mouth; whenever
-it is a damp, drizzly November in my soul; whenever I find myself
-involuntarily pausing before coffin warehouses, and bringing up the rear of
-every funeral I meet; and especially whenever my hypos get such an upper hand
-of me, that it requires a strong moral principle to prevent me from
-deliberately stepping into the street, and methodically knocking people’s hats
-off—then, I account it high time to get to sea as soon as I can. This is my
-substitute for pistol and ball. With a philosophical flourish Cato throws
-himself upon his sword; I quietly take to the ship. There is nothing
-surprising in this. If they but knew it, almost all men in their degree, some
-time or other, cherish very nearly the same feelings towards the ocean with
-me.</textarea><br>
+part of the world.</textarea><br>
      font: <input list='facelist' id="face"
 style="width:10em;"><input type='button' class='mockbb' value='X'
 onclick="clearFace()" title="clear the face field">&nbsp;
@@ -2947,6 +2935,7 @@ function sampleAColor (targetcolor, small) {
   let targ = [tr,tg,tb]
   let maxdist = 441// dist3d([0,0,0], [255,255,255])
   let grunge = document.getElementById("grungy").checked
+  let radiusmultiplier = (grunge)? 1.7: 1.2;
   // set above as in rectify
   let W = 2 + Math.floor(document.getElementById("speck_size").value/2)
   //invert range of W [2- 102] => [102 - 2]
@@ -2972,11 +2961,13 @@ function sampleAColor (targetcolor, small) {
     }
     dist /= pixels.length/4
     wdist /= pixels.length/4
+    //if (j < 1)
+   //   console.log(dist, wdist)
     offctx.fillStyle = targetcolor
     radius = w/2 * (1-(dist/maxdist))
-    radius *= wdist/(0.7*maxdist)
+    radius *= wdist/(0.5*maxdist)
     if (radius > 0) {
-      radius *= 1.5
+      radius *= radiusmultiplier
       offctx.beginPath()
       offctx.arc(x+w/2, y+h/2, radius, 0, Math.PI*2)
       offctx.closePath()
@@ -2985,7 +2976,7 @@ function sampleAColor (targetcolor, small) {
     x += w
     if (x >= (wdivs)*w) {
       linecount++
-      if (!grunge && linecount % 2 == 1)
+      if (linecount % 2 == 1)
         x = -w/2
       else
         x = 0
