@@ -14,6 +14,17 @@
   input, img, span, a{
     vertical-align: middle;
   }
+  input[id='lower'] {
+      -webkit-transform: rotateY(180deg);
+   -moz-transform: rotateY(180deg);
+   -ms-transform: rotateY(180deg);
+   -o-transform: rotateY(180deg);
+   transform: rotateY(180deg);
+  }
+  
+  #lower{
+    transform: rotateY(180deg);
+}
   input[type='number']{
     width: 50px;
   }
@@ -83,7 +94,6 @@
   <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#049049" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
   <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
 </svg></a>
-</span>
 &nbsp;
 <a href="javascript:zoom_neg()" title="zoom canvas">
   <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-arrows-angle-contract" viewBox="0 0 16 16">
@@ -220,7 +230,11 @@ out</option>
    </select>
    </td>
    <td rowspan='6'>
-       shadows<input type="checkbox" id="shadows" checked> mid <input type="checkbox" id="midtones" checked> highlights <input type="checkbox" id="highlights" checked>
+       filter by brightness range<br>
+       lower: <input type="range" id="lower" style="width:8em;" min='0' max='100'
+value="0" onchange="rangecheck()"><span id="lowerrange">0</span><br>
+       upper: <input type="range" id="upper" style="width:8em;" min='0' max='100'
+value="100" onchange="rangecheck()"><span id="upperrange">100</span><br>
      <div
 style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:10px;">
 <span style="color:red">touch to place: </span>
@@ -578,6 +592,21 @@ marker.addEventListener('click', function(event) {
   filePicker.addEventListener("click", function(){this.value = null;}, false);
   });
   syncMarker()
+}
+
+function rangecheck () {
+  let low = +document.getElementById("lower").value
+  low = 100 - low
+  let high = +document.getElementById("upper").value
+  //console.log(high, low)
+  if (high < low) {
+    document.getElementById("lower").value = high
+    low = high
+  }
+  
+  document.getElementById("upperrange").innerHTML = high
+  document.getElementById("lowerrange").innerHTML = low
+  return [low/100, high/100]
 }
 
 function showtools () {
@@ -3715,45 +3744,11 @@ function mapRanges (start, end, startF, endF, val) { // F is full range 0 to 255
   return(((val-start)*(endF-startF))/(end-start) + startF)
 }
 
-function adjustRangeXXX (n, canvas) {
-  if (!canvas)
-    canvas = document.getElementById("myCanvas");
-  let shadows = document.getElementById("shadows").checked
-  let midtones = document.getElementById("midtones").checked
-  let highlights = document.getElementById("highlights").checked
-  let brightness = 0, maxb = -1, minb = 100000
-  let ctx = canvas.getContext("2d");
-  let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
-  let pixels = imgData.data;
-  let i = 0
-  for (; i < pixels.length; i += 4) {
-    brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/3
-    maxb = (maxb > brightness)? maxb : brightness;
-    minb = (minb < brightness)? minb : brightness;
-  }
-  
-  console.log(minb, maxb)
-  
-  i = 0
-  for (; i < pixels.length; i += 4) {
-    brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/3
-    n = mapRanges (minb, maxb, 0, 255, brightness) / 3
-    if (i < 13)
-      console.log(n, brightness)
-    pixels[i] = n;
-    pixels[i + 1] = n;
-    pixels[i + 2] = n;
-    
-  }
-  ctx.putImageData(imgData, 0, 0);
-}
-
 function adjustExposure (n, canvas) {
   if (!canvas)
     canvas = document.getElementById("myCanvas");
-  let shadows = document.getElementById("shadows").checked
-  let midtones = document.getElementById("midtones").checked
-  let highlights = document.getElementById("highlights").checked
+  let lh = rangecheck()
+  let lowest = lh[0], highest = lh[1]
   let brightness = 0, maxb = -1, minb = 100000, avg = 0
   let ctx = canvas.getContext("2d");
   let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
@@ -3785,18 +3780,14 @@ function contrastImage (contrast, canvas) {  //input range [-100..100]
   let pixels = imgData.data
   let i = 0
   let d = imgData.data
-  let shadows = document.getElementById("shadows").checked
-  let midtones = document.getElementById("midtones").checked
-  let highlights = document.getElementById("highlights").checked
+  let lh = rangecheck()
+  let lowest = lh[0], highest = lh[1]
   let brightness = 0
   contrast = (contrast/100) + 1;  //convert to decimal & shift range: [0..2]
   let intercept = 128 * (1 - contrast)
   for( ;i < d.length; i +=4){   //r,g,b,a
     brightness = (d[i]+d[i+1]+d[i+2])/(255*3)
-    if ((shadows && brightness >= 0 && brightness < 0.333) ||
-        (midtones && brightness >=0.333 && brightness < 0.667) ||
-        (highlights && brightness >= 0.667 && brightness <= 1)
-      ) {
+    if (brightness > lowest && brightness <= highest) {
       d[i] =   d[i]*contrast + intercept
       d[i+1] = d[i+1]*contrast + intercept
       d[i+2] = d[i+2]*contrast + intercept
@@ -11052,9 +11043,8 @@ function opaqueer () {
 function adjustBrightness (n, canvas) {
   if (!canvas)
     canvas = document.getElementById("myCanvas");
-  let shadows = document.getElementById("shadows").checked
-  let midtones = document.getElementById("midtones").checked
-  let highlights = document.getElementById("highlights").checked
+  let lh = rangecheck()
+  let lowest = lh[0], highest = lh[1]
   let brightness = 0
   let ctx = canvas.getContext("2d");
   let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
@@ -11062,10 +11052,7 @@ function adjustBrightness (n, canvas) {
   let i = 0
   for (; i < pixels.length; i += 4) {
     brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3)
-    if ((shadows && brightness >= 0 && brightness < 0.333) ||
-        (midtones && brightness >=0.333 && brightness < 0.667) ||
-        (highlights && brightness >= 0.667 && brightness <= 1)
-      ) {
+    if (brightness > lowest && brightness <= highest) {
       pixels[i] += n;
       pixels[i + 1] += n;
       pixels[i + 2] += n;
@@ -11091,17 +11078,13 @@ function tint (canvas) {
   let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
   let pixels = imgData.data;
   let i = 0
-  let shadows = document.getElementById("shadows").checked
-  let midtones = document.getElementById("midtones").checked
-  let highlights = document.getElementById("highlights").checked
   let brightness = 0
-  
+  let lh = rangecheck()
+  let lowest = lh[0], highest = lh[1]
+  console.log(lowest, highest)
   for (; i < pixels.length; i += 4) {
     brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3)
-    if ((shadows && brightness >= 0 && brightness < 0.333) ||
-        (midtones && brightness >=0.333 && brightness < 0.667) ||
-        (highlights && brightness >= 0.667 && brightness <= 1)
-    ) {
+    if (brightness > lowest && brightness <= highest) {
       pixels[i] =     Math.min(pixels[i] * 0.9 + r * 0.1, 255);
       pixels[i + 1] = Math.min(pixels[i+1] * 0.9 + g * 0.1, 255);
       pixels[i + 2] = Math.min(pixels[i+2] * 0.9 + b * 0.1, 255);
@@ -11121,17 +11104,13 @@ function adjustWarmth (n, canvas) {
   let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
   let pixels = imgData.data;
   let i = 0
-  let shadows = document.getElementById("shadows").checked
-  let midtones = document.getElementById("midtones").checked
-  let highlights = document.getElementById("highlights").checked
+  let lh = rangecheck()
+  let lowest = lh[0], highest = lh[1]
   let brightness = 0
   
   for (; i < pixels.length; i += 4) {
     brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3)
-    if ((shadows && brightness >= 0 && brightness < 0.333) ||
-        (midtones && brightness >=0.333 && brightness < 0.667) ||
-        (highlights && brightness >= 0.667 && brightness <= 1)
-    ) {
+    if (brightness > lowest && brightness <= highest) {
       pixels[i] += n;
      // pixels[i + 1] += g;
       pixels[i + 2] -= n;
@@ -11145,10 +11124,8 @@ function saturationScale (sv) {
   let ctx = canvas.getContext("2d");
   let imageData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
   let dA = imageData.data; // raw pixel data in array
-  
-  let shadows = document.getElementById("shadows").checked
-  let midtones = document.getElementById("midtones").checked
-  let highlights = document.getElementById("highlights").checked
+  let lh = rangecheck()
+  let lowest = lh[0], highest = lh[1]
   let brightness = 0
   
   //var sv = 1.25; // saturation value. 0 = grayscale, 1 = original
@@ -11172,15 +11149,10 @@ function saturationScale (sv) {
       
       brightness = (dA[i]+dA[i+1]+dA[i+2])/(255*3)
     
-    if ((shadows && brightness >= 0 && brightness < 0.333) ||
-        (midtones && brightness >=0.333 && brightness < 0.667) ||
-        (highlights && brightness >= 0.667 && brightness <= 1)
-      ) {
+    if (brightness > lowest && brightness <= highest) {
         var saturatedRed = (az*red + bz*green + cz*blue);
         var saturatedGreen = (dz*red + ez*green + fz*blue);
         var saturateddBlue = (gz*red + hz*green + iz*blue);
-        
-        
         dA[i] = saturatedRed;
         dA[i + 1] = saturatedGreen;
         dA[i + 2] = saturateddBlue;
