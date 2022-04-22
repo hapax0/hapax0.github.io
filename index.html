@@ -232,7 +232,7 @@ out</option>
    <td rowspan='6'>
        filter by brightness range<br>
        lower: <input type="range" id="lower" style="width:8em;" min='0' max='100'
-value="0" onchange="rangecheck()"><span id="lowerrange">0</span><br>
+value="100" onchange="rangecheck()"><span id="lowerrange">0</span><br>
        upper: <input type="range" id="upper" style="width:8em;" min='0' max='100'
 value="100" onchange="rangecheck()"><span id="upperrange">100</span><br>
      <div
@@ -598,7 +598,7 @@ function rangecheck () {
   let low = +document.getElementById("lower").value
   low = 100 - low
   let high = +document.getElementById("upper").value
-  //console.log(high, low)
+  console.log(high, low)
   if (high < low) {
     document.getElementById("lower").value = high
     low = high
@@ -10558,10 +10558,12 @@ function leftFade () {
   let cx = ctx.canvas.width/2 + pet(150)
   let cy = ctx.canvas.height/2 + pet(150)
   let rightx = canvas.width
+  let lh = rangecheck()
+  let lowest = lh[0], highest = lh[1]
   let w = canvas.width, h = canvas.height
   let maxdist = Math.pow(Math.pow(cx, 2) + Math.pow(cy, 2), 0.5)
   maxdist *= 1.2
-  let d = 1000
+  let d = 1000, brightness = 0
   let data = ctx.getImageData(0,0,canvas.width,canvas.height)
   let i = 0, x = 0, y = 0
   let len = w * h
@@ -10571,8 +10573,11 @@ function leftFade () {
       y += 1
     d = lindistance((x*1.5), 0)
     let px = data.data.slice(i*4, i*4+4)
-    px[3] *= d/maxdist
-    data.data.set(px, i*4)
+    brightness = (px[0]+px[1]+px[2])/(255*3)
+    if (brightness > lowest && brightness <= highest) {
+      px[3] *= d/maxdist
+      data.data.set(px, i*4)
+    }
   }
   ctx.putImageData(data, 0, 0);
 }
@@ -11021,9 +11026,14 @@ function transparenter () {
   let ctx = canvas.getContext("2d");
   let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
   let pixels = imgData.data;
-  let i = 0
+  let lh = rangecheck()
+  let lowest = lh[0], highest = lh[1]
+  let i = 0, brightness = 0
   for (; i < pixels.length; i += 4) {
-    pixels[i + 3] *= 0.9;
+    brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3)
+    if (brightness > lowest && brightness <= highest) {
+      pixels[i + 3] *= 0.9;
+    }
   }
   ctx.putImageData(imgData, 0, 0);
 }
@@ -11033,9 +11043,14 @@ function opaqueer () {
   let ctx = canvas.getContext("2d");
   let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
   let pixels = imgData.data;
+  let lh = rangecheck()
+  let lowest = lh[0], highest = lh[1]
   let i = 0
   for (; i < pixels.length; i += 4) {
-    pixels[i + 3] *= 1.1;
+    brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3)
+    if (brightness > lowest && brightness <= highest) {
+      pixels[i + 3] *= 1.1;
+    }
   }
   ctx.putImageData(imgData, 0, 0);
 }
