@@ -10500,6 +10500,8 @@ function fade () {
   let w = canvas.width, h = canvas.height
   let maxdist = 101 + Math.random() * w/2
   maxdist = Math.pow(Math.pow(cx, 2) + Math.pow(cy, 2), 0.5)
+  let lh = rangecheck()
+  let lowest = lh[0], highest = lh[1]
   let d = 1000
   let data = ctx.getImageData(0,0,canvas.width,canvas.height)
   let i = 0, x = 0, y = 0
@@ -10510,8 +10512,11 @@ function fade () {
       y += 1
     d = Math.random() * w
     let px = data.data.slice(i*4, i*4+4)
-    px[3] *= d/maxdist
-    data.data.set(px, i*4)
+    brightness = (px[0]+px[1]+px[2])/(255*3)
+    if (brightness > lowest && brightness <= highest) {
+      px[3] *= d/maxdist
+      data.data.set(px, i*4)
+    }
   }
   ctx.putImageData(data, 0, 0);
 }
@@ -10526,7 +10531,9 @@ async function fadeDown () {
   let touchy = LASTCLICK[1] - canvas.height/5000*spread
   let w = canvas.width, h = canvas.height
   let maxdist = touchy
-  let d = 1000
+  let lh = rangecheck()
+  let lowest = lh[0], highest = lh[1]
+  let d = 1000, brightness = 0
   let data = ctx.getImageData(0,0,canvas.width,canvas.height)
   let i = 0, x = 0, y = 0
   let len = w * h
@@ -10539,8 +10546,11 @@ async function fadeDown () {
     if (x > touchy)
       d = 0
     let px = data.data.slice(i*4, i*4+4)
-    px[3] *= d/(maxdist)
-    data.data.set(px, i*4)
+    brightness = (px[0]+px[1]+px[2])/(255*3)
+    if (brightness > lowest && brightness <= highest) {
+      px[3] *= d/maxdist
+      data.data.set(px, i*4)
+    }
   }
   await ctx.putImageData(data, 0, 0);
   return true
@@ -10634,15 +10644,16 @@ function vig (canvas) {
   let ctx = canvas.getContext("2d")
   let cx = ctx.canvas.width/2 + pet(150)
   let cy = ctx.canvas.height/2 + pet(150)
-
   cx = LASTCLICK[0]
   cy = LASTCLICK[1]
+  let lh = rangecheck()
+  let lowest = lh[0], highest = lh[1]
   let s = document.getElementById("speck_size").value // up to 500
   // decrease d as s increases?
   let w = canvas.width, h = canvas.height
   let maxdist = Math.pow(Math.pow(cx, 2) + Math.pow(cy, 2), 0.5)
   maxdist *= 1.2
-  let d = 1000
+  let d = 1000, brightness = 0
   let data = ctx.getImageData(0,0,canvas.width,canvas.height)
   let i = 0, x = 0, y = 0
   let len = w * h
@@ -10652,8 +10663,12 @@ function vig (canvas) {
       y += 1
     d = distance(x, y, cx+pet(29), cy+pet(29))
     let px = data.data.slice(i*4, i*4+4)
-    px[3] *= d/maxdist
-    data.data.set(px, i*4)
+    
+    brightness = (px[0]+px[1]+px[2])/(255*3)
+    if (brightness > lowest && brightness <= highest) {
+      px[3] *= d/maxdist
+      data.data.set(px, i*4)
+    }
   }
   ctx.putImageData(data, 0, 0);
 }
