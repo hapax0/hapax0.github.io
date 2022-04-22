@@ -31,6 +31,7 @@
   span[class='sample'] {
     display:inline-block;
     width:40px;
+    text-align:right;
   }
   input[type='color'] {
     display:inline-block;
@@ -595,6 +596,7 @@ marker.addEventListener('click', function(event) {
   let filePicker = document.getElementById("uploadimage");
   filePicker.addEventListener("click", function(){this.value = null;}, false);
   });
+  rangecheck()
   syncMarker()
 }
 
@@ -610,13 +612,22 @@ function rangecheck () {
   let dhigh = parseInt(high*2.55)
   dlow = dlow.toString(16)
   dhigh = dhigh.toString(16)
-  
   let el = document.getElementById('lowsample')
   el.style.backgroundColor = "#"+dlow+dlow+dlow
   el = document.getElementById('highsample')
   el.style.backgroundColor = "#"+dhigh+dhigh+dhigh
-  document.getElementById("upperrange").innerHTML = high
-  document.getElementById("lowerrange").innerHTML = low
+  let hpad = ""
+  if (high < 10)
+    hpad = "&nbsp;&nbsp;"
+  if (high > 9 && high < 100)
+    hpad = "&nbsp;"
+  let lpad = ""
+  if (low < 10)
+    lpad = "&nbsp;&nbsp;"
+  if (low > 9 && low < 100)
+    lpad = "&nbsp;"
+  document.getElementById("upperrange").innerHTML = hpad+high
+  document.getElementById("lowerrange").innerHTML = lpad+low
   return [low/100, high/100]
 }
 
