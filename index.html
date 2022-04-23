@@ -30,7 +30,7 @@
   }
   span[class='sample'] {
     display:inline-block;
-    width:40px;
+    width:32px;
     text-align:right;
   }
   input[type='color'] {
@@ -237,9 +237,9 @@ out</option>
    <td rowspan='6'>
        filter by brightness range<br>
        lower: <input type="range" id="lower" style="width:8em;" min='0' max='100'
-value="100" onchange="rangecheck()"><span id="lowerrange">0</span>% <span class='sample' id='lowsample' style="background-color:#000;">&nbsp;</span><br>
+value="100" onchange="rangecheck()"> <span class='sample' id='lowsample' style="background-color:#000;">&nbsp;</span> <span id="lowerrange">0</span> %<br>
        upper: <input type="range" id="upper" style="width:8em;" min='0' max='100'
-value="100" onchange="rangecheck()"><span id="upperrange">100</span>% <span class='sample' id='highsample' style="background-color:#fff;">&nbsp;</span><br>
+value="100" onchange="rangecheck()"> <span class='sample' id='highsample' style="background-color:#fff;">&nbsp;</span> <span id="upperrange">100</span> %<br>
      <div
 style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:10px;">
 <span style="color:red">touch to place: </span>
@@ -616,18 +616,9 @@ function rangecheck () {
   el.style.backgroundColor = "#"+dlow+dlow+dlow
   el = document.getElementById('highsample')
   el.style.backgroundColor = "#"+dhigh+dhigh+dhigh
-  let hpad = ""
-  if (high < 10)
-    hpad = "&nbsp;&nbsp;"
-  if (high > 9 && high < 100)
-    hpad = "&nbsp;"
-  let lpad = ""
-  if (low < 10)
-    lpad = "&nbsp;&nbsp;"
-  if (low > 9 && low < 100)
-    lpad = "&nbsp;"
-  document.getElementById("upperrange").innerHTML = hpad+high
-  document.getElementById("lowerrange").innerHTML = lpad+low
+  
+  document.getElementById("upperrange").innerHTML = high
+  document.getElementById("lowerrange").innerHTML = low
   return [low/100, high/100]
 }
 
