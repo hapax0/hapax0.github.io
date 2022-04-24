@@ -3008,8 +3008,6 @@ function sampleAColor (targetcolor, small) {
     }
     dist /= pixels.length/4
     wdist /= pixels.length/4
-    //if (j < 1)
-   //   console.log(dist, wdist)
     offctx.fillStyle = targetcolor
     radius = w/2 * (1-(dist/maxdist))
     radius *= wdist/(0.5*maxdist)
@@ -3577,7 +3575,7 @@ function dotblur (canvas, jaggy, dir) {
   refreshMode()
 }
 
-function colorFilterOut () {
+function colorFilterOut () { // filter unselected color
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height)
@@ -3716,7 +3714,7 @@ function colorFilter () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height)
-  let target = document.getElementById("paintcolor").valu
+  let target = document.getElementById("paintcolor").value
   let threshold = +document.getElementById("speck_opacity").value * 2.55
   let grunge = document.getElementById("grungy").checked
   let r = hexToR(target)
@@ -3753,7 +3751,6 @@ function highContrast () {
 
 function mapRanges (start, end, startF, endF, val) { // F is full range 0 to 255*3
  // r = (endF - startF)/(end - start)
- // console.log(r)
   return(((val-start)*(endF-startF))/(end-start) + startF)
 }
 
@@ -7340,7 +7337,6 @@ function make4to5 (all) {
   canvasoff.width = canvas.width
   canvasoff.height = canvas.height
   ctx.globalCompositeOperation = mode
-  console.log(canvas.width/canvas.height)
 }
 
 function cropSquare (all) {
@@ -11124,7 +11120,6 @@ function tint (canvas) {
   let brightness = 0
   let lh = rangecheck()
   let lowest = lh[0], highest = lh[1]
-  console.log(lowest, highest)
   for (; i < pixels.length; i += 4) {
     brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3)
     if (brightness > lowest && brightness <= highest) {
@@ -11317,7 +11312,6 @@ function randomKernel () {
       k[i] /= sum
       sum2 += k[i]
     }
-    console.log(k, sum2)
   }
   return k
 }
