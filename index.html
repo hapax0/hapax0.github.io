@@ -449,6 +449,9 @@ type="number" id="angle" value="0" style="width:4em;"
     <option value="edgeSmear">streak left</option>
     <option value="smeardownOff">vertical streaks</option>
     <!--option value="strokes">strokes</option-->
+    <option value="neckerline">necker</option
+    <option value="strokes2">strokes</option>
+>
     <option value="strokes2">strokes</option>
     <option value="strokesH">strokes horizontal</option>
     <option value="scratch">scratch</option>
@@ -4836,11 +4839,14 @@ function birdhouse () {
   ctx.stroke()
   ctx.restore()
 }
+*/
 
 function necker () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   clip()
+  ctx.lineWidth = 1+ document.getElementById("speck_size").value/20
+  console.log(ctx.lineWidth)
   let W = canvas.width
   let margin = W/20
   let w4 = (W-2*margin)/(2+Math.floor(Math.random() * 10))//document.getElementById("rows").value
@@ -4855,19 +4861,19 @@ function necker () {
     ctx.lineTo(w4+margin, W-w4-margin)
     ctx.lineTo(W-margin, W-w4-margin)
     ctx.lineTo(W-w4-margin, W-margin)
-    ctx.closePath()
+   // ctx.closePath()
     if (grunge)
       ctx.fillStyle = colors[3]
     ctx.fill()
     
     //left side
     ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
-    ctx.beginPath();
+    //ctx.beginPath();
     ctx.moveTo(margin, w4+margin)
     ctx.lineTo(w4+margin, margin)
     ctx.lineTo(w4+margin, W-w4-margin)
     ctx.lineTo(margin, W-margin)
-    ctx.closePath()
+   // ctx.closePath()
     if (grunge)
       ctx.fillStyle = colors[4]
     ctx.fill()
@@ -4879,19 +4885,19 @@ function necker () {
     ctx.lineTo(W-margin, 0+margin)
     ctx.lineTo(W-margin, W-w4-margin)
     ctx.lineTo(w4+margin, W-w4-margin)
-    ctx.closePath()
+   // ctx.closePath()
     if (grunge)
       ctx.fillStyle = colors[0]
     ctx.fill()
     
     // lower left
     ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
-    ctx.beginPath();
+   // ctx.beginPath();
     ctx.moveTo(margin, w4+margin)
     ctx.lineTo(W-w4-margin, w4+margin)
     ctx.lineTo(W-w4-margin, W-margin)
     ctx.lineTo(margin, W-margin)
-    ctx.closePath()
+   // ctx.closePath()
     if (grunge)
       ctx.fillStyle = colors[1]
     ctx.fill()
@@ -4903,7 +4909,7 @@ function necker () {
     ctx.lineTo(w4+margin, margin)
     ctx.lineTo(W-margin, margin)
     ctx.lineTo(W-w4-margin, w4+margin)
-    ctx.closePath()
+    //ctx.closePath()
     if (grunge)
       ctx.fillStyle = colors[2]
     ctx.fill()
@@ -4915,7 +4921,7 @@ function necker () {
     ctx.lineTo(W-margin, margin)
     ctx.lineTo(W-margin, W-w4-margin)
     ctx.lineTo(W-w4-margin, W-margin)
-    ctx.closePath(+margin)
+    //ctx.closePath(+margin)
     if (grunge)
       ctx.fillStyle = colors[5]
     ctx.fill()
@@ -4927,7 +4933,7 @@ function necker () {
     ctx.lineTo(w4+margin, margin)
     ctx.lineTo(W-margin, margin)
     ctx.lineTo(W-w4-margin, w4+margin)
-    ctx.closePath()
+   // ctx.closePath()
     if (grunge)
       ctx.fillStyle = colors[2]
     ctx.fill()
@@ -4939,7 +4945,7 @@ function necker () {
     ctx.lineTo(W-margin, margin)
     ctx.lineTo(W-margin, W-w4-margin)
     ctx.lineTo(W-w4-margin, W-margin)
-    ctx.closePath(+margin)
+    //ctx.closePath(+margin)
     if (grunge)
       ctx.fillStyle = colors[5]
     ctx.fill()
@@ -4951,7 +4957,7 @@ function necker () {
     ctx.lineTo(W-w4-margin, w4+margin)
     ctx.lineTo(W-w4-margin, W-margin)
     ctx.lineTo(margin, W-margin)
-    ctx.closePath()
+   // ctx.closePath()
     if (grunge)
       ctx.fillStyle = colors[1]
     ctx.fill()
@@ -4963,7 +4969,7 @@ function necker () {
     ctx.lineTo(w4+margin, W-w4-margin)
     ctx.lineTo(W-margin, W-w4-margin)
     ctx.lineTo(W-w4-margin, W-margin)
-    ctx.closePath()
+    //ctx.closePath()
     if (grunge)
       ctx.fillStyle = colors[3]
     ctx.fill()
@@ -4975,7 +4981,7 @@ function necker () {
     ctx.lineTo(W-margin, 0+margin)
     ctx.lineTo(W-margin, W-w4-margin)
     ctx.lineTo(w4+margin, W-w4-margin)
-    ctx.closePath()
+    //ctx.closePath()
     if (grunge)
       ctx.fillStyle = colors[0]
     ctx.fill()
@@ -4987,7 +4993,7 @@ function necker () {
     ctx.lineTo(w4+margin, margin)
     ctx.lineTo(w4+margin, W-w4-margin)
     ctx.lineTo(margin, W-margin)
-    ctx.closePath()
+   // ctx.closePath()
     if (grunge)
       ctx.fillStyle = colors[4]
     ctx.fill()
@@ -4995,6 +5001,73 @@ function necker () {
   ctx.restore()
 }
 
+
+function neckerline () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  //clip()
+  ctx.lineWidth = 1+ document.getElementById("speck_size").value/20
+  let W = canvas.width
+  if (W > canvas.height)
+    W = canvas.height
+  let margin = W/20
+  let w4 = (W-2*margin)/3//(2+Math.floor(Math.random() * 3))//document.getElementById("rows").value
+  ctx.globalAlpha = document.getElementById("speck_opacity").value/100
+  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.lineCap = 'round'
+  ctx.lineJoin = 'round'
+
+  let colors = shuffle(['red', 'blue', 'yellow', 'orange', 'purple', "green"])
+  let grunge = document.getElementById("grungy").checked
+  //bottom
+  ctx.beginPath();
+  ctx.moveTo(margin, W-margin)
+  ctx.lineTo(w4+margin, W-w4-margin)
+  ctx.lineTo(W-margin, W-w4-margin)
+  ctx.lineTo(W-w4-margin, W-margin)
+  ctx.lineTo(margin, W-margin)
+  ctx.stroke()
+  //left side
+  ctx.beginPath();
+  ctx.moveTo(margin, w4+margin)
+  ctx.lineTo(w4+margin, margin)
+  ctx.lineTo(w4+margin, W-w4-margin)
+  ctx.lineTo(margin, W-margin)
+  ctx.lineTo(margin, w4+margin)
+  ctx.stroke()
+    //upper right
+  ctx.beginPath();
+  ctx.moveTo(w4+margin, 0+margin)
+  ctx.lineTo(W-margin, 0+margin)
+  ctx.lineTo(W-margin, W-w4-margin)
+  ctx.lineTo(w4+margin, W-w4-margin)
+  ctx.stroke()
+  
+  // lower left
+  ctx.beginPath();
+  ctx.moveTo(margin, w4+margin)
+  ctx.lineTo(W-w4-margin, w4+margin)
+  ctx.lineTo(W-w4-margin, W-margin)
+  ctx.lineTo(margin, W-margin)
+  ctx.stroke()
+  
+  //top
+  ctx.beginPath();
+  ctx.moveTo(margin, w4+margin)
+  ctx.lineTo(w4+margin, margin)
+  ctx.lineTo(W-margin, margin)
+  ctx.lineTo(W-w4-margin, w4+margin)
+  ctx.stroke()
+  
+  //right side
+  ctx.beginPath();
+  ctx.moveTo(W-w4-margin, w4+margin)
+  ctx.lineTo(W-margin, margin)
+  ctx.lineTo(W-margin, W-w4-margin)
+  ctx.lineTo(W-w4-margin, W-margin)
+  ctx.stroke()
+}
+/*
 function elle () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
