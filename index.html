@@ -416,6 +416,7 @@ type="number" id="angle" value="0" style="width:4em;"
     <option value="pop">pop</option>
     <option value="adjustExposure" selected>enhance exposure</option>
     <option value="tint">tint</option>
+    <option value="rotateBrightness">solarize</option>
     </select>
   </td></tr>
   <tr>
@@ -11167,6 +11168,28 @@ function adjustBrightness (n, canvas) {
       pixels[i] += n;
       pixels[i + 1] += n;
       pixels[i + 2] += n;
+    }
+  }
+  ctx.putImageData(imgData, 0, 0);
+}
+
+function rotateBrightness (canvas) {
+  let n = 16
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
+  let lh = rangecheck()
+  let lowest = lh[0], highest = lh[1]
+  let brightness = 0
+  let ctx = canvas.getContext("2d");
+  let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
+  let pixels = imgData.data;
+  let i = 0
+  for (; i < pixels.length; i += 4) {
+    brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3)
+    if (brightness > lowest && brightness <= highest) {
+      pixels[i] = (pixels[i] + n) % 256;
+      pixels[i + 1] = (pixels[i+1] + n) % 256;
+      pixels[i + 2] = (pixels[i+2] + n) % 256;
     }
   }
   ctx.putImageData(imgData, 0, 0);
