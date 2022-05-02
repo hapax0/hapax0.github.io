@@ -5011,6 +5011,54 @@ function necker () {
   ctx.restore()
 }
 
+function nestedRects () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.lineWidth = 1+ document.getElementById("speck_size").value/10
+  ctx.globalAlpha = document.getElementById("speck_opacity").value/100
+  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.lineCap = 'square'
+  ctx.lineJoin = 'meter'
+  let ratio = 1/1.61803
+  let W = canvas.width
+  if (W > canvas.height)
+    W = canvas.height
+  let adjust = ctx.lineWidth/2
+  let x = 0, y = 0, line = true
+  let xd = 0, yd = 0
+  drawRectAt(ctx, x+adjust, y+adjust, W-(adjust*2)) // first square
+  let depth = Math.floor((-1/12 * ctx.lineWidth) +(49/6)) // tbd: 3 to 6
+
+  let i = 0, x2, y2, W0
+  for (;i < depth; i++) {
+    W0 = W
+    W *= ratio
+    
+    let r  = Math.random()
+    if (r > 0.667)
+      xd = 0
+    else
+    if (r > 0.333)
+      xd = W//(r > 0.333)? W : W - ;
+    else
+      xd = W0 - W
+    x += Math.floor(xd)
+    r = Math.random()
+    if (r > 0.667)
+      yd = 0
+    else
+    if (r > 0.333)
+      yd = W//(r > 0.333)? W : W - ;
+    else
+      yd = W0 - W
+    y += Math.floor(yd)
+    ctx.fillStyle = randomColor()
+    drawRectAt(ctx, x, y, W)
+    x2 = (xd == 0)? x+W: x;
+    y2 = (yd == 0)? y+W: y;
+    //drawRectAt(ctx, x2, y2, W, line)
+  }
+}
 
 function nested () {
   let canvas = document.getElementById("myCanvas");
@@ -5020,6 +5068,7 @@ function nested () {
   ctx.strokeStyle = document.getElementById("paintcolor").value
   ctx.lineCap = 'square'
   ctx.lineJoin = 'meter'
+  let ratio = 1/1.61803
   let W = canvas.width
   if (W > canvas.height)
     W = canvas.height
@@ -5027,18 +5076,34 @@ function nested () {
   let x = 0, y = 0, line = true
   let xd = 0, yd = 0
   drawRectAt(ctx, x+adjust, y+adjust, W-(adjust*2), line) // first square
-  console.log(ctx.lineWidth)
   let depth = Math.floor((-1/12 * ctx.lineWidth) +(49/6)) // tbd: 3 to 6
-  console.log(depth)
-  let i = 0, x2, y2
+
+  let i = 0, x2, y2, W0
   for (;i < depth; i++) {
-    W /= 2
-    xd = (Math.random() > 0.5)? W: 0
-    x += xd
-    yd = (Math.random() > 0.5)? W: 0;
-    y += yd
+    W0 = W
+    W *= ratio
+    
+    let r  = Math.random()
+    if (r > 0.667)
+      xd = 0
+    else
+    if (r > 0.333)
+      xd = W//(r > 0.333)? W : W - ;
+    else
+      xd = W0 - W
+    x += Math.floor(xd)
+    r = Math.random()
+    if (r > 0.667)
+      yd = 0
+    else
+    if (r > 0.333)
+      yd = W//(r > 0.333)? W : W - ;
+    else
+      yd = W0 - W
+    y += Math.floor(yd)
+   // console.log(W, x, y)
    // ctx.strokeStyle = randomColor()
-    drawRectAt(ctx, x, y, W, line)
+    drawRectAt(ctx, x, y, Math.floor(W), line)
     x2 = (xd == 0)? x+W: x;
     y2 = (yd == 0)? y+W: y;
     //drawRectAt(ctx, x2, y2, W, line)
