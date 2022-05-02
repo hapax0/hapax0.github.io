@@ -442,7 +442,7 @@ type="number" id="angle" value="0" style="width:4em;"
     <option value="script">script</option>
     <option value="randomTexture" >random texture</option>
     <option value="randomTexture2">random texture2</option>
-    <option value="testPattern" selected>test pattern</option>
+    <option value="testPattern">test pattern</option>
     <option value="landscape2">landscape</option>
     <option value="landscape3">landscape2</option>
     <!--option value="paperish">paperish</option-->
@@ -450,7 +450,8 @@ type="number" id="angle" value="0" style="width:4em;"
     <option value="edgeSmear">streak left</option>
     <option value="smeardownOff">vertical streaks</option>
     <!--option value="strokes">strokes</option-->
-    <option value="neckerline">necker</option
+    <option value="neckerline">necker</option>
+    <option value="nested" selected>nested sqrs</option>
     <option value="strokes2">strokes</option>
 >
     <option value="strokes2">strokes</option>
@@ -620,7 +621,6 @@ function rangecheck () {
   el.style.backgroundColor = "#"+dlow+dlow+dlow
   el = document.getElementById('highsample')
   el.style.backgroundColor = "#"+dhigh+dhigh+dhigh
-  
   document.getElementById("upperrange").innerHTML = high
   document.getElementById("lowerrange").innerHTML = low
   return [low/100, high/100]
@@ -3819,26 +3819,35 @@ function openFile () {
   syncMarker()
 }
 
+let IMG = null
+
+function OGImage() {
+  if (IMG) {
+    let ctx = document.getElementById('myCanvas').getContext('2d')
+    ctx.drawImage(IMG, 0, 0);
+  }
+}
+
 function drawFile () {
   let canvas = document.getElementById('myCanvas')
   let ctx = canvas.getContext('2d')
-  let img = new Image()
+  IMG = new Image()
   let f = document.getElementById("uploadimage").files[0]
   let url = window.URL || window.webkitURL
   let src = url.createObjectURL(f);
-  img.src = src;
+  IMG.src = src;
   let a = ctx.globalAlpha
   ctx.globalAlpha = 1
   let mode = ctx.globalCompositeOperation
   ctx.globalCompositeOperation = "source-over"
   document.getElementById('mode')
-  img.onload = function() {
+  IMG.onload = function() {
     canvas.height = this.height
     canvas.width = this.width
     syncBackground(canvas)
     document.getElementById("canvaswidth").value = canvas.width
     document.getElementById("canvasheight").value = canvas.height
-    ctx.drawImage(img, 0, 0);
+    ctx.drawImage(IMG, 0, 0);
     url.revokeObjectURL(src);
     LASTCLICK[0] = canvas.width/2
     LASTCLICK[1] = canvas.height/2
@@ -5002,6 +5011,39 @@ function necker () {
   ctx.restore()
 }
 
+
+function nested () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.lineWidth = 1+ document.getElementById("speck_size").value/10
+  ctx.globalAlpha = document.getElementById("speck_opacity").value/100
+  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.lineCap = 'square'
+  ctx.lineJoin = 'meter'
+  let W = canvas.width
+  if (W > canvas.height)
+    W = canvas.height
+  let adjust = ctx.lineWidth/2
+  let x = 0, y = 0, line = true
+  let xd = 0, yd = 0
+  drawRectAt(ctx, x+adjust, y+adjust, W-(adjust*2), line) // first square
+  console.log(ctx.lineWidth)
+  let depth = Math.floor((-1/12 * ctx.lineWidth) +(49/6)) // tbd: 3 to 6
+  console.log(depth)
+  let i = 0, x2, y2
+  for (;i < depth; i++) {
+    W /= 2
+    xd = (Math.random() > 0.5)? W: 0
+    x += xd
+    yd = (Math.random() > 0.5)? W: 0;
+    y += yd
+   // ctx.strokeStyle = randomColor()
+    drawRectAt(ctx, x, y, W, line)
+    x2 = (xd == 0)? x+W: x;
+    y2 = (yd == 0)? y+W: y;
+    //drawRectAt(ctx, x2, y2, W, line)
+  }
+}
 
 function neckerline () {
   let canvas = document.getElementById("myCanvas");
@@ -9710,17 +9752,24 @@ function drawHouseAt(ctx,x,y,r) {
   ctx.fill()
 }
 
-function drawRectAt(ctx,x,y,r) {
+function drawRectAt(ctx,x,y,r,LINE) {
   ctx.beginPath()
-  x -= r
-  y -= r
-  r *= 2
+  if (!LINE) {
+    x -= r
+    y -= r
+    r *= 2
+  }
   ctx.moveTo(x, y)
   ctx.lineTo(x+r, y)
   ctx.lineTo(x+r, y+r)
   ctx.lineTo(x, y+r)
-  ctx.closePath()
-  ctx.fill()
+  if (LINE) {
+    ctx.lineTo(x, y)
+    ctx.stroke()
+  } else {
+    ctx.closePath()
+    ctx.fill()
+  }
 }
 
 function drawXAt(ctx,x,y,r) {
