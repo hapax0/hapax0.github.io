@@ -209,29 +209,19 @@ id="rect839" width="8.4021072" height="8.7749891" x="3.6633532" y="3.595556"
 />
    </svg></button>
    <select id="framefunctions">
-     <option
-value="rectFrame">rect frame</option>
-     <option
-value="roundedFrame">rounded frame</option>
-     <option
-value="framePolaroid">polaroid frame</option>
-     <option value="frame">jaggy
-frame</option>
+     <option value="rectFrame">rect frame</option>
+     <option value="roundedFrame">rounded frame</option>
+     <option value="framePolaroid">polaroid frame</option>
+     <option value="frame">jaggy frame</option>
      <option value="ripFrame">rip frame</option>
-     <option
-value="makeSquare" selected>pad to square</option>
-     <option
-value="cropSquare" >crop to square</option>
-     <option
-value="makeSquare2">skewed square</option>
-     <option value="make4to5">pad
-to 4:5</option>
+     <option value="makeSquare">pad to square</option>
+     <option value="cropSquare" selected>crop to square</option>
+     <option value="makeSquare2">skewed square</option>
+     <option value="make4to5">pad to 4:5</option>
      <option value="expandMarginsAll">expand margins</option>
-    <option value="expandMarginsDown">expand bottom</option>
-     <option
-value="zoomImage">zoom in</option>
-     <option value="zoomOutImage">zoom
-out</option>
+     <option value="expandMarginsDown">expand bottom</option>
+     <option value="zoomImage">zoom in</option>
+     <option value="zoomOutImage">zoom out</option>
    </select>
    </td>
    <td rowspan='6'>
@@ -451,7 +441,8 @@ type="number" id="angle" value="0" style="width:4em;"
     <option value="smeardownOff">vertical streaks</option>
     <!--option value="strokes">strokes</option-->
     <option value="neckerline">necker</option>
-    <option value="nested" selected>nested sqrs</option>
+    <option value="nested">nested sqrs</option>
+    <option value="blobOutline" selected>shape outline</option>
     <option value="strokes2">strokes</option>
 >
     <option value="strokes2">strokes</option>
@@ -5016,9 +5007,11 @@ function nestedRects () {
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1+ document.getElementById("speck_size").value/10
   ctx.globalAlpha = document.getElementById("speck_opacity").value/100
-  ctx.fillStyle = document.getElementById("paintcolor").value
   ctx.lineCap = 'square'
   ctx.lineJoin = 'meter'
+  let colors = shuffle(['#cc0000', '#bb4000','#a000a0','#0000aa','#004099','#007020','#F8A500','#d8c500','#dddddd','#300000','#444444','#666666'])
+  ctx.fillStyle = randomPick(colors)
+
   let ratio = 1/1.61803
   let W = canvas.width
   if (W > canvas.height)
@@ -5039,7 +5032,7 @@ function nestedRects () {
       xd = 0
     else
     if (r > 0.333)
-      xd = W//(r > 0.333)? W : W - ;
+      xd = W
     else
       xd = W0 - W
     x += Math.floor(xd)
@@ -5048,15 +5041,12 @@ function nestedRects () {
       yd = 0
     else
     if (r > 0.333)
-      yd = W//(r > 0.333)? W : W - ;
+      yd = W
     else
       yd = W0 - W
     y += Math.floor(yd)
-    ctx.fillStyle = randomColor()
+    ctx.fillStyle = colors[i]
     drawRectAt(ctx, x, y, W)
-    x2 = (xd == 0)? x+W: x;
-    y2 = (yd == 0)? y+W: y;
-    //drawRectAt(ctx, x2, y2, W, line)
   }
 }
 
@@ -9608,6 +9598,51 @@ function skinnyLines () { // vertical lines
   ctx.restore()
 }
 
+function blobOutline () {
+  let grunge = document.getElementById("grungy").checked
+  let increase = Math.PI * 2 / 40;
+  let x = 350, y = 270, angle = 4.7;
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let W = canvas.width
+  let centx = canvas.width/2
+  let centy = canvas.height/2
+  let area = canvas.width * canvas.height
+  let cx = centx, cy = centy
+  ctx.globalAlpha = (document.getElementById("speck_opacity").value)/100
+  let alpha0 = ctx.globalAlpha
+  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.lineWidth = 1 + Math.floor(document.getElementById("speck_size").value/10)
+ // numshapes = 1 + document.getElementById("number").value/10
+  x = 0;
+  y = 0;
+  let x0 = x;
+  let y0 = y;
+  angle = Math.floor(Math.random() * 6.42)
+  centx = ctx.canvas.width/2
+  centy = ctx.canvas.height/2
+  let edges = 8 + Math.floor(Math.random() * 18)
+  let rmax = W/2.67
+  let maxradius = 1 + rmax * Math.random();
+  let r0 = maxradius
+  increase = Math.PI * 2/edges*0.98;
+  points = [];
+  bez = [];
+  let radius = W/3
+  for (let i = 0; i < edges; i++) {
+    //radius = (Math.random() * maxradius) + maxradius * 0.9;
+    radius += pet(maxradius/1.2)
+    x = radius * Math.cos(angle)+centx;
+    y = radius * Math.sin(angle)+centy;
+    points.push([x, y]);
+    angle += increase;
+  }
+  //points.push(x0,y0)
+  
+  drawOutline(points, 0, 0)
+}
+
+
 function blobs () {
   let grunge = document.getElementById("grungy").checked
   let increase = Math.PI * 2 / 40;
@@ -10664,6 +10699,27 @@ function shape () {// right side only
     ctx.closePath();
     ctx.fill();
   }
+}
+
+function drawOutline (pts, offsetX, offsetY) {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let x = 0, y = 0, x0 = 0, y0 = 0
+  ctx.beginPath()
+  let i = 0;
+  for (; i < pts.length; i++) {
+    x = pts[i][0]
+    y = pts[i][1]
+    if (i == 0) {
+      x0 = x;
+      y0 = y;
+      ctx.moveTo(x, y);
+    } else
+    if (i % 3 == 0)
+      ctx.bezierCurveTo(pts[i-2][0], pts[i-2][1], pts[i-1][0], pts[i-1][1], pts[i][0], pts[i][1]);
+  }
+  ctx.closePath();
+  ctx.stroke();
 }
 
 function drawPath (points, offsetX, offsetY, c) {
