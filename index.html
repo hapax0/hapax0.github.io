@@ -21,10 +21,9 @@
    -o-transform: rotateY(180deg);
    transform: rotateY(180deg);
   }
-  
   #lower{
     transform: rotateY(180deg);
-}
+  }
   input[type='number']{
     width: 50px;
   }
@@ -75,29 +74,45 @@
   <path d="M16 8c0 3.15-1.866 2.585-3.567 2.07C11.42 9.763 10.465 9.473 10 10c-.603.683-.475 1.819-.351 2.92C9.826 14.495 9.996 16 8 16a8 8 0 1 1 8-8zm-8 7c.611 0 .654-.171.655-.176.078-.146.124-.464.07-1.119-.014-.168-.037-.37-.061-.591-.052-.464-.112-1.005-.118-1.462-.01-.707.083-1.61.704-2.314.369-.417.845-.578 1.272-.618.404-.038.812.026 1.16.104.343.077.702.186 1.025.284l.028.008c.346.105.658.199.953.266.653.148.904.083.991.024C14.717 9.38 15 9.161 15 8a7 7 0 1 0-7 7z"/>
 </svg></a>
 &nbsp;
-<a href="javascript:fill()" title="fill"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-bucket-fill" viewBox="0 0 16 16">
-  <path d="M2.522 5H2a.5.5 0 0 0-.494.574l1.372 9.149A1.5 1.5 0 0 0 4.36 16h7.278a1.5 1.5 0 0 0 1.483-1.277l1.373-9.149A.5.5 0 0 0 14 5h-.522A5.5 5.5 0 0 0 2.522 5zm1.005 0a4.5 4.5 0 0 1 8.945 0H3.527z"/></svg></a>
+<a href="javascript:fill()" title="fill"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-bucket" viewBox="0 0 16 16">
+  <path d="M2.522 5H2a.5.5 0 0 0-.494.574l1.372 9.149A1.5 1.5 0 0 0 4.36 16h7.278a1.5 1.5 0 0 0 1.483-1.277l1.373-9.149A.5.5 0 0 0 14 5h-.522A5.5 5.5 0 0 0 2.522 5zm1.005 0a4.5 4.5 0 0 1 8.945 0H3.527zm9.892 1-1.286 8.574a.5.5 0 0 1-.494.426H4.36a.5.5 0 0 1-.494-.426L2.58 6h10.838z"/>
+</svg></a>
 &nbsp;
-<span onclick="copyToOff()" id="copybutton" title="copy canvas offscreen">
- <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#049049" class="bi bi-clipboard-check" viewBox="0 0 64 64">
-  <path d="M45,6h-5c-0.9-3.5-4.2-6-7.9-6c-3.7,0-7.2,2.5-8.1,6h-5v11h26V6z M32,10c-1.1,0-2-0.9-2-2c0-1.1,0.9-2,2-2s2,0.9,2,2
-				C34,9.1,33.1,10,32,10z"/>
-	<path d="M52,11h-3v10H15V11h-3c-2.2,0-4,1.8-4,4v45c0,2.2,1.8,4,4,4h40c2.2,0,4-1.8,4-4V15C56,12.8,54.2,11,52,11z"/>
+<span onclick="copyToOff()" id="copybutton" title="copy canvas offscreen"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#049049" class="bi bi-clipboard" viewBox="0 0 16 16">
+  <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+  <path d="M8 5a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 9.293V5.5A.5.5 0 0 1 8 5z"/>
+  <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
 </svg></span>
 &nbsp;
- <span onclick="pasteFromOff()" id="pastebutton" title="paste from offscreen"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#049049" class="bi bi-layers-fill" viewBox="0 0 16 16">
-  <path d="M7.765 1.559a.5.5 0 0 1 .47 0l7.5 4a.5.5 0 0 1 0 .882l-7.5 4a.5.5 0 0 1-.47 0l-7.5-4a.5.5 0 0 1 0-.882l7.5-4z"/>
-  <path d="m2.125 8.567-1.86.992a.5.5 0 0 0 0 .882l7.5 4a.5.5 0 0 0 .47 0l7.5-4a.5.5 0 0 0 0-.882l-1.86-.992-5.17 2.756a1.5 1.5 0 0 1-1.41 0l-5.17-2.756z"/>
+ <span onclick="pasteFromOff()" id="pastebutton" title="paste from offscreen"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#049049" class="bi bi-clipboard" viewBox="0 0 16 16">
+  <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+  <path d="M8 11a.5.5 0 0 0 .5-.5V6.707l1.146 1.147a.5.5 0 0 0 .708-.708l-2-2a.5.5 0 0 0-.708 0l-2 2a.5.5 0 1 0 .708.708L7.5 6.707V10.5a.5.5 0 0 0 .5.5z"/>
+  <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
 </svg></span>
 &nbsp;
-<span onclick="swapWithOff()" id="swapbutton" title="swap with offscreen"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#049049" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+<span onclick="swapWithOff()" id="swapbutton" title="swap with offscreen">
+  <span onclick="pasteFromOff()" id="pastebutton" title="paste from offscreen"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#049049" class="bi bi-clipboard" viewBox="0 0 16 16">
+  <path
+     d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"
+     id="path2" />
+  <path
+     style="stroke-width:1.875"
+     d="M 14.988281 9.3730469 A 0.9375 0.9375 0 0 0 14.634766 9.4492188 A 0.9375 0.9375 0 0 0 14.632812 9.4492188 A 0.9375 0.9375 0 0 0 14.34375 9.640625 C 14.336265 9.6477388 14.329505 9.6547598 14.322266 9.6621094 L 10.585938 13.398438 A 0.93868425 0.93868425 0 0 0 11.914062 14.726562 L 14.0625 12.576172 L 14.0625 19.421875 L 11.914062 17.271484 A 0.93868425 0.93868425 0 1 0 10.585938 18.599609 L 14.322266 22.335938 C 14.329505 22.343287 14.336265 22.350308 14.34375 22.357422 A 0.9375 0.9375 0 0 0 15.664062 22.349609 L 19.414062 18.599609 A 0.93868425 0.93868425 0 0 0 18.085938 17.271484 L 15.9375 19.421875 L 15.9375 12.576172 L 18.085938 14.726562 A 0.93868425 0.93868425 0 0 0 19.414062 13.398438 L 15.664062 9.6484375 A 0.9375 0.9375 0 0 0 14.988281 9.3730469 z "
+     transform="scale(0.53333333)"
+     id="path4" />
+  <path
+     d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"
+     id="path8" /></svg>
+  <!--svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#049049" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
   <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
   <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
-</svg></span>
+</svg--></span>
 &nbsp;
 <a href="javascript:clearOff()" title="clear offscreen">
-  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#049049" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
-  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#049049" class="bi bi-clipboard-x" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M6.146 7.146a.5.5 0 0 1 .708 0L8 8.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 9l1.147 1.146a.5.5 0 0 1-.708.708L8 9.707l-1.146 1.147a.5.5 0 0 1-.708-.708L7.293 9 6.146 7.854a.5.5 0 0 1 0-.708z"/>
+  <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+  <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
 </svg></a>
 &nbsp;
 <a href="javascript:zoom_neg()" title="zoom canvas">
@@ -154,28 +169,19 @@
 </svg></a>
 &nbsp;
 <a href="info.html" title="info">
-<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="blue" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
-  <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-info-circle" viewBox="0 0 16 16">
+  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+  <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
 </svg></a>
 
 &nbsp;
  <a href="javascript:showCanvasSettings()" title="show canvas info">
-<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="blue"
-class="bi bi-bug-fill" viewBox="0 0 16 16">
-   <path d="M4.978.855a.5.5 0 1
-0-.956.29l.41 1.352A4.985 4.985 0 0 0 3 6h10a4.985 4.985 0 0
-0-1.432-3.503l.41-1.352a.5.5 0 1 0-.956-.29l-.291.956A4.978 4.978 0 0 0 8
-1a4.979 4.979 0 0 0-2.731.811l-.29-.956z"/>
-   <path d="M13 6v1H8.5v8.975A5 5
-0 0 0 13 11h.5a.5.5 0 0 1 .5.5v.5a.5.5 0 1 0 1 0v-.5a1.5 1.5 0 0
-0-1.5-1.5H13V9h1.5a.5.5 0 0 0 0-1H13V7h.5A1.5 1.5 0 0 0 15 5.5V5a.5.5 0 0 0-1
-0v.5a.5.5 0 0 1-.5.5H13zm-5.5 9.975V7H3V6h-.5a.5.5 0 0 1-.5-.5V5a.5.5 0 0 0-1
-0v.5A1.5 1.5 0 0 0 2.5 7H3v1H1.5a.5.5 0 0 0 0 1H3v1h-.5A1.5 1.5 0 0 0 1
-11.5v.5a.5.5 0 1 0 1 0v-.5a.5.5 0 0 1 .5-.5H3a5 5 0 0 0 4.5 4.975z"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-bug" viewBox="0 0 16 16">
+  <path d="M4.355.522a.5.5 0 0 1 .623.333l.291.956A4.979 4.979 0 0 1 8 1c1.007 0 1.946.298 2.731.811l.29-.956a.5.5 0 1 1 .957.29l-.41 1.352A4.985 4.985 0 0 1 13 6h.5a.5.5 0 0 0 .5-.5V5a.5.5 0 0 1 1 0v.5A1.5 1.5 0 0 1 13.5 7H13v1h1.5a.5.5 0 0 1 0 1H13v1h.5a1.5 1.5 0 0 1 1.5 1.5v.5a.5.5 0 1 1-1 0v-.5a.5.5 0 0 0-.5-.5H13a5 5 0 0 1-10 0h-.5a.5.5 0 0 0-.5.5v.5a.5.5 0 1 1-1 0v-.5A1.5 1.5 0 0 1 2.5 10H3V9H1.5a.5.5 0 0 1 0-1H3V7h-.5A1.5 1.5 0 0 1 1 5.5V5a.5.5 0 0 1 1 0v.5a.5.5 0 0 0 .5.5H3c0-1.364.547-2.601 1.432-3.503l-.41-1.352a.5.5 0 0 1 .333-.623zM4 7v4a4 4 0 0 0 3.5 3.97V7H4zm4.5 0v7.97A4 4 0 0 0 12 11V7H8.5zM12 6a3.989 3.989 0 0 0-1.334-2.982A3.983 3.983 0 0 0 8 2a3.983 3.983 0 0 0-2.667 1.018A3.989 3.989 0 0 0 4 6h8z"/>
 </svg></a>
 
 &nbsp;
-<a href="javascript:exposureInfo()" title="exposure info"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="blue" class="bi bi-image" viewBox="0 0 16 16">
+<a href="javascript:exposureInfo()" title="exposure info"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-image" viewBox="0 0 16 16">
   <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
   <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/>
 </svg></a>
@@ -195,7 +201,7 @@ id="aspectratio"></span></td><td>04-20-22
    </td><td>
    &nbsp;<button
 id="ff" onclick="testImage('framefunctions')" title="frame functions"><svg
-xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black"
 class="white" viewBox="0 0 16 16">
    <path d="M 15,2 C 15,1.4477153
 14.552285,1 14,1 H 2 C 1.4477153,1 1,1.4477153 1,2 v 12 c 0,0.552285
@@ -310,7 +316,7 @@ type="number" id="angle" value="0" style="width:4em;"
   <path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1v6zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2z"/>
   <path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
 </svg></td><td><button onclick="sharpen2()">+</button>&nbsp;&nbsp;<button onclick="blurCanvas()">-</button></td><td>
-    &nbsp;<button onclick="testImage('transformfunctions')" title="transformations"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="white" viewBox="0 0 16 16">
+    &nbsp;<button onclick="testImage('transformfunctions')" title="transformations"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" class="white" viewBox="0 0 16 16">
       <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
       <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
     </svg></button>
@@ -360,7 +366,7 @@ type="number" id="angle" value="0" style="width:4em;"
   <path fill-rule="evenodd" d="M4.553 7.776c.82-1.641 1.717-2.753 2.093-3.13l.708.708c-.29.29-1.128 1.311-1.907 2.87l-.894-.448z"/>
 </svg></td><td><button onclick="saturationScale(1.1)">+</button>&nbsp;&nbsp;<button onclick="saturationScale(0.9)">-</button>
   </td><td>
-    &nbsp;<button onclick="testImage('patternfunctions')" title="patterns"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="white" viewBox="0 0 16 16">
+    &nbsp;<button onclick="testImage('patternfunctions')" title="patterns"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" class="white" viewBox="0 0 16 16">
   <path d="M0 .5A.5.5 0 0 1 .5 0h15a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H14v2h1.5a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H14v2h1.5a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5H2v-2H.5a.5.5 0 0 1-.5-.5v-3A.5.5 0 0 1 .5 6H2V4H.5a.5.5 0 0 1-.5-.5v-3zM3 4v2h4.5V4H3zm5.5 0v2H13V4H8.5zM3 10v2h4.5v-2H3zm5.5 0v2H13v-2H8.5zM1 1v2h3.5V1H1zm4.5 0v2h5V1h-5zm6 0v2H15V1h-3.5zM1 7v2h3.5V7H1zm4.5 0v2h5V7h-5zm6 0v2H15V7h-3.5zM1 13v2h3.5v-2H1zm4.5 0v2h5v-2h-5zm6 0v2H15v-2h-3.5z"/>
 </svg></button>
     <select id="patternfunctions">
@@ -387,7 +393,7 @@ type="number" id="angle" value="0" style="width:4em;"
   <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
 </svg></td><td><button onclick="contrastImage(5)">+</button>&nbsp;&nbsp;<button onclick="contrastImage(-5)">-</button></td>
   <td>
-    &nbsp;<button onclick="testImage('fadefunctions')" title="fade, darken, blur, gray"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="white" viewBox="0 0 16 16">
+    &nbsp;<button onclick="testImage('fadefunctions')" title="fade, darken, blur, gray"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" class="white" viewBox="0 0 16 16">
       <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z"/>
     </svg></button>
     <select id="fadefunctions">
@@ -419,7 +425,7 @@ type="number" id="angle" value="0" style="width:4em;"
 </td>
 <td>
   &nbsp;<button onclick="testImage('drawingfunctions')" title="drawing functions">
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="white" viewBox="0 0 16 16">
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" class="white" viewBox="0 0 16 16">
       <path d="M15.825.12a.5.5 0 0 1 .132.584c-1.53 3.43-4.743 8.17-7.095 10.64a6.067 6.067 0 0 1-2.373 1.534c-.018.227-.06.538-.16.868-.201.659-.667 1.479-1.708 1.74a8.118 8.118 0 0 1-3.078.132 3.659 3.659 0 0 1-.562-.135 1.382 1.382 0 0 1-.466-.247.714.714 0 0 1-.204-.288.622.622 0 0 1 .004-.443c.095-.245.316-.38.461-.452.394-.197.625-.453.867-.826.095-.144.184-.297.287-.472l.117-.198c.151-.255.326-.54.546-.848.528-.739 1.201-.925 1.746-.896.126.007.243.025.348.048.062-.172.142-.38.238-.608.261-.619.658-1.419 1.187-2.069 2.176-2.67 6.18-6.206 9.117-8.104a.5.5 0 0 1 .596.04zM4.705 11.912a1.23 1.23 0 0 0-.419-.1c-.246-.013-.573.05-.879.479-.197.275-.355.532-.5.777l-.105.177c-.106.181-.213.362-.32.528a3.39 3.39 0 0 1-.76.861c.69.112 1.736.111 2.657-.12.559-.139.843-.569.993-1.06a3.122 3.122 0 0 0 .126-.75l-.793-.792zm1.44.026c.12-.04.277-.1.458-.183a5.068 5.068 0 0 0 1.535-1.1c1.9-1.996 4.412-5.57 6.052-8.631-2.59 1.927-5.566 4.66-7.302 6.792-.442.543-.795 1.243-1.042 1.826-.121.288-.214.54-.275.72v.001l.575.575zm-4.973 3.04.007-.005a.031.031 0 0 1-.007.004zm3.582-3.043.002.001h-.002z"/>
     </svg></button>
   <select id="drawingfunctions" >
@@ -486,7 +492,7 @@ type="number" id="angle" value="0" style="width:4em;"
   <td>
     <button onclick="adjustWarmth(5)">+</button>&nbsp;&nbsp;<button onclick="adjustWarmth(-5)">-</button>
 </td><td>
-&nbsp;<button id="cf" onclick="testImage('colorfunctions')" title="color functions"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="white" viewBox="0 0 16 16">
+&nbsp;<button id="cf" onclick="testImage('colorfunctions')" title="color functions"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" class="white" viewBox="0 0 16 16">
   <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z"/>
 </svg></button>
 <select id='colorfunctions'>
@@ -9612,7 +9618,7 @@ function blobOutline () {
   ctx.globalAlpha = (document.getElementById("speck_opacity").value)/100
   let alpha0 = ctx.globalAlpha
   ctx.strokeStyle = document.getElementById("paintcolor").value
-  ctx.lineWidth = 1 + Math.floor(document.getElementById("speck_size").value/10)
+  ctx.lineWidth = 1+ document.getElementById("speck_size").value/4
  // numshapes = 1 + document.getElementById("number").value/10
   x = 0;
   y = 0;
@@ -9631,7 +9637,7 @@ function blobOutline () {
   let radius = W/3
   for (let i = 0; i < edges; i++) {
     //radius = (Math.random() * maxradius) + maxradius * 0.9;
-    radius += pet(maxradius/1.2)
+    radius += pet(maxradius/1.4)
     x = radius * Math.cos(angle)+centx;
     y = radius * Math.sin(angle)+centy;
     points.push([x, y]);
