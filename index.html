@@ -445,9 +445,10 @@ type="number" id="angle" value="0" style="width:4em;"
     <!--option value="strokes">strokes</option-->
     <option value="neckerline">necker</option>
     <option value="nested">nested sqrs</option>
-    <option value="blobOutline" selected>shape outline</option>
+    <option value="blobOutline">shape outline</option>
+    <option value="scratchOut" selected>scratch out</option>
+
     <option value="strokes2">strokes</option>
->
     <option value="strokes2">strokes</option>
     <option value="strokesH">strokes horizontal</option>
     <option value="scratch">scratch</option>
@@ -5005,53 +5006,46 @@ function necker () {
   ctx.restore()
 }
 
-function nestedRects () {
+function scratchOut () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("speck_size").value/4
+  let lw = ctx.lineWidth
   ctx.globalAlpha = document.getElementById("speck_opacity").value/100
-  ctx.lineCap = 'square'
-  ctx.lineJoin = 'meter'
-  let colors = shuffle(['#cc0000', '#bb4000','#a000a0','#0000aa','#004099','#007020','#F8A500','#d8c500','#dddddd','#300000','#444444','#666666'])
-  ctx.fillStyle = randomPick(colors)
-
-  let ratio = 1/1.61803
+  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.lineCap = 'round'
+  ctx.lineJoin = 'round'
   let W = canvas.width
   if (W > canvas.height)
     W = canvas.height
-  let adjust = ctx.lineWidth/2
-  let x = 0, y = 0, line = true
-  let xd = 0, yd = 0
-  drawRectAt(ctx, x+adjust, y+adjust, W-(adjust*2)) // first square
-  let depth = Math.floor((-1/12 * ctx.lineWidth) +(49/6)) // tbd: 3 to 6
-
-  let i = 0, x2, y2, W0
+  let depth = W / (lw*3)
+  ctx.beginPath()
+  if (document.getElementById("grungy").checked)
+    lw *= 2
+  let x = 3, y = lw*4
+  let i = 0, x2 = 0, y2 = 0
+  ctx.moveTo(x, y)
   for (;i < depth; i++) {
-    W0 = W
-    W *= ratio
-    
-    let r  = Math.random()
-    if (r > 0.667)
-      xd = 0
-    else
-    if (r > 0.333)
-      xd = W
-    else
-      xd = W0 - W
-    x += Math.floor(xd)
-    r = Math.random()
-    if (r > 0.667)
-      yd = 0
-    else
-    if (r > 0.333)
-      yd = W
-    else
-      yd = W0 - W
-    y += Math.floor(yd)
-    ctx.fillStyle = colors[i]
-    drawRectAt(ctx, x, y, W)
+    if (y > W) {
+      x += lw*7 + pet(lw)
+      y += pet(32)
+      ctx.lineTo(x2, y2)
+      x2 += pet(33)
+      y2 += lw*7 + pet(lw)
+      ctx.lineTo(x, y)
+    } else {
+
+      x2 += lw*7 + pet(lw)
+      y2 += pet(32)
+      ctx.lineTo(x2, y2)
+      x += pet(33)
+      y += lw*7 + pet(lw)
+      ctx.lineTo(x, y)
+    }
   }
+  ctx.stroke()
 }
+
 
 function nested () {
   let canvas = document.getElementById("myCanvas");
