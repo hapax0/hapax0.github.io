@@ -5009,7 +5009,7 @@ function necker () {
 function scratchOut () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  ctx.lineWidth = 1 + document.getElementById("speck_size").value/4
+  ctx.lineWidth = 1 + document.getElementById("speck_size").value/10
   let lw = ctx.lineWidth
   ctx.globalAlpha = document.getElementById("speck_opacity").value/100
   ctx.strokeStyle = document.getElementById("paintcolor").value
@@ -5027,19 +5027,19 @@ function scratchOut () {
   ctx.moveTo(x, y)
   for (;i < depth; i++) {
     if (y > W) {
-      x += lw*7 + pet(lw)
-      y += pet(32)
+      x += lw*6 + pet(lw*2)
+      y += pet(33)
       ctx.lineTo(x2, y2)
       x2 += pet(33)
-      y2 += lw*7 + pet(lw)
+      y2 += lw*6 + pet(lw*2)
       ctx.lineTo(x, y)
     } else {
 
-      x2 += lw*7 + pet(lw)
-      y2 += pet(32)
+      x2 += lw*6 + pet(lw*2)
+      y2 += pet(33)
       ctx.lineTo(x2, y2)
       x += pet(33)
-      y += lw*7 + pet(lw)
+      y += lw*6 + pet(lw*2)
       ctx.lineTo(x, y)
     }
   }
