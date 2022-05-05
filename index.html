@@ -446,7 +446,10 @@ type="number" id="angle" value="0" style="width:4em;"
     <option value="neckerline">necker</option>
     <option value="nested">nested sqrs</option>
     <option value="blobOutline">shape outline</option>
-    <option value="scratchOut" selected>scratch out</option>
+    <option value="bezRandom" selected>random bez</option>
+    
+    
+    <option value="scratchOut">scratch out</option>
 
     <option value="strokes2">strokes</option>
     <option value="strokes2">strokes</option>
@@ -5019,13 +5022,15 @@ function scratchOut () {
   if (W > canvas.height)
     W = canvas.height
   let depth = W / (lw*3)
-  ctx.beginPath()
+  //ctx.beginPath()
   if (document.getElementById("grungy").checked)
     lw *= 2
   let x = 3, y = lw*4
   let i = 0, x2 = 0, y2 = 0
-  ctx.moveTo(x, y)
+  //ctx.moveTo(x, y)
   for (;i < depth; i++) {
+    ctx.beginPath()
+    ctx.moveTo(x, y)
     if (y > W) {
       x += lw*6 + pet(lw*2)
       y += pet(33)
@@ -5042,8 +5047,10 @@ function scratchOut () {
       y += lw*6 + pet(lw*2)
       ctx.lineTo(x, y)
     }
+    ctx.lineWidth = lw + 0.9 * pet(lw)
+    ctx.stroke()
   }
-  ctx.stroke()
+  //ctx.stroke()
 }
 
 
@@ -9566,6 +9573,8 @@ function skinnyLines () { // vertical lines
   alpha0 = ctx.globalAlpha
   ctx.strokeStyle = document.getElementById("paintcolor").value
   ctx.lineWidth = 1
+  ctx.lineCap = 'round'
+  ctx.lineJoin = 'round'
   linewidth0 = ctx.lineWidth
   let radius = document.getElementById("speck_size").value/(2*6.25)
  // let rows = document.getElementById("rows").value*8
@@ -9588,6 +9597,39 @@ function skinnyLines () { // vertical lines
     y += y_inc + pet(2)
   }
   ctx.restore()
+}
+
+function bezRandom () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let W = canvas.width
+  let H = canvas.height
+  ctx.lineCap = 'round'
+  ctx.lineJoin = 'round'
+  ctx.globalAlpha = (document.getElementById("speck_opacity").value)/100
+  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.lineWidth = 1 + document.getElementById("speck_size").value/4
+  let x = 0, y = 0, x0, y0;
+  let edges = 8 + 4 * Math.floor(document.getElementById("number").value/1000)
+  //console.log(edges)
+  if (Math.random() > 0.5)
+   ;// edges += 8
+  let points = [];
+  for (let i = 0; i < edges; i++) {
+    x = Math.floor(Math.random() * W)
+    y = Math.floor(Math.random() * H)
+    points.push([x, y]);
+    if (i === 0){
+      x0 = x, y0 = y
+    }
+  }
+  /*
+  points = shuffle(points)
+  points.push(points[0])
+  points.push(points[1])
+  points.push(points[2])
+  points.push([x0, y0])*/
+  drawBezline(points, 0, 0)
 }
 
 function blobOutline () {
@@ -10690,6 +10732,26 @@ function shape () {// right side only
     ctx.closePath();
     ctx.fill();
   }
+}
+
+function drawBezline (pts, offsetX, offsetY) {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let x = 0, y = 0, x0 = 0, y0 = 0
+  ctx.beginPath()
+  let i = 0;
+  for (; i < pts.length; i++) {
+    x = pts[i][0]
+    y = pts[i][1]
+    if (i == 0) {
+      x0 = x;
+      y0 = y;
+      ctx.moveTo(x, y);
+    } else
+    if (i % 3 == 0)
+      ctx.bezierCurveTo(pts[i-2][0], pts[i-2][1], pts[i-1][0], pts[i-1][1], pts[i][0], pts[i][1]);
+  }
+  ctx.stroke();
 }
 
 function drawOutline (pts, offsetX, offsetY) {
