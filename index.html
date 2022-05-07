@@ -194,7 +194,7 @@ id="canvaswidth" min="40" size="4" onchange="checkWidth()">
      H: <input
 type="number" id="canvasheight" min="40" size="4"
 onchange="checkHeight()"></td><td style="text-align:left;"><span
-id="aspectratio"></span></td><td>04-20-22
+id="aspectratio"></span></td><td>05-07-22
    </td><td>
    &nbsp;<button
 id="ff" onclick="testImage('framefunctions')" title="frame functions"><svg
@@ -3817,7 +3817,6 @@ function openFile () {
   syncMarker()
 }
 
-let IMG = null
 
 function OGImage() {
   if (IMG) {
@@ -3829,7 +3828,7 @@ function OGImage() {
 function drawFile () {
   let canvas = document.getElementById('myCanvas')
   let ctx = canvas.getContext('2d')
-  IMG = new Image()
+  let IMG = new Image()
   let f = document.getElementById("uploadimage").files[0]
   let url = window.URL || window.webkitURL
   let src = url.createObjectURL(f);
