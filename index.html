@@ -334,6 +334,8 @@ type="number" id="angle" value="0" style="width:4em;"
       <option value="nudgeRight" style="color:red">nudge horizontal</option>
       <option value="nudgeDown" style="color:red">nudge vertical</option>
       <option value="nudgeCW">nudge angle</option>
+      <option value="mirror">mirror &varr;</option>
+      
       <!--option value="smear">smear shake</option-->
       <option value="smearside">smear right</option>
       <option value="smearrandom">smear random</option>
@@ -1668,6 +1670,38 @@ function leftCut () {
   const cut = true
   leftClip(cut)
   syncMarker()
+}
+
+function mirror () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  clearOff()
+  flipV()
+  copyToOff()
+  flipV()
+  bottomClip()
+  let mode = ctx.globalCompositeOperation
+  ctx.globalCompositeOperation = "destination-over"
+  pasteFromOff()
+  ctx.globalCompositeOperation = mode
+}
+
+function bottomClip () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = canvas.height, W = canvas.width
+  let s = LASTCLICK[1] // Y
+  let x = 0, y = s
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x,y)
+  ctx.lineTo(W, y)
+  ctx.lineTo(W, H)
+  ctx.lineTo(0, H)
+  ctx.closePath()
+  ctx.clip()
+  ctx.clearRect(0,0,W,H)
+  ctx.restore()
 }
 
 function leftClip (cut) {
