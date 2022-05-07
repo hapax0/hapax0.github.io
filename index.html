@@ -335,6 +335,7 @@ type="number" id="angle" value="0" style="width:4em;"
       <option value="nudgeDown" style="color:red">nudge vertical</option>
       <option value="nudgeCW">nudge angle</option>
       <option value="mirror">mirror &varr;</option>
+      <option value="fourbyfour">4x4</option>
       
       <!--option value="smear">smear shake</option-->
       <option value="smearside">smear right</option>
@@ -1670,6 +1671,31 @@ function leftCut () {
   const cut = true
   leftClip(cut)
   syncMarker()
+}
+
+function fourbyfour () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = canvas.height, W = canvas.width
+  let off = document.createElement('CANVAS')
+  off.height = H, off.width = W
+  let offctx = off.getContext("2d")
+  offctx.drawImage(canvas,0,0,W,H)
+  let color = document.getElementById("paintcolor").value
+  document.getElementById("paintcolor").value = randomColor()
+  tint(off)
+  ctx.drawImage(off,0,0,W/2, H/2)
+  document.getElementById("paintcolor").value = randomColor()
+  tint(off)
+  ctx.drawImage(off,W/2,0,W/2, H/2)
+  document.getElementById("paintcolor").value = randomColor()
+  tint(off)
+  ctx.drawImage(off,0,H/2,W/2, H/2)
+  document.getElementById("paintcolor").value = randomColor()
+  tint(off)
+  ctx.drawImage(off,W/2,H/2,W/2, H/2)
+  document.getElementById("paintcolor").value = color
+
 }
 
 function mirror () {
@@ -11458,7 +11484,6 @@ function tint (canvas) {
   offcanvas.width = canvas.width
   offcanvas.height = canvas.height
   let offctx = offcanvas.getContext("2d");
-  let n = 10
   let color = document.getElementById("paintcolor").value
   let r = hexToR(color)
   let g = hexToG(color)
@@ -11474,9 +11499,9 @@ function tint (canvas) {
   for (; i < pixels.length; i += 4) {
     brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3)
     if (brightness > lowest && brightness <= highest) {
-      pixels[i] =     Math.min(pixels[i] * 0.9 + r * 0.1, 255);
-      pixels[i + 1] = Math.min(pixels[i+1] * 0.9 + g * 0.1, 255);
-      pixels[i + 2] = Math.min(pixels[i+2] * 0.9 + b * 0.1, 255);
+      pixels[i] =     Math.min(pixels[i] * 0.8 + r * 0.2, 255);
+      pixels[i + 1] = Math.min(pixels[i+1] * 0.8 + g * 0.2, 255);
+      pixels[i + 2] = Math.min(pixels[i+2] * 0.8 + b * 0.2, 255);
     }
   }
   offctx.putImageData(imgData, 0, 0);
