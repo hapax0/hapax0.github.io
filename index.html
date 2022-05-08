@@ -1696,15 +1696,15 @@ function fourbyfour () {
   .then(
     drawSome(ctx,off,0,0,W/2,H/2))
   .then(
-    fill(off,colors[0]))
+    rotateColors(off,D))
   .then(
     drawSome(ctx,off,W/2,0,W/2,H/2))
   .then(
-    fill(off, colors[1]))
+    rotateColors(off, (D * 2) % 256))
   .then(
     drawSome(ctx,off,0,H/2,W/2,H/2))
   .then(
-    fill(off,colors[2]))
+    rotateColors(off,D))
   .then(
     drawSome(ctx,off,W/2,H/2,W/2,H/2)
     )
@@ -11498,6 +11498,26 @@ function adjustBrightness (n, canvas) {
     }
   }
    ctx.putImageData(imgData, 0, 0);
+  return true
+}
+
+
+async function rotateColors (canvas, D) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas")
+ 
+  let ctx = canvas.getContext("2d");
+  //let mode = ctx.globalCompositeOperation
+  let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
+  let pixels = imgData.data;
+  let i = 0
+  for (; i < pixels.length; i += 4) {
+    pixels[i] =     (pixels[i] + D) % 256;
+    pixels[i + 1] = (pixels[i+1] + D) % 256;
+    pixels[i + 2] = (pixels[i+2] + D) % 256;
+  }
+  await ctx.putImageData(imgData, 0, 0);
+ //// ctx.globalCompositeOperation = mode
   return true
 }
 
