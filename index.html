@@ -450,8 +450,7 @@ type="number" id="angle" value="0" style="width:4em;"
     <option value="nested">nested sqrs</option>
     <option value="blobOutline">shape outline</option>
     <option value="bezRandom" selected>random bez</option>
-    
-    
+  
     <option value="scratchOut">scratch out</option>
 
     <option value="strokes2">strokes</option>
@@ -1686,17 +1685,21 @@ function fourbyfour () {
   let color = document.getElementById("paintcolor").value
   let warhol = document.getElementById("grungy").checked
   document.getElementById("paintcolor").value = randomColor()
+  let D = (Math.floor(33+Math.random() * 255) % 256)
   if (warhol)
     posterize(off)
   ctx.drawImage(off,0,0,W/2, H/2)
+  D = (D + 90) % 256
   if (warhol)
-    fill(off, randomColor())
+    rotateBrightness(off, D)
   ctx.drawImage(off,W/2,0,W/2, H/2)
+  D = (D + 90) % 256
   if (warhol)
-    fill(off, randomColor())
+    rotateBrightness(off, D)
   ctx.drawImage(off,0,H/2,W/2, H/2)
-if (warhol)
-    fill(off, randomColor())
+  D = (D + 90) % 256
+  if (warhol)
+    rotateBrightness(off, D)
   ctx.drawImage(off,W/2,H/2,W/2, H/2)
   document.getElementById("paintcolor").value = color
 
@@ -11459,8 +11462,9 @@ function adjustBrightness (n, canvas) {
   ctx.putImageData(imgData, 0, 0);
 }
 
-function rotateBrightness (canvas) {
-  let n = 16
+function rotateBrightness (canvas, n) {
+  if (!n)
+    n = 16
   if (!canvas)
     canvas = document.getElementById("myCanvas");
   let lh = rangecheck()
