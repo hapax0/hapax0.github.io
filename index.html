@@ -1686,24 +1686,27 @@ function fourbyfour () {
   let warhol = document.getElementById("grungy").checked
   document.getElementById("paintcolor").value = randomColor()
   let D = (Math.floor(33+Math.random() * 255) % 256)
-  let ready = false
- /// if (warhol)
-    posterize(off)
-  ctx.drawImage(off,0,0,W/2, H/2)
-  D = (D + 90) % 256
- // if (warhol)
-  if(rotateBrightness(off, D))
-    ctx.drawImage(off,W/2,0,W/2, H/2)
-  D = (D + 90) % 256
- // if (warhol)
-  if(rotateBrightness(off, D))
-    ctx.drawImage(off,0,H/2,W/2, H/2)
-  D = (D + 90) % 256
- // if (warhol)
-  if(rotateBrightness(off, D))
-    ctx.drawImage(off,W/2,H/2,W/2, H/2)
-  document.getElementById("paintcolor").value = color
 
+  
+  posterize(off)
+     // ctx.drawImage(off,0,0,W/2,H/2)
+  drawSome(ctx,off,0,0,W/2,H/2)
+  D = (D + 190) % 256
+  rotateBrightness(off, D)
+  drawSome(ctx,off,W/2,0,W/2,H/2)
+  D = (D + 190) % 256
+  rotateBrightness(off, D)
+  drawSome(ctx,off,0,H/2,W/2,H/2)
+  D = (D + 190) % 256
+  rotateBrightness(off, D)
+  drawSome(ctx,off,W/2,H/2,W/2,H/2)
+  document.getElementById("paintcolor").value = color
+  return true
+}
+
+async function drawSome (ctx,can,x,y,W,H) {
+  await ctx.drawImage(can,x,y,H,W)
+  return true
 }
 
 function mirror () {
