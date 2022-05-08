@@ -194,7 +194,7 @@ id="canvaswidth" min="40" size="4" onchange="checkWidth()">
      H: <input
 type="number" id="canvasheight" min="40" size="4"
 onchange="checkHeight()"></td><td style="text-align:left;"><span
-id="aspectratio"></span></td><td>05-07-22
+id="aspectratio"></span></td><td>05-08-22
    </td><td>
    &nbsp;<button
 id="ff" onclick="testImage('framefunctions')" title="frame functions"><svg
@@ -1686,21 +1686,22 @@ function fourbyfour () {
   let warhol = document.getElementById("grungy").checked
   document.getElementById("paintcolor").value = randomColor()
   let D = (Math.floor(33+Math.random() * 255) % 256)
-  if (warhol)
+  let ready = false
+ /// if (warhol)
     posterize(off)
   ctx.drawImage(off,0,0,W/2, H/2)
   D = (D + 90) % 256
-  if (warhol)
-    rotateBrightness(off, D)
-  ctx.drawImage(off,W/2,0,W/2, H/2)
+ // if (warhol)
+  if(rotateBrightness(off, D))
+    ctx.drawImage(off,W/2,0,W/2, H/2)
   D = (D + 90) % 256
-  if (warhol)
-    rotateBrightness(off, D)
-  ctx.drawImage(off,0,H/2,W/2, H/2)
+ // if (warhol)
+  if(rotateBrightness(off, D))
+    ctx.drawImage(off,0,H/2,W/2, H/2)
   D = (D + 90) % 256
-  if (warhol)
-    rotateBrightness(off, D)
-  ctx.drawImage(off,W/2,H/2,W/2, H/2)
+ // if (warhol)
+  if(rotateBrightness(off, D))
+    ctx.drawImage(off,W/2,H/2,W/2, H/2)
   document.getElementById("paintcolor").value = color
 
 }
@@ -11462,7 +11463,7 @@ function adjustBrightness (n, canvas) {
   ctx.putImageData(imgData, 0, 0);
 }
 
-function rotateBrightness (canvas, n) {
+async function rotateBrightness (canvas, n) {
   if (!n)
     n = 16
   if (!canvas)
@@ -11482,7 +11483,8 @@ function rotateBrightness (canvas, n) {
       pixels[i + 2] = (pixels[i+2] + n) % 256;
     }
   }
-  ctx.putImageData(imgData, 0, 0);
+  await ctx.putImageData(imgData, 0, 0);
+  return true
 }
 
 function tint (canvas) {
