@@ -1687,22 +1687,28 @@ function fourbyfour () {
   let warhol = document.getElementById("grungy").checked
   document.getElementById("paintcolor").value = randomColor()
   let D = (Math.floor(33+Math.random() * 255) % 256)
-  
+  let colors = []
+  colors.push(randomColor())
+  colors.push(randomColor())
+  colors.push(randomColor())
+  colors.push(randomColor())
   posterize(off)
   .then(
     drawSome(ctx,off,0,0,W/2,H/2))
   .then(
-    invertColors(off, D))
+    fill(off,colors[0]))
   .then(
     drawSome(ctx,off,W/2,0,W/2,H/2))
   .then(
-    rotateBrightness(off, D*2 % 256))
+    fill(off, colors[1]))
   .then(
     drawSome(ctx,off,0,H/2,W/2,H/2))
- .then(
-    invertColors(off, D))
   .then(
-    drawSome(ctx,off,W/2,H/2,W/2,H/2))
+    fill(off,colors[2]))
+  .then(
+    drawSome(ctx,off,W/2,H/2,W/2,H/2)
+    )
+    
   document.getElementById("paintcolor").value = color
   return true
 }
@@ -7884,16 +7890,16 @@ function nudgeCanvas (right) {
   syncBackground(canvas)
 }
 
-function fill (canvas, fs) {
+async function fill (canvas, fs) {
   if (!canvas)
     canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   ctx.globalAlpha = document.getElementById("speck_opacity").value/100
-  clip()
   ctx.fillStyle = document.getElementById("paintcolor").value
   if (fs)
     ctx.fillStyle = fs
-  ctx.fillRect(0,0,canvas.width, canvas.height)
+  await ctx.fillRect(0,0,canvas.width, canvas.height)
+  return true
 }
 
 function hazeo () {
