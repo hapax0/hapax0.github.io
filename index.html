@@ -1618,7 +1618,7 @@ function interestingB (color) {
   return  average //+ colorful
 }
 
-function posterize (canvas) {
+async function posterize (canvas) {
   if (!canvas)
     canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -1664,7 +1664,8 @@ function posterize (canvas) {
       pixels[i+2] = hexToB(c) * 1.1
     }
   }
-  ctx.putImageData(imgData, 0, 0);
+  await ctx.putImageData(imgData, 0, 0);
+  return true
 }
 
 function leftCut () {
@@ -1688,22 +1689,26 @@ function fourbyfour () {
   let D = (Math.floor(33+Math.random() * 255) % 256)
   
   posterize(off)
-  ctx.drawImage(off,0,0,W/2,H/2)
- // D = (D + 80) % 256
-  invertColors(off, D)
-  ctx.drawImage(off,W/2,0,W/2,H/2)
-  D = (D + 80) % 256
-  rotateBrightness(off, D)
-  ctx.drawImage(off,0,H/2,W/2,H/2)
- // D = (D + 80) % 256
-  invertColors(off, D)
-  ctx.drawImage(off,W/2,H/2,W/2,H/2)
+  .then(
+    drawSome(ctx,off,0,0,W/2,H/2))
+  .then(
+    invertColors(off, D))
+  .then(
+    drawSome(ctx,off,W/2,0,W/2,H/2))
+  .then(
+    rotateBrightness(off, D*2 % 256))
+  .then(
+    drawSome(ctx,off,0,H/2,W/2,H/2))
+ .then(
+    invertColors(off, D))
+  .then(
+    drawSome(ctx,off,W/2,H/2,W/2,H/2))
   document.getElementById("paintcolor").value = color
   return true
 }
 
 async function drawSome (ctx,can,x,y,W,H) {
-  await ctx.drawImage(can,x,y,H,W)
+  await ctx.drawImage(can,x,y,W,H)
   return true
 }
 
@@ -3288,7 +3293,7 @@ function testImage (id) {
   window[f]()
 }
 
-function invertColors (canvas) {
+async function invertColors (canvas) {
   if (!canvas)
     canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -3307,7 +3312,8 @@ function invertColors (canvas) {
     pixels[i + 1] = invertedGreen
     pixels[i + 2] = invertedBlue
   }
-  ctx.putImageData(imgData, 0, 0)
+  await ctx.putImageData(imgData, 0, 0)
+  return true
 }
 
 function ellipse1 (ctx, x, y, rx, ry, rot) {
