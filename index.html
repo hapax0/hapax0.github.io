@@ -1619,8 +1619,9 @@ function interestingB (color) {
   return  average //+ colorful
 }
 
-function posterize () {
-  let canvas = document.getElementById("myCanvas");
+function posterize (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
   let threshold = 127 - document.getElementById("speck_opacity").value * 1.27
@@ -1681,18 +1682,21 @@ function fourbyfour () {
   off.height = H, off.width = W
   let offctx = off.getContext("2d")
   offctx.drawImage(canvas,0,0,W,H)
+  offctx.globalCompositeOperation = "color"
   let color = document.getElementById("paintcolor").value
+  let warhol = document.getElementById("grungy").checked
   document.getElementById("paintcolor").value = randomColor()
-  tint(off)
+  if (warhol)
+    posterize(off)
   ctx.drawImage(off,0,0,W/2, H/2)
-  document.getElementById("paintcolor").value = randomColor()
-  tint(off)
+  if (warhol)
+    fill(off, randomColor())
   ctx.drawImage(off,W/2,0,W/2, H/2)
-  document.getElementById("paintcolor").value = randomColor()
-  tint(off)
+  if (warhol)
+    fill(off, randomColor())
   ctx.drawImage(off,0,H/2,W/2, H/2)
-  document.getElementById("paintcolor").value = randomColor()
-  tint(off)
+if (warhol)
+    fill(off, randomColor())
   ctx.drawImage(off,W/2,H/2,W/2, H/2)
   document.getElementById("paintcolor").value = color
 
