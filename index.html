@@ -1693,12 +1693,14 @@ async function posterize2 (canvas, outctx,x,y,w,h) {
       pixels[i+2] /= 6
     } else
     if (lightness >= t1 && lightness < t2) {
+      c = colors[1]
       pixels[i] =   hexToR(c)/1.7
       pixels[i+1] = hexToG(c)/1.7
       pixels[i+2] = hexToB(c)/1.7
       
     } else
     if (lightness >= t2) {
+      c = colors[2]
       pixels[i] =   hexToR(c) * 1.1
       pixels[i+1] = hexToG(c) * 1.1
       pixels[i+2] = hexToB(c) * 1.1
