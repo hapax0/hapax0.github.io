@@ -235,7 +235,13 @@ value="100" onchange="rangecheck()"> <span class='sample' id='lowsample' style="
 value="100" onchange="rangecheck()"> <span class='sample' id='highsample' style="background-color:#fff;">&nbsp;</span> <span id="upperrange">100</span> %<br>
      <div
 style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:10px;">
-<span style="color:red">touch to place: </span>
+       
+       Use palette: <input type='checkbox' id='usepalette'><br>
+       <input type='color' id='pal1'><br>
+       <input type='color' id='pal2'><br>
+       <input type='color' id='pal3'><br>
+       <input type='color' id='pal4'><br>
+<!--span style="color:red">touch to place: </span>
      <select id="touchmode">
      <option value="none" selected>nothing</option>
        <option
@@ -297,7 +303,7 @@ value="lighter">lighter</option>
      </select>
      <br>angle: <input
 type="number" id="angle" value="0" style="width:4em;"
->&nbsp;&nbsp;&#177;45&#176;:<input type="checkbox" id="randomangle">
+>&nbsp;&nbsp;&#177;45&#176;:<input type="checkbox" id="randomangle"-->
 </div>
    
   </td>
@@ -553,10 +559,11 @@ window.onload = function () {
   let myCanvas = document.getElementById("myCanvas")
   let ctx = myCanvas.getContext("2d")
   ctx.imageSmoothingEnabled = false
-  document.getElementById("face").value = "monospace"
+  //document.getElementById("face").value = "monospace"
   resizeCanvas()
   LASTCLICK[0] = myCanvas.width/2
   LASTCLICK[1] = myCanvas.height/2
+  /*
   myCanvas.addEventListener('click', function(event) {
     var rect = myCanvas.getBoundingClientRect();
     var x = event.clientX - rect.left;
@@ -577,7 +584,7 @@ window.onload = function () {
     else
     if (tmode == "square")
       placeSquareAt()
-}, false);
+}, false);*/
 let marker = document.getElementById("marker")
 marker.addEventListener('click', function(event) {
     let rect = marker.getBoundingClientRect();
@@ -593,6 +600,10 @@ marker.addEventListener('click', function(event) {
   let result = document.getElementById("background")
   result.style.backgroundColor = "#fff";
   document.getElementById("paintcolor").value = randomColor()
+  document.getElementById("pal1").value = randomColor()
+  document.getElementById("pal2").value = randomColor()
+  document.getElementById("pal3").value = randomColor()
+  document.getElementById("pal4").value = randomColor()
   const selectElement = document.getElementById("mode");
   selectElement.addEventListener('change', (event) => {
   let ctx = document.getElementById("myCanvas").getContext("2d");
@@ -1627,12 +1638,26 @@ async function posterize (canvas) {
   let t1 = 255 * 1/4
   let t2 = 255 * 1/2
   let t3 = 255 * 3/4
+  //let colors = []
+  let cp = document.getElementById("usepalette").checked
+  console.log(cp)
   let colors = []
-  colors.push(document.getElementById("paintcolor").value)
+  if (cp) {
+    colors.push(document.getElementById("pal1").value)
+    colors.push(document.getElementById("pal2").value)
+    colors.push(document.getElementById("pal3").value)
+    colors.push(document.getElementById("pal4").value)
+  } else {
+    colors.push(randomColor())
+    colors.push(randomColor())
+    colors.push(randomColor())
+    colors.push(randomColor())
+  }
+  /*colors.push(document.getElementById("paintcolor").value)
   colors.push(randomColor())
   colors.push(randomColor())
   colors.push(randomColor())
-  colors.push(randomColor())
+  colors.push(randomColor())*/
   let c = colors[0]
   
   let pixels = imgData.data;
@@ -1677,11 +1702,20 @@ async function posterize2 (canvas, outctx,x,y,w,h) {
   let t1 = 255 * 1/4
   let t2 = 255 * 1/2
   let t3 = 255 * 3/4
+  let cp = document.getElementById("usepalette").checked
+  console.log(cp)
   let colors = []
-  colors.push(randomColor())
-  colors.push(randomColor())
-  colors.push(randomColor())
-  colors.push(randomColor())
+  if (cp) {
+    colors.push(document.getElementById("pal1").value)
+    colors.push(document.getElementById("pal2").value)
+    colors.push(document.getElementById("pal3").value)
+    colors.push(document.getElementById("pal4").value)
+  } else {
+    colors.push(randomColor())
+    colors.push(randomColor())
+    colors.push(randomColor())
+    colors.push(randomColor())
+  }
   let c = colors[0]
   let pixels = imgData.data;
   let i = 0
