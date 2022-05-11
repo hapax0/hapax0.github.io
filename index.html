@@ -335,7 +335,8 @@ type="number" id="angle" value="0" style="width:4em;"
       <option value="nudgeDown" style="color:red">nudge vertical</option>
       <option value="nudgeCW">nudge angle</option>
       <option value="mirror">mirror &varr;</option>
-      <option value="fourbyfour" selected>4x4</option>
+      <option value="fourbyfourplain" selected>4x4</option>
+      <option value="fourbyfour" selected>warhol</option>
       
       <!--option value="smear">smear shake</option-->
       <option value="smearside">smear right</option>
@@ -450,11 +451,9 @@ type="number" id="angle" value="0" style="width:4em;"
     <option value="nested">nested sqrs</option>
     <option value="blobOutline">shape outline</option>
     <option value="bezRandom" selected>random bez</option>
-  
     <option value="scratchOut">scratch out</option>
-
-    <option value="strokes2">strokes</option>
-    <option value="strokes2">strokes</option>
+    <option value="strokes">strokes</option>
+    <option value="strokes2">strokes2</option>
     <option value="strokesH">strokes horizontal</option>
     <option value="scratch">scratch</option>
     <!--option value="birds">birds</option>
@@ -1743,13 +1742,40 @@ function fourbyfour () {
   colors.push(randomColor())
   posterize2(off,ctx,0,0,W/2,H/2)
   .then(
-    posterize2(off,ctx,0,0,W/2,H/2))
-  .then(
     posterize2(off,ctx,W/2,0,W/2,H/2))
   .then(
     posterize2(off,ctx,0,H/2,W/2,H/2))
   .then(
     posterize2(off,ctx,W/2,H/2,W/2,H/2)
+    )
+  document.getElementById("paintcolor").value = color
+  return true
+}
+
+function fourbyfourplain () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = canvas.height, W = canvas.width
+  let off = document.createElement('CANVAS')
+  off.height = H/2, off.width = W/2
+  let offctx = off.getContext("2d")
+  offctx.drawImage(canvas,0,0,W/2,H/2)
+  //offctx.globalCompositeOperation = "overlay"
+  let color = document.getElementById("paintcolor").value
+  let warhol = document.getElementById("grungy").checked
+  document.getElementById("paintcolor").value = randomColor()
+  let D = (Math.floor(33+Math.random() * 255) % 256)
+  let colors = []
+  colors.push(randomColor())
+  colors.push(randomColor())
+  colors.push(randomColor())
+  drawSome(ctx,off,0,0,W/2,H/2)
+  .then(
+    drawSome(ctx,off,W/2,0,W/2,H/2))
+  .then(
+    drawSome(ctx,off,0,H/2,W/2,H/2))
+  .then(
+    drawSome(ctx,off,W/2,H/2,W/2,H/2)
     )
   document.getElementById("paintcolor").value = color
   return true
