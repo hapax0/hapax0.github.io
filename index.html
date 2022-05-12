@@ -1499,8 +1499,8 @@ function extractPalette () {
   let colors = colorSamplePalette()
   //console.log(colors)
   colors.sort((a, b) => bright(b) - bright(a));
-  alert (colors.length, colors)
-  if (colors.length > 4) {
+  //alert (colors.length, colors)
+  if (colors.length >= 4) {
     let i = 0, x = 0, y = 0
     let canvas = document.getElementById("palettecanvas")
     let ctx = canvas.getContext("2d");
@@ -1592,7 +1592,7 @@ function colorSamplePalette () {
   clrs.sort(function(a, b) { return interesting(b) - interesting(a);});
   let colors2 = []
   i = 0, j = 0
-  for (; i < clrs.length;i++) {
+  for (; i < clrs.length; i++) {
     let rgb = clrs[i]
     let R = ('0'+(rgb[0]).toString(16)).slice(-2),
     G = ('0'+(rgb[1]).toString(16)).slice(-2),
@@ -1601,6 +1601,7 @@ function colorSamplePalette () {
   }
   return colors2
 }
+
 function showColors () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
