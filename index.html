@@ -1499,11 +1499,12 @@ function extractPalette () {
   let colors = colorSamplePalette()
   //console.log(colors)
   colors.sort((a, b) => bright(b) - bright(a));
+  alert (colors.length, colors)
   if (colors.length > 4) {
     let i = 0, x = 0, y = 0
     let canvas = document.getElementById("palettecanvas")
     let ctx = canvas.getContext("2d");
-    ctx.fillStyle = "#808080"
+    ctx.fillStyle = "#a0a0a0"
     ctx.fillRect(0,0,canvas.width, canvas.height)
     for (; i < colors.length; i++) {
       ctx.fillStyle = colors[i]
