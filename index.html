@@ -236,11 +236,17 @@ value="100" onchange="rangecheck()"> <span class='sample' id='lowsample' style="
 value="100" onchange="rangecheck()"> <span class='sample' id='highsample' style="background-color:#fff;">&nbsp;</span> <span id="upperrange">100</span> %<br>
      <div
 style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:10px;">
-        Use palette: <input type='checkbox' id='usepalette'><br>
+        Use palette: <input type='checkbox' id='usepalette' checked>
+        <select id="palettechoice">
+          <option value="ramp">mixed ramp</option>
+          <option value="mono">mono ramp</option>
+          <option value="random">random</option>
+        </select><br>
        <input type='color' id='pal1'><br>
        <input type='color' id='pal2'><br>
        <input type='color' id='pal3'><br>
        <input type='color' id='pal4'><br>
+       <input type='color' id='pal5'>&nbsp;<button id="randompalette" onclick="randomPalette()">New palette</button>&nbsp;<button onclick="extractPalette()">Extract</button><br>
 <!--span style="color:red">touch to place: </span>
      <select id="touchmode">
      <option value="none" selected>nothing</option>
@@ -343,7 +349,6 @@ type="number" id="angle" value="0" style="width:4em;"
       <option value="distortion">fisheye</option>
       <option value="fourbyfourplain" selected>4x4</option>
       <option value="fourbyfour" selected>warhol</option>
-      
       <!--option value="smear">smear shake</option-->
       <option value="smearside">smear right</option>
       <option value="smearrandom">smear random</option>
@@ -457,12 +462,12 @@ type="number" id="angle" value="0" style="width:4em;"
     <option value="neckerline">necker</option>
     <option value="nested">nested sqrs</option>
     <option value="blobOutline">shape outline</option>
-    <option value="bezRandom" selected>random bez</option>
+    <option value="bezRandom" >random bez</option>
     <option value="scratchOut">scratch out</option>
     <option value="strokes">strokes</option>
     <option value="strokes2">strokes2</option>
     <option value="strokesH">strokes horizontal</option>
-    <option value="scratch">scratch</option>
+    <option value="scratch" selected>scratch</option>
     <!--option value="birds">birds</option>
     <option value="grid">grid</option>
     <option value="rothko">rothko</option-->
@@ -513,10 +518,10 @@ type="number" id="angle" value="0" style="width:4em;"
     <option value="filterRed">filter red</option>
     <option value="filterGreen">filter green</option>
     <option value="filterBlue">filter blue</option>
-    <option value="highContrast" selected>high contrast</option>
+    <option value="highContrast">high contrast</option>
     <option value="threshold">threshold</option>
     <option value="threshold_soft">threshold soft</option>
-    <option value="posterize">posterize</option>
+    <option value="posterize" selected>posterize</option>
     <option value="colorSample">simplify colors</option>
     <option value="cymk">CYMK</option>
     <option value="stipple">stipple</option>
@@ -601,10 +606,7 @@ marker.addEventListener('click', function(event) {
   let result = document.getElementById("background")
   result.style.backgroundColor = "#fff";
   document.getElementById("paintcolor").value = randomColor()
-  document.getElementById("pal1").value = randomColor()
-  document.getElementById("pal2").value = randomColor()
-  document.getElementById("pal3").value = randomColor()
-  document.getElementById("pal4").value = randomColor()
+  randomPalette()
   const selectElement = document.getElementById("mode");
   selectElement.addEventListener('change', (event) => {
   let ctx = document.getElementById("myCanvas").getContext("2d");
@@ -614,6 +616,58 @@ marker.addEventListener('click', function(event) {
   });
   rangecheck()
   syncMarker()
+}
+
+function adjustBrightnessC (col, amt) {
+  if (col[0] == "#") {
+      col = col.slice(1);
+      usePound = true;
+  }
+  var R = parseInt(col.substring(0,2),16);
+  var G = parseInt(col.substring(2,4),16);
+  var B = parseInt(col.substring(4,6),16);
+  // to make the colour less bright than the input
+  // change the following three "+" symbols to "-"
+  R = R + amt;
+  G = G + amt;
+  B = B + amt;
+  if (R > 255) R = 255;
+  else if (R < 0) R = 0;
+  if (G > 255) G = 255;
+  else if (G < 0) G = 0;
+  if (B > 255) B = 255;
+  else if (B < 0) B = 0;
+  var RR = ((R.toString(16).length==1)?"0"+R.toString(16):R.toString(16));
+  var GG = ((G.toString(16).length==1)?"0"+G.toString(16):G.toString(16));
+  var BB = ((B.toString(16).length==1)?"0"+B.toString(16):B.toString(16));
+  return "#" + RR + GG + BB;
+}
+
+function randomPalette () {
+  let type = document.getElementById("palettechoice").value
+  if (type === "ramp") {
+    document.getElementById("pal1").value = randomColorVDark() //darkest
+    document.getElementById("pal2").value = randomColorDark()
+    document.getElementById("pal3").value = randomColorLight()
+    document.getElementById("pal4").value = randomColorLight()
+    document.getElementById("pal5").value = randomColorVLight() //lightest
+  } else
+  if (type === "random") {
+    document.getElementById("pal1").value = randomColor() 
+    document.getElementById("pal2").value = randomColor()
+    document.getElementById("pal3").value = randomColor()
+    document.getElementById("pal4").value = randomColor() 
+    document.getElementById("pal5").value = randomColor()
+  } else
+  if (type === "mono") {
+    let c = randomColorVDark(), amt = 50
+    console.log(c)
+    document.getElementById("pal1").value = c  
+    document.getElementById("pal2").value = adjustBrightnessC(c, amt)
+    document.getElementById("pal3").value = adjustBrightnessC(c, amt*2)
+    document.getElementById("pal4").value = adjustBrightnessC(c, amt*3)
+    document.getElementById("pal5").value = adjustBrightnessC(c, amt*3)
+  }
 }
 
 function rangecheck () {
@@ -1435,9 +1489,99 @@ function testHW () {// number to divide height by, to match width's divisor
   tempctx.drawImage(canvas, 10*w, 10*h, w, h, 0, 0, temp.width, temp.height)
   ctx.drawImage(canvas, 9*w, 9*h, w, h, 10*w, 10*h, w, h)
   ctx.drawImage(temp, 0, 0, w, h, 9*w, 9*h, w, h)
-
 }
 
+function extractPalette () {
+  let colors = colorSamplePalette()
+  //console.log(colors)
+  colors.sort((a, b) => bright(b) - bright(a));
+  //console.log(">>",colors)
+  if (colors.length > 8) {
+    let sorted = []
+    sorted.push(colors[colors.length-1])
+    sorted.push(colors[colors.length-3])
+    sorted.push(colors[4])
+    sorted.push(colors[2])
+    sorted.push(colors[0])
+
+    document.getElementById("pal1").value = sorted[0] 
+    document.getElementById("pal2").value = sorted[1]
+    document.getElementById("pal3").value = sorted[2]
+    document.getElementById("pal4").value = sorted[3]
+    document.getElementById("pal5").value = sorted[4]
+  }
+}
+
+
+function colorSamplePalette () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
+  //saturationScale(1.1)
+  let mind = 1000000
+  let maxd = -1000000
+  let pixels = imgData.data;
+  let sample = []
+  let i = 0, j = 0
+  for (; i < 2000; i++) {
+    let n = 4 * Math.floor(Math.random() * pixels.length/4)
+    let c = []
+    c.push(pixels[n])
+    c.push(pixels[n+1])
+    c.push(pixels[n+2])
+    sample.push(c)
+  }
+  i = 0, j = 1
+  let m = 0
+  for (; i < sample.length; i++) {
+    j = i + 1
+    for (; j < sample.length; j++) {
+      m += dist3d(sample[i], sample[j])
+      maxd = (maxd < m)? m: maxd
+    }
+  }
+  let threshold = m/sample.length/sample.length * 0.8
+  let bins = [], bc = 0
+  i = 0
+  for (;i < sample.length; i++) {
+    if (sample[i]) {
+      bins.push([sample[i]])
+      let bc = bins.length - 1
+      j = i + 1
+      for (; j < sample.length; j++) {
+        if (sample[j] && dist3d(sample[j], bins[bc][0]) < threshold) {
+          bins[bc].push(sample[j])
+          sample[j] = null
+        }
+      }
+    }
+  }
+  bins.sort(function(a, b) { return b.length - a.length;});
+  //bins.sort(function(a, b) { return interesting(b[0]) - interesting(a[0]);});
+  let count = bins.length;
+  if (count > 12)
+    count = 12
+  let colors = [], clrs = []
+  i = 0
+  for (; i < count; i++) {
+    if (1/*i == 0 || bins[i].length > 9*/) {
+      colors.push(averageColor(bins[i]))
+      clrs.push(averageColor(bins[i], true))
+    }
+  }
+  //resort clrs by interesting
+  clrs.sort(function(a, b) { return interesting(b) - interesting(a);});
+  let colors2 = []
+  i = 0, j = 0
+  for (; i < clrs.length;i++) {
+    let rgb = clrs[i]
+    let R = ('0'+(rgb[0]).toString(16)).slice(-2),
+    G = ('0'+(rgb[1]).toString(16)).slice(-2),
+    B = ('0'+(rgb[2]).toString(16)).slice(-2);
+    colors2.push('#'+R+G+B)
+  }
+  return colors2
+}
 function showColors () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -1500,7 +1644,6 @@ function exposureInfo () {
   colorfull /= (255*2000)
   alert("Exposure Info\n\nmin brightness: "+Math.round(100*minbright)/100+ ", max brightness: "+Math.round(maxbright*100)/100+"\naverage brightness: "+Math.round(100*averageb)/100+"\nrange: "+Math.round(100*(maxbright-minbright))/100+"\n\nmax tonal distance: "+Math.round(100*maxd)/100 + "\naverage tonal distance: "+Math.round(100*averaged)/100+"\ncolorfullness: "+Math.round(100*colorfull)/100)
 }
-
 
 function colorSample () {
   let canvas = document.getElementById("myCanvas");
@@ -1629,6 +1772,12 @@ function interestingB (color) {
   return  average //+ colorful
 }
 
+function bright (c) {
+  //console.log(hexToR(c) + hexToG(c) + hexToB(c))
+  //R * 0.2126 + G * 0.7152 + B * 0.0722
+  return (hexToR(c)*0.2126 + hexToG(c)*0.7152 + hexToB(c)*0.0722)
+}
+
 async function posterize (canvas) {
   if (!canvas)
     canvas = document.getElementById("myCanvas");
@@ -1636,9 +1785,10 @@ async function posterize (canvas) {
   let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
   let threshold = 127 - document.getElementById("speck_opacity").value * 1.27
   let grunge = document.getElementById("grungy").checked
-  let t1 = 255 * 1/4
-  let t2 = 255 * 1/2
-  let t3 = 255 * 3/4
+  let t1 = 255 * 1/5
+  let t2 = 255 * 2/5
+  let t3 = 255 * 3/5
+  let t4 = 255 * 4/5
   let cp = document.getElementById("usepalette").checked
   let colors = []
   if (cp) {
@@ -1646,7 +1796,10 @@ async function posterize (canvas) {
     colors.push(document.getElementById("pal2").value)
     colors.push(document.getElementById("pal3").value)
     colors.push(document.getElementById("pal4").value)
+    colors.push(document.getElementById("pal5").value)
+    console.log(colors)
   } else {
+    colors.push(randomColor())
     colors.push(randomColor())
     colors.push(randomColor())
     colors.push(randomColor())
@@ -1661,27 +1814,33 @@ async function posterize (canvas) {
     //let lightness = (pixels[i] + pixels[i+1] + pixels[i+2])/3;
     if (lightness < t1) {
       c = colors[0]
-      pixels[i] =   hexToR(c)/2
-      pixels[i+1] = hexToG(c)/2
-      pixels[i+2] = hexToB(c)/2
+      pixels[i] =   hexToR(c)
+      pixels[i+1] = hexToG(c)
+      pixels[i+2] = hexToB(c)
     } else
     if (lightness >= t1 && lightness < t2) {
       c = colors[1]
-      pixels[i] =   hexToR(c) * 0.8
-      pixels[i+1] = hexToG(c) * 0.8
-      pixels[i+2] = hexToB(c) * 0.8
+      pixels[i] =   hexToR(c)
+      pixels[i+1] = hexToG(c) 
+      pixels[i+2] = hexToB(c) 
     } else
     if (lightness >= t2 && lightness < t3) {
       c = colors[2]
-      pixels[i] =   Math.max(hexToR(c), (hexToR(c) * 1.2) % 256)
-      pixels[i+1] = Math.max(hexToG(c), (hexToG(c) * 1.2) % 256)
-      pixels[i+2] = Math.max(hexToB(c), (hexToB(c) * 1.2) % 256)
+      pixels[i] =   hexToR(c) 
+      pixels[i+1] = hexToG(c) 
+      pixels[i+2] = hexToB(c)
     } else
-    if (lightness >= t3) {
+    if (lightness >= t3 && lightness < t4) {
       c = colors[3]
-      pixels[i] =   Math.max(hexToR(c), (hexToR(c) * 2) % 256)
-      pixels[i+1] = Math.max(hexToG(c), (hexToG(c) * 2) % 256)
-      pixels[i+2] = Math.max(hexToB(c), (hexToB(c) * 2) % 256)
+      pixels[i] =   hexToR(c) 
+      pixels[i+1] = hexToG(c) 
+      pixels[i+2] = hexToB(c)
+    } else
+    if (lightness >= t4) {
+      c = colors[4]
+      pixels[i] =   hexToR(c) 
+      pixels[i+1] = hexToG(c) 
+      pixels[i+2] = hexToB(c)
     }
   }
   await ctx.putImageData(imgData, 0, 0);
@@ -4128,6 +4287,34 @@ function randomColor() {
   let r = ('0'+(randomFromTo(10,256)).toString(16)).slice(-2),
   g = ('0'+(randomFromTo(10,256)).toString(16)).slice(-2),
   b = ('0'+(randomFromTo(10,256)).toString(16)).slice(-2);
+  return '#' +r+g+b;
+}
+
+function randomColorLight() {
+  let r = ('0'+(randomFromTo(127,256)).toString(16)).slice(-2),
+  g = ('0'+(randomFromTo(127,256)).toString(16)).slice(-2),
+  b = ('0'+(randomFromTo(127,256)).toString(16)).slice(-2);
+  return '#' +r+g+b;
+}
+
+function randomColorVLight() {
+  let r = ('0'+(randomFromTo(192,256)).toString(16)).slice(-2),
+  g = ('0'+(randomFromTo(192,256)).toString(16)).slice(-2),
+  b = ('0'+(randomFromTo(192,256)).toString(16)).slice(-2);
+  return '#' +r+g+b;
+}
+
+function randomColorDark() {
+  let r = ('0'+(randomFromTo(10,128)).toString(16)).slice(-2),
+  g = ('0'+(randomFromTo(10,128)).toString(16)).slice(-2),
+  b = ('0'+(randomFromTo(10,128)).toString(16)).slice(-2);
+  return '#' +r+g+b;
+}
+
+function randomColorVDark() {
+  let r = ('0'+(randomFromTo(10,92)).toString(16)).slice(-2),
+  g = ('0'+(randomFromTo(0,92)).toString(16)).slice(-2),
+  b = ('0'+(randomFromTo(0,92)).toString(16)).slice(-2);
   return '#' +r+g+b;
 }
 
@@ -7888,7 +8075,7 @@ function motionblur () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let alpha = ctx.globalAlpha = document.getElementById("speck_opacity").value
-  let angle = document.getElementById("angle").value
+  let angle = 11//document.getElementById("angle").value
   let step = document.getElementById("speck_size").value
   let stepsize = step
   let grunge = document.getElementById("grungy").checked
@@ -7901,7 +8088,7 @@ function motionblur () {
     maxangle *= -1
   ctx.globalAlpha = document.getElementById("speck_opacity").value/200
   newangle = Math.floor((Math.random()-0.5) * maxangle)
-  document.getElementById("angle").value = newangle
+  //document.getElementById("angle").value = newangle
   nudgeCWorCCW()
   let dir = [5 + (Math.random()-0.5) * stepsize, 5 + (Math.random()-0.5) * stepsize]
   smearrandom(canvas, dir)
@@ -7912,7 +8099,7 @@ function motionblur () {
   dir[0] += pet(23), dir[1] += pet(23)
   smearrandom(canvas, dir)
 
-  document.getElementById("angle").value = angle
+  //document.getElementById("angle").value = angle
   document.getElementById("speck_opacity").value = alpha
 }
 
@@ -7931,22 +8118,18 @@ function nudgeCWorCCW (cc) {
   let w = canvas.width;
   ctx.globalAlpha = (document.getElementById("speck_opacity").value)/100
   ctx.fillStyle = document.getElementById("paintcolor").value
-  let angle = +document.getElementById("angle").value
+  let angle = +document.getElementById("rednumber").value
   angle *= Math.PI/180
   if (cc)
     angle *= -1
   let x = LASTCLICK[0]
   let y = LASTCLICK[1]
-  let word = document.getElementById("caption").value
   ctx.save();
   ctx.translate(x, y);
   ctx.rotate(angle);
   ctx.drawImage(canvas,-x,-y,canvas.width, canvas.height)
   ctx.restore();
-}/*
-function nudgeUp () {
-  nudgeCanvas(true)
-}*/
+}
 
 function nudgeRight () {
   nudgeCanvas(true)
@@ -10655,37 +10838,6 @@ function placeTextAt () {
   }
 }
 
-function placeTextAt_OG () {
-  let canvas = document.getElementById("myCanvas");
-  let ctx = canvas.getContext("2d")
-  let h = canvas.height;
-  let w = canvas.width;
-  ctx.globalAlpha = (document.getElementById("speck_opacity").value)/100
-  ctx.fillStyle = document.getElementById("paintcolor").value
-  let styles = document.getElementById("style").value
-  let faces = document.getElementById("face").value
-  let size = +document.getElementById("textsize").value
-  let angle = +document.getElementById("angle").value
-  
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle'
-  angle = angle%360
-  angle *= Math.PI/180
-  let randomangle = document.getElementById("randomangle").checked
-  if (randomangle)
-    angle += pet(3.14/4)
-  if (!faces || faces.length < 1)
-    return
-  let x = LASTCLICK[0]
-  let y = LASTCLICK[1]
-  let word = document.getElementById("caption").value
-  ctx.save();
-  ctx.translate(x, y);
-  ctx.rotate(angle);
-  ctx.font = (styles)+" "+size+"pt " + (faces)
-  ctx.fillText(word, 0, 0);
-  ctx.restore();
-}
 /*
 function stem (x,y,r, m) {
   this.x = x
