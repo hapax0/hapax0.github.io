@@ -1499,11 +1499,11 @@ function extractPalette () {
   let colors = colorSamplePalette()
   //console.log(colors)
   colors.sort((a, b) => bright(b) - bright(a));
-  if (colors.length > 8) {
+  if (colors.length > 4) {
     let i = 0, x = 0, y = 0
     let canvas = document.getElementById("palettecanvas")
     let ctx = canvas.getContext("2d");
-    ctx.fillStyle = "#404040"
+    ctx.fillStyle = "#808080"
     ctx.fillRect(0,0,canvas.width, canvas.height)
     for (; i < colors.length; i++) {
       ctx.fillStyle = colors[i]
@@ -1515,10 +1515,11 @@ function extractPalette () {
       }
     }
     let sorted = []
+
     sorted.push(colors[colors.length-1])
-    sorted.push(colors[colors.length-3])
-    sorted.push(colors[4])
-    sorted.push(colors[2])
+    sorted.push(colors[colors.length-2])
+    sorted.push(colors[Math.round(colors.length/2)-1])
+    sorted.push(colors[1])
     sorted.push(colors[0])
 
     document.getElementById("pal1").value = sorted[0]
