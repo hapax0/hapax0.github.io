@@ -242,13 +242,11 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:10px;">
           <option value="mono">mono ramp</option>
           <option value="random">random</option>
         </select><br>
-       <input type='color' id='pal1'>
-       <input type='color' id='pal2'>
-       <input type='color' id='pal3'>
-       <input type='color' id='pal4'>
-       <input type='color' id='pal5'><br>
-       <canvas id="palettecanvas" width="240" height="80"></canvas><br>
-       <button id="randompalette" onclick="randomPalette()">New palette</button>&nbsp;<button onclick="extractPalette()">Extract</button><br>
+       <input type='color' id='pal1'><br>
+       <input type='color' id='pal2'><br>
+       <input type='color' id='pal3'><br>
+       <input type='color' id='pal4'><br>
+       <input type='color' id='pal5'>&nbsp;<button id="randompalette" onclick="randomPalette()">New palette</button>&nbsp;<button onclick="extractPalette()">Extract</button><br>
 <!--span style="color:red">touch to place: </span>
      <select id="touchmode">
      <option value="none" selected>nothing</option>
@@ -655,16 +653,16 @@ function randomPalette () {
     document.getElementById("pal5").value = randomColorVLight() //lightest
   } else
   if (type === "random") {
-    document.getElementById("pal1").value = randomColor()
+    document.getElementById("pal1").value = randomColor() 
     document.getElementById("pal2").value = randomColor()
     document.getElementById("pal3").value = randomColor()
-    document.getElementById("pal4").value = randomColor()
+    document.getElementById("pal4").value = randomColor() 
     document.getElementById("pal5").value = randomColor()
   } else
   if (type === "mono") {
     let c = randomColorVDark(), amt = 50
     console.log(c)
-    document.getElementById("pal1").value = c
+    document.getElementById("pal1").value = c  
     document.getElementById("pal2").value = adjustBrightnessC(c, amt)
     document.getElementById("pal3").value = adjustBrightnessC(c, amt*2)
     document.getElementById("pal4").value = adjustBrightnessC(c, amt*3)
@@ -1494,26 +1492,11 @@ function testHW () {// number to divide height by, to match width's divisor
 }
 
 function extractPalette () {
-  if (isCanvasBlank(document.getElementById("myCanvas")))
-    return
   let colors = colorSamplePalette()
   //console.log(colors)
   colors.sort((a, b) => bright(b) - bright(a));
+  //console.log(">>",colors)
   if (colors.length > 8) {
-    let i = 0, x = 0, y = 0
-    let canvas = document.getElementById("palettecanvas")
-    let ctx = canvas.getContext("2d");
-    ctx.fillStyle = "#404040"
-    ctx.fillRect(0,0,canvas.width, canvas.height)
-    for (; i < colors.length; i++) {
-      ctx.fillStyle = colors[i]
-      ctx.fillRect(x,y,40,40)
-      x += 40
-      if (i > 0 && i % 6 === 0) {
-        y += 40
-        x = 0
-      }
-    }
     let sorted = []
     sorted.push(colors[colors.length-1])
     sorted.push(colors[colors.length-3])
@@ -1521,7 +1504,7 @@ function extractPalette () {
     sorted.push(colors[2])
     sorted.push(colors[0])
 
-    document.getElementById("pal1").value = sorted[0]
+    document.getElementById("pal1").value = sorted[0] 
     document.getElementById("pal2").value = sorted[1]
     document.getElementById("pal3").value = sorted[2]
     document.getElementById("pal4").value = sorted[3]
@@ -1838,25 +1821,25 @@ async function posterize (canvas) {
     if (lightness >= t1 && lightness < t2) {
       c = colors[1]
       pixels[i] =   hexToR(c)
-      pixels[i+1] = hexToG(c)
-      pixels[i+2] = hexToB(c)
+      pixels[i+1] = hexToG(c) 
+      pixels[i+2] = hexToB(c) 
     } else
     if (lightness >= t2 && lightness < t3) {
       c = colors[2]
-      pixels[i] =   hexToR(c)
-      pixels[i+1] = hexToG(c)
+      pixels[i] =   hexToR(c) 
+      pixels[i+1] = hexToG(c) 
       pixels[i+2] = hexToB(c)
     } else
     if (lightness >= t3 && lightness < t4) {
       c = colors[3]
-      pixels[i] =   hexToR(c)
-      pixels[i+1] = hexToG(c)
+      pixels[i] =   hexToR(c) 
+      pixels[i+1] = hexToG(c) 
       pixels[i+2] = hexToB(c)
     } else
     if (lightness >= t4) {
       c = colors[4]
-      pixels[i] =   hexToR(c)
-      pixels[i+1] = hexToG(c)
+      pixels[i] =   hexToR(c) 
+      pixels[i+1] = hexToG(c) 
       pixels[i+2] = hexToB(c)
     }
   }
