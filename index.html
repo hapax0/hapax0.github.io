@@ -36,6 +36,9 @@
     display:inline-block;
     vertical-align: baseline;
   }
+  canvas[id='palettecanvas']{
+    margin:8px;
+  }
   div[id='background'] {
     background-color: #ffffff;
     opacity: 0.8;
@@ -249,70 +252,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:10px;">
        <input type='color' id='pal5'><br>
        <canvas id="palettecanvas" width="240" height="80"></canvas><br>
        <button id="randompalette" onclick="randomPalette()">New palette</button>&nbsp;<button onclick="extractPalette()">Extract</button><br>
-<!--span style="color:red">touch to place: </span>
-     <select id="touchmode">
-     <option value="none" selected>nothing</option>
-       <option
-value="text">text</option>
-       <option value="dot">dot</option>
-<option value="bokeh">bokeh</option>
-       <option
-value="square">square</option>
-     </select>
-     <br>
-     size:
-&nbsp;<input type="range" id="textsize" style="width:8em;" min='5' max='500'
-value="100" onchange="updatetxtsize()"><span id="txtsize">100</span><br>
-text: &nbsp;<textarea id="caption" value="your text here" style="width:10em;"
-row="2" cols="36">Call me Ishmael. Some years ago—never mind how long
-precisely—having little or no money in my purse, and nothing particular to
-interest me on shore, I thought I would sail about a little and see the watery
-part of the world.</textarea><input type='button' value='X'
-onclick="clearCaption()" title="clear the text"><br>
-     font: <input list='facelist' id="face"
-style="width:10em;"><input type='button' value='X'
-onclick="clearFace()" title="clear the face field">&nbsp;
-     <datalist
-id="facelist">
-       <option value="arial">arial</option>
-       <option
-value="bookman">bookman</option>
-       <option
-value="calibri">calibri</option>
-       <option value="century gothic">century
-gothic</option>
-       <option value="courier new">courier new</option>
-<option value="garamond">garamond</option>
-       <option
-value="georgia">georgia</option>
-       <option
-value="palatino">palatino</option>
-       <option
-value="tahoma">tahoma</option>
-       <option value="times new roman">times
-new roman</option>
-       <option value="monospace">monospace</option>
-<option value="sans-serif">sans-serif</option>
-       <option
-value="serif">serif</option>
-       <option value="cursive">cursive</option>
-   </datalist><br>weight:
-     <select id="style">
-       <option
-value="normal">normal</option>
-       <option value="100">100</option>
-<option value="500">500</option>
-       <option value="900">900</option>
- <option value="bold">bold</option>
-       <option value="bold italic">bold
-italic</option>
-       <option value= "italic">italic</option>
-       <option
-value="lighter">lighter</option>
-     </select>
-     <br>angle: <input
-type="number" id="angle" value="0" style="width:4em;"
->&nbsp;&nbsp;&#177;45&#176;:<input type="checkbox" id="randomangle"-->
+
 </div>
   </td>
 </tr>
@@ -571,7 +511,7 @@ window.onload = function () {
   resizeCanvas()
   LASTCLICK[0] = myCanvas.width/2
   LASTCLICK[1] = myCanvas.height/2
-  /*
+  
   myCanvas.addEventListener('click', function(event) {
     var rect = myCanvas.getBoundingClientRect();
     var x = event.clientX - rect.left;
@@ -580,19 +520,7 @@ window.onload = function () {
     LASTCLICK.push(x)
     LASTCLICK.push(y)
     syncMarker()
-    let tmode = document.getElementById("touchmode").value
-    if (tmode == "text")
-      placeTextAt()
-    else
-    if (tmode == "dot")
-      placeDotAt()
-    else
-    if (tmode == "bokeh")
-      placeBokehAt()
-    else
-    if (tmode == "square")
-      placeSquareAt()
-}, false);*/
+}, false);
 let marker = document.getElementById("marker")
 marker.addEventListener('click', function(event) {
     let rect = marker.getBoundingClientRect();
@@ -1536,13 +1464,13 @@ function colorSamplePalette () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
-  //saturationScale(1.1)
+  let alt = document.getElementById("grungy").checked
   let mind = 1000000
   let maxd = -1000000
   let pixels = imgData.data;
   let sample = []
   let i = 0, j = 0
-  for (; i < 2000; i++) {
+  for (; i < 3000; i++) {
     let n = 4 * Math.floor(Math.random() * pixels.length/4)
     let c = []
     c.push(pixels[n])
@@ -1559,7 +1487,8 @@ function colorSamplePalette () {
       maxd = (maxd < m)? m: maxd
     }
   }
-  let threshold = m/sample.length/sample.length * 0.8
+  let threshold = m/sample.length/sample.length
+
   let bins = [], bc = 0
   i = 0
   for (;i < sample.length; i++) {
@@ -1575,8 +1504,10 @@ function colorSamplePalette () {
       }
     }
   }
-  bins.sort(function(a, b) { return b.length - a.length;});
-  //bins.sort(function(a, b) { return interesting(b[0]) - interesting(a[0]);});
+  if (alt)
+    bins.sort(function(a, b) { return interesting(b[0]) - interesting(a[0]);});
+  else
+    bins.sort(function(a, b) { return b.length - a.length;});
   let count = bins.length;
   if (count > 12)
     count = 12
