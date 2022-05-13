@@ -244,6 +244,13 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:10px;">
           <option value="ramp">mixed ramp</option>
           <option value="mono">mono ramp</option>
           <option value="random">random</option>
+          <option value="rust">rust</option>
+          <option value="stary">stary night</option>
+          <option value="scream">the scream</option>
+          <option value="nighthawks">nighthawks</option>
+          <option value="venus">venus</option>
+          <option value="marilyn">marilyn</option>
+          <option value="earring">girl with pearl earring</option>
         </select><br>
        <input type='color' id='pal1'>
        <input type='color' id='pal2'>
@@ -251,7 +258,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:10px;">
        <input type='color' id='pal4'>
        <input type='color' id='pal5'><br>
        <canvas id="palettecanvas" width="240" height="80"></canvas><br>
-       <button id="randompalette" onclick="randomPalette()">New palette</button>&nbsp;<button onclick="extractPalette()">Extract</button><br>
+       <button id="randompalette" onclick="randomPalette()">Load palette</button>&nbsp;<button onclick="extractPalette()">Extract</button><br>
 
 </div>
   </td>
@@ -574,6 +581,7 @@ function adjustBrightnessC (col, amt) {
 }
 
 function randomPalette () {
+  let a = [], b = []
   let type = document.getElementById("palettechoice").value
   if (type === "ramp") {
     document.getElementById("pal1").value = randomColorVDark() //darkest
@@ -591,12 +599,81 @@ function randomPalette () {
   } else
   if (type === "mono") {
     let c = randomColorVDark(), amt = 50
-    console.log(c)
     document.getElementById("pal1").value = c
     document.getElementById("pal2").value = adjustBrightnessC(c, amt)
     document.getElementById("pal3").value = adjustBrightnessC(c, amt*2)
     document.getElementById("pal4").value = adjustBrightnessC(c, amt*3)
     document.getElementById("pal5").value = adjustBrightnessC(c, amt*3)
+  } else
+  if (type === "stary"){
+    a = ['#030407', '#191e21', '#968824', '#aab8b3', '#d8d9be']
+    b = ['#d8d9be', '#aab8b3', '#c3ac2e', '#a7ab75', '#7c919d', '#968824', '#60695e', '#4c6896', '#4f592f', '#29395d', '#191e21', '#030407']
+    document.getElementById("pal1").value = a[0]
+    document.getElementById("pal2").value = a[1]
+    document.getElementById("pal3").value = a[2]
+    document.getElementById("pal4").value = a[3]
+    document.getElementById("pal5").value = a[4]
+    updateExtraColors(b)
+  } else
+  if (type === "rust"){
+    a = ['#120402', '#482519', '#837a4e', '#c0ab7c', '#f2efec']
+    b = ['#120402', '#482519', '#837a4e', '#c0ab7c', '#f2efec']
+    document.getElementById("pal1").value = a[0]
+    document.getElementById("pal2").value = a[1]
+    document.getElementById("pal3").value = a[2]
+    document.getElementById("pal4").value = a[3]
+    document.getElementById("pal5").value = a[4]
+    updateExtraColors(b)
+  } else
+  if (type === "scream"){
+    a = ['#08120b', '#30362c', '#5b807f', '#f49f58', '#d9ba81']
+    b = ['#d9ba81', '#f49f58', '#ce8d52', '#df7b37', '#907b58', '#5b807f', '#a6693d', '#c2551e', '#4c6462', '#6c593f', '#30362c', '#08120b']
+    document.getElementById("pal1").value = a[0]
+    document.getElementById("pal2").value = a[1]
+    document.getElementById("pal3").value = a[2]
+    document.getElementById("pal4").value = a[3]
+    document.getElementById("pal5").value = a[4]
+    updateExtraColors(b)
+  } else
+  if (type === "nighthawks") {
+    a = ['#212927', '#522a1b', '#246c59', '#babe74', '#e5e08b']
+    b = ['#e5e08b', '#babe74', '#608a6e', '#af7221', '#6c6c3d', '#246c59', '#046943', '#415043', '#753b21', '#6e2f19', '#522a1b', '#212927']
+    document.getElementById("pal1").value = a[0]
+    document.getElementById("pal2").value = a[1]
+    document.getElementById("pal3").value = a[2]
+    document.getElementById("pal4").value = a[3]
+    document.getElementById("pal5").value = a[4]
+    updateExtraColors(b)
+  } else
+  if (type === "venus") {
+    a = ['#2b2920', '#4f3a2d', '#889682', '#d6d7c5', '#f5fbf8']
+    b = ['#f5fbf8', '#d6d7c5', '#f4b770', '#a2bebf', '#bca67f', '#889682', '#bd7a38', '#6f5b3d', '#6c3510', '#4f3a2d', '#2b2920']
+    document.getElementById("pal1").value = a[0]
+    document.getElementById("pal2").value = a[1]
+    document.getElementById("pal3").value = a[2]
+    document.getElementById("pal4").value = a[3]
+    document.getElementById("pal5").value = a[4]
+    updateExtraColors(b)
+  } else
+  if (type === "marilyn") {
+    a = ['#372e24', '#a62f1f', '#55a294', '#8dc7bf', '#d3cec3']
+    b = ['#d3cec3', '#8dc7bf', '#dcb238', '#e68e95', '#b89631', '#55a294', '#9c756f', '#856b37', '#4e6860', '#cd3524', '#a62f1f', '#372e24']
+    document.getElementById("pal1").value = a[0]
+    document.getElementById("pal2").value = a[1]
+    document.getElementById("pal3").value = a[2]
+    document.getElementById("pal4").value = a[3]
+    document.getElementById("pal5").value = a[4]
+    updateExtraColors(b)
+  }else
+  if (type === "earring") {
+    a = ['#151518', '#232b4b', '#808aaf', '#e6cf94', '#eee6d9']
+    b = ['#eee6d9', '#e6cf94', '#cab292', '#a1aac8', '#a88e60', '#808aaf', '#666e8f', '#7f6c4e', '#484d67', '#493f39', '#232b4b', '#151518']
+    document.getElementById("pal1").value = a[0]
+    document.getElementById("pal2").value = a[1]
+    document.getElementById("pal3").value = a[2]
+    document.getElementById("pal4").value = a[3]
+    document.getElementById("pal5").value = a[4]
+    updateExtraColors(b)
   }
 }
 
@@ -1421,6 +1498,26 @@ function testHW () {// number to divide height by, to match width's divisor
   ctx.drawImage(temp, 0, 0, w, h, 9*w, 9*h, w, h)
 }
 
+function updateExtraColors (colors) {
+  if (colors.length >= 3) {
+    let i = 0, x = 0, y = 0
+    let canvas = document.getElementById("palettecanvas")
+    let ctx = canvas.getContext("2d");
+    ctx.fillStyle = "#a0a0a0"
+    ctx.fillRect(0,0,canvas.width, canvas.height)
+    for (; i < colors.length; i++) {
+      ctx.fillStyle = colors[i]
+      ctx.fillRect(x,y,40,40)
+      x += 40
+      if (i > 0 && i % 6 === 0) {
+        y += 40
+        x = 0
+      }
+    }
+  }
+}
+
+
 function extractPalette () {
   if (isCanvasBlank(document.getElementById("myCanvas")))
     return
@@ -1450,7 +1547,7 @@ function extractPalette () {
     sorted.push(colors[Math.round(colors.length/2)-1])
     sorted.push(colors[1])
     sorted.push(colors[0])
-
+console.log(sorted, colors)
     document.getElementById("pal1").value = sorted[0]
     document.getElementById("pal2").value = sorted[1]
     document.getElementById("pal3").value = sorted[2]
@@ -11101,7 +11198,7 @@ async function fadeDown () {
     LASTCLICK[1] = canvas.height/2
   let spread = Math.floor(1 + document.getElementById("number").value/2000)
   // tie spread to canvas.height?
-  let touchy = LASTCLICK[1] - canvas.height/5000*spread
+  let touchy = LASTCLICK[1] //- canvas.height/5000*spread
   let w = canvas.width, h = canvas.height
   let maxdist = touchy
   let lh = rangecheck()
@@ -11135,10 +11232,11 @@ function downFade () {
   rcc()
 }
 
-function leftFade () {
+
+function leftFadeOG () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
-  let cx = ctx.canvas.width/2 + pet(150)
+  let cx = LASTCLICK[0]//ctx.canvas.width/2 + pet(150)
   let cy = ctx.canvas.height/2 + pet(150)
   let rightx = canvas.width
   let lh = rangecheck()
@@ -11163,6 +11261,15 @@ function leftFade () {
     }
   }
   ctx.putImageData(data, 0, 0);
+}
+
+function leftFade () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let cx = LASTCLICK[0]//ctx.canvas.width/2 + pet(150)
+  console.log(cx)
+  transparenter(0,0,cx,canvas.height)
+  
 }
 
 
@@ -11621,11 +11728,21 @@ function updateDist () {
     el.innerHTML = "square"
 }
 
-function transparenter () {
+function transparenter (x,y,w,h) {
+  console.log(x)
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
+  let imageData = null
+  if (!w)
+    imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
+  else {
+    console.log(x,y,w,h)
+  
+    imgData = ctx.getImageData(x,y,w,h);
+  }
   let pixels = imgData.data;
+  
+  console.log(pixels.length)
   let lh = rangecheck()
   let lowest = lh[0], highest = lh[1]
   let i = 0, brightness = 0
