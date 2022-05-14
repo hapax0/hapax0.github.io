@@ -368,11 +368,11 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:10px;">
     <option value="haze">haze</option>
     <option value="transparenter">fade all</option>
     <option value="opaqueer">unfade all</option>
-    <option value="leftFade">fade left</option>
-    <option value="downFade">fade dowm</option>
+    <option value="fr">fade right</option>
+    <option value="fd" selected>fade dowm</option>
     <option value="chaze">edge haze</option>
     <option value="pop">pop</option>
-    <option value="adjustExposure" selected>enhance exposure</option>
+    <option value="adjustExposure">enhance exposure</option>
     <option value="tint">tint</option>
     <option value="rotateBrightness">shift colors</option>
     </select>
@@ -11189,6 +11189,64 @@ function fade () {
     }
   }
   ctx.putImageData(data, 0, 0);
+}
+
+async function fr () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  if (LASTCLICK[0] > canvas.width)
+    LASTCLICK[0] = canvas.width/2
+  let touch = Math.floor(LASTCLICK[0]) //- canvas.height/5000*spread
+  let w = canvas.width, h = canvas.height
+  let maxdist = canvas.width - touch
+  let d = 0
+  let data = ctx.getImageData(0,0,canvas.width,canvas.height)
+  let i = 0, x = 0, y = 0
+  let len = w * h
+  for (;i < len; i++) {
+    x = i % w
+    if (i > 0 && i % w === 0) {
+      x = 0
+      y += 1
+    }
+    if (x > touch) {
+      d = (x-touch)
+      let px = data.data.slice(i*4, i*4+4)
+      px[3] -= px[3] * d/maxdist
+      data.data.set(px, i*4)
+    }
+  }
+  await ctx.putImageData(data, 0, 0);
+  return true
+}
+
+async function fd () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  if (LASTCLICK[1] > canvas.height)
+    LASTCLICK[1] = canvas.height/2
+  let touch = Math.floor(LASTCLICK[1]) //- canvas.height/5000*spread
+  let w = canvas.width, h = canvas.height
+  let maxdist = canvas.height - touch
+  let d = 0
+  let data = ctx.getImageData(0,0,canvas.width,canvas.height)
+  let i = 0, x = 0, y = 0
+  let len = w * h
+  for (;i < len; i++) {
+    x = i % w
+    if (i > 0 && i % w === 0) {
+      x = 0
+      y += 1
+    }
+    if (y > touch) {
+      d = (y-touch)
+      let px = data.data.slice(i*4, i*4+4)
+      px[3] -= px[3] * d/maxdist
+      data.data.set(px, i*4)
+    }
+  }
+  await ctx.putImageData(data, 0, 0);
+  return true
 }
 
 async function fadeDown () {
