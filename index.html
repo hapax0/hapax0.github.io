@@ -589,6 +589,7 @@ function randomPalette () {
     document.getElementById("pal3").value = randomColorLight()
     document.getElementById("pal4").value = randomColorLight()
     document.getElementById("pal5").value = randomColorVLight() //lightest
+    updateExtraColors(b)
   } else
   if (type === "random") {
     document.getElementById("pal1").value = randomColor()
@@ -596,6 +597,7 @@ function randomPalette () {
     document.getElementById("pal3").value = randomColor()
     document.getElementById("pal4").value = randomColor()
     document.getElementById("pal5").value = randomColor()
+    updateExtraColors(b)
   } else
   if (type === "mono") {
     let c = randomColorVDark(), amt = 50
@@ -604,6 +606,7 @@ function randomPalette () {
     document.getElementById("pal3").value = adjustBrightnessC(c, amt*2)
     document.getElementById("pal4").value = adjustBrightnessC(c, amt*3)
     document.getElementById("pal5").value = adjustBrightnessC(c, amt*3)
+    updateExtraColors(b)
   } else
   if (type === "stary"){
     a = ['#030407', '#191e21', '#968824', '#aab8b3', '#d8d9be']
@@ -1499,20 +1502,18 @@ function testHW () {// number to divide height by, to match width's divisor
 }
 
 function updateExtraColors (colors) {
-  if (colors.length >= 3) {
-    let i = 0, x = 0, y = 0
-    let canvas = document.getElementById("palettecanvas")
-    let ctx = canvas.getContext("2d");
-    ctx.fillStyle = "#a0a0a0"
-    ctx.fillRect(0,0,canvas.width, canvas.height)
-    for (; i < colors.length; i++) {
-      ctx.fillStyle = colors[i]
-      ctx.fillRect(x,y,40,40)
-      x += 40
-      if (i > 0 && i % 6 === 0) {
-        y += 40
-        x = 0
-      }
+  let i = 0, x = 0, y = 0
+  let canvas = document.getElementById("palettecanvas")
+  let ctx = canvas.getContext("2d");
+  ctx.fillStyle = "#a0a0a0"
+  ctx.fillRect(0,0,canvas.width, canvas.height)
+  for (; i < colors.length; i++) {
+    ctx.fillStyle = colors[i]
+    ctx.fillRect(x,y,40,40)
+    x += 40
+    if (i > 0 && i % 6 === 0) {
+      y += 40
+      x = 0
     }
   }
 }
@@ -1525,7 +1526,7 @@ function extractPalette () {
   //console.log(colors)
   colors.sort((a, b) => bright(b) - bright(a));
   //alert (colors.length, colors)
-  if (colors.length >= 4) {
+  if (colors.length >= 1) {
     let i = 0, x = 0, y = 0
     let canvas = document.getElementById("palettecanvas")
     let ctx = canvas.getContext("2d");
@@ -1547,7 +1548,7 @@ function extractPalette () {
     sorted.push(colors[Math.round(colors.length/2)-1])
     sorted.push(colors[1])
     sorted.push(colors[0])
-console.log(sorted, colors)
+
     document.getElementById("pal1").value = sorted[0]
     document.getElementById("pal2").value = sorted[1]
     document.getElementById("pal3").value = sorted[2]
