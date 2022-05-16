@@ -296,7 +296,9 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:10px;">
       <option value="nudgeCW">nudge angle</option>
       <option value="mirror">mirror &varr;</option>
       <option value="distortion">fisheye</option>
-      <option value="ripinhalf" selected>rip in half</option>
+      <option value="ripinhalf">rip in half</option>
+      <option value="duplicate" selected>duplicate</option>
+
       <option value="fourbyfourplain">4x4</option>
       <option value="fourbyfour">warhol</option>
       <!--option value="smear">smear shake</option-->
@@ -8187,6 +8189,21 @@ function ripinhalf () {
     ctx.drawImage(top, 0, 0)
     ctx.drawImage(bottom,0,0)
   }
+}
+
+function duplicate () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let top = document.createElement('CANVAS')
+  top.width = canvas.width, top.height = canvas.height
+  let topctx = top.getContext("2d")
+  ctx.clearRect(0,0,canvas.width, canvas.height/4)
+  ctx.clearRect(0,Math.round(canvas.height * 0.75) ,canvas.width, canvas.height)
+  topctx.drawImage(canvas,0,0)//, bottom.width, bottom.height/2, 0, 0, canvas.width, canvas.height/2)
+  haze
+  ctx.clearRect(0,0,canvas.width,canvas.height)
+  ctx.drawImage(top, 0, canvas.height/4)
+  ctx.drawImage(top, 0, -canvas.height/4)
 }
 
 function nudgeCW () {
