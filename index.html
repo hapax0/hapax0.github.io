@@ -37,7 +37,7 @@
     vertical-align: baseline;
   }
   canvas[id='palettecanvas']{
-    margin:8px;
+    margin:4px;
   }
   div[id='background'] {
     background-color: #ffffff;
@@ -242,7 +242,7 @@ value="100" onchange="rangecheck()"> <span class='sample' id='lowsample' style="
        upper: <input type="range" id="upper" style="width:8em;" min='0' max='100'
 value="100" onchange="rangecheck()"> <span class='sample' id='highsample' style="background-color:#fff;">&nbsp;</span> <span id="upperrange">100</span> %<br>
      <div
-style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:10px;">
+style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
         Use palette: <input type='checkbox' id='usepalette' checked>
         <select id="palettechoice">
           <option value="ramp">mixed ramp</option>
@@ -8111,7 +8111,7 @@ function motionblur () {
   ctx.globalAlpha = document.getElementById("opacity").value/200
   newangle = Math.floor((Math.random()-0.5) * maxangle)
   //document.getElementById("angle").value = newangle
-  nudgeCWorCCW()
+  nudgeCWorCCW((Math.random() > 0.5))
   let dir = [5 + (Math.random()-0.5) * stepsize, 5 + (Math.random()-0.5) * stepsize]
   smearrandom(canvas, dir)
   dir[0] += pet(23), dir[1] += pet(23)
@@ -8176,6 +8176,10 @@ function duplicate () {
 }
 
 function afold () {
+  if (document.getElementById("grungy").checked) {
+    dfold()
+    return
+  }
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let alpha = document.getElementById("opacity").value
@@ -8185,6 +8189,31 @@ function afold () {
   ctx.fillRect(0,0,canvas.width, canvas.height/2)
   ctx.fillStyle = randomGradient(canvas, "#000000")
   ctx.fillRect(0,canvas.height/2,canvas.width, canvas.height)
+  ctx.globalAlpha = alpha/100
+}
+
+function dfold () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let alpha = document.getElementById("opacity").value
+ // ctx.clearRect(0,0,canvas.width, canvas.height/2)
+  ctx.fillStyle = randomGradient(canvas, "#ffffff")
+  ctx.globalAlpha = 0.2
+  ctx.beginPath()
+  ctx.moveTo(0,0)
+  ctx.lineTo(canvas.width,canvas.height)
+  ctx.lineTo(0,canvas.height)
+  ctx.closePath()
+  ctx.fill()
+  
+  ctx.fillStyle = randomGradient(canvas, "#000000")
+  ctx.beginPath()
+  ctx.moveTo(0,0)
+  ctx.lineTo(canvas.width,canvas.height)
+  ctx.lineTo(canvas.width,0)
+  ctx.closePath()
+  ctx.fill()
+  
   ctx.globalAlpha = alpha/100
 }
 
