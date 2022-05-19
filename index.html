@@ -3649,17 +3649,30 @@ async function invertColors (canvas) {
 function lightleak () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
-  ctx.fillStyle = randomGradient(canvas, randomColorLight())
+  let off = document.createElement('CANVAS')
+  off.width = canvas.width, off.height = canvas.height
+  let offctx = off.getContext("2d")
+  let alpha = document.getElementById("opacity").value
+  offctx.fillStyle = randomGradient(canvas, randomColorLight())
   let cw = canvas.width, ch  = canvas.height
   let x = cw*Math.random()
-  ctx.globalAlpha = 0.05
-  ellipseFill(ctx, x, canvas.width*Math.random(), 50*Math.random(), canvas.height)
-  ctx.fillStyle = randomGradient(canvas, randomColorLight())
-  ellipseFill(ctx, x+pet(21), canvas.width*Math.random(), 150*Math.random(), 1200*Math.random())
-  ctx.fillStyle = randomGradient(canvas, randomColorLight())
-  ellipseFill(ctx, x+pet(21), canvas.width*Math.random(), 150*Math.random(), canvas.height)
-  ctx.fillStyle = randomGradient(canvas, randomColorLight())
-  ellipseFill(ctx, x+pet(21), canvas.width*Math.random(), 150*Math.random(), canvas.height/2)
+  offctx.globalAlpha = 0.05
+  ellipseFill(offctx, x, canvas.width*Math.random(), 50*Math.random(), canvas.height)
+  offctx.fillStyle = randomGradient(canvas, randomColorLight())
+  ellipseFill(offctx, x+pet(21), canvas.width*Math.random(), 150*Math.random(), 1200*Math.random())
+  offctx.fillStyle = randomGradient(canvas, randomColorLight())
+  ellipseFill(offctx, x+pet(21), canvas.width*Math.random(), 150*Math.random(), canvas.height)
+  offctx.fillStyle = randomGradient(canvas, randomColorLight())
+  ellipseFill(offctx, x+pet(21), canvas.width*Math.random(), 150*Math.random(), canvas.height)
+  document.getElementById("rednumber").value = 2
+  document.getElementById("opacity").value = 9
+  motionblur(off)
+  motionblur(off)
+  motionblur(off)
+
+  ctx.drawImage(off,0+pet(21),0+pet(21),canvas.width, canvas.height)
+  document.getElementById("opacity").value = alpha
+
 }
 
 function ellipseFill (ctx, x, y, rx, ry) {
@@ -8192,8 +8205,9 @@ function destinationOver () {
   return true
 }
 
-function motionblur () {
-  let canvas = document.getElementById("myCanvas");
+function motionblur (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let alpha = ctx.globalAlpha = document.getElementById("opacity").value
   let angle = 11//document.getElementById("angle").value
@@ -8210,7 +8224,7 @@ function motionblur () {
   ctx.globalAlpha = document.getElementById("opacity").value/200
   newangle = Math.floor((Math.random()-0.5) * maxangle)
   //document.getElementById("angle").value = newangle
-  nudgeCWorCCW((Math.random() > 0.5))
+  nudgeCWorCCW((Math.random() > 0.5), canvas)
   let dir = [5 + (Math.random()-0.5) * stepsize, 5 + (Math.random()-0.5) * stepsize]
   smearrandom(canvas, dir)
   dir[0] += pet(23), dir[1] += pet(23)
@@ -8324,8 +8338,9 @@ function nudgeCCW () {
   nudgeCWorCCW(true)
 }
 
-function nudgeCWorCCW (cc) {
-  let canvas = document.getElementById("myCanvas");
+function nudgeCWorCCW (cc, canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let h = canvas.height;
   let w = canvas.width;
