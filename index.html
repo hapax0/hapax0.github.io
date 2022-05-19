@@ -369,6 +369,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="fr">fade right</option>
     <option value="fd">fade dowm</option>
     <option value="chaze">edge haze</option>
+    <option value="lightleak">light leak</option>
     <option value="pop">pop</option>
     <option value="adjustExposure" selected>enhance exposure</option>
     <option value="tint">tint</option>
@@ -3644,6 +3645,52 @@ async function invertColors (canvas) {
   await ctx.putImageData(imgData, 0, 0)
   return true
 }
+
+function lightleak () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  ctx.fillStyle = randomGradient(canvas, randomColorLight())
+  let cw = canvas.width, ch  = canvas.height
+  let x = cw*Math.random()
+  ctx.globalAlpha = 0.05
+  ellipseFill(ctx, x, canvas.width*Math.random(), 50*Math.random(), canvas.height)
+  ctx.fillStyle = randomGradient(canvas, randomColorLight())
+  ellipseFill(ctx, x+pet(21), canvas.width*Math.random(), 150*Math.random(), 1200*Math.random())
+  ctx.fillStyle = randomGradient(canvas, randomColorLight())
+  ellipseFill(ctx, x+pet(21), canvas.width*Math.random(), 150*Math.random(), canvas.height)
+  ctx.fillStyle = randomGradient(canvas, randomColorLight())
+  ellipseFill(ctx, x+pet(21), canvas.width*Math.random(), 150*Math.random(), canvas.height/2)
+}
+
+function ellipseFill (ctx, x, y, rx, ry) {
+  ry*=4/3;
+  var p1_x=x-rx, p1_y=y,
+      p2_x=x+rx, p2_y=y,
+      cp1_x, cp1_y,
+      cp2_x, cp2_y,
+      cp3_x, cp3_y,
+      cp4_x, cp4_y,
+      p1n_x, p1n_y, dx, dy;
+  //
+  {
+      cp1_x=p1_x;
+      cp1_y=p1_y-ry;
+      cp4_x=p1_x;
+      cp4_y=p1_y+ry;
+      //
+      cp2_x=p2_x;
+      cp2_y=p2_y-ry;
+      cp3_x=p2_x;
+      cp3_y=p2_y+ry;
+  }
+  ctx.beginPath()
+  ctx.moveTo(p1_x, p1_y);
+  ctx.bezierCurveTo(cp1_x, cp1_y, cp2_x, cp2_y, p2_x, p2_y);
+  ctx.bezierCurveTo(cp3_x, cp3_y, cp4_x, cp4_y, p1_x, p1_y);
+  ctx.closePath()
+  ctx.fill()
+}
+
 
 function ellipse1 (ctx, x, y, rx, ry, rot) {
   ry*=4/3;
