@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+f<!DOCTYPE html>
 <html>
 <head>
 <style>
@@ -272,6 +272,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
       <option value="square">square</option>
       <option value="portrait">portrait</option>
       <option value="landscape">landscape</option>
+      <option value="instax">instax mini</option>
     </select> &nbsp;<span id="redspan" style="color:red;">cut </span><input type="number" step="1" id="rednumber" style="color:red;" onchange="pushMarker()">
     <!--input type="range" id="canvas_size" class="range" min="1" max="5" value="5" onchange="resizeCanvas()"-->
   </td><td style="text-align:right;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-camera" viewBox="0 0 16 16">
@@ -455,13 +456,14 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="alphaWhite">filter light</option>
     <option value="alphaBlack">filter dark</option>
     <option value="filterGrays">filter grays</option>
-    <option value="filterRed">filter red</option>
+    <!--option value="filterRed">filter red</option>
     <option value="filterGreen">filter green</option>
-    <option value="filterBlue">filter blue</option>
+    <option value="filterBlue">filter blue</option-->
     <option value="highContrast">high contrast</option>
     <option value="threshold">threshold</option>
     <option value="threshold_soft">threshold soft</option>
-    <option value="posterize" selected>posterize</option>
+    <option value="posterize" >posterize</option>
+    <option value="palettetint" selected>palette tint</option>
     <option value="colorSample">simplify colors</option>
     <option value="cymk">CYMK</option>
     <option value="stipple">stipple</option>
@@ -1806,6 +1808,43 @@ function bright (c) { //-ness
   return (hexToR(c)*0.2126 + hexToG(c)*0.7152 + hexToB(c)*0.0722)
 }
 
+async function palettetint (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let grunge = document.getElementById("grungy").checked
+  let cp = document.getElementById("usepalette").checked
+  let colors = []
+  if (cp) {
+    colors.push(document.getElementById("pal1").value)
+    colors.push(document.getElementById("pal2").value)
+    colors.push(document.getElementById("pal3").value)
+    colors.push(document.getElementById("pal4").value)
+    colors.push(document.getElementById("pal5").value)
+   // console.log(colors)
+  } else {
+    colors.push(randomColor())
+    colors.push(randomColor())
+    colors.push(randomColor())
+    colors.push(randomColor())
+    colors.push(randomColor())
+  }
+  document.getElementById("lower").value = 100
+  document.getElementById("upper").value = 20
+  let level = 20
+  let i = 0
+  for (; i < colors.length; i++) {
+    document.getElementById("paintcolor").value = colors[i]
+    tint()
+    document.getElementById("lower").value -= +level
+    document.getElementById("upper").value = level * (i+2)
+  }
+  document.getElementById("lower").value = 100
+  document.getElementById("upper").value = 100
+  rangecheck()
+  return true
+}
+
 async function posterize (canvas) {
   if (!canvas)
     canvas = document.getElementById("myCanvas");
@@ -1999,14 +2038,23 @@ async function drawSome (ctx,can,x,y,W,H) {
   return true
 }
 
+function shrinkBlur () {
+  zoom_neg()
+  zoom_neg()
+  zoom_neg()
+  zoom()
+  zoom()
+  zoom()
+}
+
 function distortion () {
   let canvas = document.getElementById("myCanvas")
+  let alt = document.getElementById("grungy").checkd
   let ctx = canvas.getContext("2d")
   let cx = LASTCLICK[0]// canvas.width/2,
       cy = LASTCLICK[1]//canvas.height/2,
       sizew = canvas.width,
       sizeh = canvas.height
-      //zoom = 1.1;
   let imgData = ctx.getImageData(0, 0, sizew, sizeh);
       pixels = imgData.data,
       pixelsCopy = [], index = 0, h = sizeh, w = sizew;
@@ -2025,6 +2073,10 @@ function distortion () {
       pixels[index + 2] = result[i][2];
       pixels[index + 3] = result[i][3];
     }
+  }
+  if (alt) {
+    ctx.fillStyle = document.getElementById("paintcolor").value
+    ctx.fillRect(0,0,sizew, sizeh)
   }
   ctx.putImageData(imgData, 0, 0);
 }
@@ -9092,8 +9144,8 @@ function zoom () {
   ocanvas.height = canvas.height
   ocanvas.width = canvas.width
   octx.drawImage(canvas, 0, 0)
-  canvas.width *= 1.2
-  canvas.height *= 1.2
+  canvas.width = Math.round(canvas.width * 1.2)
+  canvas.height = Math.round(canvas.height * 1.2)
   syncBackground(canvas)
   ctx.drawImage(ocanvas,0,0,canvas.width,canvas.height)
   octx.clearRect(0,0,ocanvas.width,ocanvas.height)
@@ -9114,8 +9166,8 @@ function zoom_neg () {
   ocanvas.height = canvas.height
   ocanvas.width = canvas.width
   octx.drawImage(canvas, 0, 0)
-  canvas.width /= 1.2
-  canvas.height /= 1.2
+  canvas.width = Math.round(canvas.width / 1.2)
+  canvas.height = Math.round(canvas.height / 1.2)
   syncBackground(canvas)
   ctx.drawImage(ocanvas,0,0,canvas.width,canvas.height)
   octx.clearRect(0,0,ocanvas.width,ocanvas.height)
@@ -11394,13 +11446,17 @@ function leftFade () {
   let cx = LASTCLICK[0]//ctx.canvas.width/2 + pet(150)
   console.log(cx)
   transparenter(0,0,cx,canvas.height)
-  
 }
-
 
 function pop () {
   saturationScale(1.5)
   contrastImage(15)
+  //sharpenCanvas()
+}
+
+function pale () {
+  saturationScale(0.75)
+  contrastImage(-15)
   //sharpenCanvas()
 }
 
@@ -11806,6 +11862,11 @@ function resizeCanvas () {
   if (selection == "landscape") {
     canvas.width = 1080
     canvas.height = 608
+  } else
+  if (selection == "instax") {
+    canvas.width = 344
+    canvas.height = 550
+    // inset frame
   }
   syncBackground(canvas)
   document.getElementById("canvaswidth").value = canvas.width
@@ -11866,8 +11927,7 @@ function transparenter (x,y,w,h) {
     imgData = ctx.getImageData(x,y,w,h);
   }
   let pixels = imgData.data;
-  
-  console.log(pixels.length)
+
   let lh = rangecheck()
   let lowest = lh[0], highest = lh[1]
   let i = 0, brightness = 0
