@@ -3653,23 +3653,25 @@ function lightleak () {
   off.width = canvas.width, off.height = canvas.height
   let offctx = off.getContext("2d")
   let alpha = document.getElementById("opacity").value
-  offctx.fillStyle = randomGradient(canvas, randomColorLight())
+  offctx.fillStyle = randomGradient(canvas, randomColorVLight())
   let cw = canvas.width, ch  = canvas.height
   let x = cw*Math.random()
   offctx.globalAlpha = 0.05
+  if (document.getElementById("grungy").checked)
+    offctx.globalAlpha = 0.1
   ellipseFill(offctx, x, canvas.width*Math.random(), 50*Math.random(), canvas.height)
-  offctx.fillStyle = randomGradient(canvas, randomColorLight())
-  ellipseFill(offctx, x+pet(21), canvas.width*Math.random(), 150*Math.random(), 1200*Math.random())
-  offctx.fillStyle = randomGradient(canvas, randomColorLight())
-  ellipseFill(offctx, x+pet(21), canvas.width*Math.random(), 150*Math.random(), canvas.height)
-  offctx.fillStyle = randomGradient(canvas, randomColorLight())
-  ellipseFill(offctx, x+pet(21), canvas.width*Math.random(), 150*Math.random(), canvas.height)
-  document.getElementById("rednumber").value = 2
+  offctx.fillStyle = randomGradient(canvas, randomColorVLight())
+  ellipseFill(offctx, x+pet(31), canvas.width*Math.random(), 150*Math.random(), 1200*Math.random())
+  offctx.fillStyle = randomGradient(canvas, randomColorVLight())
+  ellipseFill(offctx, x+pet(31), canvas.width*Math.random(), 250*Math.random(), canvas.height)
+  offctx.fillStyle = randomGradient(canvas, randomColorVLight())
+  ellipseFill(offctx, x+pet(31), canvas.width*Math.random(), 150*Math.random(), canvas.height)
+  document.getElementById("rednumber").value = 4
   document.getElementById("opacity").value = 9
   motionblur(off)
   motionblur(off)
   motionblur(off)
-
+shrinkBlur
   ctx.drawImage(off,0+pet(21),0+pet(21),canvas.width, canvas.height)
   document.getElementById("opacity").value = alpha
 
@@ -3677,25 +3679,24 @@ function lightleak () {
 
 function ellipseFill (ctx, x, y, rx, ry) {
   ry*=4/3;
-  var p1_x=x-rx, p1_y=y,
+  let p1_x=x-rx, p1_y=y,
       p2_x=x+rx, p2_y=y,
       cp1_x, cp1_y,
       cp2_x, cp2_y,
       cp3_x, cp3_y,
       cp4_x, cp4_y,
       p1n_x, p1n_y, dx, dy;
+  
+  cp1_x=p1_x;
+  cp1_y=p1_y-ry;
+  cp4_x=p1_x;
+  cp4_y=p1_y+ry;
   //
-  {
-      cp1_x=p1_x;
-      cp1_y=p1_y-ry;
-      cp4_x=p1_x;
-      cp4_y=p1_y+ry;
-      //
-      cp2_x=p2_x;
-      cp2_y=p2_y-ry;
-      cp3_x=p2_x;
-      cp3_y=p2_y+ry;
-  }
+  cp2_x=p2_x;
+  cp2_y=p2_y-ry;
+  cp3_x=p2_x;
+  cp3_y=p2_y+ry;
+  
   ctx.beginPath()
   ctx.moveTo(p1_x, p1_y);
   ctx.bezierCurveTo(cp1_x, cp1_y, cp2_x, cp2_y, p2_x, p2_y);
@@ -4367,8 +4368,13 @@ function pasteFromOff () {
 
 function swapWithOff () {
   let OC = document.getElementById('OC')
+  let canvas = document.getElementById('myCanvas')
+  if (isCanvasBlank(OC)) {
+    OC.height = canvas.height
+    OC.width = canvas.width
+    OCISCLEAR = false
+  }
   if (OC && OC.width > 0) {
-    let canvas = document.getElementById('myCanvas')
     let ctx = canvas.getContext('2d')
     let OCctx = OC.getContext('2d')
     OCctx.globalAlpha = 1//document.getElementById("opacity").value/100
