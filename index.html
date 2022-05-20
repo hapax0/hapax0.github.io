@@ -7176,6 +7176,66 @@ function framePolaroid (rect) {
   ctx.restore()
 }
 
+function frameInstax () {
+  let rect = false
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let D =  (5 + Math.floor(document.getElementById("featuresize").value/3))
+  let grunge = document.getElementById("grungy").checked
+  let W = canvas.width
+  let H = canvas.height
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  clip()
+  ctx.fillStyle = document.getElementById("paintcolor").value
+  let x = -1, y = -1
+  let w = 6 + Math.random()*14
+  let wobble = 8
+  if (document.getElementById("grungy").checked)
+    wobble = 4
+  let i = 0
+  while (y < canvas.height) {
+    w = D +Math.random()*D/wobble
+    ctx.beginPath()
+    ctx.moveTo(x, y)
+    ctx.lineTo(x + w*1.2, y )
+    ctx.lineTo(x + w*1.2, y+w )
+    ctx.lineTo(x , y+w)
+    ctx.closePath()
+    ctx.fill()
+    
+    ctx.beginPath()
+    ctx.moveTo(W, y)
+    ctx.lineTo(W - w*1.2, y )
+    ctx.lineTo(W - w*1.2, y+w )
+    ctx.lineTo(W, y+w)
+    ctx.closePath()
+    ctx.fill()
+    y += 2
+  }
+  x = 0, y = -1
+  while (x < canvas.width) {
+    w = D +Math.random()*D/wobble
+    //top
+    ctx.beginPath()
+    ctx.moveTo(x, y)
+    ctx.lineTo(x + w, y )
+    ctx.lineTo(x + w, y+w *2)
+    ctx.lineTo(x, y+w*2)
+    ctx.closePath()
+    ctx.fill()
+    //bottom
+    ctx.beginPath()
+    ctx.moveTo(x, H)
+    ctx.lineTo(x - w, H)
+    ctx.lineTo(x - w, H-7*w)
+    ctx.lineTo(x, H-7*w)
+    ctx.closePath()
+    ctx.fill()
+    x += 2
+  }
+  ctx.restore()
+}
+
 function frameRect (points, c, margin) {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -11934,6 +11994,7 @@ function resizeCanvas () {
   if (selection == "instax") {
     canvas.width = 344
     canvas.height = 550
+    frameInstax()
     // inset frame
   }
   syncBackground(canvas)
