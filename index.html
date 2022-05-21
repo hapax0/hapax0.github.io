@@ -1,4 +1,4 @@
-f<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <style>
@@ -217,6 +217,7 @@ id="rect839" width="8.4021072" height="8.7749891" x="3.6633532" y="3.595556"
      <option value="rectFrame">rect frame</option>
      <option value="roundedFrame">rounded frame</option>
      <option value="framePolaroid">polaroid frame</option>
+     <option value="frameInstax">instax frame</option>
      <option value="frame">jaggy frame</option>
      <option value="ripFrame">rip frame</option>
      <option value="makeSquare">pad to square</option>
@@ -231,8 +232,8 @@ id="rect839" width="8.4021072" height="8.7749891" x="3.6633532" y="3.595556"
      <option value="zoomImage">zoom in</option>
      <option value="zoomOutImage">zoom out</option>
      <option value="nudgeRight" style="color:red">nudge horizontal</option>
-    <option value="nudgeDown" style="color:red">nudge vertical</option>
-    <option value="nudgeCW" style="color:red"nudge angle</option>
+     <option value="nudgeDown" style="color:red">nudge vertical</option>
+     <option value="nudgeCW" style="color:red">nudge angle</option>
    </select>
    </td>
    <td rowspan='6'>
@@ -403,8 +404,8 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="smeardownOff">vertical streaks</option>
     <option value="neckerline">necker</option>
     <option value="nested">nested sqrs</option>
-    <option value="blobOutline">shape outline</option>
-    <option value="bezRandom" >random bez</option>
+    <!--option value="blobOutline">shape outline</option>
+    <option value="bezRandom" >random bez</option-->
     <option value="scratchOut">scratch out</option>
     <option value="strokes">strokes</option>
     <option value="strokes2">strokes2</option>
@@ -12008,10 +12009,6 @@ function resizeCanvas () {
   document.getElementById("canvaswidth").value = canvas.width
   document.getElementById("canvasheight").value = canvas.height
   ctx.globalCompositeOperation = mode
-  if (selection == "instax") {
-    frameInstax()
-  }
-        
   //syncMarker()
   displayRatio()
 }
