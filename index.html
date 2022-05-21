@@ -370,6 +370,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="fr">fade right</option>
     <option value="fd">fade dowm</option>
     <option value="chaze">edge haze</option>
+    <option value="adjustBrightnessTouch">darken sky</option>
     <option value="lightleak">light leak</option>
     <option value="pop">pop</option>
     <option value="adjustExposure" selected>enhance exposure</option>
@@ -12086,6 +12087,36 @@ function opaqueer () {
     }
   }
   ctx.putImageData(imgData, 0, 0);
+}
+
+function adjustBrightnessTouch (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
+  let n = -5
+  let lh = rangecheck()
+  let lowest = lh[0], highest = lh[1]
+  let brightness = 0
+  let touch = LASTCLICK[1], x = 0, y = 0
+  let ctx = canvas.getContext("2d");
+  let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
+  let pixels = imgData.data;
+  let i = 0, w = canvas.width*4
+  for (; i < pixels.length; i += 4) {
+    x = i % w
+    if (i > 0 && i % w === 0) {
+      x = 0
+      y += 1
+    }
+    if (y < touch + pet(77)) {
+      brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3)
+      if (brightness > lowest && brightness <= highest) {
+        pixels[i] += n;
+        pixels[i + 1] += n;
+        pixels[i + 2] += n;
+      }
+    }
+  }
+  ctx.putImageData(imgData, 0, 0, 0,0,canvas.width,y);
 }
 
 function adjustBrightness (n, canvas) {
