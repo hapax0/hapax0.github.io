@@ -12116,7 +12116,7 @@ function tintSky (canvas) {
       x = 0
       y += 1
     }
-      if (y < touch + pet(77)) {
+    if (y < touch - (Math.random() * 70)) {
       brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3)
       if (brightness > lowest && brightness <= highest) {
         pixels[i] =     Math.min(pixels[i] * 0.8 + r * 0.2, 255);
@@ -12150,7 +12150,7 @@ function darkenSky (canvas) {
       x = 0
       y += 1
     }
-    if (y < touch + pet(77)) {
+    if (y < touch - (Math.random() * 70)) {
       brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3)
       if (brightness > lowest && brightness <= highest) {
         pixels[i] += n;
