@@ -3658,16 +3658,16 @@ function lightleak () {
   off.width = canvas.width, off.height = canvas.height
   let offctx = off.getContext("2d")
   let alpha = document.getElementById("opacity").value
-  offctx.fillStyle = randomGradient(canvas, randomColorLight())
+  offctx.fillStyle = randomGradient(canvas, randomColorMedium())
   let cw = canvas.width, ch  = canvas.height
   let x = cw*Math.random()
   offctx.globalAlpha = 0.05
   if (document.getElementById("grungy").checked)
     offctx.globalAlpha = 0.1
   ellipseFill(offctx, x, canvas.width*Math.random(), 50*Math.random(), canvas.height)
-  offctx.fillStyle = randomGradient(canvas, randomColorLight())
+  offctx.fillStyle = randomGradient(canvas, randomColorMedium())
   ellipseFill(offctx, x+pet(31), canvas.width*Math.random(), 150*Math.random(), 1200*Math.random())
-  offctx.fillStyle = randomGradient(canvas, randomColorLight())
+  offctx.fillStyle = randomGradient(canvas, randomColorMedium())
   ellipseFill(offctx, x+pet(31), canvas.width*Math.random(), 250*Math.random(), canvas.height)
   offctx.fillStyle = randomGradient(canvas, randomColorLight())
   ellipseFill(offctx, x+pet(31), canvas.width*Math.random(), 150*Math.random(), canvas.height)
@@ -4432,6 +4432,13 @@ function randomColor() {
   let r = ('0'+(randomFromTo(10,256)).toString(16)).slice(-2),
   g = ('0'+(randomFromTo(10,256)).toString(16)).slice(-2),
   b = ('0'+(randomFromTo(10,256)).toString(16)).slice(-2);
+  return '#' +r+g+b;
+}
+
+function randomColorMedium() {
+  let r = ('0'+(randomFromTo(100,200)).toString(16)).slice(-2),
+  g = ('0'+(randomFromTo(100,200)).toString(16)).slice(-2),
+  b = ('0'+(randomFromTo(100,200)).toString(16)).slice(-2);
   return '#' +r+g+b;
 }
 
@@ -8077,13 +8084,9 @@ function cropInstaxMini () {
 //  let mode = ctx.globalCompositeOperation
   W = canvas.width
   H = canvas.height
-  if (Math.abs(W/H -1.348) < 0.002 || Math.abs(H/W -1.348) < 0.002) {
-    console.log("returning")
-  
+  if (Math.abs(W/H -1.348) < 0.009 || Math.abs(H/W -1.348) < 0.009) {
     return
   }
- // if (W == H)
- //    return
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let canvasoff = document.getElementById("off")
   let ctxoff = canvasoff.getContext("2d")
@@ -8100,7 +8103,6 @@ function cropInstaxMini () {
     x -= (W-W/1.348)/2
     canvas.width = (W/1.348)
   }
-  
   syncBackground(canvas)
   document.getElementById("canvaswidth").value = canvas.width
   document.getElementById("canvasheight").value = canvas.height
