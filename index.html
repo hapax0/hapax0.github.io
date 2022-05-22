@@ -370,7 +370,8 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="fr">fade right</option>
     <option value="fd">fade dowm</option>
     <option value="chaze">edge haze</option>
-    <option value="adjustBrightnessTouch">darken sky</option>
+    <option value="darkenSky">darken sky</option>
+    <option value="tintSky">tint sky</option>
     <option value="lightleak">light leak</option>
     <option value="pop">pop</option>
     <option value="adjustExposure" selected>enhance exposure</option>
@@ -12089,7 +12090,49 @@ function opaqueer () {
   ctx.putImageData(imgData, 0, 0);
 }
 
-function adjustBrightnessTouch (canvas) {
+function tintSky (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas")
+  let offcanvas = document.createElement('CANVAS')
+  offcanvas.width = canvas.width
+  offcanvas.height = canvas.height
+  let offctx = offcanvas.getContext("2d");
+  let touch = LASTCLICK[1], x = 0, y = 0, w = canvas.width*4
+  let color = document.getElementById("paintcolor").value
+  let r = hexToR(color)
+  let g = hexToG(color)
+  let b = hexToB(color)
+  let ctx = canvas.getContext("2d");
+  let mode = ctx.globalCompositeOperation
+  let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
+  let pixels = imgData.data;
+  let i = 0
+  let brightness = 0
+  let lh = rangecheck()
+  let lowest = lh[0], highest = lh[1]
+  for (; i < pixels.length; i += 4) {
+    x = i % w
+    if (i > 0 && i % w === 0) {
+      x = 0
+      y += 1
+    }
+      if (y < touch + pet(77)) {
+      brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3)
+      if (brightness > lowest && brightness <= highest) {
+        pixels[i] =     Math.min(pixels[i] * 0.8 + r * 0.2, 255);
+        pixels[i + 1] = Math.min(pixels[i+1] * 0.8 + g * 0.2, 255);
+        pixels[i + 2] = Math.min(pixels[i+2] * 0.8 + b * 0.2, 255);
+      }
+    }
+  }
+  offctx.putImageData(imgData, 0, 0);
+  ctx.globalCompositeOperation = "color"
+  ctx.drawImage(offcanvas,0,0)
+  ctx.globalCompositeOperation = mode
+}
+
+
+function darkenSky (canvas) {
   if (!canvas)
     canvas = document.getElementById("myCanvas");
   let n = -5
