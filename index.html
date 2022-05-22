@@ -222,6 +222,7 @@ id="rect839" width="8.4021072" height="8.7749891" x="3.6633532" y="3.595556"
      <option value="ripFrame">rip frame</option>
      <option value="makeSquare">pad to square</option>
      <option value="cropSquare" selected>crop to square</option>
+     <option value="cropInstaxMini" selected>crop to instax</option>
      <option value="leftCut" style="color:red">left cut</option>
      <option value="halfRip" style="color:red">left rip</option>
      <option value="leftClip" style="color:red">left clip</option>
@@ -273,7 +274,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
       <option value="square">square</option>
       <option value="portrait">portrait</option>
       <option value="landscape">landscape</option>
-      <option value="instax">instax mini</option>
+      <!--option value="instax">instax mini</option-->
     </select> &nbsp;<span id="redspan" style="color:red;">cut </span><input type="number" step="1" id="rednumber" style="color:red;" onchange="pushMarker()">
     <!--input type="range" id="canvas_size" class="range" min="1" max="5" value="5" onchange="resizeCanvas()"-->
   </td><td style="text-align:right;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-camera" viewBox="0 0 16 16">
@@ -8068,6 +8069,46 @@ function make4to5 (all) {
   canvasoff.width = canvas.width
   canvasoff.height = canvas.height
   ctx.globalCompositeOperation = mode
+}
+
+function cropInstaxMini () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+//  let mode = ctx.globalCompositeOperation
+  W = canvas.width
+  H = canvas.height
+  if (Math.abs(W/H -1.348) < 0.002 || Math.abs(H/W -1.348) < 0.002) {
+    console.log("returning")
+  
+    return
+  }
+ // if (W == H)
+ //    return
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let canvasoff = document.getElementById("off")
+  let ctxoff = canvasoff.getContext("2d")
+  canvasoff.width = canvas.width
+  canvasoff.height = canvas.height
+  ctxoff.drawImage(canvas,0,0)
+  let pad = 0, x = 0, y = 0
+  
+  if (H > W) { // clip width to
+    y -= (H-H/1.347)/2
+    canvas.height = (H/1.348)
+  } else
+  if (W >= H) {
+    x -= (W-W/1.348)/2
+    canvas.width = (W/1.348)
+  }
+  
+  syncBackground(canvas)
+  document.getElementById("canvaswidth").value = canvas.width
+  document.getElementById("canvasheight").value = canvas.height
+  ctx.drawImage(canvasoff, x, y)
+  canvasoff.width = canvas.width
+  canvasoff.height = canvas.height
+  //ctx.globalCompositeOperation = mode
+  syncMarker()
 }
 
 function cropSquare (all) {
