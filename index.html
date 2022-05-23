@@ -8,14 +8,14 @@
    border:none;
    border-radius:4px;
    min-width:24px;
-  padding:4px 4px 2px 4px;}
-  svg {background-color:#fff;}
+   padding:4px 4px 2px 4px;
+  }
   select {width:120px;}
   input, img, span, a{
     vertical-align: middle;
   }
   input[id='lower'] {
-    -webkit-transform: rotateY(180deg);
+   -webkit-transform: rotateY(180deg);
    -moz-transform: rotateY(180deg);
    -ms-transform: rotateY(180deg);
    -o-transform: rotateY(180deg);
@@ -25,7 +25,7 @@
     transform: rotateY(180deg);
   }
   input[type='number']{
-    width: 50px;
+    width: 44px;
   }
   span[class='sample'] {
     display:inline-block;
@@ -36,7 +36,7 @@
     display:inline-block;
     vertical-align: baseline;
   }
-  canvas[id='palettecanvas']{
+  canvas[id='palettecanvas'] {
     margin:4px;
   }
   div[id='background'] {
@@ -46,8 +46,9 @@
     background-position: 0 0, 10px 10px;
     background-size: 20px 20px;
   }
-  svg { background-color:#ccc; }
-  svg[class=white] { background-color:#fff; }
+
+  svg {background-color:#ccc;}
+  svg[class=white] { background-color:#fff;}
 </style>
 </head>
 <body>
@@ -188,15 +189,15 @@
  </div>
  <div style="margin-left:8px;display:block;" id="tools">
  <table
-border="0" cellpadding="4" style="margin-left:6px;">
+border="1" cellpadding="4" style="margin-left:6px;">
    <tr><td
 style="text-align:right;"><button
 onclick="resizeFromDialog()">resize</button></td><td>W: <input type="number"
-id="canvaswidth" min="40" size="4" onchange="checkWidth()">
+id="canvaswidth" min="40" size="3" onchange="checkWidth()">
      H: <input
-type="number" id="canvasheight" min="40" size="4"
-onchange="checkHeight()"></td><td style="text-align:left;"><span
-id="aspectratio"></span></td><td>05-11-22
+type="number" id="canvasheight" min="40" size="3"
+onchange="checkHeight()">&nbsp;<span
+id="aspectratio"></span></td><td style="text-align:left;">xxx</td><td>05-11-22
    </td><td>
    &nbsp;<button
 id="ff" onclick="testImage('framefunctions')" title="frame functions"><svg
@@ -216,13 +217,14 @@ id="rect839" width="8.4021072" height="8.7749891" x="3.6633532" y="3.595556"
    <select id="framefunctions">
      <option value="rectFrame">rect frame</option>
      <option value="roundedFrame">rounded frame</option>
+     <option value="frameCircle">circle frame</option>
      <option value="framePolaroid">polaroid frame</option>
-     <option value="frameInstax">instax frame</option>
+     <!--option value="frameInstax">instax frame</option-->
      <option value="frame">jaggy frame</option>
      <option value="ripFrame">rip frame</option>
      <option value="makeSquare">pad to square</option>
      <option value="cropSquare" selected>crop to square</option>
-     <option value="cropInstaxMini" selected>crop to instax</option>
+     <option value="cropInstaxMini">crop to instax</option>
      <option value="leftCut" style="color:red">left cut</option>
      <option value="halfRip" style="color:red">left rip</option>
      <option value="leftClip" style="color:red">left clip</option>
@@ -738,7 +740,7 @@ function displayRatio () {
   let canvas = document.getElementById("myCanvas");
   let w = canvas.width, h = canvas.height
   let d = gcd(w,h)
-  document.getElementById("aspectratio").innerHTML = w/d+":"+h/d
+  document.getElementById("aspectratio").innerHTML = 1+":"+Math.round(1000*h/w)/1000
 }
 
 function checkWidth () {
@@ -7250,6 +7252,36 @@ function frameInstax () {
   ctx.restore()
 }
 
+function frameCircle () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let off = document.createElement('CANVAS')
+  let offctx = off.getContext("2d")
+  off.width = canvas.width
+  off.height = canvas.height
+  offctx.drawImage(canvas, 0, 0)
+  let W = canvas.width
+  let H = canvas.height
+  let cx = (W < H)? W/2: H/2;
+  let r = cx
+  r -= cx * 0.07
+  ctx.globalAlpha = 1// document.getElementById("opacity").value/100
+  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.clearRect(0,0,W,H)
+  ctx.save()
+  ctx.beginPath()
+  ctx.arc(cx, cx, r,0,2*Math.PI)
+  ctx.closePath()
+  ctx.clip()
+  ctx.drawImage(off,0,0)
+  ctx.restore()
+  let mode = document.getElementById("mode").value
+  ctx.globalCompositeOperation = "destination-over"
+  ctx.fillRect(0,0,W,H)
+  return
+  document.getElementById("mode").value = mode
+}
+
 function frameRect (points, c, margin) {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -8081,10 +8113,11 @@ function make4to5 (all) {
 function cropInstaxMini () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
-//  let mode = ctx.globalCompositeOperation
   W = canvas.width
   H = canvas.height
-  if (Math.abs(W/H -1.348) < 0.009 || Math.abs(H/W -1.348) < 0.009) {
+  let iAR = W/H
+  let dAR = 1.348
+  if (Math.abs(iAR - dAR) < 0.01) {
     return
   }
   ctx.globalAlpha = document.getElementById("opacity").value/100
@@ -8093,23 +8126,25 @@ function cropInstaxMini () {
   canvasoff.width = canvas.width
   canvasoff.height = canvas.height
   ctxoff.drawImage(canvas,0,0)
-  let pad = 0, x = 0, y = 0
-  
-  if (H > W) { // clip width to
-    y -= (H-H/1.347)/2
-    canvas.height = (H/1.348)
-  } else
-  if (W >= H) {
-    x -= (W-W/1.348)/2
-    canvas.width = (W/1.348)
+  let x = 0, y = 0
+  let oW = W
+  let oH = H
+
+  if (iAR > dAR) {
+    oW = H * dAR
+  } else {
+    oH = W / dAR
   }
-  syncBackground(canvas)
+  canvas.height = oH
+  canvas.width = oW
+  x = (oW - W)/2
+  y = (oH - H)/2
   document.getElementById("canvaswidth").value = canvas.width
   document.getElementById("canvasheight").value = canvas.height
   ctx.drawImage(canvasoff, x, y)
-  canvasoff.width = canvas.width
-  canvasoff.height = canvas.height
-  //ctx.globalCompositeOperation = mode
+  canvasoff.width = oW
+  canvasoff.height = oH
+  syncBackground(canvas)
   syncMarker()
 }
 
