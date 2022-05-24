@@ -219,7 +219,7 @@ id="rect839" width="8.4021072" height="8.7749891" x="3.6633532" y="3.595556"
      <option value="roundedFrame">rounded frame</option>
      <option value="frameCircle">circle frame</option>
      <option value="framePolaroid">polaroid frame</option>
-     <!--option value="frameInstax">instax frame</option-->
+     <option value="frameInstax">instax frame</option>
      <option value="frame">jaggy frame</option>
      <option value="ripFrame">rip frame</option>
      <option value="makeSquare">pad to square</option>
@@ -7194,35 +7194,40 @@ function frameInstax () {
   let rect = false
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  let D =  (5 + Math.floor(document.getElementById("featuresize").value/3))
+  let D = 1
   let grunge = document.getElementById("grungy").checked
   let W = canvas.width
   let H = canvas.height
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  clip()
-  ctx.fillStyle = document.getElementById("paintcolor").value
-      ctx.fillStyle = "#FFFFFF"
-
+  //clip()
+  
+  ctx.fillStyle = "#FFFFFF"
   let x = -1, y = -1
-  let w = 6 //+ Math.random()*14
-  let wobble = 8
-  if (document.getElementById("grungy").checked)
-    wobble = 4
+  let w = 1
   let i = 0
+  let  R = false
+  if (W > H) {
+    rc()
+    let T = W
+    W = H
+    H = T
+    R = true
+  }
   while (y < canvas.height) {
-    w = D //+Math.random()*D/wobble
+    ctx.fillStyle = "#FFFFFF"
+    w = (W * 0.0706)
     ctx.beginPath()
     ctx.moveTo(x, y)
-    ctx.lineTo(x + w*1.2, y )
-    ctx.lineTo(x + w*1.2, y+w )
+    ctx.lineTo(x + w, y)
+    ctx.lineTo(x + w, y+w)
     ctx.lineTo(x , y+w)
     ctx.closePath()
     ctx.fill()
     
     ctx.beginPath()
     ctx.moveTo(W, y)
-    ctx.lineTo(W - w*1.2, y )
-    ctx.lineTo(W - w*1.2, y+w )
+    ctx.lineTo(W - w, y)
+    ctx.lineTo(W - w, y+w)
     ctx.lineTo(W, y+w)
     ctx.closePath()
     ctx.fill()
@@ -7230,26 +7235,29 @@ function frameInstax () {
   }
   x = 0, y = -1
   while (x < canvas.width) {
-    w = D //+Math.random()*D/wobble
+    w = (W * 0.135)
     //top
     ctx.beginPath()
     ctx.moveTo(x, y)
-    ctx.lineTo(x + w, y )
-    ctx.lineTo(x + w, y+w *2)
-    ctx.lineTo(x, y+w*2)
+    ctx.lineTo(x + w, y)
+    ctx.lineTo(x + w, y+w)
+    ctx.lineTo(x, y+w)
     ctx.closePath()
     ctx.fill()
     //bottom
+    w = (W * 0.281)
     ctx.beginPath()
     ctx.moveTo(x, H)
     ctx.lineTo(x - w, H)
-    ctx.lineTo(x - w, H-7*w)
-    ctx.lineTo(x, H-7*w)
+    ctx.lineTo(x - w, H-w)
+    ctx.lineTo(x, H-w)
     ctx.closePath()
     ctx.fill()
     x += 2
   }
-  ctx.restore()
+  if (R)
+    rcc()
+  //ctx.restore()
 }
 
 function frameCircle () {
@@ -8116,7 +8124,9 @@ function cropInstaxMini () {
   W = canvas.width
   H = canvas.height
   let iAR = W/H
-  let dAR = 1.348
+  let dAR = 1.5926
+  if (H > W)
+    dAR = 0.6279
   if (Math.abs(iAR - dAR) < 0.01) {
     return
   }
@@ -8129,7 +8139,6 @@ function cropInstaxMini () {
   let x = 0, y = 0
   let oW = W
   let oH = H
-
   if (iAR > dAR) {
     oW = H * dAR
   } else {
