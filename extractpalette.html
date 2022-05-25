@@ -137,12 +137,15 @@ function colorSamplePalette () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d");
   let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
-  let alt = document.getElementById("alt").checked
+  //let alt = document.getElementById("alt").checked
   let mind = 1000000
   let maxd = -1000000
   let pixels = imgData.data;
   let sample = []
   let i = 0, j = 0
+  let x = 1, y = 1
+  let cnt = (canvas.width * canvas.height)
+  
   for (; i < 6000; i++) {
     let n = 4 * Math.floor(Math.random() * pixels.length/4)
     let c = []
@@ -176,13 +179,13 @@ function colorSamplePalette () {
       }
     }
   }
-  if (alt)
-    bins.sort(function(a, b) { return interesting(b[0]) - interesting(a[0]);});
-  else
-    bins.sort(function(a, b) { return b.length - a.length;});
+ // if (alt)
+    //bins.sort(function(a, b) { return interesting(b[0]) - interesting(a[0]);});
+ // else
+  bins.sort(function(a, b) { return b.length - a.length;});
   let count = bins.length;
-  if (count > 20)
-    count = 20
+  if (count > 21)
+    count = 21
   let colors = [], clrs = []
   i = 0
   for (; i < count; i++) {
