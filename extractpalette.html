@@ -69,7 +69,6 @@
 </svg></a>
 <br>
 <canvas id="palettecanvas" width="400" height="80"></canvas><br>
-<br>
 <canvas id="myCanvas" width="400" height="500" style="border:1px solid #000000;"></canvas>
 
 </div>
@@ -105,6 +104,7 @@ function drawFile () {
     ctx.drawImage(IMG, 0, 0);
     resizeCanvas()
     url.revokeObjectURL(src);
+    extractPalette()
   }
   //document.getElementById("uploadimage").value = ""
 }
