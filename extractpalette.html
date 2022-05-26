@@ -145,7 +145,7 @@ function colorSamplePalette () {
   let x = 1, y = 1
   let cnt = (canvas.width * canvas.height)
   
-  for (; i < pixels.length; i+= 64) {
+  for (; i < pixels.length; i+= 128) {
     let n = i//4 * Math.floor(Math.random() * pixels.length/4)
     let c = []
     c.push(pixels[n])
