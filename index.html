@@ -1556,6 +1556,9 @@ function extractPalette () {
 function colorSamplePalette () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
+  let off = document.createElement('CANVAS')
+  let offctx = off.getContext("2d");
+
   let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
   let alt = document.getElementById("grungy").checked
   let mind = 1000000
@@ -1563,8 +1566,10 @@ function colorSamplePalette () {
   let pixels = imgData.data;
   let sample = []
   let i = 0, j = 0
-  for (; i < 3000; i++) {
-    let n = 4 * Math.floor(Math.random() * pixels.length/4)
+  let skip = pixels.length/8000
+  skip -= skip%4 // must be multiple of 4
+  for (; i < pixels.length; i += skip) {
+    let n = i
     let c = []
     c.push(pixels[n])
     c.push(pixels[n+1])
@@ -1602,8 +1607,8 @@ function colorSamplePalette () {
   else
     bins.sort(function(a, b) { return b.length - a.length;});
   let count = bins.length;
-  if (count > 12)
-    count = 12
+  if (count > 13)
+    count = 13
   let colors = [], clrs = []
   i = 0
   for (; i < count; i++) {
