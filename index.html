@@ -611,7 +611,7 @@ function randomPalette () {
   } else
   if (type === "stary"){
     a = ['#030407', '#191e21', '#968824', '#aab8b3', '#d8d9be']
-    b = ['#d8d9be', '#aab8b3', '#c3ac2e', '#a7ab75', '#7c919d', '#968824', '#60695e', '#4c6896', '#4f592f', '#29395d', '#191e21', '#030407']
+    b = ['#c5d3cc', '#bbb24f', '#a2afa1', '#8da7cd', '#978c29', '#778886', '#5a77a2', '#495860', '#395195', '#5d5111', '#2b3d6f', '#2a2619', '#171e28']
     document.getElementById("pal1").value = a[0]
     document.getElementById("pal2").value = a[1]
     document.getElementById("pal3").value = a[2]
@@ -631,7 +631,7 @@ function randomPalette () {
   } else
   if (type === "scream"){
     a = ['#08120b', '#30362c', '#5b807f', '#f49f58', '#d9ba81']
-    b = ['#d9ba81', '#f49f58', '#ce8d52', '#df7b37', '#907b58', '#5b807f', '#a6693d', '#c2551e', '#4c6462', '#6c593f', '#30362c', '#08120b']
+    b = ['#f2c28b', '#f2a351', '#c29f69', '#7e9480', '#bd7b45', '#da631c', '#7b684a', '#526c6b', '#bc4e19', '#c83302', '#404335', '#152019', '#020904']
     document.getElementById("pal1").value = a[0]
     document.getElementById("pal2").value = a[1]
     document.getElementById("pal3").value = a[2]
@@ -641,7 +641,7 @@ function randomPalette () {
   } else
   if (type === "nighthawks") {
     a = ['#212927', '#522a1b', '#246c59', '#babe74', '#e5e08b']
-    b = ['#e5e08b', '#babe74', '#608a6e', '#af7221', '#6c6c3d', '#246c59', '#046943', '#415043', '#753b21', '#6e2f19', '#522a1b', '#212927']
+    b = ['#e7e28e', '#deda7b', '#bbbe74', '#699474', '#888153', '#b57321', '#58856e', '#a05b21', '#2e6f61', '#4f5f4a', '#0c6244', '#4b281a', '#1f2b29']
     document.getElementById("pal1").value = a[0]
     document.getElementById("pal2").value = a[1]
     document.getElementById("pal3").value = a[2]
@@ -651,7 +651,7 @@ function randomPalette () {
   } else
   if (type === "venus") {
     a = ['#2b2920', '#4f3a2d', '#889682', '#d6d7c5', '#f5fbf8']
-    b = ['#f5fbf8', '#d6d7c5', '#f4b770', '#a2bebf', '#bca67f', '#889682', '#bd7a38', '#6f5b3d', '#6c3510', '#4f3a2d', '#2b2920']
+    b = ['#eeead8', '#e9d195', '#efc292', '#b8c3b3', '#dea041', '#b89d72', '#758270', '#99745b', '#a4723a', '#7a5d3b', '#813917', '#353125', '#050402']
     document.getElementById("pal1").value = a[0]
     document.getElementById("pal2").value = a[1]
     document.getElementById("pal3").value = a[2]
@@ -671,7 +671,7 @@ function randomPalette () {
   }else
   if (type === "earring") {
     a = ['#151518', '#232b4b', '#808aaf', '#e6cf94', '#eee6d9']
-    b = ['#eee6d9', '#e6cf94', '#cab292', '#a1aac8', '#a88e60', '#808aaf', '#666e8f', '#7f6c4e', '#484d67', '#493f39', '#232b4b', '#151518']
+    b = ['#ebd7b3', '#c5bbbb', '#c3ad87', '#9ea7c8', '#9c907f', '#7a84aa', '#967f55', '#75675a', '#735b34', '#4e5b8e', '#4d433e', '#373031', '#151418']
     document.getElementById("pal1").value = a[0]
     document.getElementById("pal2").value = a[1]
     document.getElementById("pal3").value = a[2]
@@ -1558,7 +1558,6 @@ function colorSamplePalette () {
   let ctx = canvas.getContext("2d");
   let off = document.createElement('CANVAS')
   let offctx = off.getContext("2d");
-
   let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
   let alt = document.getElementById("grungy").checked
   let mind = 1000000
@@ -1612,10 +1611,8 @@ function colorSamplePalette () {
   let colors = [], clrs = []
   i = 0
   for (; i < count; i++) {
-    if (1/*i == 0 || bins[i].length > 9*/) {
-      colors.push(averageColor(bins[i]))
-      clrs.push(averageColor(bins[i], true))
-    }
+    colors.push(averageColor(bins[i]))
+    clrs.push(averageColor(bins[i], true))
   }
   //resort clrs by interesting
   clrs.sort(function(a, b) { return interesting(b) - interesting(a);});
@@ -11670,7 +11667,6 @@ function leftFade () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let cx = LASTCLICK[0]//ctx.canvas.width/2 + pet(150)
-  console.log(cx)
   transparenter(0,0,cx,canvas.height)
 }
 
@@ -12141,7 +12137,6 @@ function updateDist () {
 }
 
 function transparenter (x,y,w,h) {
-  console.log(x)
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let imageData = null
