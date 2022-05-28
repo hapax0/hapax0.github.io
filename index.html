@@ -11703,7 +11703,7 @@ function edgeDarken () {
   ocanvas.width = canvas.width
   ocanvas.height = canvas.height
   octx.drawImage(canvas,0,0)
-  adjustBrightness(-10, ocanvas)
+  adjustBrightness(-30, ocanvas)
   vig(ocanvas)
   ctx.drawImage(ocanvas,0,0)
 }
@@ -11716,7 +11716,7 @@ function edgeLighten () {
   ocanvas.width = canvas.width
   ocanvas.height = canvas.height
   octx.drawImage(canvas,0,0)
-  adjustBrightness(10, ocanvas)
+  adjustBrightness(30, ocanvas)
   vig(ocanvas)
   ctx.drawImage(ocanvas,0,0)
 }
