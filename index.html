@@ -280,9 +280,8 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     </select> &nbsp;<span id="redspan" style="color:red;">cut </span><input type="number" step="1" id="rednumber" style="color:red;" onchange="pushMarker()">
     <!--input type="range" id="canvas_size" class="range" min="1" max="5" value="5" onchange="resizeCanvas()"-->
   </td><td style="text-align:right;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-camera" viewBox="0 0 16 16">
-  <path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1v6zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2z"/>
-  <path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
-</svg></td><td><button onclick="sharpen2()">+</button>&nbsp;&nbsp;<button onclick="blurCanvas()">-</button></td><td>
+    <path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/>
+</svg></td><td><button onclick="sharpenCanvas()">+</button>&nbsp;&nbsp;<button onclick="blurCanvas()">-</button></td><td>
     &nbsp;<button onclick="testImage('transformfunctions')" title="transformations"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" class="white" viewBox="0 0 16 16">
       <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
       <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
@@ -376,9 +375,9 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="darkenSky">darken sky</option>
     <option value="tintSky">tint sky</option>
     <option value="decolorSky">decolor sky</option>
-    <option value="lightleak">light leak</option>
+    <option value="lightleak" selected>light leak</option>
     <option value="pop">pop</option>
-    <option value="adjustExposure" selected>enhance exposure</option>
+    <option value="adjustExposure">enhance exposure</option>
     <option value="tint">tint</option>
     <option value="rotateBrightness">shift colors</option>
     <option value="randomizeColors">randomize colors</option>
@@ -3664,28 +3663,41 @@ function lightleak () {
   let alpha = document.getElementById("opacity").value
   offctx.fillStyle = randomGradient(canvas, randomColorMedium())
   let cw = canvas.width, ch  = canvas.height
-  let x = cw*Math.random()
+  let y = ch/4*Math.random(), x = 0
+  if (Math.random() > 0.5)
+    y = ch-y/3
+
   offctx.globalAlpha = 0.05
   if (document.getElementById("grungy").checked)
-    offctx.globalAlpha = 0.1
-  ellipseFill(offctx, x, canvas.width*Math.random(), 50*Math.random(), canvas.height)
-  offctx.fillStyle = randomGradient(canvas, randomColorMedium())
-  ellipseFill(offctx, x+pet(31), canvas.width*Math.random(), 150*Math.random(), 1200*Math.random())
-  offctx.fillStyle = randomGradient(canvas, randomColorMedium())
-  ellipseFill(offctx, x+pet(31), canvas.width*Math.random(), 250*Math.random(), canvas.height)
-  offctx.fillStyle = randomGradient(canvas, randomColorLight())
-  ellipseFill(offctx, x+pet(31), canvas.width*Math.random(), 150*Math.random(), canvas.height)
+    offctx.globalAlpha = 0.2
+ 
+  let i = 0
+  for (; i < 5; i++) {
+    offctx.fillStyle = randomGradient(canvas, randomColorLight())
+    ellipseFill(offctx, cw/2 + pet(cw/3), y+pet(100), cw+cw/2*Math.random(), ch/5*Math.random())//*Math.random())
+  }
   document.getElementById("rednumber").value = 4
   document.getElementById("opacity").value = 9
+  
+  saturationScale(5, off)
+  //motionblur(off)
   motionblur(off)
   motionblur(off)
-  motionblur(off)
-shrinkBlur
+//shrinkBlur
   ctx.drawImage(off,0+pet(21),0+pet(21),canvas.width, canvas.height)
   document.getElementById("opacity").value = alpha
 
 }
 
+function ellipseFill (ctx, x, y, rx, ry) {
+  let r = (Math.random() - 0.5)/5
+  ctx.beginPath()
+ // ctx.moveTo(p1_x, p1_y);
+  ctx.ellipse(x, y, rx, ry, r, 0, Math.PI*2);
+  ctx.closePath()
+  ctx.fill()
+}
+/*
 function ellipseFill (ctx, x, y, rx, ry) {
   ry*=4/3;
   let p1_x=x-rx, p1_y=y,
@@ -3712,7 +3724,7 @@ function ellipseFill (ctx, x, y, rx, ry) {
   ctx.bezierCurveTo(cp3_x, cp3_y, cp4_x, cp4_y, p1_x, p1_y);
   ctx.closePath()
   ctx.fill()
-}
+}*/
 
 
 function ellipse1 (ctx, x, y, rx, ry, rot) {
@@ -12445,8 +12457,9 @@ function adjustWarmth (n, canvas) {
   ctx.putImageData(imgData, 0, 0);
 }
 
-function saturationScale (sv) {
-  let canvas = document.getElementById("myCanvas");
+function saturationScale (sv, canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let imageData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
   let dA = imageData.data; // raw pixel data in array
