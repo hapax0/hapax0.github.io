@@ -7117,6 +7117,10 @@ function roundedFrame () {
   ctx.clearRect(0, 0, W, H)
   ctx.drawImage(off, 0, 0)
   ctx.restore()
+  let mode = document.getElementById("mode").value
+  ctx.globalCompositeOperation = "destination-over"
+  fill()
+  ctx.globalCompositeOperation = mode
 }
 
 function rectFrame () {
