@@ -320,6 +320,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
   <path d="M0 .5A.5.5 0 0 1 .5 0h15a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H14v2h1.5a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H14v2h1.5a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5H2v-2H.5a.5.5 0 0 1-.5-.5v-3A.5.5 0 0 1 .5 6H2V4H.5a.5.5 0 0 1-.5-.5v-3zM3 4v2h4.5V4H3zm5.5 0v2H13V4H8.5zM3 10v2h4.5v-2H3zm5.5 0v2H13v-2H8.5zM1 1v2h3.5V1H1zm4.5 0v2h5V1h-5zm6 0v2H15V1h-3.5zM1 7v2h3.5V7H1zm4.5 0v2h5V7h-5zm6 0v2H15V7h-3.5zM1 13v2h3.5v-2H1zm4.5 0v2h5v-2h-5zm6 0v2H15v-2h-3.5z"/>
 </svg></button>
     <select id="patternfunctions">
+    <option value="increaseGrain">increase grain</option>
     <option value="specksRadial">specks</option>
     <option value="blobs">blobs</option>
     <option value="fog">fog</option>
@@ -4258,7 +4259,6 @@ function adjustExposure (n, canvas) {
     contrastImage(10)
   }
 }
-
 
 function contrastImage (contrast, canvas) {  //input range [-100..100]
   if (!canvas)
@@ -12301,6 +12301,30 @@ function darkenSky (canvas) {
     }
   }
   ctx.putImageData(imgData, 0, 0, 0,0,canvas.width,y);
+}
+
+function increaseGrain (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
+  let n = document.getElementById("number").value/200
+  let lh = rangecheck()
+  let lowest = lh[0], highest = lh[1]
+  let brightness = 0
+  let ctx = canvas.getContext("2d");
+  let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
+  let pixels = imgData.data;
+  let i = 0
+  for (; i < pixels.length; i += 4) {
+    brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3)
+    if (brightness > lowest && brightness <= highest) {
+      pixels[i] += n;
+      pixels[i + 1] += n;
+      pixels[i + 2] += n;
+      if (Math.random() > 0.5)
+        n *= -1
+    }
+  }
+  ctx.putImageData(imgData, 0, 0);
 }
 
 function adjustBrightness (n, canvas) {
