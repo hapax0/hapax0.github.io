@@ -355,7 +355,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="edgeLighten" style="color:red">lighten edges</option>
     <option value="edgeBlur" style="color:red">blur edges</option>
     <option value="edgeGrey" style="color:red">gray edges</option>
-    <option value="vig" style="color:red">fade center</option>
+    <option value="fadeCenter" style="color:red">fade center</option>
     <option value="haze">haze</option>
     <option value="transparenter">fade all</option>
     <option value="opaqueer">unfade all</option>
@@ -11739,26 +11739,82 @@ function edgeBlur () {
   ctx.drawImage(ocanvas,0,0)
 }
 
-function vig (canvas) {
+// distace of (x,y) to closest edge
+function frameDistance (x, y, w, h) {
+  let w2 = w/2, h2 = h/2
+  let d1 = (x < w2)? x: w-x;
+  let d2 = (y < h2)? y: h-y;
+  return Math.min(d1,d2)
+}
+
+function fadeCenter() {
+  vig(null, true)
+}
+
+function vig_rect (canvas, FADE) {
   if (!canvas)
     canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let cx = ctx.canvas.width/2 + pet(150)
   let cy = ctx.canvas.height/2 + pet(150)
-  /*
-  let r = document.getElementById("featuresize").value/500
-  let W = canvas.width
-  let H = canvas.height
-  let cx = W/2, cy = H/2
-  let rx = cx - (cx * r), ry = cy - (cy * r)*/
-  
   cx = LASTCLICK[0]
   cy = LASTCLICK[1]
   let lh = rangecheck()
   let lowest = lh[0], highest = lh[1]
-  let s = document.getElementById("featuresize").value // up to 500
+  let s = 2+document.getElementById("featuresize").value/5 // up to 500
+  let s5 = s/7
   // decrease d as s increases?
   let w = canvas.width, h = canvas.height
+  let w_wide = w * 0.6
+  let weight = 0
+  
+  let maxdist = frameDistance(cx,cy,w,h)//Math.pow(Math.pow(cx, 2) + Math.pow(cy, 2), 0.5)
+ // maxdist *= 1.2
+  let d = 1000, brightness = 0
+  let data = ctx.getImageData(0,0,canvas.width,canvas.height)
+  let i = 0, x = 0, y = 0
+  let len = w * h
+  for (;i < len; i++) {
+    x = i % w
+    if (x === 0)
+      y += 1
+    d = frameDistance(x, y, w, h)
+    let px = data.data.slice(i*4, i*4+4)
+    brightness = (px[0]+px[1]+px[2])/(255*3)
+    if (brightness > lowest && brightness <= highest) {
+      
+      if (FADE && d + pet(s/2) < s) {
+        px[3] *= 0.5//maxdist/d
+        data.data.set(px, i*4)
+      } else
+      if (d + pet(s*5) > s) {
+        px[3] *= 0.0//maxdist/d
+        data.data.set(px, i*4)
+      }
+    }
+  }
+  ctx.putImageData(data, 0, 0);
+  //vig_OG (canvas, FADE)
+}
+
+
+function vig (canvas, FADE) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let cx = ctx.canvas.width/2 + pet(150)
+  let cy = ctx.canvas.height/2 + pet(150)
+  cx = LASTCLICK[0]
+  cy = LASTCLICK[1]
+  let lh = rangecheck()
+  let lowest = lh[0], highest = lh[1]
+  let s = 25+document.getElementById("featuresize").value // up to 500
+  let s5 = s/7
+  // decrease d as s increases?
+  let w = canvas.width, h = canvas.height
+  let w_wide = w * 0.6
+  let weight = 0.33
+  
   let maxdist = Math.pow(Math.pow(cx, 2) + Math.pow(cy, 2), 0.5)
   maxdist *= 1.2
   let d = 1000, brightness = 0
@@ -11769,20 +11825,19 @@ function vig (canvas) {
     x = i % w
     if (x === 0)
       y += 1
-    d = distance(x, y, cx+pet(29), cy+pet(29))
+    d = distance(x, y, cx+pet(29), cy+pet(29), w, h)
     let px = data.data.slice(i*4, i*4+4)
     brightness = (px[0]+px[1]+px[2])/(255*3)
     if (brightness > lowest && brightness <= highest) {
-      px[3] *= d/maxdist
-      data.data.set(px, i*4)
+      if (!FADE && d < w_wide + pet(s5)) {
+        px[3] *= weight//d/maxdist
+        data.data.set(px, i*4)
+      } else {
+        px[3] *= d/maxdist
+        data.data.set(px, i*4)
+      }
     }
   }
-  /*
-  ctx.save()
-  ctx.beginPath()
-  ctx.arc(cx,cy,400,0,Math.PI*2)
-  ctx.closePath()
-  ctx.clip()*/
   ctx.putImageData(data, 0, 0);
 }
 
