@@ -4255,7 +4255,7 @@ function retro () {
       document.getElementById("paintcolor").value = "#d4b595"
       document.getElementById("opacity").value = 10
       haze()
-    } 
+    }
     if (Math.random() > 0.0) {
       document.getElementById("paintcolor").value = "#7f7e60"
       document.getElementById("opacity").value = 40
@@ -11747,7 +11747,7 @@ function edgeDarken () {
   ocanvas.width = canvas.width
   ocanvas.height = canvas.height
   octx.drawImage(canvas,0,0)
-  adjustBrightness(-50, ocanvas)
+  adjustBrightness(-30, ocanvas)
   vig(ocanvas)
   ctx.drawImage(ocanvas,0,0)
 }
@@ -11848,14 +11848,17 @@ function vig (canvas, FADE) {
   let lh = rangecheck()
   let lowest = lh[0], highest = lh[1]
   let s = 25+document.getElementById("featuresize").value // up to 500
-  let s5 = s/7
+  let s5 = s/10
   // decrease d as s increases?
   let w = canvas.width, h = canvas.height
-  let w_wide = w * 0.6
+  //let w_wide = w * 0.6
   let weight = 0.33
   
-  let maxdist = Math.pow(Math.pow(cx, 2) + Math.pow(cy, 2), 0.5)
+  let maxdist = Math.min(w,h)/2//.pow(Math.pow(cx, 2) + Math.pow(cy, 2), 0.5)
   maxdist *= 1.2
+  
+  let w_wide = maxdist * 0.9
+
   let d = 1000, brightness = 0
   let data = ctx.getImageData(0,0,canvas.width,canvas.height)
   let i = 0, x = 0, y = 0
@@ -11871,7 +11874,8 @@ function vig (canvas, FADE) {
       if (!FADE && d < w_wide + pet(s5)) {
         px[3] *= weight//d/maxdist
         data.data.set(px, i*4)
-      } else {
+      } else
+      if (FADE) {
         px[3] *= d/maxdist
         data.data.set(px, i*4)
       }
