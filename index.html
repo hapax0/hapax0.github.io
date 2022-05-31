@@ -4244,25 +4244,29 @@ function retro () {
   contrastImage(-15)
   saturationScale(0.8)
   adjustWarmth(7)
- // edgeDarken(canvas)
-  if (Math.random() > 0.5) // test colorfullness ?
-      lightleak()
+  if (Math.random() > 0.6)
+    edgeDarken(canvas)
+  if (Math.random() > 0.5)
+    adjustWarmth(7)
   else {
-    document.getElementById("paintcolor").value = "#d4b595"
-    document.getElementById("opacity").value = 10
-    haze()
+    if (Math.random() > 0.6) // test colorfullness ?
+        lightleak()
+    else {
+      document.getElementById("paintcolor").value = "#d4b595"
+      document.getElementById("opacity").value = 10
+      haze()
+    } 
+    if (Math.random() > 0.0) {
+      document.getElementById("paintcolor").value = "#7f7e60"
+      document.getElementById("opacity").value = 40
+      document.getElementById("number").value = 1000
+      document.getElementById("featuresize").value = 400
+      if (Math.random() > 0.5)
+        smudgewatercolor()
+      else
+        fog()
+    }
   }
-  if (Math.random() > 0.0) {
-    document.getElementById("paintcolor").value = "#7f7e60"
-    document.getElementById("opacity").value = 20
-    document.getElementById("number").value = 1000
-    document.getElementById("featuresize").value = 400
-    if (Math.random() > 0.5)
-      smudgewatercolor()
-    else
-      fog()
-  }
- // return
   document.getElementById("opacity").value = alpha
   document.getElementById("featuresize").value = feature_size
   document.getElementById("number").value = number
