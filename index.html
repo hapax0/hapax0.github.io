@@ -367,6 +367,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="decolorSky">decolor sky</option>
     <option value="lightleak" selected>light leak</option>
     <option value="pop">pop</option>
+    <option value="retro">retro</option>
     <option value="adjustExposure">enhance exposure</option>
     <option value="tint">tint</option>
     <option value="rotateBrightness">shift colors</option>
@@ -3656,27 +3657,21 @@ function lightleak () {
   let y = ch/4*Math.random(), x = 0
   if (Math.random() > 0.5)
     y = ch-y/3
-
   offctx.globalAlpha = 0.05
   if (document.getElementById("grungy").checked)
     offctx.globalAlpha = 0.2
- 
   let i = 0
   for (; i < 5; i++) {
     offctx.fillStyle = randomGradient(canvas, randomColorLight())
-    ellipseFill(offctx, cw/2 + pet(cw/3), y+pet(100), cw+cw/2*Math.random(), ch/5*Math.random())//*Math.random())
+    ellipseFill(offctx, cw/2 + pet(cw/3), y+pet(100), cw+cw/2*Math.random(), ch/10*Math.random())
   }
   document.getElementById("rednumber").value = 4
   document.getElementById("opacity").value = 9
-  
   saturationScale(5, off)
-  //motionblur(off)
   motionblur(off)
   motionblur(off)
-//shrinkBlur
   ctx.drawImage(off,0+pet(21),0+pet(21),canvas.width, canvas.height)
   document.getElementById("opacity").value = alpha
-
 }
 
 function ellipseFill (ctx, x, y, rx, ry) {
@@ -4231,6 +4226,47 @@ function highContrast () {
 function mapRanges (start, end, startF, endF, val) { // F is full range 0 to 255*3
  // r = (endF - startF)/(end - start)
   return(((val-start)*(endF-startF))/(end-start) + startF)
+}
+
+function retro () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let alpha = document.getElementById("opacity").value
+  let feature_size = document.getElementById("featuresize").value
+  let number = document.getElementById("number").value
+  let color = document.getElementById("paintcolor").value
+  document.getElementById("number").value = 2000
+  document.getElementById("opacity").value = 100
+  LASTCLICK[0] = canvas.width/2
+  LASTCLICK[1] = canvas.height/2
+  increaseGrain()
+  edgeDarken(canvas)
+  contrastImage(-15)
+  saturationScale(0.8)
+  adjustWarmth(7)
+ // edgeDarken(canvas)
+  if (Math.random() > 0.5) // test colorfullness ?
+      lightleak()
+  else {
+    document.getElementById("paintcolor").value = "#d4b595"
+    document.getElementById("opacity").value = 10
+    haze()
+  }
+  if (Math.random() > 0.0) {
+    document.getElementById("paintcolor").value = "#7f7e60"
+    document.getElementById("opacity").value = 20
+    document.getElementById("number").value = 1000
+    document.getElementById("featuresize").value = 400
+    if (Math.random() > 0.5)
+      smudgewatercolor()
+    else
+      fog()
+  }
+ // return
+  document.getElementById("opacity").value = alpha
+  document.getElementById("featuresize").value = feature_size
+  document.getElementById("number").value = number
+  document.getElementById("paintcolor").value = color
 }
 
 function adjustExposure (n, canvas) {
@@ -6422,8 +6458,7 @@ function strokes () {
   let maxalpha = ctx.globalAlpha
   ctx.lineCap = 'round';
   ctx.lineJoin = 'round';
-  let stroke_width = document.getElementById("featuresize").value/20
-  let stroke_ct = +document.getElementById("number").value/600
+  
   for (let t = 0; t < stroke_ct; t++) {
     let paths = [];
     let radius = Math.floor(Math.random() * 180) + 20;
@@ -11708,7 +11743,7 @@ function edgeDarken () {
   ocanvas.width = canvas.width
   ocanvas.height = canvas.height
   octx.drawImage(canvas,0,0)
-  adjustBrightness(-30, ocanvas)
+  adjustBrightness(-50, ocanvas)
   vig(ocanvas)
   ctx.drawImage(ocanvas,0,0)
 }
@@ -12779,10 +12814,14 @@ function sharpen2 () {
 }
 
 function sharpenCanvas () {
-  let k = [0,-1,0,
-          -1,5,-1,
-           0,-1,0]
-    convolutionMatrix(k, 0)
+  let k = [0,-1, 0,
+          -1, 5,-1,
+           0,-1, 0]
+    if (Math.random() > 0.5)
+      k = [-1,0,-1,
+            0,5, 0,
+           -1,0,-1]
+  convolutionMatrix(k, 0)
 }
 
 function edgeCanvas () {

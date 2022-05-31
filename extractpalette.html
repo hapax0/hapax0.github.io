@@ -25,6 +25,9 @@
   #lower{
     transform: rotateY(180deg);
   }
+  input[type='text']{
+    width: 396px;
+  }
   input[type='number']{
     width: 44px;
   }
@@ -47,7 +50,6 @@
     background-position: 0 0, 10px 10px;
     background-size: 20px 20px;
   }
-
   svg {background-color:#ccc;}
   svg[class=white] { background-color:#fff;}
 </style>
@@ -69,6 +71,7 @@
 </svg></a>
 <br>
 <canvas id="palettecanvas" width="400" height="80"></canvas><br>
+<input type="text" id="colorlist"><br>
 <canvas id="myCanvas" width="400" height="500" style="border:1px solid #000000;"></canvas>
 
 </div>
@@ -115,6 +118,7 @@ function extractPalette () {
   let colors = colorSamplePalette()
   colors.sort((a, b) => bright(b) - bright(a));
   if (colors.length >= 1) {
+    document.getElementById("colorlist").value = colors
     let i = 0, x = 0, y = 0
     let canvas = document.getElementById("palettecanvas")
     let ctx = canvas.getContext("2d");
