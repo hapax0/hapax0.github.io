@@ -70,7 +70,7 @@
   <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
 </svg></a>
 <br>
-<canvas id="palettecanvas" width="400" height="80"></canvas><br>
+<canvas id="palettecanvas" width="400" height="40"></canvas><br>
 <input type="text" id="colorlist"><br>
 <canvas id="myCanvas" width="400" height="500" style="border:1px solid #000000;"></canvas>
 
@@ -117,6 +117,10 @@ function extractPalette () {
     return
   let colors = colorSamplePalette()
   colors.sort((a, b) => bright(b) - bright(a));
+  if (colors.length > 10) 
+    document.getElementById("palettecanvas").height = 80
+  else
+    document.getElementById("palettecanvas").height = 40
   if (colors.length >= 1) {
     document.getElementById("colorlist").value = colors
     let i = 0, x = 0, y = 0
