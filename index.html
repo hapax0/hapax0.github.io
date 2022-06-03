@@ -1321,6 +1321,8 @@ function randomTexture () {
   let num = document.getElementById("number").value
   let size = document.getElementById("featuresize").value
   let color = document.getElementById("paintcolor").value
+    let alt = document.getElementById("grungy").checked
+
   functions = ["smudge", "smudge", "smudge", "smudge", "smudge", "blobs", "specksRadial", "strokes2", "strokesH"]
   let args = ["", "streaks", "arcs", "arcs2", "stars", "horizontal"]
   let i = 0
@@ -1333,7 +1335,13 @@ function randomTexture () {
     document.getElementById("number").value = 3 + Math.random() * 10000
     document.getElementById("featuresize").value = 1 + Math.random() * 400
     document.getElementById("opacity").value = 15 + Math.random() + 75
+    if (alt) {
+      ctx.save()
+      clipIrregular()
+    }
     window[f](a)
+    if (alt)
+      ctx.restore()
   }
   sobel()
   document.getElementById("opacity").value = 50
@@ -1344,7 +1352,7 @@ function randomTexture () {
   ctx.globalCompositeOperation = "source-atop"
   ctx.fillStyle = color
   ctx.fillRect(0,0,canvas.width, canvas.height)
-  ctx.globalCompositeOperation = "destination-out"
+  ctx.globalCompositeOperation = "difference"//"destination-out"
   functions = functions.slice(0, -1)
   functions.push("rays")
   i = 0
@@ -1357,7 +1365,13 @@ function randomTexture () {
     document.getElementById("number").value = 3 + Math.random() * 10000
     document.getElementById("featuresize").value = 1 + Math.random() * 400
     document.getElementById("opacity").value = 25 + Math.random() + 70
+    if (alt) {
+      ctx.save()
+      clipIrregular()
+    }
     window[f](a)
+    if (alt)
+      ctx.restore()
   }
   document.getElementById("opacity").value = val
   document.getElementById("number").value = num
@@ -1374,6 +1388,7 @@ function randomTexture2 () {
   let num = document.getElementById("number").value
   let size = document.getElementById("featuresize").value
   let color = document.getElementById("paintcolor").value
+  let alt = document.getElementById("grungy").checked
   let mode = ctx.globalCompositeOperation
   functions = ["smudge", "smudge", "smudge", "smudge", "smudge", "blobs", "rays", "strokes2", "strokesH"]
   let args = ["", "streaks", "arcs", "arcs2", "stars", "horizontal", "watercolor"]
@@ -1393,7 +1408,13 @@ function randomTexture2 () {
     if (f == "strokes2" || f == "strokesH" || f == "blobs") {
       document.getElementById("opacity").value = 9 + Math.random() + 15
     }
+    if (alt) {
+      ctx.save()
+      clipIrregular()
+    }
     window[f](a)
+    if (alt)
+      ctx.restore()
   }
   document.getElementById("opacity").value = val
   document.getElementById("number").value = num
@@ -4278,14 +4299,14 @@ function retro () {
   if (Math.random() > 0.3) {
     document.getElementById("paintcolor").value = randomPick(["#7f7e60", "#707060", "#507070", "#505070"])
     document.getElementById("opacity").value = 40
-    document.getElementById("number").value = 1000
-    document.getElementById("featuresize").value = 400
+    document.getElementById("number").value = 6000
+    document.getElementById("featuresize").value = 300
     if (Math.random() > 0.5)
       smudgewatercolor()
     else
       fog()
   }
-   if (Math.random() > 0.3) {
+  if (Math.random() > 0.3) {
     ctx.save()
     clipIrregular()
     document.getElementById("paintcolor").value = "#eeeeee"
@@ -4558,7 +4579,7 @@ function randomPick (array) {
   return array[Math.floor((array.length) * Math.random())]
 }
 
-function clipIrregular () { 
+function clipIrregular () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let W = canvas.width, H = canvas.height
@@ -5630,6 +5651,7 @@ function scratchOut () {
   let lw = ctx.lineWidth
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.strokeStyle = document.getElementById("paintcolor").value
+  let alt = document.getElementById("grungy").checked
   ctx.lineCap = 'round'
   ctx.lineJoin = 'round'
   let W = canvas.width
@@ -5637,7 +5659,11 @@ function scratchOut () {
     W = canvas.height
   let depth = W / (lw*3)
   //ctx.beginPath()
-  if (document.getElementById("grungy").checked)
+ // if (document.getElementById("grungy").checked)
+ if (alt) {
+   ctx.save()
+   clipIrregular()
+ }
     lw *= 2
   let x = 3, y = lw*4
   let i = 0, x2 = 0, y2 = 0
@@ -5664,6 +5690,8 @@ function scratchOut () {
     ctx.lineWidth = lw + 0.9 * pet(lw)
     ctx.stroke()
   }
+  if (alt)
+    ctx.restore()
   //ctx.stroke()
 }
 
