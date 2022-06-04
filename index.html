@@ -4312,8 +4312,8 @@ function retro () {
   if (Math.random() > 0.3) {
     ctx.save()
     clipIrregular()
-    document.getElementById("paintcolor").value = "#eeeeee"
-    document.getElementById("opacity").value = 60 + Math.random() * 20
+    document.getElementById("paintcolor").value = "#ffffff"
+    document.getElementById("opacity").value = 70 + Math.random() * 20
     document.getElementById("number").value = 3000 + Math.random() * 3000
     document.getElementById("featuresize").value = 400
     let r = Math.random()
@@ -8574,6 +8574,62 @@ function duplicate () {
   ctx.clearRect(0,0,canvas.width,canvas.height)
   ctx.drawImage(top, 0, canvas.height/4)
   ctx.drawImage(top, 0, -canvas.height/4)
+}
+
+
+function halfRip_mod () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = canvas.height, W = canvas.width
+  let grunge = document.getElementById("grungy").checked
+  let s = document.getElementById("featuresize").value/500
+  let half = W*s
+  let lx = LASTCLICK[0]
+  const offset = 2 + W/100
+  let x = 0, y = 0
+  x = 0, y = 0
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x,y)
+  x = lx + pet(50)//half-offset
+  ctx.lineTo(x, y)
+  H += 40
+  while (y <= H) {
+    x += pet(9)
+    y += 9 + pet(4)
+    ctx.lineTo(x, y)
+    if (Math.random() > 0.95)
+      x += pet(60)
+    if (Math.random() > 0.95)
+      y += 39
+  }
+  ctx.lineTo(0, y)
+  ctx.closePath()
+  ctx.clip()
+  let color = (Math.random() > 0.5)? "#000000": "#ffffff";
+  ctx.fillStyle = randomGradient(canvas, color)
+  ctx.globalAlpha = 0.3
+  ctx.fillRect(0,0,canvas.width, canvas.height)
+  ctx.restore()
+  ctx.restore()
+}
+
+function ripShade () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  
+  let alpha = document.getElementById("opacity").value
+  // clip to ragged edge region
+  ctx.save()
+  
+  //left rip
+  
+  let color = (Math.random() > 0.5)? "#000000": "#ffffff";
+  ctx.fillStyle = randomGradient(canvas, color)
+  ctx.globalAlpha = 0.2
+  ctx.fillRect(0,0,canvas.width, canvas.height)
+  ctx.restore()
+  ctx.globalAlpha = alpha/100
 }
 
 function afold () {
