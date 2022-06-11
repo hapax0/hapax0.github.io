@@ -607,7 +607,7 @@ function randomPalette () {
   } else
   if (type === "rainbow") {
     let rb = [randomColorCool(),randomColorCool(),"#cccccc",randomColorWarm(),randomColorWarm()]
-    if (Math.random() > 0.5)
+    if (Math.random() > 0.75)
       rb.reverse()
     document.getElementById("pal1").value = rb[0]
     document.getElementById("pal2").value = rb[1]
@@ -4281,37 +4281,38 @@ function retro () {
   let feature_size = document.getElementById("featuresize").value
   let number = document.getElementById("number").value
   let color = document.getElementById("paintcolor").value
+  let alt = document.getElementById("grungy").checked
   document.getElementById("number").value = 1500 + pet(500)
   document.getElementById("opacity").value = 100
   LASTCLICK[0] = canvas.width/2
   LASTCLICK[1] = canvas.height/2
   increaseGrain()
+  contrastImage(-5)
+  adjustBrightness(5)
+  let type = document.getElementById("palettechoice").value
+  document.getElementById("palettechoice").value = "rainbow"
+  randomPalette()
+  palettetint()
+  palettetint()
   edgeDarken(canvas)
-  contrastImage(-10)
-  saturationScale(0.8)
-  if (Math.random() > 0.5)
+  //saturationScale(0.8)
+  /*if (Math.random() > 0.5)
     adjustWarmth(7)
   else
-    adjustWarmth(-7)
-  if (Math.random() > 0.2)
-    edgeDarken(canvas)
-  if (Math.random() > 0.3) {
+    adjustWarmth(-7)*/
+  if (Math.random() > 0.3 && alt) {
     ctx.save()
     clipIrregular()
     lightleak()
     ctx.restore()
   }
-  if (Math.random() > 0.3) {
-    document.getElementById("opacity").value = 100
-    randomPalette()
-    palettetint()
-  }
-  if (Math.random() > 0.3) {
+  
+  if (Math.random() > 0.3 && alt) {
     document.getElementById("paintcolor").value = randomPick(["#d4f595", "#80dfff", "#ffee80", "#ff80aa", "#45de45"])
     document.getElementById("opacity").value = 25 + Math.random() * 10
     haze()
   }
-  if (Math.random() > 0.3) {
+  if (Math.random() > 0.3 && alt) {
     document.getElementById("paintcolor").value = randomPick(["#7f7e60", "#707060", "#507070", "#505070"])
     document.getElementById("opacity").value = 30
     document.getElementById("number").value = 6000
@@ -4321,7 +4322,7 @@ function retro () {
     else
       fog()
   }
-  if (Math.random() > 0.3) {
+  if (Math.random() > 0.3 && alt) {
     ctx.save()
     clipIrregular()
     document.getElementById("paintcolor").value = "#ffffff"
@@ -4343,6 +4344,7 @@ function retro () {
   document.getElementById("featuresize").value = feature_size
   document.getElementById("number").value = number
   document.getElementById("paintcolor").value = color
+  document.getElementById("palettechoice").value = type
 }
 
 function adjustExposure (n, canvas) {
