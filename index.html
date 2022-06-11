@@ -246,6 +246,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
           <option value="ramp">mixed ramp</option>
           <option value="mono">mono ramp</option>
           <option value="random">random</option>
+          <option value="rainbow">rainbow</option>
           <option value="rust">rust</option>
           <option value="stary">stary night</option>
           <option value="scream">the scream</option>
@@ -602,6 +603,17 @@ function randomPalette () {
     document.getElementById("pal3").value = adjustBrightnessC(c, amt*2)
     document.getElementById("pal4").value = adjustBrightnessC(c, amt*3)
     document.getElementById("pal5").value = adjustBrightnessC(c, amt*3)
+    updateExtraColors(b)
+  } else
+  if (type === "rainbow") {
+    let rb = [randomColorCool(),randomColorCool(),"#cccccc",randomColorWarm(),randomColorWarm()]
+    if (Math.random() > 0.5)
+      rb.reverse()
+    document.getElementById("pal1").value = rb[0]
+    document.getElementById("pal2").value = rb[1]
+    document.getElementById("pal3").value = "#cccccc"
+    document.getElementById("pal4").value = rb[3]
+    document.getElementById("pal5").value = rb[4]
     updateExtraColors(b)
   } else
   if (type === "stary"){
@@ -4573,6 +4585,21 @@ function randomColorVDark() {
   b = ('0'+(randomFromTo(0,92)).toString(16)).slice(-2);
   return '#' +r+g+b;
 }
+
+function randomColorWarm() {
+  let r = ('0'+(randomFromTo(120,256)).toString(16)).slice(-2),
+  g = ('0'+(randomFromTo(50,190)).toString(16)).slice(-2),
+  b = ('0'+(randomFromTo(10,50)).toString(16)).slice(-2);
+  return '#' +r+g+b;
+}
+
+function randomColorCool() {
+  let r = ('0'+(randomFromTo(10,50)).toString(16)).slice(-2),
+  g = ('0'+(randomFromTo(50,190)).toString(16)).slice(-2),
+  b = ('0'+(randomFromTo(120,256)).toString(16)).slice(-2);
+  return '#' +r+g+b;
+}
+
 
 function randomFromTo(from, to) {
   return Math.floor(Math.random() * (to - from + 1) + from);
