@@ -327,6 +327,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
 </svg></button>
     <select id="patternfunctions">
     <option value="increaseGrain">increase grain</option>
+    <option value="increaseGrainPrinty">printy grain</option>
     <option value="specksRadial">specks</option>
     <option value="blobs">blobs</option>
     <option value="fog">fog</option>
@@ -12582,7 +12583,7 @@ function darkenSky (canvas) {
   }
   ctx.putImageData(imgData, 0, 0, 0,0,canvas.width,y);
 }
-
+    
 function increaseGrain (canvas) {
   if (!canvas)
     canvas = document.getElementById("myCanvas");
@@ -12596,6 +12597,7 @@ function increaseGrain (canvas) {
   let flip = 0.5
   if (document.getElementById("grungy").checked)
     flip = 0.87
+  
   let i = 0
   for (; i < pixels.length; i += 4) {
     brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3)
@@ -12605,6 +12607,41 @@ function increaseGrain (canvas) {
       pixels[i + 2] += n;
       if (Math.random() > flip)
         n *= -1
+    }
+  }
+  ctx.putImageData(imgData, 0, 0);
+}
+
+
+function increaseGrainPrinty (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
+  let n = document.getElementById("number").value/200
+  let lh = rangecheck()
+  let lowest = lh[0], highest = lh[1]
+  let brightness = 0
+  let ctx = canvas.getContext("2d");
+  let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
+  let pixels = imgData.data;
+  let flip = 0.5
+  if (document.getElementById("grungy").checked)
+    flip = 0.87
+  let fudge = []
+  let i = 0, ct = 0
+  let ff = [53, 59, 61, 67, 71, 73, 37, 41, 43]
+  let mm = randomPick(ff)
+  console.log(mm)
+  for (; i < mm; i++)
+    fudge.push((Math.random() > 0.5)?1:-1)
+  i = 0
+  for (; i < pixels.length; i += 4) {
+    brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3)
+    if (brightness > lowest && brightness <= highest) {
+      pixels[i] += n;
+      pixels[i + 1] += n;
+      pixels[i + 2] += n;
+      n *= fudge[ct % mm]
+      ct++
     }
   }
   ctx.putImageData(imgData, 0, 0);
