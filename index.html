@@ -409,11 +409,12 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="nested">nested sqrs</option>
     <!--option value="blobOutline">shape outline</option>
     <option value="bezRandom" >random bez</option-->
+    <option value="moleskin" selected>moleskin</option>
     <option value="scratchOut">scratch out</option>
     <option value="strokes">strokes</option>
     <option value="strokes2">strokes2</option>
     <option value="strokesH">strokes horizontal</option>
-    <option value="scratch" selected>scratch</option>
+    <option value="scratch">scratch</option>
     <!--option value="birds">birds</option>
     <option value="grid">grid</option>
     <option value="rothko">rothko</option-->
@@ -5729,6 +5730,60 @@ function scratchOut () {
   //ctx.stroke()
 }
 
+function moleskin () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
+  let alpha = document.getElementById("opacity").value
+  let color = document.getElementById("paintcolor").value
+  let small = true, half = true
+  document.getElementById("paintcolor").value = "#fdffee"
+ // canvas.width = 1160
+ // canvas.height = 900
+  fill()
+  // optonal grid?
+  ctx.strokeStyle = "#ccccdc"
+  ctx.lineWidth = 1
+  let i = 0, x = 27, y = 28
+  while (y < canvas.height) {
+    ctx.beginPath()
+    ctx.moveTo(x, y)
+    ctx.lineTo(canvas.width-27, y)
+    ctx.closePath()
+    ctx.stroke()
+    y += 20
+  }
+  i = 0, y = 0, x = 30
+  while (x < canvas.width) {
+    ctx.beginPath()
+    ctx.moveTo(x, y)
+    ctx.lineTo(x, canvas.height)
+    ctx.closePath()
+    ctx.stroke()
+    x += 20
+    if (x > canvas.width/2 && half) {
+      half = false
+      x -= 4
+    }
+  }
+  rcc()
+  afold()
+  rc()
+  document.getElementById("paintcolor").value = "#565555"
+  document.getElementById("opacity").value = 21
+  flipH()
+  document.getElementById("paintcolor").value = "#565555"
+  edgeSmear(small)
+  document.getElementById("paintcolor").value = "#fefeee"
+  flipH()
+  ctx.fillRect(0,0,25,canvas.height)
+  edgeSmear(small)
+  document.getElementById("opacity").value = 100
+  document.getElementById("paintcolor").value = "#222228"
+  roundedFrame()
+  document.getElementById("opacity").value = alpha
+  document.getElementById("paintcolor").value = color
+}
 
 function nested () {
   let canvas = document.getElementById("myCanvas");
@@ -6585,7 +6640,7 @@ function strokes () {
   let maxalpha = ctx.globalAlpha
   ctx.lineCap = 'round';
   ctx.lineJoin = 'round';
-  
+  let stroke_ct = +document.getElementById("number").value/400 + 1
   for (let t = 0; t < stroke_ct; t++) {
     let paths = [];
     let radius = Math.floor(Math.random() * 180) + 20;
@@ -12232,7 +12287,7 @@ function smear (micro) {
   ctx.restore()
 }
 
-function edgeSmear () {
+function edgeSmear (small) {
   let ocanvas = document.createElement("CANVAS")
   let octx = ocanvas.getContext('2d')
   let canvas = document.getElementById("myCanvas");
@@ -12244,30 +12299,38 @@ function edgeSmear () {
   ocanvas.width = (canvas.height > canvas.width)? canvas.height: canvas.width
   ocanvas.height += 50
   octx.clearRect(0,0,ocanvas.width,ocanvas.height)
-  let c = ocanvas.height * 0.5
+  
   octx.fillStyle = randomGradient(ocanvas, document.getElementById("paintcolor").value)
-  octx.globalAlpha = (document.getElementById("opacity").value)/100
-  let x = canvas.width/100 * Math.random()
-  let y = 4
+  octx.globalAlpha = 1//(document.getElementById("opacity").value)/100
+  let c = ocanvas.height * 0.5
+  let x = 1//canvas.width/100 * Math.random()
+  let y = 21
   let r = 17
   let i = 0
   let p = 61
   if (document.getElementById("grungy").checked)
     p *= 3
+  if (small) {
+    p = canvas.width/200
+    r /= 2
+  }
   for (; i < numshapes; i++) {
     octx.fillStyle = randomGradient(ocanvas, document.getElementById("paintcolor").value)
     octx.globalAlpha = Math.random()
-    drawBlobAt (octx, x+pet(p), y, r+pet(17))
+    let xo = x+pet(p)
+    drawBlobAt (octx, xo/2, y, r+pet(2))
   }
   i = 0
   let N = (Math.log(canvas.height+1) * 11.3) - 46
+
   for (; i < N; i++) {
     octx.globalAlpha = Math.random()
-    octx.translate(c, c+3+pet(1))
+    let co = c+3+pet(1)
+    octx.translate(c, co)
     octx.translate(-c, -c)
     octx.drawImage(octx.canvas, 0, 0)
   }
-  ctx.drawImage(ocanvas, 0, -50)
+  ctx.drawImage(ocanvas, -5, 0)
   octx.clearRect(0,0,ocanvas.width,ocanvas.height)
 }
 
@@ -12600,6 +12663,7 @@ function increaseGrain (canvas) {
   
   let i = 0
   for (; i < pixels.length; i += 4) {
+    if (Math.random() > 0.5) {
     brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3)
     if (brightness > lowest && brightness <= highest) {
       pixels[i] += n;
@@ -12608,6 +12672,7 @@ function increaseGrain (canvas) {
       if (Math.random() > flip)
         n *= -1
     }
+  }
   }
   ctx.putImageData(imgData, 0, 0);
 }
