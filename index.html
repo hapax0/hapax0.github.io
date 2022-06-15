@@ -2,6 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 <style>
   div[class=buttons] {margin-top:8px}
   body {background-color:#ccc;}
@@ -14,6 +15,9 @@
   select {width:120px;}
   input, img, span, a{
     vertical-align: middle;
+  }
+  i {
+    font-size: 12px;
   }
   input[id='lower'] {
    -webkit-transform: rotateY(180deg);
@@ -5803,31 +5807,48 @@ function moleskinDay () { // day planer
   let hour = 8
   ctx.font = 12+"px serif"
   ctx.fillStyle = document.getElementById("paintcolor").value = "#666666"
+  let voff = randomPick([1,2,-1,-2])
   let i = 0, x = 27, y = 144, last = 0
   while (i < 22) {
     ctx.beginPath()
     ctx.moveTo(x, y)
-    ctx.lineTo(canvas.width-27, y)
+    ctx.lineTo(canvas.width/2, y)
     ctx.closePath()
     ctx.stroke()
     if (hour < 23) {
       ctx.fillText(hour, 52, y+36-5)
-      ctx.fillText(hour, canvas.width/2+44, y+36-5)
+      ctx.fillText(hour, canvas.width/2+44, y+36-5+voff)
       last = y
     }
     y += 36
     hour += 1
     i++
   }
-  ctx.fillText("\u{26C5}", 52, last+216-5)
-  ctx.fillText("\u{1F321}", 52, last+242-5)
-  ctx.fillText("\u{26C5}", canvas.width/2+44, last+216-5)
-  ctx.fillText("\u{1F321}", canvas.width/2+44, last+242-5)
-  
+
+  i = 0, x = canvas.width/2, y = 144 + voff
+  while (i < 22) {
+    ctx.beginPath()
+    ctx.moveTo(x, y)
+    ctx.lineTo(canvas.width-27, y)
+    ctx.closePath()
+    ctx.stroke()
+    y += 36
+    i++
+  }
+
+  ctx.font = "12px serif monospace"
+
+  ctx.globalCompositeOperation ="luminosity"
+  ctx.fillText("\u{26C5}", 52, last+218-5)
+  ctx.fillText("\u{1F321}", 52, last+248-5)
+  ctx.fillText("\u{26C5}", canvas.width/2+44, last+218-5+voff)
+  ctx.fillText("\u{1F321}", canvas.width/2+44, last+248-5+voff)
+  ctx.globalCompositeOperation = "source-over"
   const today = new Date()
   const tomorrow = new Date(today)
   tomorrow.setDate(tomorrow.getDate() + 1)
-  ctx.fillText("week "+today.getWeek(), canvas.width - 84, last+242-5)
+  
+  ctx.fillText("semana "+today.getWeek(), canvas.width - 88, last+248-5+voff)
 
   let months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
   let days = ["DOMINGO", "SEGUNDA-FEIRA", "TERÇA-FEIRA", "QUARTA-FEIRA", "QUINTA-FEIRA", "SEXTA-FEIRA", "SÁBADO"]
@@ -5862,7 +5883,7 @@ function moleskinDay () { // day planer
   edgeSmear(small)
   document.getElementById("paintcolor").value = "#fefeee"
   flipH()
-  ctx.fillRect(0,0,25,canvas.height)
+  //ctx.fillRect(0,0,25,canvas.height)
   edgeSmear(small)
   document.getElementById("opacity").value = 100
   document.getElementById("paintcolor").value = "#222228"
