@@ -411,6 +411,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="edgeSmear">streak left</option>
     <option value="smeardownOff">vertical streaks</option>
     <option value="neckerline">necker</option>
+    <option value="necker">necker (fill)</option>
     <option value="nested">nested sqrs</option>
     <!--option value="blobOutline">shape outline</option>
     <option value="bezRandom" >random bez</option-->
@@ -5529,13 +5530,14 @@ function birdhouse () {
 function necker () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  clip()
+  ctx.clearRect(0,0,canvas.width,canvas.height)
   ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
   let W = canvas.width
   let margin = W/20
   let w4 = (W-2*margin)/(2+Math.floor(Math.random() * 10))//document.getElementById("rows").value
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let colors = shuffle(['red', 'blue', 'yellow', 'orange', 'purple', "green"])
+  ctx.strokeStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
   let grunge = document.getElementById("grungy").checked
   if (Math.random() > 0.5) {
     //bottom
@@ -5547,7 +5549,7 @@ function necker () {
     ctx.lineTo(W-w4-margin, W-margin)
    // ctx.closePath()
     if (grunge)
-      ctx.strokeStyle = colors[3]
+      ctx.fillStyle = colors[3]
     ctx.fill()
     //left side
     ctx.strokeStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
@@ -5558,7 +5560,7 @@ function necker () {
     ctx.lineTo(margin, W-margin)
    // ctx.closePath()
     if (grunge)
-      ctx.strokeStyle = colors[4]
+      ctx.fillStyle = colors[4]
     ctx.fill()
     
       //upper right
@@ -5570,7 +5572,7 @@ function necker () {
     ctx.lineTo(w4+margin, W-w4-margin)
    // ctx.closePath()
     if (grunge)
-      ctx.strokeStyle = colors[0]
+      ctx.fillStyle = colors[0]
     ctx.fill()
     
     // lower left
@@ -5582,7 +5584,7 @@ function necker () {
     ctx.lineTo(margin, W-margin)
    // ctx.closePath()
     if (grunge)
-      ctx.strokeStyle = colors[1]
+      ctx.fillStyle = colors[1]
     ctx.fill()
     
     //top
@@ -5594,7 +5596,7 @@ function necker () {
     ctx.lineTo(W-w4-margin, w4+margin)
     //ctx.closePath()
     if (grunge)
-      ctx.strokeStyle = colors[2]
+      ctx.fillStyle = colors[2]
     ctx.fill()
     
     //right side
@@ -5606,7 +5608,7 @@ function necker () {
     ctx.lineTo(W-w4-margin, W-margin)
     //ctx.closePath(+margin)
     if (grunge)
-      ctx.strokeStyle = colors[5]
+      ctx.fillStyle = colors[5]
     ctx.fill()
   } else {
       //top
@@ -5618,7 +5620,7 @@ function necker () {
     ctx.lineTo(W-w4-margin, w4+margin)
    // ctx.closePath()
     if (grunge)
-      ctx.strokeStyle = colors[2]
+      ctx.fillStyle = colors[2]
     ctx.fill()
     
     //right side
@@ -5630,7 +5632,7 @@ function necker () {
     ctx.lineTo(W-w4-margin, W-margin)
     //ctx.closePath(+margin)
     if (grunge)
-      ctx.strokeStyle = colors[5]
+      ctx.fillStyle = colors[5]
     ctx.fill()
     
      // lower left square
@@ -5642,7 +5644,7 @@ function necker () {
     ctx.lineTo(margin, W-margin)
    // ctx.closePath()
     if (grunge)
-      ctx.strokeStyle = colors[1]
+      ctx.fillStyle = colors[1]
     ctx.fill()
     
     //bottom
@@ -5654,7 +5656,7 @@ function necker () {
     ctx.lineTo(W-w4-margin, W-margin)
     //ctx.closePath()
     if (grunge)
-      ctx.strokeStyle = colors[3]
+      ctx.fillStyle = colors[3]
     ctx.fill()
     
     //upper right square
@@ -5666,7 +5668,7 @@ function necker () {
     ctx.lineTo(w4+margin, W-w4-margin)
     //ctx.closePath()
     if (grunge)
-      ctx.strokeStyle = colors[0]
+      ctx.fillStyle = colors[0]
     ctx.fill()
    
     //left side
@@ -5678,10 +5680,10 @@ function necker () {
     ctx.lineTo(margin, W-margin)
    // ctx.closePath()
     if (grunge)
-      ctx.strokeStyle = colors[4]
+      ctx.fillStyle = colors[4]
     ctx.fill()
   }
-  ctx.restore()
+ // ctx.restore()
 }
 
 function scratchOut () {
@@ -5790,6 +5792,7 @@ function moleskin () { // grid paper
   document.getElementById("paintcolor").value = color
 }
 
+
 function moleskinDay () { // day planer
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -5848,9 +5851,11 @@ function moleskinDay () { // day planer
   const tomorrow = new Date(today)
   tomorrow.setDate(tomorrow.getDate() + 1)
   
-  ctx.fillText("semana "+today.getWeek(), canvas.width - 88, last+248-5+voff)
-
+  ctx.fillText("semana "+today.getWeek(), canvas.width - 88, last+248-5+voff)// FR: "la semaine"
+  let monthsFR = [ "janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"]
   let months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
+  let daysFR = ["dimanche", "mardi","mercredi","jeudi","vendredi","samedi"]
+  
   let days = ["DOMINGO", "SEGUNDA-FEIRA", "TERÇA-FEIRA", "QUARTA-FEIRA", "QUINTA-FEIRA", "SEXTA-FEIRA", "SÁBADO"]
 
   let size = 20//document.getElementById("featuresize").value/6.25
