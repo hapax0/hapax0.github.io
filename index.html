@@ -299,7 +299,8 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
       <option value="distortion">fisheye</option>
       <option value="ripinhalf">rip in half</option>
       <option value="duplicate">duplicate</option>
-      <option value="afold" selected>fold</option>
+      <option value="afold">fold</option>
+      <option value="crumple" selected>crumple</option>
       <option value="fourbyfourplain">4x4</option>
       <option value="fourbyfour">warhol</option>
       <option value="smearside">smear right</option>
@@ -922,6 +923,122 @@ function swapDiag () {// number to divide height by, to match width's divisor
     }
   }
 }
+
+function pointN (x, y, id) {
+  this.x = x
+  this.y = y
+  this.neighbors = []
+  this.center
+  this.min
+  this.max
+  this.angles = []
+  this.id = id
+}
+
+function getAngles (pt) {
+  let angles = [], i = 0
+  //console.log(pt.neighbors.length)
+  let c = pt.center
+  if (c)
+  for (; i < pt.neighbors.length; i++) {
+    pt.angles.push(Math.atan2(pt.neighbors[i].y-c.y, pt.neighbors[i].x-c.x))
+  }
+}
+
+function findCenter (pts) {
+  if (!pts || pts.length < 3)
+    return []
+  let centerx = -1, centery = -1, i = 0
+  let minx = 1000000000, maxx = -1, miny = 1000000000, maxy = -1
+  for (; i < pts.length; i++) {
+    minx = (pts[i].x < minx)? pts[i].x: minx;
+    miny = (pts[i].y < miny)? pts[i].y: miny;
+    maxx = (pts[i].x > maxx)? pts[i].x: maxx;
+    maxy = (pts[i].y > maxy)? pts[i].y: maxy;
+  }
+  centerx = minx + (maxx - minx)/2
+  centery = miny + (maxy - miny)/2
+  return ([new point(centerx, centery), new point(minx, miny), new point(maxx, maxy)])
+}
+
+function drawPointsN (ptsN) {
+  let pts = ptsN.neighbors
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  ctx.lineWidth = 6
+  ctx.strokeStyle ="#000000"
+  let i = 0
+  for (;i < pts.length; i++) {
+    if (pts[i].neighbors && pts[i].neighbors.length > 3) {
+      ctx.strokeStyle = randomColor()
+      ctx.fillStyle = randomGradientRect(canvas, "#000000",  ptsN.min.x,  ptsN.min.y,  ptsN.max.x,  ptsN.max.y)
+      ctx.globalAlpha = 0.05
+      ctx.save()
+    
+      ctx.beginPath()
+      ctx.moveTo(pts[i].neighbors[0].x, pts[i].neighbors[0].y)
+      let j = 1
+      for (; j < pts[i].neighbors.length; j++) {
+        ctx.lineTo(pts[i].neighbors[j].x, pts[i].neighbors[j].y)
+      }
+      ctx.closePath()
+      ctx.clip()
+      ctx.fill()
+      ctx.restore()
+    }
+  }
+}
+
+function facets (canvas) {
+	let pointsN = []
+	let x = 0,y = 0,p = 0
+	let len = 40//maxX*maxY
+	for (; p < len; p++) {
+		pointsN.push( new pointN(Math.floor(Math.random() * 1000), Math.floor(Math.random() * 1000), p))
+	}
+	let mindistance = 300
+	let i = 0
+	for (; i < pointsN.length; i++) {
+	  let j = 0
+	  for (; j < pointsN.length; j++) {
+	    if (i !== j) {
+	      if (distance(pointsN[i].x, pointsN[i].y, pointsN[j].x, pointsN[j].y) < mindistance) {
+	        pointsN[i].neighbors.push(pointsN[j])
+	      }
+	    }
+	  }
+	}
+	i = 0
+//	console.log(pointsN.length)
+	for (; i < 2; i++) {
+	  let c = findCenter(pointsN[i].neighbors)
+	  pointsN[i].center = c[0]
+	  pointsN[i].min = c[1]
+	  pointsN[i].max = c[2]
+	  getAngles(pointsN[i])
+
+	  let N = pointsN[i].neighbors//, A = pointsN[i].angles
+	  let A = pointsN[i].angles
+	//  console.log(N)
+
+   // a, b indicies of neighbors array
+    //N.sort((a, b) => console.log(A[a] - A[b]));
+
+    //  N.sort(function(a, b) {
+     //console.log(N.indexOf(a), N.indexOf(b))
+      //console.log(A[N.indexOf(a)], A[N.indexOf(b)])
+     // console.log(A[N.indexOf(a)] - A[N.indexOf(b)])
+    //  return (A[N.indexOf(a)] > A[N.indexOf(b)])? 1 : -1;
+    //});
+	  //console.log(N)
+    pointsN[i].neighbors = N
+	//}
+  console.log(pointsN[i])
+	drawPointsN(pointsN[i])//.slice(0,3))
+}
+	return
+}
+
 
 function diss () {
   let canvas = document.getElementById("myCanvas")
@@ -8828,19 +8945,95 @@ function halfRip_mod () {
 function ripShade () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
-  
   let alpha = document.getElementById("opacity").value
   // clip to ragged edge region
   ctx.save()
   
   //left rip
-  
   let color = (Math.random() > 0.5)? "#000000": "#ffffff";
   ctx.fillStyle = randomGradient(canvas, color)
   ctx.globalAlpha = 0.2
   ctx.fillRect(0,0,canvas.width, canvas.height)
   ctx.restore()
   ctx.globalAlpha = alpha/100
+}
+
+function crumple () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = canvas.height, W = canvas.width
+  let increase = Math.PI * 2 / 40;
+  let x = 0, y = 0, angle = 4.7;
+  ctx.globalAlpha = 0.05
+  ctx.globalCompositeOperation = document.getElementById("mode").value
+  const numshapes = 10 + Math.random() * 5;
+  let radius = (H+W)/3
+  const maxradius = (H+W)/3
+  for (var t = 0; t < numshapes; t++) {
+    var centx = Math.random()*W;
+    var centy = Math.random()*H;
+    var edges = Math.random()*25+10;
+    x = 0;
+    y = 0;
+    var x0 = x;
+    var y0 = y;
+    angle = Math.floor(Math.random() * 6.42);
+    ctx.beginPath();
+    increase = Math.PI * 2/edges*0.98;
+    points = [];
+    bez = [];
+    let maxx = -1000000000, maxy = -1000000000, minx = 1000000000, miny = 1000000000
+    for (var i = 0; i < edges; i++) {
+      radius = Math.random() * maxradius*.4 + maxradius;
+      x = radius * Math.cos(angle)+centx;
+      y = radius * Math.sin(angle)+centy;
+      var cp1x = radius * Math.cos(angle)+centx;
+      var cp1y = radius * Math.sin(angle)+centy;
+      var cp2x = radius * Math.cos(angle-(0.3*increase))+centx;
+      var cp2y = radius * Math.sin(angle-(0.3*increase))+centy;
+      var fx = (Math.random()-0.5)*30;
+      var fy = (Math.random()-0.5)*30;
+      sx = radius * 0.9 * Math.cos(angle)+centx+fx;
+      sy = radius * 0.9 * Math.sin(angle)+centy+fy;
+      var icp1x = 0.9*radius * Math.cos(angle)+centx+fx;
+      var icp1y = 0.9*radius * Math.sin(angle)+centy+fy;
+      var icp2x = 0.9*radius * Math.cos(angle-(0.3*increase))+centx+fx;
+      var icp2y = 0.9*radius * Math.sin(angle-(0.3*increase))+centy+fy;
+      points.push([sx, sy]);
+      maxx = (maxx > sx)? maxx: sx;
+      maxy = (maxy > sy)? maxy: sy;
+      minx = (minx < sx)? minx: sx;
+      miny = (miny < sy)? miny: sy;
+      bez.push([icp1x, icp1y, icp2x, icp2y]);
+      if (i == 0) {
+        x0 = x;
+        y0 = y;
+        ctx.moveTo(x,y);
+      } else
+        ctx.bezierCurveTo(cp1x,cp1y,cp2x,cp2y,x,y);
+      angle += increase;
+    }
+    ctx.lineTo(x0,y0);
+    ctx.closePath();
+    ctx.beginPath();
+    for (var i = 0; i < points.length; i++) {
+      x = points[i][0]-100;
+      y = points[i][1]-100;
+      if (i == 0) {
+        x0 = x;
+        y0 = y;
+      }
+      ctx.bezierCurveTo(bez[i][0], bez[i][1],bez[i][2],bez[i][3], points[i][0], points[i][1]);
+    }
+    ctx.closePath();
+    if (Math.random() > 0.5)
+      ctx.fillStyle = randomGradientRect(canvas, "#ffffff", minx+Math.random() * (maxx-minx), miny+Math.random() * (maxy-miny),  minx+Math.random() * (maxx-minx), miny+Math.random() * (maxy-miny))
+    else
+      ctx.fillStyle = randomGradientRect(canvas, "#000000", minx+Math.random() * (maxx-minx), miny+Math.random() * (maxy-miny),  minx+Math.random() * (maxx-minx), miny+Math.random() * (maxy-miny))
+    ctx.fill();
+    centx = Math.random()*W;
+    centy = Math.random()*H;
+  }
 }
 
 function afold () {
