@@ -5857,30 +5857,36 @@ function sketchpad () { //
   const H = canvas.height, W = canvas.width
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
   let color = document.getElementById("paintcolor").value
+  let mode = ctx.globalCompositeOperation
   let small = true, half = true
   let pad = Math.floor(H * 0.01)
   ctx.fillStyle = "#fefeed"
+  ctx.globalCompositeOperation = "destination-out"
   ctx.fillRect(pad, pad, W/2.1, H-pad*4)
   
   ctx.fillRect(W/2, pad*2, W/2.05, H-pad*4)
   
   ctx.fillStyle = "#202020"
   ctx.strokeStyle = "#402020"
-  ctx.lineWidth = 10
+  ctx.lineWidth = 5
   ctx.lineCap = "round"
   ctx.lineJoin = "round"
+  ctx.globalCompositeOperation = "source-over"
   let x = W/2 -60, y = 72, i = 0
-  let r = 59
-  let sa = Math.PI * 1.3, ea = Math.PI * 1.78
+  let r = 56
+  let sa = Math.PI * 1.35, ea = Math.PI * 1.78
   while (y < H - 100) {
     ctx.fillRect(x,y,24,24)
     ctx.fillRect(x+80,y+pad*1.5,24,24)
     ctx.beginPath()
-    ctx.arc(x+50, y+62, r, sa, ea)
+    ctx.arc(x+50, y+54, r, sa, ea)
+    ctx.stroke()
+    ctx.beginPath()
+    ctx.arc(x+50, y+68-2, r-2, sa, ea)
     ctx.stroke()
     y += 66
   }
-
+  ctx.globalCompositeOperation = mode
 }
 
 function moleskine () { // grid paper
