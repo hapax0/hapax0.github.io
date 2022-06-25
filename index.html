@@ -5863,11 +5863,9 @@ function sketchpad () { //
   ctx.fillStyle = "#fefeed"
   ctx.globalCompositeOperation = "destination-out"
   ctx.fillRect(pad, pad, W/2.1, H-pad*4)
-  
   ctx.fillRect(W/2, pad*2, W/2.05, H-pad*4)
-  
-  ctx.fillStyle = "#202020"
-  ctx.strokeStyle = "#402020"
+  ctx.fillStyle = "#101010"
+  ctx.strokeStyle = "#867033"
   ctx.lineWidth = 5
   ctx.lineCap = "round"
   ctx.lineJoin = "round"
@@ -5879,10 +5877,10 @@ function sketchpad () { //
     ctx.fillRect(x,y,24,24)
     ctx.fillRect(x+80,y+pad*1.5,24,24)
     ctx.beginPath()
-    ctx.arc(x+50, y+54, r, sa, ea)
+    ctx.arc(x+46, y+54, r, sa, ea)
     ctx.stroke()
     ctx.beginPath()
-    ctx.arc(x+50, y+68-2, r-2, sa, ea)
+    ctx.arc(x+43, y+68-2, r-2, sa, ea)
     ctx.stroke()
     y += 66
   }
