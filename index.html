@@ -413,11 +413,12 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="smeardownOff">vertical streaks</option>
     <option value="neckerline">necker</option>
     <option value="necker">necker (fill)</option>
+    <option value="quads" selected>quads</option>
     <option value="nested">nested sqrs</option>
     <!--option value="blobOutline">shape outline</option>
     <option value="bezRandom" >random bez</option-->
     <option value="moleskine">moleskine</option>
-    <option value="sketchpad" selected>sketch pad</option>
+    <option value="sketchpad">sketch pad</option>
     <option value="scratchOut">scratch out</option>
     <option value="strokes">strokes</option>
     <option value="strokes2">strokes2</option>
@@ -5645,6 +5646,45 @@ function birdhouse () {
 }
 */
 
+function quads () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.clearRect(0,0,canvas.width,canvas.height)
+  ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
+  let R = canvas.width * 0.45
+  let margin = R/20
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let colors = shuffle(['red', 'blue', 'yellow', 'orange', 'purple', "green"])
+  ctx.strokeStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+  let grunge = document.getElementById("grungy").checked
+  
+  
+  let x = canvas.width/2, y = canvas.height/2
+  ctx.fillStyle = (colors[0])
+  ctx.beginPath()
+  ctx.arc(x,y,R,Math.PI * 0.25, Math.PI * 1.25)
+  ctx.closePath()
+  ctx.fill()
+  
+  ctx.fillStyle = (colors[1])
+  ctx.beginPath()
+  ctx.arc(x,y,R,Math.PI * 1.25, Math.PI * 0.25)
+  ctx.closePath()
+  ctx.fill()
+  
+  ctx.fillStyle = (colors[2])
+  ctx.beginPath()
+  ctx.arc(x,y,R,Math.PI * 0.75, Math.PI * 1.75)
+  ctx.closePath()
+  ctx.fill()
+  
+  ctx.fillStyle = (colors[3])
+  ctx.beginPath()
+  ctx.arc(x,y,R,Math.PI * 1.75, Math.PI * 0.75)
+  ctx.closePath()
+  ctx.fill()
+}
+
 function necker () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -5878,6 +5918,8 @@ function sketchpad () { //
   let sa2 = Math.PI * 0.56, ea2 = Math.PI * 0.81
   let sa3 = Math.PI * 0.36, ea3 = sa2
   while (y < H - 100) {
+    ctx.lineWidth = 5
+
     ctx.strokeStyle = "#555555"
     ctx.globalCompositeOperation = "darken"
     ctx.globalAlpha = 0.5
@@ -5899,11 +5941,13 @@ function sketchpad () { //
     ctx.arc(x+60, y-12, r-2, sa3, ea3)
     ctx.stroke()
     
-    ctx.strokeStyle = "#867033"
     ctx.globalCompositeOperation = "source-over"
+    
+    ctx.strokeStyle = "#867033"
     ctx.globalAlpha = 1.0
     ctx.fillRect(x,y,24,24)
     ctx.fillRect(x+80,y+pad*1.5,24,24)
+    //rings
     ctx.beginPath()
     ctx.arc(x+46, y+54, r, sa, ea)
     ctx.stroke()
@@ -5911,7 +5955,17 @@ function sketchpad () { //
     ctx.arc(x+43, y+68-2, r-2, sa, ea)
     ctx.stroke()
     
-    
+    // upper glint
+    ctx.strokeStyle = "#ffffff"
+    ctx.lineWidth = 3
+
+    ctx.beginPath()
+    ctx.arc(x+46, y+53, r,  sa+0.7, sa+0.75)
+    ctx.stroke()
+    //lower glint
+    ctx.beginPath()
+    ctx.arc(x+43, y+68-3, r-2, sa+0.75, sa+0.8)
+    ctx.stroke()
 
     y += 66
   }
@@ -8320,7 +8374,7 @@ function triangle (x, y, w, i) {
 }
 */
 
-/*
+
 function albers () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -8339,8 +8393,7 @@ function albers () {
   let grunge = document.getElementById("grungy").checked
   
   top = 0
-  clip()
-  
+
   ctx.fillStyle = randomColor()
   ctx.beginPath();
   ctx.moveTo(0+top, 0 + top)
@@ -8383,7 +8436,7 @@ function albers () {
   ctx.fill()
   ctx.restore()
 }
-
+/*
 function concentriccirc() {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
