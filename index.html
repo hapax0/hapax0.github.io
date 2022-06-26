@@ -5651,36 +5651,50 @@ function quads () {
   let ctx = canvas.getContext("2d");
   ctx.clearRect(0,0,canvas.width,canvas.height)
   ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
-  let R = canvas.width * 0.45
+  let R = canvas.width * 0.43
   let margin = R/20
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let colors = shuffle(['red', 'blue', 'yellow', 'orange', 'purple', "green"])
   ctx.strokeStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
   let grunge = document.getElementById("grungy").checked
   
-  
+  let IA = Math.PI * Math.random()
   let x = canvas.width/2, y = canvas.height/2
   ctx.fillStyle = (colors[0])
   ctx.beginPath()
-  ctx.arc(x,y,R,Math.PI * 0.25, Math.PI * 1.25)
+  ctx.arc(x,y,R, IA+Math.PI * 0.25, IA+Math.PI * 1.25)
   ctx.closePath()
   ctx.fill()
+  if (grunge) {
+    x += pet(39)
+    y += pet(19)
+  }
   
   ctx.fillStyle = (colors[1])
   ctx.beginPath()
-  ctx.arc(x,y,R,Math.PI * 1.25, Math.PI * 0.25)
+  ctx.arc(x,y,R, IA+Math.PI * 1.25, IA+Math.PI * 0.25)
   ctx.closePath()
   ctx.fill()
+  
+  if (grunge) {
+    x += pet(39)
+    y += pet(19)
+  }
   
   ctx.fillStyle = (colors[2])
   ctx.beginPath()
-  ctx.arc(x,y,R,Math.PI * 0.75, Math.PI * 1.75)
+  ctx.arc(x,y,R, IA+Math.PI * 0.75, IA+Math.PI * 1.75)
   ctx.closePath()
   ctx.fill()
   
+  if (grunge) {
+    x += pet(39)
+    y += pet(19)
+  }
+  
   ctx.fillStyle = (colors[3])
   ctx.beginPath()
-  ctx.arc(x,y,R,Math.PI * 1.75, Math.PI * 0.75)
+  ctx.arc(x,y,R, IA+Math.PI * 1.75, IA+Math.PI * 0.75)
   ctx.closePath()
   ctx.fill()
 }
