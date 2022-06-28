@@ -234,7 +234,7 @@ id="ff" onclick="testImage('framefunctions')" title="frame functions"><svg xmlns
      <option value="zoomImage">zoom in</option>
      <option value="zoomOutImage">zoom out</option>
      <option value="nudgeRight" style="color:red">nudge horizontal</option>
-     <option value="nudgeDown" style="color:red">nudge vertical</option>
+     <option value="nudgeDown" style="color:red">nudge down</option>
      <option value="nudgeCW" style="color:red">nudge angle</option>
    </select>
    </td>
@@ -414,12 +414,14 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="neckerline">necker</option>
     <option value="necker">necker (fill)</option>
     <option value="quads" >quads</option>
-    <option value="venn" selected>venn</option>
+    <option value="venn">venn</option>
+    <option value="orbits" selected>orbits</option>
     <option value="nested">nested sqrs</option>
     <!--option value="blobOutline">shape outline</option>
     <option value="bezRandom" >random bez</option-->
     <option value="moleskine">moleskine</option>
     <option value="sketchpad">sketch pad</option>
+    <option value="linedPad">lined pad</option>
     <option value="scratchOut">scratch out</option>
     <option value="strokes">strokes</option>
     <option value="strokes2">strokes2</option>
@@ -5733,7 +5735,47 @@ function venn () {
   ctx.arc(x,y,R, 0, Math.PI * 2)
   ctx.closePath()
   ctx.fill()
+}
 
+function orbits () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.clearRect(0,0,canvas.width,canvas.height)
+  ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
+  let R = canvas.height * 0.15, r = R*2
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let colors = shuffle(['red', 'blue', 'yellow', 'orange', 'purple', "green"])
+  let mode = document.getElementById("mode").value
+  let alpha = document.getElementById("opacity").value
+ if (Math.random() > 0.5)
+   colors = shuffle(['#ff00ff', '#ffff00', '#00ffff', '#7fff7f'])
+  let cx = canvas.width/2, cy = canvas.height/2, x = 0, y = 0
+  let a = Math.random() * 2 * Math.PI
+  ctx.fillStyle = colors[0]
+  ctx.beginPath()
+  ctx.arc(cx, cy, R+r, 0, Math.PI * 2)
+  ctx.closePath()
+  ctx.fill()
+  // inner disc
+  x = cx + R * Math.cos(a)
+  y = cy + R * Math.sin(a)
+  ctx.fillStyle = (colors[1])
+  ctx.beginPath()
+  ctx.arc(x, y, r, 0, Math.PI * 2)
+  ctx.closePath()
+  ctx.fill()
+  cx = x, cy = y
+  // inner, inner disc
+  a = Math.random() * 2 * Math.PI
+  x = cx + r/3* Math.cos(a)
+  y = cy + r/3* Math.sin(a)
+  ctx.fillStyle = (colors[2])
+  ctx.beginPath()
+  ctx.arc(x, y, r*0.667, 0, Math.PI * 2)
+  ctx.closePath()
+  ctx.fill()
+  document.getElementById("mode").value = mode
+  document.getElementById("opacity").value = alpha
 }
 
 function necker () {
@@ -5940,6 +5982,35 @@ function scratchOut () {
   }
   if (alt)
     ctx.restore()
+}
+
+function linedPad () { // grid paper
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
+  document.getElementById("paintcolor").value = "#fdfffd"
+  fill()
+  ctx.strokeStyle = "#aabaed"
+  ctx.lineWidth = 1
+  let i = 0, x = 2, y = 94
+  while (y < canvas.height) {
+    ctx.beginPath()
+    ctx.moveTo(x, y)
+    ctx.lineTo(canvas.width-2, y)
+    ctx.closePath()
+    ctx.stroke()
+    y += 28
+  }
+  ctx.strokeStyle = "#ee6060"
+  i = 0, y = 0, x = 96
+  for (; i < 2; i++) {
+    ctx.beginPath()
+    ctx.moveTo(x, y)
+    ctx.lineTo(x, canvas.height)
+    ctx.closePath()
+    ctx.stroke()
+    x += 5
+  }
 }
 
 function sketchpad () { //
