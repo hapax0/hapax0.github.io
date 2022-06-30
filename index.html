@@ -422,6 +422,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="moleskine">moleskine</option>
     <option value="sketchpad">sketch pad</option>
     <option value="linedPad">lined pad</option>
+    <option value="photoBook">photo book</option>
     <option value="scratchOut">scratch out</option>
     <option value="strokes">strokes</option>
     <option value="strokes2">strokes2</option>
@@ -5988,6 +5989,7 @@ function linedPad () { // grid paper
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
+  let color = document.getElementById("paintcolor").value
   document.getElementById("paintcolor").value = "#fdfffd"
   fill()
   ctx.strokeStyle = "#aabaed"
@@ -6011,6 +6013,41 @@ function linedPad () { // grid paper
     ctx.stroke()
     x += 5
   }
+  document.getElementById("paintcolor").value = color
+}
+
+function photoBook () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  const H = canvas.height, W = canvas.width
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
+  let color = document.getElementById("paintcolor").value
+  let alpha = document.getElementById("opacity").value
+  let mode = ctx.globalCompositeOperation
+  let small = true, half = true
+  let pad = 10//Math.floor(H * 0.01)
+  ctx.globalAlpha = 1.0
+  ctx.fillStyle = color
+  ctx.fillRect(0, 0, W, H)
+  ctx.globalAlpha = 0.2
+  ctx.fillStyle = randomGradientRect(canvas, "#ffffff", W/5-(pad*8), H, pad*6, H)
+  ctx.fillRect(0, 0, W/5-(pad*6), H)
+
+  ctx.fillStyle = randomGradientRect(canvas, "#000000", W/5, H, W/3, H)
+  ctx.fillRect(W/5-(pad*6), 0, W, H)
+
+  ctx.globalAlpha = 1.0
+  ctx.fillStyle = "#fefeed"
+  ctx.globalCompositeOperation = "destination-out"
+  //ctx.fillRect(pad, pad, W/2-pad*2.5, H-pad*4)
+  ctx.fillRect(W/5, pad*6, 3*W/4-pad, H-(pad*12))
+
+  ctx.fillRect(0, pad*6, (pad*9), H-(pad*12))
+  ctx.globalCompositeOperation = "source-over"
+  
+  ctx.globalCompositeOperation = mode
+  document.getElementById("opacity").value = alpha
+
 }
 
 function sketchpad () { //
@@ -11202,6 +11239,36 @@ function bezRandom () {
   }
   drawBezline(points, 0, 0)
 }
+
+function fillPoints (pts, offsetX, offsetY, color) {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let x = 0, y = 0, x0 = 0, y0 = 0,  r = 6
+  ctx.fillStyle = 'blue'
+  ctx.beginPath()
+  let i = 0;
+  for (; i < pts.length; i++) {
+    x = pts[i][0]
+    y = pts[i][1]
+    if (i == 0) {
+      ctx.moveTo(x, y);
+    } else
+    if (i > 0 && i % 3 == 0)
+      ctx.bezierCurveTo(pts[i-2][0], pts[i-2][1], pts[i-1][0], pts[i-1][1], pts[i][0], pts[i][1]);
+    
+    ctx.fillStyle = 'red'
+    if (i % 3 == 0)
+      ctx.fillStyle = 'black'
+   // ctx.beginPath()
+   // ctx.arc(x,y,r,0,Math.PI*2)
+   // ctx.closePath();
+   // ctx.fill();
+  }
+  ctx.closePath();
+  ctx.fillStyle = color
+  ctx.fill();
+}
+
 
 function blobOutline () {
   let grunge = document.getElementById("grungy").checked
