@@ -6163,7 +6163,7 @@ function spiralbound () { //
   while (x < W - 30) {
     ctx.strokeStyle = "#555555"
     ctx.beginPath()
-    ctx.arc(x+12, y-18, r-2, sa, ea)
+    ctx.arc(x+12, y-18, r-2, sa, ea+0.02)
     ctx.stroke()
     
     ctx.strokeStyle = "#404040"
@@ -6185,7 +6185,8 @@ function spiralbound () { //
 
   x = 46
   while (x < W - 30) {
-
+    ctx.globalAlpha = 1.0
+    ctx.globalCompositeOperation = "source-over"
     ctx.fillStyle = "#202020"
     ctx.globalAlpha = 1.0
     ctx.beginPath()
@@ -6217,6 +6218,14 @@ function spiralbound () { //
     ctx.strokeStyle = "#404040"
     ctx.beginPath()
     ctx.arc(x-50, y-19, r, Math.PI * 2.1, Math.PI * 2.15)
+    ctx.stroke()
+    
+    // shadow of wire on paper
+    ctx.globalAlpha = 0.2
+    ctx.globalCompositeOperation = "destination-over"
+    //ctx.strokeStyle = "#999999"
+    ctx.beginPath()
+    ctx.arc(x-10, y-13, r, Math.PI * 1.6, Math.PI/10-0.1)
     ctx.stroke()
     x += 62
   }
