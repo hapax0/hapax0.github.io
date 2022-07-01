@@ -428,6 +428,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="strokes2">strokes2</option>
     <option value="strokesH">strokes horizontal</option>
     <option value="scratch">scratch</option>
+    <option value="chair">chair</option>
     <!--option value="birds">birds</option>
     <option value="grid">grid</option>
     <option value="rothko">rothko</option-->
@@ -5149,11 +5150,12 @@ function drops () {
 function chair () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  clip()
+  //clip()
   let W = canvas.width
   let H = canvas.height
   let margin = W/5
-  margin = 100 + (W-2*margin)/(2+Math.floor(Math.random() * 10))//document.getElementById("rows").value
+  margin = H/5 + Math.floor(Math.random() * H/5)
+  
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let colors = shuffle(['red', 'blue', 'yellow', 'orange', 'purple', "green"])
   let grunge = document.getElementById("grungy").checked
@@ -5175,6 +5177,7 @@ function chair () {
   
   points[11] = [W-margin, margin/2]
   
+  ctx.clearRect(0,0, W,H)
   let g = 11
   if (grunge)
     g *= 2
@@ -5281,7 +5284,7 @@ function chair () {
     ctx.lineWidth += pet(2)
   ctx.stroke()
   
-  ctx.restore()
+ // ctx.restore()
 }
 
 function point (x, y) {
