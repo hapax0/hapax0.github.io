@@ -415,14 +415,14 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="necker">necker (fill)</option>
     <option value="quads" >quads</option>
     <option value="venn">venn</option>
-    <option value="orbits" selected>orbits</option>
+    <option value="orbits">orbits</option>
     <option value="nested">nested sqrs</option>
     <!--option value="blobOutline">shape outline</option>
     <option value="bezRandom" >random bez</option-->
     <option value="moleskine">moleskine</option>
     <option value="sketchpad">sketch pad</option>
     <option value="linedPad">lined pad</option>
-    <option value="spiralbound">spiral bound</option>
+    <option value="spiralbound" selected>spiral bound</option>
     <option value="scratchOut">scratch out</option>
     <option value="strokes">strokes</option>
     <option value="strokes2">strokes2</option>
@@ -6156,8 +6156,8 @@ function spiralbound () { //
   ctx.fillRect(0,0,W, 48)
   
   let sa = Math.PI * 1.1, ea = Math.PI * 1.3
-  let sa2 = Math.PI * 0.56, ea2 = Math.PI * 0.81
-  let sa3 = Math.PI * 0.36, ea3 = sa2
+ // let sa2 = Math.PI * 0.56, ea2 = Math.PI * 0.81
+//  let sa3 = Math.PI * 0.36, ea3 = sa2
   ctx.lineWidth = 11
 
   while (x < W - 30) {
@@ -6198,26 +6198,26 @@ function spiralbound () { //
     ctx.lineWidth =11
     ctx.strokeStyle = "#999999"
     ctx.beginPath()
-    ctx.arc(x-50, y-19, r, Math.PI * 1.72, Math.PI/10+0.1)
+    ctx.arc(x-50, y-18, r+2, Math.PI * 1.71, Math.PI/10+0.1)
     ctx.stroke()
     
     // gliny
     ctx.lineWidth = 10
     ctx.strokeStyle = "#fefefe"
     ctx.beginPath()
-    ctx.arc(x-50, y-19, r, Math.PI * 1.8, Math.PI * 1.82)
+    ctx.arc(x-50, y-19, r+3, Math.PI * 1.8, Math.PI * 1.82)
     ctx.stroke()
     
     // glint
     ctx.strokeStyle = "#dcdcdc"
     ctx.beginPath()
-    ctx.arc(x-50, y-19, r, Math.PI * 1.89, Math.PI * 1.90)
+    ctx.arc(x-50, y-19, r+3, Math.PI * 1.89, Math.PI * 1.895)
     ctx.stroke()
     
     // shadow
     ctx.strokeStyle = "#404040"
     ctx.beginPath()
-    ctx.arc(x-50, y-19, r, Math.PI * 2.1, Math.PI * 2.15)
+    ctx.arc(x-50, y-19, r+2, Math.PI * 2.1, Math.PI * 2.15)
     ctx.stroke()
     
     // shadow of wire on paper
@@ -6225,11 +6225,32 @@ function spiralbound () { //
     ctx.globalCompositeOperation = "destination-over"
     //ctx.strokeStyle = "#999999"
     ctx.beginPath()
-    ctx.arc(x-10, y-13, r, Math.PI * 1.6, Math.PI/10-0.1)
+    ctx.arc(x-68, y-13, r, Math.PI * 1.6, Math.PI/10-0.1)
     ctx.stroke()
     x += 62
   }
+  ctx.globalCompositeOperation = "destination-over"
+  ctx.globalAlpha = 1.0
+  ctx.fillStyle = "#eefefe"
+ // ctx.fillRect(0,0,W,H)
+  
+  ctx.strokeStyle = "#8888ff"
+  ctx.lineWidth = 1
+  ctx.globalCompositeOperation = "source-over"
+
+  x = 2, y = 120
+  while (y < H) {
+    ctx.beginPath()
+    ctx.moveTo(x,y)
+    ctx.lineTo(W-2,y)
+    ctx.closePath()
+    ctx.stroke()
+    y += 50
+  }
+  
+  
   ctx.globalCompositeOperation = mode
+  
   document.getElementById("opacity").value = alpha
 }
 
