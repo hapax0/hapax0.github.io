@@ -5742,6 +5742,81 @@ function venn () {
   ctx.fill()
 }
 
+function seasons () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.clearRect(0,0,canvas.width,canvas.height)
+  ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
+  let R = canvas.height * 0.15, r = R*2
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let colors = shuffle(['red', 'blue', 'yellow', 'orange', 'purple', "green"])
+  let mode = document.getElementById("mode").value
+  let alpha = document.getElementById("opacity").value
+// if (Math.random() > 0.5)
+  // colors = shuffle(['#ff00ff', '#ffff00', '#00ffff', '#7fff7f'])
+  let cx = canvas.width/2, cy = canvas.height/2, x = 0, y = 0
+  let a = Math.random() * 2 * Math.PI
+
+  let R2 = R*0.8
+  //sun
+  
+  ctx.lineWidth = 10
+  ctx.setLineDash([28, 28]);
+  ctx.strokeStyle = colors[3]
+  ctx.beginPath()
+  ctx.arc(cx, cy, R*2.3, 0, Math.PI * 2)
+  ctx.stroke()
+  
+  ctx.fillStyle = colors[0]
+  ctx.beginPath()
+  ctx.arc(cx, cy, R, 0, Math.PI * 2)
+  ctx.closePath()
+  ctx.fill()
+  
+  // bottomr disc
+  ctx.fillStyle = (colors[1])
+  ctx.beginPath()
+  ctx.arc(cx, cy/3, R2, 0, Math.PI * 2)
+  ctx.closePath()
+  ctx.fill()
+  ctx.fillStyle = (colors[2])
+  ctx.beginPath()
+  ctx.arc(cx, cy/3, R2, 0, Math.PI*3)
+  ctx.closePath()
+  ctx.fill()
+  //moon
+  ctx.fillStyle = (colors[1])
+  ctx.beginPath()
+  ctx.arc(cx, canvas.height - cy/3, R2, 0, Math.PI * 2)
+  ctx.closePath()
+  ctx.fill()
+  
+  ctx.fillStyle = (colors[1])
+  ctx.beginPath()
+  ctx.arc(canvas.width - cx/3, cy, R2, 0, Math.PI * 2)
+  ctx.closePath()
+  ctx.fill()
+  ctx.fillStyle = (colors[2])
+  ctx.beginPath()
+  ctx.arc(canvas.width - cx/3, cy, R2, Math.PI*0.75, Math.PI * 1.75)
+  ctx.closePath()
+  ctx.fill()
+  
+  ctx.fillStyle = (colors[1])
+  ctx.beginPath()
+  ctx.arc(cx/3, cy, R2, 0, Math.PI * 2)
+  ctx.closePath()
+  ctx.fill()
+  ctx.fillStyle = (colors[2])
+  ctx.beginPath()
+  ctx.arc(cx/3, cy, R2, Math.PI*1.75, Math.PI * 0.75)
+  ctx.closePath()
+  ctx.fill()
+  
+  document.getElementById("mode").value = mode
+  document.getElementById("opacity").value = alpha
+}
+
 function eclipse () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -6160,6 +6235,7 @@ function sketchpad () { //
   let sa = Math.PI * 1.35, ea = Math.PI * 1.78
   let sa2 = Math.PI * 0.56, ea2 = Math.PI * 0.81
   let sa3 = Math.PI * 0.36, ea3 = sa2
+  let SQUARE = Math.random() > 0.5
   while (y < H - 100) {
     ctx.lineWidth = 5
 
@@ -6188,8 +6264,21 @@ function sketchpad () { //
     
     ctx.strokeStyle = "#867033"
     ctx.globalAlpha = 1.0
-    ctx.fillRect(x,y,24,24)
-    ctx.fillRect(x+80,y+pad*1.5,24,24)
+    if (SQUARE) {
+      ctx.fillRect(x,y,24,24)
+      ctx.fillRect(x+80,y+pad*1.5,24,24)
+    } else {
+      ctx.beginPath()
+      ctx.arc(x+14, y+12, 14, 0, Math.PI * 2)
+      ctx.closePath()
+      ctx.fill()
+      
+      ctx.beginPath()
+      ctx.arc(x+90, y+27, 14, 0, Math.PI * 2)
+      ctx.closePath()
+      ctx.fill()
+    }
+   
     //rings
     ctx.beginPath()
     ctx.arc(x+46, y+54, r, sa, ea)
