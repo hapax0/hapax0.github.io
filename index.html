@@ -5919,8 +5919,9 @@ function constellations () {
   let ctx = canvas.getContext("2d");
   ctx.clearRect(0,0,canvas.width,canvas.height)
   ctx.lineWidth = 5//+ document.getElementById("featuresize").value/4
-  let rads = [13,16,19,24,34,36, 47]
-  let widths = [3,4,5,6,7]
+  ctx.lineCap = "round"
+  let rads = [13,14,16,17,19,21,23,24,27,34,36, 47, 67, 89]
+  let widths = [2,3,4,5,6,7,8,9]
   let H  = canvas.height, W = canvas.width
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let colors = shuffle(['red', 'blue', 'yellow', 'orange', 'purple', "green"])
@@ -5929,7 +5930,7 @@ function constellations () {
   if (Math.random() > 0.5)
     colors = shuffle(['#ff00ff', '#ffff00', '#00ffff', '#7fff7f'])
   let points = []
-  let i = 0, numpoints = 37
+  let i = 0, numpoints = randomPick([27,37,47])
   while (i < numpoints) {
     points.push([Math.random()*W, Math.random()*H])
     i++
