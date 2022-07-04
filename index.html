@@ -417,6 +417,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="venn">venn</option>
     <option value="orbits">orbits</option>
     <option value="eclipse">eclipse</option>
+    <option value="constellations">constellations</option>
     <option value="seasons">seasons</option>
     <option value="phases">phases</option>
     <!--option value="blobOutline">shape outline</option>
@@ -5909,6 +5910,55 @@ function phases () {
   ctx.closePath()
   ctx.fill()
   
+  document.getElementById("mode").value = mode
+  document.getElementById("opacity").value = alpha
+}
+
+function constellations () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.clearRect(0,0,canvas.width,canvas.height)
+  ctx.lineWidth = 5//+ document.getElementById("featuresize").value/4
+  let rads = [13,16,19,24,34,36, 47]
+  let widths = [3,4,5,6,7]
+  let H  = canvas.height, W = canvas.width
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let colors = shuffle(['red', 'blue', 'yellow', 'orange', 'purple', "green"])
+  let mode = document.getElementById("mode").value
+  let alpha = document.getElementById("opacity").value
+  if (Math.random() > 0.5)
+    colors = shuffle(['#ff00ff', '#ffff00', '#00ffff', '#7fff7f'])
+  let points = []
+  let i = 0, numpoints = 37
+  while (i < numpoints) {
+    points.push([Math.random()*W, Math.random()*H])
+    i++
+  }
+  
+  let j = 0, mindist = W/5
+  i = 0
+  for (;i < points.length; i++) {
+    j = i + 1
+    for (; j < points.length; j++) {
+      if (distance(points[i][0],points[i][1],points[j][0],points[j][1]) < mindist) {
+        ctx.strokeStyle = randomPick(colors)
+        ctx.lineWidth = randomPick(widths)
+        ctx.beginPath()
+        ctx.moveTo(points[i][0], points[i][1])
+        ctx.lineTo(points[j][0], points[j][1])
+        ctx.stroke()
+      }
+    }
+  }
+  i = 0
+  while (i < points.length) {
+    ctx.fillStyle = randomPick(colors)
+    ctx.beginPath()
+    ctx.arc(points[i][0], points[i][1], randomPick(rads), 0, Math.PI * 2)
+    ctx.closePath()
+    ctx.fill()
+    i++
+  }
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
 }
