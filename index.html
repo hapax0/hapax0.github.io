@@ -418,13 +418,13 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="venn">venn</option>
     <option value="orbits">orbits</option>
     <option value="eclipse">eclipse</option>
-    <option value="constellations" selected>constellations</option>
+    <option value="constellations" >constellations</option>
     <option value="seasons">seasons</option>
     <option value="phases">phases</option>
     <!--option value="blobOutline">shape outline</option>
     <option value="bezRandom" >random bez</option-->
     <option value="moleskine">moleskine</option>
-    <option value="sketchpad">sketch pad</option>
+    <option value="sketchpad" selected>sketch pad</option>
     <option value="linedPad">lined pad</option>
     <option value="spiralbound">spiral bound</option>
     <option value="scratchOut">scratch out</option>
@@ -6393,7 +6393,11 @@ function photoBook () {
 
 }
 
-function sketchpad () { //
+function sketchpad () {
+  if (document.getElementById("grungy").checked) {
+    sketchpage ()
+    return
+  }
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   const H = canvas.height, W = canvas.width
@@ -6414,6 +6418,103 @@ function sketchpad () { //
   ctx.lineJoin = "round"
   ctx.globalCompositeOperation = "source-over"
   let x = W/2 -60, y = 72, i = 0
+  let r = 56
+
+  let sa = Math.PI * 1.35, ea = Math.PI * 1.78
+  let sa2 = Math.PI * 0.56, ea2 = Math.PI * 0.81
+  let sa3 = Math.PI * 0.36, ea3 = sa2
+  let SQUARE = Math.random() > 0.5
+  while (y < H - 100) {
+    ctx.lineWidth = 5
+
+    ctx.strokeStyle = "#555555"
+    ctx.globalCompositeOperation = "darken"
+    ctx.globalAlpha = 0.5
+    //shadow strokes
+    // upper strokes
+    ctx.beginPath()
+    ctx.arc(x+60, y-20, r-2, sa2, ea2)
+    ctx.stroke()
+      
+    ctx.beginPath()
+    ctx.arc(x+60, y-28, r-2, sa3, ea3)
+    ctx.stroke()
+    // lower strokes
+    ctx.beginPath()
+    ctx.arc(x+60, y-6, r-2, sa2, ea2)
+    ctx.stroke()
+      
+    ctx.beginPath()
+    ctx.arc(x+60, y-12, r-2, sa3, ea3)
+    ctx.stroke()
+    
+    ctx.globalCompositeOperation = "source-over"
+    
+    ctx.strokeStyle = "#867033"
+    ctx.globalAlpha = 1.0
+    if (SQUARE) {
+      ctx.fillRect(x,y,24,24)
+      ctx.fillRect(x+80,y+pad*1.5,24,24)
+    } else {
+      ctx.beginPath()
+      ctx.arc(x+14, y+12, 14, 0, Math.PI * 2)
+      ctx.closePath()
+      ctx.fill()
+      
+      ctx.beginPath()
+      ctx.arc(x+90, y+27, 14, 0, Math.PI * 2)
+      ctx.closePath()
+      ctx.fill()
+    }
+   
+    //rings
+    ctx.beginPath()
+    ctx.arc(x+46, y+54, r, sa, ea)
+    ctx.stroke()
+    ctx.beginPath()
+    ctx.arc(x+43, y+68-2, r-2, sa, ea)
+    ctx.stroke()
+    
+    // upper glint
+    ctx.strokeStyle = "#ffffff"
+    ctx.lineWidth = 3
+
+    ctx.beginPath()
+    ctx.arc(x+46, y+53, r,  sa+0.7, sa+0.75)
+    ctx.stroke()
+    //lower glint
+    ctx.beginPath()
+    ctx.arc(x+43, y+68-3, r-2, sa+0.75, sa+0.8)
+    ctx.stroke()
+
+    y += 66
+  }
+  ctx.globalCompositeOperation = mode
+  document.getElementById("opacity").value = alpha
+
+}
+
+function sketchpage () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  const H = canvas.height, W = canvas.width
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
+  let color = document.getElementById("paintcolor").value
+  let alpha = document.getElementById("opacity").value
+  let mode = ctx.globalCompositeOperation
+  let small = true, half = true
+  let pad = 10//Math.floor(H * 0.01)
+  ctx.fillStyle = "#fefeed"
+  ctx.globalCompositeOperation = "destination-out"
+  ctx.fillRect(pad, pad, W-pad*2.5, H-pad*4)
+ // ctx.fillRect(W/2, pad*3, W/2-pad, H-pad*4)
+  ctx.fillStyle = "#101010"
+  ctx.strokeStyle = "#867033"
+  ctx.lineWidth = 5
+  ctx.lineCap = "round"
+  ctx.lineJoin = "round"
+  ctx.globalCompositeOperation = "source-over"
+  let x = -50, y = 72, i = 0
   let r = 56
 
   let sa = Math.PI * 1.35, ea = Math.PI * 1.78
