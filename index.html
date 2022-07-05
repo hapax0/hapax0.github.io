@@ -235,6 +235,7 @@ id="ff" onclick="testImage('framefunctions')" title="frame functions"><svg xmlns
      <option value="zoomOutImage">zoom out</option>
      <option value="nudgeRight" style="color:red">nudge horizontal</option>
      <option value="nudgeDown" style="color:red">nudge down</option>
+     <option value="nudgehalfdown" style="color:red">nudge 1/2 down</option>
      <option value="nudgeCW" style="color:red">nudge angle</option>
    </select>
    </td>
@@ -5914,6 +5915,40 @@ function phases () {
   document.getElementById("opacity").value = alpha
 }
 
+function nudgehalfdown () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  
+  let off = document.createElement('CANVAS')
+  let offctx = off.getContext("2d");
+  off.width = canvas.width, off.height = canvas.height
+  offctx.drawImage(canvas, 0, 0)
+
+  let x = canvas.width/2
+  let nudge =  document.getElementById("rednumber").value
+  ctx.clearRect(x,0,canvas.width,canvas.height)
+  ctx.drawImage(off, x, 0, x, canvas.height, x, nudge, x, canvas.height)
+
+return
+  clearOff()
+  copyToOff()
+  document.getElementById("rednumber").value = canvas.width/2
+  LASTCLICK[0] = canvas.width/2
+  leftClip()
+  swapWithOff()
+  flipH()
+  leftClip()
+  flipH()
+  swapWithOff()
+  document.getElementById("rednumber").value = 40
+  nudgeDown()
+  let a = document.getElementById("opacity")
+  document.getElementById("opacity").value = 100
+  pasteFromOff()
+  document.getElementById("opacity").value = a
+  
+}
+
 function constellations () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -5929,6 +5964,8 @@ function constellations () {
   let alpha = document.getElementById("opacity").value
   if (Math.random() > 0.5)
     colors = shuffle(['#ff00ff', '#ffff00', '#00ffff', '#7fff7f'])
+  if (document.getElementById("grungy").checked)
+    colors = [document.getElementById("paintcolor").value]
   let points = []
   let i = 0, numpoints = randomPick([27,37,47])
   while (i < numpoints) {
@@ -5936,7 +5973,7 @@ function constellations () {
     i++
   }
   
-  let j = 0, mindist = W/5
+  let j = 0, mindist = W/6
   i = 0
   for (;i < points.length; i++) {
     j = i + 1
