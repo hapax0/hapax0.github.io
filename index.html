@@ -5923,88 +5923,93 @@ function tides () {
   ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let colors = shuffle(['red', 'blue', 'yellow', 'orange', 'purple', "green"])
+  if (Math.random() > 0.5)
+    colors = shuffle(['#ff00ff', '#ffff00', '#00ffff', '#7fff7f'])
   let mode = document.getElementById("mode").value
   let alpha = document.getElementById("opacity").value
-  let cx = canvas.width/2, cy = canvas.height/2, x = 0, y = 0
+  let cx = canvas.width/2, cy = canvas.height/4, x = 0, y = 0
   let a = Math.random() * 2 * Math.PI
-  let R = canvas.height * 0.1, r = R*2
-  let R2 = R
-  let moon = randomPick([1,2,3,4])
+  let R = canvas.height * 0.24
+  let R2 = R/2
+  let moon = randomPick([1,2])
   // background
-  let R3 = R+r
-  ctx.fillStyle = (colors[4])
-  ctx.beginPath()
-  ctx.moveTo(0,cy-R3)
-  ctx.lineTo(0,cy+R3)
-  ctx.lineTo(canvas.width,cy+R3)
-  ctx.lineTo(canvas.width,cy-R3)
-  ctx.closePath()
- // ctx.fill()
-  // sun
-  ctx.fillStyle = colors[0]
-  ctx.beginPath()
-  ctx.arc(-R/4, cy, R+r, 0, Math.PI * 2)
-  ctx.closePath()
-  ctx.fill()
-  // earth
-  let rotation = 0, mult = 0.9
-  if (moon === 3 || moon === 4) // plane of sun
+  let k = 0
+  for (; k < 2; k++) {
+    let R3 = R
+    //ctx.fillStyle = (colors[4])
+    ctx.beginPath()
+    ctx.moveTo(0,cy-R3)
+    ctx.lineTo(0,cy+R3)
+    ctx.lineTo(canvas.width,cy+R3)
+    ctx.lineTo(canvas.width,cy-R3)
+    ctx.closePath()
+   // ctx.fill()
+    // sun
+    ctx.fillStyle = colors[0]
+    ctx.beginPath()
+    ctx.arc(-R/4, cy, R, 0, Math.PI * 2)
+    ctx.closePath()
+    ctx.fill()
+    // earth
+    let rotation = 0, mult = 0.9
+    if (moon === 3 || moon === 4) // plane of sun
+      rotation = Math.PI/2
+    
+    // moon tide
+    ctx.fillStyle = (colors[2])
+    ctx.beginPath()
+    ctx.ellipse(cx+cx/3, cy, R2*0.8, R2*1.3, rotation, 0, Math.PI * 2)
+    ctx.closePath()
+    ctx.fill()
+    // solar tide
     rotation = Math.PI/2
-  
-  // moon tide
-  ctx.fillStyle = (colors[2])
-  ctx.beginPath()
-  ctx.ellipse(cx+cx/3, cy, R2*0.8, R2*1.4, rotation, 0, Math.PI * 2)
-  ctx.closePath()
-  ctx.fill()
-  // solar tide
-  rotation = Math.PI/2
-  ctx.fillStyle = (colors[0])
-  ctx.beginPath()
-  ctx.ellipse(cx+cx/3, cy, R2*0.8, R2*1.0, rotation, 0, Math.PI * 2)
-  ctx.closePath()
-  ctx.fill()
-  
-  // earth
-  ctx.fillStyle = (colors[1])
-  ctx.beginPath()
-  ctx.arc(cx+cx/3, cy, R2*0.8, 0, Math.PI * 2)
-  ctx.closePath()
-  ctx.fill()
-  
-  //moons
-  R2 *= 0.4
-  console.log(moon)
-  if (moon === 1) { // bottom
-    ctx.fillStyle = (colors[2])
+    ctx.fillStyle = (colors[0])
     ctx.beginPath()
-    ctx.arc(cx+cx/3, cy+cy/3+50, R2, 0, Math.PI * 2)
+    ctx.ellipse(cx+cx/3, cy, R2*0.8, R2*1.0, rotation, 0, Math.PI * 2)
     ctx.closePath()
     ctx.fill()
-  }
-  if (moon === 2) { // top
-    ctx.fillStyle = (colors[2])
+    
+    // earth
+    ctx.fillStyle = (colors[1])
     ctx.beginPath()
-    ctx.arc(cx+cx/3, cy-cy/3-50, R2, 0, Math.PI * 2)
+    ctx.arc(cx+cx/3, cy, R2*0.7, 0, Math.PI * 2)
     ctx.closePath()
     ctx.fill()
+    
+    //moons
+    R3 = R2 * 0.3
+    if (moon === 1) { // bottom
+      ctx.fillStyle = (colors[2])
+      ctx.beginPath()
+      ctx.arc(cx+cx/3, cy+R2*1.3+50, R3, 0, Math.PI * 2)
+      ctx.closePath()
+      ctx.fill()
+    }
+    if (moon === 2) { // top
+      ctx.fillStyle = (colors[2])
+      ctx.beginPath()
+      ctx.arc(cx+cx/3, cy-R2*1.3-50, R3, 0, Math.PI * 2)
+      ctx.closePath()
+      ctx.fill()
+    }
+    
+    if (moon === 3) { // right
+      ctx.fillStyle = (colors[2])
+      ctx.beginPath()
+      ctx.arc(cx+2*cx/3+40, cy, R3, 0, Math.PI * 2)
+      ctx.closePath()
+      ctx.fill()
+    }
+    if (moon === 4) {  //left
+      ctx.fillStyle = (colors[2])
+      ctx.beginPath()
+      ctx.arc(cx-40, cy, R3, 0, Math.PI * 2)
+      ctx.closePath()
+      ctx.fill()
+    }
+    moon = randomPick([3,4])
+    cy = canvas.height - canvas.height/4
   }
-  
-  if (moon === 3) { // right
-    ctx.fillStyle = (colors[2])
-    ctx.beginPath()
-    ctx.arc(cx+2*cx/3+50, cy, R2, 0, Math.PI * 2)
-    ctx.closePath()
-    ctx.fill()
-  }
-  if (moon === 4) {  //left
-    ctx.fillStyle = (colors[2])
-    ctx.beginPath()
-    ctx.arc(cx-50, cy, R2, 0, Math.PI * 2)
-    ctx.closePath()
-    ctx.fill()
-  }
-  
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
 }
