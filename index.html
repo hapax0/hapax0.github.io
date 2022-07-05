@@ -235,7 +235,7 @@ id="ff" onclick="testImage('framefunctions')" title="frame functions"><svg xmlns
      <option value="zoomOutImage">zoom out</option>
      <option value="nudgeRight" style="color:red">nudge horizontal</option>
      <option value="nudgeDown" style="color:red">nudge down</option>
-     <option value="nudgehalfdown" style="color:red">nudge 1/2 down</option>
+     <option value="nudgehalfdown" style="color:red">nudge down left</option>
      <option value="nudgeCW" style="color:red">nudge angle</option>
    </select>
    </td>
@@ -418,7 +418,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="venn">venn</option>
     <option value="orbits">orbits</option>
     <option value="eclipse">eclipse</option>
-    <option value="constellations">constellations</option>
+    <option value="constellations" selected>constellations</option>
     <option value="seasons">seasons</option>
     <option value="phases">phases</option>
     <!--option value="blobOutline">shape outline</option>
@@ -426,7 +426,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="moleskine">moleskine</option>
     <option value="sketchpad">sketch pad</option>
     <option value="linedPad">lined pad</option>
-    <option value="spiralbound" selected>spiral bound</option>
+    <option value="spiralbound">spiral bound</option>
     <option value="scratchOut">scratch out</option>
     <option value="strokes">strokes</option>
     <option value="strokes2">strokes2</option>
@@ -5918,7 +5918,7 @@ function phases () {
 function nudgehalfdown () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  
+  /*
   let off = document.createElement('CANVAS')
   let offctx = off.getContext("2d");
   off.width = canvas.width, off.height = canvas.height
@@ -5929,7 +5929,7 @@ function nudgehalfdown () {
   ctx.clearRect(x,0,canvas.width,canvas.height)
   ctx.drawImage(off, x, 0, x, canvas.height, x, nudge, x, canvas.height)
 
-return
+return*/
   clearOff()
   copyToOff()
   document.getElementById("rednumber").value = canvas.width/2
