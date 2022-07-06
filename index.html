@@ -6688,15 +6688,24 @@ function sketchpage () {
      // console.log(x,y)
       //ctx.fillStyle = "red"
       let big = 0
-      if (Math.random() > 0.95)
+      if (Math.random() > 0.97)
         big += 58
       ctx.beginPath()
-      ctx.moveTo(0, y+24+pet(9)+yoff)
+      ctx.moveTo(0, y+24+pet(19)+yoff)
       ctx.lineTo(x+90, y+24+pet(9)+yoff)
-      ctx.lineTo(x+90, y+33+pet(9)+yoff+big)
-      ctx.lineTo(0, y+33 +pet(14)+yoff+big)
+      ctx.lineTo(x+90, y+30+pet(7)+yoff+big)
+      ctx.lineTo(0, y+30 +pet(7)+yoff+big)
       ctx.closePath()
       ctx.fill();
+      //far left edge
+      ctx.beginPath()
+      ctx.moveTo(0, y+24+pet(9)+yoff)
+      ctx.lineTo(x+52 +pet(5), y+24+pet(9)+yoff)
+      ctx.lineTo(x+53+pet(5), y+83+pet(9)+yoff+big)
+      ctx.lineTo(0, y+83 +pet(14)+yoff+big)
+      ctx.closePath()
+      ctx.fill();
+      
       //ctx.fillStyle = "#101010"
     } else {
       //rings
