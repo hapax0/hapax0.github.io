@@ -600,6 +600,14 @@ function adjustBrightnessC (col, amt) {
   return "#" + RR + GG + BB;
 }
 
+function getCurrectPalette () {
+  return ([document.getElementById("pal1").value,
+    document.getElementById("pal2").value,
+    document.getElementById("pal3").value,
+    document.getElementById("pal4").value,
+    document.getElementById("pal5").value])
+}
+
 function randomPalette () {
   let a = [], b = []
   let type = document.getElementById("palettechoice").value
@@ -6066,19 +6074,24 @@ function constellations () {
     colors = shuffle(['#ff00ff', '#ffff00', '#00ffff', '#7fff7f'])
   if (document.getElementById("grungy").checked)
     colors = [document.getElementById("paintcolor").value]
+    
+  colors = getCurrectPalette()
+  
   let points = []
   let i = 0, numpoints = randomPick([27,37,47])
   while (i < numpoints) {
     points.push([Math.random()*W, Math.random()*H])
     i++
   }
-  
+  let wrads = new Array (points.length)
   let j = 0, mindist = W/6
   i = 0
   for (;i < points.length; i++) {
+    wrads[i] = 3
     j = i + 1
     for (; j < points.length; j++) {
       if (distance(points[i][0],points[i][1],points[j][0],points[j][1]) < mindist) {
+        wrads[i]+=1
         ctx.strokeStyle = randomPick(colors)
         ctx.lineWidth = randomPick(widths)
         ctx.beginPath()
@@ -6088,11 +6101,12 @@ function constellations () {
       }
     }
   }
+  
   i = 0
   while (i < points.length) {
     ctx.fillStyle = randomPick(colors)
     ctx.beginPath()
-    ctx.arc(points[i][0], points[i][1], randomPick(rads), 0, Math.PI * 2)
+    ctx.arc(points[i][0], points[i][1], 10 * wrads[i], 0, Math.PI * 2)
     ctx.closePath()
     ctx.fill()
     i++
