@@ -6531,14 +6531,14 @@ function sketchpad () {
   ctx.lineCap = "round"
   ctx.lineJoin = "round"
   ctx.globalCompositeOperation = "source-over"
-  let x = W/2 -60, y = 72, i = 0
+  let x = W/2 -60, y = 40, i = 0
   let r = 56
 
   let sa = Math.PI * 1.35, ea = Math.PI * 1.78
   let sa2 = Math.PI * 0.56, ea2 = Math.PI * 0.81
   let sa3 = Math.PI * 0.36, ea3 = sa2
   let SQUARE = Math.random() > 0.5
-  while (y < H - 100) {
+  while (y < H - 50) {
     ctx.lineWidth = 5
 
     ctx.strokeStyle = "#555555"
@@ -6601,7 +6601,7 @@ function sketchpad () {
     ctx.arc(x+43, y+68-3, r-2, sa+0.75, sa+0.8)
     ctx.stroke()
 
-    y += 66
+    y += 56
   }
   ctx.globalCompositeOperation = mode
   document.getElementById("opacity").value = alpha
@@ -6635,6 +6635,9 @@ function sketchpage () {
   let sa3 = Math.PI * 0.36, ea3 = sa2
   let SQUARE = Math.random() > 0.5
   let RIPPED = Math.random() > 0.5
+  let yoff = 0
+  if (SQUARE)
+    yoff = -7
   while (y < H - 50) {
     ctx.lineWidth = 5
 
@@ -6684,11 +6687,14 @@ function sketchpage () {
       ctx.globalAlpha = 1.0
      // console.log(x,y)
       //ctx.fillStyle = "red"
+      let big = 0
+      if (Math.random() > 0.95)
+        big += 58
       ctx.beginPath()
-      ctx.moveTo(0, y+24+pet(9))
-      ctx.lineTo(x+90, y+24+pet(9))
-      ctx.lineTo(x+90, y+33+pet(9))
-      ctx.lineTo(0, y+33 +pet(14))
+      ctx.moveTo(0, y+24+pet(9)+yoff)
+      ctx.lineTo(x+90, y+24+pet(9)+yoff)
+      ctx.lineTo(x+90, y+33+pet(9)+yoff+big)
+      ctx.lineTo(0, y+33 +pet(14)+yoff+big)
       ctx.closePath()
       ctx.fill();
       //ctx.fillStyle = "#101010"
