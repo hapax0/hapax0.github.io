@@ -6621,7 +6621,6 @@ function sketchpage () {
   ctx.fillStyle = "#fefeed"
   ctx.globalCompositeOperation = "destination-out"
   ctx.fillRect(0, pad, W-pad*2.5, H-pad*4)
- // ctx.fillRect(W/2, pad*3, W/2-pad, H-pad*4)
   ctx.fillStyle = "#101010"
   ctx.strokeStyle = "#867033"
   ctx.lineWidth = 5
@@ -6635,34 +6634,38 @@ function sketchpage () {
   let sa2 = Math.PI * 0.56, ea2 = Math.PI * 0.81
   let sa3 = Math.PI * 0.36, ea3 = sa2
   let SQUARE = Math.random() > 0.5
+  let RIPPED = Math.random() > 0
   while (y < H - 100) {
     ctx.lineWidth = 5
 
     ctx.strokeStyle = "#555555"
     ctx.globalCompositeOperation = "darken"
     ctx.globalAlpha = 0.5
-    //shadow strokes
-    // upper strokes
-    ctx.beginPath()
-    ctx.arc(x+60, y-20, r-2, sa2, ea2)
-    ctx.stroke()
-      
-    ctx.beginPath()
-    ctx.arc(x+60, y-28, r-2, sa3, ea3)
-    ctx.stroke()
-    // lower strokes
-    ctx.beginPath()
-    ctx.arc(x+60, y-6, r-2, sa2, ea2)
-    ctx.stroke()
-      
-    ctx.beginPath()
-    ctx.arc(x+60, y-12, r-2, sa3, ea3)
-    ctx.stroke()
+    if (!RIPPED) {
+      //shadow strokes
+      // upper strokes
+      ctx.beginPath()
+      ctx.arc(x+60, y-20, r-2, sa2, ea2)
+      ctx.stroke()
+        
+      ctx.beginPath()
+      ctx.arc(x+60, y-28, r-2, sa3, ea3)
+      ctx.stroke()
+      // lower strokes
+      ctx.beginPath()
+      ctx.arc(x+60, y-6, r-2, sa2, ea2)
+      ctx.stroke()
+        
+      ctx.beginPath()
+      ctx.arc(x+60, y-12, r-2, sa3, ea3)
+      ctx.stroke()
+    }
     
     ctx.globalCompositeOperation = "source-over"
     
     ctx.strokeStyle = "#867033"
     ctx.globalAlpha = 1.0
+    
     if (SQUARE) {
       ctx.fillRect(x,y,24,24)
       ctx.fillRect(x+80,y+pad*1.5,24,24)
@@ -6677,27 +6680,40 @@ function sketchpage () {
       ctx.closePath()
       ctx.fill()
     }
-   
-    //rings
-    ctx.beginPath()
-    ctx.arc(x+46, y+54, r, sa, ea)
-    ctx.stroke()
-    ctx.beginPath()
-    ctx.arc(x+43, y+68-2, r-2, sa, ea)
-    ctx.stroke()
+    if (RIPPED) {
+      ctx.globalAlpha = 1.0
+     // console.log(x,y)
+      //ctx.fillStyle = "red"
+      ctx.beginPath()
+      ctx.moveTo(0, y+24+pet(9))
+      ctx.lineTo(x+90, y+24+pet(9))
+      ctx.lineTo(x+90, y+33+pet(9))
+      ctx.lineTo(0, y+33 +pet(14))
+      ctx.closePath()
+      ctx.fill();
+      //ctx.fillStyle = "#101010"
+    } else {
+      //rings
+      ctx.beginPath()
+      ctx.arc(x+46, y+54, r, sa, ea)
+      ctx.stroke()
+      ctx.beginPath()
+      ctx.arc(x+43, y+68-2, r-2, sa, ea)
+      ctx.stroke()
+      
+      // upper glint
+      ctx.strokeStyle = "#ffffff"
+      ctx.lineWidth = 3
+  
+      ctx.beginPath()
+      ctx.arc(x+46, y+53, r,  sa+0.7, sa+0.75)
+      ctx.stroke()
+      //lower glint
+      ctx.beginPath()
+      ctx.arc(x+43, y+68-3, r-2, sa+0.75, sa+0.8)
+      ctx.stroke()
+    }
     
-    // upper glint
-    ctx.strokeStyle = "#ffffff"
-    ctx.lineWidth = 3
-
-    ctx.beginPath()
-    ctx.arc(x+46, y+53, r,  sa+0.7, sa+0.75)
-    ctx.stroke()
-    //lower glint
-    ctx.beginPath()
-    ctx.arc(x+43, y+68-3, r-2, sa+0.75, sa+0.8)
-    ctx.stroke()
-
     y += 66
   }
   ctx.globalCompositeOperation = mode
