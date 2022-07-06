@@ -6067,16 +6067,11 @@ function constellations () {
   let widths = [2,3,4,5,6,7,8,9]
   let H  = canvas.height, W = canvas.width
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  let colors = shuffle(['red', 'blue', 'yellow', 'orange', 'purple', "green"])
   let mode = document.getElementById("mode").value
   let alpha = document.getElementById("opacity").value
-  if (Math.random() > 0.5)
-    colors = shuffle(['#ff00ff', '#ffff00', '#00ffff', '#7fff7f'])
+  let colors = getCurrectPalette()
   if (document.getElementById("grungy").checked)
     colors = [document.getElementById("paintcolor").value]
-    
-  colors = getCurrectPalette()
-  
   let points = []
   let i = 0, numpoints = randomPick([27,37,47])
   while (i < numpoints) {
@@ -6921,6 +6916,11 @@ function moleskinDay () { // day planer
   let alpha = document.getElementById("opacity").value
   let color = document.getElementById("paintcolor").value
   let small = true, half = true
+  let monthsFR = [ "janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"]
+  let months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
+  let daysFR = ["DIMANCHE", "MARDI","MERCREDI","JEUDI","VENDREDI","SAMEDI"]
+  let days = ["DOMINGO", "SEGUNDA-FEIRA", "TERÇA-FEIRA", "QUARTA-FEIRA", "QUINTA-FEIRA", "SEXTA-FEIRA", "SÁBADO"]
+  let week = "semana "
   document.getElementById("paintcolor").value = "#fdffee"
  // canvas.width = 1160
  // canvas.height = 900
@@ -6948,7 +6948,6 @@ function moleskinDay () { // day planer
     hour += 1
     i++
   }
-
   i = 0, x = canvas.width/2, y = 144 + voff
   while (i < 22) {
     ctx.beginPath()
@@ -6959,9 +6958,7 @@ function moleskinDay () { // day planer
     y += 36
     i++
   }
-
   ctx.font = "12px serif monospace"
-
   ctx.globalCompositeOperation ="luminosity"
   ctx.fillText("\u{26C5}", 52, last+214-5)
   ctx.fillText("\u{1F321}", 52, last+248-5)
@@ -6971,20 +6968,16 @@ function moleskinDay () { // day planer
   const today = new Date()
   const tomorrow = new Date(today)
   tomorrow.setDate(tomorrow.getDate() + 1)
-  
-  ctx.fillText("semana "+today.getWeek(), canvas.width - 88, last+248-5+voff)// FR: "la semaine"
-  let monthsFR = [ "janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"]
-  let months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
-  let daysFR = ["dimanche", "mardi","mercredi","jeudi","vendredi","samedi"]
-  
-  let days = ["DOMINGO", "SEGUNDA-FEIRA", "TERÇA-FEIRA", "QUARTA-FEIRA", "QUINTA-FEIRA", "SEXTA-FEIRA", "SÁBADO"]
-
+  ctx.fillText(week+today.getWeek(), canvas.width - 88, last+248-5+voff)// FR: "la semaine"
   let size = 20//document.getElementById("featuresize").value/6.25
-
+  if (Math.random() > 0.5) {
+    months = monthsFR
+    days = daysFR
+    week = "la semaine "
+  }
   ctx.font = size+"px serif"
   ctx.fillStyle = document.getElementById("paintcolor").value = "#666666"
   x = 40, y = 70
-
   ctx.fillText(days[today.getDay()], x, y)
   ctx.font = 14+"px serif"
   ctx.fillText(months[today.getMonth()], x, y+26)
