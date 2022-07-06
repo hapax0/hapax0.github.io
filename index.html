@@ -6620,22 +6620,22 @@ function sketchpage () {
   let pad = 10//Math.floor(H * 0.01)
   ctx.fillStyle = "#fefeed"
   ctx.globalCompositeOperation = "destination-out"
-  ctx.fillRect(0, pad, W-pad*2.5, H-pad*4)
+  ctx.fillRect(0, pad, W-pad, H-pad*2)
   ctx.fillStyle = "#101010"
   ctx.strokeStyle = "#867033"
   ctx.lineWidth = 5
   ctx.lineCap = "round"
   ctx.lineJoin = "round"
   ctx.globalCompositeOperation = "source-over"
-  let x = -50, y = 72, i = 0
+  let x = -50, y = 22, i = 0
   let r = 56
 
   let sa = Math.PI * 1.35, ea = Math.PI * 1.78
   let sa2 = Math.PI * 0.56, ea2 = Math.PI * 0.81
   let sa3 = Math.PI * 0.36, ea3 = sa2
   let SQUARE = Math.random() > 0.5
-  let RIPPED = Math.random() > 0
-  while (y < H - 100) {
+  let RIPPED = Math.random() > 0.5
+  while (y < H - 50) {
     ctx.lineWidth = 5
 
     ctx.strokeStyle = "#555555"
@@ -6714,7 +6714,7 @@ function sketchpage () {
       ctx.stroke()
     }
     
-    y += 66
+    y += 55
   }
   ctx.globalCompositeOperation = mode
   document.getElementById("opacity").value = alpha
