@@ -6074,19 +6074,34 @@ function constellations () {
     colors = [document.getElementById("paintcolor").value]
   let points = []
   let i = 0, numpoints = randomPick([27,37,47])
+  let x = 0, y = 0
+  numpoints = (W/150*H/150) * 2
+
+  let row = 0
   while (i < numpoints) {
-    points.push([Math.random()*W, Math.random()*H])
+    //points.push([Math.random()*W, Math.random()*H])
+    if (Math.random() > 0.37)
+    points.push([x, y])
+    x += 150
+    if (x > W) {
+      row += 1
+      if (row % 2 === 1)
+        x = -75
+      else
+        x = 0
+      y += 150
+    }
     i++
   }
   let wrads = new Array (points.length)
-  let j = 0, mindist = W/6
+  let j = 0, mindist = W/3.2
   i = 0
   for (;i < points.length; i++) {
     wrads[i] = 3
     j = i + 1
     for (; j < points.length; j++) {
       if (distance(points[i][0],points[i][1],points[j][0],points[j][1]) < mindist) {
-        wrads[i]+=1
+        wrads[i] += 0.45
         ctx.strokeStyle = randomPick(colors)
         ctx.lineWidth = randomPick(widths)
         ctx.beginPath()
