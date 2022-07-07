@@ -6072,36 +6072,38 @@ function constellations () {
   let colors = getCurrectPalette()
   if (document.getElementById("grungy").checked)
     colors = [document.getElementById("paintcolor").value]
+  colors = shuffle(colors)
   let points = []
   let i = 0, numpoints = randomPick([27,37,47])
   let x = 0, y = 0
-  numpoints = (W/150*H/150) * 2
-
+  let Rf = W/7
+  let mindist = Rf*1.9
+  numpoints = (W/Rf*H/Rf) * 2
   let row = 0
   while (i < numpoints) {
     //points.push([Math.random()*W, Math.random()*H])
     if (Math.random() > 0.37)
     points.push([x, y])
-    x += 150
+    x += Rf
     if (x > W) {
       row += 1
       if (row % 2 === 1)
-        x = -75
+        x = -Rf/2
       else
         x = 0
-      y += 150
+      y += Rf
     }
     i++
   }
   let wrads = new Array (points.length)
-  let j = 0, mindist = W/3.2
+  let j = 0
   i = 0
   for (;i < points.length; i++) {
-    wrads[i] = 3
+    wrads[i] = 1
     j = i + 1
     for (; j < points.length; j++) {
       if (distance(points[i][0],points[i][1],points[j][0],points[j][1]) < mindist) {
-        wrads[i] += 0.45
+        wrads[i] += 1.2
         ctx.strokeStyle = randomPick(colors)
         ctx.lineWidth = randomPick(widths)
         ctx.beginPath()
@@ -6111,7 +6113,6 @@ function constellations () {
       }
     }
   }
-  
   i = 0
   while (i < points.length) {
     ctx.fillStyle = randomPick(colors)
