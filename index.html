@@ -3803,11 +3803,20 @@ function filterBlue () {
 }
 
 let LATESTFUNCTION = ""
+
 function testImage (id) {
   let f = document.getElementById(id).value
   window[f]()
   LATESTFUNCTION = f
   document.getElementById("last").title = "repeat: "+f
+  
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let gco = ctx.globalCompositeOperation
+  let sel = document.getElementById("mode").value
+  if (gco !== sel) {
+    alert(LATESTFUNCTION+" "+gco+" !== "+sel)
+  }
 }
 
 function doAgain () {
