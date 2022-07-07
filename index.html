@@ -6082,7 +6082,7 @@ function constellations () {
   let row = 0
   while (i < numpoints) {
     //points.push([Math.random()*W, Math.random()*H])
-    if (Math.random() > 0.37)
+    if (Math.random() > 0.41)
     points.push([x, y])
     x += Rf
     if (x > W) {
@@ -6103,7 +6103,7 @@ function constellations () {
     j = i + 1
     for (; j < points.length; j++) {
       if (distance(points[i][0],points[i][1],points[j][0],points[j][1]) < mindist) {
-        wrads[i] += 1.2
+        wrads[i] += 1.3
         ctx.strokeStyle = randomPick(colors)
         ctx.lineWidth = randomPick(widths)
         ctx.beginPath()
