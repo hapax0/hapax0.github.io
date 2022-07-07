@@ -117,7 +117,7 @@ function extractPalette () {
     return
   let colors = colorSamplePalette()
   colors.sort((a, b) => bright(b) - bright(a));
-  if (colors.length > 10) 
+  if (colors.length > 10)
     document.getElementById("palettecanvas").height = 80
   else
     document.getElementById("palettecanvas").height = 40
@@ -237,9 +237,21 @@ function hexToG(h) { return parseInt((cutHex(h)).substring(2,4),16) }
 function hexToB(h) { return parseInt((cutHex(h)).substring(4,6),16) }
 function cutHex(h) { return (h.charAt(0)=="#") ? h.substring(1,7) : h}
 
-function dist3d (p1, p2) {
-  return Math.sqrt(Math.pow(p1[0] - p2[0], 2) + Math.pow(p1[1] - p2[1], 2) + Math.pow(p1[2] - p2[2], 2))
+function dist3d__ (p1, p2) {
+  
+  return Math.abs(p1[0] - p2[0], 2) + Math.abs(p1[1] - p2[1], 2) + Math.abs(p1[2] - p2[2], 2)
+
+ // return Math.sqrt(Math.pow(p1[0] - p2[0], 2) + Math.pow(p1[1] - p2[1], 2) + Math.pow(p1[2] - p2[2], 2))
 }
+
+function dist3d (p1, p2) {
+  let rmean = (p1[0] + p2[0]) / 2;
+  let r = p1[0] - p2[0]
+  let g = p1[1] - p2[1]
+  let b = p1[2] - p2[2]
+  return Math.sqrt((((512+rmean)*r*r)>>8) + 4*g*g + (((767-rmean)*b*b)>>8));
+}
+
 
 function interesting (color) {
   let average = (color[0] + color[1] + color[2])/3
