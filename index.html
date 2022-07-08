@@ -8551,20 +8551,39 @@ function curveAcross () {
   }
 }
 
+function placeText (lines, angle) {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let H = canvas.height;
+  let W = canvas.width;
+  ctx.fillStyle = randomPick(["#404040", "#808080", "#101010"])
+  let faces = "serif"
+  let size = 8 + Math.floor(Math.random() * 33)
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle'
+  let x = Math.random() * W
+  let y = Math.random() * H
+  ctx.font = size+"px Georgia"
+  ctx.save()
+  ctx.translate(x, y)
+  ctx.rotate(angle) // need to adjust x & y offsets per line
+ // ctx.font = (styles)+" "+sizes[i]+"pt " + (faces)
+  ctx.fillText(lines, 0, 0)
+  ctx.restore()
+
+}
+
 function roadmap () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let D =  (5 + Math.floor(document.getElementById("featuresize").value/80))
   let grunge = document.getElementById("grungy").checked
-  let angledelta = 0.3
+  let angledelta = 0.4
   if (grunge)
     angledelta = 0.8
   let W = canvas.width
   let H = canvas.height
-  let colors = ['red', 'blue', 'green', 'yellow', 'orange']
-  ctx.globalAlpha = document.getElementById("opacity").value/100
-  
-  ctx.lineWidth = 13
+  let colors = ['red', 'blue', 'green', 'yellow', 'orange', 'white']
   ctx.lineCap = "round"
   let x = Math.random() * W, y = Math.random() * H
   //x = W/2, y = H/2
@@ -8576,9 +8595,9 @@ function roadmap () {
   let w = 1 + Math.random()*D/10
   let points = []
   let k = 0
-  while (k < 3) {
+  while (k < 4) {
     s = 0
-    ctx.lineWidth = 6 +Math.floor(20 * Math.random())
+    ctx.lineWidth = 2 + Math.floor(20 * Math.random())
     ctx.strokeStyle = randomPick(colors)
     ctx.fillStyle = randomPick(colors)
     x = Math.random() * W, y = Math.random() * H
@@ -8610,9 +8629,21 @@ function roadmap () {
       ctx.lineTo(points[i][0], points[i][1])
     }
     ctx.closePath();
+    ctx.globalAlpha = 0.3
     ctx.fill();
+    ctx.globalAlpha = 0.3
+
     ctx.stroke();
     k++
+  }
+  ctx.globalAlpha = 0.7
+
+  k = 0
+  placenames = ["Acre ", "Rio Branco ", "Alagoas ", "Maceió ", "União dos Palmares ", "Amapá ", "Macapá ", "Amazonas ", "Itacoatiara ", "Manaus ", "Tefé ", "Bahia ", "Alagoinhas ", "Feira de Santana ", "Ilhéus ", "Itabuna ", "Jequié ", "Juazeiro ", "Paulo Afonso ", "Salvador ", "Vitória da Conquista ", "Ceará ", "Aracati ", "Crato ", "Fortaleza ", "Juazeiro do Norte ", "Sobral ", "Distrito Federal ", "Brasília ", "Espírito Santo ", "Cachoeiro de Itapemirim ", "Colatina ", "Fundão ", "Vila Velha ", "Vitória ", "Goiás ", "Anápolis ", "Catalão ", "Goiânia ", "Goiás ", "Ipameri ", "Jataí ", "Maranhão ", "Alcântara ", "Caxias ", "São Luís ", "Mato Grosso ", "Cuiabá ", "Mato Grosso do Sul ", "Campo Grande ", "Corumbá ", "Três Lagoas ", "Minas Gerais ", "Araguari ", "Barbacena ", "Belo Horizonte ", "Congonhas ", "Conselheiro Lafaiete ", "Diamantina ", "Divinópolis ", "Governador Valadares ", "Juiz de Fora ", "Mariana ", "Montes Claros ", "Nova Lima ", "Ouro Prêto ", "Passos ", "Patos de Minas ", "Poços de Caldas ", "Sabará ", "São João del Rei ", "Sete Lagoas ", "Teófilo Otoni ", "Uberaba ", "Uberlândia ", "Pará ", "Belém ", "Bragança ", "Monte Alegre ", "Óbidos ", "Santarém ", "Campina Grande ", "Paraíba ", "Campina Grande ", "João Pessoa ", "Paraná ", "Curitiba ", "Londrina ", "Maringá ", "Paranaguá ", "Ponta Grossa ", "Pernambuco ", "Caruaru ", "Garanhuns ", "Jaboatão ", "Olinda ", "Petrolândia ", "Petrolina ", "Recife ", "Piauí ", "Floriano ", "Parnaíba ", "Teresina ", "Rio de Janeiro ", "Angra dos Reis ", "Barra Mansa ", "Campos dos Goytacazes ", "Copacabana ", "Duque de Caxias ", "Nilópolis ", "Niterói ", "Nova Friburgo ", "Nova Iguaçu ", "Petrópolis ", "Resende ", "Rio de Janeiro ", "São Gonçalo ", "São João de Meriti ", "Teresópolis ", "Volta Redonda ", "Rio Grande do Norte ", "Mossoró ", "Natal ", "Rio Grande do Sul ", "Bagé ", "Bento Gonçalves ", "Canoas ", "Caxias do Sul ", "Novo Hamburgo ", "Passo Fundo ", "Pelotas ", "Porto Alegre ", "Rio Grande ", "Santa Maria ", "São Leopoldo ", "Uruguaiana ", "Rondônia ", "Guajará-Mirim ", "Pôrto Velho ", "Roraima ", "Boa Vista ", "Santa Catarina ", "Blumenau ", "Criciúma ", "Florianópolis ", "Itajaí ", "Lajes ", "Tubarão ", "São Paulo ", "Americana ", "Araçatuba ", "Araraquara ", "Barretos ", "Bauru ", "Botucatu ", "Campinas ", "Catanduva ", "Cubatão ", "Franca ", "Guaratinguetá ", "Guarujá ", "Guarulhos ", "Itapetininga ", "Jacareí ", "Jaú ", "Jundiaí ", "Limeira ", "Marília ", "Mogi das Cruzes ", "Osasco ", "Ourinhos ", "Piracicaba ", "Presidente Prudente ", "Ribeirão Prêto ", "Rio Claro ", "Santo André ", "Santos ", "São Bernardo do Campo ", "São Caetano do Sul ", "São Carlos ", "São José do Rio Prêto ", "São José dos Campos ", "São Paulo ", "São Vicente ", "Sorocaba ", "Taubaté ", "Sergipe ", "Aracaju ", "São Cristóvão ", "Tocantins ", "Palmas"]
+  for (; k < 7; k++) {
+    angle = pet(2)/6//Math.random() * Math.PI * 2
+    placeText(randomPick(placenames), angle)
+    
   }
 }
 
