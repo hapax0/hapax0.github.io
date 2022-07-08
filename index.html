@@ -8563,7 +8563,7 @@ function placeText (lines, angle) {
   ctx.textBaseline = 'middle'
   let x = Math.random() * W
   let y = Math.random() * H
-  ctx.font = size+"px Georgia"
+  ctx.font = "bold "+size+"px Garamond"
   ctx.save()
   ctx.translate(x, y)
   ctx.rotate(angle) // need to adjust x & y offsets per line
@@ -8597,7 +8597,7 @@ function roadmap () {
   let k = 0
   while (k < 3) {
     s = 0
-    ctx.lineWidth = 2 + Math.floor(20 * Math.random())
+    ctx.lineWidth = 2 + Math.floor(15 * Math.random())
     ctx.strokeStyle = randomPick(colors)
     ctx.fillStyle = randomPick(colors)
     x = Math.random() * W, y = Math.random() * H
@@ -8631,19 +8631,19 @@ function roadmap () {
     ctx.closePath();
     ctx.globalAlpha = 0.3
     ctx.fill();
-    ctx.globalAlpha = 0.3
+    ctx.globalAlpha = 0.4
     ctx.stroke();
     k++
   }
-  ctx.globalAlpha = 0.7
+  ctx.globalAlpha = 0.5
 
   k = 0
-  placenames = ["Acre ", "Rio Branco ", "Alagoas ", "Maceió ", "União dos Palmares ", "Amapá ", "Macapá ", "Amazonas ", "Itacoatiara ", "Manaus ", "Tefé ", "Bahia ", "Alagoinhas ", "Feira de Santana ", "Ilhéus ", "Itabuna ", "Jequié ", "Juazeiro ", "Paulo Afonso ", "Salvador ", "Vitória da Conquista ", "Ceará ", "Aracati ", "Crato ", "Fortaleza ", "Juazeiro do Norte ", "Sobral ", "Distrito Federal ", "Brasília ", "Espírito Santo ", "Cachoeiro de Itapemirim ", "Colatina ", "Fundão ", "Vila Velha ", "Vitória ", "Goiás ", "Anápolis ", "Catalão ", "Goiânia ", "Goiás ", "Ipameri ", "Jataí ", "Maranhão ", "Alcântara ", "Caxias ", "São Luís ", "Mato Grosso ", "Cuiabá ", "Mato Grosso do Sul ", "Campo Grande ", "Corumbá ", "Três Lagoas ", "Minas Gerais ", "Araguari ", "Barbacena ", "Belo Horizonte ", "Congonhas ", "Conselheiro Lafaiete ", "Diamantina ", "Divinópolis ", "Governador Valadares ", "Juiz de Fora ", "Mariana ", "Montes Claros ", "Nova Lima ", "Ouro Prêto ", "Passos ", "Patos de Minas ", "Poços de Caldas ", "Sabará ", "São João del Rei ", "Sete Lagoas ", "Teófilo Otoni ", "Uberaba ", "Uberlândia ", "Pará ", "Belém ", "Bragança ", "Monte Alegre ", "Óbidos ", "Santarém ", "Campina Grande ", "Paraíba ", "Campina Grande ", "João Pessoa ", "Paraná ", "Curitiba ", "Londrina ", "Maringá ", "Paranaguá ", "Ponta Grossa ", "Pernambuco ", "Caruaru ", "Garanhuns ", "Jaboatão ", "Olinda ", "Petrolândia ", "Petrolina ", "Recife ", "Piauí ", "Floriano ", "Parnaíba ", "Teresina ", "Rio de Janeiro ", "Angra dos Reis ", "Barra Mansa ", "Campos dos Goytacazes ", "Copacabana ", "Duque de Caxias ", "Nilópolis ", "Niterói ", "Nova Friburgo ", "Nova Iguaçu ", "Petrópolis ", "Resende ", "Rio de Janeiro ", "São Gonçalo ", "São João de Meriti ", "Teresópolis ", "Volta Redonda ", "Rio Grande do Norte ", "Mossoró ", "Natal ", "Rio Grande do Sul ", "Bagé ", "Bento Gonçalves ", "Canoas ", "Caxias do Sul ", "Novo Hamburgo ", "Passo Fundo ", "Pelotas ", "Porto Alegre ", "Rio Grande ", "Santa Maria ", "São Leopoldo ", "Uruguaiana ", "Rondônia ", "Guajará-Mirim ", "Pôrto Velho ", "Roraima ", "Boa Vista ", "Santa Catarina ", "Blumenau ", "Criciúma ", "Florianópolis ", "Itajaí ", "Lajes ", "Tubarão ", "São Paulo ", "Americana ", "Araçatuba ", "Araraquara ", "Barretos ", "Bauru ", "Botucatu ", "Campinas ", "Catanduva ", "Cubatão ", "Franca ", "Guaratinguetá ", "Guarujá ", "Guarulhos ", "Itapetininga ", "Jacareí ", "Jaú ", "Jundiaí ", "Limeira ", "Marília ", "Mogi das Cruzes ", "Osasco ", "Ourinhos ", "Piracicaba ", "Presidente Prudente ", "Ribeirão Prêto ", "Rio Claro ", "Santo André ", "Santos ", "São Bernardo do Campo ", "São Caetano do Sul ", "São Carlos ", "São José do Rio Prêto ", "São José dos Campos ", "São Paulo ", "São Vicente ", "Sorocaba ", "Taubaté ", "Sergipe ", "Aracaju ", "São Cristóvão ", "Tocantins ", "Palmas"]
-  for (; k < 7; k++) {
+  placenames = ["Abaíra", "Abaré", "Acajutiba", "Adustina", "Água Fria", "Aiquara", "Alagoinhas", "Alcobaça", "Almadina", "Amargosa", "Amélia Rodrigues", "América Dourada", "Anagé", "Andaraí", "Andorinha", "Angical", "Anguera", "Antas", "Antônio Cardoso", "Antônio Gonçalves", "Aporá", "Apuarema", "Araçás", "Aracatu", "Araci", "Aramari", "Arataca", "Aratuípe", "Aurelino Leal", "Baianópolis", "Baixa Grande", "Banzaê", "Barra", "Barra da Estiva", "Barra do Choça", "Barra do Mendes", "Barra do Rocha", "Barreiras", "Barro Alto", "Barro Preto", "Barrocas", "Belmonte", "Belo Campo", "Biritinga", "Boa Nova", "Boa Vista do Tupim", "Bom Jesus da Lapa", "Bom Jesus da Serra", "Boninal", "Bonito", "Boquira", "Botuporã", "Brejões", "Brejolândia", "Brotas de Macaúbas", "Brumado", "Buerarema", "Buritirama", "Caatiba", "Cabaceiras do Paraguaçu", "Cachoeira", "Caculé", "Caém", "Caetanos", "Caetité", "Cafarnaum", "Cairu", "Caldeirão Grande", "Camacan", "Camaçari", "Camamu", "Campo Alegre de Lourdes", "Campo Formoso", "Canápolis", "Canarana", "Canavieiras", "Candeal", "Candeias", "Candiba", "Cândido Sales", "Cansanção", "Canudos", "Capela do Alto Alegre", "Capim Grosso", "Caraíbas", "Caravelas", "Cardeal da Silva", "Carinhanha", "Casa Nova", "Castro Alves", "Catolândia", "Catu", "Caturama", "Central", "Chorrochó", "Cícero Dantas", "Cipó", "Coaraci", "Cocos", "Conceição da Feira", "Conceição do Almeida", "Conceição do Coité", "Conceição do Jacuípe", "Conde", "Condeúba", "Contendas do Sincorá", "Coração de Maria", "Cordeiros", "Coribe", "Coronel João Sá", "Correntina", "Cotegipe", "Cravolândia", "Crisópolis", "Cristópolis", "Cruz das Almas", "Curaçá", "Dário Meira", "Dias d'Ávila", "Dom Basílio", "Dom Macedo Costa", "Elísio Medrado", "Encruzilhada", "Entre Rios", "Érico Cardoso", "Esplanada", "Euclides da Cunha", "Eunápolis", "Fátima", "Feira da Mata", "Feira de Santana", "Filadélfia", "Firmino Alves", "Floresta Azul", "Formosa do Rio Preto", "Gandu", "Gavião", "Gentio do Ouro", "Glória", "Gongogi", "Governador Mangabeira", "Guajeru", "Guanambi", "Guaratinga", "Heliópolis", "Iaçu", "Ibiassucê", "Ibicaraí", "Ibicoara", "Ibicuí", "Ibipeba", "Ibipitanga", "Ibiquera", "Ibirapitanga", "Ibirapuã", "Ibirataia", "Ibitiara", "Ibititá", "Ibotirama", "Ichu", "Igaporã", "Igrapiúna", "Iguaí", "Ilhéus", "Inhambupe", "Ipecaetá", "Ipiaú", "Ipirá", "Ipupiara", "Irajuba", "Iramaia", "Iraquara", "Irará", "Irecê", "Itabela", "Itaberaba", "Itabuna", "Itacaré", "Itaetê", "Itagi", "Itagibá", "Itagimirim", "Itaguaçu da Bahia", "Itaju do Colônia", "Itajuípe", "Itamaraju", "Itamari", "Itambé", "Itanagra", "Itanhém", "Itaparica", "Itapé", "Itapebi", "Itapetinga", "Itapicuru", "Itapitanga", "Itaquara", "Itarantim", "Itatim", "Itiruçu", "Itiúba", "Itororó", "Ituaçu", "Ituberá", "Iuiú", "Jaborandi", "Jacaraci", "Jacobina", "Jaguaquara", "Jaguarari", "Jaguaripe", "Jandaíra", "Jequié", "Jeremoabo", "Jiquiriçá", "Jitaúna", "João Dourado", "Juazeiro", "Jucuruçu", "Jussara", "Jussari", "Jussiape", "Lafaiete Coutinho", "Lagoa Real", "Laje", "Lajedão", "Lajedinho", "Lajedo do Tabocal", "Lamarão", "Lapão", "Lauro de Freitas", "Lençóis", "Licínio de Almeida", "Livramento de Nossa Senhora", "Luis Eduardo Magalhães", "Macajuba", "Macarani", "Macaúbas", "Macururé", "Madre de Deus", "Maetinga", "Maiquinique", "Mairi", "Malhada", "Malhada de Pedras", "Manoel Vitorino", "Mansidão", "Maracás", "Maragogipe", "Maraú", "Marcionílio Souza", "Mascote", "Mata de São João", "Matina", "Medeiros Neto", "Miguel Calmon", "Milagres", "Mirangaba", "Mirante", "Monte Santo", "Morpará", "Morro do Chapéu", "Mortugaba", "Mucugê", "Mucuri", "Mulungu do Morro", "Mundo Novo", "Muniz Ferreira", "Muquém de São Francisco", "Muritiba", "Mutuípe", "Nazaré", "Nilo Peçanha", "Nordestina", "Nova Canaã", "Nova Fátima", "Nova Ibiá", "Nova Itarana", "Nova Redenção", "Nova Soure", "Nova Viçosa", "Novo Horizonte", "Novo Triunfo", "Olindina", "Oliveira dos Brejinhos", "Ouriçangas", "Ourolândia", "Palmas de Monte Alto", "Palmeiras", "Paramirim", "Paratinga", "Paripiranga", "Pau Brasil", "Paulo Afonso", "Pé de Serra", "Pedrão", "Pedro Alexandre", "Piatã", "Pilão Arcado", "Pindaí", "Pindobaçu", "Pintadas", "Piraí do Norte", "Piripá", "Piritiba", "Planaltino", "Planalto", "Poções", "Pojuca", "Ponto Novo", "Porto Seguro", "Potiraguá", "Prado", "Presidente Dutra", "Presidente Jânio Quadros", "Presidente Tancredo Neves", "Queimadas", "Quijingue", "Quixabeira", "Rafael Jambeiro", "Remanso", "Retirolândia", "Riachão do Jacuípe", "Riacho de Santana", "Ribeira do Amparo", "Ribeira do Pombal", "Ribeirão do Largo", "Rio de Contas", "Rio do Antônio", "Rio do Pires", "Rio Real", "Rodelas", "Ruy Barbosa", "Salinas da Margarida", "Salvador", "Santa Bárbara", "Santa Brígida", "Santa Cruz Cabrália", "Santa Cruz da Vitória", "Santa Inês", "Santa Luzia", "Santa Maria da Vitória", "Santa Rita de Cássia", "Santa Teresinha", "Santaluz", "Santana", "Santanópolis", "Santo Amaro", "Santo Antônio de Jesus", "Santo Estêvão", "São Desidério", "São Domingos", "São Felipe", "São Félix", "São Félix do Coribe", "São Francisco do Conde", "São Gabriel", "São Gonçalo dos Campos", "São José da Vitória", "São José do Jacuípe", "São Miguel das Matas", "São Sebastião do Passé", "Sapeaçu", "Sátiro Dias", "Saubara", "Saúde", "Seabra", "Sebastião Laranjeiras", "Senhor do Bonfim", "Sento Sé", "Serra do Ramalho", "Serra Dourada", "Serra Preta", "Serrinha", "Serrolândia", "Simões Filho", "Sítio do Mato", "Sítio do Quinto", "Sobradinho", "Souto Soares", "Tabocas do Brejo Velho", "Tanhaçu", "Tanque Novo", "Tanquinho", "Taperoá", "Tapiramutá", "Teixeira de Freitas", "Teodoro Sampaio", "Teofilândia", "Teolândia", "Tremedal", "Tucano", "Uauá", "Ubaíra", "Ubaitaba", "Ubatã", "Uibaí", "Umburanas", "Una", "Urandi", "Uruçuca", "Utinga", "Valença", "Valente", "Várzea da Roça", "Várzea do Poço", "Várzea Nova", "Varzedo", "Vera Cruz", "Vereda", "Vitória da Conquista", "Wagner", "Wanderley", "Wenceslau Guimarães", "Xique-Xique"]
+  for (; k < 9; k++) {
     angle = pet(2)/6//Math.random() * Math.PI * 2
     placeText(randomPick(placenames), angle)
   }
-  ctx.globalAlpha = 0.3
+  ctx.globalAlpha = 0.2
   let yoff = Math.random() * 45
   let div = (2 + Math.random() +3)
   let d = W/div
@@ -8668,6 +8668,22 @@ function roadmap () {
     ctx.moveTo(x, 0)
     ctx.lineTo(x+yoff, H)
     ctx.stroke();
+    x += d
+
+  }
+    ctx.globalAlpha = 0.5
+
+  i = 0, x = 0
+  for (; i < 19; i++) {
+    ctx.lineWidth = 2 + Math.floor(3 * Math.random())
+    ctx.fillStyle = randomPick(colors)
+    ctx.beginPath()
+    x = Math.random() * W
+    y = Math.random() * H
+    ctx.moveTo(x, y)
+    ctx.arc (x, y, 6 + Math.random() * 9, 0, 2*Math.PI)
+    ctx.closePath()
+    ctx.fill()
     x += d
 
   }
