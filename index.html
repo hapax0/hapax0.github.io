@@ -533,7 +533,7 @@ let OCISCLEAR = true
 window.onload = function () {
   let myCanvas = document.getElementById("myCanvas")
   let ctx = myCanvas.getContext("2d")
-  ctx.imageSmoothingEnabled = false
+  //ctx.imageSmoothingEnabled = false
   //document.getElementById("face").value = "monospace"
   resizeCanvas()
   LASTCLICK[0] = myCanvas.width/2
@@ -1688,14 +1688,11 @@ function updateExtraColors (colors) {
   }
 }
 
-
 function extractPalette () {
   if (isCanvasBlank(document.getElementById("myCanvas")))
     return
   let colors = colorSamplePalette()
-  //console.log(colors)
   colors.sort((a, b) => bright(b) - bright(a));
-  //alert (colors.length, colors)
   if (colors.length >= 1) {
     let i = 0, x = 0, y = 0
     let canvas = document.getElementById("palettecanvas")
@@ -1712,13 +1709,11 @@ function extractPalette () {
       }
     }
     let sorted = []
-
     sorted.push(colors[colors.length-1])
     sorted.push(colors[colors.length-2])
     sorted.push(colors[Math.round(colors.length/2)-1])
     sorted.push(colors[1])
     sorted.push(colors[0])
-
     document.getElementById("pal1").value = sorted[0]
     document.getElementById("pal2").value = sorted[1]
     document.getElementById("pal3").value = sorted[2]
@@ -1726,7 +1721,6 @@ function extractPalette () {
     document.getElementById("pal5").value = sorted[4]
   }
 }
-
 
 function colorSamplePalette () {
   let canvas = document.getElementById("myCanvas");
@@ -1742,6 +1736,7 @@ function colorSamplePalette () {
   let i = 0, j = 0
   let skip = pixels.length/8000
   skip -= skip%4 // must be multiple of 4
+  //skip = 128
   for (; i < pixels.length; i += skip) {
     let n = i
     let c = []
@@ -1759,8 +1754,7 @@ function colorSamplePalette () {
       maxd = (maxd < m)? m: maxd
     }
   }
-  let threshold = m/sample.length/sample.length *0.6
-
+  let threshold = m/sample.length/sample.length * 0.6
   let bins = [], bc = 0
   i = 0
   for (;i < sample.length; i++) {
@@ -1776,10 +1770,7 @@ function colorSamplePalette () {
       }
     }
   }
-  if (alt)
-    bins.sort(function(a, b) { return interesting(b[0]) - interesting(a[0]);});
-  else
-    bins.sort(function(a, b) { return b.length - a.length;});
+  bins.sort(function(a, b) { return b.length - a.length;});
   let count = bins.length;
   if (count > 13)
     count = 13
@@ -1867,6 +1858,81 @@ function exposureInfo () {
 }
 
 function colorSample () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d");
+  let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
+  //let alt = document.getElementById("alt").checked
+  let mind = 1000000
+  let maxd = -1000000
+  let pixels = imgData.data;
+  let sample = []
+  let i = 0, j = 0
+  let x = 1, y = 1
+  let cnt = (canvas.width * canvas.height)
+  for (; i < pixels.length; i+= 128) {
+    let n = i//4 * Math.floor(Math.random() * pixels.length/4)
+    let c = []
+    c.push(pixels[n])
+    c.push(pixels[n+1])
+    c.push(pixels[n+2])
+    sample.push(c)
+  }
+  i = 0, j = 1
+  let m = 0
+  for (; i < sample.length; i++) {
+    j = i + 1
+    for (; j < sample.length; j++) {
+      m += dist3d(sample[i], sample[j])
+      maxd = (maxd < m)? m: maxd
+    }
+  }
+  let threshold = m/sample.length/sample.length * 0.6
+  
+  console.log(threshold)
+  
+  let bins = [], bc = 0
+  i = 0
+  for (;i < sample.length; i++) {
+    if (sample[i]) {
+      bins.push([sample[i]])
+      let bc = bins.length - 1
+      j = i + 1
+      for (; j < sample.length; j++) {
+        if (sample[j] && dist3d(sample[j], bins[bc][0]) < threshold) {
+          bins[bc].push(sample[j])
+          sample[j] = null
+        }
+      }
+    }
+  }
+  //if (alt)
+  //  bins.sort(function(a, b) { return interesting(b[0]) - interesting(a[0]);});
+ // else
+  bins.sort(function(a, b) { return b.length - a.length;});
+  let count = bins.length;
+  if (count > 21)
+    count = 21
+  let colors = [], clrs = []
+  i = 0
+  for (; i < count; i++) {
+    colors.push(averageColor(bins[i]))
+    clrs.push(averageColor(bins[i], true))
+  }
+  //resort clrs by interesting
+  clrs.sort(function(a, b) { return interesting(b) - interesting(a);});
+  let colors2 = []
+  i = 0, j = 0
+  for (; i < clrs.length; i++) {
+    let rgb = clrs[i]
+    let R = ('0'+(rgb[0]).toString(16)).slice(-2),
+    G = ('0'+(rgb[1]).toString(16)).slice(-2),
+    B = ('0'+(rgb[2]).toString(16)).slice(-2);
+    colors2.push('#'+R+G+B)
+  }
+  return colors2
+}
+
+function colorSampleOG () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
@@ -1876,7 +1942,7 @@ function colorSample () {
   let pixels = imgData.data;
   let sample = []
   let i = 0, j = 0
-  for (; i < 2000; i++) {
+  for (; i < 1000; i++) {
     let n = 4 * Math.floor(Math.random() * pixels.length/4)
     let c = []
     c.push(pixels[n])
@@ -1893,7 +1959,7 @@ function colorSample () {
       maxd = (maxd < m)? m: maxd
     }
   }
-  let threshold = m/sample.length/sample.length * 0.8
+  let threshold = m/sample.length/sample.length * 0.5
   let bins = [], bc = 0
   i = 0
   for (;i < sample.length; i++) {
@@ -1909,8 +1975,8 @@ function colorSample () {
       }
     }
   }
- // bins.sort(function(a, b) { return b.length - a.length;});
-  bins.sort(function(a, b) { return interesting(b[0]) - interesting(a[0]);});
+  bins.sort(function(a, b) { return b.length - a.length;});
+  //bins.sort(function(a, b) { return interesting(b[0]) - interesting(a[0]);});
   let count = bins.length;
   if (count > 12)
     count = 12
@@ -1967,12 +2033,20 @@ function averageColor (b, dec) {
     return '#'+R+G+B;
 }
 
+function dist3d (p1, p2) {
+  let rmean = (p1[0] + p2[0]) / 2;
+  let r = p1[0] - p2[0]
+  let g = p1[1] - p2[1]
+  let b = p1[2] - p2[2]
+  return Math.sqrt((((512+rmean)*r*r)>>8) + 4*g*g + (((767-rmean)*b*b)>>8));
+}
+
 function dist3dOG (p1, p2) {
   rmean = (p1[0] + p2[0])/2
   return Math.sqrt((2+rmean/256) * Math.pow(p1[0] - p2[0], 2) + 4 * Math.pow(p1[1] - p2[1], 2)  +  (2+(255-rmean)/256) * Math.pow(p1[2] - p2[2], 2))
 }
 
-function dist3d (p1, p2) {
+function dist3d__ (p1, p2) {
   return Math.sqrt(Math.pow(p1[0] - p2[0], 2) + Math.pow(p1[1] - p2[1], 2) + Math.pow(p1[2] - p2[2], 2))
 }
 
@@ -4579,11 +4653,11 @@ function drawFile () {
   let url = window.URL || window.webkitURL
   let src = url.createObjectURL(f);
   IMG.src = src;
-  let a = ctx.globalAlpha
-  ctx.globalAlpha = 1
-  let mode = ctx.globalCompositeOperation
+ // let a = ctx.globalAlpha
+  ctx.globalAlpha = 1.0
+  //let mode = ctx.globalCompositeOperation
   ctx.globalCompositeOperation = "source-over"
-  document.getElementById('mode')
+  //document.getElementById('mode')
   IMG.onload = function() {
     canvas.height = this.height
     canvas.width = this.width
@@ -4594,14 +4668,37 @@ function drawFile () {
     url.revokeObjectURL(src);
     LASTCLICK[0] = canvas.width/2
     LASTCLICK[1] = canvas.height/2
-    ctx.globalCompositeOperation = mode
-    ctx.globalAlpha = a
+    //ctx.globalCompositeOperation = mode
+    //ctx.globalAlpha = a
     syncMarker()
   }
   document.getElementById("uploadimage").value = ""
-  ctx.globalCompositeOperation = mode
-  refreshMode()
-  syncMarker()
+  //ctx.globalCompositeOperation = mode
+  //refreshMode()
+  //syncMarker()
+}
+
+function drawFile_other () {
+  let canvas = document.getElementById('myCanvas')
+  let ctx = canvas.getContext('2d')
+  let IMG = new Image()
+  let f = document.getElementById("uploadimage").files[0]
+  let url = window.URL || window.webkitURL
+  let src = url.createObjectURL(f);
+  IMG.src = src;
+  ctx.globalAlpha = 1
+  let mode = ctx.globalCompositeOperation
+  ctx.globalCompositeOperation = "source-over"
+  document.getElementById('mode')
+  IMG.onload = function () {
+    canvas.height = this.height
+    canvas.width = this.width
+    ctx.drawImage(IMG, 0, 0);
+    //resizeCanvas()
+    url.revokeObjectURL(src);
+    extractPalette()
+  }
+  //document.getElementById("uploadimage").value = ""
 }
 
 function clearOff () {
@@ -13791,7 +13888,7 @@ function resizeCanvas () {
   ctx.globalAlpha = 1.0
   ocanvas.height = canvas.height
   ocanvas.width = canvas.width
-  ctx.imageSmoothingEnabled = false
+  //ctx.imageSmoothingEnabled = false
   octx.drawImage(canvas, 0, 0)
   canvas.height = canvas_size
   canvas.width = canvas_size
@@ -13813,7 +13910,7 @@ function resizeCanvas () {
   syncBackground(canvas)
   document.getElementById("canvaswidth").value = canvas.width
   document.getElementById("canvasheight").value = canvas.height
-  ctx.imageSmoothingEnabled = false
+ // ctx.imageSmoothingEnabled = false
   syncBackground(canvas)
   ctx.drawImage(ocanvas,0,0,canvas.width,canvas.height)
   octx.clearRect(0,0,ocanvas.width,ocanvas.height)

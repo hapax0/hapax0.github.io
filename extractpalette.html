@@ -129,9 +129,7 @@ function drawFile () {
   let src = url.createObjectURL(f);
   IMG.src = src;
   ctx.globalAlpha = 1
-  let mode = ctx.globalCompositeOperation
   ctx.globalCompositeOperation = "source-over"
-  document.getElementById('mode')
   IMG.onload = function () {
     canvas.height = this.height
     canvas.width = this.width
@@ -140,7 +138,6 @@ function drawFile () {
     url.revokeObjectURL(src);
     extractPalette()
   }
-  //document.getElementById("uploadimage").value = ""
 }
 
 function extractPalette () {
@@ -201,9 +198,6 @@ function colorSamplePalette () {
     }
   }
   let threshold = m/sample.length/sample.length * 0.6
-  
-  console.log(threshold)
-  
   let bins = [], bc = 0
   i = 0
   for (;i < sample.length; i++) {
@@ -219,10 +213,7 @@ function colorSamplePalette () {
       }
     }
   }
-  //if (alt)
-  //  bins.sort(function(a, b) { return interesting(b[0]) - interesting(a[0]);});
- // else
-    bins.sort(function(a, b) { return b.length - a.length;});
+  bins.sort(function(a, b) { return b.length - a.length;});
   let count = bins.length;
   if (count > 21)
     count = 21
