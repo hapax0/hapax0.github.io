@@ -422,6 +422,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="seasons">seasons</option>
     <option value="tides">tides</option>
     <option value="phases">phases</option>
+    <option value="roadmap">road map</option>
     <!--option value="blobOutline">shape outline</option>
     <option value="bezRandom" >random bez</option-->
     <option value="moleskine">moleskine</option>
@@ -8550,12 +8551,77 @@ function curveAcross () {
   }
 }
 
-function walk () {
+function roadmap () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let D =  (5 + Math.floor(document.getElementById("featuresize").value/80))
   let grunge = document.getElementById("grungy").checked
   let angledelta = 0.3
+  if (grunge)
+    angledelta = 0.8
+  let W = canvas.width
+  let H = canvas.height
+  let colors = ['red', 'blue', 'green', 'yellow', 'orange']
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  
+  ctx.lineWidth = 13
+  ctx.lineCap = "round"
+  let x = Math.random() * W, y = Math.random() * H
+  //x = W/2, y = H/2
+  let p = 1+D*1
+  let i = 0
+  let s = 0
+  let angle = Math.random()*2*Math.PI;
+  let stepsize = 1
+  let w = 1 + Math.random()*D/10
+  let points = []
+  let k = 0
+  while (k < 3) {
+    s = 0
+    ctx.lineWidth = 6 +Math.floor(20 * Math.random())
+    ctx.strokeStyle = randomPick(colors)
+    ctx.fillStyle = randomPick(colors)
+    x = Math.random() * W, y = Math.random() * H
+    while (s < 2000) {
+      w = 1 + Math.random()*D/25
+      ctx.beginPath()
+      if (s > 100  && s < 800 && Math.random() > 0.96) {
+        D *=1.03
+        p = 1+D/2
+        stepsize = 2
+      } else
+      if (s > 800 && Math.random() > 0.9) {
+        D /=1.03
+        p = 1+D
+        stepsize = 1
+      }
+      angle += (Math.random()-0.52) * angledelta
+      points.push([x,y])
+      x += 5 * Math.cos(angle)
+      y += -5 * Math.sin(angle)
+      w += 0.001
+      s++
+    }
+    i = 1
+    //ctx.globalAlpha = 0.5
+    ctx.beginPath()
+    ctx.moveTo(points[0][0], points[0][1])
+    for(; i < points.length; i++) {
+      ctx.lineTo(points[i][0], points[i][1])
+    }
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+    k++
+  }
+}
+
+function walk () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let D =  (5 + Math.floor(document.getElementById("featuresize").value/80))
+  let grunge = document.getElementById("grungy").checked
+  let angledelta = 0.1
   if (grunge)
     angledelta = 0.8
   let W = canvas.width
