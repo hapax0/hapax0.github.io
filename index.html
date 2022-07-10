@@ -8592,9 +8592,9 @@ function roadmap () {
   let w = 1 + Math.random()*D/10
   let points = []
   lavalamp()
-
+  let numroads = 5 + Math.floor(Math.random() * 5)
   let k = 0
-  while (k < 5) {
+  while (k < numroads) {
     points = []
     s = 0
     ctx.lineWidth = 2 + Math.floor(10 * Math.random())
@@ -8606,6 +8606,8 @@ function roadmap () {
       y += 7 * Math.sin(angle)
       s++
       angle += (Math.random()-0.51) * angledelta
+      
+      
     }
     i = 1
     ctx.beginPath()
@@ -8615,8 +8617,26 @@ function roadmap () {
     }
     ctx.strokeStyle = randomPick(colors)
     ctx.globalAlpha = 0.4
-    
     ctx.stroke();
+    let rt = ctx.lineWidth * 0.6
+    let spacing = randomPick([23, 91, 15, 11, 31, 1000])
+    i = 0
+     for(; i < points.length; i++) {
+      if (i % spacing === 1) {
+        ctx.strokeStyle = ("#303030")
+        ctx.lineWidth = 3
+        ctx.beginPath()
+        //ctx.moveTo(points[i][0], points[i][1])
+        ctx.arc(points[i][0], points[i][1], rt, 0, 2* Math.PI)
+        //ctx.closePath()
+        ctx.globalAlpha = 0.8
+        ctx.stroke()
+        ctx.fillStyle = "#ffffff"
+        ctx.fill()
+      }
+    }
+   
+    
     k++
   }
   ctx.globalAlpha = 0.6
@@ -8639,7 +8659,7 @@ function roadmap () {
   }
   // blue grid lines
   ctx.globalAlpha = 0.3
-  let yoff = Math.random() * 45
+  let yoff = 2*(Math.random()-0.5) * 45
   let div = (2 + Math.random() +3)
   let d = W/div
   y = 2//24 + Math.random() + 40
@@ -8663,10 +8683,7 @@ function roadmap () {
     ctx.stroke();
     x += d
   }
-
 }
-
-
 
 function diurnal () {
   let canvas = document.getElementById("myCanvas");
@@ -8734,21 +8751,22 @@ function diurnal () {
 function lavalamp () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  var increase = Math.PI * 2 / 40;
-  var x = 350, y = 270, angle = 4.7;
+  let increase = Math.PI * 2 / 40;
+  let x = 350, y = 270, angle = 4.7;
   //var centerx = ctx.canvas.width / 2;
   //var centery = ctx.canvas.height / 2;
   let colors = shuffle(['red', 'green', 'yellow', 'blue'])
+  colors = shuffle(['#ffb3ba', '#baffc9', '#ffffba', '#bae1ff'])
   let centers = shuffle([[0, canvas.height/4],
                  [3 * canvas.width/4, canvas.height/2],
                  [canvas.width/5, 3*canvas.height/4],
                  [canvas.width, canvas.height]])
-  ctx.globalAlpha = 0.2;
+  ctx.globalAlpha = document.getElementById("opacity").value/100;
   ctx.lineCap = "round";
   ctx.lineJoin = 'round';
-  var centx = Math.random()*canvas.width/2;
-  var centy = Math.random()*canvas.height/2;
-  var numshapes = Math.random() * 2 + 2;
+  let centx = Math.random()*canvas.width/2;
+  let centy = Math.random()*canvas.height/2;
+  let numshapes = Math.random() * 2 + 2;
   for (var t = 0; t < numshapes; t++) {
     var radius = Math.floor(Math.random() * 100) + 20;
     x = 0;
@@ -8758,8 +8776,8 @@ function lavalamp () {
     var x0 = x;
     var y0 = y;
     angle = Math.floor(Math.random() * 6.42);
-    var edges = 7 * (Math.floor(Math.random()*3)+3);
-    var maxradius = canvas.width/1.5;
+    let edges = 7 * (Math.floor(Math.random()*3)+3);
+    let maxradius = canvas.width/2;
     increase = Math.PI * 2/edges*0.98;
     points = [];
     bez = [];
@@ -8772,7 +8790,7 @@ function lavalamp () {
     }
     ctx.beginPath();
     ctx.fillStyle= colors[t];
-    ctx.globalAlpha = 0.2;
+    //ctx.globalAlpha = 0.2;
     var i = 0;
     for (; i < points.length; i++) {
       x = points[i][0];
@@ -8793,10 +8811,10 @@ function lavalamp () {
     else
       ctx.setLineDash([]);
     ctx.strokeStyle = randomPick(colors);
-    ctx.globalAlpha = 0.4;
+  //  ctx.globalAlpha = 0.4;
     ctx.stroke()
     ctx.closePath();
-    ctx.globalAlpha = 0.2;
+  //  ctx.globalAlpha = 0.2;
     ctx.fill();
     ctx.setLineDash([]);
   }
