@@ -8563,8 +8563,10 @@ function placeText (lines, angle) {
   ctx.textBaseline = 'middle'
   let x = Math.random() * W
   let y = Math.random() * H
-  ctx.font = "bold "+size+"px Helvetica"
+  //ctx.font = "bold "+size+"px Helvetica"
+  
   ctx.save()
+  ctx.font = size+"px SnellRoundhand-Black"
   ctx.translate(x, y)
   ctx.rotate(angle) // need to adjust x & y offsets per line
   ctx.fillText(lines, 0, 0)
