@@ -8618,6 +8618,8 @@ function roadmap () {
     ctx.strokeStyle = randomPick(colors)
     ctx.globalAlpha = 0.4
     ctx.stroke();
+    
+    // dots on raods
     let rt = ctx.lineWidth * 0.6
     let spacing = randomPick([23, 91, 15, 11, 31, 1000])
     i = 0
@@ -8626,17 +8628,38 @@ function roadmap () {
         ctx.strokeStyle = ("#303030")
         ctx.lineWidth = 3
         ctx.beginPath()
-        //ctx.moveTo(points[i][0], points[i][1])
         ctx.arc(points[i][0], points[i][1], rt, 0, 2* Math.PI)
-        //ctx.closePath()
         ctx.globalAlpha = 0.8
         ctx.stroke()
         ctx.fillStyle = "#ffffff"
         ctx.fill()
       }
     }
+    // route numbers
+    rt = ctx.lineWidth * 4
+    spacing = randomPick([120, 91, 150, 1000])
+    let routes = [11, 21,31, 17, 6, 89, 50, 67, 3, 10, 104, 24, 33, 2, 6, 44, 128, 95]
+    let rtext = randomPick(routes)
+    i = 0
+     for(; i < points.length; i++) {
+      if (i > 0 && i % spacing === 0) {
+        ctx.strokeStyle = ("#303030")
+        ctx.lineWidth = 3
+        ctx.beginPath()
+        ctx.arc(points[i][0], points[i][1], rt, 0, 2* Math.PI)
+        ctx.globalAlpha = 0.8
+        ctx.stroke()
+        ctx.fillStyle = "#ffffff"
+        ctx.fill()
+        ctx.textBaseline = "bottom";
+        ctx.textalign = 'left'
+        ctx.fillStyle = "#000000"
+        ctx.font = "12px helvetica";
+        let d = ctx.measureText(rtext).width/2
+        ctx.fillText (rtext, points[i][0]-d, points[i][1]+rt/2)
+      }
+    }
    
-    
     k++
   }
   ctx.globalAlpha = 0.6
@@ -8658,7 +8681,7 @@ function roadmap () {
     ctx.fill();
   }
   // blue grid lines
-  ctx.globalAlpha = 0.3
+  ctx.globalAlpha = document.getElementById("opacity").value / 200
   let yoff = 2*(Math.random()-0.5) * 45
   let div = (2 + Math.random() +3)
   let d = W/div
