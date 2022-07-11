@@ -51,7 +51,6 @@
     background-position: 0 0, 10px 10px;
     background-size: 20px 20px;
   }
-
   svg {background-color:#ccc;}
   svg[class=white] { background-color:#fff;}
 </style>
@@ -198,8 +197,7 @@
 </svg></a>
  </div>
  <div style="margin-left:8px;display:block;" id="tools">
- <table
-border="0" cellpadding="4" style="margin-left:6px;">
+ <table border="1" cellpadding="4" style="margin-left:6px;">
    <tr><td
 style="text-align:right;"><button
 onclick="resizeFromDialog()">resize</button></td><td>W: <input type="number"
@@ -510,6 +508,8 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
 </tr>
 </table>
 </div>
+<div style="margin-left:24px;">
+ font: <input type="text" id="fontface" value="Helvetica"></div>
 <canvas id="marker" width='512' height='6' style="border:1px solid #000000;" title="touch canvas: red mark shows location of clip or rip"></canvas>
 <div id="background" style="width:1024px;height:1024px;float:left;position:absolute;">
 <canvas id="myCanvas" width="512" height="512" style="border:1px solid #000000;">
@@ -1755,7 +1755,7 @@ function colorSamplePalette () {
       maxd = (maxd < m)? m: maxd
     }
   }
-  let threshold = m/sample.length/sample.length * 0.6
+  let threshold = m/sample.length/sample.length * 0.7
   let bins = [], bc = 0
   i = 0
   for (;i < sample.length; i++) {
@@ -4656,7 +4656,7 @@ function drawFile () {
   IMG.src = src;
  // let a = ctx.globalAlpha
   ctx.globalAlpha = 1.0
-  //let mode = ctx.globalCompositeOperation
+  let mode = ctx.globalCompositeOperation
   ctx.globalCompositeOperation = "source-over"
   //document.getElementById('mode')
   IMG.onload = function() {
@@ -4669,12 +4669,12 @@ function drawFile () {
     url.revokeObjectURL(src);
     LASTCLICK[0] = canvas.width/2
     LASTCLICK[1] = canvas.height/2
-    //ctx.globalCompositeOperation = mode
-    //ctx.globalAlpha = a
+    ctx.globalCompositeOperation = mode
+    ctx.globalAlpha = a
     syncMarker()
   }
   document.getElementById("uploadimage").value = ""
-  //ctx.globalCompositeOperation = mode
+  ctx.globalCompositeOperation = mode
   //refreshMode()
   //syncMarker()
 }
@@ -6614,15 +6614,11 @@ function photoBook () {
   ctx.globalAlpha = 1.0
   ctx.fillStyle = "#fefeed"
   ctx.globalCompositeOperation = "destination-out"
-  //ctx.fillRect(pad, pad, W/2-pad*2.5, H-pad*4)
   ctx.fillRect(W/5, pad*6, 3*W/4-pad, H-(pad*12))
 
   ctx.fillRect(0, pad*6, (pad*9), H-(pad*12))
-  ctx.globalCompositeOperation = "source-over"
-  
   ctx.globalCompositeOperation = mode
   document.getElementById("opacity").value = alpha
-
 }
 
 function sketchpad () {
@@ -6726,7 +6722,6 @@ function sketchpad () {
   }
   ctx.globalCompositeOperation = mode
   document.getElementById("opacity").value = alpha
-
 }
 
 function sketchpage () {
@@ -6851,12 +6846,10 @@ function sketchpage () {
       ctx.arc(x+43, y+68-3, r-2, sa+0.75, sa+0.8)
       ctx.stroke()
     }
-    
     y += 55
   }
   ctx.globalCompositeOperation = mode
   document.getElementById("opacity").value = alpha
-
 }
 
 function spiralbound () { //
@@ -8564,9 +8557,9 @@ function placeText (lines, angle) {
   let x = Math.random() * W
   let y = Math.random() * H
   //ctx.font = "bold "+size+"px Helvetica"
-  
+  let ff = document.getElementById("fontface").value
   ctx.save()
-  ctx.font = size+"px SnellRoundhand-Black"
+  ctx.font = size+"px " + ff //SnellRoundhand-Black"
   ctx.translate(x, y)
   ctx.rotate(angle) // need to adjust x & y offsets per line
   ctx.fillText(lines, 0, 0)
@@ -10579,6 +10572,7 @@ function rc () {
   let octx = ocanvas.getContext('2d')
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
+  let mode = ctx.globalCompositeOperation
   ctx.globalCompositeOperation = "source-over"
   let a = ctx.globalAlpha
   ctx.globalAlpha = 1.0
@@ -10608,6 +10602,7 @@ function rc () {
   ctx.globalAlpha = a
   refreshMode()
   //syncMarker()
+  ctx.globalCompositeOperation = mode
 }
 
 function rcc () {
@@ -10615,6 +10610,7 @@ function rcc () {
   let octx = ocanvas.getContext('2d')
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
+  let mode = ctx.globalCompositeOperation
   ctx.globalCompositeOperation = "source-over"
   let a = ctx.globalAlpha
   ctx.globalAlpha = 1.0
@@ -10644,6 +10640,7 @@ function rcc () {
   ctx.globalAlpha = a
   refreshMode()
  // syncMarker()
+ ctx.globalCompositeOperation = mode
 }
 
 function flipH () {
@@ -10651,6 +10648,7 @@ function flipH () {
   let octx = ocanvas.getContext('2d')
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
+  let mode = ctx.globalCompositeOperation
   ctx.globalCompositeOperation = "source-over"
   let a = ctx.globalAlpha
   ctx.globalAlpha = 1.0
@@ -10665,7 +10663,8 @@ function flipH () {
   octx.clearRect(0,0,ocanvas.width,ocanvas.height)
   ctx.setTransform(1,0,0,1,0,0)
   ctx.globalAlpha = a
-  refreshMode()
+ // refreshMode()
+  ctx.globalCompositeOperation = mode
   return true
 }
 
@@ -10674,6 +10673,7 @@ function flipV () {
   let octx = ocanvas.getContext('2d')
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
+  let mode = ctx.globalCompositeOperation
   ctx.globalCompositeOperation = "source-over"
   let a = ctx.globalAlpha
   ctx.globalAlpha = 1.0
@@ -10688,7 +10688,8 @@ function flipV () {
   octx.clearRect(0,0,ocanvas.width,ocanvas.height)
   ctx.setTransform(1,0,0,1,0,0)
   ctx.globalAlpha = a
-  refreshMode()
+  //refreshMode()
+  ctx.globalCompositeOperation = mode
   return true
 }
 
@@ -14845,7 +14846,6 @@ function sharpen2 () {
   let mode = document.getElementById("mode").value
   let opacity = document.getElementById("opacity").value
   // opacity 1.0, source-over
-  //document.getElementById("mode").value = "source-over"
   document.getElementById("mode").value = "source-over"
   clearOff()
   copyToOff()
