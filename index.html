@@ -249,6 +249,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
         <select id="palettechoice">
           <option value="ramp">mixed ramp</option>
           <option value="mono">mono ramp</option>
+          <option value="primary">primary</option>
           <option value="random">random</option>
           <option value="rainbow">rainbow</option>
           <option value="rust">rust</option>
@@ -299,6 +300,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
       <option value="ripinhalf">rip in half</option>
       <option value="duplicate">duplicate</option>
       <option value="afold">fold</option>
+      <option value="trifold">tri-fold</option>
       <option value="crumple" selected>crumple</option>
       <option value="fourbyfourplain">4x4</option>
       <option value="fourbyfour">warhol</option>
@@ -420,6 +422,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="seasons">seasons</option>
     <option value="tides">tides</option>
     <option value="phases">phases</option>
+    <option value="glass">glass</option>
     <option value="roadmap" selected>road map</option>
     <!--option value="blobOutline">shape outline</option>
     <option value="bezRandom" >random bez</option-->
@@ -671,6 +674,16 @@ function randomPalette () {
   if (type === "scream"){
     a = ['#08120b', '#30362c', '#5b807f', '#f49f58', '#d9ba81']
     b = ['#f2c28b', '#f2a351', '#c29f69', '#7e9480', '#bd7b45', '#da631c', '#7b684a', '#526c6b', '#bc4e19', '#c83302', '#404335', '#152019', '#020904']
+    document.getElementById("pal1").value = a[0]
+    document.getElementById("pal2").value = a[1]
+    document.getElementById("pal3").value = a[2]
+    document.getElementById("pal4").value = a[3]
+    document.getElementById("pal5").value = a[4]
+    updateExtraColors(b)
+  } else
+  if (type === "primary") {
+    a = ['#ff0000', '#0000ff', '#ffff00', '#008000', '#ffa500']
+    //b = ['#e7e28e', '#deda7b', '#bbbe74', '#699474', '#888153', '#b57321', '#58856e', '#a05b21', '#2e6f61', '#4f5f4a', '#0c6244', '#4b281a', '#1f2b29']
     document.getElementById("pal1").value = a[0]
     document.getElementById("pal2").value = a[1]
     document.getElementById("pal3").value = a[2]
@@ -1755,7 +1768,7 @@ function colorSamplePalette () {
       maxd = (maxd < m)? m: maxd
     }
   }
-  let threshold = m/sample.length/sample.length * 0.7
+  let threshold = m/sample.length/sample.length * 0.6
   let bins = [], bc = 0
   i = 0
   for (;i < sample.length; i++) {
@@ -4669,8 +4682,8 @@ function drawFile () {
     url.revokeObjectURL(src);
     LASTCLICK[0] = canvas.width/2
     LASTCLICK[1] = canvas.height/2
-    ctx.globalCompositeOperation = mode
-    ctx.globalAlpha = a
+    //ctx.globalCompositeOperation = mode
+    //ctx.globalAlpha = a
     syncMarker()
   }
   document.getElementById("uploadimage").value = ""
@@ -6229,6 +6242,73 @@ function constellations () {
     ctx.fill()
     i++
   }
+  document.getElementById("mode").value = mode
+  document.getElementById("opacity").value = alpha
+}
+
+function glass () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.clearRect(0,0,canvas.width,canvas.height)
+  ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
+  let R = canvas.width * 0.3
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+
+  let colors = shuffle( getCurrectPalette())
+  if (document.getElementById("grungy").checked)
+    colors = shuffle(['red', 'blue', 'yellow', 'orange', 'purple', "green"])
+  let mode = document.getElementById("mode").value
+  let alpha = document.getElementById("opacity").value
+  let cx = canvas.width/2, cy = canvas.height/2, x = 0, y = 0
+  let a = Math.random() * 2 * Math.PI
+  let pad = 50
+  let R2 = R/2
+ 
+  // top
+  let height = cy*0.4
+  r = (canvas.height + height*-0.5) * 0.3
+  ctx.fillStyle = (colors[3])
+  ctx.beginPath()
+  ctx.ellipse(cx, height, r, r/2, 0, Math.PI, 2 * Math.PI)
+  //bottom
+  height = canvas.height*0.85
+  r = (canvas.height + height*-0.5) * 0.3
+  ctx.ellipse(cx, height, r, r/2, 0,  0, Math.PI)
+  ctx.closePath()
+  ctx.fill()
+
+  ctx.globalAlpha /= 2
+  height = cy*0.4
+  r = (canvas.height + height*-0.5) * 0.3
+  ctx.beginPath()
+  ctx.ellipse(cx, height, r, r/2, 0, 0, Math.PI)
+  height = canvas.height*0.85
+  r = (canvas.height + height*-0.5) * 0.3
+  ctx.ellipse(cx, height, r, r/2, 0,  Math.PI, 0, true)
+  ctx.closePath()
+  ctx.fill()
+  ctx.globalAlpha = alpha/10*20
+
+  // fill
+  ctx.fillStyle = (colors[0])
+  ctx.beginPath()
+  height = cy+pet(cy*1.2)
+  let savedheight = height
+  r = (canvas.height + height*-0.5) * 0.28 // slightly smaller
+  ctx.ellipse(cx, height, r, r/2, 0, Math.PI, 2 * Math.PI) // level -> top of filled
+  height = canvas.height*0.83
+  r = (canvas.height + height*-0.5) * 0.28 // bottom of glass
+  ctx.ellipse(cx, height, r, r/2, 0, 0, Math.PI)
+  ctx.closePath()
+  ctx.fill()
+  ctx.globalAlpha /= 2
+
+  ctx.beginPath()
+  height = savedheight
+  r = (canvas.height + height*-0.5) * 0.28 // slightly smaller
+  ctx.ellipse(cx, height, r, r/2, 0, 0, 2 * Math.PI) // level -> top of filled
+  ctx.closePath()
+  ctx.fill()
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
 }
@@ -8557,9 +8637,9 @@ function placeText (lines, angle) {
   let x = Math.random() * W
   let y = Math.random() * H
   //ctx.font = "bold "+size+"px Helvetica"
-  let ff = document.getElementById("fontface").value
+  
   ctx.save()
-  ctx.font = size+"px " + ff //SnellRoundhand-Black"
+  ctx.font = size+"px SnellRoundhand-Black"
   ctx.translate(x, y)
   ctx.rotate(angle) // need to adjust x & y offsets per line
   ctx.fillText(lines, 0, 0)
@@ -10444,19 +10524,38 @@ function crumple () {
   ctx.globalCompositeOperation = mode
 }
 
+function trifold () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let nudge = canvas.height/20
+  let alpha = document.getElementById("opacity").value
+  let colors = shuffle(["#ffffff", "#000000"])
+  ctx.globalAlpha = 0.1
+  let x1 = canvas.width/2, y1 = 0, x2 = canvas.width/2, y2 = canvas.height/3
+  ctx.fillStyle = randomGradientRect(canvas, colors[0], x1, y2, x2, y1 + nudge)// - Math.random() * canvas.width/3)
+  ctx.fillRect(0,0,canvas.width,canvas.height/3)
+  
+  y1 = canvas.height/3, y2 = 2*canvas.height/3
+  ctx.fillStyle = randomGradientRect(canvas, colors[1], x1, y1, x2, y2 - nudge)//Math.random() * canvas.width/3)
+  ctx.fillRect(0, canvas.height/3, canvas.width, 2*canvas.height/3)
+
+  y1 = 2*canvas.height/3, y2 = canvas.height
+  ctx.fillStyle = randomGradientRect(canvas, colors[0], x1, y1, x2, y2 - nudge)//Math.random() * canvas.width/3)
+  ctx.fillRect(0, 2*canvas.height/3, canvas.width, canvas.height)
+  ctx.globalAlpha = alpha/100
+}
+
 function afold () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let alpha = document.getElementById("opacity").value
- // ctx.clearRect(0,0,canvas.width, canvas.height/2)
+  let colors = shuffle(["#ffffff", "#000000"])
   let x1 = canvas.width/2, y1 = 0, x2 = canvas.width/2, y2 = canvas.height/2
-  
-  ctx.fillStyle = randomGradientRect(canvas, "#000000", x1, y1, x2, y2 - Math.random() * canvas.width/3)
+  ctx.fillStyle = randomGradientRect(canvas, colors[0], x1, y1, x2, y2 - Math.random() * canvas.width/3)
   ctx.globalAlpha = 0.2
   ctx.fillRect(0,0,canvas.width,canvas.height/2)
   y1 = canvas.height/2, y2 = canvas.height
-  x2 = canvas.width/2
-  ctx.fillStyle = randomGradientRect(canvas, "#000000", x1, y1, x2, y2 - Math.random() * canvas.width/3)
+  ctx.fillStyle = randomGradientRect(canvas, colors[0], x1, y1, x2, y2 - Math.random() * canvas.width/3)
   ctx.fillRect(0,canvas.height/2, canvas.width, canvas.height)
   ctx.globalAlpha = alpha/100
 }
