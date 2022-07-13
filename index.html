@@ -197,7 +197,7 @@
 </svg></a>
  </div>
  <div style="margin-left:8px;display:block;" id="tools">
- <table border="1" cellpadding="4" style="margin-left:6px;">
+ <table border="0" cellpadding="4" style="margin-left:6px;">
    <tr><td
 style="text-align:right;"><button
 onclick="resizeFromDialog()">resize</button></td><td>W: <input type="number"
@@ -251,7 +251,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
           <option value="mono">mono ramp</option>
           <option value="primary">primary</option>
           <option value="random">random</option>
-          <option value="rainbow">rainbow</option>
+          <option value="rainbow" selected>rainbow</option>
           <option value="rust">rust</option>
           <option value="stary">stary night</option>
           <option value="scream">the scream</option>
@@ -299,9 +299,9 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
       <option value="distortion">fisheye</option>
       <option value="ripinhalf">rip in half</option>
       <option value="duplicate">duplicate</option>
-      <option value="afold">fold</option>
+      <option value="afold" selected>fold</option>
       <option value="trifold">tri-fold</option>
-      <option value="crumple" selected>crumple</option>
+      <option value="crumple">crumple</option>
       <option value="fourbyfourplain">4x4</option>
       <option value="fourbyfour">warhol</option>
       <option value="smearside">smear right</option>
@@ -416,7 +416,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="necker">necker (fill)</option>
     <option value="quads" >quads</option>
     <option value="venn">venn</option>
-    <option value="orbits">orbits</option>
+    <option value="core">core</option>
     <option value="eclipse">eclipse</option>
     <option value="constellations" >constellations</option>
     <option value="seasons">seasons</option>
@@ -6253,8 +6253,7 @@ function glass () {
   ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
   let R = canvas.width * 0.3
   ctx.globalAlpha = document.getElementById("opacity").value/100
-
-  let colors = shuffle( getCurrectPalette())
+  let colors = shuffle(getCurrectPalette())
   if (document.getElementById("grungy").checked)
     colors = shuffle(['red', 'blue', 'yellow', 'orange', 'purple', "green"])
   let mode = document.getElementById("mode").value
@@ -6370,6 +6369,97 @@ function eclipse () {
   R += R/2
   R *= 2
   
+  document.getElementById("mode").value = mode
+  document.getElementById("opacity").value = alpha
+}
+function core () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.clearRect(0,0,canvas.width,canvas.height)
+  ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
+  let R = canvas.height * 0.4
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let colors = shuffle(getCurrectPalette())
+  if (document.getElementById("grungy").checked)
+    colors = shuffle(['red', 'blue', 'yellow', 'orange', 'purple', "green"])
+  let mode = document.getElementById("mode").value
+  let alpha = document.getElementById("opacity").value
+  let cx = canvas.width/2, cy = canvas.height/2, x = 0, y = 0
+
+  // whole world
+  //left side surface
+  ctx.fillStyle = colors[0]
+  ctx.beginPath()
+  ctx.arc(cx, cy, R, Math.PI/2, Math.PI * 1.5)
+  ctx.ellipse(cx, cy, R*0.67, R, 0, Math.PI * 1.5, Math.PI/2, true)
+  ctx.closePath()
+  ctx.fill()
+  ctx.globalAlpha /= 5
+  ctx.fillStyle = "#ffffff"
+  ctx.fill()
+  ctx.globalAlpha = alpha/100
+
+ //right side surface
+  ctx.fillStyle = colors[0]
+  ctx.beginPath()
+  ctx.arc(cx, cy, R, Math.PI * 1.5, Math.PI/2)
+  ctx.ellipse(cx, cy, R*0.67, R, 0, Math.PI/2, Math.PI*1.5, true)
+  ctx.closePath()
+  ctx.fill()
+  ctx.globalAlpha /= 5
+  ctx.fillStyle = "#000000"
+  ctx.fill()
+  ctx.globalAlpha = alpha/100
+
+  // left cutout
+  ctx.fillStyle = colors[1] // darken
+  ctx.beginPath()
+  ctx.ellipse(cx, cy, R*0.67, R, 0, Math.PI/2, Math.PI * 1.5) // bottom to top
+  ctx.moveTo(cx, cy-R)
+  ctx.lineTo(cx, cy-(R/3)) //down
+  ctx.ellipse(cx, cy, R/3, R/3, 0, Math.PI*1.5, Math.PI/2, true) // top to bottom
+  ctx.moveTo(cx, cy+R)
+  ctx.lineTo(cx, cy+(R/3)) // down
+  ctx.closePath()
+  ctx.fill()
+  ctx.globalAlpha /= 5
+  ctx.fillStyle = "#000000"
+  ctx.fill()
+  ctx.globalAlpha = alpha/100
+
+  // right cutout
+  ctx.fillStyle = colors[1] // lighten
+  ctx.beginPath()
+  ctx.ellipse(cx, cy, R*0.67, R, 0, Math.PI * 1.5, Math.PI/2) // top to bottom
+  ctx.moveTo(cx, cy+R)
+  ctx.lineTo(cx, cy+(R/3)) //up
+  ctx.ellipse(cx, cy, R/3, R/3, 0, Math.PI/2, Math.PI * 1.5, true) // top to bottom
+  ctx.moveTo(cx, cy-R)
+  ctx.lineTo(cx, cy-(R/3)) // up
+  ctx.closePath()
+  ctx.fill()
+  ctx.globalAlpha /= 5
+  ctx.fillStyle = "#ffffff"
+  ctx.fill()
+  ctx.globalAlpha = alpha/100
+
+  //core
+  ctx.fillStyle = colors[2]
+  ctx.beginPath()
+  ctx.arc(cx, cy, R/3, 0, Math.PI * 2)
+  ctx.closePath()
+  ctx.fill()
+ // core glint
+/*
+  ctx.beginPath()
+  ctx.arc(cx, cy, R/3*0.97, Math.PI/2, Math.PI * 1.5)
+  ctx.ellipse(cx, cy, R/3*0.7, R/3*0.97, 0, Math.PI*1.5, Math.PI/2) // top to bottom
+  ctx.closePath()
+  ctx.globalAlpha /= 20
+  ctx.fillStyle = "#ffffff"
+ // ctx.fill()
+  ctx.globalAlpha = alpha/100*/
+
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
 }
