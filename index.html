@@ -5959,7 +5959,7 @@ function phases () {
   ctx.clearRect(0,0,canvas.width,canvas.height)
   ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  let colors = shuffle(['red', 'blue', 'yellow', 'orange', 'purple', "green"])
+  let colors = shuffle(getCurrectPalette())//['red', 'blue', 'yellow', 'orange', 'purple', "green"])
   let mode = document.getElementById("mode").value
   let alpha = document.getElementById("opacity").value
   let cx = canvas.width/2, cy = canvas.height/2, x = 0, y = 0
@@ -5969,14 +5969,7 @@ function phases () {
   
   // background
   let R3 = R+r
-  ctx.fillStyle = (colors[4])
-  ctx.beginPath()
-  ctx.moveTo(0,cy-R3)
-  ctx.lineTo(0,cy+R3)
-  ctx.lineTo(canvas.width,cy+R3)
-  ctx.lineTo(canvas.width,cy-R3)
-  ctx.closePath()
-  ctx.fill()
+  
   // left disc
   ctx.fillStyle = colors[0]
   ctx.beginPath()
@@ -5984,7 +5977,7 @@ function phases () {
   ctx.closePath()
   ctx.fill()
   // bottomr disc
-  ctx.fillStyle = (colors[1])
+  ctx.fillStyle = (colors[2])
   ctx.beginPath()
   ctx.arc(cx+cx/3, cy, R2, 0, Math.PI * 2)
   ctx.closePath()
@@ -6039,6 +6032,85 @@ function phases () {
   ctx.arc(cx, cy, R2, Math.PI/2, Math.PI * 1.5)
   ctx.closePath()
   ctx.fill()
+  
+  // phases across top
+  y = canvas.height/10
+  x = 80, mult = 1.0
+  let i = 0
+  for (; i < 5; i++) {
+    ctx.fillStyle = (colors[2])
+    ctx.beginPath()
+    ctx.arc(x, y, R2, 0, Math.PI * 2)
+    ctx.closePath()
+    ctx.fill()
+    
+    ctx.fillStyle = (colors[3])
+    ctx.beginPath()
+    ctx.ellipse(x, y, R2, R2, 0, Math.PI/2, Math.PI * 1.5)
+    ctx.ellipse(x, y, R2*mult, R2, 0, Math.PI * 1.5, Math.PI/2)
+    ctx.closePath()
+    ctx.fill()
+    x += R2 * 3
+    mult -= 0.25
+  }
+  
+  i = 0, mult = 0.25
+  for (; i < 3; i++) {
+    ctx.fillStyle = (colors[3])
+    ctx.beginPath()
+    ctx.arc(x, y, R2, 0, Math.PI * 2)
+    ctx.closePath()
+    ctx.fill()
+    
+    ctx.fillStyle = (colors[2])
+    ctx.beginPath()
+    ctx.ellipse(x, y, R2, R2, 0, Math.PI * 1.5, Math.PI/2)
+    ctx.ellipse(x, y, R2*mult, R2, 0, Math.PI/2, Math.PI * 1.5)
+
+    ctx.closePath()
+    ctx.fill()
+    x += R2 * 3
+    mult += 0.25
+  }
+  
+  
+  i = 0, x = 80, y = canvas.height - canvas.height/10, mult = 1.0
+  for (; i < 5; i++) {
+    ctx.fillStyle = (colors[3])
+    ctx.beginPath()
+    ctx.arc(x, y, R2, 0, Math.PI * 2)
+    ctx.closePath()
+    ctx.fill()
+    
+    ctx.fillStyle = (colors[2])
+    ctx.beginPath()
+    ctx.ellipse(x, y, R2, R2, 0, Math.PI/2, Math.PI * 1.5)
+    ctx.ellipse(x, y, R2*mult, R2, 0, Math.PI * 1.5, Math.PI/2)
+    ctx.closePath()
+    ctx.fill()
+    x += R2 * 3
+    mult -= 0.25
+  }
+    
+  i = 0, mult = 0.25
+  for (; i < 3; i++) {
+    ctx.fillStyle = (colors[2])
+    ctx.beginPath()
+    ctx.arc(x, y, R2, 0, Math.PI * 2)
+    ctx.closePath()
+    ctx.fill()
+    
+    ctx.fillStyle = (colors[3])
+    ctx.beginPath()
+    ctx.ellipse(x, y, R2, R2, 0, Math.PI * 1.5, Math.PI/2)
+    ctx.ellipse(x, y, R2*mult, R2, 0, Math.PI/2, Math.PI * 1.5)
+
+    ctx.closePath()
+    ctx.fill()
+    x += R2 * 3
+    mult += 0.25
+  }
+  
   
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
