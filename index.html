@@ -6255,7 +6255,7 @@ function network () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.clearRect(0,0,canvas.width,canvas.height)
-  ctx.lineWidth = 50//+ document.getElementById("featuresize").value/4
+  ctx.lineWidth = 2+document.getElementById("featuresize").value/5
   ctx.lineCap = "round"
   let H  = canvas.height, W = canvas.width
   ctx.globalAlpha = document.getElementById("opacity").value/100
@@ -6265,45 +6265,42 @@ function network () {
   if (document.getElementById("grungy").checked)
     colors = [document.getElementById("paintcolor").value]
   colors = shuffle(colors)
-  let points = []
-  let i = 0, numpoints = randomPick([3,4,5,6,7,8,9])
-  ctx.lineWidth -= numpoints*2
+  ctx.strokeStyle = colors[0]
+  let i = 0, numpoints = randomPick([6,7,8])
   let x = 0, y = 0
-  let a = Math.random() * 2 * Math.PI
-  let r = W/2 * 0.8
-  let cx = W/2, cy = H/2
-  //numpoints = 13//(W/Rf*H/Rf) * 2
-  let row = 0
-  while (i < numpoints) {
-    x = cx + r * Math.cos(a)
-    y = cy + r * Math.sin(a)
-    points.push([x+pet(99), y+pet(99)])
-    a += Math.PI * 2/numpoints
-    i++
-  }
-  let j = 0
-  i = 0
-  for (;i < points.length; i++) {
-    j = i + 1
-    ctx.strokeStyle = colors[0]
-
-    for (; j < points.length; j++) {
-      if (Math.random() < 0.5) {
-        ctx.beginPath()
-        ctx.moveTo(points[i][0], points[i][1])
-        ctx.lineTo(points[j][0], points[j][1])
-        ctx.stroke()
+  let r = W/4 * 0.8
+  let cx = W/4, cy = H/4
+  let s = 0
+  for (; s < 4; i++) {
+    let points = []
+    let a = Math.random() * 2 * Math.PI
+    i = 0
+    while (i < numpoints) {
+      x = cx + r * Math.cos(a)
+      y = cy + r * Math.sin(a)
+      points.push([x+pet(9), y+pet(9)])
+      a += Math.PI * 2/numpoints
+      i++
+    }
+    let j = 0
+    i = 0
+    for (;i < points.length; i++) {
+      j = i + 1
+      for (; j < points.length; j++) {
+        if (Math.random() < 0.2) {
+          ctx.beginPath()
+          ctx.moveTo(points[i][0], points[i][1])
+          ctx.lineTo(points[j][0], points[j][1])
+          ctx.stroke()
+        }
       }
     }
-  }
-  i = 0
-  while (i < points.length) {
-    ctx.fillStyle = colors[1]
-    ctx.beginPath()
-    ctx.arc(points[i][0], points[i][1], 60, 0, Math.PI * 2)
-    ctx.closePath()
-   // ctx.fill()
-    i++
+    cx += W/2
+    if (cx > W) {
+      cy += H/2
+      cx = W/4
+    }
+    s++
   }
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
