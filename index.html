@@ -252,9 +252,9 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
         <select id="palettechoice">
           <option value="ramp">mixed ramp</option>
           <option value="mono">mono ramp</option>
-          <option value="primary">primary</option>
+          <option value="primary" selected>primary</option>
           <option value="random">random</option>
-          <option value="rainbow" selected>rainbow</option>
+          <option value="rainbow">rainbow</option>
           <option value="rust">rust</option>
           <option value="stary">stary night</option>
           <option value="scream">the scream</option>
@@ -417,7 +417,8 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="smeardownOff">vertical streaks</option>
     <option value="neckerline">necker</option>
     <option value="necker">necker (fill)</option>
-    <option value="quads" >quads</option>
+    <!--option value="quads" >quads</option-->
+    <option value="atom" >atom</option>
     <option value="venn">venn</option>
     <option value="network">network</option>
     <option value="core">core</option>
@@ -6645,6 +6646,77 @@ function fruit () {
     }
   }
 
+  document.getElementById("mode").value = mode
+  document.getElementById("opacity").value = alpha
+}
+
+
+function atom () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.clearRect(0,0,canvas.width,canvas.height)
+  ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
+  let R = canvas.height * 0.42
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let mode = document.getElementById("mode").value
+  let alpha = document.getElementById("opacity").value
+  let colors = shuffle(getCurrectPalette())
+  if (document.getElementById("grungy").checked)
+    colors = shuffle(['red', 'blue', 'yellow', 'orange', 'purple', "green"])
+  let cx = canvas.width/2, cy = canvas.height/2, x = 0, y = 0
+  let a = Math.random() * 2 * Math.PI
+  let n = randomPick([1,2,3,4,5,6,7,8])
+  let nucs = n*2
+  let inc = Math.PI/n
+  r = R/n, r2 = r
+  if (n == 1)
+    r2 *= 0.67
+  let i = 0
+  for (; i < n; i++) {
+    let rg = ctx.createRadialGradient(cx, cy, r2, cx, cy, R)
+    let col1 = colors[0]
+    if (i % 2 == 0)
+      col1 = colors[1]
+    let col2 = "rgba("+hexToR(col1)+", "+hexToG(col1)+", "+hexToB(col1)+", 0.0)";// transparent
+    rg.addColorStop(1.0, col1);
+    rg.addColorStop(0.0, col2);
+    ctx.fillStyle = rg
+   // ctx.fillStyle = (colors[0])
+  //  if (i % 2 == 0)
+  //    ctx.fillStyle = (colors[1])
+    ctx.beginPath()
+    ctx.ellipse(cx, cy, r, R, a, 0, Math.PI * 2)
+    ctx.closePath()
+    ctx.fill()
+    a += inc
+  }
+  ctx.fillStyle = (colors[2])
+  ctx.beginPath()
+  ctx.arc(cx, cy, r/2, 0, Math.PI * 2)
+  
+  ctx.closePath()
+  console.log(n, r)
+  ctx.globalAlpha *= 0.67
+  i = 0, r = 16, inc = Math.PI/2
+  for (; i < nucs; i++) {
+    ctx.fillStyle = colors[2]
+    if (i % 2)
+      ctx.fillStyle = colors[3]
+    ctx.beginPath()
+    x = cx + r * Math.cos(a)
+    y = cy + r * Math.sin(a)
+    ctx.arc(x, y, 30, 0, Math.PI * 2)
+    ctx.closePath()
+    ctx.fill()
+    if (i === 3) {
+      r *= 4
+      inc = Math.PI/4
+    }
+    a += inc
+    
+  }
+  // inner, inner disc
+ 
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
 }
