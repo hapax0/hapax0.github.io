@@ -6686,7 +6686,7 @@ function atom () {
     a += inc
   }
   ctx.globalAlpha *= 0.67
-  i = 0, r = 16, inc = Math.PI/2
+  i = 0, r = 18, inc = Math.PI/2
   for (; i < nucs; i++) {
     ctx.fillStyle = colors[1]
     if (i % 2)
@@ -6699,7 +6699,7 @@ function atom () {
     ctx.fill()
     if (i === 3) {
       r *= 4
-      inc = Math.PI/4
+      inc = 2*Math.PI/(nucs-4)
       a += inc/2
     }
     a += inc
