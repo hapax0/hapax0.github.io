@@ -6661,8 +6661,6 @@ function atom () {
   let mode = document.getElementById("mode").value
   let alpha = document.getElementById("opacity").value
   let colors = shuffle(getCurrectPalette())
-  if (document.getElementById("grungy").checked)
-    colors = shuffle(['red', 'blue', 'yellow', 'orange', 'purple', "green"])
   let cx = canvas.width/2, cy = canvas.height/2, x = 0, y = 0
   let a = Math.random() * 2 * Math.PI
   let n = randomPick([1,2,3,4,5,6,7,8])
@@ -6679,29 +6677,20 @@ function atom () {
       col1 = colors[1]
     let col2 = "rgba("+hexToR(col1)+", "+hexToG(col1)+", "+hexToB(col1)+", 0.0)";// transparent
     rg.addColorStop(1.0, col1);
-    rg.addColorStop(0.0, col2);
+    rg.addColorStop(0.01, col2);
     ctx.fillStyle = rg
-   // ctx.fillStyle = (colors[0])
-  //  if (i % 2 == 0)
-  //    ctx.fillStyle = (colors[1])
     ctx.beginPath()
     ctx.ellipse(cx, cy, r, R, a, 0, Math.PI * 2)
     ctx.closePath()
     ctx.fill()
     a += inc
   }
-  ctx.fillStyle = (colors[2])
-  ctx.beginPath()
-  ctx.arc(cx, cy, r/2, 0, Math.PI * 2)
-  
-  ctx.closePath()
-  console.log(n, r)
   ctx.globalAlpha *= 0.67
   i = 0, r = 16, inc = Math.PI/2
   for (; i < nucs; i++) {
-    ctx.fillStyle = colors[2]
+    ctx.fillStyle = colors[1]
     if (i % 2)
-      ctx.fillStyle = colors[3]
+      ctx.fillStyle = colors[0]
     ctx.beginPath()
     x = cx + r * Math.cos(a)
     y = cy + r * Math.sin(a)
@@ -6711,6 +6700,7 @@ function atom () {
     if (i === 3) {
       r *= 4
       inc = Math.PI/4
+      a += inc/2
     }
     a += inc
     
@@ -7460,7 +7450,7 @@ function moleskinDay () { // day planer
   let small = true, half = true
   let monthsFR = [ "janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"]
   let months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
-  let daysFR = ["DIMANCHE", "MARDI","MERCREDI","JEUDI","VENDREDI","SAMEDI"]
+  let daysFR = ["DIMANCHE", "LUNDI", "MARDI","MERCREDI","JEUDI","VENDREDI","SAMEDI"]
   let days = ["DOMINGO", "SEGUNDA-FEIRA", "TERÇA-FEIRA", "QUARTA-FEIRA", "QUINTA-FEIRA", "SEXTA-FEIRA", "SÁBADO"]
   let week = "semana "
   document.getElementById("paintcolor").value = "#fdffee"
