@@ -7436,7 +7436,9 @@ function interdepartmental () { // ideal 8 X 10
     y += 34
   }
   let lines = [172, 396, 636, 808]
-  i = 0, x = 0, y = 132+120
+  i = 0, x = 0, y = 132
+  if (BACK)
+    y += 120
   for (; i < lines.length; i++) {
     ctx.beginPath()
     ctx.moveTo(lines[i], y)
@@ -7481,7 +7483,7 @@ function interdepartmental () { // ideal 8 X 10
     ctx.fill()
     
    // ctx.shadowBlur = 4
-    ctx.shadowColor = '#000000';
+    ctx.shadowColor = '#404040';
     ctx.shadowBlur = 4
 
     ctx.shadowOffsetX = 3;
@@ -7494,7 +7496,6 @@ function interdepartmental () { // ideal 8 X 10
         ctx.shadowBlur = 9
 
     // red strings
-  
     x = canvas.width/2 - 18
     y = 54
     ctx.lineCap = "round"
