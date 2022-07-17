@@ -7388,21 +7388,24 @@ function interdepartmental () { // ideal 8 X 10
   ctx.lineWidth = 2 //+ document.getElementById("featuresize").value/4
   let alpha = document.getElementById("opacity").value
   let color = document.getElementById("paintcolor").value
+  let BACK = document.getElementById("grungy").checked
   let small = true, half = true
   document.getElementById("paintcolor").value = "#eaae3a"
   fill()
-  // optonal grid?
-  
   let face = "helvetica"
   let text = "INTER-DEPARTMENTAL MAIL"
   let size = 40
   ctx.globalAlpha = (document.getElementById("opacity").value)/100
-  ctx.fillStyle = "#505050"//document.getElementById("paintcolor").value
-  ctx.strokeStyle = "#505050"//document.getElementById("paintcolor").value
+  ctx.fillStyle = "#505050"
+  ctx.strokeStyle = "#505050"
   ctx.font = size+"pt " + face
   let x = canvas.width/2, y = 78
   w = ctx.measureText(text).width
-  ctx.strokeText(text, x-w/2, y)
+  if (!BACK) {
+    ctx.strokeText(text, x-w/2, y)
+  }
+  if (BACK)
+    y += 120
   
   y += 38
   size = 14
@@ -7419,10 +7422,11 @@ function interdepartmental () { // ideal 8 X 10
   w = ctx.measureText(text).width
   ctx.fillText(text, x-w/2, y)
   
-  
   ctx.lineWidth = 1
   let i = 0
   x = 30, y = 132
+  if (BACK)
+   y += 120
   while (y < canvas.height) {
     ctx.beginPath()
     ctx.moveTo(x, y)
@@ -7457,6 +7461,135 @@ function interdepartmental () { // ideal 8 X 10
     ctx.closePath()
     ctx.fill()
     y += canvas.height/4
+  }
+  
+  if (BACK) {
+    // top flap of envelope
+    x = 0, y = 0
+    ctx.fillStyle = "#eaae3a"
+    ctx.shadowColor = '#505050';
+    ctx.shadowBlur = 9
+    ctx.shadowOffsetX = 2;
+    ctx.shadowOffsetY = 2;
+    ctx.beginPath()
+    ctx.moveTo(x,y)
+    ctx.lineTo(x + 50, y + 130)
+    ctx.lineTo(canvas.width - 50, y + 130)
+    ctx.lineTo(canvas.width, y)
+    ctx.closePath()
+    ctx.fill()
+    
+    ctx.shadowBlur = 4
+    ctx.shadowOffsetX = 5;
+    ctx.beginPath()
+    ctx.moveTo(canvas.width/2,y)
+    ctx.lineTo(canvas.width/2, canvas.height - 60)
+    ctx.closePath()
+    ctx.stroke()
+    // red strings
+   // ctx.shadowOffsetX = 0;
+   // ctx.shadowOffsetY = 3;
+    x = canvas.width/2 - 18
+    y = 54
+    ctx.lineWidth = 7
+    ctx.strokeStyle = "red"
+    ctx.beginPath()
+    ctx.moveTo(x,y)
+    ctx.lineTo(x + 1, y + 140)
+    ctx.stroke()
+    
+    x = canvas.width/2 + 18
+    y = 54
+    ctx.lineWidth = 7
+    ctx.strokeStyle = "red"
+    ctx.beginPath()
+    ctx.moveTo(x,y)
+    ctx.lineTo(x + 1, y + 140)
+    ctx.stroke()
+    
+    x = canvas.width/2 + 18
+    y = 54
+    ctx.lineWidth = 7
+    ctx.strokeStyle = "red"
+    ctx.beginPath()
+    ctx.moveTo(x,y)
+    ctx.lineTo(x - 25, y + 140)
+    ctx.stroke()
+    
+    y += 180
+    ctx.beginPath()
+    ctx.arc(x+20, y, 50+pet(20), 1.4*Math.PI, Math.PI/2+pet(1), true)
+    ctx.stroke()
+    
+    // seals
+    ctx.shadowOffsetX = 3;
+    ctx.shadowOffsetY = 3;
+    
+    x = canvas.width/2 + pet(7)
+    y = 54
+    ctx.fillStyle = "red"
+    ctx.shadowColor = '#704000';
+    ctx.shadowOffsetX = 2;
+    ctx.shadowOffsetY = 2;
+    
+    ctx.beginPath()
+    ctx.arc(x,y,40,0,2*Math.PI)
+    ctx.closePath()
+    ctx.fill()
+    
+    ctx.fillStyle = "#b5a642"
+    ctx.beginPath()
+    ctx.arc(x,y,16,0,2*Math.PI)
+    ctx.closePath()
+    ctx.fill()
+    
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 0;
+    ctx.fillStyle = "#504020"
+    ctx.beginPath()
+    ctx.arc(x,y,12,0,2*Math.PI)
+    ctx.closePath
+    ctx.fill()
+    x+= pet(7)
+    y += 140
+    ctx.shadowOffsetX = 2;
+    ctx.shadowOffsetY = 2;
+    ctx.fillStyle = "red"
+    ctx.beginPath()
+    ctx.arc(x,y,40,0,2*Math.PI)
+    ctx.closePath()
+    ctx.fill()
+    
+    ctx.fillStyle = "#b5a642"
+    ctx.beginPath()
+    ctx.arc(x,y,16,0,2*Math.PI)
+    ctx.closePath()
+    ctx.fill()
+    
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 0;
+    ctx.fillStyle = "#504020"
+    ctx.beginPath()
+    ctx.arc(x,y,12,0,2*Math.PI)
+    ctx.closePath()
+    ctx.fill()
+    
+    // bottom back flap
+    // top flap of envelope
+    x = 0, y = 0
+    ctx.fillStyle = "#e9a93a"
+    ctx.shadowColor = '#505050';
+    ctx.shadowBlur = 9
+    ctx.shadowOffsetX = 2;
+    ctx.shadowOffsetY = 2;
+    ctx.beginPath()
+    ctx.moveTo(x,canvas.height)
+    ctx.lineTo(x + 50, canvas.height - 110)
+    ctx.lineTo(canvas.width - 50, canvas.height - 110)
+    ctx.lineTo(canvas.width, canvas.height)
+    ctx.closePath()
+    ctx.fill()
+    
   }
   
   document.getElementById("opacity").value = alpha
