@@ -7426,7 +7426,9 @@ function interdepartmental () { // ideal 8 X 10
   let i = 0
   x = 30, y = 132
   if (BACK)
-   y += 120
+    y += 120
+  ctx.shadowOffsetX = 0
+  ctx.shadowOffsetY = 0
   while (y < canvas.height) {
     ctx.beginPath()
     ctx.moveTo(x, y)
@@ -7481,11 +7483,9 @@ function interdepartmental () { // ideal 8 X 10
     ctx.lineTo(canvas.width, y)
     ctx.closePath()
     ctx.fill()
-    
-   // ctx.shadowBlur = 4
-    ctx.shadowColor = '#404040';
+    // center line
+    ctx.shadowColor = '#505050';
     ctx.shadowBlur = 4
-
     ctx.shadowOffsetX = 3;
     ctx.beginPath()
     ctx.moveTo(canvas.width/2,132)
@@ -7599,7 +7599,9 @@ function interdepartmental () { // ideal 8 X 10
     ctx.fill()
     
   }
-  
+  ctx.shadowBlur = 0
+  ctx.shadowOffsetX = 0
+  ctx.shadowOffsetY = 0
   document.getElementById("opacity").value = alpha
   document.getElementById("paintcolor").value = color
 }
