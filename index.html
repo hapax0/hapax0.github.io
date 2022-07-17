@@ -431,6 +431,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="roadmap" selected>road map</option>
     <!--option value="blobOutline">shape outline</option>
     <option value="bezRandom" >random bez</option-->
+    <option value="interdepartmental">interdepartmental</option>
     <option value="moleskine">moleskine</option>
     <option value="sketchpad">sketch pad</option>
     <option value="linedPad">lined pad</option>
@@ -7380,6 +7381,88 @@ function spiralbound () { //
   ctx.globalCompositeOperation = mode
   document.getElementById("opacity").value = alpha
 }
+
+function interdepartmental () { // ideal 8 X 10
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.lineWidth = 2 //+ document.getElementById("featuresize").value/4
+  let alpha = document.getElementById("opacity").value
+  let color = document.getElementById("paintcolor").value
+  let small = true, half = true
+  document.getElementById("paintcolor").value = "#eaae3a"
+  fill()
+  // optonal grid?
+  
+  let face = "helvetica"
+  let text = "INTER-DEPARTMENTAL MAIL"
+  let size = 40
+  ctx.globalAlpha = (document.getElementById("opacity").value)/100
+  ctx.fillStyle = "#505050"//document.getElementById("paintcolor").value
+  ctx.strokeStyle = "#505050"//document.getElementById("paintcolor").value
+  ctx.font = size+"pt " + face
+  let x = canvas.width/2, y = 78
+  w = ctx.measureText(text).width
+  ctx.strokeText(text, x-w/2, y)
+  
+  y += 38
+  size = 14
+  text = "CROSS OUT ENTIRE LINE WHEN RECEIVED AND RE-USE UNTIL ALL LINES ARE FULL."
+  ctx.font = "italic 900 "+size+"pt " + "serif"
+  w = ctx.measureText(text).width
+  ctx.fillText(text, x-w/2, y)
+  
+  y += 42
+  size = 18
+  face = "helvetica"
+  text = "DATE            DELIVER TO            DEPARTMENT            SENT BY            DEPARTMENT"
+  ctx.font = "900 "+size+"pt " + "serif"
+  w = ctx.measureText(text).width
+  ctx.fillText(text, x-w/2, y)
+  
+  
+  ctx.lineWidth = 1
+  let i = 0
+  x = 30, y = 132
+  while (y < canvas.height) {
+    ctx.beginPath()
+    ctx.moveTo(x, y)
+    ctx.lineTo(canvas.width-30, y)
+    ctx.closePath()
+    ctx.stroke()
+    y += 34
+  }
+  let lines = [172, 396, 636, 808]
+  i = 0, x = 0, y = 132
+  for (; i < lines.length; i++) {
+    ctx.beginPath()
+    ctx.moveTo(lines[i], y)
+    ctx.lineTo(lines[i], canvas.height-20)
+    ctx.closePath()
+    ctx.stroke()
+  }
+  
+  // six holes
+  i = 0
+  x = 280 // 800
+  y = canvas.height / 3 + 53
+  ctx.fillStyle = "#ffffff"
+  for (; i < 3; i++) {
+    ctx.beginPath()
+    ctx.arc(x,y,16, 0, 2 * Math.PI)
+    ctx.closePath()
+    ctx.fill()
+    
+    ctx.beginPath()
+    ctx.arc(x+500,y,16, 0, 2 * Math.PI)
+    ctx.closePath()
+    ctx.fill()
+    y += canvas.height/4
+  }
+  
+  document.getElementById("opacity").value = alpha
+  document.getElementById("paintcolor").value = color
+}
+
 
 function moleskine () { // grid paper
   if (document.getElementById("grungy").checked) {
