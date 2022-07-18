@@ -7434,7 +7434,7 @@ function datedue () {
   ctx.fillText(header2, canvas.width/2 - w/2, 180)
 
   face = "AmericanTypewriter-Bold"
-  ctx.font = "800 "+(18)+"pt " + face
+  ctx.font = "100 "+(18)+"pt " + face
   w = ctx.measureText(header3).width
   ctx.fillText(header3, canvas.width/2 - w/2, 210)
   ctx.fillStyle = randomPick(colors)
@@ -7469,7 +7469,7 @@ function datedue () {
 
     text = randomPick(dates)
     face = "AmericanTypewriter-Bold"
-    ctx.font = "900 "+(size+6)+"pt " + face
+    ctx.font = "100 "+(size+6)+"pt " + face
     ctx.globalAlpha = 0.6
     ctx.fillText(text, x+w+pet(9), y)
     ctx.globalAlpha = 0.4
