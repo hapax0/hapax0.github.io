@@ -422,6 +422,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="venn">venn</option>
     <option value="network">network</option>
     <option value="core">core</option>
+    datedue
     <option value="eclipse">eclipse</option>
     <option value="constellations" >constellations</option>
     <option value="seasons">seasons</option>
@@ -431,6 +432,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="roadmap" selected>road map</option>
     <!--option value="blobOutline">shape outline</option>
     <option value="bezRandom" >random bez</option-->
+    <option value="datedue">date due</option>
     <option value="interdepartmental">interdepartmental</option>
     <option value="moleskine">moleskine</option>
     <option value="sketchpad">sketch pad</option>
@@ -7380,6 +7382,116 @@ function spiralbound () { //
   }
   ctx.globalCompositeOperation = mode
   document.getElementById("opacity").value = alpha
+}
+
+function datedue () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.lineWidth = 2
+  let monthIdx = Math.floor(Math.random() * 12)
+  let months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
+  let colors = ["red", "blue", "darkblue", "green", "black", "indigo"], pre = " 0"
+  let dates = [], i = 1
+  let header1 = "DATE   DUE"
+  let header2 = "Return book on or before the last date stamped."
+  let header3 = "Failure to comply will result is a fine."
+  for (; i < 29; i++) {
+    if (i > 9)
+      pre = " "
+      dates.push(pre+i)
+  }
+  ctx.globalAlpha = (document.getElementById("opacity").value)/100
+  let face = "arial"
+  let text = randomPick(months)
+  let color = randomPick(colors)
+  let year = randomPick([1994, 1967, 2003, 1974, 1981, 1995])
+  ctx.fillStyle = "#ffffdd"
+  ctx.fillRect(0,0,canvas.width, canvas.height)
+  ctx.fillStyle = "#707070"
+
+  face = "arial"
+  ctx.font = "100 "+(50)+"pt " + face
+  let w = ctx.measureText(header1).width
+  ctx.fillText(header1, canvas.width/2 - w/2, 60)
+
+  face = "serif"
+  ctx.font = "800 "+(22)+"pt " + face
+  w = ctx.measureText(header2).width
+  ctx.fillText(header2, canvas.width/2 - w/2, 180)
+
+  face = "serif"
+  ctx.font = "800 "+(18)+"pt " + face
+  w = ctx.measureText(header3).width
+  ctx.fillText(header3, canvas.width/2 - w/2, 210)
+  ctx.fillStyle = randomPick(colors)
+
+  let size = 28
+  let x = 48, y = 260
+  let maxdates = 11 + Math.random() * 50
+  i = 0
+  for (; i < maxdates; i++) {
+    ctx.save()
+    ctx.rotate((Math.random() - 0.5)/12)
+    text = months[monthIdx]
+    face = "arial"
+    if (Math.random() > 0.8)
+      monthIdx = (monthIdx + 1) % 12
+    if (Math.random() > 0.7)
+      ctx.fillStyle = randomPick(colors)
+    ctx.globalAlpha = 0.2
+    ctx.strokeStyle = "#505050"
+    ctx.font = "500 "+size+"pt " + face
+    w = ctx.measureText(text).width
+    ctx.fillText(text, x, y)
+    ctx.fillText(text, x+pet(9), y+pet(7))
+    ctx.fillText(text, x+pet(7), y+pet(9))
+
+    text = randomPick(dates)
+    face = "serif"
+    ctx.font = "900 "+(size+6)+"pt " + face
+    ctx.fillText(text, x+w+pet(9), y)
+    ctx.fillText(text, x+w, y+pet(9))
+    ctx.fillText(text, x+w, y+pet(9))
+    ctx.restore()
+    y += 55
+    if (Math.random() > 0.99) {
+      year += 1
+      monthIdx = 0
+    }
+    if (Math.random() > 0.9)
+      y += 54
+    if (y > canvas.height - 40) {
+      y = 260
+      x += 160
+    }
+  }
+  ctx.globalAlpha = 0.6
+  let eend = Math.floor((canvas.height-220)/64)
+  eend = eend * 64 + 220
+  i = 0, x = 50 , y = 220
+  ctx.strokeStyle = "#707070"
+  for (; i < 7; i++) {
+    ctx.beginPath()
+    ctx.moveTo(x, y)
+    ctx.lineTo(x, eend)//canvas.height-20)
+    ctx.closePath()
+    ctx.stroke()
+    x += canvas.width/7
+  }
+  
+  i = 0, x = 50 , y = 220
+  let end = 50 + 6*canvas.width/7
+  ctx.strokeStyle = "#707070"
+  ctx.lineWidth = 6
+  while(y < canvas.height-10) {
+    ctx.beginPath()
+    ctx.moveTo(x, y)
+    ctx.lineTo(end, y)
+    ctx.closePath()
+    ctx.stroke()
+    y += 64
+    ctx.lineWidth = 1
+  }
 }
 
 function interdepartmental () { // ideal 8 X 10
