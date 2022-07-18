@@ -6455,7 +6455,7 @@ function eclipse () {
   ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
   let R = canvas.height * 0.15, r = R*2
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  let colors = shuffle(['red', 'blue', 'yellow', 'orange', 'purple', "green"])
+  let colors = shuffle(getCurrectPalette())
   let mode = document.getElementById("mode").value
   let alpha = document.getElementById("opacity").value
 // if (Math.random() > 0.5)
