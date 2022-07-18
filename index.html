@@ -7428,12 +7428,12 @@ function datedue () {
   let w = ctx.measureText(header1).width
   ctx.fillText(header1, canvas.width/2 - w/2, 60)
 
-  face = "serif"
+  face = "AmericanTypewriter-Bold"
   ctx.font = "800 "+(22)+"pt " + face
   w = ctx.measureText(header2).width
   ctx.fillText(header2, canvas.width/2 - w/2, 180)
 
-  face = "serif"
+  face = "AmericanTypewriter-Bold"
   ctx.font = "800 "+(18)+"pt " + face
   w = ctx.measureText(header3).width
   ctx.fillText(header3, canvas.width/2 - w/2, 210)
@@ -7468,7 +7468,7 @@ function datedue () {
     ctx.globalAlpha = 0.3
 
     text = randomPick(dates)
-    face = "serif"
+    face = "AmericanTypewriter-Bold"
     ctx.font = "900 "+(size+6)+"pt " + face
     ctx.globalAlpha = 0.6
     ctx.fillText(text, x+w+pet(9), y)
