@@ -422,7 +422,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="venn">venn</option>
     <option value="network">network</option>
     <option value="core">core</option>
-    datedue
+    
     <option value="eclipse">eclipse</option>
     <option value="constellations" >constellations</option>
     <option value="seasons">seasons</option>
@@ -7438,7 +7438,7 @@ function datedue () {
       monthIdx = (monthIdx + 1) % 12
     if (Math.random() > 0.7)
       ctx.fillStyle = randomPick(colors)
-    ctx.globalAlpha = 0.2
+    ctx.globalAlpha = 0.4
     ctx.strokeStyle = "#505050"
     ctx.font = "500 "+size+"pt " + face
     w = ctx.measureText(text).width
