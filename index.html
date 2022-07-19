@@ -419,6 +419,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="necker">necker (fill)</option>
     <!--option value="quads" >quads</option-->
     <option value="atom" >atom</option>
+    <option value="periodictable" >periodic table</option>
     <option value="venn">venn</option>
     <option value="network">network</option>
     <option value="core">core</option>
@@ -6227,18 +6228,6 @@ function tides () {
 function nudgehalfdown () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  /*
-  let off = document.createElement('CANVAS')
-  let offctx = off.getContext("2d");
-  off.width = canvas.width, off.height = canvas.height
-  offctx.drawImage(canvas, 0, 0)
-
-  let x = canvas.width/2
-  let nudge =  document.getElementById("rednumber").value
-  ctx.clearRect(x,0,canvas.width,canvas.height)
-  ctx.drawImage(off, x, 0, x, canvas.height, x, nudge, x, canvas.height)
-
-return*/
   clearOff()
   copyToOff()
   document.getElementById("rednumber").value = canvas.width/2
@@ -7395,6 +7384,47 @@ function dotsNear(ctx,x,y,r) {
     x += pet(11)
     y += pet(9)
     r = 5 + pet(3)
+  }
+}
+
+function periodictable () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let W = canvas.width, H = canvas.height
+  let colors = shuffle(getCurrectPalette())
+  ctx.clearRect(0,0,W,H)
+  ctx.globalAlpha = 0.5
+  ctx.lineWidth = 3
+  let pad = 40
+  let len = (W - 2* pad)/18
+  let top = (H - 10*len)/2
+  let x = pad, y = top
+  let i = 0, row = 1, col = 1
+  for (; i < 180; i++) {
+    ctx.beginPath()
+    ctx.moveTo(x+pet(5),y)
+    ctx.lineTo(x+len, y+pet(5))
+    ctx.lineTo(x+len+pet(5), y+len)
+    ctx.lineTo(x, y+len+pet(5))
+    ctx.closePath()
+    ctx.strokeStyle = randomPick(colors)
+    ctx.fillStyle = randomPick(colors)
+    if ((row === 8) || (row > 7 && (col < 4 || col > 16)) || ((row === 2 || row ===3) && (col > 2 && col < 13))|| (row === 1 && (col>1 && col<18)))
+      ;
+    else {
+      if (Math.random() > 0.3)
+        ctx.fill()
+      else
+        ctx.stroke()
+    }
+    col++
+    x += len
+    if (col === 19) {
+      x = pad
+      y += len
+      row++
+      col = 1
+    }
   }
 }
 
@@ -11464,7 +11494,6 @@ function flipH () {
   octx.clearRect(0,0,ocanvas.width,ocanvas.height)
   ctx.setTransform(1,0,0,1,0,0)
   ctx.globalAlpha = a
- // refreshMode()
   ctx.globalCompositeOperation = mode
   return true
 }
