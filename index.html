@@ -613,7 +613,7 @@ function adjustBrightnessC (col, amt) {
   return "#" + RR + GG + BB;
 }
 
-function getCurrectPalette () {
+function getCurrentPalette () {
   return ([document.getElementById("pal1").value,
     document.getElementById("pal2").value,
     document.getElementById("pal3").value,
@@ -1743,6 +1743,7 @@ function extractPalette () {
     document.getElementById("pal4").value = sorted[3]
     document.getElementById("pal5").value = sorted[4]
   }
+  return (colors)
 }
 
 function colorSamplePalette () {
@@ -2429,6 +2430,7 @@ function bottomClip () {
 function leftClip (cut) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
+  let mode = ctx.globalCompositeOperation
   let H = canvas.height, W = canvas.width
   let grunge = document.getElementById("grungy").checked
   let s = LASTCLICK[0]
@@ -2465,6 +2467,8 @@ function leftClip (cut) {
     ctx.drawImage(off, 0, 0)
   else
     ctx.drawImage(off, x, 0)
+  ctx.globalCompositeOperation = mode
+
 }
 
 function halfCurve () {
@@ -4691,7 +4695,7 @@ function drawFile () {
     url.revokeObjectURL(src);
     LASTCLICK[0] = canvas.width/2
     LASTCLICK[1] = canvas.height/2
-    //ctx.globalCompositeOperation = mode
+    ctx.globalCompositeOperation = mode
     //ctx.globalAlpha = a
     syncMarker()
   }
@@ -5805,7 +5809,7 @@ function quads () {
   let R = canvas.height * 0.43
   let margin = R/20
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  let colors = shuffle(getCurrectPalette())
+  let colors = shuffle(getCurrentPalette())
   if (document.getElementById("grungy").checked)
     colors = shuffle(['red', 'blue', 'yellow', 'orange', 'purple', "green"])
 
@@ -5968,7 +5972,7 @@ function phases () {
   ctx.clearRect(0,0,canvas.width,canvas.height)
   ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  let colors = shuffle(getCurrectPalette())//['red', 'blue', 'yellow', 'orange', 'purple', "green"])
+  let colors = shuffle(getCurrentPalette())//['red', 'blue', 'yellow', 'orange', 'purple', "green"])
   let mode = document.getElementById("mode").value
   let alpha = document.getElementById("opacity").value
   let cx = canvas.width/2, cy = canvas.height/2, x = 0, y = 0
@@ -6257,7 +6261,7 @@ function network () {
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let mode = document.getElementById("mode").value
   let alpha = document.getElementById("opacity").value
-  let colors = getCurrectPalette()
+  let colors = getCurrentPalette()
   if (document.getElementById("grungy").checked)
     colors = [document.getElementById("paintcolor").value]
   colors = shuffle(colors)
@@ -6314,7 +6318,7 @@ function constellations () {
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let mode = document.getElementById("mode").value
   let alpha = document.getElementById("opacity").value
-  let colors = getCurrectPalette()
+  let colors = getCurrentPalette()
   if (document.getElementById("grungy").checked)
     colors = [document.getElementById("paintcolor").value]
   colors = shuffle(colors)
@@ -6378,7 +6382,7 @@ function glass () {
   ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
   let R = canvas.width * 0.3
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  let colors = shuffle(getCurrectPalette())
+  let colors = shuffle(getCurrentPalette())
   if (document.getElementById("grungy").checked)
     colors = shuffle(['red', 'blue', 'yellow', 'orange', 'purple', "green"])
   let mode = document.getElementById("mode").value
@@ -6444,7 +6448,7 @@ function eclipse () {
   ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
   let R = canvas.height * 0.15, r = R*2
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  let colors = shuffle(getCurrectPalette())
+  let colors = shuffle(getCurrentPalette())
   let mode = document.getElementById("mode").value
   let alpha = document.getElementById("opacity").value
 // if (Math.random() > 0.5)
@@ -6505,7 +6509,7 @@ function core () {
   ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
   let R = canvas.height * 0.4
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  let colors = shuffle(getCurrectPalette())
+  let colors = shuffle(getCurrentPalette())
   if (document.getElementById("grungy").checked)
     colors = shuffle(['red', 'blue', 'yellow', 'orange', 'purple', "green"])
   let mode = document.getElementById("mode").value
@@ -6598,7 +6602,7 @@ function fruit () {
   ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
   let R = canvas.height * 0.05, R2 = 0
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  let colors = shuffle(getCurrectPalette())
+  let colors = shuffle(getCurrentPalette())
   if (document.getElementById("grungy").checked)
     colors = shuffle(['red', 'blue', 'yellow', 'orange', 'purple', "green"])
   let mode = document.getElementById("mode").value
@@ -6652,7 +6656,7 @@ function atom () {
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let mode = document.getElementById("mode").value
   let alpha = document.getElementById("opacity").value
-  let colors = shuffle(getCurrectPalette())
+  let colors = shuffle(getCurrentPalette())
   let cx = canvas.width/2, cy = canvas.height/2, x = 0, y = 0
   let a = Math.random() * 2 * Math.PI
   let n = randomPick([1,2,3,4,5,6,7,8])
@@ -7373,6 +7377,53 @@ function spiralbound () { //
   document.getElementById("opacity").value = alpha
 }
 
+function letterE () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let W = canvas.width, H = canvas.height
+  let colors = shuffle(getCurrentPalette())
+  let x = 50, y = 50, len = 70
+  ctx.strokeStyle = randomPick(colors)
+  ctx.lineWidth = 7
+  ctx.beginPath()
+  ctx.moveTo(x+pet(5),y)
+  ctx.lineTo(x+len/2, y+pet(5))
+  ctx.closePath()
+  ctx.stroke()
+  y += len/2
+  ctx.beginPath()
+  ctx.moveTo(x+pet(5),y)
+  ctx.lineTo(x+len/2.2, y+pet(5))
+  ctx.closePath()
+  ctx.stroke()
+  y += len/2
+  ctx.beginPath()
+  ctx.moveTo(x+pet(5),y)
+  ctx.lineTo(x+len/2, y+pet(5))
+  ctx.closePath()
+  ctx.stroke()
+  y -= len
+  ctx.beginPath()
+  ctx.moveTo(x+pet(5),y)
+  ctx.lineTo(x, y+pet(5)+len)
+  ctx.closePath()
+  ctx.stroke()
+}
+
+function piechart () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let W = canvas.width, H = canvas.height
+  let colors = shuffle(getCurrentPalette())
+  let x = 50, y = 50, r = 12, i = 0
+  ctx.fillStyle = randomPick(colors)
+  console.log(ctx.fillColor, colors)
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+
+  for (; i < 25; i++)
+    dotsNear(ctx, Math.random() * W, Math.random() * H, 1 + Math.random() * 12)
+}
+
 function dotsNear(ctx,x,y,r) {
   let i = 0
   x += 12
@@ -7391,9 +7442,9 @@ function periodictable () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let W = canvas.width, H = canvas.height
-  let colors = shuffle(getCurrectPalette())
+  let colors = shuffle(getCurrentPalette())
   ctx.clearRect(0,0,W,H)
-  ctx.globalAlpha = 0.5
+  ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.lineWidth = 3
   let pad = 40
   let len = (W - 2* pad)/18
@@ -10794,6 +10845,8 @@ function make4to5 (all) {
 function cropInstaxMini () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
+  let mode = ctx.globalCompositeOperation
+
   W = canvas.width
   H = canvas.height
   let iAR = W/H
@@ -10828,6 +10881,7 @@ function cropInstaxMini () {
   canvasoff.height = oH
   syncBackground(canvas)
   syncMarker()
+  ctx.globalCompositeOperation = mode
 }
 
 function cropSquare (all) {
