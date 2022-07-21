@@ -439,6 +439,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="interdepartmental">interdepartmental</option>
     <option value="moleskine">moleskine</option>
     <option value="sketchpad">sketch pad</option>
+    <option value="gridpaper">grid paper</option>
     <option value="linedPad">lined pad</option>
     <!--option value="spiralbound">spiral bound</option-->
     <option value="scratchOut">scratch out</option>
@@ -6956,7 +6957,43 @@ function scratchOut () {
     ctx.restore()
 }
 
-function linedPad () { // grid paper
+function gridpaper () { // grid paper
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let W = canvas.width, H = canvas.height
+  let color = document.getElementById("paintcolor").value
+  let alt = document.getElementById("grungy").checked
+  let space = 6 + Math.floor(document.getElementById("featuresize").value/10)
+  let mod = randomPick([4,5,6])
+  let colors = ["#ed6060", "#6060ba", "#6060ed", "#ed6060", "#000000"]
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctx.strokeStyle = randomPick(colors)
+    ctx.lineWidth = 1
+  let i = 0, x = space, y = space
+  while (y < H-space) {
+    ctx.lineWidth = (i % mod === 0)? 3 : 1;
+    ctx.beginPath()
+    ctx.moveTo(x, y)
+    ctx.lineTo(W - space, y)
+    ctx.closePath()
+    ctx.stroke()
+    y += space
+    i++
+  }
+  i = 0, x = space, y = space
+  while (x < W-space) {
+    ctx.lineWidth = (i % mod === 0)? 3 : 1;
+    ctx.beginPath()
+    ctx.moveTo(x, y)
+    ctx.lineTo(x, H - space)
+    ctx.closePath()
+    ctx.stroke()
+    x += space
+    i++
+  }
+}
+
+function linedPad () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
@@ -7447,35 +7484,33 @@ function labyrinth () {
   let colors = shuffle(getCurrentPalette())
   ctx.clearRect(0,0,W,H)
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.lineWidth = 2 + Math.floor(Math.random() * 20)
+  ctx.lineWidth = 2 + Math.floor(Math.random() * 40)
   ctx.lineCap = "round"
   ctx.lineJoin = "round"
   ctx.strokeStyle = randomPick(colors)
+  let bump = randomPick([1.25, 1.5, 2, 1, 0.5])
+  
+  console.log(bump)
   let pad = 40, r = W/2.5, offset = ctx.lineWidth * 1.7
   let x = W/2, y = H/2
   let a = Math.random() * 2 * Math.PI
-  let start = a, end = a+1.8*Math.PI
-  let xl = 0, yl = 0, i = 0
+  let start = a, end = a+bump*Math.PI
+  let xl = 0, yl = 0, i = 0, ccw = false
   ctx.beginPath()
   while (r > 4) {
     r -= offset
-    let ccw = (Math.random() > 0.8)? true: false;
-    if (r < 2*ctx.lineWidth) break;
-    //ctx.beginPath()
+    ccw = (Math.random() > 0.8)? true: false;
+    if (r < 2*ctx.lineWidth)
+      break;
     ctx.arc(x, y ,r, start, end, ccw)
-   // ctx.stroke()
-    if (r < 2*ctx.lineWidth) break;
-  //  ctx.beginPath()
     xl = r * Math.cos(end)+x;
     yl = r * Math.sin(end)+y;
     ctx.moveTo(xl, yl)
     xl = (r - offset) * Math.cos(end)+x;
     yl = (r - offset) * Math.sin(end)+y;
     ctx.lineTo(xl, yl)
-   // ctx.stroke()
-    
     start = end
-    end += 1.8*Math.PI
+    end += bump*Math.PI
     i++
   }
   ctx.stroke()
