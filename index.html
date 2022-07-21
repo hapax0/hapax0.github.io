@@ -430,7 +430,9 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="tides">tides</option>
     <option value="phases">phases</option>
     <option value="glass">glass</option>
-    <option value="roadmap" selected>road map</option>
+    
+    <option value="labyrinth" selected>labyrinth</option>
+    <option value="roadmap">road map</option>
     <!--option value="blobOutline">shape outline</option>
     <option value="bezRandom" >random bez</option-->
     <option value="datedue">date due</option>
@@ -438,7 +440,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="moleskine">moleskine</option>
     <option value="sketchpad">sketch pad</option>
     <option value="linedPad">lined pad</option>
-    <option value="spiralbound">spiral bound</option>
+    <!--option value="spiralbound">spiral bound</option-->
     <option value="scratchOut">scratch out</option>
     <option value="strokes">strokes</option>
     <option value="strokes2">strokes2</option>
@@ -7436,6 +7438,47 @@ function dotsNear(ctx,x,y,r) {
     y += pet(9)
     r = 5 + pet(3)
   }
+}
+
+function labyrinth () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let W = canvas.width, H = canvas.height
+  let colors = shuffle(getCurrentPalette())
+  ctx.clearRect(0,0,W,H)
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctx.lineWidth = 2 + Math.floor(Math.random() * 20)
+  ctx.lineCap = "round"
+  ctx.lineJoin = "round"
+  ctx.strokeStyle = randomPick(colors)
+  let pad = 40, r = W/2.5, offset = ctx.lineWidth * 1.7
+  let x = W/2, y = H/2
+  let a = Math.random() * 2 * Math.PI
+  let start = a, end = a+1.8*Math.PI
+  let xl = 0, yl = 0, i = 0
+  ctx.beginPath()
+  while (r > 4) {
+    r -= offset
+    let ccw = (Math.random() > 0.8)? true: false;
+    if (r < 2*ctx.lineWidth) break;
+    //ctx.beginPath()
+    ctx.arc(x, y ,r, start, end, ccw)
+   // ctx.stroke()
+    if (r < 2*ctx.lineWidth) break;
+  //  ctx.beginPath()
+    xl = r * Math.cos(end)+x;
+    yl = r * Math.sin(end)+y;
+    ctx.moveTo(xl, yl)
+    xl = (r - offset) * Math.cos(end)+x;
+    yl = (r - offset) * Math.sin(end)+y;
+    ctx.lineTo(xl, yl)
+   // ctx.stroke()
+    
+    start = end
+    end += 1.8*Math.PI
+    i++
+  }
+  ctx.stroke()
 }
 
 function periodictable () {
