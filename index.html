@@ -6967,24 +6967,36 @@ function gridpaper () { // grid paper
   let pad = 8
   let mod = randomPick([4,5,6])
   let colors = ["#ed6060", "#6060ba", "#6060ed", "#ed6060", "#000000"]
-  ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctx.globalAlpha = document.getElementById("opacity").value/200
   ctx.strokeStyle = randomPick(colors)
   ctx.lineWidth = 1
   if (alt)
     pad = 42
-  let i = 0, x = pad, y = space
+    
+  let AW = (W - (pad*2)) // available width
+  let maxcount = (Math.floor(AW/space) - Math.floor(AW/space) % mod) + 1
+  let count = 0
+  let maxW = pad + space*(maxcount-1)
+  let startX = pad+(AW - maxW)
+  if (startX < pad)
+    startX = pad
+  console.log(AW, maxW, startX)
+  
+  
+  let i = 0, x = startX, y = 4
   while (y < H-space) {  // horizontal
     ctx.lineWidth = (i % mod === 0)? 3 : 1;
     ctx.beginPath()
     ctx.moveTo(x, y)
-    ctx.lineTo(W - pad, y)
+    ctx.lineTo(maxW+startX-pad, y)
     ctx.closePath()
     ctx.stroke()
     y += space
     i++
+    count++
   }
-  i = 0, x = pad, y = space
-  while (x < W-pad) {  // vertical
+  i = 0, x = startX, y = 4, count = 0
+  while (x < W-pad && count < maxcount) {  // vertical
     ctx.lineWidth = (i % mod === 0)? 3 : 1;
     ctx.beginPath()
     ctx.moveTo(x, y)
@@ -6993,10 +7005,16 @@ function gridpaper () { // grid paper
     ctx.stroke()
     x += space
     i++
+    count++
   }
   space = 8
   if (alt) { // continuous feed
+    ctx.globalAlpha = document.getElementById("opacity").value/100
     ctx.fillStyle = "#ffffff"
+    ctx.shadowBlur = 1
+    ctx.shadowColor = "#cccccc"
+    ctx.shadowOffsetX = -1
+    ctx.shadowOffsetY = -1
     i = 0, y = 30, x = W-space*2.5
     while (y < H) {
       ctx.beginPath()
@@ -7013,6 +7031,9 @@ function gridpaper () { // grid paper
       ctx.fill()
       y += 40
     }
+    ctx.shadowBlur = 0
+    ctx.shadowOffsetX = 0
+    ctx.shadowOffsetY = 0
   }
 }
 
