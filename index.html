@@ -431,7 +431,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="phases">phases</option>
     <option value="glass">glass</option>
     
-    <option value="labyrinth" selected>labyrinth</option>
+    <option value="labyrinth" >labyrinth</option>
     <option value="roadmap">road map</option>
     <!--option value="blobOutline">shape outline</option>
     <option value="bezRandom" >random bez</option-->
@@ -439,7 +439,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="interdepartmental">interdepartmental</option>
     <option value="moleskine">moleskine</option>
     <option value="sketchpad">sketch pad</option>
-    <option value="gridpaper">grid paper</option>
+    <option value="gridpaper" selected>grid paper</option>
     <option value="linedPad">lined pad</option>
     <!--option value="spiralbound">spiral bound</option-->
     <option value="scratchOut">scratch out</option>
@@ -6964,24 +6964,27 @@ function gridpaper () { // grid paper
   let color = document.getElementById("paintcolor").value
   let alt = document.getElementById("grungy").checked
   let space = 6 + Math.floor(document.getElementById("featuresize").value/10)
+  let pad = 8
   let mod = randomPick([4,5,6])
   let colors = ["#ed6060", "#6060ba", "#6060ed", "#ed6060", "#000000"]
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.strokeStyle = randomPick(colors)
-    ctx.lineWidth = 1
-  let i = 0, x = space, y = space
-  while (y < H-space) {
+  ctx.lineWidth = 1
+  if (alt)
+    pad = 42
+  let i = 0, x = pad, y = space
+  while (y < H-space) {  // horizontal
     ctx.lineWidth = (i % mod === 0)? 3 : 1;
     ctx.beginPath()
     ctx.moveTo(x, y)
-    ctx.lineTo(W - space, y)
+    ctx.lineTo(W - pad, y)
     ctx.closePath()
     ctx.stroke()
     y += space
     i++
   }
-  i = 0, x = space, y = space
-  while (x < W-space) {
+  i = 0, x = pad, y = space
+  while (x < W-pad) {  // vertical
     ctx.lineWidth = (i % mod === 0)? 3 : 1;
     ctx.beginPath()
     ctx.moveTo(x, y)
@@ -6990,6 +6993,26 @@ function gridpaper () { // grid paper
     ctx.stroke()
     x += space
     i++
+  }
+  space = 8
+  if (alt) { // continuous feed
+    ctx.fillStyle = "#ffffff"
+    i = 0, y = 30, x = W-space*2.5
+    while (y < H) {
+      ctx.beginPath()
+      ctx.arc(x, y, 8, 0, 2*Math.PI)
+      ctx.closePath()
+      ctx.fill()
+      y += 40
+    }
+    i = 0, y = 30, x = space*2.5
+    while (y < H) {
+      ctx.beginPath()
+      ctx.arc(x, y, 8, 0, 2*Math.PI)
+      ctx.closePath()
+      ctx.fill()
+      y += 40
+    }
   }
 }
 
