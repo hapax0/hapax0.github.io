@@ -1781,7 +1781,8 @@ function colorSamplePalette () {
     c.push(pixels[n])
     c.push(pixels[n+1])
     c.push(pixels[n+2])
-    sample.push(c)
+    if (pixels[n+3] > 0) // don't push transparent pixels
+      sample.push(c)
   }
   i = 0, j = 1
   let m = 0
@@ -7569,25 +7570,33 @@ function labyrinth () {
   ctx.stroke()
 }
 
-function calendar () {
+function messagepad () { // while you were ouy
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let W = canvas.width, H = canvas.height
   let colors = shuffle(getCurrentPalette())
   ctx.clearRect(0,0,W,H)
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.lineWidth = 3
-  let firstofmonth = new Date()
-  firstofmonth.setDate(1)
-  let thedays = ["S", "M", "T", "W", "T", "F", "S"]
-  let today = new Date()
-  let day = firstofmonth.getDay()
-  lastDayOfMonth = (new Date(today.getFullYear(), today.getMonth()+1, 0)).getDay()
+  ctx.lineWidth = 5
+  ctx.fillStyle = "#ffc0cb"
+  ctx.fillRect(0,0,W,H)
+  ctx.strokeStyle = "#555555"
   let pad = 40
-  let len = (W - 2 * pad)/9
-  let top = (H - 6*len)/2 - len/4
-  let left = ((W - (7*len))-pad)/2
-  let x = left, y = top
+  ctx.strokeRect(pad,pad,W-pad*2-5,H-pad*2-5) // frame
+  ctx.lineWidth = 3
+  let x = 0, y = 0
+  ctx.strokeRect(W-pad-290, pad, 279, 60) // urgent
+  ctx.strokeRect(W-pad-60, pad+10, 40, 40) // check box
+  let text = "Urgent"
+  let face = "arial"
+  ctx.font = "800 "+(30)+"pt " + face
+  let w = ctx.measureText(text).width
+  x = W-pad-270, y = pad * 2
+  ctx.fillStyle = "#555555"
+  ctx.fillText(text, x, y)
+  return
+  
+  
   let i = 0, row = 1, col = 1
   for (; i < 7; i++) {
     ctx.beginPath()
@@ -7607,6 +7616,49 @@ function calendar () {
     } else
       ctx.fill()
     
+    x += len
+  }
+  
+}
+
+
+function calendar () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let W = canvas.width, H = canvas.height
+  let colors = shuffle(getCurrentPalette())
+  ctx.clearRect(0,0,W,H)
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctx.lineWidth = 3
+  let firstofmonth = new Date()
+  firstofmonth.setDate(1)
+  let thedays = ["S", "M", "T", "W", "T", "F", "S"]
+  let today = new Date()
+  let day = firstofmonth.getDay()
+  lastDayOfMonth = (new Date(today.getFullYear(), today.getMonth()+1, 0)).getDay()
+  let pad = 40
+  let len = Math.floor((W - 2 * pad)/9)
+  let top = (H - 6*len)/2 - len/4
+  let left = ((W - (7*len))-pad)/2
+  let x = left, y = top
+  let i = 0, row = 1, col = 1
+  for (; i < 7; i++) {
+    ctx.beginPath()
+    ctx.moveTo(x+pet(5),y)
+    ctx.lineTo(x+len, y+pet(5))
+    ctx.lineTo(x+len+pet(5), y+len/2)
+    ctx.lineTo(x, y+len/2+pet(5))
+    ctx.closePath()
+    ctx.strokeStyle = randomPick(colors)
+    ctx.fillStyle = randomPick(colors)
+    if (Math.random() > 0.2) {
+      let face = "AmericanTypewriter-Bold"
+      ctx.font = "800 "+(Math.floor(len/3.3))+"pt " + face
+      let w = ctx.measureText(thedays[i]).width
+      ctx.fillText(thedays[i], pet(5)+(x+len/2) - w/2, pet(5)+y +len/2.7)
+      ctx.stroke()
+    } else
+      ctx.fill()
     x += len
   }
   x = left, y = top+ len/2
