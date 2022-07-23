@@ -5919,17 +5919,17 @@ function clock () {
   let r1 = W/2.4, r2 = r1/2
   let today = new Date()
   let minute = today.getMinutes()
-  let hour = today.getHours()%12
-  
+  let hour = today.getHours()*(60) + minute
+  console.log(hour)
   let minutescale = Math.PI*2/60
-  let hourscale = Math.PI*2/12
+  let hourscale = Math.PI*2/(12*60)
   
   console.log(minute,hour, )
   
   ctx.fillStyle = (colors[1])
   ctx.beginPath()
-  ctx.moveTo(cx, cy)
-  ctx.arc(cx, cy, r1, Math.PI*1.5, minutescale*minute-Math.PI/2) // minutes
+  ctx.moveTo(cx, cy+pet(9))
+  ctx.arc(cx+pet(9), cy, r1+pet(4), Math.PI*1.5, minutescale*minute-Math.PI/2) // minutes
   ctx.closePath()
   ctx.fill()
   
@@ -5942,7 +5942,7 @@ function clock () {
   
   ctx.save()
   ctx.beginPath()
-  ctx.arc(cx, cy, r2, 0, Math.PI*2) // anti minutes
+  ctx.arc(cx+pet(13), cy+pet(13), r2+pet(3), 0, Math.PI*2) // anti minutes
   ctx.clip()
   ctx.clearRect(0,0,W,H)
   ctx.restore()
@@ -9226,6 +9226,7 @@ function strokes () {
   ctx.lineCap = 'round';
   ctx.lineJoin = 'round';
   let stroke_ct = +document.getElementById("number").value/400 + 1
+  let stroke_width = 3
   for (let t = 0; t < stroke_ct; t++) {
     let paths = [];
     let radius = Math.floor(Math.random() * 180) + 20;
