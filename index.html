@@ -534,6 +534,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
       <option value="periodictable" >periodic table</option>
       <option value="calendar" >calendar</option>
       <option value="clock" >clock</option>
+      <option value="planet" >planet</option>
       <option value="photoBook">photo book</option>
     </select>
 </div>
@@ -5920,12 +5921,9 @@ function clock () {
   let today = new Date()
   let minute = today.getMinutes()
   let hour = today.getHours()*(60) + minute
-  console.log(hour)
   let minutescale = Math.PI*2/60
   let hourscale = Math.PI*2/(12*60)
-  
-  console.log(minute,hour, )
-  
+
   ctx.fillStyle = (colors[1])
   ctx.beginPath()
   ctx.moveTo(cx, cy+pet(9))
@@ -5994,7 +5992,133 @@ function floral () {
   
 }
 
+function planet () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let W = canvas.width, H = canvas.height
+  ctx.clearRect(0,0,canvas.width,canvas.height)
+  ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let colors = shuffle(getCurrentPalette())
+  let mode = document.getElementById("mode").value
+  let alpha = document.getElementById("opacity").value
+  let pad = W/15 - pet(30)
+  
+  ctx.fillStyle = colors[1]
+  ctx.fillRect(0,0,W,H)
+  ctx.fillStyle = colors[2]
+  
+  //ctx.save()
+ // ctx.beginPath()
+  //ctx.fillRect(pad,pad,W-pad*2,H-pad*2)
+  //ctx.clip()
+  ctx.clearRect(pad,pad,W-pad*2,H-pad*2)
+ // ctx.restore()
+
+  ctx.fillRect(pad+pet(13), pad+pet(13), W-pad*2+pet(13), H-pad*2+pet(13))
+  let r = (H - 3 * pad)/2.9
+  let x = W/2, y = 1.3*pad + r
+  
+  ctx.save()
+  ctx.beginPath()
+  ctx.arc(x+pet(13), y+pet(13), r+pet(3), 0, Math.PI*2) // anti minutes
+  ctx.clip()
+  ctx.clearRect(0,0,W,H)
+  ctx.restore()
+  ctx.fillStyle = colors[3] // clip each arc
+  ctx.beginPath()
+  ctx.arc(x,y,r,0,Math.PI*2)
+  ctx.closePath()
+  ctx.fill()
+  
+  y = H - pad*3.2
+  x = W/4
+  ctx.save()
+  ctx.beginPath()
+  ctx.arc(x+pet(13), y+pet(13), r/7+pet(3), 0, Math.PI*2) // anti minutes
+  ctx.clip()
+  ctx.clearRect(0,0,W,H)
+  ctx.restore()
+  
+  ctx.fillStyle = colors[4]
+  ctx.beginPath()
+  ctx.arc(x,y,r/7,0,Math.PI*2)
+  ctx.closePath()
+  ctx.fill()
+  
+  y = H - pad*2.4
+  x = W/2
+  ctx.save()
+  ctx.beginPath()
+  ctx.arc(x+pet(13), y+pet(13), r/12+pet(3), 0, Math.PI*2) // anti minutes
+  ctx.clip()
+  ctx.clearRect(0,0,W,H)
+  ctx.restore()
+  ctx.fillStyle = colors[0]
+  ctx.beginPath()
+  ctx.arc(x,y,r/12,0,Math.PI*2)
+  ctx.closePath()
+  ctx.fill()
+  
+  y = H - pad*3.2
+  x = W-W/4
+  ctx.save()
+  ctx.beginPath()
+  ctx.arc(x+pet(13), y+pet(13), r/19+pet(3), 0, Math.PI*2) // anti minutes
+  ctx.clip()
+  ctx.clearRect(0,0,W,H)
+  ctx.restore()
+  ctx.fillStyle = colors[1]
+  ctx.beginPath()
+  ctx.arc(x,y,r/19,0,Math.PI*2)
+  ctx.closePath()
+  ctx.fill()
+}
+
 function bust () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let W = canvas.width, H = canvas.height
+  ctx.clearRect(0,0,canvas.width,canvas.height)
+  ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let colors = shuffle(['red', 'blue', 'yellow', 'orange', 'purple', "green"])
+  let mode = document.getElementById("mode").value
+  let alpha = document.getElementById("opacity").value
+  let CCW = true
+  let x = 0, y =  H/2, cx, cy
+  let r = W/6
+  
+  ctx.fillStyle = (colors[1])
+  ctx.beginPath()
+ // ctx.moveTo(W, H)
+ // ctx.lineTo(0,H) // left bottom
+  // control point first
+  x = 50
+  y =  H/2
+  cx = 100
+  cy = H/3
+  ctx.moveTo(0,H)
+  ctx.quadraticCurveTo(cx, cy, 2*W/5, H/2)
+  ctx.arc(2*W/5, H/2, 250, Math.PI*0.75, Math.PI*0.25)
+  cx = W-100
+  
+  ctx.quadraticCurveTo(cx, cy, 4*W/5, H)
+
+  x = W
+  y = H/2
+  cx = W
+  cy = H
+
+ // ctx.quadraticCurveTo(cx, cy, x, y)
+
+  ctx.lineTo(W, H)
+
+  ctx.closePath()
+  ctx.fill()
+}
+
+function bust__ () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let W = canvas.width, H = canvas.height
