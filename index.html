@@ -249,7 +249,7 @@ value="100" onchange="rangecheck()"> <span class='sample' id='highsample' style=
      <div
 style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
         Use palette: <input type='checkbox' id='usepalette' checked>
-        <select id="palettechoice">
+        <select id="palettechoice" onchange="randomPalette()">
           <option value="ramp">mixed ramp</option>
           <option value="mono">mono ramp</option>
           <option value="primary" selected>primary</option>
@@ -262,6 +262,14 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
           <option value="venus">venus</option>
           <option value="marilyn">marilyn</option>
           <option value="earring">girl with pearl earring</option>
+          
+          <option value="avocado">avocado</option>
+          <option value="planet">planet</option>
+          <option value="cherry">cherry</option>
+          <option value="cloud">cloud</option>
+          <option value="dark forest">dark forest</option>
+          <option value="retro1">retro1</option>
+          <option value="retro2">retro2</option>
         </select><br>
        <input type='color' id='pal1'>
        <input type='color' id='pal2'>
@@ -269,7 +277,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
        <input type='color' id='pal4'>
        <input type='color' id='pal5'><br>
        <canvas id="palettecanvas" width="240" height="80"></canvas><br>
-       <button id="randompalette" onclick="randomPalette()">Load palette</button>&nbsp;<button onclick="extractPalette()">Extract</button>&nbsp;<a href="extractpalette.html">tool</a><br>
+       <!--button id="randompalette" onclick="randomPalette()">Load palette</button>&nbsp;--><button onclick="extractPalette()">Extract</button>&nbsp;<a href="extractpalette.html">tool</a><br>
        
 </div>
   </td>
@@ -647,6 +655,7 @@ function randomPalette () {
     document.getElementById("pal4").value = randomColorLight()
     document.getElementById("pal5").value = randomColorVLight() //lightest
     updateExtraColors(b)
+    return
   } else
   if (type === "random") {
     document.getElementById("pal1").value = randomColor()
@@ -655,6 +664,7 @@ function randomPalette () {
     document.getElementById("pal4").value = randomColor()
     document.getElementById("pal5").value = randomColor()
     updateExtraColors(b)
+    return
   } else
   if (type === "mono") {
     let c = randomColorVDark(), amt = 50
@@ -664,6 +674,7 @@ function randomPalette () {
     document.getElementById("pal4").value = adjustBrightnessC(c, amt*3)
     document.getElementById("pal5").value = adjustBrightnessC(c, amt*3)
     updateExtraColors(b)
+    return
   } else
   if (type === "rainbow") {
     let rb = [randomColorCool(),randomColorCool(),"#cccccc",randomColorWarm(),randomColorWarm()]
@@ -675,87 +686,81 @@ function randomPalette () {
     document.getElementById("pal4").value = rb[3]
     document.getElementById("pal5").value = rb[4]
     updateExtraColors(b)
+    return
   } else
   if (type === "stary"){
     a = ['#030407', '#191e21', '#968824', '#aab8b3', '#d8d9be']
     b = ['#c5d3cc', '#bbb24f', '#a2afa1', '#8da7cd', '#978c29', '#778886', '#5a77a2', '#495860', '#395195', '#5d5111', '#2b3d6f', '#2a2619', '#171e28']
-    document.getElementById("pal1").value = a[0]
-    document.getElementById("pal2").value = a[1]
-    document.getElementById("pal3").value = a[2]
-    document.getElementById("pal4").value = a[3]
-    document.getElementById("pal5").value = a[4]
     updateExtraColors(b)
   } else
   if (type === "rust"){
     a = ['#120402', '#482519', '#837a4e', '#c0ab7c', '#f2efec']
     b = ['#120402', '#482519', '#837a4e', '#c0ab7c', '#f2efec']
-    document.getElementById("pal1").value = a[0]
-    document.getElementById("pal2").value = a[1]
-    document.getElementById("pal3").value = a[2]
-    document.getElementById("pal4").value = a[3]
-    document.getElementById("pal5").value = a[4]
     updateExtraColors(b)
   } else
   if (type === "scream"){
     a = ['#08120b', '#30362c', '#5b807f', '#f49f58', '#d9ba81']
     b = ['#f2c28b', '#f2a351', '#c29f69', '#7e9480', '#bd7b45', '#da631c', '#7b684a', '#526c6b', '#bc4e19', '#c83302', '#404335', '#152019', '#020904']
-    document.getElementById("pal1").value = a[0]
-    document.getElementById("pal2").value = a[1]
-    document.getElementById("pal3").value = a[2]
-    document.getElementById("pal4").value = a[3]
-    document.getElementById("pal5").value = a[4]
+    updateExtraColors(b)
+  } else
+  if (type === "avocado") {
+    a = ["#ddd48f", "#cda989", "#6b8c21", "#4a7337", "#704010"]
+    updateExtraColors(b)
+  } else
+  if (type === "planet") {
+    a = ["#fdde55", "#6f8348", "#c94549", "#7a4945", "#1b4d3f"]
+    updateExtraColors(b)
+  } else
+  if (type === "cherry") {
+    a = ["#fff3d0", "#fa7e1e", "#d62976", "#4d1b7b", "#141d26"]
+    updateExtraColors(b)
+  } else
+  if (type === "cloud") {
+    a = ["#e3dec8", "#f2c665", "#99beb7", "#ef7546", "#ca3c4a"]
+
+    updateExtraColors(b)
+  } else
+  if (type === "dark forest") {
+    a = ["#556911", "#6a5c18", "#714b1e", "#296115", "#6e4024"]
+    updateExtraColors(b)
+  } else
+  if (type === "retro1") {
+    a = ["#f29b41", "#3d85c6", "#f64668", "#a6473f", "#274e13"]
+    updateExtraColors(b)
+  } else
+  if (type === "retro2") {
+    a = ["#f4c432", "#70a396", "#54877a", "#a32545", "#384054"]
     updateExtraColors(b)
   } else
   if (type === "primary") {
     a = ['#ff0000', '#0000ff', '#ffff00', '#008000', '#ffa500']
-    //b = ['#e7e28e', '#deda7b', '#bbbe74', '#699474', '#888153', '#b57321', '#58856e', '#a05b21', '#2e6f61', '#4f5f4a', '#0c6244', '#4b281a', '#1f2b29']
-    document.getElementById("pal1").value = a[0]
-    document.getElementById("pal2").value = a[1]
-    document.getElementById("pal3").value = a[2]
-    document.getElementById("pal4").value = a[3]
-    document.getElementById("pal5").value = a[4]
     updateExtraColors(b)
   } else
   if (type === "nighthawks") {
-    a = ['#212927', '#522a1b', '#246c59', '#babe74', '#e5e08b']
+    a = ["#f9f5a4", "#e76d38", "#33745b", "#762016", "#003e39"]
     b = ['#e7e28e', '#deda7b', '#bbbe74', '#699474', '#888153', '#b57321', '#58856e', '#a05b21', '#2e6f61', '#4f5f4a', '#0c6244', '#4b281a', '#1f2b29']
-    document.getElementById("pal1").value = a[0]
-    document.getElementById("pal2").value = a[1]
-    document.getElementById("pal3").value = a[2]
-    document.getElementById("pal4").value = a[3]
-    document.getElementById("pal5").value = a[4]
     updateExtraColors(b)
   } else
   if (type === "venus") {
     a = ['#2b2920', '#4f3a2d', '#889682', '#d6d7c5', '#f5fbf8']
     b = ['#eeead8', '#e9d195', '#efc292', '#b8c3b3', '#dea041', '#b89d72', '#758270', '#99745b', '#a4723a', '#7a5d3b', '#813917', '#353125', '#050402']
-    document.getElementById("pal1").value = a[0]
-    document.getElementById("pal2").value = a[1]
-    document.getElementById("pal3").value = a[2]
-    document.getElementById("pal4").value = a[3]
-    document.getElementById("pal5").value = a[4]
     updateExtraColors(b)
   } else
   if (type === "marilyn") {
     a = ['#372e24', '#a62f1f', '#55a294', '#8dc7bf', '#d3cec3']
     b = ['#d3cec3', '#8dc7bf', '#dcb238', '#e68e95', '#b89631', '#55a294', '#9c756f', '#856b37', '#4e6860', '#cd3524', '#a62f1f', '#372e24']
-    document.getElementById("pal1").value = a[0]
-    document.getElementById("pal2").value = a[1]
-    document.getElementById("pal3").value = a[2]
-    document.getElementById("pal4").value = a[3]
-    document.getElementById("pal5").value = a[4]
     updateExtraColors(b)
   }else
   if (type === "earring") {
     a = ['#151518', '#232b4b', '#808aaf', '#e6cf94', '#eee6d9']
     b = ['#ebd7b3', '#c5bbbb', '#c3ad87', '#9ea7c8', '#9c907f', '#7a84aa', '#967f55', '#75675a', '#735b34', '#4e5b8e', '#4d433e', '#373031', '#151418']
-    document.getElementById("pal1").value = a[0]
-    document.getElementById("pal2").value = a[1]
-    document.getElementById("pal3").value = a[2]
-    document.getElementById("pal4").value = a[3]
-    document.getElementById("pal5").value = a[4]
     updateExtraColors(b)
   }
+  document.getElementById("pal1").value = a[0]
+  document.getElementById("pal2").value = a[1]
+  document.getElementById("pal3").value = a[2]
+  document.getElementById("pal4").value = a[3]
+  document.getElementById("pal5").value = a[4]
 }
 
 function rangecheck () {
@@ -6002,10 +6007,10 @@ function planet () {
   let colors = shuffle(getCurrentPalette())
   let mode = document.getElementById("mode").value
   let alpha = document.getElementById("opacity").value
-  let pad = W/15 - pet(30)
+  let pad = W/20 - pet(30)
   
   ctx.fillStyle = colors[1]
-  ctx.fillRect(0,0,W,H)
+  ctx.clearRect(0,0,W,H)
   ctx.fillStyle = colors[2]
   
   //ctx.save()
