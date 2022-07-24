@@ -5963,6 +5963,37 @@ function clock () {
   
 }
 
+function floral () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let W = canvas.width, H = canvas.height
+  ctx.clearRect(0,0,canvas.width,canvas.height)
+  ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let colors = shuffle(['red', 'blue', 'yellow', 'orange', 'purple', "green"])
+  let mode = document.getElementById("mode").value
+  let alpha = document.getElementById("opacity").value
+  let CCW = true
+  let x = 200, y = 200
+  let r = W/8
+  let i = 0
+  for (; i < 100; i++) {
+    x = Math.random() * W, y = Math.random() * H
+    let a = Math.random() * 2 * Math.PI
+    ctx.fillStyle = randomPick(colors)
+    ctx.beginPath()
+    let start = Math.PI*0.75, end = start + Math.PI/2
+    //ctx.moveTo(x,y)
+    ctx.ellipse(x, y, r, r, a, start, end)
+    ctx.ellipse(x - r*1.44, y, r, r, a, end+Math.PI/2, end+Math.PI)
+    ctx.closePath()
+    ctx.fill()
+    
+    
+  }
+  
+}
+
 function bust () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -8280,6 +8311,10 @@ function moleskinDay () { // day planer
   ctx.font = 12+"px serif"
   ctx.fillStyle = document.getElementById("paintcolor").value = "#666666"
   let voff = randomPick([1,2,-1,-2])
+    let lasty = 0
+
+  let linespace = Math.floor((canvas.height - 220)/22)
+ //console.log( (canvas.height - 144)/22 )
   let i = 0, x = 27, y = 144, last = 0
   while (i < 22) {
     ctx.beginPath()
@@ -8288,14 +8323,15 @@ function moleskinDay () { // day planer
     ctx.closePath()
     ctx.stroke()
     if (hour < 23) {
-      ctx.fillText(hour, 52, y+36-5)
-      ctx.fillText(hour, canvas.width/2+44, y+36-5+voff)
+      ctx.fillText(hour, 52, y+linespace-5)
+      ctx.fillText(hour, canvas.width/2+44, y+linespace-5+voff)
       last = y
     }
-    y += 36
+    y += linespace
     hour += 1
     i++
   }
+  lasty = y - linespace
   i = 0, x = canvas.width/2, y = 144 + voff
   while (i < 22) {
     ctx.beginPath()
@@ -8303,20 +8339,20 @@ function moleskinDay () { // day planer
     ctx.lineTo(canvas.width-27, y)
     ctx.closePath()
     ctx.stroke()
-    y += 36
+    y += linespace
     i++
   }
   ctx.font = "12px serif monospace"
   ctx.globalCompositeOperation ="luminosity"
-  ctx.fillText("\u{26C5}", 52, last+214-5)
-  ctx.fillText("\u{1F321}", 52, last+248-5)
-  ctx.fillText("\u{26C5}", canvas.width/2+44, last+214-5+voff)
-  ctx.fillText("\u{1F321}", canvas.width/2+44, last+248-5+voff)
+  ctx.fillText("\u{26C5}", 52, lasty-linespace-5)
+  ctx.fillText("\u{1F321}", 52, lasty-5)
+  ctx.fillText("\u{26C5}", canvas.width/2+44, lasty-linespace-5+voff)
+  ctx.fillText("\u{1F321}", canvas.width/2+44, lasty-5+voff)
   ctx.globalCompositeOperation = "source-over"
   const today = new Date()
   const tomorrow = new Date(today)
   tomorrow.setDate(tomorrow.getDate() + 1)
-  ctx.fillText(week+today.getWeek(), canvas.width - 88, last+248-5+voff)// FR: "la semaine"
+  ctx.fillText(week+today.getWeek(), canvas.width - 88, lasty-5+voff)// FR: "la semaine"
   let size = 20//document.getElementById("featuresize").value/6.25
   if (Math.random() > 0.5) {
     months = monthsFR
@@ -11705,7 +11741,7 @@ function afold () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let alpha = document.getElementById("opacity").value
-  let colors = shuffle(["#ffffff", "#000000"])
+  let colors = (["#000000", "#ffffff"])
   let x1 = canvas.width/2, y1 = 0, x2 = canvas.width/2, y2 = canvas.height/2
   ctx.fillStyle = randomGradientRect(canvas, colors[0], x1, y1, x2, y2 - Math.random() * canvas.width/3)
   ctx.globalAlpha = 0.2
