@@ -251,6 +251,8 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
         Use palette: <input type='checkbox' id='usepalette' checked>
         <select id="palettechoice" onchange="randomPalette()">
           <option value="ramp">mixed ramp</option>
+          <option value="light">light</option>
+          <option value="dark">dark</option>
           <option value="mono">mono ramp</option>
           <option value="primary" selected>primary</option>
           <option value="random">random</option>
@@ -277,7 +279,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
        <input type='color' id='pal4'>
        <input type='color' id='pal5'><br>
        <canvas id="palettecanvas" width="240" height="80"></canvas><br>
-       <!--button id="randompalette" onclick="randomPalette()">Load palette</button>&nbsp;--><button onclick="extractPalette()">Extract</button>&nbsp;<a href="extractpalette.html">tool</a><br>
+       <button id="randompalette" onclick="randomPalette()">Load palette</button>&nbsp;><button onclick="extractPalette()">Extract</button>&nbsp;<a href="extractpalette.html">tool</a><br>
        
 </div>
   </td>
@@ -654,6 +656,24 @@ function randomPalette () {
     document.getElementById("pal3").value = randomColorLight()
     document.getElementById("pal4").value = randomColorLight()
     document.getElementById("pal5").value = randomColorVLight() //lightest
+    updateExtraColors(b)
+    return
+  } else
+  if (type === "light") {
+    document.getElementById("pal1").value = randomColorLight() //darkest
+    document.getElementById("pal2").value = randomColorLight()
+    document.getElementById("pal3").value = randomColorLight()
+    document.getElementById("pal4").value = randomColorVLight()
+    document.getElementById("pal5").value = randomColorVLight() //lightest
+    updateExtraColors(b)
+    return
+  } else
+  if (type === "dark") {
+    document.getElementById("pal1").value = randomColorVDark() //darkest
+    document.getElementById("pal2").value = randomColorVDark()
+    document.getElementById("pal3").value = randomColorDark()
+    document.getElementById("pal4").value = randomColorDark()
+    document.getElementById("pal5").value = randomColorDark() //lightest
     updateExtraColors(b)
     return
   } else
