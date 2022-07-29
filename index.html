@@ -540,6 +540,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
       <option value="clock" >clock</option>
       <option value="planet" >planet</option>
       <option value="system" >system</option>
+      <option value="rings" >rings</option>
       <option value="star">star</option>
       <option value="dayandnight" >day and night</option>
       <option value="photoBook">photo book</option>
@@ -6267,6 +6268,55 @@ function waves () {
  // ctx.fill()
 }
 
+function rings () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let W = canvas.width, H = canvas.height
+  ctx.clearRect(0,0,canvas.width,canvas.height)
+  ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let colors = shuffle(getCurrentPalette())
+  let mode = document.getElementById("mode").value
+  let alpha = document.getElementById("opacity").value
+  let pad = W/20 - pet(30)
+  ctx.fillStyle = colors[1]
+  ctx.clearRect(0,0,W,H)
+  ctx.fillStyle = colors[2]
+  ctx.clearRect(pad,pad,W-pad*2,H-pad*2)
+
+  let r = H + pet(200), r2 = r*(0.6 + (Math.random()/3))
+  let x = W/2 + pet(W/1.2), y = H+ H/3
+ 
+  let i = 0
+  for ( ; i < 3; i++) {
+    ctx.fillStyle = randomPick(colors)
+    ctx.beginPath()
+    ctx.arc(x,y,r,Math.PI, 0)
+    ctx.arc(x,y,r2,0, Math.PI, true)
+    ctx.closePath()
+    ctx.fill()
+    r = r2 * 0.95
+    r2 = r * 0.8
+  }
+  i = 0
+  for (; i < 5; i++) {
+    y = Math.random() * H
+    x = Math.random() * W
+    r = 25+pet(10)
+    ctx.save()
+    ctx.beginPath()
+    ctx.arc(x+pet(13), y+pet(13), r+2+pet(7), 0, Math.PI*2) // anti minutes
+    ctx.clip()
+    ctx.clearRect(0,0,W,H)
+    ctx.restore()
+    ctx.fillStyle = randomPick(colors)
+    ctx.beginPath()
+    ctx.arc(x,y,r+pet(7),0,Math.PI*2)
+    ctx.closePath()
+    ctx.fill()
+  }
+}
+
 function planet () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -6283,12 +6333,7 @@ function planet () {
   ctx.clearRect(0,0,W,H)
   ctx.fillStyle = colors[2]
   
-  //ctx.save()
- // ctx.beginPath()
-  //ctx.fillRect(pad,pad,W-pad*2,H-pad*2)
-  //ctx.clip()
   ctx.clearRect(pad,pad,W-pad*2,H-pad*2)
- // ctx.restore()
 
   ctx.fillRect(pad+pet(13), pad+pet(13), W-pad*2+pet(13), H-pad*2+pet(13))
   let r = (H - 3 * pad)/2.9
