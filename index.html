@@ -7348,11 +7348,9 @@ function necker () {
   let w4 = (W-2*margin)/(2+Math.floor(Math.random() * 10))//document.getElementById("rows").value
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let colors = shuffle(getCurrentPalette())
-  ctx.strokeStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
   let grunge = document.getElementById("grungy").checked
   if (Math.random() > 0.5) {
     //bottom
-    ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
     ctx.beginPath();
     ctx.moveTo(margin, W-margin)
     ctx.lineTo(w4+margin, W-w4-margin)
@@ -7361,7 +7359,6 @@ function necker () {
     ctx.fillStyle = colors[3]
     ctx.fill()
     //left side
-    ctx.strokeStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
     ctx.moveTo(margin, w4+margin)
     ctx.lineTo(w4+margin, margin)
     ctx.lineTo(w4+margin, W-w4-margin)
@@ -7370,7 +7367,6 @@ function necker () {
     ctx.fill()
     
       //upper right
-    ctx.strokeStyle = randomGradient(canvas, document.getElementById("paintcolor").value)  // top Horizontal
     ctx.beginPath();
     ctx.moveTo(w4+margin, 0+margin)
     ctx.lineTo(W-margin, 0+margin)
@@ -7380,7 +7376,6 @@ function necker () {
     ctx.fill()
     
     // lower left
-    ctx.strokeStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
     ctx.moveTo(margin, w4+margin)
     ctx.lineTo(W-w4-margin, w4+margin)
     ctx.lineTo(W-w4-margin, W-margin)
@@ -7389,7 +7384,6 @@ function necker () {
     ctx.fill()
     
     //top
-    ctx.strokeStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
     ctx.beginPath();
     ctx.moveTo(margin, w4+margin)
     ctx.lineTo(w4+margin, margin)
@@ -7399,7 +7393,6 @@ function necker () {
     ctx.fill()
     
     //right side
-    ctx.strokeStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
     ctx.beginPath();
     ctx.moveTo(W-w4-margin, w4+margin)
     ctx.lineTo(W-margin, margin)
@@ -7409,19 +7402,15 @@ function necker () {
     ctx.fill()
   } else {
       //top
-    ctx.strokeStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
     ctx.beginPath();
     ctx.moveTo(margin, w4+margin)
     ctx.lineTo(w4+margin, margin)
     ctx.lineTo(W-margin, margin)
     ctx.lineTo(W-w4-margin, w4+margin)
-   // ctx.closePath()
-    if (grunge)
-      ctx.fillStyle = colors[2]
+    ctx.fillStyle = colors[2]
     ctx.fill()
     
     //right side
-    ctx.strokeStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
     ctx.beginPath();
     ctx.moveTo(W-w4-margin, w4+margin)
     ctx.lineTo(W-margin, margin)
@@ -7431,7 +7420,6 @@ function necker () {
     ctx.fill()
     
      // lower left square
-    ctx.strokeStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
     ctx.beginPath();
     ctx.moveTo(margin, w4+margin)
     ctx.lineTo(W-w4-margin, w4+margin)
@@ -7441,7 +7429,6 @@ function necker () {
     ctx.fill()
     
     //bottom
-    ctx.strokeStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
     ctx.beginPath();
     ctx.moveTo(margin, W-margin)
     ctx.lineTo(w4+margin, W-w4-margin)
@@ -7451,17 +7438,16 @@ function necker () {
     ctx.fill()
     
     //upper right square
-    ctx.strokeStyle = randomGradient(canvas, document.getElementById("paintcolor").value)  // top Horizontal
-    ctx.beginPath();
+/    ctx.beginPath();
     ctx.moveTo(w4+margin, 0+margin)
     ctx.lineTo(W-margin, 0+margin)
     ctx.lineTo(W-margin, W-w4-margin)
     ctx.lineTo(w4+margin, W-w4-margin)
+    ctx.fillStyle = colors[2]
     ctx.fill()
    
     //left side
-    ctx.strokeStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
-    ctx.beginPath();
+/    ctx.beginPath();
     ctx.moveTo(margin, w4+margin)
     ctx.lineTo(w4+margin, margin)
     ctx.lineTo(w4+margin, W-w4-margin)
