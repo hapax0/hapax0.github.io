@@ -6210,6 +6210,10 @@ function makePalette () {
   ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let colors = shuffle(getCurrentPalette())
+  
+  let mixcolor = document.getElementById("paintcolor").value
+  ctx.fillStyle = mixcolor
+  ctx.fillRect(0,0,W,H)
  
   ctx.fillStyle = colors[0]
   ctx.fillRect(0, 0, 2*W/5, H)
