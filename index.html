@@ -357,6 +357,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="smudgehorizontal">horizontal</option>
     <option value="smudgehorizontal2">horizontal2</option>
     <option value="skinnyLines">horizontal3</option>
+    <option value="skinnyRings">rings</option>
     <option value="smudgearcs">arcs</option>
     <option value="smudgearcs2" >arcs2</option>
     <option value="smudgestars">stars</option>
@@ -14006,9 +14007,41 @@ function straightLines (cross) { // vertical lines
   ctx.restore()
 }
 
+
+function skinnyRings () {
+  let grunge = document.getElementById("grungy").checked
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext('2d');
+  let x = -50, y = -50;
+  let x_inc = 20, y_inc = 20
+  ctx.globalAlpha = (document.getElementById("opacity").value) /100
+  alpha0 = ctx.globalAlpha
+  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.lineWidth = 1
+  ctx.lineCap = 'round'
+  ctx.lineJoin = 'round'
+  linewidth0 = ctx.lineWidth
+  let radius = 1
+  let inc = ctx.lineWidth*3//512/rows
+  numlines = 0;
+  x = LASTCLICK[0], y = LASTCLICK[1]
+  let i = canvas.height/2
+  let maxD = Math.max(canvas.width, canvas.height)*2
+  while (radius < maxD) {
+    if (grunge) {
+      ctx.globalAlpha = alpha0 + (Math.random() - 0.5) * alpha0/1.3
+      ctx.lineWidth = linewidth0 + Math.random() * linewidth0/4
+    }
+    ctx.beginPath();
+    ctx.arc(x,y,radius,0,2*Math.PI)
+    ctx.stroke();
+    radius += 1 + Math.random() * 3
+    
+  }
+}
+
 function skinnyLines () { // vertical lines
   let grunge = document.getElementById("grungy").checked
- // clearCanvas()
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext('2d');
   let x = -50, y = -50;
@@ -14027,7 +14060,6 @@ function skinnyLines () { // vertical lines
   x = -20, y = 0 + ctx.lineWidth/2 // should try different initial offset
   x_inc = inc, y_inc = inc
   let maxy = canvas.height * 2
-  clip()
   let i = canvas.height/2
   for (; i < maxy; i++) {
     if (grunge) {
@@ -14040,7 +14072,6 @@ function skinnyLines () { // vertical lines
     ctx.stroke();
     y += y_inc + pet(2)
   }
-  ctx.restore()
 }
 
 function bezRandom () {
