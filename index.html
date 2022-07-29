@@ -6920,8 +6920,6 @@ function constellations () {
   let mode = document.getElementById("mode").value
   let alpha = document.getElementById("opacity").value
   let colors = getCurrentPalette()
-  if (document.getElementById("grungy").checked)
-    colors = [document.getElementById("paintcolor").value]
   colors = shuffle(colors)
   let points = []
   let i = 0, numpoints = randomPick([27,37,47])
