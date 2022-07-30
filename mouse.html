@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+    textarea {
+      font-size:12px;
+    }
+    </style>
+  </head>
+  <body bgcolor="#cccccc"><button onclick="location.reload()">reload</button><br>
+    <canvas id="myCanvas" width="500" height="500"></canvas>
+    <textarea id="text1" name="text1" rows="38" cols="80" wrap="soft"></textarea>
+    <script>
+    let allpoints = []
+      var i = 0;
+      function writeMessage(canvas, message) {
+        var context = canvas.getContext('2d');
+        context.fillStyle = '#ffffff';
+        context.fillRect(0, 0, canvas.width, canvas.height);
+      }
+      function getMousePos(canvas, evt) {
+        var rect = canvas.getBoundingClientRect();
+        return {
+          x: Math.floor(evt.clientX - rect.left),
+          y: Math.floor(evt.clientY - rect.top)
+        };
+      }
+      var canvas = document.getElementById('myCanvas');
+      var context = canvas.getContext('2d');
+      context.fillStyle = '#ffffff';
+      context.fillRect(0, 0, canvas.width, canvas.height);
+      var context = canvas.getContext('2d');
+      var message = '';
+      var cps = [];
+      canvas.addEventListener('mousedown', function(evt) {
+        var mousePos = getMousePos(canvas, evt);
+        if (i === 0) {
+          context.beginPath();
+          context.moveTo(mousePos.x, mousePos.y);
+         /* message  = '  let canvas = document.getElementById("myCanvas");\n'
+          message += '  let ctx = canvas.getContext("2d")\n'
+          message += '  ctx.clearRect(0,0,canvas.width,canvas.height)\n'
+          message += '  ctx.globalAlpha = document.getElementById("opacity").value/100\n'
+          message += '  ctx.fillStyle=randomPick(getCurrentPalette())\n'*/
+          message += '  let s = canvas.width/500, p = 33\n'
+          message += '  let x = 0, y = 0\n'
+          message += '  ctx.beginPath()\n'
+          message += '  ctx.moveTo(x+' + mousePos.x + '*s, y+' + mousePos.y+'*s);';
+          context.fillStyle = '#000000';
+          context.fillRect(mousePos.x, mousePos.y, 3, 3);
+          allpoints.push([mousePos.x, mousePos.y] )
+        } else
+        if (i % 3 !== 0) {
+          cps.push([mousePos.x, mousePos.y]);
+          message = "";
+          context.fillStyle = '#ff0000';
+          context.fillRect(mousePos.x, mousePos.y, 6, 6);
+          // draw a line yo CP
+          allpoints.push([mousePos.x, mousePos.y] )
+          
+        } else
+        if (i % 3 === 0) {
+          context.bezierCurveTo(cps[0][0], cps[0][1], cps[1][0], cps[1][1], mousePos.x, mousePos.y);
+          context.stroke();
+          message = '  ctx.bezierCurveTo(x+'+cps[0][0]+"*s+pet(p), y+"+cps[0][1]+"*s+pet(p), x+"+cps[1][0]+"*s+pet(p), y+"+cps[1][1]+'*s+pet(p), x+' + mousePos.x + '*s+pet(p), y+' + mousePos.y+'*s+pet(p));';
+          cps = [];
+          context.fillStyle = '#000000';
+          context.fillRect(mousePos.x, mousePos.y, 3, 3);
+          allpoints.push([mousePos.x, mousePos.y] )
+        }
+        console.log(allpoints)
+
+        i++;
+        if (message !== "") {
+          document.getElementById('text1').innerHTML += message+"\n";
+        }
+      }, false);
+    </script>
+  </body>
+</html>
