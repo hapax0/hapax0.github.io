@@ -553,9 +553,13 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
 <select id="shapes">
       <option value="stalk">stalk</option>
       <option value="tree">tree</option>
+      <option value="fir">fir</option>
       <option value="floral1">floral 1</option>
       <option value="hand">hand</option>
       <option value="bird">bird</option>
+      <option value="user">user</option>
+      <option value="poof">poof</option>
+      <option value="landscape">landscape</option>
     </select>
 </div>
 <canvas id="marker" width='512' height='6' style="border:1px solid #000000;" title="touch canvas: red mark shows location of clip or rip"></canvas>
@@ -14729,7 +14733,23 @@ function diagonal () {
   flipH()
 }
 
+function poof (ctx,s,p,x,y) {
+  s *= 1.1, p *= 4
+  ctx.beginPath()
+  ctx.moveTo(x+155*s, y+308*s);
+  ctx.bezierCurveTo(x+77*s+pet(p), y+301*s+pet(p), x+76*s+pet(p), y+237*s+pet(p), x+157*s+pet(p), y+236*s+pet(p));
+  ctx.bezierCurveTo(x+129*s+pet(p), y+175*s+pet(p), x+188*s+pet(p), y+129*s+pet(p), x+218*s+pet(p), y+198*s+pet(p));
+  ctx.bezierCurveTo(x+257*s+pet(p), y+132*s+pet(p), x+333*s+pet(p), y+170*s+pet(p), x+278*s+pet(p), y+239*s+pet(p));
+  ctx.bezierCurveTo(x+344*s+pet(p), y+244*s+pet(p), x+346*s+pet(p), y+303*s+pet(p), x+275*s+pet(p), y+303*s+pet(p));
+  ctx.bezierCurveTo(x+302*s+pet(p), y+356*s+pet(p), x+243*s+pet(p), y+382*s+pet(p), x+213*s+pet(p), y+312*s+pet(p));
+  ctx.bezierCurveTo(x+183*s+pet(p), y+385*s+pet(p), x+129*s+pet(p), y+357*s+pet(p), x+155*s+pet(p), y+315*s+pet(p));
+  ctx.closePath()
+  ctx.fill()
+}
+
+
 function stalk (ctx,s,p,x,y) {
+  p *= 2
   ctx.beginPath()
   ctx.moveTo(x+252*s, y+455*s);
   ctx.bezierCurveTo(x+244*s+pet(p), y+371*s+pet(p), x+245*s+pet(p), y+314*s+pet(p), x+255*s+pet(p), y+287*s+pet(p));
@@ -14748,6 +14768,8 @@ function stalk (ctx,s,p,x,y) {
   ctx.bezierCurveTo(x+268*s+pet(p), y+325*s+pet(p), x+268*s+pet(p), y+396*s+pet(p), x+274*s+pet(p), y+448*s+pet(p));
   ctx.closePath()
   ctx.fill()
+  if (Math.random() > 0.5)
+    flipH()
 }
 
 function floral1 (ctx,s,p,x,y) {
@@ -14767,9 +14789,48 @@ function floral1 (ctx,s,p,x,y) {
   ctx.bezierCurveTo(x+46*s+pet(p), y+449*s+pet(p), x+126*s+pet(p), y+437*s+pet(p), x+212*s+pet(p), y+457*s+pet(p));
   ctx.closePath()
   ctx.fill()
+  if (Math.random() > 0.5)
+    flipH()
+}
+
+function landscape (ctx,s,p,x,y) {
+  p *= 1.2
+  ctx.beginPath()
+  ctx.moveTo(x+5*s, y+482*s);
+  ctx.bezierCurveTo(x+5*s+pet(p), y+227*s+pet(p), x+5*s+pet(p), y+227*s+pet(p), x+6*s+pet(p), y+227*s+pet(p));
+  ctx.bezierCurveTo(x+31*s+pet(p), y+225*s+pet(p), x+69*s+pet(p), y+227*s+pet(p), x+88*s+pet(p), y+226*s+pet(p));
+  ctx.bezierCurveTo(x+89*s+pet(p), y+189*s+pet(p), x+89*s+pet(p), y+189*s+pet(p), x+91*s+pet(p), y+155*s+pet(p));
+  ctx.bezierCurveTo(x+113*s+pet(p), y+155*s+pet(p), x+125*s+pet(p), y+154*s+pet(p), x+125*s+pet(p), y+154*s+pet(p));
+  ctx.bezierCurveTo(x+130*s+pet(p), y+190*s+pet(p), x+129*s+pet(p), y+190*s+pet(p), x+129*s+pet(p), y+190*s+pet(p));
+  ctx.bezierCurveTo(x+152*s+pet(p), y+190*s+pet(p), x+162*s+pet(p), y+191*s+pet(p), x+167*s+pet(p), y+191*s+pet(p));
+  ctx.bezierCurveTo(x+166*s+pet(p), y+229*s+pet(p), x+165*s+pet(p), y+260*s+pet(p), x+165*s+pet(p), y+288*s+pet(p));
+  ctx.bezierCurveTo(x+180*s+pet(p), y+290*s+pet(p), x+185*s+pet(p), y+289*s+pet(p), x+185*s+pet(p), y+289*s+pet(p));
+  ctx.bezierCurveTo(x+187*s+pet(p), y+167*s+pet(p), x+187*s+pet(p), y+167*s+pet(p), x+187*s+pet(p), y+167*s+pet(p));
+  ctx.bezierCurveTo(x+210*s+pet(p), y+134*s+pet(p), x+210*s+pet(p), y+134*s+pet(p), x+211*s+pet(p), y+133*s+pet(p));
+  ctx.bezierCurveTo(x+234*s+pet(p), y+169*s+pet(p), x+234*s+pet(p), y+169*s+pet(p), x+234*s+pet(p), y+169*s+pet(p));
+  ctx.bezierCurveTo(x+239*s+pet(p), y+221*s+pet(p), x+239*s+pet(p), y+221*s+pet(p), x+240*s+pet(p), y+221*s+pet(p));
+  ctx.bezierCurveTo(x+270*s+pet(p), y+220*s+pet(p), x+270*s+pet(p), y+220*s+pet(p), x+270*s+pet(p), y+220*s+pet(p));
+  ctx.bezierCurveTo(x+272*s+pet(p), y+131*s+pet(p), x+272*s+pet(p), y+131*s+pet(p), x+272*s+pet(p), y+131*s+pet(p));
+  ctx.bezierCurveTo(x+309*s+pet(p), y+155*s+pet(p), x+309*s+pet(p), y+155*s+pet(p), x+309*s+pet(p), y+155*s+pet(p));
+  ctx.bezierCurveTo(x+345*s+pet(p), y+156*s+pet(p), x+346*s+pet(p), y+156*s+pet(p), x+346*s+pet(p), y+155*s+pet(p));
+  ctx.bezierCurveTo(x+354*s+pet(p), y+297*s+pet(p), x+354*s+pet(p), y+297*s+pet(p), x+354*s+pet(p), y+297*s+pet(p));
+  ctx.bezierCurveTo(x+373*s+pet(p), y+294*s+pet(p), x+373*s+pet(p), y+294*s+pet(p), x+374*s+pet(p), y+294*s+pet(p));
+  ctx.bezierCurveTo(x+374*s+pet(p), y+103*s+pet(p), x+374*s+pet(p), y+103*s+pet(p), x+374*s+pet(p), y+103*s+pet(p));
+  ctx.bezierCurveTo(x+389*s+pet(p), y+104*s+pet(p), x+389*s+pet(p), y+104*s+pet(p), x+390*s+pet(p), y+103*s+pet(p));
+  ctx.bezierCurveTo(x+401*s+pet(p), y+285*s+pet(p), x+400*s+pet(p), y+285*s+pet(p), x+400*s+pet(p), y+285*s+pet(p));
+  ctx.bezierCurveTo(x+414*s+pet(p), y+284*s+pet(p), x+415*s+pet(p), y+283*s+pet(p), x+414*s+pet(p), y+282*s+pet(p));
+  ctx.bezierCurveTo(x+420*s+pet(p), y+205*s+pet(p), x+420*s+pet(p), y+205*s+pet(p), x+421*s+pet(p), y+205*s+pet(p));
+  ctx.bezierCurveTo(x+449*s+pet(p), y+156*s+pet(p), x+449*s+pet(p), y+156*s+pet(p), x+449*s+pet(p), y+156*s+pet(p));
+  ctx.bezierCurveTo(x+481*s+pet(p), y+207*s+pet(p), x+480*s+pet(p), y+206*s+pet(p), x+480*s+pet(p), y+206*s+pet(p));
+  ctx.bezierCurveTo(x+491*s+pet(p), y+479*s+pet(p), x+490*s+pet(p), y+480*s+pet(p), x+490*s+pet(p), y+479*s+pet(p));
+  ctx.closePath()
+  ctx.fill()
+  if (Math.random() > 0.5)
+    flipH()
 }
 
 function tree (ctx,s,p,x,y) {
+  p *= 3
   ctx.beginPath()
   ctx.moveTo(x+165*s, y+460*s);
   ctx.bezierCurveTo(x+204*s+pet(p), y+417*s+pet(p), x+201*s+pet(p), y+321*s+pet(p), x+184*s+pet(p), y+268*s+pet(p));
@@ -14787,30 +14848,107 @@ function tree (ctx,s,p,x,y) {
   ctx.bezierCurveTo(x+246*s+pet(p), y+478*s+pet(p), x+189*s+pet(p), y+481*s+pet(p), x+167*s+pet(p), y+459*s+pet(p));
   ctx.closePath()
   ctx.fill()
+  if (Math.random() > 0.5)
+    flipH()
 }
 
-function bird (ctx,s,p,x,y) {  ctx.beginPath()
-  ctx.moveTo(x+51*s, y+233*s);
-  ctx.bezierCurveTo(x+77*s+pet(p), y+215*s+pet(p), x+88*s+pet(p), y+209*s+pet(p), x+95*s+pet(p), y+208*s+pet(p));
-  ctx.bezierCurveTo(x+100*s+pet(p), y+218*s+pet(p), x+128*s+pet(p), y+247*s+pet(p), x+145*s+pet(p), y+256*s+pet(p));
-  ctx.bezierCurveTo(x+149*s+pet(p), y+267*s+pet(p), x+221*s+pet(p), y+325*s+pet(p), x+242*s+pet(p), y+327*s+pet(p));
-  ctx.bezierCurveTo(x+244*s+pet(p), y+353*s+pet(p), x+253*s+pet(p), y+391*s+pet(p), x+262*s+pet(p), y+430*s+pet(p));
-  ctx.bezierCurveTo(x+267*s+pet(p), y+391*s+pet(p), x+261*s+pet(p), y+366*s+pet(p), x+262*s+pet(p), y+333*s+pet(p));
-  ctx.bezierCurveTo(x+265*s+pet(p), y+341*s+pet(p), x+269*s+pet(p), y+390*s+pet(p), x+275*s+pet(p), y+423*s+pet(p));
-  ctx.bezierCurveTo(x+276*s+pet(p), y+380*s+pet(p), x+280*s+pet(p), y+348*s+pet(p), x+284*s+pet(p), y+334*s+pet(p));
-  ctx.bezierCurveTo(x+310*s+pet(p), y+326*s+pet(p), x+335*s+pet(p), y+309*s+pet(p), x+352*s+pet(p), y+298*s+pet(p));
-  ctx.bezierCurveTo(x+434*s+pet(p), y+304*s+pet(p), x+446*s+pet(p), y+305*s+pet(p), x+461*s+pet(p), y+302*s+pet(p));
-  ctx.bezierCurveTo(x+472*s+pet(p), y+289*s+pet(p), x+473*s+pet(p), y+274*s+pet(p), x+477*s+pet(p), y+263*s+pet(p));
-  ctx.bezierCurveTo(x+442*s+pet(p), y+258*s+pet(p), x+396*s+pet(p), y+260*s+pet(p), x+354*s+pet(p), y+261*s+pet(p));
-  ctx.bezierCurveTo(x+300*s+pet(p), y+222*s+pet(p), x+255*s+pet(p), y+200*s+pet(p), x+210*s+pet(p), y+186*s+pet(p));
-  ctx.bezierCurveTo(x+178*s+pet(p), y+175*s+pet(p), x+162*s+pet(p), y+169*s+pet(p), x+155*s+pet(p), y+161*s+pet(p));
-  ctx.bezierCurveTo(x+130*s+pet(p), y+138*s+pet(p), x+86*s+pet(p), y+148*s+pet(p), x+78*s+pet(p), y+183*s+pet(p));
-  //ctx.bezierCurveTo(x+51*s+pet(p), y+227*s+pet(p), x+51*s+pet(p), y+227*s+pet(p), x+50*s+pet(p), y+227*s+pet(p));
+function user (ctx,s,p,x,y) {
+  p *= 3
+  ctx.beginPath()
+  ctx.moveTo(x+76*s, y+470*s);
+  ctx.bezierCurveTo(x+75*s+pet(p), y+342*s+pet(p), x+127*s+pet(p), y+308*s+pet(p), x+169*s+pet(p), y+299*s+pet(p));
+  ctx.bezierCurveTo(x+192*s+pet(p), y+278*s+pet(p), x+190*s+pet(p), y+248*s+pet(p), x+169*s+pet(p), y+238*s+pet(p));
+  ctx.bezierCurveTo(x+125*s+pet(p), y+197*s+pet(p), x+109*s+pet(p), y+134*s+pet(p), x+127*s+pet(p), y+79*s+pet(p));
+  ctx.bezierCurveTo(x+171*s+pet(p), y+37*s+pet(p), x+256*s+pet(p), y+32*s+pet(p), x+289*s+pet(p), y+76*s+pet(p));
+  ctx.bezierCurveTo(x+304*s+pet(p), y+128*s+pet(p), x+294*s+pet(p), y+189*s+pet(p), x+267*s+pet(p), y+241*s+pet(p));
+  ctx.bezierCurveTo(x+256*s+pet(p), y+257*s+pet(p), x+259*s+pet(p), y+285*s+pet(p), x+313*s+pet(p), y+298*s+pet(p));
+  ctx.bezierCurveTo(x+379*s+pet(p), y+327*s+pet(p), x+408*s+pet(p), y+398*s+pet(p), x+407*s+pet(p), y+472*s+pet(p));
   ctx.closePath()
   ctx.fill()
 }
 
+function bird (ctx,s,p,x,y) {
+  p *= 2
+  ctx.beginPath()
+  ctx.moveTo(x+385*s, y+470*s);
+  ctx.bezierCurveTo(x+379*s+pet(p), y+421*s+pet(p), x+363*s+pet(p), y+389*s+pet(p), x+354*s+pet(p), y+366*s+pet(p));
+  ctx.bezierCurveTo(x+362*s+pet(p), y+301*s+pet(p), x+356*s+pet(p), y+261*s+pet(p), x+313*s+pet(p), y+223*s+pet(p));
+  ctx.bezierCurveTo(x+314*s+pet(p), y+208*s+pet(p), x+328*s+pet(p), y+203*s+pet(p), x+341*s+pet(p), y+204*s+pet(p));
+  ctx.bezierCurveTo(x+364*s+pet(p), y+205*s+pet(p), x+383*s+pet(p), y+192*s+pet(p), x+393*s+pet(p), y+189*s+pet(p));
+  ctx.bezierCurveTo(x+375*s+pet(p), y+177*s+pet(p), x+353*s+pet(p), y+165*s+pet(p), x+332*s+pet(p), y+180*s+pet(p));
+  ctx.bezierCurveTo(x+316*s+pet(p), y+181*s+pet(p), x+290*s+pet(p), y+181*s+pet(p), x+283*s+pet(p), y+179*s+pet(p));
+  ctx.bezierCurveTo(x+261*s+pet(p), y+167*s+pet(p), x+249*s+pet(p), y+129*s+pet(p), x+252*s+pet(p), y+104*s+pet(p));
+  ctx.bezierCurveTo(x+225*s+pet(p), y+61*s+pet(p), x+160*s+pet(p), y+38*s+pet(p), x+100*s+pet(p), y+33*s+pet(p));
+  ctx.bezierCurveTo(x+103*s+pet(p), y+72*s+pet(p), x+133*s+pet(p), y+108*s+pet(p), x+158*s+pet(p), y+134*s+pet(p));
+  ctx.bezierCurveTo(x+162*s+pet(p), y+156*s+pet(p), x+177*s+pet(p), y+204*s+pet(p), x+175*s+pet(p), y+205*s+pet(p));
+  ctx.bezierCurveTo(x+153*s+pet(p), y+208*s+pet(p), x+123*s+pet(p), y+208*s+pet(p), x+68*s+pet(p), y+216*s+pet(p));
+  ctx.bezierCurveTo(x+70*s+pet(p), y+243*s+pet(p), x+83*s+pet(p), y+278*s+pet(p), x+113*s+pet(p), y+297*s+pet(p));
+  ctx.bezierCurveTo(x+144*s+pet(p), y+293*s+pet(p), x+179*s+pet(p), y+266*s+pet(p), x+194*s+pet(p), y+254*s+pet(p));
+  ctx.bezierCurveTo(x+211*s+pet(p), y+281*s+pet(p), x+241*s+pet(p), y+324*s+pet(p), x+271*s+pet(p), y+335*s+pet(p));
+  ctx.bezierCurveTo(x+273*s+pet(p), y+365*s+pet(p), x+309*s+pet(p), y+432*s+pet(p), x+363*s+pet(p), y+469*s+pet(p));
+  ctx.closePath()
+  ctx.fill()
+  if (Math.random() > 0.5)
+    flipH()
+}
+
+function fir (ctx,s,p,x,y) {
+  ctx.beginPath()
+  ctx.moveTo(x+210*s, y+481*s);
+  ctx.bezierCurveTo(x+209*s+pet(p), y+466*s+pet(p), x+211*s+pet(p), y+461*s+pet(p), x+211*s+pet(p), y+457*s+pet(p));
+  ctx.bezierCurveTo(x+175*s+pet(p), y+460*s+pet(p), x+112*s+pet(p), y+461*s+pet(p), x+30*s+pet(p), y+453*s+pet(p));
+  ctx.bezierCurveTo(x+102*s+pet(p), y+428*s+pet(p), x+143*s+pet(p), y+410*s+pet(p), x+188*s+pet(p), y+388*s+pet(p));
+  ctx.bezierCurveTo(x+161*s+pet(p), y+384*s+pet(p), x+86*s+pet(p), y+392*s+pet(p), x+38*s+pet(p), y+387*s+pet(p));
+  ctx.bezierCurveTo(x+118*s+pet(p), y+359*s+pet(p), x+172*s+pet(p), y+351*s+pet(p), x+194*s+pet(p), y+352*s+pet(p));
+  ctx.bezierCurveTo(x+132*s+pet(p), y+341*s+pet(p), x+68*s+pet(p), y+340*s+pet(p), x+57*s+pet(p), y+336*s+pet(p));
+  ctx.bezierCurveTo(x+69*s+pet(p), y+326*s+pet(p), x+147*s+pet(p), y+330*s+pet(p), x+192*s+pet(p), y+318*s+pet(p));
+  ctx.bezierCurveTo(x+179*s+pet(p), y+301*s+pet(p), x+110*s+pet(p), y+289*s+pet(p), x+89*s+pet(p), y+282*s+pet(p));
+  ctx.bezierCurveTo(x+114*s+pet(p), y+273*s+pet(p), x+163*s+pet(p), y+270*s+pet(p), x+185*s+pet(p), y+268*s+pet(p));
+  ctx.bezierCurveTo(x+174*s+pet(p), y+259*s+pet(p), x+127*s+pet(p), y+262*s+pet(p), x+104*s+pet(p), y+261*s+pet(p));
+  ctx.bezierCurveTo(x+140*s+pet(p), y+246*s+pet(p), x+165*s+pet(p), y+241*s+pet(p), x+200*s+pet(p), y+238*s+pet(p));
+  ctx.bezierCurveTo(x+177*s+pet(p), y+228*s+pet(p), x+132*s+pet(p), y+223*s+pet(p), x+123*s+pet(p), y+217*s+pet(p));
+  ctx.bezierCurveTo(x+136*s+pet(p), y+212*s+pet(p), x+160*s+pet(p), y+209*s+pet(p), x+203*s+pet(p), y+203*s+pet(p));
+  ctx.bezierCurveTo(x+188*s+pet(p), y+196*s+pet(p), x+159*s+pet(p), y+193*s+pet(p), x+155*s+pet(p), y+181*s+pet(p));
+  ctx.bezierCurveTo(x+165*s+pet(p), y+178*s+pet(p), x+185*s+pet(p), y+177*s+pet(p), x+202*s+pet(p), y+176*s+pet(p));
+  ctx.bezierCurveTo(x+177*s+pet(p), y+162*s+pet(p), x+158*s+pet(p), y+154*s+pet(p), x+158*s+pet(p), y+149*s+pet(p));
+  ctx.bezierCurveTo(x+183*s+pet(p), y+144*s+pet(p), x+197*s+pet(p), y+143*s+pet(p), x+209*s+pet(p), y+140*s+pet(p));
+  ctx.bezierCurveTo(x+208*s+pet(p), y+135*s+pet(p), x+182*s+pet(p), y+129*s+pet(p), x+172*s+pet(p), y+119*s+pet(p));
+  ctx.bezierCurveTo(x+179*s+pet(p), y+115*s+pet(p), x+202*s+pet(p), y+105*s+pet(p), x+217*s+pet(p), y+101*s+pet(p));
+  ctx.bezierCurveTo(x+216*s+pet(p), y+99*s+pet(p), x+199*s+pet(p), y+89*s+pet(p), x+183*s+pet(p), y+80*s+pet(p));
+  ctx.bezierCurveTo(x+191*s+pet(p), y+82*s+pet(p), x+219*s+pet(p), y+79*s+pet(p), x+229*s+pet(p), y+76*s+pet(p));
+  ctx.bezierCurveTo(x+236*s+pet(p), y+57*s+pet(p), x+243*s+pet(p), y+35*s+pet(p), x+253*s+pet(p), y+20*s+pet(p));
+  ctx.bezierCurveTo(x+259*s+pet(p), y+34*s+pet(p), x+264*s+pet(p), y+56*s+pet(p), x+270*s+pet(p), y+75*s+pet(p));
+  ctx.bezierCurveTo(x+295*s+pet(p), y+76*s+pet(p), x+318*s+pet(p), y+76*s+pet(p), x+312*s+pet(p), y+87*s+pet(p));
+  ctx.bezierCurveTo(x+294*s+pet(p), y+94*s+pet(p), x+281*s+pet(p), y+98*s+pet(p), x+274*s+pet(p), y+103*s+pet(p));
+  ctx.bezierCurveTo(x+314*s+pet(p), y+99*s+pet(p), x+339*s+pet(p), y+106*s+pet(p), x+349*s+pet(p), y+110*s+pet(p));
+  ctx.bezierCurveTo(x+319*s+pet(p), y+120*s+pet(p), x+289*s+pet(p), y+120*s+pet(p), x+278*s+pet(p), y+123*s+pet(p));
+  ctx.bezierCurveTo(x+284*s+pet(p), y+127*s+pet(p), x+305*s+pet(p), y+140*s+pet(p), x+323*s+pet(p), y+149*s+pet(p));
+  ctx.bezierCurveTo(x+321*s+pet(p), y+152*s+pet(p), x+298*s+pet(p), y+158*s+pet(p), x+280*s+pet(p), y+162*s+pet(p));
+  ctx.bezierCurveTo(x+316*s+pet(p), y+166*s+pet(p), x+347*s+pet(p), y+171*s+pet(p), x+368*s+pet(p), y+179*s+pet(p));
+  ctx.bezierCurveTo(x+339*s+pet(p), y+187*s+pet(p), x+304*s+pet(p), y+184*s+pet(p), x+288*s+pet(p), y+190*s+pet(p));
+  ctx.bezierCurveTo(x+292*s+pet(p), y+191*s+pet(p), x+323*s+pet(p), y+205*s+pet(p), x+352*s+pet(p), y+216*s+pet(p));
+  ctx.bezierCurveTo(x+336*s+pet(p), y+228*s+pet(p), x+304*s+pet(p), y+225*s+pet(p), x+281*s+pet(p), y+225*s+pet(p));
+  ctx.bezierCurveTo(x+305*s+pet(p), y+233*s+pet(p), x+339*s+pet(p), y+233*s+pet(p), x+365*s+pet(p), y+245*s+pet(p));
+  ctx.bezierCurveTo(x+356*s+pet(p), y+248*s+pet(p), x+320*s+pet(p), y+247*s+pet(p), x+285*s+pet(p), y+258*s+pet(p));
+  ctx.bezierCurveTo(x+313*s+pet(p), y+262*s+pet(p), x+345*s+pet(p), y+267*s+pet(p), x+371*s+pet(p), y+280*s+pet(p));
+  ctx.bezierCurveTo(x+350*s+pet(p), y+295*s+pet(p), x+309*s+pet(p), y+298*s+pet(p), x+285*s+pet(p), y+300*s+pet(p));
+  ctx.bezierCurveTo(x+327*s+pet(p), y+310*s+pet(p), x+373*s+pet(p), y+323*s+pet(p), x+430*s+pet(p), y+344*s+pet(p));
+  ctx.bezierCurveTo(x+400*s+pet(p), y+348*s+pet(p), x+349*s+pet(p), y+350*s+pet(p), x+303*s+pet(p), y+351*s+pet(p));
+  ctx.bezierCurveTo(x+303*s+pet(p), y+359*s+pet(p), x+350*s+pet(p), y+374*s+pet(p), x+410*s+pet(p), y+383*s+pet(p));
+  ctx.bezierCurveTo(x+383*s+pet(p), y+396*s+pet(p), x+312*s+pet(p), y+384*s+pet(p), x+278*s+pet(p), y+383*s+pet(p));
+  ctx.bezierCurveTo(x+340*s+pet(p), y+409*s+pet(p), x+417*s+pet(p), y+422*s+pet(p), x+473*s+pet(p), y+447*s+pet(p));
+  ctx.bezierCurveTo(x+409*s+pet(p), y+447*s+pet(p), x+335*s+pet(p), y+446*s+pet(p), x+263*s+pet(p), y+441*s+pet(p));
+  ctx.bezierCurveTo(x+260*s+pet(p), y+461*s+pet(p), x+263*s+pet(p), y+477*s+pet(p), x+268*s+pet(p), y+486*s+pet(p));
+  ctx.closePath()
+  ctx.fill()
+  if (Math.random() > 0.5)
+    flipH()
+}
+
 function hand (ctx,s,p,x,y) {
+  s*= 1.2
+  p *= 1.5
+  x += 90, y -= 90
   ctx.beginPath()
   ctx.moveTo(x+138*s, y+464*s);
   ctx.bezierCurveTo(x+157*s+pet(p), y+439*s+pet(p), x+158*s+pet(p), y+403*s+pet(p), x+139*s+pet(p), y+384*s+pet(p));
@@ -14835,20 +14973,21 @@ function hand (ctx,s,p,x,y) {
   ctx.bezierCurveTo(x+228*s+pet(p), y+472*s+pet(p), x+184*s+pet(p), y+473*s+pet(p), x+155*s+pet(p), y+468*s+pet(p));
   ctx.closePath()
   ctx.fill()
+  if (Math.random() > 0.5)
+    flipH()
 }
 
 function drawShape () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
- // ctx.clearRect(0,0,canvas.width,canvas.height)
+  ctx.clearRect(0,0,canvas.width,canvas.height)
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.globalCompositeOperation = document.getElementById("mode").value
   ctx.fillStyle=randomPick(getCurrentPalette())
   // shape goes here
   let shape = document.getElementById("shapes").value
-
   let s = canvas.width/500, p = 23
-  let x = 0, y = 0//canvas.height - 100
+  let x = 0, y = 0
   window[shape](ctx,s,p,x,y)
   
 }
