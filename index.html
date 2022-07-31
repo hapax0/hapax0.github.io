@@ -561,6 +561,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
       <option value="poof">poof</option>
       <option value="landscape">landscape</option>
     </select>
+    &nbsp;<textarea id="points" rows="1" cols="10"></textarea>
 </div>
 <canvas id="marker" width='512' height='6' style="border:1px solid #000000;" title="touch canvas: red mark shows location of clip or rip"></canvas>
 <div id="background" style="width:1024px;height:1024px;float:left;position:absolute;">
@@ -14983,12 +14984,30 @@ function drawShape () {
   ctx.clearRect(0,0,canvas.width,canvas.height)
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.globalCompositeOperation = document.getElementById("mode").value
+  
+  let pm = document.getElementById("featuresize").value/100
   ctx.fillStyle=randomPick(getCurrentPalette())
   // shape goes here
   let shape = document.getElementById("shapes").value
-  let s = canvas.width/500, p = 23
+  let s = canvas.width/500, p = 23 * pm
   let x = 0, y = 0
-  window[shape](ctx,s,p,x,y)
+  let points = document.getElementById('points').value
+  
+  if (points.length > 1) {
+    let pointsP = JSON.parse(points)
+    console.log(pointsP)
+    i = 0
+    let j = 0
+    for (; i < pointsP.length; i++) {
+      j = 0
+      for (; j < 2; j++) {
+        pointsP[i][j] = pointsP[i][j] * s + pet(p)
+      }
+    }
+    console.log(pointsP)
+    drawBezline(pointsP, 0, 0, fill)
+  } else
+    window[shape](ctx,s,p,x,y)
   
 }
 
@@ -15456,7 +15475,7 @@ function shape () {// right side only
   }
 }
 
-function drawBezline (pts, offsetX, offsetY) {
+function drawBezline (pts, offsetX, offsetY, fill) {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let x = 0, y = 0, x0 = 0, y0 = 0
@@ -15473,7 +15492,11 @@ function drawBezline (pts, offsetX, offsetY) {
     if (i % 3 == 0)
       ctx.bezierCurveTo(pts[i-2][0], pts[i-2][1], pts[i-1][0], pts[i-1][1], pts[i][0], pts[i][1]);
   }
-  ctx.stroke();
+  if (fill) {
+    ctx.closePath()
+    ctx.fill()
+  } else
+    ctx.stroke();
 }
 
 function drawOutline (pts, offsetX, offsetY) {

@@ -7,11 +7,16 @@
     }
     </style>
   </head>
-  <body bgcolor="#cccccc"><button onclick="location.reload()">reload</button>
-  &nbsp;Select image:<input type='file' name='img' size='65' id='uploadimage' style="display:none;">
+  <body bgcolor="#cccccc"><button onclick="location.reload()">clear</button>
+  &nbsp;<input type='file' name='img' size='65' id='uploadimage' style="display:none;">
   <button onclick="openFile()" id="imgloader" title="open image file...">open...</button>
   &nbsp;
   <button onclick="closePath()">close path</button>
+  &nbsp;
+  <button onclick="showPoints()">points</button>
+  &nbsp;
+  <button onclick="copy()">copy</button>
+
   <br>
     <canvas id="myCanvas" width="500" height="500"></canvas>
     <textarea id="text1" name="text1" rows="38" cols="80" wrap="soft"></textarea>
@@ -19,6 +24,13 @@
     
     window.onload = function () {
       document.getElementById("uploadimage").addEventListener("change", drawFile, true)
+    }
+    
+    function copy () {
+      let copyText = document.getElementById("text1");
+      copyText.select();
+      copyText.setSelectionRange(0, 99999); /* For mobile devices */
+      navigator.clipboard.writeText(copyText.value);
     }
     
     function openFile () {
@@ -77,6 +89,12 @@
       document.getElementById("text1").innerHTML += "  ctx.closePath()\n  ctx.fill()\n}"
     }
     
+    function showPoints() {
+      let arrayString = JSON.stringify(allpoints)
+      //arrayString = arrayString.replace(/([0-9]+)/g, "$1*s+pet(p)")
+      document.getElementById("text1").innerHTML = arrayString
+    }
+    
     function getMousePos(canvas, evt) {
       let rect = canvas.getBoundingClientRect();
       return {
@@ -131,8 +149,6 @@
         context.fillRect(mousePos.x, mousePos.y, 5, 5);
         allpoints.push([mousePos.x, mousePos.y] )
       }
-      console.log(allpoints)
-
       i++;
       if (message !== "") {
         document.getElementById('text1').innerHTML += message+"\n";
