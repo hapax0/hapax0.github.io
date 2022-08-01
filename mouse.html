@@ -11,15 +11,15 @@
   &nbsp;<input type='file' name='img' size='65' id='uploadimage' style="display:none;">
   <button onclick="openFile()" id="imgloader" title="open image file...">open...</button>
   &nbsp;
-  <button onclick="closePath()">close path</button>
+  <!--button onclick="closePath()">close path</button-->
   &nbsp;
   <button onclick="showPoints()">points</button>
   &nbsp;
   <button onclick="copy()">copy</button>
 
   <br>
-    <canvas id="myCanvas" width="500" height="500"></canvas>
-    <textarea id="text1" name="text1" rows="38" cols="80" wrap="soft"></textarea>
+    <canvas id="myCanvas" width="800" height="800"></canvas><br><br>
+    <textarea id="text1" name="text1" rows="4" cols="80" wrap="soft"></textarea>
     <script>
     
     window.onload = function () {
@@ -27,6 +27,7 @@
     }
     
     function copy () {
+      showPoints()
       let copyText = document.getElementById("text1");
       copyText.select();
       copyText.setSelectionRange(0, 99999); /* For mobile devices */
@@ -117,7 +118,7 @@
       if (i === 0) {
         context.beginPath();
         context.moveTo(mousePos.x, mousePos.y);
-        message  = 'function <name> (ctx,s,p,x,y) {\n'
+      //  message  = 'function <name> (ctx,s,p,x,y) {\n'
         /*message += '  let canvas = document.getElementById("myCanvas");\n'
         message += '  let ctx = canvas.getContext("2d")\n'
         message += '  ctx.clearRect(0,0,canvas.width,canvas.height)\n'
@@ -125,15 +126,15 @@
         message += '  ctx.fillStyle=randomPick(getCurrentPalette())\n'
         message += '  let s = canvas.width/500, p = 33\n'
         message += '  let x = 0, y = 0\n'*/
-        message += '  ctx.beginPath()\n'
-        message += '  ctx.moveTo(x+' + mousePos.x + '*s, y+' + mousePos.y+'*s);';
+       // message += '  ctx.beginPath()\n'
+       // message += '  ctx.moveTo(x+' + mousePos.x + '*s, y+' + mousePos.y+'*s);';
         context.fillStyle = '#000000';
         context.fillRect(mousePos.x, mousePos.y, 3, 3);
         allpoints.push([mousePos.x, mousePos.y] )
       } else
       if (i % 3 !== 0) {
         cps.push([mousePos.x, mousePos.y]);
-        message = "";
+       // message = "";
         context.fillStyle = '#ff0000';
         context.fillRect(mousePos.x, mousePos.y, 6, 6);
         // draw a line yo CP
@@ -143,7 +144,7 @@
       if (i % 3 === 0) {
         context.bezierCurveTo(cps[0][0], cps[0][1], cps[1][0], cps[1][1], mousePos.x, mousePos.y);
         context.stroke();
-        message = '  ctx.bezierCurveTo(x+'+cps[0][0]+"*s+pet(p), y+"+cps[0][1]+"*s+pet(p), x+"+cps[1][0]+"*s+pet(p), y+"+cps[1][1]+'*s+pet(p), x+' + mousePos.x + '*s+pet(p), y+' + mousePos.y+'*s+pet(p));';
+        //message = '  ctx.bezierCurveTo(x+'+cps[0][0]+"*s+pet(p), y+"+cps[0][1]+"*s+pet(p), x+"+cps[1][0]+"*s+pet(p), y+"+cps[1][1]+'*s+pet(p), x+' + mousePos.x + '*s+pet(p), y+' + mousePos.y+'*s+pet(p));';
         cps = [];
         context.fillStyle = '#000000';
         context.fillRect(mousePos.x, mousePos.y, 5, 5);
@@ -151,7 +152,7 @@
       }
       i++;
       if (message !== "") {
-        document.getElementById('text1').innerHTML += message+"\n";
+      //  document.getElementById('text1').innerHTML += message+"\n";
       }
     }, false);
     </script>
