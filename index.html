@@ -550,7 +550,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
 &nbsp;<button onclick='drawShape()'><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" class="white" viewBox="0 0 16 16">
   <path d="M8.416.223a.5.5 0 0 0-.832 0l-3 4.5A.5.5 0 0 0 5 5.5h.098L3.076 8.735A.5.5 0 0 0 3.5 9.5h.191l-1.638 3.276a.5.5 0 0 0 .447.724H7V16h2v-2.5h4.5a.5.5 0 0 0 .447-.724L12.31 9.5h.191a.5.5 0 0 0 .424-.765L10.902 5.5H11a.5.5 0 0 0 .416-.777l-3-4.5z"/>
 </svg></button>
-<select id="shapes">
+<!--select id="shapes">
       <option value="stalk">stalk</option>
       <option value="tree">tree</option>
       <option value="fir">fir</option>
@@ -560,8 +560,8 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
       <option value="user">user</option>
       <option value="poof">poof</option>
       <option value="landscape">landscape</option>
-    </select>
-    &nbsp;<textarea id="points" rows="1" cols="10" placeholder="points here"></textarea>
+    </select-->
+    &nbsp;<textarea id="points" rows="2" cols="12" placeholder="points here"></textarea>
     
     &nbsp;<a href="mouse.html"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" class="white" viewBox="0 0 18 18">
       <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
@@ -14992,27 +14992,32 @@ function drawShape () {
   let pm = document.getElementById("featuresize").value/100
   ctx.fillStyle=randomPick(getCurrentPalette())
   // shape goes here
-  let shape = document.getElementById("shapes").value
+ // let shape = document.getElementById("shapes").value
   let s = canvas.width/800, p = 23 * pm
   let x = 0, y = 0
   let points = document.getElementById('points').value
-  
+  let k = 0
   if (points.length > 1) {
-    let pointsP = JSON.parse(points)
-    console.log(pointsP)
-    i = 0
-    let j = 0
-    for (; i < pointsP.length; i++) {
-      j = 0
-      for (; j < 2; j++) {
-        pointsP[i][j] = pointsP[i][j] * s + pet(p)
+    console.log(points)
+      let pointsP = JSON.parse(points)
+      console.log(pointsP)
+      for (; k < pointsP.length; k++) {
+        let pk = pointsP[k]
+        i = 0
+        let j = 0
+        for (; i < pk.length; i++) {
+          j = 0
+          for (; j < 2; j++) {
+            pk[i][j] = pk[i][j] * s + pet(p)
+          }
+        }
+      // console.log(pointsP)
+        drawBezline(pk, 0, 0, fill)
       }
-    }
-    console.log(pointsP)
-    drawBezline(pointsP, 0, 0, fill)
-  } else
-    window[shape](ctx,s,p,x,y)
-  
+    
+  } //else
+   // window[shape](ctx,s,p,x,y)
+  LATESTFUNCTION = "drawShape"
 }
 
 function rotatePoint(x, y, centerx, centery, degrees) {
