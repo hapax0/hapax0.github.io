@@ -14991,32 +14991,28 @@ function drawShape () {
   
   let pm = document.getElementById("featuresize").value/100
   ctx.fillStyle=randomPick(getCurrentPalette())
-  // shape goes here
+  // shapes goes here
  // let shape = document.getElementById("shapes").value
   let s = canvas.width/800, p = 23 * pm
   let x = 0, y = 0
   let points = document.getElementById('points').value
   let k = 0
   if (points.length > 1) {
-    console.log(points)
-      let pointsP = JSON.parse(points)
-      console.log(pointsP)
-      for (; k < pointsP.length; k++) {
-        let pk = pointsP[k]
-        i = 0
-        let j = 0
-        for (; i < pk.length; i++) {
-          j = 0
-          for (; j < 2; j++) {
-            pk[i][j] = pk[i][j] * s + pet(p)
-          }
+    let pointsP = JSON.parse(points)
+    for (; k < pointsP.length; k++) {
+      let pk = pointsP[k]
+      i = 0
+      let j = 0
+      for (; i < pk.length; i++) {
+        j = 0
+        for (; j < 2; j++) {
+          pk[i][j] = pk[i][j] * s + pet(p)
         }
-      // console.log(pointsP)
-        drawBezline(pk, 0, 0, fill)
       }
-    
-  } //else
-   // window[shape](ctx,s,p,x,y)
+      ctx.fillStyle=randomPick(getCurrentPalette())
+      drawBezline(pk, 0, 0, fill)
+    }
+  } 
   LATESTFUNCTION = "drawShape"
 }
 
