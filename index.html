@@ -532,6 +532,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
       <option value="datedue">date due</option>
       <option value="interdepartmental">interdepartmental</option>
       <option value="moleskine">moleskine</option>
+      <option value="moleskine2">moleskine 3D</option>
       <option value="sketchpad">sketch pad</option>
       <option value="gridpaper" selected>grid paper</option>
       <option value="linedPad">lined pad</option>
@@ -8635,7 +8636,125 @@ function interdepartmental () { // ideal 8 X 10
   document.getElementById("opacity").value = alpha
   document.getElementById("paintcolor").value = color
 }
+/*
+function roundedRect (x,y,W,H) {
+  x = 0, y = 0, W = 1080 , H = 1080
+  let radius = 18, h = 20
+ let r = W -60
+ let  b = H-60
+  ctx.fillStyle = 'red'
+  ctx.beginPath();
+  ctx.lineWidth="4";
+  ctx.moveTo(x+radius, y);
+  ctx.lineTo(r-radius, y);
+  ctx.quadraticCurveTo(r, y, r, y+radius);
+  ctx.lineTo(r, y+h-radius);
+  ctx.quadraticCurveTo(r, b, r-radius, b);
+  ctx.lineTo(x+radius, b);
+  ctx.quadraticCurveTo(x, b, x, b-radius);
+  ctx.lineTo(x, y+radius);
+  ctx.quadraticCurveTo(x, y, x+radius, y);
+  ctx.closePath()
+  ctx.fill()
+}*/
 
+ function roundedRect (x, y, w, h, r, ctx) {
+  if (w < 2 * r) r = w / 2;
+  if (h < 2 * r) r = h / 2;
+  ctx.beginPath();
+  ctx.moveTo(x+r, y);
+  ctx.arcTo(x+w, y,   x+w, y+h, r);
+  ctx.arcTo(x+w, y+h, x,   y+h, r);
+  ctx.arcTo(x,   y+h, x,   y,   r);
+  ctx.arcTo(x,   y,   x+w, y,   r);
+  ctx.closePath();
+  ctx.fill()
+}
+function moleskine2 () { // grid paper
+  /*if (document.getElementById("grungy").checked) {
+    moleskinDay()
+    return
+  }*/
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
+  let alpha = document.getElementById("opacity").value
+  let color = document.getElementById("paintcolor").value
+  let small = true, half = true
+  let W = canvas.width, H = canvas.height
+  document.getElementById("paintcolor").value = "#fdffee"
+ // canvas.width = 1160
+ // canvas.height = 900
+  ctx.shadowColor = '#606060';
+  let j = 0, x = 10, y = 10, d = 0
+  for(;j < 5; j++) {
+    if (j % 2 ===0)
+      ctx.fillStyle = randomColorDark()
+    else
+      ctx.fillStyle = randomColorVLight()
+    if (j === 0) {
+      ctx.shadowBlur = 20
+      ctx.shadowOffsetX = 9;
+      ctx.shadowOffsetY = 9;
+    }
+    if (j === 4)
+      ctx.fillStyle = "#feffee"
+    roundedRect(x+d, y, W-32-d, H-32, 14, ctx)
+    d += 4 + pet(3)
+    ctx.shadowBlur = 0
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 0;
+  }
+//ctx.fillRect(0,0,canvas.width-52, canvas.height-32)
+  
+  // optonal grid?
+  /*
+  ctx.strokeStyle = "#cccccc"
+  ctx.lineWidth = 1
+  let i = 0
+  x = 27, y = 20
+  while (y < canvas.height-28) { //horz
+    ctx.beginPath()
+    ctx.moveTo(x, y)
+    ctx.lineTo(canvas.width-27, y)
+    ctx.closePath()
+   // ctx.stroke()
+    y += 20
+  }
+  i = 0, y = 13, x = 30
+  while (x < canvas.width-32) { // vert
+    ctx.beginPath()
+    ctx.moveTo(x, y)
+    ctx.lineTo(x, canvas.height-24)
+    ctx.closePath()
+   // ctx.stroke()
+    x += 20
+    if (x > canvas.width/2 && half) {
+      half = false
+      x -= 4
+    }
+  }*/
+  rcc()
+  let mode = document.getElementById("mode").value
+  ctx.globalCompositeOperation = "source-atop"
+  afold()
+  ctx.globalCompositeOperation = mode
+  rc()
+  document.getElementById("paintcolor").value = "#565555"
+  document.getElementById("opacity").value = 21
+  flipH()
+  document.getElementById("paintcolor").value = "#565555"
+ // edgeSmear(small)
+  document.getElementById("paintcolor").value = "#fefeee"
+  flipH()
+ //ctx.fillRect(0,0,25,canvas.height)
+  //edgeSmear(small)
+  document.getElementById("opacity").value = 100
+  document.getElementById("paintcolor").value = "#222228"
+  //roundedFrame()
+  document.getElementById("opacity").value = alpha
+  document.getElementById("paintcolor").value = color
+}
 
 function moleskine () { // grid paper
   if (document.getElementById("grungy").checked) {
@@ -15012,7 +15131,7 @@ function drawShape () {
       ctx.fillStyle=randomPick(getCurrentPalette())
       drawBezline(pk, 0, 0, fill)
     }
-  } 
+  }
   LATESTFUNCTION = "drawShape"
 }
 
