@@ -1470,6 +1470,7 @@ function blobFill (fs) {
   let i = 0
   for (; i < 2; i++) {
     randomPickColor()
+    
     blobs()
   }
   // restore
@@ -8700,8 +8701,11 @@ function roundedRect (x, y, w, h, r, ctx, BF) {
   ctx.closePath();
   ctx.fill()
   ctx.clip()
-  if (BF)
+  if (BF) {
     blobFill(ctx.fillStyle)
+    ctx.fillStyle = "#ececdb"
+    ctx.fillRect(w/2, y, w/2, h)
+  }
   ctx.restore()
 }
 
@@ -8716,7 +8720,7 @@ function moleskine2 () { // 3D
   let W = canvas.width, H = canvas.height
   document.getElementById("paintcolor").value = "#fdffee"
   ctx.shadowColor = '#404040';
-  let j = 0, x = 10, y = 10, d = 0, BF = true
+  let j = 0, x = 20, y = 20, d = 0, BF = true
   for(;j < 5; j++) {
     if (j % 2 ===0)
       ctx.fillStyle = randomColorLight()
@@ -8731,7 +8735,7 @@ function moleskine2 () { // 3D
       BF = false
       ctx.fillStyle = "#feffee"
     }
-    roundedRect(x+d, y, W-32-d, H-32, 14, ctx, BF)
+    roundedRect(x+d, y, W-49-d, H-49, 14, ctx, BF)
     d += 7 + pet(3)
     ctx.shadowBlur = 0
     ctx.shadowOffsetX = 0;
@@ -13167,8 +13171,8 @@ function zoomImage (out) {
   ctx.imageSmoothingEnabled = true
   ctx.imageSmoothingQuality = 'high'
   octx.drawImage(canvas, 0, 0)
-  let dx = (out)? canvas.width * 0.9: canvas.width * 1.1
-  let dy = (out)? canvas.height * 0.9: canvas.height * 1.1
+  let dx = (out)? canvas.width * 0.95: canvas.width * 1.05
+  let dy = (out)? canvas.height * 0.95: canvas.height * 1.05
   let diffx = dx - W
   let diffy = dy - H
   let ox = (W/2/W * diffx)
@@ -13975,7 +13979,7 @@ function caption () {
   ctx.fillStyle = document.getElementById("paintcolor").value
   ctx.strokeStyle = document.getElementById("paintcolor").value
   ctx.font = size+"pt " + face
-  let x = canvas.width/2, y = canvas.height - 32
+  let x = canvas.width/2, y = canvas.height - 62
   
   w = ctx.measureText(text).width
   ctx.fillText(text, x-w/2, y)
@@ -14312,7 +14316,6 @@ function blobs () {
   numshapes = 1 + document.getElementById("number").value/10
   numshapes *= shapemultiplier
   let radius = 1
-  //clip()
   for (let t = 0; t < numshapes; t++) {
     x = 0;
     y = 0;
@@ -14353,7 +14356,6 @@ function blobs () {
     drawPath(points, -W, 0)
     drawPath(points, +W, 0)
   }
-  //ctx.restore()
 }
 
 function tatter () {
