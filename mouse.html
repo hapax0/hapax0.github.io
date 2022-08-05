@@ -8,7 +8,7 @@
     </style>
   </head>
   <body bgcolor="#cccccc">
-  <button onclick="location.reload()">clear</button>
+  <button onclick="clearAll()">clear</button>
   &nbsp;<input type='file' name='img' size='65' id='uploadimage' style="display:none;">
   <button onclick="openFile()" id="imgloader" title="open image file...">open...</button>
   &nbsp;
@@ -23,7 +23,7 @@
     <option>lines</option>
   </select>
 
-  <br>
+  <br><br>
   <canvas id="myCanvas" width="800" height="800"></canvas>
   <textarea id="text1" name="text1" rows="4" cols="80" wrap="soft"></textarea>
   <script>
@@ -34,6 +34,17 @@
     
     let buffer = []
     let allpoints = []
+    
+    function clearAll () {
+      buffer = []
+      allpoints = []
+      cps = []
+      i = 0
+      let canvas = document.getElementById("myCanvas")
+      ctx = canvas.getContext('2d');
+      ctx.fillStyle = 'white'
+      ctx.fillRect(0,0,canvas.width,canvas.height)
+    }
     
     function closePath () {
       if (i === 0)
