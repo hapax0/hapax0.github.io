@@ -17,6 +17,11 @@
   <button onclick="showPoints()">points</button>
   &nbsp;
   <button onclick="copy()">copy</button>
+  &nbsp;
+  <select id="type" >
+    <option>curves</option>
+    <option>lines</option>
+  </select>
 
   <br>
   <canvas id="myCanvas" width="800" height="800"></canvas>
@@ -48,32 +53,49 @@
     let cps = [];
     let i = 0;
     canvas.addEventListener('mousedown', function(evt) {
+      let type = document.getElementById("type").value
       let mousePos = getMousePos(canvas, evt);
-      if (i === 0) {
-        context.beginPath();
-        context.moveTo(mousePos.x, mousePos.y);
-        context.fillStyle = '#0000ff';
-        context.fillRect(mousePos.x, mousePos.y, 5, 5);
-        allpoints.push([mousePos.x, mousePos.y] )
+      if (type === "curves") {
+        if (i === 0) {
+          context.beginPath();
+          context.moveTo(mousePos.x, mousePos.y);
+          context.fillStyle = '#0000ff';
+          context.fillRect(mousePos.x, mousePos.y, 5, 5);
+          allpoints.push([mousePos.x, mousePos.y] )
+        } else
+        if (i % 3 !== 0) {
+          cps.push([mousePos.x, mousePos.y]);
+          message = "";
+          context.fillStyle = '#ff0000';
+          context.fillRect(mousePos.x, mousePos.y, 6, 6);
+          // draw a line yo CP
+          allpoints.push([mousePos.x, mousePos.y] )
+          
+        } else
+        if (i % 3 === 0) {
+          context.bezierCurveTo(cps[0][0], cps[0][1], cps[1][0], cps[1][1], mousePos.x, mousePos.y);
+          context.stroke();
+          message = '  ctx.bezierCurveTo(x+'+cps[0][0]+"*s+pet(p), y+"+cps[0][1]+"*s+pet(p), x+"+cps[1][0]+"*s+pet(p), y+"+cps[1][1]+'*s+pet(p), x+' + mousePos.x + '*s+pet(p), y+' + mousePos.y+'*s+pet(p));';
+          cps = [];
+          context.fillStyle = '#0000ff';
+          context.fillRect(mousePos.x, mousePos.y, 5, 5);
+          allpoints.push([mousePos.x, mousePos.y] )
+        }
       } else
-      if (i % 3 !== 0) {
-        cps.push([mousePos.x, mousePos.y]);
-        message = "";
-        context.fillStyle = '#ff0000';
-        context.fillRect(mousePos.x, mousePos.y, 6, 6);
-        // draw a line yo CP
-        allpoints.push([mousePos.x, mousePos.y] )
-        
-      } else
-      if (i % 3 === 0) {
-        context.bezierCurveTo(cps[0][0], cps[0][1], cps[1][0], cps[1][1], mousePos.x, mousePos.y);
-        context.stroke();
-        message = '  ctx.bezierCurveTo(x+'+cps[0][0]+"*s+pet(p), y+"+cps[0][1]+"*s+pet(p), x+"+cps[1][0]+"*s+pet(p), y+"+cps[1][1]+'*s+pet(p), x+' + mousePos.x + '*s+pet(p), y+' + mousePos.y+'*s+pet(p));';
-        cps = [];
-        context.fillStyle = '#0000ff';
-        context.fillRect(mousePos.x, mousePos.y, 5, 5);
-        allpoints.push([mousePos.x, mousePos.y] )
-      }
+        if (type === "lines") {
+          context.fillStyle = '#0000ff';
+          if (i === 0) {
+            context.beginPath();
+            context.moveTo(mousePos.x, mousePos.y);
+            context.fillRect(mousePos.x, mousePos.y, 5, 5);
+            allpoints.push([mousePos.x, mousePos.y] )
+          } else {
+            context.lineTo(mousePos.x, mousePos.y);
+            context.stroke();
+            context.fillRect(mousePos.x, mousePos.y, 5, 5);
+            allpoints.push([mousePos.x, mousePos.y])
+          }
+        }
       i++;
     }, false);
 
@@ -81,8 +103,11 @@
       closePath()
       showPoints()
       let copyText = document.getElementById("text1");
+     // if (document.getElementById("type").value === "curves")
+       //   copyText
       copyText.select();
       copyText.setSelectionRange(0, 99999); /* For mobile devices */
+      if (document.getElementById("type").value === "curves")
       navigator.clipboard.writeText(copyText.value);
     }
 
