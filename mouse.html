@@ -103,11 +103,8 @@
       closePath()
       showPoints()
       let copyText = document.getElementById("text1");
-     // if (document.getElementById("type").value === "curves")
-       //   copyText
       copyText.select();
       copyText.setSelectionRange(0, 99999); /* For mobile devices */
-      if (document.getElementById("type").value === "curves")
       navigator.clipboard.writeText(copyText.value);
     }
 
