@@ -227,6 +227,8 @@ id="ff" onclick="testImage('framefunctions')" title="frame functions"><svg xmlns
   <path d="M3.5.5A.5.5 0 0 1 4 1v13h13a.5.5 0 0 1 0 1h-2v2a.5.5 0 0 1-1 0v-2H3.5a.5.5 0 0 1-.5-.5V4H1a.5.5 0 0 1 0-1h2V1a.5.5 0 0 1 .5-.5zm2.5 3a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4H6.5a.5.5 0 0 1-.5-.5z"/>
 </svg></button>
    <select id="framefunctions">
+     <option value="zoomOutImage">zoom out</option>
+     <option value="zoomImage">zoom in</option>
      <option value="rectFrame">rect frame</option>
      <option value="roundedFrame">rounded frame</option>
      <option value="frameCircle">circle frame</option>
@@ -235,21 +237,20 @@ id="ff" onclick="testImage('framefunctions')" title="frame functions"><svg xmlns
      <option value="frame">jaggy frame</option>
      <option value="ripFrame">rip frame</option>
      <option value="makeSquare">pad to square</option>
-     <option value="cropSquare" selected>crop to square</option>
-     <option value="cropInstaxMini">crop to instax</option>
+     <option value="cropSquare">crop to square</option>
+     <option value="make4to5">pad to 4:5</option>
+     <!--option value="cropInstaxMini">crop to instax</option-->
      <option value="leftCut" style="color:red">left cut</option>
      <option value="halfRip" style="color:red">left rip</option>
      <option value="leftClip" style="color:red">left clip</option>
-     <option value="makeSquare2">pad bottom to square</option>
-     <option value="make4to5">pad to 4:5</option>
-     <option value="expandMarginsAll">expand margins</option>
-     <option value="expandMarginsDown">expand bottom</option>
-     <option value="zoomImage">zoom in</option>
-     <option value="zoomOutImage">zoom out</option>
      <option value="nudgeRight" style="color:red">nudge horizontal</option>
      <option value="nudgeDown" style="color:red">nudge down</option>
      <option value="nudgehalfdown" style="color:red">nudge down right</option>
      <option value="nudgeCW" style="color:red">nudge angle</option>
+     <!--option value="makeSquare2">pad bottom to square</option-->
+     <option value="expandMarginsAll">expand margins</option>
+     <option value="expandMarginsDown">expand bottom</option>
+     
    </select>
    </td>
    <td rowspan='6'>
@@ -8725,17 +8726,22 @@ function moleskine2 () { // 3D
   let small = true, half = true
   let W = canvas.width, H = canvas.height
   document.getElementById("paintcolor").value = "#fdffee"
+  ctx.clearRect(0,0,W,H)
   ctx.shadowColor = '#404040';
   let j = 0, x = 20, y = 20, d = 0, BF = true
   for(;j < 5; j++) {
+    BF = true
     if (j % 2 ===0)
       ctx.fillStyle = randomColorLight()
     else
       ctx.fillStyle = "#ececdb"//randomColorLight()
+    
     if (j === 0) {
-      ctx.shadowBlur = 20
-      ctx.shadowOffsetX = 9;
-      ctx.shadowOffsetY = 9;
+      ctx.fillStyle = "#000000"
+      ctx.shadowBlur = 8 + Math.random() * 20
+      ctx.shadowOffsetX = 5 + Math.random() * 6;
+      ctx.shadowOffsetY = 5 + Math.random() * 6;
+      BR = false
     }
     if (j === 4) {
       BF = false
