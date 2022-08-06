@@ -545,8 +545,8 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
       <option value="datedue">date due</option>
       <option value="interdepartmental">interdepartmental</option>
       <option value="moleskine">moleskine</option>
-      <option value="moleskine2" selected>moleskine 3D</option>
-      <option value="sketchpad">sketch pad</option>
+      <option value="moleskine2" >moleskine 3D</option>
+      <option value="sketchpad" selected>sketch pad</option>
       <option value="gridpaper" >grid paper</option>
       <option value="linedPad">lined pad</option>
       <option value="spiralbound">spiral bound</option>
@@ -7741,7 +7741,17 @@ function sketchpad () {
   ctx.globalCompositeOperation = "source-over"
   ctx.fillRect(0, 0, W, H)
   ctx.globalCompositeOperation = "destination-out"
+  /*
+  ctx.shadowColor = "#403030"
+  ctx.shadowBlur = 10
+  ctx.shadowOffsetY = 0
+  ctx.shadowOffsetX = 9
+  */
   ctx.fillRect(pad, pad, W/2-pad*2.5, H-pad*4)
+  ctx.shadowBlur = 0
+  ctx.shadowOffsetY = 0
+  ctx.shadowOffsetX = 0
+  
   ctx.fillRect(W/2, pad*3, W/2-pad, H-pad*4)
   ctx.fillStyle = "#101010"
   ctx.strokeStyle = "#867033"
@@ -7834,19 +7844,28 @@ function sketchpage () {
   let alpha = document.getElementById("opacity").value
   let mode = ctx.globalCompositeOperation
   let small = true, half = true
-  let pad = 10//Math.floor(H * 0.01)
-  ctx.fillStyle = "#101010"
+  let pad = 40//Math.floor(H * 0.01)
+  ctx.fillStyle = color//"#101010"
   ctx.globalCompositeOperation = "source-over"
-  ctx.fillRect(0, 0, W, H)
-  ctx.globalCompositeOperation = "destination-out"
-  ctx.fillRect(2, pad, W-pad, H-pad*2)
+  ctx.clearRect(0, 0, H, H)
+
+  ctx.shadowColor = "#403030"
+  ctx.shadowBlur = 10 + Math.random() * 10
+  ctx.shadowOffsetY = 4 + Math.random() * 5
+  ctx.shadowOffsetX = 4 + Math.random() * 5
+  
+  ctx.fillRect(pad, pad, W-pad*2, H-pad*2)
+  ctx.shadowBlur = 0
+  ctx.shadowOffsetY = 0
+  ctx.shadowOffsetX = 0
+  
   ctx.fillStyle = "#101010"
   ctx.strokeStyle = "#867033"
   ctx.lineWidth = 5
   ctx.lineCap = "round"
   ctx.lineJoin = "round"
   ctx.globalCompositeOperation = "source-over"
-  let x = -50, y = 22, i = 0
+  let x = -8, y = pad - 40, i = 0
   let r = 56
 
   let sa = Math.PI * 1.35, ea = Math.PI * 1.78
@@ -7855,42 +7874,46 @@ function sketchpage () {
   let SQUARE = Math.random() > 0.5
   let RIPPED = Math.random() > 0.5
   let yoff = 0
+  let a = randomPick([8,9,10,11,12,13])
+
   if (SQUARE)
-    yoff = -7
+    yoff = -18
   while (y < H - 50) {
     ctx.lineWidth = 5
-
+    
     ctx.strokeStyle = "#555555"
     ctx.globalCompositeOperation = "darken"
     ctx.globalAlpha = 0.5
-    if (!RIPPED) {
+    /*if (!RIPPED) {
       //shadow strokes
       // upper strokes
       ctx.beginPath()
       ctx.arc(x+60, y-20, r-2, sa2, ea2)
-      ctx.stroke()
+      //ctx.stroke()
         
       ctx.beginPath()
       ctx.arc(x+60, y-28, r-2, sa3, ea3)
-      ctx.stroke()
+    //  ctx.stroke()
       // lower strokes
       ctx.beginPath()
       ctx.arc(x+60, y-6, r-2, sa2, ea2)
-      ctx.stroke()
+    //  ctx.stroke()
         
       ctx.beginPath()
       ctx.arc(x+60, y-12, r-2, sa3, ea3)
-      ctx.stroke()
-    }
+     // ctx.stroke()
+    }*/
     
     ctx.globalCompositeOperation = "source-over"
-    
     ctx.strokeStyle = "#867033"
     ctx.globalAlpha = 1.0
-    
+    ctx.globalCompositeOperation = "destination-out"
+
     if (SQUARE) {
-      ctx.fillRect(x,y,24,24)
-      ctx.fillRect(x+80,y+pad*1.5,24,24)
+      
+      ctx.fillRect(x+24,y-pad+a,24,24) // ripp
+      ctx.fillRect(x+80,y+pad*1.5,24,24) // hol
+      
     } else {
       ctx.beginPath()
       ctx.arc(x+14, y+12, 14, 0, Math.PI * 2)
@@ -7909,8 +7932,9 @@ function sketchpage () {
       let big = 0
       if (Math.random() > 0.97)
         big += 58
+      y += a
       ctx.beginPath()
-      ctx.moveTo(0, y+24+pet(19)+yoff)
+      ctx.moveTo(0, y+2+pet(19)+yoff)
       ctx.lineTo(x+90, y+24+pet(9)+yoff)
       ctx.lineTo(x+90, y+30+pet(7)+yoff+big)
       ctx.lineTo(0, y+30 +pet(7)+yoff+big)
@@ -7918,17 +7942,17 @@ function sketchpage () {
       ctx.fill();
       //far left edge
       ctx.beginPath()
-      ctx.moveTo(0, y+24+pet(9)+yoff)
+      ctx.moveTo(0, y+2+pet(9)+yoff)
       ctx.lineTo(x+52 +pet(5), y+24+pet(9)+yoff)
       ctx.lineTo(x+53+pet(5), y+83+pet(9)+yoff+big)
       ctx.lineTo(0, y+83 +pet(14)+yoff+big)
       ctx.closePath()
-      ctx.fill();
+      //ctx.fill();
       
       //ctx.fillStyle = "#101010"
     } else {
       //rings
-      ctx.beginPath()
+    /*  ctx.beginPath()
       ctx.arc(x+46, y+54, r, sa, ea)
       ctx.stroke()
       ctx.beginPath()
@@ -7945,7 +7969,7 @@ function sketchpage () {
       //lower glint
       ctx.beginPath()
       ctx.arc(x+43, y+68-3, r-2, sa+0.75, sa+0.8)
-      ctx.stroke()
+      ctx.stroke()*/
     }
     y += 55
   }
