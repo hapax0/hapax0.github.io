@@ -13178,6 +13178,7 @@ function zoomImage (out) {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let mode = ctx.globalCompositeOperation
+  globalCompositeOperation = "source-over"
   let a = ctx.globalAlpha
   ctx.globalAlpha = 1.0
   let W = canvas.width, H = canvas.height
@@ -13206,6 +13207,7 @@ function zoom () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let mode = ctx.globalCompositeOperation
+  globalCompositeOperation = "source-over"
   let a = ctx.globalAlpha
   ctx.globalAlpha = 1.0
   ocanvas.height = canvas.height
@@ -13228,6 +13230,7 @@ function zoom_neg () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let mode = ctx.globalCompositeOperation
+  globalCompositeOperation = "source-over"
   let a = ctx.globalAlpha
   ctx.globalAlpha = 1.0
   ocanvas.height = canvas.height
