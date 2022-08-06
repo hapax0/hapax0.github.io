@@ -7737,11 +7737,8 @@ function sketchpad () {
   let small = true, half = true
   let pad = 40//Math.floor(H * 0.01)
   ctx.fillStyle = color
- // ctx.fillStyle = "#101010"
   ctx.globalCompositeOperation = "source-over"
-//  ctx.fillRect(0, 0, W, H)
- // ctx.globalCompositeOperation = "destination-out"
-  //ctx.clearRect(0,0,W,H)
+
   ctx.shadowColor = "#403030"
   ctx.shadowBlur = 15 + Math.random() * 5
   ctx.shadowOffsetY = 5 + Math.random() * 5
@@ -13204,7 +13201,7 @@ function zoomImage (out) {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let mode = ctx.globalCompositeOperation
-  globalCompositeOperation = "source-over"
+  ctx.globalCompositeOperation = "source-over"
   let a = ctx.globalAlpha
   ctx.globalAlpha = 1.0
   let W = canvas.width, H = canvas.height
@@ -13233,7 +13230,7 @@ function zoom () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let mode = ctx.globalCompositeOperation
-  globalCompositeOperation = "source-over"
+  ctx.globalCompositeOperation = "source-over"
   let a = ctx.globalAlpha
   ctx.globalAlpha = 1.0
   ocanvas.height = canvas.height
@@ -13256,7 +13253,7 @@ function zoom_neg () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let mode = ctx.globalCompositeOperation
-  globalCompositeOperation = "source-over"
+  ctx.globalCompositeOperation = "source-over"
   let a = ctx.globalAlpha
   ctx.globalAlpha = 1.0
   ocanvas.height = canvas.height
