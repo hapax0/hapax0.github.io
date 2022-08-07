@@ -7865,43 +7865,26 @@ function sketchpage () {
   ctx.lineCap = "round"
   ctx.lineJoin = "round"
   ctx.globalCompositeOperation = "source-over"
-  let x = -8, y = pad - 40, i = 0
+  let x = -8, y = pad + 20, i = 0
   let r = 56
 
   let sa = Math.PI * 1.35, ea = Math.PI * 1.78
   let sa2 = Math.PI * 0.56, ea2 = Math.PI * 0.81
   let sa3 = Math.PI * 0.36, ea3 = sa2
   let SQUARE = Math.random() > 0.5
-  let RIPPED = Math.random() > 0.5
+  let RIPPED = Math.random() > 0.3
   let yoff = 0
-  let a = randomPick([0,1,2,3,4])
+  let a = 1//randomPick([0,1,2,3,4])
   if (SQUARE)
-    yoff = -18
-  while (y < H - 50) {
+    y -= 12
+  let ct = 0
+  while (y < H - 76) {
+    ct++
     ctx.lineWidth = 5
     
     ctx.strokeStyle = "#555555"
     ctx.globalCompositeOperation = "darken"
     ctx.globalAlpha = 0.5
-    /*if (!RIPPED) {
-      //shadow strokes
-      // upper strokes
-      ctx.beginPath()
-      ctx.arc(x+60, y-20, r-2, sa2, ea2)
-      //ctx.stroke()
-        
-      ctx.beginPath()
-      ctx.arc(x+60, y-28, r-2, sa3, ea3)
-    //  ctx.stroke()
-      // lower strokes
-      ctx.beginPath()
-      ctx.arc(x+60, y-6, r-2, sa2, ea2)
-    //  ctx.stroke()
-        
-      ctx.beginPath()
-      ctx.arc(x+60, y-12, r-2, sa3, ea3)
-     // ctx.stroke()
-    }*/
     
     ctx.globalCompositeOperation = "source-over"
     ctx.strokeStyle = "#867033"
@@ -7909,16 +7892,8 @@ function sketchpage () {
     ctx.globalCompositeOperation = "destination-out"
 
     if (SQUARE) {
-      
-      ctx.fillRect(x+24,y-pad+a,24,24) // ripp
-      ctx.fillRect(x+80,y+pad*1.5,24,24) // hol
-      
+      ctx.fillRect(x+78,y+27, 24, 24) // hole
     } else {
-      ctx.beginPath()
-      ctx.arc(x+14, y+12, 14, 0, Math.PI * 2)
-      ctx.closePath()
-      ctx.fill()
-      
       ctx.beginPath()
       ctx.arc(x+90, y+27, 14, 0, Math.PI * 2)
       ctx.closePath()
@@ -7926,51 +7901,19 @@ function sketchpage () {
     }
     if (RIPPED) {
       ctx.globalAlpha = 1.0
-     // console.log(x,y)
-      //ctx.fillStyle = "red"
       let big = 0
       if (Math.random() > 0.97)
         big += 58
-      y += a
+      //y += a
       ctx.beginPath()
-      ctx.moveTo(0, y+2+pet(19)+yoff)
+      ctx.moveTo(0, y+4+pet(19)+yoff)
       ctx.lineTo(x+80, y+24+pet(9)+yoff)
       ctx.lineTo(x+80, y+30+pet(7)+yoff+big)
       ctx.lineTo(0, y+30 +pet(7)+yoff+big)
       ctx.closePath()
       ctx.fill();
-      //far left edge
-      ctx.beginPath()
-      ctx.moveTo(0, y+2+pet(9)+yoff)
-      ctx.lineTo(x+38 +pet(5), y+24+pet(9)+yoff)
-      ctx.lineTo(x+38+pet(5), y+83+pet(9)+yoff+big)
-      ctx.lineTo(0, y+83 +pet(14)+yoff+big)
-      ctx.closePath()
-      //ctx.fill();
-      
-      //ctx.fillStyle = "#101010"
-    } else {
-      //rings
-    /*  ctx.beginPath()
-      ctx.arc(x+46, y+54, r, sa, ea)
-      ctx.stroke()
-      ctx.beginPath()
-      ctx.arc(x+43, y+68-2, r-2, sa, ea)
-      ctx.stroke()
-      
-      // upper glint
-      ctx.strokeStyle = "#ffffff"
-      ctx.lineWidth = 3
-  
-      ctx.beginPath()
-      ctx.arc(x+46, y+53, r,  sa+0.7, sa+0.75)
-      ctx.stroke()
-      //lower glint
-      ctx.beginPath()
-      ctx.arc(x+43, y+68-3, r-2, sa+0.75, sa+0.8)
-      ctx.stroke()*/
     }
-    y += 55
+    y += 60
   }
   ctx.globalCompositeOperation = mode
   document.getElementById("opacity").value = alpha
