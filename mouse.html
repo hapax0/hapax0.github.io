@@ -32,6 +32,7 @@
       document.getElementById("uploadimage").addEventListener("change", drawFile, true)
     }
     
+    let colors = ['red', 'green', 'blue', 'orange', 'purple', 'yellow']
     let buffer = []
     let allpoints = []
     
@@ -51,8 +52,12 @@
         return
       buffer.push(allpoints)
       allpoints = []
-      i = 0
       context.closePath()
+      context.globalAlpha = 0.2
+      context.FillStyle = 'red'//colors[Math.floor(Math.random() * colors.length)]
+      context.fill()
+      context.globalAlpha = 1.0
+      i = 0
     }
     
     let canvas = document.getElementById('myCanvas');
@@ -132,7 +137,7 @@
       };
     }
 
-    function writeMessage(canvas, message) {
+    function writeMessage (canvas, message) {
       var context = canvas.getContext('2d');
       context.fillStyle = '#ffffff';
       context.fillRect(0, 0, canvas.width, canvas.height);
