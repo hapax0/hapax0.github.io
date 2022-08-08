@@ -13965,8 +13965,8 @@ function caption () {
   ctx.fillStyle = document.getElementById("paintcolor").value
   ctx.strokeStyle = document.getElementById("paintcolor").value
   ctx.font = size+"pt " + face
-  let x = canvas.width/2, y = canvas.height - 62
-  
+  let x = canvas.width/2, y = canvas.height/2+size/2
+  console.log(size)
   w = ctx.measureText(text).width
   ctx.fillText(text, x-w/2, y)
 }
@@ -14125,7 +14125,7 @@ function skinnyRings () {
   ctx.globalAlpha = (document.getElementById("opacity").value) /100
   alpha0 = ctx.globalAlpha
   ctx.strokeStyle = document.getElementById("paintcolor").value
-  ctx.lineWidth = 1
+  ctx.lineWidth = 5//1
   ctx.lineCap = 'round'
   ctx.lineJoin = 'round'
   linewidth0 = ctx.lineWidth
@@ -14146,7 +14146,7 @@ function skinnyRings () {
     ctx.beginPath();
     ctx.arc(x,y,radius,start,end)
     ctx.stroke();
-    radius += 1 + Math.random() * 3
+    radius += 15//1 + Math.random() * 3
     
   }
 }
@@ -14160,10 +14160,10 @@ function skinnyLines () { // vertical lines
   ctx.globalAlpha = (document.getElementById("opacity").value) /100
   alpha0 = ctx.globalAlpha
   ctx.strokeStyle = document.getElementById("paintcolor").value
-  ctx.lineWidth = 1
+  ctx.lineWidth = 5//1
   ctx.lineCap = 'round'
   ctx.lineJoin = 'round'
-  linewidth0 = ctx.lineWidth
+  linewidth0 = 5//ctx.lineWidth
   let radius = document.getElementById("featuresize").value/(2*6.25)
  // let rows = document.getElementById("rows").value*8
   let inc = ctx.lineWidth*3//512/rows
@@ -14181,7 +14181,7 @@ function skinnyLines () { // vertical lines
     ctx.moveTo(-20, y)
     ctx.lineTo(canvas.width+20, y)
     ctx.stroke();
-    y += y_inc + pet(2)
+    y += 15//y_inc + pet(2)
   }
 }
 
