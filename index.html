@@ -5327,7 +5327,7 @@ function chair () {
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let colors = shuffle(['red', 'blue', 'yellow', 'orange', 'purple', "green"])
   let grunge = document.getElementById("grungy").checked
-  ctx.lineWidth = 2+document.getElementById("featuresize").value/10
+  ctx.lineWidth = 1 + Math.floor(document.getElementById("featuresize").value/10)
   ctx.lineCap = "round"
   let points = []
   points[0] = [margin, W/2+margin/2]
@@ -6291,47 +6291,27 @@ function waves () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let W = canvas.width, H = canvas.height
-  ctx.clearRect(0,0,canvas.width,canvas.height)
-  ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
+  ctx.lineWidth = 1 + Math.floor(document.getElementById("featuresize").value/10)
+  inc = ctx.lineWidth * 3
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  let colors = shuffle(getCurrentPalette())
-  let mode = document.getElementById("mode").value
-  let alpha = document.getElementById("opacity").value
-  let pad = 40
+  let color = document.getElementById("paintcolor").value
+  let pad = 0
   let x = pad, y = pad
-  ctx.lineWidth = 15 + pet(14)
-  ctx.strokeStyle = colors[1]
-  ctx.fillStyle = colors[1]
-  ctx.clearRect(0,0,W,H)
-  let limit = W-pad
+  ctx.strokeStyle = color
+  ctx.fillStyle = color
   let i = 0
   while (y < H-pad) {
     ctx.beginPath()
     ctx.moveTo(x,y)
     while (x < W - pad) {
       x += 3
-      y = y + Math.sin(x/10) * 2
+      y = y + Math.sin(x/inc) * 2
       ctx.lineTo(x,y)
     }
-    limit -= Math.random() * 4
     ctx.stroke()
-    y += 25 + pet(9)
+    y += inc
     x = pad
   }
-  
-  // punch holes
-  ctx.save()
-  ctx.beginPath()
-  let cx = W/2, cy = H/2
-  ctx.arc(cx+pet(13), cy+pet(13), 222+pet(3), 0, Math.PI*2) // anti minutes
-  ctx.clip()
-  ctx.clearRect(0,0,W,H)
-  ctx.restore()
-  ctx.fillStyle = colors[3]
-  ctx.beginPath()
-  ctx.arc(cx,cy,222,0,Math.PI*2)
-  ctx.closePath()
- // ctx.fill()
 }
 
 function rings () {
@@ -7403,7 +7383,7 @@ function necker () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.clearRect(0,0,canvas.width,canvas.height)
-  ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
+  ctx.lineWidth = 1 + Math.floor(document.getElementById("featuresize").value/10)
   let W = canvas.width
   let margin = W/20
   let w4 = (W-2*margin)/(2+Math.floor(Math.random() * 10))//document.getElementById("rows").value
@@ -14124,7 +14104,7 @@ function skinnyRings () {
   let x_inc = 20, y_inc = 20
   ctx.globalAlpha = (document.getElementById("opacity").value) /100
   ctx.strokeStyle = document.getElementById("paintcolor").value
-  ctx.lineWidth = 2 + Math.floor(document.getElementById("featuresize").value/25)
+  ctx.lineWidth = 1 + Math.floor(document.getElementById("featuresize").value/10)
   let inc = 3 * ctx.lineWidth
   ctx.lineCap = 'round'
   ctx.lineJoin = 'round'
@@ -14162,7 +14142,7 @@ function skinnyLines () { // vertical lines
   ctx.lineWidth = 5//1
   ctx.lineCap = 'round'
   ctx.lineJoin = 'round'
-  ctx.lineWidth = 2 + Math.floor(document.getElementById("featuresize").value/25)
+  ctx.lineWidth = 1 + Math.floor(document.getElementById("featuresize").value/10)
   let inc = ctx.lineWidth*3//512/rows
   numlines = 0;
   x = -20, y = 0 + ctx.lineWidth/2 // should try different initial offset
@@ -15097,8 +15077,7 @@ function drawShape (line) {
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.globalCompositeOperation = document.getElementById("mode").value
   let alt = document.getElementById("grungy").checked
-  let linewidth = 1 + document.getElementById("featuresize").value/10
-  ctx.lineWidth = linewidth
+  ctx.lineWidth = 1 + Math.floor(document.getElementById("featuresize").value/10)
   ctx.lineCap = "round"
   ctx.lineJoin = "round"
   let pm = document.getElementById("number").value/4000
