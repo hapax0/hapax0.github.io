@@ -14020,7 +14020,7 @@ function slantedLines (cross) {
   ctx.lineWidth = 1+document.getElementById("featuresize").value/10
   linewidth0 = ctx.lineWidth
   let inc = ctx.lineWidth * 3
-  let x = inc, y = inc 
+  let x = inc, y = inc
   let x_inc = inc, y_inc = inc
   for (var i = 0; i < 1000; i++) {
     ctx.beginPath();
@@ -14043,7 +14043,7 @@ function slantedLines (cross) {
   }
 }
 
-function linearSpiral () { // make like skinny Rings 
+function linearSpiral () { // make like skinny Rings
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let W = canvas.width, H = canvas.height
@@ -14053,13 +14053,13 @@ function linearSpiral () { // make like skinny Rings
   let inc = 3 * ctx.lineWidth
   ctx.lineCap = 'round'
   ctx.lineJoin = 'round'
-  ctx.globalAlpha = 1
+  ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.strokeStyle = document.getElementById("paintcolor").value
   ctx.beginPath();
   let x = LASTCLICK[0], y = LASTCLICK[1], a = ab, b = ab
   ctx.moveTo(x, y);
   let angle = Math.random() * Math.PI * 2;
-  let increase = 0.1  
+  let increase = 0.1
   while (x < W*2 && y < H*2) {
     x = x + (a + b * angle) * Math.cos(angle);
     y = y + (a + b * angle) * Math.sin(angle);
