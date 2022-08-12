@@ -12185,18 +12185,18 @@ function trifold () {
   let ctx = canvas.getContext("2d")
   let nudge = canvas.height/20
   let alpha = document.getElementById("opacity").value
-  let colors = shuffle(["#ffffff", "#000000"])
+  let colors = (["#ffffff", "#000000"])
   ctx.globalAlpha = 0.1
   let x1 = canvas.width/2, y1 = 0, x2 = canvas.width/2, y2 = canvas.height/3
-  ctx.fillStyle = randomGradientRect(canvas, colors[0], x1, y2, x2, y1 + nudge)// - Math.random() * canvas.width/3)
+  ctx.fillStyle = randomGradientRect(canvas, colors[1], x1, y2, x2, y1 + nudge)// - Math.random() * canvas.width/3)
   ctx.fillRect(0,0,canvas.width,canvas.height/3)
   
   y1 = canvas.height/3, y2 = 2*canvas.height/3
-  ctx.fillStyle = randomGradientRect(canvas, colors[1], x1, y1, x2, y2 - nudge)//Math.random() * canvas.width/3)
+  ctx.fillStyle = randomGradientRect(canvas, colors[0], x1, y1, x2, y2 - nudge)//Math.random() * canvas.width/3)
   ctx.fillRect(0, canvas.height/3, canvas.width, 2*canvas.height/3)
 
   y1 = 2*canvas.height/3, y2 = canvas.height
-  ctx.fillStyle = randomGradientRect(canvas, colors[0], x1, y1, x2, y2 - nudge)//Math.random() * canvas.width/3)
+  ctx.fillStyle = randomGradientRect(canvas, colors[1], x1, y1, x2, y2 - nudge)//Math.random() * canvas.width/3)
   ctx.fillRect(0, 2*canvas.height/3, canvas.width, canvas.height)
   ctx.globalAlpha = alpha/100
 }
@@ -12297,7 +12297,7 @@ function nudgeCanvas (right) {
   else
     ctx.drawImage(canvasoff, 0, value)
   ctxoff.clearRect(0,0,canvasoff.width, canvasoff.height)
-  syncBackground(canvas)
+//  syncBackground(canvas)
 }
 
 async function fill (canvas, fs) {
