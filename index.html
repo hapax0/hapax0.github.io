@@ -6257,25 +6257,26 @@ function waves () {
   let ctx = canvas.getContext("2d");
   let W = canvas.width, H = canvas.height
   ctx.lineWidth = 1 + Math.floor(document.getElementById("featuresize").value/10)
-  inc = ctx.lineWidth * 3
+  inc = ctx.lineWidth * 2
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let color = document.getElementById("paintcolor").value
   let pad = 0
-  let x = pad, y = pad
+  let x = pad, y = -20//pad
   ctx.strokeStyle = color
   ctx.fillStyle = color
-  let i = 0
-  while (y < H-pad) {
+  let i = 0, offset = 0
+  while (y < H+40) {
     ctx.beginPath()
     ctx.moveTo(x,y)
     while (x < W - pad) {
       x += 3
-      y = y + Math.sin(x/inc) * 2
+      y = y + Math.sin((x+offset)/inc) * 2
       ctx.lineTo(x,y)
     }
     ctx.stroke()
     y += inc
     x = pad
+    //offset += inc * 8
   }
 }
 
@@ -6851,6 +6852,8 @@ function nudgehalfdown () {
   swapWithOff()
   flipH()
   leftClip()
+  document.getElementById("rednumber").value = 10
+  nudgeRight()
   flipH()
   swapWithOff()
   document.getElementById("rednumber").value = 30
@@ -6859,7 +6862,6 @@ function nudgehalfdown () {
   document.getElementById("opacity").value = 100
   pasteFromOff()
   document.getElementById("opacity").value = a
-  
 }
 
 function network () {
@@ -7677,24 +7679,45 @@ function sketchpad () {
   const H = canvas.height, W = canvas.width
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
   let color = document.getElementById("paintcolor").value
-  let alpha = document.getElementById("opacity").value
+  let alpha = document.getElementById("opacity").value/100//
   let mode = ctx.globalCompositeOperation
   let small = true, half = true
   let pad = 40//Math.floor(H * 0.01)
   ctx.fillStyle = color
   ctx.globalCompositeOperation = "source-over"
-
+  ctx.globalAlpha = 0.2
+  ctx.shadowColor = "#606060"
+  ctx.shadowBlur = 5 + Math.random() * 5
+  ctx.shadowOffsetY = 2
+  ctx.shadowOffsetX = -2 + Math.random() 
+  
+  ctx.fillRect(pad-10, pad+10, W/2-pad-14, H-pad*3)
+  ctx.clearRect(pad-10, pad+10, W/2-pad-14, H-pad*3)
+  ctx.fillRect(pad-8, pad+8, W/2-pad-14, H-pad*3)
+  ctx.clearRect(pad-8, pad+8, W/2-pad-14, H-pad*3)
+  ctx.fillRect(pad-6, pad+6, W/2-pad-14, H-pad*3)
+  ctx.clearRect(pad-6, pad+6, W/2-pad-14, H-pad*3)
+  ctx.fillRect(pad-4, pad+4, W/2-pad-14, H-pad*3)
+  ctx.clearRect(pad-4, pad+4, W/2-pad-14, H-pad*3)
+  
+  ctx.fillRect(W/2-6, pad*1.5+6, W/2-pad, H-pad*3)
+  ctx.clearRect(W/2-6, pad*1.5+6, W/2-pad, H-pad*3)
+  ctx.fillRect(W/2-4, pad*1.5+4, W/2-pad, H-pad*3)
+  ctx.clearRect(W/2-4, pad*1.54+4, W/2-pad, H-pad*3)
+  
+  ctx.globalAlpha = 0.7
   ctx.shadowColor = "#403030"
   ctx.shadowBlur = 15 + Math.random() * 5
-  ctx.shadowOffsetY = 5 + Math.random() * 5
-  ctx.shadowOffsetX = 5 + Math.random() * 5
+  ctx.shadowOffsetY = 7 + Math.random() * 3
+  ctx.shadowOffsetX = -7 + Math.random() * 2
   
   ctx.fillRect(pad, pad, W/2-pad-14, H-pad*3)
   ctx.fillRect(W/2, pad*1.5, W/2-pad, H-pad*3)
   
   ctx.clearRect(pad, pad, W/2-pad-14, H-pad*3)
   ctx.clearRect(W/2, pad*1.5, W/2-pad, H-pad*3)
-  
+  ctx.globalAlpha = alpha
+
   ctx.shadowBlur = 0
   ctx.shadowOffsetY = 0
   ctx.shadowOffsetX = 0
@@ -7777,7 +7800,7 @@ function sketchpad () {
     y += 58
   }
   ctx.globalCompositeOperation = mode
-  document.getElementById("opacity").value = alpha
+ // document.getElementById("opacity").value = alpha
 }
 
 function sketchpage () {
