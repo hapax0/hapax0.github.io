@@ -1606,12 +1606,6 @@ function impasto (soft) {
   window[f](canvas)
   f = randomPick(functions)
   window[f](canvas)
-  
-  if (!soft) {
-    contrastImage(20)
-    //sharpenCanvas()
-   // emboseCanvas()
-  }
   //restore values
   ctx.globalCompositeOperation = mode
   refreshMode()
@@ -7683,33 +7677,30 @@ function sketchpad () {
   let mode = ctx.globalCompositeOperation
   let small = true, half = true
   let pad = 40//Math.floor(H * 0.01)
-  ctx.fillStyle = color
+ 
   ctx.globalCompositeOperation = "source-over"
-  ctx.globalAlpha = 0.2
-  ctx.shadowColor = "#606060"
-  ctx.shadowBlur = 5 + Math.random() * 5
-  ctx.shadowOffsetY = 2
-  ctx.shadowOffsetX = -2 + Math.random() 
-  
-  ctx.fillRect(pad-10, pad+10, W/2-pad-14, H-pad*3)
-  ctx.clearRect(pad-10, pad+10, W/2-pad-14, H-pad*3)
+  ctx.globalAlpha = 1.0
+
+  ctx.fillStyle = "#909090"
+  ctx.fillRect(pad-10+pet(8), pad+10+pet(8), W/2-pad-14, H-pad*3)
+  ctx.fillStyle = "#cccccc"
   ctx.fillRect(pad-8, pad+8, W/2-pad-14, H-pad*3)
-  ctx.clearRect(pad-8, pad+8, W/2-pad-14, H-pad*3)
+  ctx.fillStyle = "#dddddd"
   ctx.fillRect(pad-6, pad+6, W/2-pad-14, H-pad*3)
-  ctx.clearRect(pad-6, pad+6, W/2-pad-14, H-pad*3)
-  ctx.fillRect(pad-4, pad+4, W/2-pad-14, H-pad*3)
-  ctx.clearRect(pad-4, pad+4, W/2-pad-14, H-pad*3)
-  
+  ctx.fillStyle = "#ffffff"
+  ctx.fillRect(pad-4+pet, pad+4, W/2-pad-14, H-pad*3)
+
+  ctx.fillStyle = "#909090"
   ctx.fillRect(W/2-6, pad*1.5+6, W/2-pad, H-pad*3)
-  ctx.clearRect(W/2-6, pad*1.5+6, W/2-pad, H-pad*3)
+  ctx.fillStyle = "#ffffff"
   ctx.fillRect(W/2-4, pad*1.5+4, W/2-pad, H-pad*3)
-  ctx.clearRect(W/2-4, pad*1.54+4, W/2-pad, H-pad*3)
-  
-  ctx.globalAlpha = 0.7
+
+  ctx.fillStyle = color
+  ctx.globalAlpha = 0.5
   ctx.shadowColor = "#403030"
   ctx.shadowBlur = 15 + Math.random() * 5
-  ctx.shadowOffsetY = 7 + Math.random() * 3
-  ctx.shadowOffsetX = -7 + Math.random() * 2
+  ctx.shadowOffsetY = 12 + Math.random() * 3
+  ctx.shadowOffsetX = -12 + Math.random() * 2
   
   ctx.fillRect(pad, pad, W/2-pad-14, H-pad*3)
   ctx.fillRect(W/2, pad*1.5, W/2-pad, H-pad*3)
