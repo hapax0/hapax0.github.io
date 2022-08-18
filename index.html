@@ -550,7 +550,8 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
       <option value="interdepartmental">interdepartmental</option>
       <option value="moleskine">moleskine</option>
       <option value="moleskine2" >moleskine 3D</option>
-      <option value="sketchpad" selected>sketch pad</option>
+      <option value="sketchpad">sketch pad</option>
+      <option value="floppyPage" selected>stack of pages</option>
       <option value="gridpaper" >grid paper</option>
       <option value="linedPad">lined pad</option>
       <option value="spiralbound">spiral bound</option>
@@ -6229,20 +6230,37 @@ function makePalette () {
   ctx.clearRect(0,0,canvas.width,canvas.height)
   ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  let colors = shuffle(getCurrentPalette())
-  
+  let alt = document.getElementById("grungy").checked
+  let colors = getCurrentPalette()
+  if (ctx.globalAlpha == 1)
+    alert("Set opacity to < 1.0 for remix.")
   let mixcolor = document.getElementById("paintcolor").value
-  ctx.fillStyle = mixcolor
-  ctx.fillRect(0,0,W,H)
- 
-  ctx.fillStyle = colors[0]
-  ctx.fillRect(0, 0, 2*W/5, H)
-  ctx.fillStyle = colors[1]
-  ctx.fillRect(W/5, 0, 3*W/5, H)
-  ctx.fillStyle = colors[2]
-  ctx.fillRect(3*W/5, 0, W, H)
-
-  // fill background & extract?
+  if (!alt) {
+    ctx.fillStyle = mixcolor // mix with paintcolor
+    ctx.fillRect(0,0,W,H)
+    ctx.fillStyle = colors[0]
+    ctx.fillRect(0, 0, W/5, H)
+    ctx.fillStyle = colors[1]
+    ctx.fillRect(W/5, 0, W/5, H)
+    ctx.fillStyle = colors[2]
+    ctx.fillRect(2*W/5, 0, W/5, H)
+    ctx.fillStyle = colors[3]
+    ctx.fillRect(3*W/5, 0, W/5, H)
+    ctx.fillStyle = colors[4]
+    ctx.fillRect(4*W/5, 0, W/5, H)
+  } else {
+    //color = shuffle(colors) // internal mix
+    ctx.fillStyle = colors[0]
+    ctx.fillRect(0, 0, W, H)
+    ctx.fillStyle = colors[1]
+    ctx.fillRect(W/5, 0, W, H)
+    ctx.fillStyle = colors[2]
+    ctx.fillRect(2*W/5, 0, W, H)
+    ctx.fillStyle = colors[3]
+    ctx.fillRect(3*W/5, 0, W, H)
+    ctx.fillStyle = colors[4]
+    ctx.fillRect(4*W/5, 0, W, H)
+  }
   extractPalette(canvas)
 }
 
@@ -7874,6 +7892,76 @@ function sketchpage () {
     }
     y += 60
   }
+  ctx.globalCompositeOperation = mode
+  document.getElementById("opacity").value = alpha
+}
+
+function floppyPage () { // half
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  const H = canvas.height, W = canvas.width
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
+  let color = document.getElementById("paintcolor").value
+  let alpha = document.getElementById("opacity").value
+  ctx.globalAlpha = alpha/100
+  let mode = ctx.globalCompositeOperation
+  let small = true, half = true
+  let pad = 40
+  ctx.fillStyle = color//"#101010"
+  ctx.globalCompositeOperation = "source-over"
+  //ctx.clearRect(0, 0, W, H)
+  let htop = [W-pad*1.2, pad*1.2]
+  let hbot = [W-pad*1.2, H-pad*1.2]
+
+  ctx.shadowColor = "#404040"
+  ctx.shadowBlur = 5 + Math.random() * 4
+  ctx.shadowOffsetY = 1 + Math.random() * 1
+  ctx.shadowOffsetX = -1 + Math.random()
+  let i = 0, x = pad-20+pet(10), y = pad+pet(30)
+  let pH = H - pad*2
+  let cpx = W*0.5, cpy = pad+pet(92)
+  for (; i < 7; i++) {
+    ctx.beginPath()
+    y = y+pet(20)
+    ctx.moveTo(x,y)
+    ctx.quadraticCurveTo(cpx, cpy, htop[0], htop[1])
+
+    ctx.lineTo(hbot[0],hbot[1])
+    ctx.quadraticCurveTo(cpx, H-cpy, x+pet(20), y+pH)
+    ctx.closePath()
+    ctx.fill()
+    x += 8 + pet(6)
+    cpy = pad+pet(32)
+  }
+  
+ // return
+  // top page: fill to get drop shadow
+  ctx.fillStyle = "#ddddcc"
+  ctx.beginPath()
+  y = y+pet(20)
+  let ox = x
+  ctx.moveTo(x,y)
+  ctx.quadraticCurveTo(cpx, cpy, W-pad,pad)
+  ctx.lineTo(W-pad,H-pad)
+  x += pet(20)
+  ctx.quadraticCurveTo(cpx, H-cpy, x, y+pH)
+  ctx.closePath()
+  ctx.fill()
+
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(ox,y)
+  ctx.quadraticCurveTo(cpx, cpy, W-pad,pad)
+  ctx.lineTo(W-pad,H-pad)
+  ctx.quadraticCurveTo(cpx, H-cpy, x, y+pH)
+  ctx.closePath()
+  ctx.clip()
+  ctx.clearRect(0,0,W,H)
+  ctx.restore()
+  ctx.shadowBlur = 0
+  ctx.shadowOffsetY = 0
+  ctx.shadowOffsetX = 0
+
   ctx.globalCompositeOperation = mode
   document.getElementById("opacity").value = alpha
 }
