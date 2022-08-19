@@ -7909,32 +7909,29 @@ function floppyPage () { // half
   let pad = 40
   ctx.fillStyle = color//"#101010"
   ctx.globalCompositeOperation = "source-over"
-  //ctx.clearRect(0, 0, W, H)
   let htop = [W-pad*1.2, pad*1.2]
   let hbot = [W-pad*1.2, H-pad*1.2]
-
-  ctx.shadowColor = "#404040"
+  let shadows = ["#101010", "#202020", "#000000"]
   ctx.shadowBlur = 5 + Math.random() * 4
   ctx.shadowOffsetY = 1 + Math.random() * 1
   ctx.shadowOffsetX = -1 + Math.random()
   let i = 0, x = pad-20+pet(10), y = pad+pet(30)
   let pH = H - pad*2
-  let cpx = W*0.5, cpy = pad+pet(92)
+  let cpx = W*0.5, cpy = pad+pet(42)
   for (; i < 7; i++) {
+    ctx.shadowColor = randomPick(shadows)
     ctx.beginPath()
     y = y+pet(20)
     ctx.moveTo(x,y)
     ctx.quadraticCurveTo(cpx, cpy, htop[0], htop[1])
-
     ctx.lineTo(hbot[0],hbot[1])
     ctx.quadraticCurveTo(cpx, H-cpy, x+pet(20), y+pH)
     ctx.closePath()
     ctx.fill()
     x += 8 + pet(6)
     cpy = pad+pet(32)
+    ctx.shadowBlur = 2
   }
-  
- // return
   // top page: fill to get drop shadow
   ctx.fillStyle = "#ddddcc"
   ctx.beginPath()
@@ -7962,6 +7959,18 @@ function floppyPage () { // half
   ctx.shadowOffsetY = 0
   ctx.shadowOffsetX = 0
 
+  // tint sliver of right page
+  let delta = Math.floor((Math.random()-0.5) * 25)
+  ctx.fillStyle = color
+  ctx.beginPath()
+  ctx.moveTo(W-pad,pad)
+  ctx.lineTo(W,pad+delta)
+  ctx.lineTo(W,H-pad+delta+3)
+  ctx.lineTo(W-pad, pad+pH)
+  ctx.closePath()
+  ctx.fill()
+  ctx.fillStyle = randomGradientRect2(canvas, color, "#000000", W-pad*3, H/2, W, H/2)
+  ctx.fill()
   ctx.globalCompositeOperation = mode
   document.getElementById("opacity").value = alpha
 }
@@ -13336,6 +13345,19 @@ function randomGradientRect(canvas, col1, x1, y1, x2, y2, R) {
   return my_gradient;
 }
 
+function randomGradientRect2(canvas, col1, col2, x1, y1, x2, y2, R) {
+  let centx = Math.random() * canvas.width;
+  let centy = Math.random() * canvas.height;
+  let radius = canvas.width/2;
+  let angle = Math.random()*6.27;
+  let p = 2
+  let my_gradient = canvas.getContext('2d').createLinearGradient(x1-pet(p), y1-pet(p), x2+pet(p), y2+pet(p));
+  col2 = "rgba("+hexToR(col2)+", "+hexToG(col2)+", "+hexToB(col2)+", 0.2)";// transparent
+  my_gradient.addColorStop(0,col2);
+  my_gradient.addColorStop(1,col1);
+  return my_gradient;
+}
+
 function petColor (c, p) {
   let r = hexToR(c) + Math.floor(pet(p))
   let g = hexToG(c) + Math.floor(pet(p))
@@ -16634,7 +16656,6 @@ function increaseGrain (canvas) {
   }
   ctx.putImageData(imgData, 0, 0);
 }
-
 
 function increaseGrainPrinty (canvas) {
   if (!canvas)
