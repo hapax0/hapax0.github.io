@@ -7918,7 +7918,9 @@ function floppyPage () { // half
   let i = 0, x = pad-20+pet(10), y = pad+pet(30)
   let pH = H - pad*2
   let cpx = W*0.5, cpy = pad+pet(42)
-  for (; i < 7; i++) {
+  let numpages = 3 +Math.floor(Math.random()*5)
+  let x_inc = 7 + Math.floor(Math.random()*8)
+  for (; i < numpages; i++) {
     ctx.shadowColor = randomPick(shadows)
     ctx.beginPath()
     y = y+pet(20)
@@ -7928,9 +7930,9 @@ function floppyPage () { // half
     ctx.quadraticCurveTo(cpx, H-cpy, x+pet(20), y+pH)
     ctx.closePath()
     ctx.fill()
-    x += 8 + pet(6)
+    x += x_inc + pet(6)
     cpy = pad+pet(32)
-    ctx.shadowBlur = 2
+    ctx.shadowBlur = 4
   }
   // top page: fill to get drop shadow
   ctx.fillStyle = "#ddddcc"
