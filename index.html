@@ -7960,12 +7960,12 @@ function floppyPage () { // half
   ctx.shadowOffsetX = 0
 
   // tint sliver of right page
-  let delta = Math.floor((Math.random()-0.5) * 25)
+  let delta = Math.floor((Math.random()) * 13)
   ctx.fillStyle = color
   ctx.beginPath()
   ctx.moveTo(W-pad,pad)
-  ctx.lineTo(W,pad+delta)
-  ctx.lineTo(W,H-pad+delta+3)
+  ctx.lineTo(W,pad-delta)
+  ctx.lineTo(W,H-pad+delta)
   ctx.lineTo(W-pad, pad+pH)
   ctx.closePath()
   ctx.fill()
