@@ -751,8 +751,8 @@ function randomPalette () {
   } else
   if (type === "rainbow") {
     let rb = [randomColorCool(),randomColorCool(),"#cccccc",randomColorWarm(),randomColorWarm()]
-    if (Math.random() > 0.75)
-      rb.reverse()
+    //if (Math.random() > 0.75)
+    //  rb.reverse()
     document.getElementById("pal1").value = rb[0]
     document.getElementById("pal2").value = rb[1]
     document.getElementById("pal3").value = "#cccccc"
@@ -7898,13 +7898,15 @@ function sketchpage () {
 
 function ragged (ctx,x0,y0,x,y) {
   //draw  line from bottom up
+  let inc = 3 + document.getElementById("featuresize").value/50
+  let p = 1 + document.getElementById("number").value/5000
   let diff = x - x0
-  let steps = (y-y0)/6
+  let steps = (y-y0)/inc
   let f = diff/steps
   let total = 0
-  while (y > y0-6) {
-    ctx.lineTo(x+pet(1), y)
-    y -= 6
+  while (y > y0+inc) {
+    ctx.lineTo(x+pet(p), y)
+    y -= inc
     x -= f
     total += f
   }
@@ -7923,8 +7925,8 @@ function floppyPage () { // half
   let pad = 40
   ctx.fillStyle = color//"#101010"
   ctx.globalCompositeOperation = "source-over"
-  let htop = [W-pad*1.2, pad*1.2]
-  let hbot = [W-pad*1.2, H-pad*1.2]
+  let htop = [W-pad*1.1, pad*1.1]
+  let hbot = [W-pad*1.1, H-pad*1.1]
   let shadows = ["#101010", "#202020", "#000000"]
   ctx.shadowBlur = 5 + Math.random() * 4
   ctx.shadowOffsetY = 1 + Math.random() * 1
