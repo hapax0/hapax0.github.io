@@ -7896,6 +7896,20 @@ function sketchpage () {
   document.getElementById("opacity").value = alpha
 }
 
+function ragged (ctx,x0,y0,x,y) {
+  //draw  line from bottom up
+  let diff = x - x0
+  let steps = (y-y0)/6
+  let f = diff/steps
+  let total = 0
+  while (y > y0-6) {
+    ctx.lineTo(x+pet(1), y)
+    y -= 6
+    x -= f
+    total += f
+  }
+}
+
 function floppyPage () { // half
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -7915,7 +7929,8 @@ function floppyPage () { // half
   ctx.shadowBlur = 5 + Math.random() * 4
   ctx.shadowOffsetY = 1 + Math.random() * 1
   ctx.shadowOffsetX = -1 + Math.random()
-  let i = 0, x = pad-20+pet(10), y = pad+pet(30)
+  let i = 0, x = pad+pet(20), y = pad+pet(30)
+  let x0 = x, y0 = y
   let pH = H - pad*2
   let cpx = W*0.5, cpy = pad+pet(42)
   let numpages = 3 +Math.floor(Math.random()*5)
@@ -7927,10 +7942,15 @@ function floppyPage () { // half
     ctx.moveTo(x,y)
     ctx.quadraticCurveTo(cpx, cpy, htop[0], htop[1])
     ctx.lineTo(hbot[0],hbot[1])
-    ctx.quadraticCurveTo(cpx, H-cpy, x+pet(20), y+pH)
+    x += pet(30)
+    ctx.quadraticCurveTo(cpx, H-cpy, x, y+pH)
+    
+    // draw fagged line between botton and top
+    ragged(ctx,x0,y0,x,y+pH)
     ctx.closePath()
     ctx.fill()
     x += x_inc + pet(6)
+    x0 = x
     cpy = pad+pet(32)
     ctx.shadowBlur = 4
   }
@@ -7938,12 +7958,16 @@ function floppyPage () { // half
   ctx.fillStyle = "#ddddcc"
   ctx.beginPath()
   y = y+pet(20)
+  y0 = y
   let ox = x
   ctx.moveTo(x,y)
   ctx.quadraticCurveTo(cpx, cpy, W-pad,pad)
   ctx.lineTo(W-pad,H-pad)
   x += pet(20)
   ctx.quadraticCurveTo(cpx, H-cpy, x, y+pH)
+  
+  ragged(ctx,ox,y0,x,y+pH)
+
   ctx.closePath()
   ctx.fill()
 
@@ -7953,6 +7977,8 @@ function floppyPage () { // half
   ctx.quadraticCurveTo(cpx, cpy, W-pad,pad)
   ctx.lineTo(W-pad,H-pad)
   ctx.quadraticCurveTo(cpx, H-cpy, x, y+pH)
+  ragged(ctx,ox,y0,x,y+pH)
+
   ctx.closePath()
   ctx.clip()
   ctx.clearRect(0,0,W,H)
