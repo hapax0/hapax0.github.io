@@ -230,6 +230,7 @@ id="ff" onclick="testImage('framefunctions')" title="frame functions"><svg xmlns
      <option value="zoomOutImage">zoom out</option>
      <option value="zoomImage">zoom in</option>
      <option value="rectFrame">rect frame</option>
+     <option value="lineFrame">line frame</option>
      <option value="roundedFrame">rounded frame</option>
      <option value="frameCircle">circle frame</option>
      <option value="framePolaroid">polaroid frame</option>
@@ -6308,10 +6309,18 @@ function rings () {
   ctx.fillStyle = colors[2]
   ctx.clearRect(pad,pad,W-pad*2,H-pad*2)
 
-  let r = H + pet(200), r2 = r*(0.6 + (Math.random()/3))
-  let x = W/2 + pet(W/1.2), y = H+ H/3
+  let r = H*0.75 + pet(200), r2 = r*(0.6 + (Math.random()/3))
+  let x = W/2 + pet(W/1.2), y = H + H/9
  
   let i = 0
+  
+  // fill center
+  ctx.fillStyle = randomPick(colors)
+  ctx.beginPath()
+  ctx.arc(x, y, r2 * 0.5, 2*Math.PI, 0)
+  ctx.closePath()
+  ctx.fill()
+    
   for ( ; i < 3; i++) {
     ctx.fillStyle = randomPick(colors)
     ctx.beginPath()
@@ -6938,7 +6947,7 @@ function constellations () {
   ctx.lineWidth = 5//+ document.getElementById("featuresize").value/4
   ctx.lineCap = "round"
   let rads = [3,4,5,6,7,8,3,4,5,6,7,8,13]
-  let widths = [1,2,3]
+  let widths = [1,2,3, 4, 5]
   let H  = canvas.height, W = canvas.width
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let mode = document.getElementById("mode").value
@@ -6950,11 +6959,11 @@ function constellations () {
   let x = 0, y = 0
   let Rf = W/7
   let mindist = Rf/1.1
-  numpoints = (W/Rf*H/Rf) * 1.33
+  numpoints = (W/Rf*H/Rf) * 2
   let row = 0
   while (i < numpoints) {
    // if (Math.random() > 0.41)
-      points.push([W*Math.random(), H*Math.random()])
+      points.push([W*Math.random(), H*Math.random(), 0])
     i++
   }
   let j = 0
@@ -6963,12 +6972,16 @@ function constellations () {
   for (;i < points.length; i++) {
     j = i + 1
     for (; j < points.length; j++) {
-      if (distance(points[i][0],points[i][1],points[j][0],points[j][1]) < mindist) {
+      if (distance(points[i][0],points[i][1],points[j][0],points[j][1]) < mindist*1.3) {
         ctx.lineWidth = randomPick(widths)
-        ctx.beginPath()
-        ctx.moveTo(points[i][0], points[i][1])
-        ctx.lineTo(points[j][0], points[j][1])
-        ctx.stroke()
+        if (points[j][2] < 2 && points[i][2] < 4) {
+          ctx.beginPath()
+          ctx.moveTo(points[i][0], points[i][1])
+          ctx.lineTo(points[j][0], points[j][1])
+          ctx.stroke()
+          points[j][2] += 1
+          points[i][2] += 1
+        }
       }
     }
   }
@@ -10860,6 +10873,29 @@ function roundedFrame () {
   ctx.globalCompositeOperation = "destination-over"
   fill()
   ctx.globalCompositeOperation = mode
+}
+
+function lineFrame () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let LW = 1 + Math.floor(document.getElementById("featuresize").value/10)
+  let grunge = document.getElementById("grungy").checked
+  let W = canvas.width
+  let H = canvas.height
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.lineWidth = LW
+  let x = -1, y = -1
+  let inset = W/20
+  
+  ctx.beginPath();
+  ctx.moveTo(x+inset, y+inset);
+  ctx.lineTo(W-inset, y+inset);
+  ctx.lineTo(W-inset, H-inset);
+  ctx.lineTo(x+inset, H-inset);
+  ctx.closePath()
+  ctx.stroke()
+  
 }
 
 function rectFrame () {
