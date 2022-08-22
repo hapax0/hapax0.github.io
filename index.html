@@ -10880,14 +10880,13 @@ function lineFrame () {
   let ctx = canvas.getContext("2d");
   let LW = 1 + Math.floor(document.getElementById("featuresize").value/10)
   let grunge = document.getElementById("grungy").checked
+  let inset = 1+document.getElementById("number").value/100 // max == 10000
   let W = canvas.width
   let H = canvas.height
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.strokeStyle = document.getElementById("paintcolor").value
   ctx.lineWidth = LW
-  let x = -1, y = -1
-  let inset = W/20
-  
+  let x = 0, y = 0
   ctx.beginPath();
   ctx.moveTo(x+inset, y+inset);
   ctx.lineTo(W-inset, y+inset);
@@ -10895,7 +10894,6 @@ function lineFrame () {
   ctx.lineTo(x+inset, H-inset);
   ctx.closePath()
   ctx.stroke()
-  
 }
 
 function rectFrame () {
