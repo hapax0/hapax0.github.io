@@ -375,6 +375,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="smudgearcs2" >arcs2</option>
     <option value="smudgestars">stars</option>
     <option value="rays">rays</option>
+    <option value="chips">chips</option>
 
     <option value="skinnyLines">horizontal3</option>
     <option value="slantedLines">slanted</option>
@@ -11835,29 +11836,30 @@ function chips () {
   let cx = ctx.canvas.width/2;
   let cy = ctx.canvas.height/2;
   let maxdist = Math.pow(Math.pow(cx, 2) + Math.pow(cy, 2), 0.5) +200
+  let r = 2 + document.getElementById("featuresize").value/4
   ctx.fillStyle = document.getElementById("paintcolor").value
   ctx.strokeStyle = document.getElementById("paintcolor").value
   for (var t = 0; t < 5; t++) {
-    var radius = 13
+    let radius = r
     x = 0;
     y = 0;
-    var x0 = x;
-    var y0 = y;
-    angle = Math.floor(Math.random() * 6.42);
+    angle = Math.random() * 6.42
     ctx.beginPath();
     var cent = Math.random()*ctx.canvas.width+50;
     var centy = Math.random()*ctx.canvas.height+50;
     var edges = 3+Math.random()*26;
-    let max = Math.PI * 2
+    let max = Math.PI * 1.3
     let increase = Math.PI * 2/edges;
+    let turn = 0
     for (var i = 0; i < 100; i++) {
       increase += Math.random()/50
-      radius = 13 + (13/2 * Math.random())
+      radius = r + (r/2 * Math.random())
       x = radius * Math.cos(angle)+cent;
       y = radius * Math.sin(angle)+centy;
       ctx.lineTo(x, y);
       angle += increase;
-      if (angle >= max)
+      turn += increase
+      if (turn >= max)
         break;
     }
     ctx.closePath();
