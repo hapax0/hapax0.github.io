@@ -7909,21 +7909,107 @@ function sketchpage () {
   document.getElementById("opacity").value = alpha
 }
 
-function ragged (ctx,x0,y0,x,y) {
+
+function singlePage () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  const H = canvas.height, W = canvas.width
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
+  let color = document.getElementById("paintcolor").value
+  let alpha = document.getElementById("opacity").value
+  ctx.globalAlpha = alpha/100
+  let mode = ctx.globalCompositeOperation
+  let small = true, half = true
+  let pad = 40
+  ctx.fillStyle = color//"#101010"
+  ctx.strokeStyle = 'black'//"#101010"
+  ctx.globalCompositeOperation = "source-over"
+  let htop = [W-pad*1.1, pad*1.1]
+  let hbot = [W-pad*1.1, H-pad*1.1]
+  let shadows = ["#101010", "#202020", "#000000"]
+  ctx.shadowBlur = 5 + Math.random() * 4
+  ctx.shadowOffsetY = 1 + Math.random() * 1
+  ctx.shadowOffsetX = -1 + Math.random()
+  let i = 0, x = pad, y = pad
+  let x0 = x, y0 = y
+  let pH = H - pad*2
+  ctx.lineWidth = 5
+  ctx.beginPath()
+  ctx.moveTo(x,y)
+  x = pad, y = pad
+  x0 = W - pad, y0 = pad
+  
+  ragged(ctx,x0,y0,x,y)
+  x = x0
+  y = y0
+
+  x0 = W-pad
+  y0 = H-pad
+  ragged(ctx,x0,y0,x,y)
+  x = x0
+  y = y0
+
+  x0 = pad
+  y0 = H-pad
+  ragged(ctx,x0,y0,x,y)
+  x = x0
+  y = y0
+
+  x0 = pad
+  y0 = pad
+  ragged(ctx,x0,y0,x,y)
+  ctx.lineTo(x0,y0)
+  ctx.closePath()
+  ctx.fill()
+}
+
+function ragged (ctx,endX,endY,x,y) {
+  let inc = 3 + Math.floor(document.getElementById("featuresize").value/50)
+  let p = 1 + document.getElementById("number").value/4000
+  let xdiff = x - endX, ydiff = y - endY
+  let D = distance(x,y,endX,endY)
+  let Dy = (endY-y)
+  let Dx = (endX-x)
+  let xinc = Dx/(D+0.000001)*inc
+  let yinc = Dy/(D+0.000001)*inc
+  let xsteps = (x - endX)/(xinc + 0.000001)
+  let ysteps = (y - endY)/(yinc + 0.000001)
+  let xf = xdiff/(xsteps + 0.000001)
+  let yf = ydiff/(ysteps + 0.000001)
+  let i = 0
+  let px2 = p*2
+  while (distance(endX,endY,x,y) > inc) {
+    // add to x and y to get closer to endX,endY
+    x += xinc
+    y += yinc
+    x += xf
+    y += yf
+    ctx.lineTo(x+pet(p), y+pet(p))
+    i++
+  }
+}
+/*
+function raggedV (ctx,x0,y0,x,y, increasing) { // bottom up. Need top down??
   //draw  line from bottom up
   let inc = 3 + document.getElementById("featuresize").value/50
   let p = 1 + document.getElementById("number").value/5000
+  if (increasing) {
+    let s = y0
+    y0 = y
+    y = s
+  }
   let diff = x - x0
   let steps = (y-y0)/inc
   let f = diff/steps
-  let total = 0
+  let total = 0, n = 0
   while (y > y0+inc) {
     ctx.lineTo(x+pet(p), y)
     y -= inc
     x -= f
     total += f
+    n++
   }
-}
+}*/
 
 function floppyPage () { // half
   let canvas = document.getElementById("myCanvas");
