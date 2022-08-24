@@ -7624,9 +7624,9 @@ function dividedPad () {
   let color = document.getElementById("paintcolor").value
   let alt = document.getElementById("grungy").checked
   document.getElementById("paintcolor").value = "#fdfffd"
-let pad = 24
-let H = canvas.height, W = canvas.width
-let x = pad, y = pad
+  let pad = 24
+  let H = canvas.height, W = canvas.width
+  let x = pad+pet(9), y = pad+pet(9)
 
   let cx1 = W - pad*4+pet(91), cy1 = pad+pet(21),
     cx2 = W -pad+pet(21), cy2 = 3*pad+pet(21),
@@ -7650,11 +7650,11 @@ let x = pad, y = pad
   x = W-pad
   y = cy2
   ragged(ctx,W-pad,H-pad+pet(3),x,y)
-  y = H-pad
+  y = H-pad+pet(9)
   ragged(ctx,pad,H-pad+pet(3),x,y)
-  x = pad
-  y = W-pad
-  ragged(ctx,pad,pad+pet(3),x,y)
+  x = pad+pet(9)
+  y = W-pad+pet(9)
+  ragged(ctx,pad+pet(9),pad+pet(3),x,y)
   ctx.closePath()
   ctx.fill()
   
@@ -7703,7 +7703,6 @@ let x = pad, y = pad
     ctx.stroke()
     x = canvas.width/2 + 32
   }
-  document.getElementById("paintcolor").value = color
 }
 
 
@@ -7766,7 +7765,7 @@ function photoBook () {
   let mode = ctx.globalCompositeOperation
   let small = true, half = true
   let pad = 10//Math.floor(H * 0.01)
-  ctx.globalAlpha = 1.0
+  ctx.globalAlpha = alpha
   ctx.fillStyle = color
   ctx.fillRect(0, 0, W, H)
   ctx.globalAlpha = 0.2
