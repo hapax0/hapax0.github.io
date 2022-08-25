@@ -511,6 +511,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="smeardownOff">vertical streaks</option>
     <option value="neckerline">necker</option>
     <option value="necker">necker (fill)</option>
+    <option value="house">house (fill)</option>
     <!--option value="quads" >quads</option-->
     <option value="atom" >atom</option>
     <!--option value="venn">venn</option-->
@@ -7711,6 +7712,8 @@ function requirements () {
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
   let color = document.getElementById("paintcolor").value
   let alt = document.getElementById("grungy").checked
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+
   let pad = 24
   let H = canvas.height, W = canvas.width
   let x = pad+pet(9), y = pad+pet(9)
@@ -7724,8 +7727,8 @@ function requirements () {
   ctx.lineWidth = 3
   ctx.shadowBlur = 10
   ctx.shadowColor = "#303020"
-  ctx.shadowOffsetX = 2
-  ctx.shadowOffsetY = 2
+  ctx.shadowOffsetX = -3
+  ctx.shadowOffsetY = 3
   
   ctx.beginPath()
   ctx.moveTo(pad,pad)
@@ -7740,7 +7743,7 @@ function requirements () {
   ragged(ctx,pad,pad+pet(3),x,y)
   ctx.closePath()
   ctx.fill()
-  
+
   ctx.shadowBlur = 0
   ctx.shadowOffsetX = 0
   ctx.shadowOffsetY = 0
@@ -7764,7 +7767,8 @@ function requirements () {
   let i = 1, ct = 1, im = i
   let hoff = 0
   x = 0, y = 0
-  for (; i < 101; i+=2) {
+  let MAX = randomPick([101,97,87,94])
+  for (; i < MAX; i+=2) {
     im = i % 10
     text = ct++
     if (ct < 10)
@@ -9745,20 +9749,17 @@ function pyramid () {
     ctx.fill()
   }
 }
-
+*/
 function house () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  clip()
   let W = canvas.width
-  let margin = W/20
-  let w4 = (W-2*margin)/(4 +(2+Math.floor(Math.random() * 10)))
+  let margin = W/16
+  let w4 = (W-2*margin)/(4 +(2+Math.floor(Math.random() * 4)))
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  let colors = shuffle(['red', 'blue', 'yellow', 'orange', 'purple', "green", "gray"])
-  colors = shuffle(['blue', 'yellow','blue', 'yellow'], 'blue', 'yellow','blue', 'yellow')
-  let grunge = document.getElementById("grungy").checked
-  w8 = w4*3
-
+  let colors = shuffle(getCurrentPalette())
+  let grunge = !document.getElementById("grungy").checked
+  let w8 = w4*3
   let xf = W-w8
   let yf = W -(2*margin) - w8 - w8/2
   ctx.clearRect(0,0,W,W)
@@ -9935,9 +9936,8 @@ function house () {
       ctx.fillStyle = colors[4]
     ctx.fill()
   }
-  ctx.restore()
 }
-
+/*
 function origamir () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
