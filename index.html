@@ -7765,6 +7765,31 @@ function thisSpace () {
   ctx.font = "100 "+(14)+"pt " + face
   let width = ctx.measureText(text).width
   ctx.fillText(text, W/2-width/2, H-pad*3.6)
+  
+  text = 10+Math.floor(Math.random() * 89)
+  face = "AmericanTypewriter"
+  ctx.font = "800 "+(54)+"pt " + face
+  ctx.fillText(text, pad*3.6, pad*3.6+54)
+  
+  ctx.beginPath()
+  ctx.moveTo(W-pad*4-50, pad*3+20)
+  ctx.lineTo(W-pad*4+10, pad*3+20)
+  ctx.lineTo(W-pad*4+10, pad*3+80)
+  ctx.lineTo(W-pad*4-50, pad*3+80)
+  ctx.lineTo(W-pad*4-50, pad*3+20)
+  ctx.stroke()
+  
+  ctx.lineWidth /= 2
+  ctx.beginPath()
+  ctx.moveTo(pad*3, H-pad*3)
+  ctx.lineTo(W-pad*3, pad*3)
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.moveTo(pad*3, pad*3)
+  ctx.lineTo(W-pad*3, H-pad*3)
+  ctx.stroke()
+  
   ctx.globalAlpha = document.getElementById("opacity").value/100
 }
 
