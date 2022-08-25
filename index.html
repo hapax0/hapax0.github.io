@@ -559,6 +559,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
       <option value="linedPad">lined pad</option>
       <option value="dividedPad" >divided pad</option>
       <option value="requirements" selected>requirements pad</option>
+      <option value="thisSpace">this space</option>
       <option value="spiralbound">spiral bound</option>
       <option value="periodictable" >periodic table</option>
       <option value="calendar" >calendar</option>
@@ -7705,6 +7706,68 @@ function dividedPad () {
     x = canvas.width/2 + 32
   }
 }
+
+function thisSpace () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
+  let color = document.getElementById("paintcolor").value
+  let alt = document.getElementById("grungy").checked
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+
+  let pad = 24 +Math.floor(Math.random() * 12)
+  let H = canvas.height, W = canvas.width
+  let x = pad+pet(9), y = pad+pet(9)
+  
+  let cx1 = W - pad*4+pet(91), cy1 = pad+pet(21),
+    cx2 = W -pad+pet(21), cy2 = 3*pad+pet(21),
+    px = cx1+8, py = cy2-3
+    
+  ctx.fillStyle = color
+  let colors = [ "#6060ba", "#6060ed", "#000000"]
+  ctx.lineWidth = 3
+  ctx.shadowBlur = 10
+  ctx.shadowColor = "#303020"
+  ctx.shadowOffsetX = -3
+  ctx.shadowOffsetY = 3
+  
+  ctx.beginPath()
+  ctx.moveTo(pad,pad)
+  ragged(ctx,W-pad,pad,x,y)
+  x = W-pad
+  y = pad
+  ragged(ctx,W-pad,H-pad+pet(3),x,y)
+  y = H-pad
+  ragged(ctx,pad,H-pad+pet(3),x,y)
+  x = pad
+  y = W-pad
+  ragged(ctx,pad,pad+pet(3),x,y)
+  ctx.closePath()
+  ctx.fill()
+  ctx.globalAlpha = 0.7
+  ctx.shadowBlur = 0
+  ctx.shadowOffsetX = 0
+  ctx.shadowOffsetY = 0
+  ctx.strokeStyle = randomPick(colors)
+  ctx.lineWidth = 3 + Math.floor(Math.random() * 6)
+  
+  ctx.beginPath()
+  ctx.moveTo(pad*3, pad*3)
+  ctx.lineTo(W-pad*3, pad*3)
+  ctx.lineTo(W-pad*3, H-pad*3)
+  ctx.lineTo(pad*3, H-pad*3)
+  ctx.lineTo(pad*3, pad*3)
+  ctx.stroke()
+
+  let text = "This space intentionally left blank."
+  ctx.fillStyle = ctx.strokeStyle//randomPick(colors)
+  let face = "Arial"
+  ctx.font = "100 "+(14)+"pt " + face
+  let width = ctx.measureText(text).width
+  ctx.fillText(text, W/2-width/2, H-pad*3.6)
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+}
+
 
 function requirements () {
   let canvas = document.getElementById("myCanvas");
