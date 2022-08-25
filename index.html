@@ -556,7 +556,8 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
       <option value="floppyPage">stack of pages</option>
       <option value="gridpaper" >grid paper</option>
       <option value="linedPad">lined pad</option>
-      <option value="dividedPad" selected>divided pad</option>
+      <option value="dividedPad" >divided pad</option>
+      <option value="requirements" selected>requirements pad</option>
       <option value="spiralbound">spiral bound</option>
       <option value="periodictable" >periodic table</option>
       <option value="calendar" >calendar</option>
@@ -7623,7 +7624,6 @@ function dividedPad () {
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
   let color = document.getElementById("paintcolor").value
   let alt = document.getElementById("grungy").checked
-  document.getElementById("paintcolor").value = "#fdfffd"
   let pad = 24
   let H = canvas.height, W = canvas.width
   let x = pad+pet(9), y = pad+pet(9)
@@ -7703,6 +7703,93 @@ function dividedPad () {
     ctx.stroke()
     x = canvas.width/2 + 32
   }
+}
+
+function requirements () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
+  let color = document.getElementById("paintcolor").value
+  let alt = document.getElementById("grungy").checked
+  let pad = 24
+  let H = canvas.height, W = canvas.width
+  let x = pad+pet(9), y = pad+pet(9)
+  
+  let cx1 = W - pad*4+pet(91), cy1 = pad+pet(21),
+    cx2 = W -pad+pet(21), cy2 = 3*pad+pet(21),
+    px = cx1+8, py = cy2-3
+    
+  ctx.fillStyle = color
+  let colors = [ "#6060ba", "#6060ed", "#000000"]
+  ctx.lineWidth = 3
+  ctx.shadowBlur = 10
+  ctx.shadowColor = "#303020"
+  ctx.shadowOffsetX = 2
+  ctx.shadowOffsetY = 2
+  
+  ctx.beginPath()
+  ctx.moveTo(pad,pad)
+  ragged(ctx,W-pad,pad,x,y)
+  x = W-pad
+  y = pad
+  ragged(ctx,W-pad,H-pad+pet(3),x,y)
+  y = H-pad
+  ragged(ctx,pad,H-pad+pet(3),x,y)
+  x = pad
+  y = W-pad
+  ragged(ctx,pad,pad+pet(3),x,y)
+  ctx.closePath()
+  ctx.fill()
+  
+  ctx.shadowBlur = 0
+  ctx.shadowOffsetX = 0
+  ctx.shadowOffsetY = 0
+  ctx.lineWidth = 7
+  ctx.strokeStyle = randomPick(colors)
+  let text = "R E Q U I R E M E N T S"
+  let face = "Arial"
+  ctx.font = "800 "+(20)+"pt " + face
+  ctx.fillStyle = ctx.strokeStyle
+  
+  ctx.font = "800 "+(32)+"pt " + face
+  let width = ctx.measureText(text).width
+  ctx.globalAlpha = 0.7
+
+  ctx.fillText(text, W/2-width/2,80)
+  ctx.font = "800 "+(20)+"pt " + face
+  face = "AmericanTypewriter"
+  let w = Math.floor(W/11)
+  let h = Math.floor(H/7)
+  
+  let i = 1, ct = 1, im = i
+  let hoff = 0
+  x = 0, y = 0
+  for (; i < 101; i+=2) {
+    im = i % 10
+    text = ct++
+    if (ct < 10)
+      text = "0"+text
+    ctx.beginPath()
+    hoff = pet(5)
+    ctx.moveTo(w*im+pet(3), h+hoff+pet(3))
+    ctx.lineTo(w*im+w+pet(3), h+hoff)
+    ctx.lineWidth = randomPick([3,4,5,5,4,4])
+    ctx.stroke()
+    ctx.font = "800 "+(randomPick([18,19,16]))+"pt " + face
+    ctx.fillText(text, w*im+w*0.8+pet(19), h+30+pet(7))
+    if (Math.random() > 0.95)
+      dotsNear(ctx,w*im+w*0.8+pet(19), h+30+pet(19),7+pet(4))
+    if (ct % 6 == 0) {
+      h += Math.floor(H/11)
+     // w = W/7
+      im = 1
+    }
+  }
+  text = "This space intentionally                  ."
+  ctx.font = "100 "+(9)+"pt " + face
+  ctx.face = "Arial"
+  ctx.fillText(text, pad*2, H-pad*2)
+  ctx.globalAlpha = document.getElementById("opacity").value/100
 }
 
 
