@@ -7891,42 +7891,53 @@ function linedPad () {
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
   let color = document.getElementById("paintcolor").value
   let alt = document.getElementById("grungy").checked
-  document.getElementById("paintcolor").value = "#fdfffd"
- // fill()
+  let W = canvas.width, H = canvas.height
+  let pad = 30 + Math.floor(Math.random() * 12)
+  let linespace = 34 + Math.floor(pet(16))
+  ctx.shadowColor = "#403030"
+  ctx.shadowBlur = 9 + Math.random() * 5
+  ctx.shadowOffsetY = 2 + Math.random() * 3
+  ctx.shadowOffsetX = -2 + Math.random() * 2
+  ctx.fillStyle = color
+  ctx.fillRect(pad,pad,W-pad*2, H-pad*2)
+  ctx.shadowBlur = 0
+  ctx.shadowOffsetY = 0
+  ctx.shadowOffsetX = 0
   let colors = ["#ed6060", "#6060ba", "#6060ed", "#ed6060", "#000000"]
+  ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.strokeStyle = "#6060ed"
   ctx.lineWidth = 1
-  let i = 0, x = 2, y = 94
+  let i = 0, x = pad+2, y = pad+94
   if (alt)
-   while (y < canvas.height) {
+   while (y < canvas.height-pad) {
     if (i % 5 !== 4)
       ctx.strokeStyle = colors[i%5]
     else
       ctx.strokeStyle = "#edaaaa"
     ctx.beginPath()
     ctx.moveTo(x, y)
-    ctx.lineTo(canvas.width-2, y)
+    ctx.lineTo(canvas.width-pad-2, y)
     ctx.closePath()
     if (i % 5 !== 4)
      ctx.stroke()
-    y += 28
+    y += linespace
     i++
   }
   else
-    while (y < canvas.height) {
+    while (y < canvas.height-pad) {
       ctx.beginPath()
       ctx.moveTo(x, y)
-      ctx.lineTo(canvas.width-2, y)
+      ctx.lineTo(canvas.width-pad-2, y)
       ctx.closePath()
       ctx.stroke()
-      y += 28
+      y += linespace
     }
   ctx.strokeStyle = "#ee6060"
-  i = 0, y = 0, x = 96
+  i = 0, y = pad+2, x = 96
   for (; i < 2; i++) {
     ctx.beginPath()
     ctx.moveTo(x, y)
-    ctx.lineTo(x, canvas.height)
+    ctx.lineTo(x, canvas.height-pad)
     ctx.closePath()
     ctx.stroke()
     x += 5
