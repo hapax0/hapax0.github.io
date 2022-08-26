@@ -560,6 +560,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
       <option value="dividedPad" >divided pad</option>
       <option value="requirements" selected>requirements pad</option>
       <option value="postcard">postcard</option>
+      <option value="indexcard">index card</option>
       <option value="thisSpace">this space</option>
       <option value="spiralbound">spiral bound</option>
       <option value="periodictable" >periodic table</option>
@@ -7945,7 +7946,6 @@ function linedPad () {
   document.getElementById("paintcolor").value = color
 }
 
-
 function postcard () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -8027,6 +8027,44 @@ function postcard () {
   width = ctx.measureText(text).width
   ctx.fillText(text,CENT-width/2,y+2*140/3)
   
+  document.getElementById("paintcolor").value = color
+}
+
+
+function indexcard () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
+  let color = document.getElementById("paintcolor").value
+  let alt = document.getElementById("grungy").checked
+  let W = canvas.width, H = canvas.height
+  let pad = 24, hpad = 7 * pad
+  let linespace = 34 + Math.floor(pet(16))
+  ctx.globalAlpha = document.getElementById("opacity")/100
+  ctx.shadowColor = "#403030"
+  ctx.shadowBlur = 9 + Math.random() * 5
+  ctx.shadowOffsetY = 2 + Math.random() * 3
+  ctx.shadowOffsetX = -2 + Math.random() * 2
+  ctx.fillStyle = color
+  let x = pad, y = hpad+100
+ 
+  ctx.fillRect(pad, hpad, W-2*pad, H-2*hpad)
+  ctx.shadowBlur = 0
+  ctx.shadowOffsetY = 0
+  ctx.shadowOffsetX = 0
+  let colors = ["#6060ba", "#6060ed", "#000000", "#2020cc"]
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctx.strokeStyle =  "#ff2020"
+  ctx.lineWidth = 2
+  let i = 0
+  while (y < H-hpad) {
+    ctx.beginPath()
+    ctx.moveTo(pad+2, y)
+    ctx.lineTo(W-pad-2, y)
+    ctx.stroke()
+    y += 36
+    ctx.strokeStyle =  "#2020cc"
+  }
   document.getElementById("paintcolor").value = color
 }
 
