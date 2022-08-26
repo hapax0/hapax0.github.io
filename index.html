@@ -7955,25 +7955,24 @@ function postcard () {
   let W = canvas.width, H = canvas.height
   let pad = 24, hpad = 7 * pad
   let linespace = 34 + Math.floor(pet(16))
+  ctx.globalAlpha = document.getElementById("opacity")/100
   ctx.shadowColor = "#403030"
   ctx.shadowBlur = 9 + Math.random() * 5
   ctx.shadowOffsetY = 2 + Math.random() * 3
   ctx.shadowOffsetX = -2 + Math.random() * 2
   ctx.fillStyle = color
- // ctx.fillRect(pad,hpad,W-pad*2, H-hpad*2)
-  // ragged
   let x = pad, y = hpad
   ctx.moveTo(x,y)
   
   ragged(ctx,W-pad,hpad,x,y)
   x = W-pad
   y = hpad
-  ragged(ctx,W-pad,H-hpad+pet(3),x,y)
+  ragged(ctx,W-pad,H-hpad,x,y)
   y = H-hpad
-  ragged(ctx,pad,H-hpad+pet(3),x,y)
+  ragged(ctx,pad,H-hpad,x,y)
   x = pad
   y = W-hpad
-  ragged(ctx,pad,hpad+pet(3),x,y)
+  ragged(ctx,pad,hpad,x,y)
   ctx.closePath()
   ctx.fill()
   ctx.shadowBlur = 0
