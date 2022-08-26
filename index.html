@@ -7962,11 +7962,18 @@ function postcard () {
   ctx.fillStyle = color
  // ctx.fillRect(pad,hpad,W-pad*2, H-hpad*2)
   // ragged
-  ctx.moveTo(pad,hpad)
-  ragged(ctx, W-pad, hpad,   pad,   hpad)
-  ragged(ctx, W-pad, H-hpad, W-pad, hpad)
-  ragged(ctx. pad, W-hpad,W-pad, H-hpad)
-  ragged(ctx, pad, hpad,pad, W-hpad)
+  let x = pad, y = hpad
+  ctx.moveTo(x,y)
+  
+  ragged(ctx,W-pad,hpad,x,y)
+  x = W-pad
+  y = hpad
+  ragged(ctx,W-pad,H-hpad+pet(3),x,y)
+  y = H-hpad
+  ragged(ctx,pad,H-hpad+pet(3),x,y)
+  x = pad
+  y = W-hpad
+  ragged(ctx,pad,hpad+pet(3),x,y)
   ctx.closePath()
   ctx.fill()
   ctx.shadowBlur = 0
@@ -7976,7 +7983,8 @@ function postcard () {
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.strokeStyle = randomPick(colors)
   ctx.lineWidth = 1
-  let i = 0, x = pad+2, y = pad+94
+  let i = 0
+  x = pad+2, y = pad+94
   
   ctx.lineWidth = 4 + Math.floor(Math.random()*4)
   y = hpad*1.8, x = W/2
@@ -7987,9 +7995,7 @@ function postcard () {
   ctx.stroke()
   
   ctx.strokeRect(W-pad-130, hpad+20,110,140) // stamp
-  
   x = W/2 + pad*4, y = H/2 - pad*1.3
-
   i = 0
   for (; i < 4; i++) {
     ctx.beginPath()
