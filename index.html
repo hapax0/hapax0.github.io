@@ -7559,6 +7559,104 @@ function gridpaper () { // grid paper
   let color = document.getElementById("paintcolor").value
   let alt = document.getElementById("grungy").checked
   let space = 6 + Math.floor(document.getElementById("featuresize").value/10)
+  let pad = 32
+  let mod = randomPick([4,5,6])
+  let colors = ["#ed6060", "#0000ba", "0000ed", "#ed0000", "#000000"]
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctx.strokeStyle = randomPick(getCurrentPalette())
+  ctx.lineWidth = randomPick([1,2,3,4,5])
+  
+  ctx.fillStyle = color
+  
+  ctx.shadowColor = "#403030"
+  ctx.shadowBlur = 9 + Math.random() * 5
+  ctx.shadowOffsetY = 2 + Math.random() * 3
+  ctx.shadowOffsetX = -2 + Math.random() * 2
+  
+ // ctx.fillRect(pad,pad,W-pad*2, H-pad*2) //requirements
+  let x = pad, y = pad
+  ctx.beginPath()
+  ctx.moveTo(pad,pad)
+  ragged(ctx,W-pad,pad,x,y)
+  x = W-pad
+  y = pad
+  ragged(ctx,W-pad,H-pad+pet(3),x,y)
+  y = H-pad
+  ragged(ctx,pad,H-pad+pet(3),x,y)
+  x = pad
+  y = W-pad
+  ragged(ctx,pad,pad+pet(3),x,y)
+  ctx.closePath()
+  ctx.fill()
+  ctx.shadowBlur = 0
+  ctx.shadowOffsetY = 0
+  ctx.shadowOffsetX = 0
+  
+  pad += 60 + Math.random() * 60
+  
+  let h = 5+Math.floor(Math.random() * 10), w = 5+Math.floor(Math.random() * 10)
+  let cols = ((W - pad*2)/w)
+  let lines = ((H - pad*2)/h)
+  let i = 0
+  x = pad, y = pad
+  for (; i < h+1; i++) {  // horizontal
+    ctx.beginPath()
+    ctx.moveTo(x, y)
+    ctx.lineTo(W-pad, y)
+    ctx.closePath()
+    //if (y <= W-pad+4)
+      ctx.stroke()
+    y += lines
+
+  }
+  ctx.lineWidth = randomPick([1,2,3,4,5])
+  i = 0, x = pad, y = pad
+  for (; i < w+1; i++) {  // vertical
+    ctx.beginPath()
+    ctx.moveTo(x, y)
+    ctx.lineTo(x, H - pad)
+    ctx.closePath()
+    //if (x <= H-pad+4)
+    ctx.stroke()
+    x += cols
+  }
+  /*space = 8
+  if (alt) { // continuous feed
+    ctx.globalAlpha = document.getElementById("opacity").value/100
+    ctx.fillStyle = "#ffffff"
+    ctx.shadowBlur = 1
+    ctx.shadowColor = "#cccccc"
+    ctx.shadowOffsetX = -1
+    ctx.shadowOffsetY = -1
+    i = 0, y = 30, x = W-space*2.5
+    while (y < H) {
+      ctx.beginPath()
+      ctx.arc(x, y, 8, 0, 2*Math.PI)
+      ctx.closePath()
+      ctx.fill()
+      y += 40
+    }
+    i = 0, y = 30, x = space*2.5
+    while (y < H) {
+      ctx.beginPath()
+      ctx.arc(x, y, 8, 0, 2*Math.PI)
+      ctx.closePath()
+      ctx.fill()
+      y += 40
+    }
+    ctx.shadowBlur = 0
+    ctx.shadowOffsetX = 0
+    ctx.shadowOffsetY = 0
+  }*/
+}
+
+function gridpaper_og () { // grid paper
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let W = canvas.width, H = canvas.height
+  let color = document.getElementById("paintcolor").value
+  let alt = document.getElementById("grungy").checked
+  let space = 6 + Math.floor(document.getElementById("featuresize").value/10)
   let pad = 8
   let mod = randomPick([4,5,6])
   let colors = ["#ed6060", "#6060ba", "#6060ed", "#ed6060", "#000000"]
