@@ -506,6 +506,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <!--option value="testPattern">test pattern</option>
     <option value="landscape2">landscape</option-->
     <option value="landscape3">landscape2</option>
+    <option value="numberShow">numbers</option>
     <option value="coloringbook">coloring book</option>
     <option value="edgeSmear">streak left</option>
     <option value="smeardownOff">vertical streaks</option>
@@ -4805,11 +4806,14 @@ function swapWithOff () {
     OC.width = canvas.width
     OCISCLEAR = false
   }
+  let mode = document.getElementById("mode").value
   if (OC && OC.width > 0) {
     let ctx = canvas.getContext('2d')
+    ctx.globalCompositeOperation = "source-over"
     let OCctx = OC.getContext('2d')
-    OCctx.globalAlpha = 1//document.getElementById("opacity").value/100
-    ctx.globalAlpha = 1//document.getElementById("opacity").value/100
+    OCctx.globalCompositeOperation = "source-over"
+    OCctx.globalAlpha = 1
+    ctx.globalAlpha = 1
     let temp = document.createElement('CANVAS')
     let tempctx = temp.getContext('2d')
     temp.width = canvas.width
@@ -4820,9 +4824,13 @@ function swapWithOff () {
     ctx.drawImage(OC, 0, 0)
     OCctx.clearRect(0,0,canvas.width,canvas.height)
     OCctx.drawImage(temp,0,0)
+    ctx.globalCompositeOperation = mode
+
   }
+  ctx.globalCompositeOperation = mode
   return true
 }
+
 document.getElementById("uploadimage").addEventListener("change", drawFile, true)
 
 function pushColor (c) {
@@ -7886,6 +7894,41 @@ function requirements () {
   ctx.globalAlpha = document.getElementById("opacity").value/100
 }
 
+function numberShow () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
+  let alt = document.getElementById("grungy").checked
+  let mode = document.getElementById("mode").checked
+  let W = canvas.width, H = canvas.height
+  let pad = 30 + Math.floor(Math.random() * 12)
+  let linespace = 34 + Math.floor(pet(16))
+
+  let color = randomPick(getCurrentPalette())
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctx.lineWidth = 1
+  let i = 0, x = pad+2, y = pad+94
+  let text = 2+Math.floor(Math.random() * 101)
+
+  let face = "helvetica"
+  let size = H*0.8
+  ctx.globalAlpha = (document.getElementById("opacity").value)/100
+  ctx.fillStyle = color
+  ctx.strokeStyle = "#505050"
+  ctx.font = size+"pt " + face
+  w = ctx.measureText(text).width
+
+  ctx.fillText(text, W/2-w/2, pad*2+size)
+  ctx.scale(-1, 1)
+
+  ctx.globalAlpha /= 2
+  ctx.fillText(text-1, -w*1.1+pet(50), pad*2+size+pet(50))
+
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+    
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+}
+
 function linedPad () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -7955,11 +7998,16 @@ function postcard () {
   let W = canvas.width, H = canvas.height
   let pad = 24, hpad = 7 * pad
   let linespace = 34 + Math.floor(pet(16))
+  let colors = ["#6060ba", "#6060ed", "#000000", "#2020cc"]
+  ctx.strokeStyle = randomPick(colors)
+
   ctx.globalAlpha = document.getElementById("opacity")/100
   ctx.shadowColor = "#403030"
   ctx.shadowBlur = 9 + Math.random() * 5
   ctx.shadowOffsetY = 2 + Math.random() * 3
   ctx.shadowOffsetX = -2 + Math.random() * 2
+  ctx.lineWidth = 4 + Math.floor(Math.random()*4)
+
   ctx.fillStyle = color
   let x = pad, y = hpad
   ctx.moveTo(x,y)
@@ -7978,13 +8026,10 @@ function postcard () {
   ctx.shadowBlur = 0
   ctx.shadowOffsetY = 0
   ctx.shadowOffsetX = 0
-  let colors = ["#6060ba", "#6060ed", "#000000", "#2020cc"]
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = randomPick(colors)
   ctx.lineWidth = 1
   let i = 0
   x = pad+2, y = pad+94
-  
   ctx.lineWidth = 4 + Math.floor(Math.random()*4)
   y = hpad*1.8, x = W/2
   ctx.beginPath()
@@ -8008,7 +8053,7 @@ function postcard () {
   ctx.font = "800 "+(36)+"pt " + face
   let width = ctx.measureText(text).width
   ctx.fillStyle = ctx.strokeStyle
-  ctx.fillText(text,W/2-width/2,hpad+100)
+  ctx.fillText(text,W/2-width/2,hpad+92)
   
   let CENT = W-pad-130 + 55
   y = hpad+50
