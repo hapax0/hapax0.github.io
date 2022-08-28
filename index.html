@@ -7591,15 +7591,25 @@ function gridpaper () { // grid paper
   ctx.shadowOffsetX = 0
   ctx.fillStyle = ctx.strokeStyle
   pad += 60 + Math.random() * 60
-  
+  let numbers = []
+  let i = 0
+  for (; i < 33*33; i++)
+    numbers.push(i+1)
   let h = 2+Math.floor(Math.random() * 33), w = 2+Math.floor(Math.random() * 33)
+  let text  = 0
   
   let cols = ((W - pad*2)/w)
   let lines = ((H - pad*2)/h)
-  let i = 0, p = (alt)? 2.5: 1.5;
-  let j = 0
+  i = 0
+  let j = 0,p = 1.5;
   y = pad
   let r = Math.min(cols,lines)/12
+  let n = 0
+  
+  let face = "Courier"
+  ctx.font = "800 "+(r*3)+"pt " + face
+  let numb = Math.random() > 0.5
+  let width = r*2
   for (; j < h+1; j++) {
     i = 0
     x = pad
@@ -7610,9 +7620,25 @@ function gridpaper () { // grid paper
       ctx.closePath()
       ctx.stroke()
       if (alt && j > 0) {
-        ctx.globalAlpha /= 10
-        dotsNear2(ctx,x+cols/2,y-lines/2,r)
-        ctx.globalAlpha = alpha
+        if (numb) {
+          ctx.globalAlpha /= 3
+          text = numbers[n++]
+          if (Math.random() > 0.4)
+            text = "__"
+          width = ctx.measureText(text).width
+          ctx.fillText(text,x+cols/2-width/2+pet(5),y-lines/2+pet(5)+r/2)
+          ctx.fillText(text,x+cols/2-width/2+pet(5),y-lines/2+pet(5)+r/2)
+          if (Math.random() > 0.8 && n > 0)
+            text = numbers[n-1]
+          ctx.fillText(text,x+cols/2-width/2+pet(5),y-lines/2+pet(5)+r/2)
+          ctx.fillText(text,x+cols/2-width/2+pet(5),y-lines/2+pet(5)+r/2)
+
+          ctx.globalAlpha = alpha
+        } else {
+          ctx.globalAlpha /= 10
+          dotsNear2(ctx,x+cols/2,y-lines/2,r)
+          ctx.globalAlpha = alpha
+        }
       }
       x += cols
     }
