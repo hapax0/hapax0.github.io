@@ -7563,9 +7563,10 @@ function gridpaper () { // grid paper
   let mod = randomPick([4,5,6])
   let colors = ["#ed6060", "#0000ba", "0000ed", "#ed0000", "#000000"]
   ctx.globalAlpha = document.getElementById("opacity").value/100
+  let alpha = ctx.globalAlpha
   ctx.strokeStyle = randomPick(getCurrentPalette())
   ctx.lineWidth = randomPick([1,2,3,4,5])
-  
+  ctx.clearRect(0,0,W,H)
   ctx.fillStyle = color
   ctx.shadowColor = "#403030"
   ctx.shadowBlur = 9 + Math.random() * 5
@@ -7588,15 +7589,17 @@ function gridpaper () { // grid paper
   ctx.shadowBlur = 0
   ctx.shadowOffsetY = 0
   ctx.shadowOffsetX = 0
-  
+  ctx.fillStyle = ctx.strokeStyle
   pad += 60 + Math.random() * 60
   
   let h = 2+Math.floor(Math.random() * 33), w = 2+Math.floor(Math.random() * 33)
+  
   let cols = ((W - pad*2)/w)
   let lines = ((H - pad*2)/h)
   let i = 0, p = (alt)? 2.5: 1.5;
   let j = 0
   y = pad
+  let r = Math.min(cols,lines)/12
   for (; j < h+1; j++) {
     i = 0
     x = pad
@@ -7606,6 +7609,11 @@ function gridpaper () { // grid paper
       ctx.lineTo(x + cols, y+pet(p))
       ctx.closePath()
       ctx.stroke()
+      if (alt && j > 0) {
+        ctx.globalAlpha /= 10
+        dotsNear2(ctx,x+cols/2,y-lines/2,r)
+        ctx.globalAlpha = alpha
+      }
       x += cols
     }
     y += lines
@@ -8803,6 +8811,20 @@ function dotsNear(ctx,x,y,r) {
   }
 }
 
+
+function dotsNear2(ctx,x,y,r) {
+  let i = 0
+  x += 4
+  for (; i < 17; i++) {
+    ctx.beginPath()
+    ctx.arc(x,y,r,0,2*Math.PI)
+    ctx.closePath()
+    ctx.fill()
+    x += pet(9)
+    y += pet(9)
+   // r = 2 + pet(1)
+  }
+}
 function labyrinth () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
