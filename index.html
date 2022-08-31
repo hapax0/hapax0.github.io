@@ -523,7 +523,8 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="seasons">seasons</option>
     <option value="tides">tides</option>
     <option value="phases">phases</option>
-    <option value="glass">glass</option>
+    <option value="glass_line">glass</option>
+    <option value="glass">glass (fill)</option>
     <option value="labyrinth" >labyrinth</option>
     <!--option value="blobOutline">shape outline</option>
     <option value="bezRandom" >random bez</option-->
@@ -7079,6 +7080,73 @@ function glass () {
   document.getElementById("opacity").value = alpha
 }
 
+
+function glass_line () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.clearRect(0,0,canvas.width,canvas.height)
+  ctx.lineWidth = 1+ document.getElementById("featuresize").value/20
+  let R = canvas.width * 0.3
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let colors = shuffle(getCurrentPalette())
+  if (document.getElementById("grungy").checked)
+    colors = shuffle(['red', 'blue', 'yellow', 'orange', 'purple', "green"])
+  let mode = document.getElementById("mode").value
+  let alpha = document.getElementById("opacity").value
+  let cx = canvas.width/2, cy = canvas.height/2, x = 0, y = 0
+  let a = Math.random() * 2 * Math.PI
+  let pad = 50
+  let R2 = R/2
+ 
+  let height = 0
+
+  // fill
+  ctx.strokeStyle = (colors[0])
+  ctx.beginPath()
+  height = cy+pet(cy*1.2)
+
+  let savedheight = height
+  r = (canvas.height + height*-0.5) * 0.27 // slightly smaller
+  savedr = r
+  ctx.ellipse(cx, height, r, r/2, 0, Math.PI, 2 * Math.PI) // level -> top of filled
+  height = canvas.height*0.84
+  r = (canvas.height + height*-0.5) * 0.27 // bottom of glass
+  ctx.ellipse(cx, height, r, r/2, 0, 0, Math.PI)
+  ctx.lineTo(cx-savedr,savedheight) //: \
+  ctx.stroke()
+
+  ctx.beginPath()
+  height = savedheight
+  r = (canvas.height + height*-0.5) * 0.27 // slightly smaller
+  ctx.ellipse(cx, height, r, r/2, 0, 0, 2 * Math.PI) // level -> top of filled
+  ctx.stroke()
+
+//---------------
+
+  // top
+  height = cy*0.4
+  r = (canvas.height + height*-0.5) * 0.3
+  ctx.strokeStyle = (colors[3])
+  ctx.beginPath()
+  ctx.ellipse(cx, height, r, r/2, 0, Math.PI, 2 * Math.PI)
+  //bottom
+  height = canvas.height*0.85
+  r = (canvas.height + height*-0.5) * 0.3
+  ctx.ellipse(cx, height, r, r/2, 0,  0, Math.PI)
+  ctx.stroke()
+ctx.strokeStyle = (colors[3])
+  height = cy*0.4
+  r = (canvas.height + height*-0.5) * 0.3
+  ctx.beginPath()
+  ctx.ellipse(cx, height, r, r/2, 0, 0, Math.PI)
+  height = canvas.height*0.85
+  r = (canvas.height + height*-0.5) * 0.3
+  ctx.ellipse(cx, height, r, r/2, 0,  Math.PI, 0, true)
+  ctx.stroke()
+  document.getElementById("mode").value = mode
+  document.getElementById("opacity").value = alpha
+}
+
 function eclipse () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -7096,7 +7164,7 @@ function eclipse () {
 
   let R2 = R*0.8
 
-  ctx.fillStyle = (colors[3])
+  ctx.strokeStyle = (colors[3])
   ctx.beginPath()
   ctx.moveTo(cx-R*3.2,0)
   ctx.lineTo(cx+R*3.2,0)
@@ -7105,7 +7173,7 @@ function eclipse () {
   ctx.closePath()
   ctx.fill()
   
-  ctx.fillStyle = (colors[4])
+  ctx.strokeStyle = (colors[4])
   ctx.beginPath()
   ctx.moveTo(cx-R2*0.3, (cy+cy/3), 0)
   ctx.lineTo(cx+R2*0.3, (cy+cy/3), 0)
@@ -7114,20 +7182,20 @@ function eclipse () {
   ctx.closePath()
   ctx.fill()
   // top disc
-  ctx.fillStyle = colors[0]
+  ctx.strokeStyle = colors[0]
   ctx.beginPath()
   ctx.arc(cx, -R/4, R+r, 0, Math.PI * 2)
   ctx.closePath()
   ctx.fill()
   // bottomr disc
-  ctx.fillStyle = (colors[1])
+  ctx.strokeStyle = (colors[1])
   ctx.beginPath()
   ctx.arc(cx, canvas.height, R2, 0, Math.PI * 2)
   ctx.closePath()
   ctx.fill()
   //moon
   R2 *= 0.3
-  ctx.fillStyle = (colors[2])
+  ctx.strokeStyle = (colors[2])
   ctx.beginPath()
   ctx.arc(cx, cy+cy/3, R2, 0, Math.PI * 2)
   ctx.closePath()
@@ -7552,6 +7620,93 @@ function scratchOut () {
     ctx.restore()
 }
 
+function justlines () { // grid paper
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let W = canvas.width, H = canvas.height
+  let color = document.getElementById("paintcolor").value
+  let alt = document.getElementById("grungy").checked
+  let space = 6 + Math.floor(document.getElementById("featuresize").value/10)
+  let pad = 32
+  let mod = randomPick([4,5,6])
+  let colors = ["#ed6060", "#0000ba", "0000ed", "#ed0000", "#000000"]
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let alpha = ctx.globalAlpha
+  ctx.strokeStyle = randomPick(getCurrentPalette())
+  ctx.lineWidth = randomPick([1,2,3,4,5])
+  ctx.clearRect(0,0,W,H)
+  ctx.fillStyle = color
+  ctx.shadowColor = "#403030"
+  ctx.shadowBlur = 9 + Math.random() * 5
+  ctx.shadowOffsetY = 2 + Math.random() * 3
+  ctx.shadowOffsetX = -2 + Math.random() * 2
+  let x = pad, y = pad
+ /* ctx.beginPath()
+  ctx.moveTo(pad,pad)
+  ragged(ctx,W-pad,pad,x,y)
+  x = W-pad
+  y = pad
+  ragged(ctx,W-pad,H-pad+pet(3),x,y)
+  y = H-pad
+  ragged(ctx,pad,H-pad+pet(3),x,y)
+  x = pad
+  y = W-pad
+  ragged(ctx,pad,pad+pet(3),x,y)
+  ctx.closePath()
+  ctx.fill()*/
+  ctx.shadowBlur = 0
+  ctx.shadowOffsetY = 0
+  ctx.shadowOffsetX = 0
+  ctx.fillStyle = ctx.strokeStyle
+  pad += 60 + Math.random() * 60
+  let numbers = []
+  let i = 0
+  for (; i < 33*33; i++)
+    numbers.push(i+1)
+  let h = 51+Math.floor(Math.random() * 33), w = 1//+Math.floor(Math.random() * 33)
+  let text  = 0
+  
+  let cols = ((W - pad*2)/w)
+  let lines = ((H - pad*2)/h)
+  i = 0
+  let j = 0, p = 1.3;
+  y = pad
+  ctx.globalAlpha = 0.5
+  for (; j < h+1; j++) {
+    i = 0
+    x = pad
+    ctx.lineWidth = randomPick([50,30,100])
+    for (; i < w; i++) {  // horizontal
+      
+      ctx.beginPath()
+      ctx.moveTo(x+pet(p), y+pet(p))
+      ctx.lineTo(x + cols, y+pet(p))
+     // ctx.closePath()
+      ctx.stroke()
+      x += cols 
+    }
+    y += lines
+  }
+  ctx.globalAlpha = alpha
+}
+
+function rr () {
+  // uv = unrounded value
+  let uv = [0.00000,0.10000,0.20000,0.30000,0.40000,0.50000,0.60000,0.70000,0.80000,0.90000,1.00000,1.10000,1.20000,1.30000,1.40000,1.50000,1.60000,1.70000,1.80000,1.90000,2.00000,2.10000,2.20000,2.30000,2.40000,2.50000,2.60000,2.70000,2.80000,2.90000,3.00000,3.10000,3.20000,3.30000,3.40000,3.50000,3.60000,3.70000,3.80000,3.90000,4.00000,4.10000,4.20000,4.30000,4.40000,4.50000,4.60000,4.70000,4.80000,4.90000,5.00000,5.10000,5.20000,5.30000,5.40000,5.50000,5.60000,5.70000,5.80000,5.90000,6.00000,6.10000,6.20000,6.30000,6.40000,6.50000,6.60000,6.70000,6.80000,6.90000,7.00000,7.10000,7.20000,7.30000,7.40000,7.50000,7.60000,7.70000,7.80000,7.90000,8.00000,8.10000,8.20000,8.30000,8.40000,8.50000,8.60000,8.70000,8.80000,8.90000,9.00000,9.10000,9.20000,9.30000,9.40000,9.50000,9.60000,9.70000,9.80000,9.90000,10.00000,10.10000,10.20000,10.30000,10.34200,10.50000]
+  let mult = 2
+  let i = 0
+  for (;i < uv.length;i++) {
+    console.log(uv[i], Math.round(uv[i]/mult)*mult)
+    let prev = Math.floor(uv[i]/mult)*(mult) // previous mulitple
+    let next = Math.ceil(uv[i]/mult)*(mult) // next multiple
+    if (next !== prev && uv[i] - prev === next - uv[i]) {
+      if((prev/mult) % 2 === 0) // test even-ness
+        console.log("["+uv[i]+ " use "+prev+"]")
+      else
+        console.log("["+uv[i]+ " use "+next+"]")
+    }
+  }
+}
 function gridpaper () { // grid paper
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -7601,7 +7756,7 @@ function gridpaper () { // grid paper
   let cols = ((W - pad*2)/w)
   let lines = ((H - pad*2)/h)
   i = 0
-  let j = 0,p = 1.5;
+  let j = 0, p = 1.3;
   y = pad
   let r = Math.min(cols,lines)/12
   let n = 0
@@ -7621,18 +7776,24 @@ function gridpaper () { // grid paper
       ctx.stroke()
       if (alt && j > 0) {
         if (numb) {
-          ctx.globalAlpha /= 3
+          ctx.globalAlpha = 0.8
+          if (Math.random() > 0.75)
+          ctx.globalAlpha = 0.4
           text = numbers[n++]
-          if (Math.random() > 0.4)
-            text = "__"
+        //  if (Math.random() > 0.4)
+        //    text = "__"
           width = ctx.measureText(text).width
-          ctx.fillText(text,x+cols/2-width/2+pet(5),y-lines/2+pet(5)+r/2)
-          ctx.fillText(text,x+cols/2-width/2+pet(5),y-lines/2+pet(5)+r/2)
-          if (Math.random() > 0.8 && n > 0)
-            text = numbers[n-1]
-          ctx.fillText(text,x+cols/2-width/2+pet(5),y-lines/2+pet(5)+r/2)
-          ctx.fillText(text,x+cols/2-width/2+pet(5),y-lines/2+pet(5)+r/2)
-
+        //  ctx.fillText(text,x+cols/2-width/2+pet(5),y-lines/2+pet(5)+r/2)
+       //   ctx.fillText(text,x+cols/2-width/2+pet(5),y-lines/2+pet(5)+r/2)
+        //  if (Math.random() > 0.8 && n > 0)
+       //     text = numbers[n-1]
+      //    ctx.fillText(text,x+cols/2-width/2+pet(5),y-lines/2+pet(5)+r/2)
+      //    ctx.fillText(text,x+cols/2-width/2+pet(5),y-lines/2+pet(5)+r/2)
+          ctx.save()
+          ctx.translate(x+cols/2-width/2+pet(2),y-lines/2+pet(2)+r/2)
+          ctx.rotate(Math.random() * 2 * Math.PI) // need to adjust x & y offsets per line
+          ctx.fillText(text, 0, 0)
+          ctx.restore()
           ctx.globalAlpha = alpha
         } else {
           ctx.globalAlpha /= 10
@@ -7640,7 +7801,7 @@ function gridpaper () { // grid paper
           ctx.globalAlpha = alpha
         }
       }
-      x += cols
+      x += cols 
     }
     y += lines
   }
@@ -7909,11 +8070,8 @@ function thisSpace () {
   ctx.moveTo(pad*3, pad*3)
   ctx.lineTo(W-pad*3, H-pad*3)
   ctx.stroke()
-  
   ctx.globalAlpha = document.getElementById("opacity").value/100
 }
-
-
 function requirements () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -11143,8 +11301,6 @@ function roadmap () {
       y += 7 * Math.sin(angle)
       s++
       angle += (Math.random()-0.51) * angledelta
-      
-      
     }
     i = 1
     ctx.beginPath()
@@ -12404,7 +12560,7 @@ function chips () {
   let cx = ctx.canvas.width/2;
   let cy = ctx.canvas.height/2;
   let maxdist = Math.pow(Math.pow(cx, 2) + Math.pow(cy, 2), 0.5) +200
-  let r = 2 + document.getElementById("featuresize").value/4
+  let r = 2 + document.getElementById("featuresize").value/2
   ctx.fillStyle = document.getElementById("paintcolor").value
   ctx.strokeStyle = document.getElementById("paintcolor").value
   for (var t = 0; t < 5; t++) {
