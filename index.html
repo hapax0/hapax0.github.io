@@ -8148,7 +8148,7 @@ function dividedPad () {
   ctx.shadowOffsetY = 2
   
  // ctx.fillRect(pad,pad,canvas.width-pad*2,canvas.height-pad*2)
-  ctx.beginPath()
+ /* ctx.beginPath()
   ctx.moveTo(pad,pad)
  // ragged(ctx,W-pad,pad+pet(3),x,y)
   ragged(ctx,cx1,cy1,x,y)
@@ -8161,6 +8161,20 @@ function dividedPad () {
   x = pad+pet(9)
   y = W-pad+pet(9)
   ragged(ctx,pad+pet(9),pad+pet(3),x,y)
+  ctx.closePath()
+  ctx.fill()*/
+  
+  ctx.beginPath()
+  ctx.moveTo(pad,pad)
+  ragged(ctx,W-pad,pad,x,y)
+  x = W-pad
+  y = pad
+  ragged(ctx,W-pad,H-pad+pet(3),x,y)
+  y = H-pad
+  ragged(ctx,pad,H-pad+pet(3),x,y)
+  x = pad
+  y = W-pad
+  ragged(ctx,pad,pad+pet(3),x,y)
   ctx.closePath()
   ctx.fill()
   
@@ -8176,7 +8190,7 @@ function dividedPad () {
   ragged(ctx, cx2,cy2,px,py)
   ctx.lineTo(cx1, cy1)
   ctx.closePath()
-  ctx.fill()
+  //ctx.fill()
 
   ctx.shadowBlur = 0
   ctx.shadowOffsetX = 0
