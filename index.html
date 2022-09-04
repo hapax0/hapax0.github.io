@@ -7455,8 +7455,7 @@ function eclipse () {
   let a = Math.random() * 2 * Math.PI
 
   let R2 = R*0.8
-
-  ctx.strokeStyle = (colors[3])
+  ctx.fillStyle = colors[3]
   ctx.beginPath()
   ctx.moveTo(cx-R*3.2,0)
   ctx.lineTo(cx+R*3.2,0)
@@ -7465,7 +7464,7 @@ function eclipse () {
   ctx.closePath()
   ctx.fill()
   
-  ctx.strokeStyle = (colors[4])
+  ctx.fillStyle = colors[4]
   ctx.beginPath()
   ctx.moveTo(cx-R2*0.3, (cy+cy/3), 0)
   ctx.lineTo(cx+R2*0.3, (cy+cy/3), 0)
@@ -7474,20 +7473,20 @@ function eclipse () {
   ctx.closePath()
   ctx.fill()
   // top disc
-  ctx.strokeStyle = colors[0]
+  ctx.fillStyle = colors[0]
   ctx.beginPath()
   ctx.arc(cx, -R/4, R+r, 0, Math.PI * 2)
   ctx.closePath()
   ctx.fill()
   // bottomr disc
-  ctx.strokeStyle = (colors[1])
+  ctx.fillStyle = colors[1]
   ctx.beginPath()
   ctx.arc(cx, canvas.height, R2, 0, Math.PI * 2)
   ctx.closePath()
   ctx.fill()
   //moon
   R2 *= 0.3
-  ctx.strokeStyle = (colors[2])
+  ctx.fillStyle = colors[2]
   ctx.beginPath()
   ctx.arc(cx, cy+cy/3, R2, 0, Math.PI * 2)
   ctx.closePath()
@@ -7846,7 +7845,7 @@ function necker () {
     ctx.fill()
     
     //upper right square
-/    ctx.beginPath();
+    ctx.beginPath();
     ctx.moveTo(w4+margin, 0+margin)
     ctx.lineTo(W-margin, 0+margin)
     ctx.lineTo(W-margin, W-w4-margin)
@@ -7855,7 +7854,7 @@ function necker () {
     ctx.fill()
    
     //left side
-/    ctx.beginPath();
+    ctx.beginPath();
     ctx.moveTo(margin, w4+margin)
     ctx.lineTo(w4+margin, margin)
     ctx.lineTo(w4+margin, W-w4-margin)
