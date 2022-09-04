@@ -245,7 +245,7 @@ id="ff" onclick="testImage('framefunctions')" title="frame functions"><svg xmlns
      <option value="halfRip" style="color:red">left rip</option>
      <option value="leftClip" style="color:red">left clip</option>
      <option value="nudgeRight" style="color:red">nudge horizontal</option>
-     <option value="nudgeDown" style="color:red">nudge down</option>
+     <option value="nudgeDown" style="color:red">nudge vertcal</option>
      <option value="nudgehalfdown" style="color:red">nudge down right</option>
      <option value="nudgeCW" style="color:red">nudge angle</option>
      <!--option value="makeSquare2">pad bottom to square</option-->
@@ -562,6 +562,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
       <option value="floppyPage">stack of pages</option>
       <option value="gridpaper" >grid paper</option>
       <option value="linedPad">lined pad</option>
+      <option value="messagepad">message</option>
       <option value="dividedPad" >divided pad</option>
       <option value="requirements" selected>requirements pad</option>
       <option value="postcard">postcard</option>
@@ -7189,6 +7190,74 @@ function user () {
   
 }
 
+function venus () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.clearRect(0,0,canvas.width,canvas.height)
+  ctx.lineWidth = 16// + Math.floor(document.getElementById("featuresize").value/10)
+  //let R = canvas.width * 0.3
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let colors = shuffle(getCurrentPalette())
+  let mode = document.getElementById("mode").value
+  let alpha = document.getElementById("opacity").value
+  let cx = canvas.width/2, cy = canvas.height/2, x = 0, y = 0
+  let hip = canvas.width * 0.76
+  let waist = canvas.width - hip *0.9
+  let div = 1 + Math.random() * 5
+  let height = 0
+  let savedheight = 0
+  // fill
+  ctx.lineJoin = "round"
+  ctx.strokeStyle = (colors[0])
+  height = cy+pet(cy*1.2)
+  let r = hip/9
+  let savedr = r
+  
+  y = cy + r
+
+  // face
+  ctx.beginPath()
+  ctx.ellipse(cx-r/2, r*1.7, r*1.4, r, Math.PI/2.3, 0, Math.PI*2)
+  ctx.stroke()
+  // left arm
+  ctx.beginPath()
+  ctx.ellipse(hip/4, y, r*1, r*0.60, -Math.PI/10, 0, Math.PI*2)
+  ctx.stroke()
+  //left boob
+  ctx.beginPath()
+  ctx.ellipse(cx-hip/6, y, r, r, 0, Math.PI*1.35, 0, true)
+  ctx.stroke()
+  //right boob
+  ctx.beginPath()
+  ctx.ellipse(cx+hip/9, y-r/2, r, r, 0, Math.PI*0.9, Math.PI*1.8, true)
+  ctx.stroke()
+  
+  
+  return
+  ctx.beginPath()
+  ctx.moveTo(cx, y)
+  ctx.lineTo(cx-30, canvas.height)
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.moveTo(cx, y)
+  ctx.lineTo(cx+30, canvas.height)
+  ctx.stroke()
+  // legs outer
+  ctx.beginPath()
+  ctx.moveTo(cx-r*2, y)
+  ctx.lineTo(cx-r*2+30, canvas.height)
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.moveTo(cx+r*2, y)
+  ctx.lineTo(cx+2*r-30, canvas.height)
+  ctx.stroke()
+  
+  document.getElementById("mode").value = mode
+  document.getElementById("opacity").value = alpha
+}
+
 
 function buns () {
   let canvas = document.getElementById("myCanvas");
@@ -9289,51 +9358,94 @@ function messagepad () { // while you were ouy
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let W = canvas.width, H = canvas.height
+  let cx = W/2, cy = W/2
   let colors = shuffle(getCurrentPalette())
   ctx.clearRect(0,0,W,H)
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.lineWidth = 5
-  ctx.fillStyle = "#ffc0cb"
+  ctx.fillStyle = document.getElementById("paintcolor").value//"#ffc0cb"
   ctx.fillRect(0,0,W,H)
-  ctx.strokeStyle = "#555555"
+  ctx.strokeStyle = "#000000"
   let pad = 40
-  ctx.strokeRect(pad,pad,W-pad*2-5,H-pad*2-5) // frame
+  ctx.strokeRect(pad-3,pad-3,W-pad*2,H-pad*2) // frame
+  ctx.lineWidth = 2
+  ctx.strokeRect(pad+6,pad+6,W-pad*2-16,H-pad*2-16) // frame
   ctx.lineWidth = 3
   let x = 0, y = 0
-  ctx.strokeRect(W-pad-290, pad, 279, 60) // urgent
-  ctx.strokeRect(W-pad-60, pad+10, 40, 40) // check box
+  //ctx.strokeRect(W-pad-290, pad, 279, 60) // urgent
+  
+  
+  ctx.globalAlpha /= 2
+  ctx.fillStyle = "#505050"
+  ctx.fillRect(W-pad-210, pad*1.4-8, 196, 53)
+  ctx.globalAlpha *= 2
+  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.fillRect(W-pad-60, pad+16, 40, 40) // check box
+  ctx.strokeRect(W-pad-60, pad+16, 40, 40) // check box
   let text = "Urgent"
-  let face = "arial"
-  ctx.font = "800 "+(30)+"pt " + face
+  let face = "serif"
+  ctx.font = "800 "+(34)+"pt " + face
   let w = ctx.measureText(text).width
   x = W-pad-270, y = pad * 2
-  ctx.fillStyle = "#555555"
-  ctx.fillText(text, x, y)
-  return
+  ctx.fillStyle = "#000000"
+  ctx.fillText(text, x+60, y+8)
+  y += 24
+  ctx.beginPath()
+  ctx.moveTo(pad+84, y)
+  ctx.lineTo(W-pad*1.4, y)
+  ctx.stroke()
+  y+= 60
+  ctx.beginPath()
+  ctx.moveTo(pad+104, y)
+  ctx.lineTo(cx+80, y)
+  ctx.stroke()
   
+  ctx.beginPath()
+  ctx.moveTo(cx+160, y)
+  ctx.lineTo(W-pad*1.4, y)
+  ctx.stroke()
+  y += 66
+  ctx.globalAlpha /= 2
+  ctx.fillStyle = "#505050"
+  ctx.fillRect(pad + 12, y-48, W-pad*2.6-2, 80)
+  ctx.globalAlpha *= 2
+  y += 130
+  ctx.strokeRect(cx + cx/4-5, y, W/3, H/5+24)
+  let i = 0 // checkboxes
+  for (; i < 5; i++) {
+    ctx.strokeRect(cx + cx/4+8,y+(i * 46)+12, 30,30)
+  }
+  y = 100
   
-  let i = 0, row = 1, col = 1
-  for (; i < 7; i++) {
+  i = 0 // short lines
+  y = cy - 3*60
+  for (; i < 4; i++) {
     ctx.beginPath()
-    ctx.moveTo(x+pet(5),y)
-    ctx.lineTo(x+len, y+pet(5))
-    ctx.lineTo(x+len+pet(5), y+len/2)
-    ctx.lineTo(x, y+len/2+pet(5))
-    ctx.closePath()
-    ctx.strokeStyle = randomPick(colors)
-    ctx.fillStyle = randomPick(colors)
-    if (Math.random() > 0.2) {
-      let face = "AmericanTypewriter-Bold"
-      ctx.font = "800 "+(30)+"pt " + face
-      let w = ctx.measureText(thedays[i]).width
-      ctx.fillText(thedays[i], (x+len/2) - w/2, y +len/3)
-      ctx.stroke()
-    } else
-      ctx.fill()
-    
-    x += len
+    ctx.moveTo(pad+14, y)
+    ctx.lineTo(cx + cx/4-8-2, y)
+    ctx.stroke()
+    y+= 60
   }
   
+  i = 0
+  y = cy+60
+  for (; i < 7; i++) {
+    ctx.beginPath()
+    ctx.moveTo(pad+14, y)
+    ctx.lineTo(W-pad*1.4, y)
+    ctx.stroke()
+    y+= 60
+  }
+    ctx.fillStyle = "#000000"
+
+  text = "A-9711"
+  face = "sans-serif"
+  ctx.font = (12)+"pt " + face
+  x = pad+20, y = H-pad * 2 -10
+  ctx.fillText(text, x, y)
+  text = "T-3002"
+  ctx.fillText(text, x, y+20)
+
 }
 
 
@@ -15298,9 +15410,9 @@ function linearSpiral () { // make like skinny Rings
   let angle = Math.random() * Math.PI * 2;
   let increase = 0.1
   while (x < W*2 && y < H*2) {
+    ctx.lineTo(x, y);
     x = x + (a + b * angle) * Math.cos(angle);
     y = y + (a + b * angle) * Math.sin(angle);
-    ctx.lineTo(x, y);
     angle += increase;
   }
   ctx.stroke();
