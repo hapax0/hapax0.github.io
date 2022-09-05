@@ -7206,7 +7206,16 @@ function arch () {
   ctx.strokeStyle = colors[0]
   ctx.fillStyle = colors[1]
   let r = W/7 + Math.random() * W/12
-  ctx.fillRect(0,pad,W,H-2*pad)
+  
+  ctx.shadowColor = "#606060"
+  ctx.shadowBlur = 29 + Math.random() * 5
+  ctx.shadowOffsetY = 19+ Math.random() * 3
+  ctx.shadowOffsetX = 19 + Math.random() * 2
+  ctx.fillRect(pad,pad,W-2*pad,H-2*pad)
+  
+  ctx.shadowBlur = 0
+  ctx.shadowOffsetY = 0
+  ctx.shadowOffsetX = 0
 if (Math.random() > 0.5) {
     ctx.fillStyle = colors[2]
     ctx.beginPath()
@@ -7215,7 +7224,7 @@ if (Math.random() > 0.5) {
     ctx.fill()
   } else {
     ctx.fillStyle = colors[2]
-    ctx.fillRect(cx+pet(5)-r, H-cy/3-r*2+pet(5), r*2+pet(5), r*2+pet(5)-ctx.lineWidth/2)
+    ctx.fillRect(cx+pet(7)-r, H-cy/3-r*2+pet(7), r*2+pet(7), r*2+pet(7)-ctx.lineWidth/2)
   }
   ctx.beginPath()
   ctx.arc(cx, cy-cy/3 , r+ctx.lineWidth/2, Math.PI,Math.PI*2)
@@ -7231,6 +7240,18 @@ if (Math.random() > 0.5) {
     flipV()
   if (Math.random() > 0.5)
     rc()
+  ctx.globalCompositeOperation = "destination-over"
+  ctx.shadowColor = "#808080"
+  ctx.shadowBlur = 24 + Math.random() * 5
+  ctx.shadowOffsetY = 19 + Math.random() * 8
+  ctx.shadowOffsetX = 19 + Math.random() * 8
+  ctx.fillRect(pad,pad,W-2*pad,H-2*pad)
+  
+  ctx.shadowBlur = 0
+  ctx.shadowOffsetY = 0
+  ctx.shadowOffsetX = 0
+  ctx.globalCompositeOperation = mode
+  
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
 }
