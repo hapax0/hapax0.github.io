@@ -7209,6 +7209,7 @@ function venus () {
   let savedheight = 0
   // fill
   ctx.lineJoin = "round"
+  ctx.lineCap = "round"
   ctx.strokeStyle = (colors[0])
   height = cy+pet(cy*1.2)
   let r = hip/9
@@ -12911,7 +12912,7 @@ function chips () {
   ctx.fillStyle = document.getElementById("paintcolor").value
   ctx.strokeStyle = document.getElementById("paintcolor").value
   for (var t = 0; t < 5; t++) {
-    let radius = r
+    let radius = r + pet(r/2)
     x = 0;
     y = 0;
     angle = Math.random() * 6.42
@@ -12924,7 +12925,7 @@ function chips () {
     let turn = 0
     for (var i = 0; i < 100; i++) {
       increase += Math.random()/50
-      radius = r + (r/2 * Math.random())
+      radius += pet(r/2)
       x = radius * Math.cos(angle)+cent;
       y = radius * Math.sin(angle)+centy;
       ctx.lineTo(x, y);
