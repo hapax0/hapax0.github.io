@@ -7195,17 +7195,18 @@ function arch () {
   let ctx = canvas.getContext("2d");
   ctx.clearRect(0,0,canvas.width,canvas.height)
   ctx.lineWidth = 4 + Math.floor(document.getElementById("featuresize").value/10)
+  ctx.lineWidth *= 1.6
   //let R = canvas.width * 0.3
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let colors = shuffle(getCurrentPalette())
   let mode = document.getElementById("mode").value
   let alpha = document.getElementById("opacity").value
   let H = canvas.height, W = canvas.width
-  let cx = W/2, cy = H/2, x = 0, y = 0
+  let cx = 2*W/3, cy = H/2, x = 0, y = 0
   let pad = H/20
   ctx.strokeStyle = colors[0]
   ctx.fillStyle = colors[1]
-  let r = W/7 + Math.random() * W/12
+  let r = W/9 + Math.random() * W/12
   
   ctx.shadowColor = "#606060"
   ctx.shadowBlur = 29 + Math.random() * 5
@@ -7236,10 +7237,26 @@ if (Math.random() > 0.5) {
   ctx.lineTo(cx+r + ctx.lineWidth/2, cy-cy/3)//-ctx.lineWidth)
   ctx.stroke()
   
+  cx = W/4
+
+  ctx.strokeStyle = randomPick(colors)
+  ctx.beginPath()
+  ctx.moveTo(cx-r/2, cy/3-ctx.lineWidth/2)
+  ctx.lineTo(cx-r/2, H-cy/3+ctx.lineWidth/2)
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.moveTo(cx-r/2, cy/3)
+  ctx.lineTo(cx+ctx.lineWidth/2, cy/3)
+  ctx.stroke()
+  
   if (Math.random() > 0.5)
     flipV()
   if (Math.random() > 0.5)
     rc()
+  if (Math.random() > 0.5)
+    rcc()
+    
   ctx.globalCompositeOperation = "destination-over"
   ctx.shadowColor = "#808080"
   ctx.shadowBlur = 24 + Math.random() * 5
