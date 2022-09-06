@@ -526,6 +526,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="tides">tides</option>
     <option value="phases">phases</option>
     <option value="arch">arch</option>
+    <option value="foldings">arch2</option>
     <option value="pants" selected>pants</option>
     <option value="buns">buns</option>
     <option value="venus">venus</option>
@@ -716,6 +717,14 @@ function getCurrentPalette () {
     document.getElementById("pal3").value,
     document.getElementById("pal4").value,
     document.getElementById("pal5").value])
+}
+
+function restorePalette (p) {
+  document.getElementById("pal1").value = p[0]
+  document.getElementById("pal2").value = p[1]
+  document.getElementById("pal3").value = p[2]
+  document.getElementById("pal4").value = p[3]
+  document.getElementById("pal5").value = p[4]
 }
 
 function randomPalette () {
@@ -4576,6 +4585,7 @@ function retro () {
   let number = document.getElementById("number").value
   let color = document.getElementById("paintcolor").value
   let alt = document.getElementById("grungy").checked
+  let pal = getCurrentPalette()
   document.getElementById("number").value = 1500 + pet(500)
   document.getElementById("opacity").value = 100
   LASTCLICK[0] = canvas.width/2
@@ -4586,15 +4596,9 @@ function retro () {
   document.getElementById("palettechoice").value = "rainbow"
   randomPalette()
   palettetint()
-  
   contrastImage(-5)
   adjustBrightness(5)
   edgeDarken(canvas)
-  //saturationScale(0.8)
-  /*if (Math.random() > 0.5)
-    adjustWarmth(7)
-  else
-    adjustWarmth(-7)*/
   if (Math.random() > 0.3 && alt) {
     ctx.save()
     clipIrregular()
@@ -4635,6 +4639,7 @@ function retro () {
       smudgestars()
     ctx.restore()
   }
+  restorePalette(pal)
   document.getElementById("opacity").value = alpha
   document.getElementById("featuresize").value = feature_size
   document.getElementById("number").value = number
@@ -7191,6 +7196,66 @@ function user () {
   // top of head
 }
 
+function foldings () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.clearRect(0,0,canvas.width,canvas.height)
+  ctx.lineWidth = 4 + Math.floor(document.getElementById("featuresize").value/10)
+  ctx.lineWidth *= 1.6
+  //ctx.lineJoin = "bevel"
+  //let R = canvas.width * 0.3
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let colors = shuffle(getCurrentPalette())
+  let mode = document.getElementById("mode").value
+  let alpha = document.getElementById("opacity").value
+  let H = canvas.height, W = canvas.width
+  let cx = 2*W/3, cy = H/2, x = 0, y = 0
+  let pad = 0//H/20
+  ctx.strokeStyle = colors[0]
+  ctx.fillStyle = colors[1]
+  let r = W/9 + Math.random() * W/12
+  
+  ctx.fillRect(pad,pad,W-2*pad,H-2*pad)
+  
+  pad = 80
+  ctx.beginPath()
+  ctx.moveTo(cx/2+pad, cy/2+pad*2)
+  ctx.lineTo(pad*2, cy/4+pad*2)
+  ctx.lineTo(cx/2+pad, pad*2)
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.moveTo(pad*2, cy)
+  ctx.lineTo(pad*2, H-pad)
+  ctx.stroke()
+
+  ctx.strokeStyle = colors[2]
+
+  ctx.beginPath()
+  ctx.moveTo(cx/2, pad+cy) // start
+  ctx.lineTo(cx, pad+cy) // top right
+  ctx.lineTo(cx, cy*2-pad) // bottom right
+  ctx.lineTo(cx/2, cy*2-pad) // bottom right
+  ctx.stroke()
+  
+  ctx.strokeStyle = randomPick(colors)
+  ctx.lineWidth *= 1.5
+  ctx.beginPath()
+  ctx.moveTo(W-pad*2, pad) // start
+  ctx.lineTo(W-pad*2, H-pad)
+  ctx.stroke()
+  
+  if (Math.random() > 0.5)
+    flipV()
+  if (Math.random() > 0.5)
+    rc()
+  if (Math.random() > 0.5)
+    rcc()
+    
+  document.getElementById("mode").value = mode
+  document.getElementById("opacity").value = alpha
+}
+
 
 function arch () {
   let canvas = document.getElementById("myCanvas");
@@ -7251,13 +7316,6 @@ function arch () {
     rc()
   if (Math.random() > 0.5)
     rcc()
-    
- // ctx.globalCompositeOperation = "destination-over"
- 
- // ctx.fillRect(pad,pad,W-2*pad,H-2*pad)
-  
-  
-  //ctx.globalCompositeOperation = mode
   
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
@@ -9070,7 +9128,6 @@ function ragged (ctx,endX,endY,x,y) {
   let ysteps = (y - endY)/(yinc + 0.000001)
   let xf = xdiff/(xsteps + 0.000001)
   let yf = ydiff/(ysteps + 0.000001)
-  let i = 0
   let px2 = p*2
   while (distance(endX,endY,x,y) > inc) {
     // add to x and y to get closer to endX,endY
@@ -9079,31 +9136,8 @@ function ragged (ctx,endX,endY,x,y) {
     x += xf
     y += yf
     ctx.lineTo(x+pet(p), y+pet(p))
-    i++
   }
 }
-/*
-function raggedV (ctx,x0,y0,x,y, increasing) { // bottom up. Need top down??
-  //draw  line from bottom up
-  let inc = 3 + document.getElementById("featuresize").value/50
-  let p = 1 + document.getElementById("number").value/5000
-  if (increasing) {
-    let s = y0
-    y0 = y
-    y = s
-  }
-  let diff = x - x0
-  let steps = (y-y0)/inc
-  let f = diff/steps
-  let total = 0, n = 0
-  while (y > y0+inc) {
-    ctx.lineTo(x+pet(p), y)
-    y -= inc
-    x -= f
-    total += f
-    n++
-  }
-}*/
 
 function floppyPage () { // half
   let canvas = document.getElementById("myCanvas");
@@ -14486,6 +14520,55 @@ function sample () { // rect samples
   octx.clearRect(0,0,ocanvas.width,ocanvas.height)
 }
 
+function dropFrameRagged () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let mode = ctx.globalCompositeOperation
+  ctx.globalCompositeOperation = "source-over"
+  let alpha = ctx.globalAlpha
+  ctx.globalAlpha = 1.0
+  let W = canvas.width, H = canvas.height
+  let padx = (W - 0.95 * W)/2
+  let pady = (H - 0.95 * H)/2
+  let points = [], x = padx, y = pady
+  let endX = W - padx, endY =y
+  
+  clearOff()
+  zoomImage(true, true)
+  copyToOff()
+  ctx.save()
+  ctx.fillStyle = document.getElementById("paintcolor").value//"#ffffff"
+  ctx.shadowColor = "#606060"
+  ctx.shadowBlur = 29 + Math.random() * 5
+  ctx.shadowOffsetY = 19+ Math.random() * 3
+  ctx.shadowOffsetX = 19 + Math.random() * 2
+  ctx.beginPath()
+  ctx.moveTo(x,y)
+  ragged (ctx, endX, endY, x, y) // top right
+  x = endX, y = endY
+  endY = H -pady
+  ragged (ctx, endX, endY, x, y) //bottom right
+  x = endX, y = endY
+  endX = padx
+  ragged (ctx, endX, endY, x, y) //bottom left
+  x = endX, y = endY
+  endY = pady
+  ragged (ctx, endX, endY, x, y) //top left
+  ctx.closePath()
+  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.fill()
+  pasteFromOff()
+  ctx.clip()
+
+  ctx.shadowBlur = 0
+  ctx.shadowOffsetY = 0
+  ctx.shadowOffsetX = 0
+  
+  ctx.restore()
+  ctx.globalCompositeOperation = mode
+  ctx.globalAlpha = alpha
+}
+
 function dropFrame () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
@@ -14516,7 +14599,7 @@ function zoomOutImage () {
   zoomImage(true)
 }
 
-function zoomImage (out) {
+function zoomImage (out, d) {
   let ocanvas = document.getElementById('off')
   let octx = ocanvas.getContext('2d')
   let canvas = document.getElementById("myCanvas");
@@ -14533,8 +14616,10 @@ function zoomImage (out) {
   ctx.imageSmoothingEnabled = true
   ctx.imageSmoothingQuality = 'high'
   octx.drawImage(canvas, 0, 0)
+  
   let dx = (out)? canvas.width * 0.95: canvas.width * 1.05
   let dy = (out)? canvas.height * 0.95: canvas.height * 1.05
+
   let diffx = dx - W
   let diffy = dy - H
   let ox = (W/2/W * diffx)
