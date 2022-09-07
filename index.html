@@ -273,6 +273,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
           <option value="random">random</option>
           <option value="rainbow">rainbow</option>
           <option value="rust">rust</option>
+          <option value="mod1">mod1</option>
           <!--option value="stary">stary night</option>
           <option value="scream">the scream</option-->
           <option value="nighthawks">nighthawks</option>
@@ -526,7 +527,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="tides">tides</option>
     <option value="phases">phases</option>
     <option value="arch">arch</option>
-    <option value="foldings">arch2</option>
+    <option value="blocks">blocks</option>
     <option value="pants" selected>pants</option>
     <option value="buns">buns</option>
     <option value="venus">venus</option>
@@ -801,6 +802,10 @@ function randomPalette () {
   if (type === "scream"){
     a = ['#08120b', '#30362c', '#5b807f', '#f49f58', '#d9ba81']
     b = ['#f2c28b', '#f2a351', '#c29f69', '#7e9480', '#bd7b45', '#da631c', '#7b684a', '#526c6b', '#bc4e19', '#c83302', '#404335', '#152019', '#020904']
+    updateExtraColors(b)
+  } else
+  if (type === "mod1") {
+    a = ["#ffffff", "#7cf4fd", "#f5e8a8", "#292929", "#BC0000"]
     updateExtraColors(b)
   } else
   if (type === "avocado") {
@@ -7196,6 +7201,38 @@ function user () {
   // top of head
 }
 
+function blocks () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.clearRect(0,0,canvas.width,canvas.height)
+  ctx.lineWidth = 4 + Math.floor(document.getElementById("featuresize").value/10)
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let colors = shuffle(getCurrentPalette())
+  //let mode = document.getElementById("mode").value
+  let alpha = document.getElementById("opacity").value
+  let H = canvas.height, W = canvas.width
+  let cx = W/2, cy = H/2, x = 0, y = 0
+  
+  ctx.fillStyle = colors[0]
+  ctx.fillRect(0,0,W,H)
+
+  ctx.fillStyle = colors[1]
+  ctx.fillRect(pet(100),pet(80),W*0.96,H/2)
+  ctx.fillRect(pet(100),cy+pet(80),W*0.96,H/2)
+  
+  ctx.fillStyle = colors[0]
+  ctx.fillRect(W*0.1+pet(80),H*0.1+pet(120),W*0.8+pet(100),H*0.8+pet(100))
+
+  if (Math.random() > 0.5)
+    flipV()
+  if (Math.random() > 0.5)
+    rc()
+  if (Math.random() > 0.5)
+    rc()
+
+
+}
+
 function foldings () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -13014,7 +13051,7 @@ function chips () {
   let cx = ctx.canvas.width/2;
   let cy = ctx.canvas.height/2;
   let maxdist = Math.pow(Math.pow(cx, 2) + Math.pow(cy, 2), 0.5) +200
-  let r = 2 + document.getElementById("featuresize").value/2
+  let r = 1 + document.getElementById("featuresize").value/4
   ctx.fillStyle = document.getElementById("paintcolor").value
   ctx.strokeStyle = document.getElementById("paintcolor").value
   for (var t = 0; t < 5; t++) {
