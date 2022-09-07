@@ -527,7 +527,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="tides">tides</option>
     <option value="phases">phases</option>
     <option value="arch">arch</option>
-    <option value="blocks">blocks</option>
+    <option value="blocksX">blocks</option>
     <option value="pants" selected>pants</option>
     <option value="buns">buns</option>
     <option value="venus">venus</option>
@@ -7199,6 +7199,44 @@ function user () {
   ctx.stroke()
   
   // top of head
+}
+
+function blocksX () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.clearRect(0,0,canvas.width,canvas.height)
+  ctx.lineWidth = 4 + Math.floor(document.getElementById("featuresize").value/10)
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let colors = shuffle(getCurrentPalette())
+  //let mode = document.getElementById("mode").value
+  let alpha = document.getElementById("opacity").value
+  let H = canvas.height, W = canvas.width
+  let cx = W/2, cy = H/2, x = 0, y = 0
+  
+  ctx.fillStyle = colors[0]
+  ctx.fillRect(0,0,W,H)
+
+  ctx.fillStyle = randomPick([colors[1]])
+  ctx.fillRect(pet(300),pet(160),W*0.96,H/2)
+  
+  ctx.fillStyle = randomPick([colors[1]])
+  ctx.fillRect(pet(300),cy+pet(160),W*0.96,H/2)
+  
+  ctx.fillStyle = randomPick([colors[0], colors[0]])
+  ctx.fillRect(cx+pet(200),H*0.1+pet(120),W*0.8+pet(100),H*0.8+pet(100))
+
+ // ctx.fillStyle = randomPick([colors[1], colors[0]])
+ // ctx.fillRect(cx+pet(100),cy+pet(80),W/2,H*0.48)
+
+
+  if (Math.random() > 0.5)
+    flipV()
+  if (Math.random() > 0.5)
+    rc()
+  if (Math.random() > 0.5)
+    rc()
+
+
 }
 
 function blocks () {
