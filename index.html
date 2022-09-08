@@ -3961,9 +3961,10 @@ function testImage (id) {
   let ctx = canvas.getContext("2d")
   let gco = ctx.globalCompositeOperation
   let sel = document.getElementById("mode").value
+  console.log(gco, sel)
   if (gco !== sel) {
     alert(LATESTFUNCTION+" "+gco+" !== "+sel)
-    globalCompositeOperation = sel
+    ctx.globalCompositeOperation = sel
   }
   let f = document.getElementById(id).value
   window[f]()
@@ -13820,6 +13821,15 @@ async function fill (canvas, fs) {
   if (!canvas)
     canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
+  
+  let gco = ctx.globalCompositeOperation
+  let sel = document.getElementById("mode").value
+  console.log(gco, sel)
+  if (gco !== sel) {
+    //alert(LATESTFUNCTION+" "+gco+" !== "+sel)
+    ctx.globalCompositeOperation = sel
+  }
+  
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.fillStyle = document.getElementById("paintcolor").value
   if (fs)
