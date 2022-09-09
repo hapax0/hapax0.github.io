@@ -1251,7 +1251,7 @@ function diss () {
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.globalCompositeOperation = "destination-over"
   document.getElementById("paintcolor").value = color
-  fill()
+  fillA()
   //restore values
   ctx.globalCompositeOperation = mode
   refreshMode()
@@ -2180,7 +2180,7 @@ async function palettetint (canvas) {
   colors.push(document.getElementById("pal4").value)
   colors.push(document.getElementById("pal5").value)
    // console.log(colors)
-
+  let saved = document.getElementById("paintcolor").value
   document.getElementById("lower").value = 100
   document.getElementById("upper").value = 20
   let level = 20
@@ -2194,6 +2194,7 @@ async function palettetint (canvas) {
   document.getElementById("lower").value = 100
   document.getElementById("upper").value = 100
   rangecheck()
+  document.getElementById("paintcolor").value = saved
   return true
 }
 
@@ -13816,6 +13817,19 @@ function nudgeCanvas (right) {
 //  syncBackground(canvas)
 }
 
+async function fillA (canvas, fs) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctx.fillStyle = document.getElementById("paintcolor").value
+  if (fs)
+    ctx.fillStyle = fs
+  await ctx.fillRect(0,0,canvas.width, canvas.height)
+  return true
+}
+
 async function fill (canvas, fs) {
   if (!canvas)
     canvas = document.getElementById("myCanvas");
@@ -13825,7 +13839,6 @@ async function fill (canvas, fs) {
   if (gco !== sel) {
     ctx.globalCompositeOperation = sel
   }
-  
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.fillStyle = document.getElementById("paintcolor").value
   if (fs)
