@@ -3925,7 +3925,7 @@ function filterRed () {
   let pixels = imgData.data
   let i = 0
   for (; i < pixels.length; i += 4) {
-      pixels[i] *= 0.9
+    pixels[i] *= 0.9
   }
   ctx.putImageData(imgData, 0, 0)
 }
@@ -3937,7 +3937,7 @@ function filterGreen () {
   let pixels = imgData.data
   let i = 0
   for (; i < pixels.length; i += 4) {
-      pixels[i+1] *= 0.9
+    pixels[i+1] *= 0.9
   }
   ctx.putImageData(imgData, 0, 0)
 }
@@ -3949,7 +3949,7 @@ function filterBlue () {
   let pixels = imgData.data
   let i = 0
   for (; i < pixels.length; i += 4) {
-      pixels[i+2] *= 0.9
+    pixels[i+2] *= 0.9
   }
   ctx.putImageData(imgData, 0, 0)
 }
@@ -3961,7 +3961,6 @@ function testImage (id) {
   let ctx = canvas.getContext("2d")
   let gco = ctx.globalCompositeOperation
   let sel = document.getElementById("mode").value
-  console.log(gco, sel)
   if (gco !== sel) {
     alert(LATESTFUNCTION+" "+gco+" !== "+sel)
     ctx.globalCompositeOperation = sel
@@ -13821,12 +13820,9 @@ async function fill (canvas, fs) {
   if (!canvas)
     canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
-  
   let gco = ctx.globalCompositeOperation
   let sel = document.getElementById("mode").value
-  console.log(gco, sel)
   if (gco !== sel) {
-    //alert(LATESTFUNCTION+" "+gco+" !== "+sel)
     ctx.globalCompositeOperation = sel
   }
   
@@ -14659,15 +14655,15 @@ function dropFrame () {
   let ctx = canvas.getContext("2d")
   let mode = ctx.globalCompositeOperation
   ctx.globalCompositeOperation = "source-over"
-  let alpha = ctx.globalAlpha
+  let alpha = document.getElementById("opacity").value/100
   ctx.globalAlpha = 1.0
   clearOff()
   zoomImage(true)
   copyToOff()
   ctx.fillStyle = "#ffffff"
-  ctx.shadowColor = "#606060"
+  ctx.shadowColor = "#202020"
   ctx.shadowBlur = 29 + Math.random() * 5
-  ctx.shadowOffsetY = 19+ Math.random() * 3
+  ctx.shadowOffsetY = 19 + Math.random() * 3
   ctx.shadowOffsetX = 19 + Math.random() * 2
   let padx = (canvas.width - 0.95 * canvas.width)/2
   let pady = (canvas.height - 0.95 * canvas.height)/2
@@ -17343,8 +17339,8 @@ function pasteFromOff () {
     let canvas = document.getElementById('myCanvas')
     let ctx = canvas.getContext('2d')
     let OCctx = OC.getContext('2d')
-    OCctx.globalAlpha = document.getElementById("opacity").value/100
-    ctx.globalAlpha = document.getElementById("opacity").value/100
+    OCctx.globalAlpha = ctx.globalAlpha//document.getElementById("opacity").value/100
+   // ctx.globalAlpha = document.getElementById("opacity").value/100
     ctx.drawImage(OC, 0, 0)
     return true
   }
