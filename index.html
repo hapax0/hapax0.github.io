@@ -526,9 +526,11 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="seasons">seasons</option>
     <option value="tides">tides</option>
     <option value="phases">phases</option>
+    <option value="comets" selected>comets</option>
+    <option value="patches">patches</option>
     <option value="arch">arch</option>
     <option value="blocksX">blocks</option>
-    <option value="pants" selected>pants</option>
+    <option value="pants">pants</option>
     <option value="buns">buns</option>
     <option value="venus">venus</option>
     <option value="user">user</option>
@@ -7523,6 +7525,118 @@ function buns () {
   document.getElementById("opacity").value = alpha
 }
 
+function scraps () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+//  ctx.clearRect(0,0,canvas.width,canvas.height)
+  let D = 200 + Math.floor(document.getElementById("featuresize").value/10)
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let colors = shuffle(getCurrentPalette())
+  let mode = document.getElementById("mode").value
+  let alpha = document.getElementById("opacity").value
+  ctx.fillStyle = randomPick(colors)
+
+  let cx = canvas.width/2, cy = canvas.height/2
+  let xe = cx-D+pet(D*0.9)
+  let ye = cy-D+pet(D*0.9)
+  let x0 = xe, y0 = ye
+  let i = 0
+  for (; i < 3; i++) {
+    ctx.fillStyle = randomPick(colors)
+    cx = canvas.width*Math.random()
+    cy = canvas.height*Math.random()
+    xe = cx-D+pet(D*0.9)
+    ye = cy-D+pet(D*0.9)
+    y0 = ye, x0 = xe
+    ctx.beginPath()
+    ctx.moveTo(xe,ye)
+    x = xe
+    y = ye
+    xe = cx+D+pet(D*0.9)
+    ye += pet(D*0.9)
+    raggedX(ctx,xe,ye,x,y)
+    x = xe
+    y = ye
+    xe += pet(D*0.9)
+    ye = cy+D+pet(D*0.9)
+    raggedX(ctx,xe,ye,x,y)
+    x = xe
+    y = ye
+    xe = cx-D-pet(D*0.9)
+    ye += pet(D*0.9)
+    raggedX(ctx,xe,ye,x,y)
+    raggedX(ctx,x0,y0,xe,ye)
+    ctx.closePath()
+    ctx.fill()
+  }
+  
+}
+
+function comets () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.lineWidth = 1 + Math.floor(document.getElementById("featuresize").value/10)
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let colors = shuffle(getCurrentPalette())
+  let mode = document.getElementById("mode").value
+  let alpha = document.getElementById("opacity").value
+  let alt = document.getElementById("grungy").checked
+  let cx = canvas.width/2, cy = canvas.height/2
+  let r = canvas.width/9 * 0.8 + pet(40)
+  let r2 = r * 0.5
+  let x = r + Math.random() * cx/2, y = r +Math.random() *cy/2
+  let x2 = cx + r ,y2 = cy + r
+  let div = 1 + Math.random() * 4
+  let height = 0
+  let savedheight = 0
+  let a = Math.random() * 2 * Math.PI
+  let R = canvas.width/2
+  // fill
+  ctx.lineJoin = "round"
+  ctx.strokeStyle = (colors[0])
+  ctx.fillStyle = colors[1]
+  let i = 0
+  for (; i < 3 ;i++) {
+    a = Math.random() * 2 * Math.PI
+    r = canvas.width/9 * 0.8 + pet(80)
+    r2 = r * 0.5 + pet(30)
+    if (Math.random() > 0.9)
+      r2=5
+    cx = Math.random() * canvas.width
+    cy = Math.random() * canvas.height
+    x = cx + r * Math.cos(a)
+    y = cy + r * Math.sin(a)
+    
+    x2 = cx + r*4 * Math.cos(a)
+    y2 = cy + r*4 * Math.sin(a)
+ 
+    ctx.beginPath()
+    ctx.ellipse(x, y, r, r, a+Math.PI/2,  0, 2 * Math.PI)
+    ctx.ellipse(x2, y2, r2, r2, a+Math.PI/2, 2*Math.PI, 0)
+    if (Math.random() > 0.8) {
+      ctx.fillStyle = randomPick(colors)
+      ctx.fill()
+    }
+    ctx.ellipse(x2, y2, r2, r2, a+Math.PI/2, 0, Math.PI)
+    ctx.ellipse(x, y, r, r, a+Math.PI/2,  Math.PI,-0)
+    ctx.lineWidth += pet(2)
+    if (!alt)
+      ctx.strokeStyle = randomPick(colors)
+    ctx.stroke()
+
+    if (Math.random() > 0.9) {
+      ctx.beginPath()
+      ctx.moveTo(x,y)
+      ctx.lineTo(x2,y2)
+      ctx.stroke()
+    }
+  }
+  //fill()
+
+  document.getElementById("mode").value = mode
+  document.getElementById("opacity").value = alpha
+}
+
 function pants () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -8138,19 +8252,7 @@ function justlines () { // grid paper
   ctx.shadowOffsetY = 2 + Math.random() * 3
   ctx.shadowOffsetX = -2 + Math.random() * 2
   let x = pad, y = pad
- /* ctx.beginPath()
-  ctx.moveTo(pad,pad)
-  ragged(ctx,W-pad,pad,x,y)
-  x = W-pad
-  y = pad
-  ragged(ctx,W-pad,H-pad+pet(3),x,y)
-  y = H-pad
-  ragged(ctx,pad,H-pad+pet(3),x,y)
-  x = pad
-  y = W-pad
-  ragged(ctx,pad,pad+pet(3),x,y)
-  ctx.closePath()
-  ctx.fill()*/
+ 
   ctx.shadowBlur = 0
   ctx.shadowOffsetY = 0
   ctx.shadowOffsetX = 0
@@ -9194,6 +9296,30 @@ function singlePage () {
 function ragged (ctx,endX,endY,x,y) {
   let inc = 3 + Math.floor(document.getElementById("featuresize").value/50)
   let p = 1 + document.getElementById("number").value/4000
+  let xdiff = x - endX, ydiff = y - endY
+  let D = distance(x,y,endX,endY)
+  let Dy = (endY-y)
+  let Dx = (endX-x)
+  let xinc = Dx/(D+0.000001)*inc
+  let yinc = Dy/(D+0.000001)*inc
+  let xsteps = (x - endX)/(xinc + 0.000001)
+  let ysteps = (y - endY)/(yinc + 0.000001)
+  let xf = xdiff/(xsteps + 0.000001)
+  let yf = ydiff/(ysteps + 0.000001)
+  let px2 = p*2
+  while (distance(endX,endY,x,y) > inc) {
+    // add to x and y to get closer to endX,endY
+    x += xinc
+    y += yinc
+    x += xf
+    y += yf
+    ctx.lineTo(x+pet(p), y+pet(p))
+  }
+}
+
+function raggedX (ctx,endX,endY,x,y) {
+  let inc = 3 + Math.floor(document.getElementById("featuresize").value/10)
+  let p = 1 + document.getElementById("number").value/1000
   let xdiff = x - endX, ydiff = y - endY
   let D = distance(x,y,endX,endY)
   let Dy = (endY-y)
