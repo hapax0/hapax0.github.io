@@ -525,6 +525,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="constellations" >constellations</option>
     <option value="seasons">seasons</option>
     <option value="tides">tides</option>
+    <option value="phase">phase</option>
     <option value="phases">phases</option>
     <option value="comets" selected>comets</option>
     <option value="scraps">scraps</option>
@@ -6600,7 +6601,6 @@ function seasons () {
   ctx.closePath()
   ctx.fill()
   //moon
-  
   ctx.fillStyle = (colors[1])
   ctx.beginPath()
   ctx.arc(canvas.width - cx/3, cy, R2, 0, Math.PI * 2)
@@ -6635,6 +6635,45 @@ function seasons () {
   ctx.closePath()
   ctx.fill()
   
+  document.getElementById("mode").value = mode
+  document.getElementById("opacity").value = alpha
+}
+
+function phase () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let colors = shuffle(getCurrentPalette())//['red', 'blue', 'yellow', 'orange', 'purple', "green"])
+  let mode = document.getElementById("mode").value
+  let alpha = document.getElementById("opacity").value
+  let cx = canvas.width/2, cy = canvas.height/2, x = 0, y = 0
+  let a = Math.random() * 2 * Math.PI
+  let R = canvas.height * 0.1, r = R*2
+  let R2 = R*3
+
+  //moons
+  let mult = Math.random()
+  x=cx,y=cy
+  ctx.fillStyle = (colors[0])
+  if (Math.random() > 0.5) {
+    ctx.beginPath()
+    ctx.ellipse(x, y, R2*mult, R2, 0, Math.PI * 1.5, Math.PI/2)
+    ctx.ellipse(x, y, R2, R2, 0, Math.PI/2, Math.PI*1.5, true)
+    ctx.closePath()
+    ctx.fill()
+  } else {
+    ctx.beginPath()
+    ctx.ellipse(x, y, R2*mult, R2, 0, Math.PI * 1.5, Math.PI/2, true)
+    ctx.ellipse(x, y, R2, R2, 0, Math.PI/2, Math.PI*1.5)
+    ctx.closePath()
+    ctx.fill()
+  }
+  ctx.strokeStyle = (colors[0])
+  ctx.beginPath()
+  ctx.ellipse(x, y, R2, R2, 0, 0, Math.PI * 2, true)
+  ctx.stroke()
+  ctx.strokeRect(cx-r*2, cy-r*2, r*4, r*4)
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
 }
