@@ -13224,11 +13224,12 @@ function chips () {
   let cx = ctx.canvas.width/2;
   let cy = ctx.canvas.height/2;
   let maxdist = Math.pow(Math.pow(cx, 2) + Math.pow(cy, 2), 0.5) +200
-  let r = 1 + document.getElementById("featuresize").value/4
+  let r = 2 + document.getElementById("featuresize").value/10
   ctx.fillStyle = document.getElementById("paintcolor").value
   ctx.strokeStyle = document.getElementById("paintcolor").value
   for (var t = 0; t < 5; t++) {
     let radius = r + pet(r/2)
+    let r0 = radius
     x = 0;
     y = 0;
     angle = Math.random() * 6.42
@@ -13237,11 +13238,11 @@ function chips () {
     var centy = Math.random()*ctx.canvas.height+50;
     var edges = 3+Math.random()*26;
     let max = Math.PI * 1.4
-    let increase = Math.PI * 2/(2*edges);
+    let increase = Math.PI * 2/edges;
     let turn = 0
     for (var i = 0; i < 100; i++) {
-      increase += Math.random()/50
-      radius += pet(r/2)
+      increase += Math.random()/100
+      radius = r0+pet(r/2)
       x = radius * Math.cos(angle)+cent;
       y = radius * Math.sin(angle)+centy;
       ctx.lineTo(x, y);
@@ -13250,6 +13251,7 @@ function chips () {
       if (turn >= max)
         break;
     }
+    console.log(radius)
     ctx.closePath();
     ctx.fill()
   }
