@@ -7569,7 +7569,6 @@ function scraps () {
     ctx.closePath()
     ctx.fill()
   }
-  
 }
 
 function comets () {
@@ -14776,6 +14775,7 @@ function dropFrameRagged () {
   ragged (ctx, endX, endY, x, y) // top right
   x = endX, y = endY
   endY = H -pady
+  endX+=12
   ragged (ctx, endX, endY, x, y) //bottom right
   x = endX, y = endY
   endX = padx
@@ -14810,9 +14810,9 @@ function dropFrame () {
   copyToOff()
   ctx.fillStyle = "#ffffff"
   ctx.shadowColor = "#202020"
-  ctx.shadowBlur = 29 + Math.random() * 5
-  ctx.shadowOffsetY = 19 + Math.random() * 3
-  ctx.shadowOffsetX = 19 + Math.random() * 2
+  ctx.shadowBlur = 25 + Math.random() * 5
+  ctx.shadowOffsetY = 13 + Math.random() * 2
+  ctx.shadowOffsetX = 4 + Math.random() * 2
   let padx = (canvas.width - 0.95 * canvas.width)/2
   let pady = (canvas.height - 0.95 * canvas.height)/2
   ctx.fillRect(padx,pady,canvas.width-2*padx,canvas.height-2*pady)
