@@ -6651,7 +6651,7 @@ function natural () {
   let cx = canvas.width/2, cy = canvas.height/2, x = 0, y = 0
   let R = canvas.height * 0.1, r = R*2
   let R2 = R*3
-  R = R2*0.9
+  R = R2*0.85
 
   //moons
   let mult = Math.random()
@@ -6674,7 +6674,7 @@ function natural () {
     //if (i < 120)
     if (Math.random() > 0.98)
       sign *= -1
-    b += sign * 0.35//+pet(1)
+    b += sign * 0.3//+pet(1)
     if (R+b < 0)
       R = R2
    // else
