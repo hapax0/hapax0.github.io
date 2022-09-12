@@ -6661,21 +6661,25 @@ function natural () {
   x=cx+Math.random()*21,y=cy+Math.random()*21
   ctx.lineJoin = "round"
   ctx.fillStyle = (colors[0])
-  let b = 0
+  let b = 0, sign = 1
   ctx.strokeStyle = (colors[0])
   ctx.beginPath()
-  let max = 2*360 + Math.random()*120
+  let max = 5*360 + Math.random()*120
   let a = Math.random() * 2 * Math.PI, ax = start
   let drift = 0.01
   for (; i < max; i++) {
     ctx.ellipse(x, y, R2, R+b, a, start, start-inc, true)
     ax = inc
     start -= inc
-    if (i < 120)
-      b -= 0.3+pet(1)
-    else
-    if (i > 270 && i < 450)
-      b += 0.3+pet(1)
+    //if (i < 120)
+    if (Math.random() > 0.98)
+      sign *= -1
+    b += sign * 0.35//+pet(1)
+    if (R+b < 0)
+      R = R2
+   // else
+    //if (i > 270 && i < 450)
+     // b += 0.3+pet(1)
       
   }
   ctx.stroke()
