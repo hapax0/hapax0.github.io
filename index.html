@@ -526,6 +526,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="seasons">seasons</option>
     <option value="tides">tides</option>
     <option value="natural">loop</option>
+    <option value="room">room</option>
     <option value="phase">phase</option>
     <option value="phases">phases</option>
     <option value="comets" selected>comets</option>
@@ -6639,6 +6640,67 @@ function seasons () {
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
 }
+
+function room () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let colors = shuffle(getCurrentPalette())//['red', 'blue', 'yellow', 'orange', 'purple', "green"])
+  let mode = document.getElementById("mode").value
+  let alpha = document.getElementById("opacity").value
+  //moons
+  let mult = Math.random()
+  let i = 0
+  ctx.lineJoin = "round"
+  ctx.fillStyle = (colors[0])
+  ctx.strokeStyle = (colors[0])
+  let max = 5*360 + Math.random()*120
+  let x,y
+  let H = canvas.height, W = canvas.width
+  ctx.beginPath()
+  x = 0, y = H/3
+  ctx.moveTo(x+pet(30),y+pet(30))
+  x = 2*W/3
+  ctx.lineTo(x+pet(30),y+pet(30))
+  y *= 2
+  ctx.lineTo(x+pet(30),y+pet(30))
+  x = 0
+  ctx.lineTo(x+pet(30),y+pet(30))
+  x = 2*W/3
+  ctx.lineTo(x+pet(30),y+pet(30))
+  y = 3*H/4
+  x = W
+  ctx.lineTo(x+pet(30),y+pet(30))
+  y = 2*H/3
+  x = 2*W/3
+  ctx.lineTo(x+pet(30),y+pet(30))
+  y = H/3
+  x = 2*W/3
+  ctx.lineTo(x+pet(30),y+pet(30))
+  y = H/4
+  x = W
+  ctx.lineTo(x+pet(30),y+pet(30))
+  ctx.stroke()
+  
+  ctx.beginPath()
+  x = W/2-W/20, y = 2*H/3
+  ctx.moveTo(x+pet(30),y+pet(30))
+  x = W/2 + W/10
+  ctx.lineTo(x+pet(30),y+pet(30))
+  y = H/2 -H/10
+  ctx.lineTo(x+pet(30),y+pet(30))
+  x = W/2-W/20
+  ctx.lineTo(x+pet(30),y+pet(30))
+  y = 2 *H/3+pet(2)
+  ctx.lineTo(x+pet(30),y+pet(30))
+
+  ctx.stroke()
+  
+  document.getElementById("mode").value = mode
+  document.getElementById("opacity").value = alpha
+}
+
 
 function natural () {
   let canvas = document.getElementById("myCanvas");
@@ -13339,7 +13401,6 @@ function chips () {
       if (turn >= max)
         break;
     }
-    console.log(radius)
     ctx.closePath();
     ctx.fill()
   }
