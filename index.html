@@ -16706,7 +16706,7 @@ function diagonal () {
 function drawShape (line) {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
-  ctx.clearRect(0,0,canvas.width,canvas.height)
+  //ctx.clearRect(0,0,canvas.width,canvas.height)
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.globalCompositeOperation = document.getElementById("mode").value
   let alt = document.getElementById("grungy").checked
@@ -16715,7 +16715,7 @@ function drawShape (line) {
   ctx.lineJoin = "round"
   let pm = document.getElementById("number").value/4000
   ctx.fillStyle=randomPick(getCurrentPalette())
-  let s = canvas.width/800, p = 23 * pm
+  let s = canvas.width/1080, p = 23 * pm
   let x = 0, y = 0
   let points = document.getElementById('points').value
   let k = 0
@@ -16734,9 +16734,9 @@ function drawShape (line) {
       ctx.strokeStyle = randomPick(getCurrentPalette())
       ctx.fillStyle = randomPick(getCurrentPalette())
       if (line)
-        drawLines(pk, 0, 0, !alt)
+        drawLines(pk, 0, 0, alt)
       else
-        drawBezline(pk, 0, 0, !alt)
+        drawBezline(pk, 0, 0, alt)
     }
   }
   LATESTFUNCTION = "drawShape"
