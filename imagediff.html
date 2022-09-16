@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+<style>
+  body {background-color:#ccc;}
+  button {background-color:#fff;
+   border:none;
+   border-radius:4px;
+   min-width:24px;
+   padding:4px 4px 2px 4px;
+  }
+  div[id='background'] {
+    background-color: #ffffff;
+    opacity: 1.0;
+    background-image:  repeating-linear-gradient(45deg, #aaaaaa 25%, transparent 25%, transparent 75%, #aaaaaa 75%, #aaaaaa), repeating-linear-gradient(45deg, #aaaaaa 25%, #ffffff 25%, #ffffff 75%, #aaaaaa 75%, #aaaaaa);
+    background-position: 0 0, 10px 10px;
+    background-size: 20px 20px;
+  }
+  svg {background-color:#ccc;}
+  svg[class=white] { background-color:#fff;}
+</style>
+</head>
+<body>
+  
+<div style='margin:4px;'>
+  &nbsp;
+&nbsp;<label id="status">open first image</label>
+&nbsp;<input type='file' name='img' size='65' id='uploadimage' style="display:none;">
+  <span onclick="openFile()" id="imgloader" title="open image file..."><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-upload" viewBox="0 0 16 16">
+    <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+    <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+  </svg></span>
+&nbsp;
+
+<span onclick="swapWithOff()" id="swapbutton" title="swap images"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-clipboard" viewBox="0 0 16 16">
+  <path
+     d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"
+     id="path2" />
+  <path
+     style="stroke-width:1.875"
+     d="M 14.988281 9.3730469 A 0.9375 0.9375 0 0 0 14.634766 9.4492188 A 0.9375 0.9375 0 0 0 14.632812 9.4492188 A 0.9375 0.9375 0 0 0 14.34375 9.640625 C 14.336265 9.6477388 14.329505 9.6547598 14.322266 9.6621094 L 10.585938 13.398438 A 0.93868425 0.93868425 0 0 0 11.914062 14.726562 L 14.0625 12.576172 L 14.0625 19.421875 L 11.914062 17.271484 A 0.93868425 0.93868425 0 1 0 10.585938 18.599609 L 14.322266 22.335938 C 14.329505 22.343287 14.336265 22.350308 14.34375 22.357422 A 0.9375 0.9375 0 0 0 15.664062 22.349609 L 19.414062 18.599609 A 0.93868425 0.93868425 0 0 0 18.085938 17.271484 L 15.9375 19.421875 L 15.9375 12.576172 L 18.085938 14.726562 A 0.93868425 0.93868425 0 0 0 19.414062 13.398438 L 15.664062 9.6484375 A 0.9375 0.9375 0 0 0 14.988281 9.3730469 z "
+     transform="scale(0.53333333)"
+     id="path4" />
+  <path
+     d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"
+     id="path8" /></svg>
+</span>
+
+&nbsp;
+ <span onclick="pasteFromOff()" id="pastebutton" title="diff images"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-file-diff" viewBox="0 0 16 16">
+  <path d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 1 0-1h1.5V4.5A.5.5 0 0 1 8 4zm-2.5 6.5A.5.5 0 0 1 6 10h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5z"/>
+  <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z"/>
+</svg></span>
+</div>
+<div id="background" style="width:1024px;height:1024px;float:left;position:absolute;">
+<canvas id="myCanvas" width="512" height="512" style="border:1px solid #000000;">
+</canvas><canvas id="OC" width="512" height="512" style="border:1px solid #000000;display:none;"></canvas>
+</div>
+<div>
+</div>
+<br>
+ <div sytle="display:none;">
+   <canvas id="offscreen" width='512' height='512' hidden></canvas>
+ </div>
+  <div sytle="display:none;">
+   <canvas id="off" width='512' height='512' sytle="visibility:hidden;"></canvas>
+ </div>
+ <br><br>
+
+<script>
+let BLACK = 0
+let OCISCLEAR = true
+
+window.onload = function () {
+  let myCanvas = document.getElementById("myCanvas")
+  let ctx = myCanvas.getContext("2d")
+  resizeCanvas()
+  
+  let result = document.getElementById("background")
+  result.style.backgroundColor = "#fff";
+}
+
+// returns true if every pixel's uint32 representation is 0 (or "blank")
+function isCanvasBlank (canvas) {
+  const context = canvas.getContext('2d');
+  const pixelBuffer = new Uint32Array(
+    context.getImageData(0, 0, canvas.width, canvas.height).data.buffer
+  );
+  return !pixelBuffer.some(color => color !== 0);
+}
+
+function isAllBlack (canvas) {
+  let ctx = myCanvas.getContext("2d")
+  let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
+  let pixels = imgData.data;
+  let sample = []
+  let i = 0
+  let skip = 4
+  for (; i < pixels.length; i += skip) {
+    if (!(pixels[i] === 0 &&
+        pixels[i+1] === 0 &&
+        pixels[i+2] === 0
+       ))
+      return false
+  }
+  return true
+}
+
+function openFile () {
+  let canvas = document.getElementById('myCanvas')
+  let ctx = canvas.getContext('2d')
+  let mode = ctx.globalCompositeOperation
+  document.getElementById('uploadimage').click();
+  ctx.globalCompositeOperation = mode
+}
+
+function drawFile () {
+  let canvas = document.getElementById('myCanvas')
+  let ctx = canvas.getContext('2d')
+  let IMG = new Image()
+  let f = document.getElementById("uploadimage").files[0]
+  let url = window.URL || window.webkitURL
+  let src = url.createObjectURL(f);
+  IMG.src = src;
+  ctx.globalAlpha = 1.0
+  let mode = ctx.globalCompositeOperation
+  ctx.globalCompositeOperation = "source-over"
+  IMG.onload = function() {
+    canvas.height = this.height
+    canvas.width = this.width
+    syncBackground(canvas)
+    ctx.drawImage(IMG, 0, 0);
+    url.revokeObjectURL(src);
+    ctx.globalCompositeOperation = mode
+    if (OCISCLEAR) {
+      console.log ("off is blank")
+      copyToOff()
+    } else
+    if (!OCISCLEAR)
+      document.getElementById("status").innerHTML = "ready to diff images"
+  }
+  document.getElementById("uploadimage").value = ""
+  ctx.globalCompositeOperation = mode
+}
+
+function clearOff () {
+ let OC = document.getElementById('OC')
+ let octx = OC.getContext('2d')
+ octx.clearRect(0, 0, OC.width, OC.height)
+ OCISCLEAR = true
+ return true
+}
+
+async function copyToOff () {
+  if (!OCISCLEAR)
+    return
+  let OC = document.getElementById('OC')
+  let canvas = document.getElementById('myCanvas')
+  if (isCanvasBlank(OC)) {
+    OC.height = canvas.height
+    OC.width = canvas.width
+    OCISCLEAR = false
+    document.getElementById("status").innerHTML = "open second image"
+  }
+   // document.getElementById("status").innerHTML = "ready to diff images"
+  let ctx = canvas.getContext('2d')
+  let OCctx = OC.getContext('2d')
+  ctx.globalAlpha = 1.0
+  let mode = ctx.globalCompositeOperation
+  ctx.globalCompositeOperation = "source-over"
+  OCctx.globalAlpha = 1.0
+  OCctx.globalCompositeOperation = "source-over"
+  await OCctx.drawImage(canvas, 0, 0)
+  ctx.globalCompositeOperation = mode
+  OCISCLEAR = false
+  return true
+}
+
+function pasteFromOff () {// diff images
+  if (OCISCLEAR)
+    return
+  let OC = document.getElementById('OC')
+  if (OC && OC.width > 0) {
+    let canvas = document.getElementById('myCanvas')
+    let ctx = canvas.getContext('2d')
+    ctx.globalCompositeOperation = "difference"
+    let OCctx = OC.getContext('2d')
+    OCctx.globalCompositeOperation = "difference"
+
+    OCctx.globalAlpha = 1.0
+    ctx.globalAlpha = 1.0
+    ctx.drawImage(OC, 0, 0)
+    ctx.globalCompositeOperation = "source-over"
+    OCctx.globalCompositeOperation = "source-over"
+    document.getElementById("status").innerHTML = "done: showing differences (refresh to start over)"
+    clearOff()
+    OCISCLEAR = true
+    if (!isAllBlack(canvas))
+      alert("differences found")
+    else
+      alert("no differences found")
+      
+    document.getElementById("imgloader").style.display="none"
+    document.getElementById("swapbutton").style.display="none"
+    document.getElementById("pastebutton").style.display="none"
+  }
+  return true
+}
+
+function swapWithOff () {
+  let OC = document.getElementById('OC')
+  let canvas = document.getElementById('myCanvas')
+  if (isCanvasBlank(OC)) {
+    OC.height = canvas.height
+    OC.width = canvas.width
+    OCISCLEAR = false
+  }
+  if (OC && OC.width > 0) {
+    let ctx = canvas.getContext('2d')
+    ctx.globalCompositeOperation = "source-over"
+    let OCctx = OC.getContext('2d')
+    OCctx.globalCompositeOperation = "source-over"
+    OCctx.globalAlpha = 1
+    ctx.globalAlpha = 1
+    let temp = document.createElement('CANVAS')
+    let tempctx = temp.getContext('2d')
+    temp.width = canvas.width
+    temp.height = canvas.height
+    tempctx.globalAlpha = 1//document.getElementById("opacity").value/100
+    tempctx.drawImage(canvas,0,0)
+    ctx.clearRect(0,0,canvas.width,canvas.height)
+    ctx.drawImage(OC, 0, 0)
+    OCctx.clearRect(0,0,canvas.width,canvas.height)
+    OCctx.drawImage(temp,0,0)
+  }
+  return true
+}
+
+document.getElementById("uploadimage").addEventListener("change", drawFile, true)
+
+function syncBackground (canvas) {
+  let bkg = document.getElementById("background");
+  bkg.style.height = canvas.height +"px"
+  bkg.style.width = canvas.width +"px"
+}
+
+function resizeCanvas () {
+  let canvas_size = 1080//256 * document.getElementById("canvas_size").value
+  let ocanvas = document.getElementById('off')
+  let octx = ocanvas.getContext('2d')
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let mode = ctx.globalCompositeOperation
+  let a = ctx.globalAlpha
+  ctx.globalAlpha = 1.0
+  ocanvas.height = canvas.height
+  ocanvas.width = canvas.width
+  octx.drawImage(canvas, 0, 0)
+  canvas.height = canvas_size
+  canvas.width = canvas_size
+  syncBackground(canvas)
+  syncBackground(canvas)
+  ctx.drawImage(ocanvas,0,0,canvas.width,canvas.height)
+  octx.clearRect(0,0,ocanvas.width,ocanvas.height)
+  ctx.globalCompositeOperation = mode
+}
+
+function clearCanvas () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.clearRect(0,0,canvas.width, canvas.height)
+}
+</script>
+</body>
+</html>

@@ -399,6 +399,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     </svg></button>
     <select id="fadefunctions">
     <option value="sobel">sobel</option>
+    <option value="sharpen2">sharpen</option>
     <option value="emboseCanvas">embose</option>
     <option value="edgeDarken" style="color:red">darken edges</option>
     <option value="edgeLighten" style="color:red">lighten edges</option>
@@ -4807,19 +4808,6 @@ async function copyToOff () {
   await OCctx.drawImage(canvas, 0, 0)
   ctx.globalCompositeOperation = mode
   OCISCLEAR = false
-  return true
-}
-
-function pasteFromOff () {
-  let OC = document.getElementById('OC')
-  if (OC && OC.width > 0) {
-    let canvas = document.getElementById('myCanvas')
-    let ctx = canvas.getContext('2d')
-    let OCctx = OC.getContext('2d')
-    OCctx.globalAlpha = document.getElementById("opacity").value/100
-    ctx.globalAlpha = document.getElementById("opacity").value/100
-    ctx.drawImage(OC, 0, 0)
-  }
   return true
 }
 
@@ -17639,7 +17627,6 @@ function pasteFromOff () {
     let ctx = canvas.getContext('2d')
     let OCctx = OC.getContext('2d')
     OCctx.globalAlpha = ctx.globalAlpha//document.getElementById("opacity").value/100
-   // ctx.globalAlpha = document.getElementById("opacity").value/100
     ctx.drawImage(OC, 0, 0)
     return true
   }
@@ -18603,18 +18590,18 @@ function sharpen2 () {
   let ctx = canvas.getContext("2d")
   let mode = document.getElementById("mode").value
   let opacity = document.getElementById("opacity").value
-  // opacity 1.0, source-over
+  ctx.globalAlpha = 1.0
   document.getElementById("mode").value = "source-over"
   clearOff()
   copyToOff()
-  gaussianBlur()
+  shrinkBlur()
   document.getElementById("mode").value = "difference"
   ctx.globalCompositeOperation = "difference"
-  document.getElementById("opacity").value = 100
+  //document.getElementById("opacity").value = 100
   pasteFromOff()
   // unsharp mask ready
-  document.getElementById("opacity").value = 75
-  swapWithOff()
+//return
+  //swapWithOff()
   pasteFromOff()
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = opacity
