@@ -529,7 +529,8 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="room">room</option>
     <option value="phase">phase</option>
     <option value="phases">phases</option>
-    <option value="comets" selected>comets</option>
+    <option value="comets">comets</option>
+    <option value="threeCircles" selected>3 circles</option>
     <option value="scraps">scraps</option>
     <option value="arch">arch</option>
     <option value="blocksX">blocks</option>
@@ -13702,6 +13703,7 @@ function tiltshift () {
   ctx.globalAlpha = alpha/100
   ctx.globalCompositeOperation = "destination-over"
   document.getElementById("mode").value = "destination-over"
+  ctx.globalAlpha = 1.0
   pasteFromOff()
   document.getElementById("opacity").value = alpha
   ctx.globalCompositeOperation = mode
@@ -16272,6 +16274,22 @@ function drawBlobAt (ctx, x, y, r) {
     angle += increase;
   }
   drawPath(points, 0, 0, ctx)
+}
+
+function threeCircles () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let cy = ctx.canvas.height/2;
+  let x = canvas.width/5, i = 0
+  let r = canvas.width/3
+  let colors = shuffle(getCurrentPalette())
+  let offset = [canvas.width/8, canvas.width/2, 7*canvas.width/8
+  ]
+  for (; i < 3; i++) {
+    ctx.fillStyle = colors[i]
+    drawCircleAt(ctx,offset[i]+pet(41),cy+pet(4),r+pet(3))
+  }
 }
 
 function drawCircleAt(ctx,x,y,r) {
