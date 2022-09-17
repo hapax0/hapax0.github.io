@@ -16278,11 +16278,12 @@ function drawBlobAt (ctx, x, y, r) {
 
 function threeCircles () {
   let canvas = document.getElementById("myCanvas");
+  let mult = 1+ document.getElementById("featuresize").value/250
   let ctx = canvas.getContext("2d");
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let cy = ctx.canvas.height/2;
   let x = canvas.width/5, i = 0
-  let r = canvas.width/3
+  let r = canvas.width/4 * mult
   let colors = shuffle(getCurrentPalette())
   let offset = [canvas.width/8, canvas.width/2, 7*canvas.width/8
   ]
