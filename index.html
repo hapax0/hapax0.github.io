@@ -324,18 +324,18 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
       <option value="flares">flares</option>
       <option value="haloblur" style="color:red">halo dot</option>
       <option value="halojaggy" style="color:red">halo jaggy</option>
+      <option value="smearside">smear right</option>
+      <option value="motionblur">motion blur</option>
+      <option value="tiltshift" selected>tilt-shift</option>
+      <option value="afold" >fold</option>
+      <option value="trifold">tri-fold</option>
+      <!--option value="crumple">crumple</option-->
       <option value="mirror">mirror &varr;</option>
       <option value="distortion">fisheye</option>
       <option value="ripinhalf">rip in half</option>
       <option value="duplicate">duplicate</option>
-      <option value="afold" selected>fold</option>
-      <option value="trifold">tri-fold</option>
-      <option value="crumple">crumple</option>
       <option value="fourbyfourplain">4x4</option>
       <option value="fourbyfour">warhol</option>
-      <option value="smearside">smear right</option>
-      <option value="motionblur">motion blur</option>
-      <option value="tiltshift" >tilt-shift</option>
       <option value="reverse">reversible</option>
       <option value="pasta">pasta</option>
       <option value="blasco">blasco</option>
@@ -398,6 +398,12 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
       <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z"/>
     </svg></button>
     <select id="fadefunctions">
+    <option value="retro" selected>retro</option>
+    <option value="pop">pop</option>
+    <option value="adjustExposure">enhance exposure</option>
+    <option value="haze">haze</option>
+    <option value="tint">tint</option>
+    <option value="lightleak">light leak</option>
     <option value="sobel">sobel</option>
     <option value="sharpen2">sharpen</option>
     <option value="emboseCanvas">embose</option>
@@ -406,7 +412,6 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="edgeBlur" style="color:red">blur edges</option>
     <option value="edgeGrey" style="color:red">gray edges</option>
     <option value="fadeCenter" style="color:red">fade center</option>
-    <option value="haze">haze</option>
     <option value="transparenter">fade all</option>
     <option value="opaqueer">unfade all</option>
     <option value="fr">fade right</option>
@@ -415,11 +420,6 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="darkenSky">darken sky</option>
     <option value="tintSky">tint sky</option>
     <option value="decolorSky">decolor sky</option>
-    <option value="lightleak">light leak</option>
-    <option value="retro" selected>retro</option>
-    <option value="pop">pop</option>
-    <option value="adjustExposure">enhance exposure</option>
-    <option value="tint">tint</option>
     <option value="rotateBrightness">shift colors</option>
     <option value="randomizeColors">randomize colors</option>
     </select>
@@ -13694,41 +13694,19 @@ function tiltshift () {
   
   clearOff()
   copyToOff()
-  copyToOff()
   fadeDown()
   if (grunge)
     motionblur()
   else
     smeardown2()
-  destinationOver()
-  opacity100()
+  document.getElementById("opacity").value = alpha
+  ctx.globalAlpha = alpha/100
+  ctx.globalCompositeOperation = "destination-over"
+  document.getElementById("mode").value = "destination-over"
   pasteFromOff()
-  sourceOver()
-  /*
-  flipV()
-  invertLASTCLICK()
-  // flipped and faded on one side
-  copyToOff()
-  copyToOff()
-  fadeDown()
-  if (grunge)
-    motionblur()
-  else
-    smeardown2()
-  copyToOff()
-  copyToOff()
-  // flipped and faded other side
-  destinationOver()
-  opacity100()
-  pasteFromOff()
-  // ready to flip back
-  flipV()
-  invertLASTCLICK()
-  sourceOver()
-  copyToOff()
-  */
   document.getElementById("opacity").value = alpha
   ctx.globalCompositeOperation = mode
+  document.getElementById("mode").value = mode
 }
 
 function opacity100 () {
@@ -17626,6 +17604,8 @@ function pasteFromOff () {
     let canvas = document.getElementById('myCanvas')
     let ctx = canvas.getContext('2d')
     let OCctx = OC.getContext('2d')
+    OCctx.globalCompositeOperation = document.getElementById("mode").value
+    ctx.globalCompositeOperation = document.getElementById("mode").value
     OCctx.globalAlpha = ctx.globalAlpha//document.getElementById("opacity").value/100
     ctx.drawImage(OC, 0, 0)
     return true
