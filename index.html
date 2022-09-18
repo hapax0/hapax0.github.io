@@ -4016,6 +4016,8 @@ function multileak () {
   let offctx = off.getContext("2d")
   let alpha = document.getElementById("opacity").value
   let color = document.getElementById("paintcolor").value
+  let colors = getCurrentPalette()
+  let alt = document.getElementById("grungy").checked
   offctx.fillStyle = document.getElementById("paintcolor").value//randomGradient(canvas, randomColorMedium())
   let cw = canvas.width, ch  = canvas.height
   let y = 0//ch/5
@@ -4025,6 +4027,8 @@ function multileak () {
   for (; j < 9; j++) {
     let i = 0
     for (; i < 5; i++) {
+      if (!alt)
+        color = randomPick(colors)
       offctx.fillStyle = randomGradient(canvas, color)
       ellipseFill(offctx, cw/2 + pet(cw/3), y+pet(100), cw+cw/2*Math.random(), ch/10*Math.random())
     }
