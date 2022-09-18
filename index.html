@@ -6702,7 +6702,7 @@ function natural () {
   let R = canvas.height * 0.1, r = R*2
   let R2 = R*3
   R = R2*0.85
-
+  let alt = document.getElementById("grungy").checked
   //moons
   let mult = Math.random()
   let i = 0
@@ -6715,6 +6715,10 @@ function natural () {
   ctx.strokeStyle = (colors[0])
   ctx.beginPath()
   let max = 5*360 + Math.random()*120
+  if (alt) {
+    max *= 4
+    x = 0
+  }
   let a = Math.random() * 2 * Math.PI, ax = start
   let drift = 0.01
   for (; i < max; i++) {
@@ -6727,9 +6731,8 @@ function natural () {
     b += sign * 0.3//+pet(1)
     if (R+b < 0)
       R = R2
-   // else
-    //if (i > 270 && i < 450)
-     // b += 0.3+pet(1)
+     if (alt)
+      x += 0.15
       
   }
   ctx.stroke()
