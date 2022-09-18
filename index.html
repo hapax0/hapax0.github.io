@@ -6725,21 +6725,20 @@ function natural () {
     ctx.ellipse(x, y, R2, R+b, a, start, start-inc, true)
     ax = inc
     start -= inc
-    //if (i < 120)
     if (Math.random() > 0.98)
       sign *= -1
-    b += sign * 0.3//+pet(1)
+    b += sign * 0.3
     if (R+b < 0)
       R = R2
-     if (alt)
-      x += 0.15
-      
+     if (alt) {
+       x += 0.15
+       y += pet(1)
+     }
   }
   ctx.stroke()
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
 }
-
 
 function phase () {
   let canvas = document.getElementById("myCanvas");
