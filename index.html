@@ -404,6 +404,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="haze">haze</option>
     <option value="tint">tint</option>
     <option value="lightleak">light leak</option>
+    <option value="multileak">multi leak</option>
     <option value="sobel">sobel</option>
     <option value="emboseCanvas">embose</option>
     <option value="edgeDarken" style="color:red">darken edges</option>
@@ -4005,6 +4006,39 @@ async function invertColors (canvas) {
   await ctx.putImageData(imgData, 0, 0)
   return true
 }
+
+
+function multileak () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let off = document.createElement('CANVAS')
+  off.width = canvas.width, off.height = canvas.height
+  let offctx = off.getContext("2d")
+  let alpha = document.getElementById("opacity").value
+  let color = document.getElementById("paintcolor").value
+  offctx.fillStyle = document.getElementById("paintcolor").value//randomGradient(canvas, randomColorMedium())
+  let cw = canvas.width, ch  = canvas.height
+  let y = 0//ch/5
+  
+  offctx.globalAlpha = alpha/1000
+  let j = 0
+  for (; j < 9; j++) {
+    let i = 0
+    for (; i < 5; i++) {
+      offctx.fillStyle = randomGradient(canvas, color)
+      ellipseFill(offctx, cw/2 + pet(cw/3), y+pet(100), cw+cw/2*Math.random(), ch/10*Math.random())
+    }
+    y += canvas.height/7
+  }
+  document.getElementById("rednumber").value = 4
+  document.getElementById("opacity").value = 9
+  saturationScale(5, off)
+  motionblur(off)
+  motionblur(off)
+  ctx.drawImage(off,0+pet(21),0+pet(21),canvas.width, canvas.height)
+  document.getElementById("opacity").value = alpha
+}
+
 
 function lightleak () {
   let canvas = document.getElementById("myCanvas")
