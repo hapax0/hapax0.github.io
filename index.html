@@ -533,6 +533,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="comets">comets</option>
     <option value="threeCircles" selected>3 circles</option>
     <option value="scraps">scraps</option>
+    <option value="tape">tape</option>
     <option value="arch">arch</option>
     <option value="blocksX">blocks</option>
     <option value="pants">pants</option>
@@ -7701,6 +7702,57 @@ function buns () {
   
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
+}
+
+function tape () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let D = 70+Math.floor(document.getElementById("featuresize").value/5)
+  let DH = D/3
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let colors = shuffle(getCurrentPalette())
+  let mode = document.getElementById("mode").value
+  let alpha = document.getElementById("opacity").value
+  ctx.fillStyle = randomPick(colors)
+  let slant = 12//Math.random()*DH
+  if (Math.random() > 0.5)
+    slant *= -1
+  let cx = canvas.width/2, cy = canvas.height/2
+  let xe = cx-D+pet(D*0.2)
+  let ye = cy-DH-DH/2
+  let x0 = xe, y0 = ye
+
+  ctx.fillStyle = randomPick(colors)
+  cx =  LASTCLICK[0]//canvas.width*Math.random()
+  cy =  LASTCLICK[1]//canvas.height*Math.random()
+  xe = cx-D+pet(D*0.2)
+  ye = cy-DH
+  y0 = ye, x0 = xe
+  ctx.beginPath()
+  ctx.moveTo(xe,ye)
+  x = xe
+  y = ye
+  xe = cx+D+pet(D*0.2)
+  ctx.lineTo(xe,ye+slant)
+
+  x = xe
+  y = ye
+  xe += pet(D*0.2)
+  ye = cy+DH
+  ragged(ctx,xe,ye+slant,x,y)
+
+  ctx.fillStyle = randomGradientRect(canvas, colors[0], x0, y0, x0, ye*1.5 + Math.random() * DH)
+  x = xe
+  y = ye
+  xe = cx-D-pet(D*0.2)
+  ctx.lineTo(xe, ye)
+
+  ragged(ctx,x0,y0,xe,ye)
+
+  ctx.closePath()
+
+  ctx.fill()
+
 }
 
 function scraps () {
