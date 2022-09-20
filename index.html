@@ -7709,50 +7709,52 @@ function tape () {
   let ctx = canvas.getContext("2d");
   let D = 70+Math.floor(document.getElementById("featuresize").value/5)
   let DH = D/3
+  // vary length, but not width
+  D -= Math.random()*(D/2)
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let colors = shuffle(getCurrentPalette())
   let mode = document.getElementById("mode").value
   let alpha = document.getElementById("opacity").value
   ctx.fillStyle = randomPick(colors)
-  let slant = 12//Math.random()*DH
+  let slant = Math.random()*DH
   if (Math.random() > 0.5)
     slant *= -1
-  let cx = canvas.width/2, cy = canvas.height/2
+  let cx =  LASTCLICK[0]
+  let cy =  LASTCLICK[1]
+  let rotate = (cx < D*2 || canvas.width - cx < D*2)
+  
+  ctx.save()
+  if (rotate) {
+    ctx.translate(cx,cy)
+    ctx.rotate(Math.PI/2)
+    ctx.translate(-cx,-cy)
+  }
   let xe = cx-D+pet(D*0.2)
-  let ye = cy-DH-DH/2
-  let x0 = xe, y0 = ye
-
-  ctx.fillStyle = randomPick(colors)
-  cx =  LASTCLICK[0]//canvas.width*Math.random()
-  cy =  LASTCLICK[1]//canvas.height*Math.random()
-  xe = cx-D+pet(D*0.2)
-  ye = cy-DH
-  y0 = ye, x0 = xe
+  let ye = cy-DH
+  let y0 = ye, x0 = xe
+  if (rotate)
+    ctx.fillStyle = colors[0]//randomGradientRect(canvas, colors[0], x0, y0, x0, ye*1.5 + Math.random() * DH)
+  else
+    ctx.fillStyle = colors[0]//randomGradientRect(canvas, colors[0], x0, y0, x0, ye*1.5 + Math.random() * DH)
   ctx.beginPath()
   ctx.moveTo(xe,ye)
   x = xe
   y = ye
   xe = cx+D+pet(D*0.2)
   ctx.lineTo(xe,ye+slant)
-
   x = xe
   y = ye
   xe += pet(D*0.2)
   ye = cy+DH
   ragged(ctx,xe,ye+slant,x,y)
-
-  ctx.fillStyle = randomGradientRect(canvas, colors[0], x0, y0, x0, ye*1.5 + Math.random() * DH)
   x = xe
   y = ye
   xe = cx-D-pet(D*0.2)
   ctx.lineTo(xe, ye)
-
   ragged(ctx,x0,y0,xe,ye)
-
   ctx.closePath()
-
   ctx.fill()
-
+  ctx.restore()
 }
 
 function scraps () {
