@@ -281,8 +281,9 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
           <option value="marilyn">marilyn</option>
           <option value="earring">girl with pearl earring</option-->
           
-          <option value="avocado">avocado</option>
-          <option value="planet">planet</option>
+            <option value="yellowed">yellowed</option>
+            <option value="avocado">avocado</option>
+            <option value="planet">planet</option>
           <option value="cherry">cherry</option>
           <option value="cloud">cloud</option>
           <option value="dark forest">dark forest</option>
@@ -757,6 +758,8 @@ function randomPalette () {
     updateExtraColors(b)
     return
   } else
+
+  
   if (type === "dark") {
     document.getElementById("pal1").value = randomColorVDark() //darkest
     document.getElementById("pal2").value = randomColorVDark()
@@ -805,6 +808,11 @@ function randomPalette () {
   if (type === "rust"){
     a = ['#120402', '#482519', '#837a4e', '#c0ab7c', '#f2efec']
     b = ['#120402', '#482519', '#837a4e', '#c0ab7c', '#f2efec']
+    updateExtraColors(b)
+  } else
+  if (type === "yellowed"){
+    a = ["#ecd27c","#e1c36b","#d6c293","#e1c452","#d8b758" ]
+    b = ["#f4e8c4","#ecd89d","#e0d4bb","#c4b589","#d0ae46","#bfa55f","#c09e34","#b09225"]
     updateExtraColors(b)
   } else
   if (type === "scream"){
