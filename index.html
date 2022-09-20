@@ -7740,10 +7740,8 @@ function tape () {
   let xe = cx-D+pet(D*0.2)
   let ye = cy-DH
   let y0 = ye, x0 = xe
-  if (rotate)
-    ctx.fillStyle = colors[0]//randomGradientRect(canvas, colors[0], x0, y0, x0, ye*1.5 + Math.random() * DH)
-  else
-    ctx.fillStyle = colors[0]//randomGradientRect(canvas, colors[0], x0, y0, x0, ye*1.5 + Math.random() * DH)
+  
+  ctx.fillStyle = colors[0]//randomGradientRect(canvas, colors[0], x0, y0, x0, ye*1.5 + Math.random() * DH)
   ctx.beginPath()
   ctx.moveTo(xe,ye)
   x = xe
