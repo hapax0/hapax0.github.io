@@ -281,9 +281,9 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
           <option value="marilyn">marilyn</option>
           <option value="earring">girl with pearl earring</option-->
           
-            <option value="yellowed">yellowed</option>
-            <option value="avocado">avocado</option>
-            <option value="planet">planet</option>
+          <option value="yellowed">yellowed</option>
+          <option value="avocado">avocado</option>
+          <option value="planet">planet</option>
           <option value="cherry">cherry</option>
           <option value="cloud">cloud</option>
           <option value="dark forest">dark forest</option>
@@ -522,24 +522,19 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="atom" >atom</option>
     <!--option value="venn">venn</option-->
     <option value="network">network</option>
-    <option value="core" >core</option>
+    <option value="core">core</option>
     <option value="eclipse">eclipse</option>
     <option value="constellations" >constellations</option>
     <option value="seasons">seasons</option>
     <option value="tides">tides</option>
     <option value="natural">loop</option>
-    <option value="room">room</option>
     <option value="phase">phase</option>
     <option value="phases">phases</option>
     <option value="comets">comets</option>
     <option value="threeCircles" selected>3 circles</option>
     <option value="scraps">scraps</option>
     <option value="tape">tape</option>
-    <option value="arch">arch</option>
     <option value="blocksX">blocks</option>
-    <option value="pants">pants</option>
-    <option value="buns">buns</option>
-    <option value="venus">venus</option>
     <option value="user">user</option>
     <option value="glass_line" >glass</option>
     <option value="glass" >glass (fill)</option>
@@ -7752,7 +7747,7 @@ function tape () {
   y = ye
   xe += pet(D*0.2)
   ye = cy+DH
-  ragged(ctx,xe,ye+slant,x,y)
+  ragged(ctx,xe,ye+slant,x,y+slant)
   x = xe
   y = ye
   xe = cx-D-pet(D*0.2)
