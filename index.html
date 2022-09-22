@@ -7712,35 +7712,36 @@ function tape () {
   let alpha = document.getElementById("opacity").value
   let alt = document.getElementById("grungy").checked
   ctx.fillStyle = randomPick(colors)
-  let slant = Math.random()*DH
-  if (Math.random() > 0.5)
-    slant *= -1
   let cx =  LASTCLICK[0]
   let cy =  LASTCLICK[1]
   let rotate = (cx < D*1.5 || canvas.width - cx < D*1.5)
-  
+  let angle = Math.PI/19
+
   ctx.save()
-  if (rotate) {
-    ctx.translate(cx,cy)
-    ctx.rotate(Math.PI/2)
-    ctx.translate(-cx,-cy)
-  }
+  if (rotate)
+    angle += Math.PI/2
+  if (Math.random() > 0.5)
+    angle *= -1
+  ctx.translate(cx,cy)
+  ctx.rotate(angle)
+  ctx.translate(-cx,-cy)
+
   let xe = cx-D+pet(D*0.8)
   let ye = cy-DH
   let y0 = ye, x0 = xe
   
-  ctx.fillStyle = colors[0]//randomGradientRect(canvas, colors[0], x0, y0, x0, ye*1.5 + Math.random() * DH)
+  ctx.fillStyle = colors[0]
   ctx.beginPath()
   ctx.moveTo(xe,ye)
   x = xe
   y = ye
   xe = cx+D+pet(D*0.8)
-  ctx.lineTo(xe,ye+slant)
+  ctx.lineTo(xe,ye)
   x = xe
   y = ye
   xe += pet(D*0.8)
   ye = cy+DH
-  ragged(ctx,xe,ye+slant,x,y+slant)
+  ragged(ctx,xe,ye,x,y)
   x = xe
   y = ye
   xe = cx-D-pet(D*0.8)
@@ -9536,8 +9537,10 @@ function singlePage () {
   ctx.fill()
 }
 
-function ragged (ctx,endX,endY,x,y) {
-  let inc = 3 + Math.floor(document.getElementById("featuresize").value/50)
+function ragged (ctx,endX,endY,x,y, d) {
+  if (!d)
+    d = 50
+  let inc = 3 + Math.floor(document.getElementById("featuresize").value/d)
   let p = 1 + document.getElementById("number").value/4000
   let xdiff = x - endX, ydiff = y - endY
   let D = distance(x,y,endX,endY)
@@ -9549,7 +9552,7 @@ function ragged (ctx,endX,endY,x,y) {
   let ysteps = (y - endY)/(yinc + 0.000001)
   let xf = xdiff/(xsteps + 0.000001)
   let yf = ydiff/(ysteps + 0.000001)
-  let px2 = p*2
+
   while (distance(endX,endY,x,y) > inc) {
     // add to x and y to get closer to endX,endY
     x += xinc
@@ -9573,7 +9576,7 @@ function raggedX (ctx,endX,endY,x,y) {
   let ysteps = (y - endY)/(yinc + 0.000001)
   let xf = xdiff/(xsteps + 0.000001)
   let yf = ydiff/(ysteps + 0.000001)
-  let px2 = p*2
+
   while (distance(endX,endY,x,y) > inc*2) {
     // add to x and y to get closer to endX,endY
     x += xinc
