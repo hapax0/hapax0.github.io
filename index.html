@@ -265,6 +265,7 @@ value="100" onchange="rangecheck()"> <span class='sample' id='highsample' style=
      <div
 style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
         <select id="palettechoice" onchange="randomPalette()">
+          <option value="halfway">ramp 1 to 5</option>
           <option value="ramp">mixed ramp</option>
           <option value="light">light</option>
           <option value="dark">dark</option>
@@ -702,6 +703,20 @@ function adjustBrightnessC (col, amt) {
   return "#" + RR + GG + BB;
 }
 
+function halfway (c1,c5) {
+  
+  let R = Math.floor((hexToR(c1) + hexToR(c5))/2)
+  let G = Math.floor((hexToG(c1) + hexToG(c5))/2)
+  let B = Math.floor((hexToR(c1) + hexToB(c5))/2)
+  console.log(R,G,B)
+  var RR = ((R.toString(16).length==1)?"0"+R.toString(16):R.toString(16));
+  var GG = ((G.toString(16).length==1)?"0"+G.toString(16):G.toString(16));
+  var BB = ((B.toString(16).length==1)?"0"+B.toString(16):B.toString(16));
+  console.log("#" , RR , GG , BB)
+
+  return "#" + RR + GG + BB;
+}
+
 function getCurrentPalette () {
   return ([document.getElementById("pal1").value,
     document.getElementById("pal2").value,
@@ -721,6 +736,18 @@ function restorePalette (p) {
 function randomPalette () {
   let a = [], b = []
   let type = document.getElementById("palettechoice").value
+  
+  if (type === "halfway") {
+    let c1 = document.getElementById("pal1").value
+    let c5 = document.getElementById("pal5").value
+    c3 = halfway(c1,c5)
+    document.getElementById("pal3").value = c3
+    document.getElementById("pal2").value = halfway(c1,c3)
+    document.getElementById("pal4").value = halfway(c3,c5)
+
+    updateExtraColors(b)
+    return
+  } else
   if (type === "ramp") {
     document.getElementById("pal1").value = randomColorVDark() //darkest
     document.getElementById("pal2").value = randomColorDark()
@@ -739,8 +766,6 @@ function randomPalette () {
     updateExtraColors(b)
     return
   } else
-
-  
   if (type === "dark") {
     document.getElementById("pal1").value = randomColorVDark() //darkest
     document.getElementById("pal2").value = randomColorVDark()
