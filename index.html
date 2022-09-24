@@ -268,19 +268,13 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
           <option value="ramp">mixed ramp</option>
           <option value="light">light</option>
           <option value="dark">dark</option>
-          <option value="mono">mono ramp</option>
+          <option value="mono">mono up</option>
+          <option value="monodown">mono down</option>
           <option value="primary">primary</option>
-          <option value="random">random</option>
           <option value="rainbow">rainbow</option>
           <option value="rust">rust</option>
           <option value="mod1">mod1</option>
-          <!--option value="stary">stary night</option>
-          <option value="scream">the scream</option-->
           <option value="nighthawks">nighthawks</option>
-          <!--option value="venus">venus</option>
-          <option value="marilyn">marilyn</option>
-          <option value="earring">girl with pearl earring</option-->
-          
           <option value="yellowed">yellowed</option>
           <option value="avocado">avocado</option>
           <option value="planet">planet</option>
@@ -765,8 +759,20 @@ function randomPalette () {
     updateExtraColors(b)
     return
   } else
+  if (type === "monodown") {
+    let c = document.getElementById("pal1").value//randomColorVDark(),
+    let amt = -45
+    document.getElementById("pal1").value = c
+    document.getElementById("pal2").value = adjustBrightnessC(c, amt)
+    document.getElementById("pal3").value = adjustBrightnessC(c, amt*2)
+    document.getElementById("pal4").value = adjustBrightnessC(c, amt*3)
+    document.getElementById("pal5").value = adjustBrightnessC(c, amt*3)
+    updateExtraColors(b)
+    return
+  } else
   if (type === "mono") {
-    let c = randomColorVDark(), amt = 50
+    let c = document.getElementById("pal1").value//randomColorVDark(),
+    let amt = 45
     document.getElementById("pal1").value = c
     document.getElementById("pal2").value = adjustBrightnessC(c, amt)
     document.getElementById("pal3").value = adjustBrightnessC(c, amt*2)
