@@ -557,11 +557,12 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
       <option value="moleskine2" >moleskine 3D</option>
       <option value="sketchpad">sketch pad</option>
       <option value="floppyPage">stack of pages</option>
+      <option value="justlines" selected>martin</option>
       <option value="gridpaper" >grid paper</option>
       <option value="linedPad">lined pad</option>
       <option value="messagepad">message</option>
       <option value="dividedPad" >divided pad</option>
-      <option value="requirements" selected>requirements pad</option>
+      <option value="requirements" >requirements pad</option>
       <option value="postcard">postcard</option>
       <option value="indexcard">index card</option>
       <option value="thisSpace">this space</option>
@@ -5297,7 +5298,7 @@ function script () {
   let ctx = canvas.getContext("2d");
   let W = canvas.width
   let cx = 0
-  let cy = LASTCLICK[1]//W/2 + pet(W/3)
+  let cy = 12//LASTCLICK[1]//W/2 + pet(W/3)
   let C = W/2 + (Math.random() - 0.5) * W/4
   ctx.globalAlpha = +document.getElementById("opacity").value/100
   let colors = shuffle(['red', 'blue', 'yellow', 'orange', 'purple', "green"])
@@ -5311,35 +5312,39 @@ function script () {
     angle *= -1
   let n = 0, end = 20000//17000
   var x = 10//cx + radius * Math.cos(angle);
-  var y = cy //+ radius * Math.sin(angle);
+  var y = 58//cy //+ radius * Math.sin(angle);
   let pf = 40
   let amult = 0.01 + Math.random()/10
-  let ydrift = 0.01 + Math.random()/10
+  let ydrift = 0.01 + Math.random()/5
   if (Math.random() > 0.5)
     ydrift *= -1
   if (grunge)
     pf = 20
-  ctx.beginPath();
-  ctx.moveTo(x, y);
-  let avg = 0
-  let gs = 1000 * Math.random()
-  for (; n < end; n++) {
-    x = x + Math.sin(angle) + 0.25 + pet(0.2)
-    y = y + Math.cos(angle) + ydrift
-    ctx.lineTo(x, y);
-    if (gs > 500) {
-      angle += gs/W * amult + pet(6)/pf
-    } else {
-      angle -= gs/W * amult + pet(6)/pf
+  while (y < canvas.height) {
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    let avg = 0
+    let gs = 1000 * Math.random()
+    for (; n < end; n++) {
+      x = x + Math.sin(angle) + 0.25 + pet(0.2)
+      y = y + Math.cos(angle) + ydrift
+      ctx.lineTo(x, y);
+      if (gs > 500) {
+        angle += gs/W * amult + pet(6)/pf
+      } else {
+        angle -= gs/W * amult + pet(6)/pf
+      }
+      if (Math.random() > 0.995) {
+        amult = 0.01 + Math.random()/10
+        ydrift *= -1
+      }
+      if (x > W)
+        break;
     }
-    if (Math.random() > 0.995) {
-      amult = 0.01 + Math.random()/10
-      ydrift *= -1
-    }
-    if (x > W)
-      break;
+    ctx.stroke();
+    y += 27
+    x = 10
   }
-  ctx.stroke();
 }
 
 function drops () {
@@ -8513,9 +8518,9 @@ function justlines () { // grid paper
   let color = document.getElementById("paintcolor").value
   let alt = document.getElementById("grungy").checked
   let space = 6 + Math.floor(document.getElementById("featuresize").value/10)
-  let pad = 32
+  let pad = 3 + Math.random()*20
   let mod = randomPick([4,5,6])
-  let colors = ["#ed6060", "#0000ba", "0000ed", "#ed0000", "#000000"]
+  let colors = getCurrentPalette()
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let alpha = ctx.globalAlpha
   ctx.strokeStyle = randomPick(getCurrentPalette())
@@ -8528,38 +8533,37 @@ function justlines () { // grid paper
   ctx.shadowOffsetX = -2 + Math.random() * 2
   let x = pad, y = pad
  
-  ctx.shadowBlur = 0
-  ctx.shadowOffsetY = 0
-  ctx.shadowOffsetX = 0
-  ctx.fillStyle = ctx.strokeStyle
-  pad += 60 + Math.random() * 60
-  let numbers = []
-  let i = 0
-  for (; i < 33*33; i++)
-    numbers.push(i+1)
-  let h = 51+Math.floor(Math.random() * 33), w = 1//+Math.floor(Math.random() * 33)
-  let text  = 0
   
-  let cols = ((W - pad*2)/w)
-  let lines = ((H - pad*2)/h)
+  let h = Math.floor(H-pad)
+  let w = 1
+  let text  = 0
+  let cycle = Math.floor(10 + Math.random() * 50), index = 0
+  let cols = ((W - pad*2)/w)/25
+  let lines = 3.5//Math.floor((H - pad*2)/h)
   i = 0
-  let j = 0, p = 1.3;
-  y = pad
-  ctx.globalAlpha = 0.5
+  let j = 0, p = 1.5;
+  y = Math.floor(pad)
+  //ctx.globalAlpha = 0.5
   for (; j < h+1; j++) {
+    cols = Math.floor(((W - pad*2)/w)/(50 - Math.random() * 3))
     i = 0
     x = pad
-    ctx.lineWidth = randomPick([50,30,100])
-    for (; i < w; i++) {  // horizontal
-      
+    ctx.lineWidth = randomPick([1,2,1])
+    lw = ctx.lineWidth
+    while (x < W-pad) {  // horizontal
       ctx.beginPath()
-      ctx.moveTo(x+pet(p), y+pet(p))
+      ctx.moveTo(x, y+pet(p))
       ctx.lineTo(x + cols, y+pet(p))
-     // ctx.closePath()
       ctx.stroke()
       x += cols
     }
     y += lines
+    if (y % cycle === 0) {
+      ctx.strokeStyle = colors[index]
+      index = (index+1) % colors.length
+    }
+    if (y > H-pad)
+     break;
   }
   ctx.globalAlpha = alpha
 }
@@ -12334,69 +12338,6 @@ function roadmap () {
   }
 }
 
-function diurnal () {
-  let canvas = document.getElementById("myCanvas");
-  let ctx = canvas.getContext("2d");
-  let colors = ['red', 'green', 'yellow', 'blue']
-      ctx.globalAlpha = 0.5 //+ Math.random()*0.5;
-
-  var numshapes = 5
-  for (var t = 0; t < numshapes; t++) {
-    var radius = Math.floor(Math.random() * 100) + 20;
-    x = 0;
-    y = 0;
-    var x0 = x;
-    var y0 = y;
-    angle = 2 * Math.random() * Math.PI;
-    ctx.beginPath();
-    var cent = Math.random()*ctx.canvas.width+50;
-    var centy = Math.random()*ctx.canvas.height+50;
-    var edges = Math.random()*22+7;
-    var maxradius = Math.random() * 200 + 200;
-    radius = Math.random() * maxradius/2 + maxradius;
-    ctx.lineWidth = Math.random()*18;
-    if (Math.random() < 0.1)
-      ctx.setLineDash([ctx.lineWidth*2, ctx.lineWidth*2]);
-    else
-      ctx.setLineDash([]);
-    ctx.strokeStyle = randomPick(colors);
-    ctx.save();
-    increase = Math.PI * 2/edges;
-    for (var i = 0; i < edges-1; i++) {
-      radius = Math.random() * maxradius/2 + maxradius;
-      x = radius * Math.cos(angle)+cent;
-      y = radius * Math.sin(angle)+centy;
-      if (i == 0) {
-        x0 = x;
-        y0 = y;
-      }
-      ctx.lineTo(x, y);
-      angle += increase;
-    }
-    ctx.lineTo(x0, y0);
-    ctx.restore();
-    ctx.fillStyle  = randomPick(colors);
-    ctx.closePath();
-    ctx.save();
-    var nofill = (Math.random() < 0.2);
-    if (!nofill)
-      ctx.clip();
-    if (nofill) {
-      ctx.save();
-      ctx.lineWidth = 6+Math.random()*10;
-      ctx.setLineDash([ctx.lineWidth*2]);
-    }
-    ctx.stroke();
-    if (!nofill)
-      ctx.fill();
-    if (nofill)
-      ctx.restore();
-    ctx.restore();
-  }
-  ctx.setLineDash([]);
-
-}
-  
 function lavalamp () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -16296,47 +16237,6 @@ function blobs () {
   }
 }
 
-function tatter () {
-  let grunge = document.getElementById("grungy").checked
-  let increase = Math.PI * 2 / 40;
-  let x = 0, y = 0, angle = 0
-  let canvas = document.getElementById("myCanvas");
-  let ctx = canvas.getContext("2d");
-  let centx = ctx.canvas.width/2;
-  let centy = ctx.canvas.height/2;
-  let cx = centx, cy = centy
-  ctx.globalAlpha = (document.getElementById("opacity").value)/100
-  let numshapes = 1 + document.getElementById("number").value/5
-  ctx.fillStyle = document.getElementById("paintcolor").value
-  let radius = 1
-  for (let t = 0; t < numshapes; t++) {
-    x = 0;
-    y = 0;
-    let y0 = y;
-    angle = Math.floor(Math.random() * 6.42);
-    centx = Math.random()*ctx.canvas.width+5;
-    y0 = canvas.height*3/4 + Math.random() * canvas.height*1/4
-    if (grunge)
-      y0 = canvas.height/2 + Math.random() * canvas.height/4
-    centy = y0 + Math.random()*y0 + 60
-    if (100/(canvas.height-centy)/(canvas.height/2) * Math.random() > 0.0004) {
-      let edges = 11 * Math.random() + 9;
-      let rmax = document.getElementById("featuresize").value/20 // max = 500
-      let maxradius = Math.abs(1 + 500/(1+(canvas.height+10-centy)))
-      increase = Math.PI * 2/edges*0.98;
-      let points = [];
-      let i = 0
-      for (; i < edges; i++) {
-        radius = (Math.random() * maxradius/1.5) + maxradius;
-        x = radius * Math.cos(angle)+centx;
-        y = radius * Math.sin(angle)+centy;
-        points.push([x, y]);
-        angle += increase;
-      }
-      drawPath(points, 0, 0, ctx)
-    }
-  }
-}
 
 function scratch () { // based on blobs
   let grunge = document.getElementById("grungy").checked
@@ -17539,36 +17439,6 @@ function downFade () {
   rcc()
 }
 
-
-function leftFadeOG () {
-  let canvas = document.getElementById("myCanvas");
-  let ctx = canvas.getContext("2d")
-  let cx = LASTCLICK[0]//ctx.canvas.width/2 + pet(150)
-  let cy = ctx.canvas.height/2 + pet(150)
-  let rightx = canvas.width
-  let lh = rangecheck()
-  let lowest = lh[0], highest = lh[1]
-  let w = canvas.width, h = canvas.height
-  let maxdist = Math.pow(Math.pow(cx, 2) + Math.pow(cy, 2), 0.5)
-  maxdist *= 1.2
-  let d = 1000, brightness = 0
-  let data = ctx.getImageData(0,0,canvas.width,canvas.height)
-  let i = 0, x = 0, y = 0
-  let len = w * h
-  for (;i < len; i++) {
-    x = i % w
-    if (x === 0)
-      y += 1
-    d = lindistance((x*1.5), 0)
-    let px = data.data.slice(i*4, i*4+4)
-    brightness = (px[0]+px[1]+px[2])/(255*3)
-    if (brightness > lowest && brightness <= highest) {
-      px[3] *= d/maxdist
-      data.data.set(px, i*4)
-    }
-  }
-  ctx.putImageData(data, 0, 0);
-}
 
 function leftFade () {
   let canvas = document.getElementById("myCanvas");
