@@ -8518,7 +8518,7 @@ function justlines () { // grid paper
   let color = document.getElementById("paintcolor").value
   let alt = document.getElementById("grungy").checked
   let space = 6 + Math.floor(document.getElementById("featuresize").value/10)
-  let pad = 3 + Math.random()*20
+  let pad = 8 + Math.random()*20
   let mod = randomPick([4,5,6])
   let colors = getCurrentPalette()
   ctx.globalAlpha = document.getElementById("opacity").value/100
@@ -8544,9 +8544,10 @@ function justlines () { // grid paper
   for (; j < h+1; j++) {
     i = 0
     x = pad
+    cols = ((W - pad*2)/w)/(25 + Math.random()*2)
     ctx.lineWidth = randomPick([1,2,1])
     lw = ctx.lineWidth
-    let limit = W-pad-cols/2
+    let limit = W-pad-cols
     while (x < limit) {  // horizontal
       ctx.beginPath()
       ctx.moveTo(x, y+pet(p))
