@@ -8532,25 +8532,22 @@ function justlines () { // grid paper
   ctx.shadowOffsetY = 2 + Math.random() * 3
   ctx.shadowOffsetX = -2 + Math.random() * 2
   let x = pad, y = pad
- 
-  
   let h = Math.floor(H-pad)
   let w = 1
   let text  = 0
   let cycle = Math.floor(10 + Math.random() * 50), index = 0
   let cols = ((W - pad*2)/w)/25
-  let lines = 3.5//Math.floor((H - pad*2)/h)
+  let lines = 6//Math.floor((H - pad*2)/h)
   i = 0
   let j = 0, p = 1.5;
   y = Math.floor(pad)
-  //ctx.globalAlpha = 0.5
   for (; j < h+1; j++) {
-    cols = Math.floor(((W - pad*2)/w)/(50 - Math.random() * 3))
     i = 0
     x = pad
     ctx.lineWidth = randomPick([1,2,1])
     lw = ctx.lineWidth
-    while (x < W-pad) {  // horizontal
+    let limit = W-pad-cols/2
+    while (x < limit) {  // horizontal
       ctx.beginPath()
       ctx.moveTo(x, y+pet(p))
       ctx.lineTo(x + cols, y+pet(p))
