@@ -12470,11 +12470,12 @@ function crackle () {
   let grunge = document.getElementById("grungy").checked
   let W = canvas.width
   let H = canvas.height
-  ctx.lineWidth = 2
+  ctx.lineWidth = 1
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.strokeStyle = "#000000"
   ctx.lineCap = "round"
-  let R = W*0.6
+  ctx.lineJoin = "round"
+  let R = W*0.7
   let i = 0, j = 0
   let nextx = 0, nextY = 0
   let x = Math.random() * W, y = Math.random() * H, a
@@ -12496,13 +12497,13 @@ function crackle () {
         break;
       }
     }
-    if (i % 4 === 0)
+    if (i < 3 || i % 8 === 0)
       rc()
-    ctx.lineWidth = 2
+    ctx.lineWidth = 1
     x = Math.random() * W
     y = Math.random() * H
     if (i > 3)
-      R *= 0.98
+      R *= 0.97
   }
 }
 
