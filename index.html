@@ -508,6 +508,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="coloringbook">coloring book</option>
     <option value="edgeSmear">streak left</option>
     <option value="smeardownOff">vertical streaks</option>
+    <option value="crackle">crackle</option>
     <option value="neckerline">necker</option>
     <option value="necker">necker (fill)</option>
     <option value="house">house (fill)</option>
@@ -5313,9 +5314,9 @@ function script () {
   let n = 0, end = 20000//17000
   var x = 10//cx + radius * Math.cos(angle);
   var y = 58//cy //+ radius * Math.sin(angle);
-  let pf = 40
-  let amult = 0.01 + Math.random()/10
-  let ydrift = 0.01 + Math.random()/5
+  let pf = 10
+  let amult = 0.01 + Math.random()/100
+  let ydrift = 0.01 + Math.random()/100
   if (Math.random() > 0.5)
     ydrift *= -1
   if (grunge)
@@ -5330,11 +5331,13 @@ function script () {
       y = y + Math.cos(angle) + ydrift
       ctx.lineTo(x, y);
       if (gs > 500) {
-        angle += gs/W * amult + pet(6)/pf
+        angle += gs/W * amult + pet(3)/pf
       } else {
-        angle -= gs/W * amult + pet(6)/pf
+        angle -= gs/W * amult + pet(3)/pf
       }
-      if (Math.random() > 0.995) {
+     // if (Math.random() > 0.95)
+        //angle *= -1
+      if (Math.random() > 0.99) {
         amult = 0.01 + Math.random()/10
         ydrift *= -1
       }
@@ -6759,6 +6762,60 @@ function room () {
   document.getElementById("opacity").value = alpha
 }
 
+function automatic () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let colors = shuffle(getCurrentPalette())//['red', 'blue', 'yellow', 'orange', 'purple', "green"])
+  let mode = document.getElementById("mode").value
+  let alpha = document.getElementById("opacity").value
+  let cx = canvas.width/2, cy = canvas.height/2, x = 0, y = 0
+  let R = 20//canvas.height * 0.1, r = R*2
+  let R2 = R*3
+  R = R2*0.85
+  let alt = true//document.getElementById("grungy").checked
+  let mult = Math.random()
+  let i = 0
+  let start = Math.PI *1.7
+  let inc = Math.PI * 2/360
+  x=18,y=180
+
+  R = R2
+  ctx.lineJoin = "round"
+  ctx.fillStyle = (colors[0])
+  let b = 0, sign = 1
+  ctx.strokeStyle = (colors[0])
+  ctx.beginPath()
+  let max = 5*360
+  let a = Math.random() * 2 * Math.PI, ax = start
+  let drift = 0.01
+  let dir = true//(Math.random() > 0.5)? true : false;
+
+  for (; i < max; i++) {
+   // R += b
+    if (R < 0.1 || R > R2)
+      R = R2*0.8
+    ctx.ellipse(x, y, R2, R, a, start, start-inc, dir)
+    start -= inc
+    if (Math.random() > 0.98)
+      sign *= -1
+    b += sign * 0.02
+
+    x += 0.4 + pet (0.6)
+    y += pet(3)
+     
+     if (Math.random() > 0.9) {
+       //console.log(dir)
+       //dir = !dir
+       //start -= inc
+     }
+  }
+  console.log(R,R2)
+  ctx.stroke()
+  document.getElementById("mode").value = mode
+  document.getElementById("opacity").value = alpha
+}
 
 function natural () {
   let canvas = document.getElementById("myCanvas");
@@ -6768,7 +6825,7 @@ function natural () {
   let colors = shuffle(getCurrentPalette())//['red', 'blue', 'yellow', 'orange', 'purple', "green"])
   let mode = document.getElementById("mode").value
   let alpha = document.getElementById("opacity").value
-  let cx = canvas.width/2, cy = canvas.height/2, x = 0, y = 0
+  let cx = canvas.width/2, cy = canvas.height/2, x = 0, y = 100
   let R = canvas.height * 0.1, r = R*2
   let R2 = R*3
   R = R2*0.85
@@ -6780,7 +6837,6 @@ function natural () {
   let inc = Math.PI * 2/360
   x=cx+Math.random()*21,y=cy+Math.random()*21
   ctx.lineJoin = "round"
-  ctx.fillStyle = (colors[0])
   let b = 0, sign = 1
   ctx.strokeStyle = (colors[0])
   ctx.beginPath()
@@ -6791,8 +6847,9 @@ function natural () {
   }
   let a = Math.random() * 2 * Math.PI, ax = start
   let drift = 0.01
+  let dir = true
   for (; i < max; i++) {
-    ctx.ellipse(x, y, R2, R+b, a, start, start-inc, true)
+    ctx.ellipse(x, y, R2, R+b, a, start, start-inc, dir)
     ax = inc
     start -= inc
     if (Math.random() > 0.98)
@@ -6804,6 +6861,7 @@ function natural () {
        x += 0.15
        y += pet(1)
      }
+     
   }
   ctx.stroke()
   document.getElementById("mode").value = mode
@@ -12406,6 +12464,68 @@ function lavalamp () {
   }
 }
 
+function crackle () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let grunge = document.getElementById("grungy").checked
+  let W = canvas.width
+  let H = canvas.height
+  ctx.lineWidth = 2
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctx.strokeStyle = "#000000"
+  ctx.lineCap = "round"
+  ctx.fillStyle = "#ffffff"
+  let R = W*0.7
+  let i = 0, j = 0
+  let nextx = 0, nextY = 0
+  let x = Math.random() * W, y = Math.random() * H, a
+  a = 0//Math.random()/10
+  for (; i < 48; i++) {
+    j = 0
+    let ba = a
+    let ea =  ba += Math.PI/1800, inc = 1
+    for (; j < 3600; j++) {
+      ctx.beginPath()
+      ctx.ellipse(x,y,R,R,a,ba,ea)
+      ba = ea
+      ea += Math.PI/1800
+      ctx.stroke()
+      // point on a circle
+      nextx = (R) * Math.cos(ea+Math.PI/1800)+x;
+      nexty = (R) * Math.sin(ea+Math.PI/1800)+y;
+      if (pixelIsDark(nextx, nexty)) {
+        break;
+      }
+    }
+    if (i % 4 == 0)
+       rc()
+    ctx.lineWidth = 2
+    x = Math.random() * W
+    y = Math.random() * H
+    if (i > 3)
+    R *= 0.98
+  }
+}
+
+function pixelIsDark (x, y) {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let data = ctx.getImageData(x,y,1,1)
+  i = 0, len = 1, w = 1, h = 1
+  for (;i < len; i++) {
+    x = i % w
+    if (x === 0)
+      y += 1
+    d = Math.random() * w
+    let px = data.data.slice(i*4, i*4+4)
+    brightness = (px[0]+px[1]+px[2])/(255*3)
+    if (brightness < 0.4) {
+      return true
+    }
+  }
+  return false
+}
+
 function walk () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -12418,13 +12538,14 @@ function walk () {
   let H = canvas.height
   ctx.globalAlpha = document.getElementById("opacity").value/100
  // clip()
-  ctx.fillStyle = document.getElementById("paintcolor").value
-  let x = Math.random() * W, y = Math.random() * H
+ ctx.fillStyle = document.getElementById("paintcolor").value
+ ctx.strokeStyle = document.getElementById("paintcolor").value
+  let x = 2, y = 100
   let p = 1+D*1
   let i = 0
   let s = 0
-  let angle = Math.random()*2*Math.PI;
-  let stepsize = 1
+  let angle = 0//Math.random()*2*Math.PI;
+  let stepsize = 3
   let w = 1 + Math.random()*D/10
   while (s < 2000) {
     w = 1 + Math.random()*D/25
@@ -12444,8 +12565,9 @@ function walk () {
     ctx.lineTo(x + w + pet(p), y +pet(p))
     ctx.lineTo(x + w + pet(p), y+w +pet(p))
     ctx.lineTo(x + pet(p), y+w+pet(p))
-    ctx.closePath()
-    ctx.fill()
+    ctx.stroke()
+    //ctx.closePath()
+   //ctx.fill()
     x += 1 * Math.cos(angle)
     y += 1 * Math.sin(angle)
     w += 0.001
