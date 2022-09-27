@@ -508,7 +508,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="coloringbook">coloring book</option>
     <option value="edgeSmear">streak left</option>
     <option value="smeardownOff">vertical streaks</option>
-    <option value="crackle">crackle</option>
+    <option value="crackle" selected>crackle</option>
     <option value="neckerline">necker</option>
     <option value="necker">necker (fill)</option>
     <option value="house">house (fill)</option>
@@ -527,7 +527,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="comets">comets</option>
     <option value="threeCircles">3 circles</option>
     <option value="scraps">scraps</option>
-    <option value="tape" selected>tape</option>
+    <option value="tape">tape</option>
     <option value="user">user</option>
     <option value="glass_line" >glass</option>
     <option value="glass" >glass (fill)</option>
@@ -12467,23 +12467,36 @@ function lavalamp () {
 function crackle () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  let grunge = document.getElementById("grungy").checked
+  let alt = document.getElementById("grungy").checked
   let W = canvas.width
   let H = canvas.height
-  ctx.lineWidth = 1
+  let cx = W/2, cy = H/2
   ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctx.imageSmoothingQuality = "high"
   ctx.strokeStyle = "#000000"
   ctx.lineCap = "round"
   ctx.lineJoin = "round"
-  let R = W*0.7
+  ctx.fillStyle = "#ffffff"
+  //ctx.fillRect(0,0,W,H)
+
+  let R = Math.floor(W*0.6)
   let i = 0, j = 0
   let nextx = 0, nextY = 0
-  let x = Math.random() * W, y = Math.random() * H, a
-  a = 0//Math.random()/10
-  for (; i < 48; i++) {
+  let x = Math.random() * W/2, y = Math.random() * H/2, a
+  a = Math.PI*2
+  for (; i < 44; i++) {
+    x = Math.floor(Math.random() * W)
+    y = Math.floor(Math.random() * H)
     j = 0
     let ba = a
     let ea =  ba += Math.PI/1800, inc = 1
+    ctx.lineWidth = 1
+    /*ctx.save()
+    if (i % 2 === 0||true) {
+      ctx.translate(cx,cy)
+      ctx.rotate(Math.PI/2)
+      ctx.translate(-cx,-cy)
+    }*/
     for (; j < 3600; j++) {
       ctx.beginPath()
       ctx.ellipse(x,y,R,R,a,ba,ea)
@@ -12491,19 +12504,28 @@ function crackle () {
       ea += Math.PI/1800
       ctx.stroke()
       // point on a circle
-      nextx = (R) * Math.cos(ea+Math.PI/1800)+x;
-      nexty = (R) * Math.sin(ea+Math.PI/1800)+y;
-      if (pixelIsDark(nextx, nexty)) {
+      nextx = (R) * Math.cos(ea+Math.PI/1800*2)+x;
+      nexty = (R) * Math.sin(ea+Math.PI/1800*2)+y;
+      let nx = (R) * Math.cos(ea+Math.PI/1800)+x;
+      let ny = (R) * Math.sin(ea+Math.PI/1800)+y;
+      if (pixelIsDark(nextx, nexty) || pixelIsDark(nx, ny)) {
+        if (alt) {
+          ctx.beginPath()
+          ctx.moveTo(nx,ny)
+          ctx.arc(nx,ny,5,0,Math.PI*2)
+          ctx.closePath()
+          ctx.fillStyle = "#ff0000"
+          ctx.fill()
+        }
         break;
       }
     }
     if (i < 3 || i % 8 === 0)
-      rc()
-    ctx.lineWidth = 1
-    x = Math.random() * W
-    y = Math.random() * H
+      rc_simple()
+  //  ctx.restore()
+   
     if (i > 3)
-      R *= 0.97
+      R *= 0.98
   }
 }
 
@@ -14297,6 +14319,16 @@ function hazeo () {
   let G = document.getElementById("grungy").checked
   if ((G && Math.random() > 0.7) || !G)
     ctx.fillRect(0,0,canvas.width, canvas.height)
+}
+
+function rc_simple () { // canvas must be opaque
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  ctx.save()
+  ctx.translate(canvas.width/2 ,canvas.height/2)    
+  ctx.rotate(Math.PI / 2)
+  ctx.drawImage(canvas,-canvas.width/2,-canvas.height/2,canvas.width,canvas.height)
+  ctx.restore()
 }
 
 function rc () {
