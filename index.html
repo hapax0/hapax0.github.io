@@ -12479,10 +12479,8 @@ function cracklelines () {
   ctx.lineJoin = "round"
   ctx.fillStyle = "#ffffff"
   //ctx.fillRect(0,0,W,H)
-      ctx.lineWidth = 1
-
   let i = 0, j = 0
-  let nextx = 0, nextY = 0
+  let nx = 0, ny = 0
   let x = Math.random() * W/2, y = Math.random() * H/2, a
   a = Math.PI*2
   for (; i < 44; i++) {
@@ -12496,7 +12494,6 @@ function cracklelines () {
     if (Math.random() > 0.5) yinc *= -1
     ctx.lineWidth = 1
     for (; j < 5000; j++) {
-     
       ctx.beginPath()
       ctx.moveTo(x,y)
       x += xinc
@@ -12504,11 +12501,8 @@ function cracklelines () {
       ctx.lineTo(x,y)
       ctx.closePath()
       ctx.stroke()
-      // point on a circle
-      nextx = x + xinc;
-      nexty = y + yinc;
-      let nx = x + xinc*2;
-      let ny = y + yinc*2;
+      nx = x + xinc*2;
+      ny = y + yinc*2;
       if (pixelIsDark(nx, ny)) {
         if (alt) {
           ctx.beginPath()
@@ -12537,29 +12531,24 @@ function crackle () {
   ctx.lineCap = "round"
   ctx.lineJoin = "round"
   ctx.fillStyle = "#ffffff"
-  //ctx.fillRect(0,0,W,H)
-
-  let R = Math.floor(W*0.6)
+  let R = Math.floor(W*0.69)
   let i = 0, j = 0
   let nextx = 0, nextY = 0
-  let x = Math.random() * W/2, y = Math.random() * H/2, a
-  a = Math.PI*2
-  for (; i < 44; i++) {
-    x = Math.floor(Math.random() * W)
+  let x = Math.random() * W/2, y = Math.random() * H/2
+  let a = Math.PI*2
+  let starttime = new Date().getTime()
+  let N = 24,  ct = 0
+  for (; i < N; i++) {
+    x = Math.floor(Math.random() * W)/2
     y = Math.floor(Math.random() * H)
-    
     j = 0
     let ba = a
     let ea =  ba += Math.PI/1800, inc = 1
     ctx.lineWidth = 1
-    /*ctx.save()
-    if (i % 2 === 0||true) {
-      ctx.translate(cx,cy)
-      ctx.rotate(Math.PI/2)
-      ctx.translate(-cx,-cy)
-    }*/
     for (; j < 3600; j++) {
       ctx.beginPath()
+      //R += pet(2) // alt stuff ?
+     // ctx.lineWidth = 2
       ctx.ellipse(x,y,R,R,a,ba,ea)
       ba = ea
       ea += Math.PI/1800
@@ -12570,6 +12559,8 @@ function crackle () {
       let nx = (R) * Math.cos(ea+Math.PI/1800)+x;
       let ny = (R) * Math.sin(ea+Math.PI/1800)+y;
       if (pixelIsDark(nextx, nexty) || pixelIsDark(nx, ny) || (isOff(nx,ny,W,H))) {
+        if (j == 0)
+         ct++
         if (alt) {
           ctx.beginPath()
           ctx.moveTo(nx,ny)
@@ -12581,12 +12572,13 @@ function crackle () {
         break;
       }
     }
-    if (i < 3 || i % 8 === 0)
+    if (i < 8 || i % 4 === 0) {
       rc()
-  //  ctx.restore()
+    }
     if (i > 3)
       R *= 0.98
   }
+  //console.log((new Date().getTime()-starttime)/1000)
 }
 
 function isOff (x,y,W,H) {
@@ -14389,7 +14381,7 @@ function rc_simple () { // canvas must be opaque
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   ctx.save()
-  ctx.translate(canvas.width/2 ,canvas.height/2)
+  ctx.translate(canvas.width/2 ,canvas.height/2)    
   ctx.rotate(Math.PI / 2)
   ctx.drawImage(canvas,-canvas.width/2,-canvas.height/2,canvas.width,canvas.height)
   ctx.restore()
