@@ -12497,26 +12497,19 @@ function cracklelines () {
     ctx.beginPath()
     ctx.moveTo(x,y)
     for (; j < 5000; j++) {
-      
+      if (alt)
+        ctx.lineWidth = 2
+      else
+        ctx.lineWidth = 1
       x += xinc
       y += yinc
       ctx.lineTo(x,y)
-      
       nx = x + xinc*2;
       ny = y + yinc*2;
       if (pixelIsDark(nx, ny)) {
-        if (alt) {
-          ctx.beginPath()
-          ctx.moveTo(nx,ny)
-          ctx.arc(nx,ny,5,0,Math.PI*2)
-          ctx.closePath()
-          ctx.fillStyle = "#ff0000"
-          ctx.fill()
-        }
         break;
       }
     }
-    //ctx.closePath()
     ctx.stroke()
   }
 }
@@ -12551,34 +12544,24 @@ function crackle () {
     ctx.lineWidth = 1
     ctx.beginPath()
     for (; j < 3600; j++) {
-      //ctx.beginPath()
-      //R += pet(2) // alt stuff ?
-     // ctx.lineWidth = 2
+      if (alt)
+        ctx.lineWidth = 2
+      else
+        ctx.lineWidth = 1
       ctx.ellipse(x,y,R,R,a,ba,ea)
       ba = ea
       ea += Math.PI/1800
-      //ctx.stroke()
       // point on a circle
       nextx = (R) * Math.cos(ea+Math.PI/1800*2)+x;
       nexty = (R) * Math.sin(ea+Math.PI/1800*2)+y;
       let nx = (R) * Math.cos(ea+Math.PI/1800)+x;
       let ny = (R) * Math.sin(ea+Math.PI/1800)+y;
       if (pixelIsDark(nextx, nexty) || pixelIsDark(nx, ny) || (isOff(nx,ny,W,H))) {
-        if (j == 0)
-         ct++
-        if (alt) {
-          ctx.beginPath()
-          ctx.moveTo(nx,ny)
-          ctx.arc(nx,ny,5,0,Math.PI*2)
-          ctx.closePath()
-          ctx.fillStyle = "#ff0000"
-          ctx.fill()
-        }
         break;
       }
     }
     ctx.stroke()
-    if (i < 8 || i % 4 === 0) {
+    if (true) {
       if (flip)
         flipV()
       else
