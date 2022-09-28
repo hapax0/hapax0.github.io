@@ -12494,14 +12494,14 @@ function cracklelines () {
     if (Math.random() > 0.5) xinc *= -1
     if (Math.random() > 0.5) yinc *= -1
     ctx.lineWidth = 1
+    ctx.beginPath()
+    ctx.moveTo(x,y)
     for (; j < 5000; j++) {
-      ctx.beginPath()
-      ctx.moveTo(x,y)
+      
       x += xinc
       y += yinc
       ctx.lineTo(x,y)
-      ctx.closePath()
-      ctx.stroke()
+      
       nx = x + xinc*2;
       ny = y + yinc*2;
       if (pixelIsDark(nx, ny)) {
@@ -12516,6 +12516,8 @@ function cracklelines () {
         break;
       }
     }
+    //ctx.closePath()
+    ctx.stroke()
   }
 }
 
@@ -12547,14 +12549,15 @@ function crackle () {
     let ba = a
     let ea =  ba += Math.PI/1800, inc = 1
     ctx.lineWidth = 1
+    ctx.beginPath()
     for (; j < 3600; j++) {
-      ctx.beginPath()
+      //ctx.beginPath()
       //R += pet(2) // alt stuff ?
      // ctx.lineWidth = 2
       ctx.ellipse(x,y,R,R,a,ba,ea)
       ba = ea
       ea += Math.PI/1800
-      ctx.stroke()
+      //ctx.stroke()
       // point on a circle
       nextx = (R) * Math.cos(ea+Math.PI/1800*2)+x;
       nexty = (R) * Math.sin(ea+Math.PI/1800*2)+y;
@@ -12574,6 +12577,7 @@ function crackle () {
         break;
       }
     }
+    ctx.stroke()
     if (i < 8 || i % 4 === 0) {
       if (flip)
         flipV()
@@ -12584,7 +12588,7 @@ function crackle () {
     if (i > 3)
       R *= 0.98
   }
-  //console.log((new Date().getTime()-starttime)/1000)
+  console.log((new Date().getTime()-starttime)/1000)
 }
 
 function isOff (x,y,W,H) {
