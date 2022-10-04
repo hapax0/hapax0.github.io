@@ -398,6 +398,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="pop">pop</option>
     <option value="adjustExposure">enhance exposure</option>
     <option value="haze">haze</option>
+    <option value="yellowedEdges">yellowed edge</option>
     <option value="tint">tint</option>
     <option value="lightleak">light leak</option>
     <option value="multileak">multi leak</option>
@@ -620,6 +621,7 @@ let OCISCLEAR = true
 window.onload = function () {
   let myCanvas = document.getElementById("myCanvas")
   let ctx = myCanvas.getContext("2d")
+  ctx.willReadFrequently = true
   //ctx.imageSmoothingEnabled = false
   //document.getElementById("face").value = "monospace"
   resizeCanvas()
@@ -950,6 +952,7 @@ function showResize() {
 // returns true if every pixel's uint32 representation is 0 (or "blank")
 function isCanvasBlank(canvas) {
   const context = canvas.getContext('2d');
+  context.willReadFrequently = true
   const pixelBuffer = new Uint32Array(
     context.getImageData(0, 0, canvas.width, canvas.height).data.buffer
   );
@@ -4019,6 +4022,7 @@ async function invertColors (canvas) {
   if (!canvas)
     canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
+  ctx.willReadFrequently = true
   let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height)
   let pixels = imgData.data
   let i = 0
@@ -4679,7 +4683,8 @@ function retro () {
   palettetint()
   contrastImage(-5)
   adjustBrightness(5)
-  edgeDarken(canvas)
+  yellowedEdges()
+  yellowedEdges()
   if (Math.random() > 0.3 && alt) {
     ctx.save()
     clipIrregular()
@@ -4701,6 +4706,7 @@ function retro () {
       smudgewatercolor()
     else
       fog()
+    yellowedEdges()
   }
   if (Math.random() > 0.3 && alt) {
     ctx.save()
@@ -4869,6 +4875,8 @@ async function copyToOff () {
   }
   let ctx = canvas.getContext('2d')
   let OCctx = OC.getContext('2d')
+  OCctx.willReadFrequently = true
+  ctx.willReadFrequently = true
   ctx.globalAlpha = 1.0
   let mode = ctx.globalCompositeOperation
   ctx.globalCompositeOperation = "source-over"
@@ -4999,7 +5007,6 @@ function randomColorCool() {
   b = ('0'+(randomFromTo(120,256)).toString(16)).slice(-2);
   return '#' +r+g+b;
 }
-
 
 function randomFromTo(from, to) {
   return Math.floor(Math.random() * (to - from + 1) + from);
@@ -17539,6 +17546,50 @@ function fade () {
   ctx.putImageData(data, 0, 0);
 }
 
+function edgeDistance (x,W) {
+  return ((x < W/2)? x: W-x)
+}
+
+async function yellowedEdges () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let w = canvas.width, h = canvas.height
+  let maxdist = canvas.width
+  let data = ctx.getImageData(0,0,canvas.width,canvas.height)
+  let margin = w/10 + pet(w/8)
+  let i = 0, x = 0, y = 0, dx = 0, dy = 0
+  let len = w * h
+  for (;i < len; i++) {
+    x = i % w
+    if (i > 0 && i % w === 0) {
+      x = 0
+      y += 1
+    }
+    if (Math.random() > 0.25)
+      margin = w/15 + pet(w/11)
+    dx = edgeDistance(x,w)
+    dy = edgeDistance(y,h)
+    if (dx < margin && dx > 0) {
+      dx += 10 // prevent 100% dark at very close to edge
+      let px = data.data.slice(i*4, i*4+4)
+      px[0] -= margin/dx * Math.random()*3
+      px[1] -= margin/dx * Math.random()*4
+      px[2] -= margin/dx * Math.random()*6
+      data.data.set(px, i*4)
+    }
+    if (dy < margin && dy > 0) {
+      dy+= 10
+      let px = data.data.slice(i*4, i*4+4)
+      px[0] -= margin/dy * Math.random()*3
+      px[1] -= margin/dy * Math.random()*4
+      px[2] -= margin/dy * Math.random()*6
+      data.data.set(px, i*4)
+    }
+  }
+  await ctx.putImageData(data, 0, 0);
+  return true
+}
+
 async function fr () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
@@ -18296,6 +18347,7 @@ function tintSky (canvas) {
   let g = hexToG(color)
   let b = hexToB(color)
   let ctx = canvas.getContext("2d");
+  ctx.willReadFrequently = true
   let mode = ctx.globalCompositeOperation
   let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
   let pixels = imgData.data;
@@ -18323,7 +18375,12 @@ function tintSky (canvas) {
   ctx.drawImage(offcanvas,0,0)
   ctx.globalCompositeOperation = mode
 }
-
+/*
+function edgeDistance (x,y,W,H) {
+  let dx = (x < W/2)? x: W-x;
+  let dy = (y < H/2)? y: H-y
+  return Math.min(dx,dy)
+}*/
 
 function darkenSky (canvas) {
   if (!canvas)
@@ -18440,7 +18497,7 @@ function adjustBrightness (n, canvas) {
   ctx.putImageData(imgData, 0, 0);
 }
 
- function rotateBrightness (canvas, n) {
+function rotateBrightness (canvas, n) {
   if (!n)
     n = 16
   if (!canvas)
@@ -18513,11 +18570,13 @@ function tint (canvas) {
   offcanvas.width = canvas.width
   offcanvas.height = canvas.height
   let offctx = offcanvas.getContext("2d");
+  offctx.willReadFrequently = true
   let color = document.getElementById("paintcolor").value
   let r = hexToR(color)
   let g = hexToG(color)
   let b = hexToB(color)
   let ctx = canvas.getContext("2d");
+  ctx.willReadFrequently = true
   let mode = ctx.globalCompositeOperation
   let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
   let pixels = imgData.data;
