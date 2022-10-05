@@ -17556,7 +17556,10 @@ async function yellowedEdges () {
   let w = canvas.width, h = canvas.height
   let maxdist = canvas.width
   let data = ctx.getImageData(0,0,canvas.width,canvas.height)
-  let margin = w/10 + pet(w/8)
+  let divisor = Math.floor(document.getElementById("featuresize").value/25) + 4
+  //invert range of divisor [3- 25] => [25 - 3]
+  divisor = 25 - divisor + 4
+  let margin = w/divisor + pet(w/divisor/2)
   let i = 0, x = 0, y = 0, dx = 0, dy = 0
   let len = w * h
   for (;i < len; i++) {
@@ -17566,7 +17569,7 @@ async function yellowedEdges () {
       y += 1
     }
     if (Math.random() > 0.25)
-      margin = w/15 + pet(w/11)
+      margin = w/divisor + pet(w/divisor/2)
     dx = edgeDistance(x,w)
     dy = edgeDistance(y,h)
     if (dx < margin && dx > 0) {
