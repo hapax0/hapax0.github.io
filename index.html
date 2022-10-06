@@ -1662,7 +1662,7 @@ function impasto_smudge () {
 function impasto (soft) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
-  let val = document.getElementById("opacity").value
+  //let val = document.getElementById("opacity").value
   let num = document.getElementById("number").value
   let size = document.getElementById("featuresize").value
   let checked = document.getElementById("grungy").checked
@@ -1670,12 +1670,13 @@ function impasto (soft) {
   let mode = ctx.globalCompositeOperation
   functions = ["dotblur", "jaggyblur", "dirblur"]
   //document.getElementById("featuresize").value = 280 + pet(30)
-  document.getElementById("opacity").value = 50 + pet(10)
-  if (soft)
-    document.getElementById("opacity").value = 25 + pet(10)
+ // document.getElementById("opacity").value = 30 + pet(10)
+  //document.getElementById("featuresize").value = 11 + Math.random() * 4
+
+  //if (soft)
+    //document.getElementById("opacity").value = 25 + pet(10)
   let f = randomPick(functions)
   window[f](canvas)
-  document.getElementById("featuresize").value = 33 + Math.random() * 4
   f = randomPick(functions)
   window[f](canvas)
   f = randomPick(functions)
@@ -1683,7 +1684,7 @@ function impasto (soft) {
   //restore values
   ctx.globalCompositeOperation = mode
   refreshMode()
-  document.getElementById("opacity").value = val
+  //document.getElementById("opacity").value = val
   document.getElementById("number").value = num
   document.getElementById("featuresize").value = size
   document.getElementById("grungy").checked = checked
