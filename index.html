@@ -326,7 +326,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
       <option value="afold" >fold</option>
       <option value="trifold">tri-fold</option>
       <!--option value="crumple">crumple</option-->
-      <option value="mirror">mirror &varr;</option>
+      <!--option value="mirror">mirror &varr;</option-->
       <option value="distortion">fisheye</option>
       <option value="ripinhalf">rip in half</option>
       <option value="duplicate">duplicate</option>
@@ -447,7 +447,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
       <option value="threshold_soft">threshold soft</option>
       <option value="posterize" >posterize</option>
       <option value="palettetint" selected>palette tint</option>
-      <option value="colorSample">simplify colors</option>
+      <!--option value="colorSample">simplify colors</option-->
       <option value="cymk">CYMK</option>
       <option value="stipple">stipple</option>
       <option value="etch">etch</option>
@@ -2099,6 +2099,7 @@ function colorSample () {
     c.push(pixels[n+2])
     sample.push(c)
   }
+  console.log("1_")
   i = 0, j = 1
   let m = 0
   for (; i < sample.length; i++) {
@@ -2124,6 +2125,8 @@ function colorSample () {
       }
     }
   }
+    console.log("2_")
+
   //if (alt)
   //  bins.sort(function(a, b) { return interesting(b[0]) - interesting(a[0]);});
  // else
@@ -2148,6 +2151,8 @@ function colorSample () {
     B = ('0'+(rgb[2]).toString(16)).slice(-2);
     colors2.push('#'+R+G+B)
   }
+    console.log("3_")
+
   return colors2
 }
 
@@ -4017,6 +4022,7 @@ function testImage (id) {
   // after function call check slider agreement with context values
   let sel = document.getElementById("mode").value
   let cga = ctx.globalAlpha
+  /*
   if (gco !== sel) {
     console.log("mode: "+LATESTFUNCTION+" "+gco+"/"+sel)
     ctx.globalCompositeOperation = sel
@@ -4024,7 +4030,9 @@ function testImage (id) {
   if (cga !== sga) {
     console.log("alpha: "+LATESTFUNCTION+" "+cga+"/"+sga)
     //ctx.globalAlpha = sga
-  }
+  }*/
+  ctx.globalCompositeOperation = sel
+  ctx.globalAlpha = sga
 }
 
 function doAgain () {
@@ -12562,7 +12570,6 @@ function crackle () {
   let nextx = 0, nextY = 0
   let x = Math.random() * W/2, y = Math.random() * H/2
   let a = Math.PI*2
-  let starttime = new Date().getTime()
   let N = 24,  ct = 0
   let flip = false
   for (; i < N; i++) {
@@ -12601,7 +12608,6 @@ function crackle () {
     if (i > 3)
       R *= 0.98
   }
-  console.log((new Date().getTime()-starttime)/1000)
 }
 
 function isOff (x,y,W,H) {
