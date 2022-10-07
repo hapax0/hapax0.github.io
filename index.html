@@ -250,7 +250,6 @@ id="ff" onclick="testImage('framefunctions')" title="frame functions"><svg xmlns
      <option value="nudgeDown" style="color:red">nudge vertcal</option>
      <option value="nudgehalfdown" style="color:red">nudge down right</option>
      <option value="nudgeCW" style="color:red">nudge angle</option>
-     <!--option value="makeSquare2">pad bottom to square</option-->
      <option value="expandMarginsAll">expand margins</option>
      <option value="expandMarginsDown">expand bottom</option>
      
@@ -274,14 +273,15 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
           <option value="primary">primary</option>
           <option value="rainbow">rainbow</option>
           <option value="rust">rust</option>
-          <option value="mod1">mod1</option>
-          <option value="nighthawks">nighthawks</option>
           <option value="yellowed">yellowed</option>
+          <option value="nighthawks">nighthawks</option>
+          <option value="earring">earring</option>
           <option value="avocado">avocado</option>
           <option value="planet">planet</option>
           <option value="cherry">cherry</option>
           <option value="cloud">cloud</option>
           <option value="dark forest">dark forest</option>
+          <option value="mod1">mod1</option>
           <option value="retro1" selected>retro1</option>
           <option value="retro2">retro2</option>
         </select><br>
@@ -511,7 +511,6 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="smeardownOff">vertical streaks</option>
     <option value="crackle" selected>crackle curves</option>
     <option value="cracklelines" >crackle lines</option>
-    <option value="rc_simple">rc simple</option>
     <option value="neckerline">necker</option>
     <option value="necker">necker (fill)</option>
     <option value="house">house (fill)</option>
@@ -814,8 +813,6 @@ function randomPalette () {
   } else
   if (type === "rainbow") {
     let rb = [randomColorCool(),randomColorCool(),"#cccccc",randomColorWarm(),randomColorWarm()]
-    //if (Math.random() > 0.75)
-    //  rb.reverse()
     document.getElementById("pal1").value = rb[0]
     document.getElementById("pal2").value = rb[1]
     document.getElementById("pal3").value = "#cccccc"
@@ -891,11 +888,6 @@ function randomPalette () {
     b = ['#eeead8', '#e9d195', '#efc292', '#b8c3b3', '#dea041', '#b89d72', '#758270', '#99745b', '#a4723a', '#7a5d3b', '#813917', '#353125', '#050402']
     updateExtraColors(b)
   } else
-  if (type === "marilyn") {
-    a = ['#372e24', '#a62f1f', '#55a294', '#8dc7bf', '#d3cec3']
-    b = ['#d3cec3', '#8dc7bf', '#dcb238', '#e68e95', '#b89631', '#55a294', '#9c756f', '#856b37', '#4e6860', '#cd3524', '#a62f1f', '#372e24']
-    updateExtraColors(b)
-  }else
   if (type === "earring") {
     a = ['#151518', '#232b4b', '#808aaf', '#e6cf94', '#eee6d9']
     b = ['#ebd7b3', '#c5bbbb', '#c3ad87', '#9ea7c8', '#9c907f', '#7a84aa', '#967f55', '#75675a', '#735b34', '#4e5b8e', '#4d433e', '#373031', '#151418']
@@ -1354,6 +1346,7 @@ function coloringbook () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   clearOff()
+  let alpha = document.getElementById("opacity").value
   let mode = ctx.globalCompositeOperation
   const myPromise = new Promise((copyToOff) => {
     setTimeout(() => {
@@ -1368,6 +1361,7 @@ function coloringbook () {
     .then(pasteFromOffColor)
     .then(c2)
     .then(pasteFromOffColorC)
+  ctx.globalAlpha = alpha/100
   return true
 }
 
@@ -1698,7 +1692,8 @@ function randomTexture () {
   let num = document.getElementById("number").value
   let size = document.getElementById("featuresize").value
   let color = document.getElementById("paintcolor").value
-    let alt = document.getElementById("grungy").checked
+  let alpha = document.getElementById("opacity").value
+  let alt = document.getElementById("grungy").checked
 
   functions = ["smudge", "smudge", "smudge", "smudge", "smudge", "blobs", "specksRadial", "strokes2", "strokesH"]
   let args = ["", "streaks", "arcs", "arcs2", "stars", "horizontal"]
@@ -1755,6 +1750,7 @@ function randomTexture () {
   document.getElementById("featuresize").value = size
   document.getElementById("paintcolor").value = color
   ctx.globalCompositeOperation = mode
+  ctx.globalAlpha = alpha/100
   refreshMode()
 }
 
@@ -1765,6 +1761,7 @@ function randomTexture2 () {
   let num = document.getElementById("number").value
   let size = document.getElementById("featuresize").value
   let color = document.getElementById("paintcolor").value
+  let alpha = document.getElementById("opacity").value
   let alt = document.getElementById("grungy").checked
   let mode = ctx.globalCompositeOperation
   functions = ["smudge", "smudge", "smudge", "smudge", "smudge", "blobs", "rays", "strokes2", "strokesH"]
@@ -1798,6 +1795,7 @@ function randomTexture2 () {
   document.getElementById("featuresize").value = size
   document.getElementById("paintcolor").value = color
   ctx.globalCompositeOperation = mode
+  ctx.globalAlpha = alpha/100
   refreshMode()
 }
 
@@ -2214,6 +2212,7 @@ async function palettetint (canvas) {
     canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let grunge = document.getElementById("grungy").checked
+  let alpha = document.getElementById("opacity").value
   let colors = []
   
   colors.push(document.getElementById("pal1").value)
@@ -2237,6 +2236,7 @@ async function palettetint (canvas) {
   document.getElementById("upper").value = 100
   rangecheck()
   document.getElementById("paintcolor").value = saved
+  ctx.globalAlpha = alpha
   return true
 }
 
@@ -2527,6 +2527,7 @@ function leftClip (cut) {
   let mode = ctx.globalCompositeOperation
   let H = canvas.height, W = canvas.width
   let grunge = document.getElementById("grungy").checked
+  let alpha = document.getElementById("opacity").value
   let s = LASTCLICK[0]
   if (W-s < 30 && cut) {
     alert("Cannot cut canvas width to less than 30px.")
@@ -2562,6 +2563,7 @@ function leftClip (cut) {
   else
     ctx.drawImage(off, x, 0)
   ctx.globalCompositeOperation = mode
+  ctx.globalAlpha = alpha/100
 
 }
 
@@ -2595,6 +2597,7 @@ function halfRip () {
   let ctx = canvas.getContext("2d")
   let H = canvas.height, W = canvas.width
   let grunge = document.getElementById("grungy").checked
+  let alpha = document.getElementById("opacity").value
   let s = document.getElementById("featuresize").value/500
   let half = W*s
   let lx = LASTCLICK[0]
@@ -2618,6 +2621,7 @@ function halfRip () {
   ctx.clip()
   ctx.clearRect(0,0,W,H)
   ctx.restore()
+  ctx.globalAlpha = alpha/100
 }
 
 function ripFrame () {
@@ -2635,6 +2639,7 @@ function ripSide () {
   let grunge = document.getElementById("grungy").checked
   const offset = 5 + Math.floor(document.getElementById("featuresize").value/2)
   ctx.globalAlpha = document.getElementById("opacity").value/100
+  let alpha = document.getElementById("opacity").value
   let x = 0, y = 0
   ctx.save()
   ctx.beginPath()
@@ -2657,6 +2662,7 @@ function ripSide () {
   else
     ctx.fill()
   ctx.restore()
+  ctx.globalAlpha = alpha/100
 }
 
 function bokehs () {
@@ -4003,15 +4009,22 @@ function testImage (id) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let gco = ctx.globalCompositeOperation
-  let sel = document.getElementById("mode").value
-  if (gco !== sel) {
-    alert(LATESTFUNCTION+" "+gco+" !== "+sel)
-    ctx.globalCompositeOperation = sel
-  }
+  let sga = document.getElementById("opacity").value/100
   let f = document.getElementById(id).value
   window[f]()
   LATESTFUNCTION = f
   document.getElementById("last").title = "repeat: "+f
+  // after function call check slider agreement with context values
+  let sel = document.getElementById("mode").value
+  let cga = ctx.globalAlpha
+  if (gco !== sel) {
+    console.log("mode: "+LATESTFUNCTION+" "+gco+"/"+sel)
+    ctx.globalCompositeOperation = sel
+  }
+  if (cga !== sga) {
+    console.log("alpha: "+LATESTFUNCTION+" "+cga+"/"+sga)
+    //ctx.globalAlpha = sga
+  }
 }
 
 function doAgain () {
@@ -4672,6 +4685,7 @@ function retro () {
   let color = document.getElementById("paintcolor").value
   let alt = document.getElementById("grungy").checked
   let pal = getCurrentPalette()
+  let ga = ctx.globalAlpha
   document.getElementById("number").value = 1500 + pet(500)
   document.getElementById("opacity").value = 100
   LASTCLICK[0] = canvas.width/2
@@ -4728,6 +4742,7 @@ function retro () {
     ctx.restore()
   }
   restorePalette(pal)
+  ctx.globalAlpha = alpha/100
   document.getElementById("opacity").value = alpha
   document.getElementById("featuresize").value = feature_size
   document.getElementById("number").value = number
@@ -7180,6 +7195,7 @@ function tides () {
 function nudgehalfdown () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
+  let alpha = document.getElementById("opacity").value
   clearOff()
   copyToOff()
   document.getElementById("rednumber").value = canvas.width/2
@@ -7198,6 +7214,7 @@ function nudgehalfdown () {
   document.getElementById("opacity").value = 100
   pasteFromOff()
   document.getElementById("opacity").value = a
+  ctx.globalAlpha = alpha/100
 }
 
 function network () {
@@ -7375,6 +7392,7 @@ function glass () {
   ctx.ellipse(cx, height, r, r/2, 0, 0, 2 * Math.PI) // level -> top of filled
   ctx.closePath()
   ctx.fill()
+  ctx.globalAlpha = alpha/100
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
 }
@@ -8367,7 +8385,7 @@ function atom () {
     
   }
   // inner, inner disc
- 
+  ctx.globalAlpha = alpha/100
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
 }
@@ -8409,6 +8427,7 @@ function orbits () {
   ctx.arc(x, y, r*0.667, 0, Math.PI * 2)
   ctx.closePath()
   ctx.fill()
+  ctx.globalAlpha = alpha/100
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
 }
@@ -11764,6 +11783,7 @@ function strokes () {
     }
   }
   ctx.restore()
+  ctx.globalAlpha = document.getElementById("opacity").value/100
 }
 
 function strokes2 () {
@@ -11852,6 +11872,7 @@ function strokes2 () {
     }
   }
   ctx.restore()
+  ctx.globalAlpha = document.getElementById("opacity").value/100
 }
 
 function strokesH () {
@@ -11925,6 +11946,7 @@ function strokesH () {
     }
   }
   ctx.restore()
+  ctx.globalAlpha = document.getElementById("opacity").value/100
 }
 
 function birds () {
@@ -12927,6 +12949,7 @@ function frameCircle () {
   off.width = canvas.width
   off.height = canvas.height
   offctx.drawImage(canvas, 0, 0)
+  let alpha = document.getElementById("opacity").value
   let r = document.getElementById("featuresize").value/500
   let W = canvas.width
   let H = canvas.height
@@ -12947,6 +12970,7 @@ function frameCircle () {
   ctx.fillRect(0,0,W,H)
   document.getElementById("mode").value = mode
   ctx.globalCompositeOperation = mode
+  ctx.globalAlpha = alpha/100
 }
 
 function frameRect (points, c, margin) {
@@ -13740,6 +13764,7 @@ function make4to5 (all) {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let mode = ctx.globalCompositeOperation
+  let alpha = document.getElementById("opacity").value
   W = canvas.width
   H = canvas.height
   let ratio = W/H
@@ -13769,6 +13794,7 @@ function make4to5 (all) {
   canvasoff.width = canvas.width
   canvasoff.height = canvas.height
   ctx.globalCompositeOperation = mode
+  ctx.globalAlpha = alpha/100
 }
 
 function cropInstaxMini () {
@@ -13817,6 +13843,7 @@ function cropSquare (all) {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let mode = ctx.globalCompositeOperation
+  let alpha = document.getElementById("opacity").value
   W = canvas.width
   H = canvas.height
   if (W == H)
@@ -13843,6 +13870,7 @@ function cropSquare (all) {
   canvasoff.width = canvas.width
   canvasoff.height = canvas.height
   ctx.globalCompositeOperation = mode
+  ctx.globalAlpha = alpha/100
   syncMarker()
 }
 
@@ -13855,6 +13883,7 @@ function makeSquare (all) {
   if (W == H)
     return
   ctx.globalAlpha = document.getElementById("opacity").value/100
+  let alpha = document.getElementById("opacity").value
   let canvasoff = document.getElementById("off")
   let ctxoff = canvasoff.getContext("2d")
   canvasoff.width = canvas.width
@@ -13876,38 +13905,7 @@ function makeSquare (all) {
   canvasoff.width = canvas.width
   canvasoff.height = canvas.height
   ctx.globalCompositeOperation = mode
-}
-
-function makeSquare2 (all) {
-  let canvas = document.getElementById("myCanvas");
-  let ctx = canvas.getContext("2d")
-  let mode = ctx.globalCompositeOperation
-  W = canvas.width
-  H = canvas.height
-  if (W == H)
-    return
-  ctx.globalAlpha = document.getElementById("opacity").value/100
-  let canvasoff = document.getElementById("off")
-  let ctxoff = canvasoff.getContext("2d")
-  canvasoff.width = canvas.width
-  canvasoff.height = canvas.height
-  ctxoff.drawImage(canvas,0,0)
-  let pad = 0, x = 0, y = 0
-  if (H > W) {
-    x = 0//(H-W)/2
-    canvas.width += (H-W)
-  } else
-  if (W > H) {
-    y = 0//(W-H)/2
-    canvas.height += (W-H)
-  }
-  syncBackground(canvas)
-  document.getElementById("canvaswidth").value = canvas.width
-  document.getElementById("canvasheight").value = canvas.height
-  ctx.drawImage(canvasoff, x, y)
-  canvasoff.width = canvas.width
-  canvasoff.height = canvas.height
-  ctx.globalCompositeOperation = mode
+  ctx.globalAlpha = alpha/100
 }
 
 function expandMarginsDown() {
@@ -13923,6 +13921,7 @@ function expandMargins (all) {
   let ctx = canvas.getContext("2d")
   let mode = ctx.globalCompositeOperation
   ctx.globalAlpha = document.getElementById("opacity").value/100
+  let alpha = document.getElementById("opacity").value
   let canvasoff = document.getElementById("off")
   let ctxoff = canvasoff.getContext("2d")
   let grunge = document.getElementById("grungy").checked
@@ -13951,6 +13950,7 @@ function expandMargins (all) {
   canvasoff.width = canvas.width
   canvasoff.height = canvas.height
   ctx.globalCompositeOperation = mode
+  ctx.globalAlpha = alpha/100
   syncBackground(canvas)
 }
 
@@ -13974,6 +13974,7 @@ function tiltshift () {
   document.getElementById("mode").value = "destination-over"
   ctx.globalAlpha = 1.0
   pasteFromOff()
+  ctx.globalAlpha = alpha/100
   document.getElementById("opacity").value = alpha
   ctx.globalCompositeOperation = mode
   document.getElementById("mode").value = mode
@@ -14030,7 +14031,7 @@ function motionblur (canvas) {
   dir[0] += pet(23), dir[1] += pet(23)
   smearrandom(canvas, dir)
 
-  //document.getElementById("angle").value = angle
+  ctx.globalAlpha = alpha/100
   document.getElementById("opacity").value = alpha
 }
 
@@ -14294,6 +14295,7 @@ function nudgeCWorCCW (cc, canvas) {
   let h = canvas.height;
   let w = canvas.width;
   ctx.globalAlpha = (document.getElementById("opacity").value)/100
+  let alpha = document.getElementById("opacity").value
   ctx.fillStyle = document.getElementById("paintcolor").value
   let angle = +document.getElementById("rednumber").value
   angle *= Math.PI/180
@@ -14306,6 +14308,7 @@ function nudgeCWorCCW (cc, canvas) {
   ctx.rotate(angle);
   ctx.drawImage(canvas,-x,-y,canvas.width, canvas.height)
   ctx.restore();
+  ctx.globalAlpha = alpha/100
 }
 
 function nudgeRight () {
@@ -14321,6 +14324,7 @@ function nudgeCanvas (right) {
   let ctx = canvas.getContext("2d")
   let mode = ctx.globalCompositeOperation
   ctx.globalAlpha = 1.0//document.getElementById("opacity").value/100
+  let alpha = document.getElementById("opacity").value
   let canvasoff = document.getElementById("off")
   let ctxoff = canvasoff.getContext("2d")
   let value = +document.getElementById("rednumber").value
@@ -14336,6 +14340,7 @@ function nudgeCanvas (right) {
     ctx.drawImage(canvasoff, 0, value)
   ctxoff.clearRect(0,0,canvasoff.width, canvasoff.height)
 //  syncBackground(canvas)
+  ctx.globalAlpha = alpha/100
 }
 
 async function fillA (canvas, fs) {
@@ -15228,7 +15233,9 @@ function zoomOutImage () {
 function zoomImage (out, d) {
   let ocanvas = document.getElementById('off')
   let octx = ocanvas.getContext('2d')
-  let canvas = document.getElementById("myCanvas");
+  let canvas = document.getElementById("myCanvas")
+  let alpha = document.getElementById("opacity").value
+
   let ctx = canvas.getContext("2d")
   let mode = ctx.globalCompositeOperation
   ctx.globalCompositeOperation = "source-over"
@@ -15254,6 +15261,7 @@ function zoomImage (out, d) {
   ctx.drawImage(ocanvas, -ox, -oy, dx, dy)
   octx.clearRect(0,0,ocanvas.width,ocanvas.height)
   ctx.globalCompositeOperation = mode
+  ctx.globalAlpha = alpha/100
 }
 
 function zoom () {
@@ -15276,6 +15284,7 @@ function zoom () {
   document.getElementById("canvaswidth").value = canvas.width
   document.getElementById("canvasheight").value = canvas.height
   ctx.globalCompositeOperation = mode
+  ctx.globalAlpha = a
   syncMarker()
 }
 
@@ -15299,6 +15308,7 @@ function zoom_neg () {
   document.getElementById("canvaswidth").value = canvas.width
   document.getElementById("canvasheight").value = canvas.height
   ctx.globalCompositeOperation = mode
+  ctx.globalAlpha = a
   syncMarker()
 }
 
@@ -17998,20 +18008,23 @@ function smeardown2 () {
 function smearside () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
+  let alpha = document.getElementById("opacity").value
   let off = document.createElement('CANVAS')
   off.height = canvas.height
   off.width = canvas.width
   offctx = off.getContext("2d")
   offctx.drawImage(canvas, 0, 0)
   let jump = 1 + document.getElementById("featuresize").value/5
-  ctx.globalAlpha = (document.getElementById("opacity").value)/200
   let i = 0
   let n = 2
   ctx.save()
+  ctx.globalAlpha = (document.getElementById("opacity").value)/200
   for (; i < n; i++) {
     ctx.drawImage(off, jump/2 + pet(jump/2), 0)
   }
   ctx.restore()
+  ctx.globalAlpha = alpha/100
+
 }
 
 function smeardown () {
@@ -18576,6 +18589,7 @@ function tint (canvas) {
   let offctx = offcanvas.getContext("2d");
   offctx.willReadFrequently = true
   let color = document.getElementById("paintcolor").value
+  let alpha = document.getElementById("opacity").value
   let r = hexToR(color)
   let g = hexToG(color)
   let b = hexToB(color)
@@ -18605,6 +18619,7 @@ function tint (canvas) {
   ctx.globalCompositeOperation = "color"
   ctx.drawImage(offcanvas,0,0)
   ctx.globalCompositeOperation = mode
+  ctx.globalAlpha = alpha/100
 }
 
 function adjustWarmth (n, canvas) {
