@@ -17002,7 +17002,8 @@ function drawShape (line) {
   ctx.lineJoin = "round"
   let pm = document.getElementById("number").value/4000
   ctx.fillStyle=randomPick(getCurrentPalette())
-  let s = canvas.width/1080, p = 23 * pm
+  let s = canvas.width/800, p = 23 * pm
+  
   let x = 0, y = 0
   let points = document.getElementById('points').value
   let k = 0
