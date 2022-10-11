@@ -2025,7 +2025,7 @@ function colorSamplePalette (canvas) {
       maxd = (maxd < m)? m: maxd
     }
   }
-  let threshold = m/sample.length/sample.length * 0.9
+  let threshold = m/sample.length/sample.length * 0.7
   let bins = [], bc = 0
   i = 0
   for (;i < sample.length; i++) {
@@ -2158,7 +2158,7 @@ function colorSample () {
       maxd = (maxd < m)? m: maxd
     }
   }
-  let threshold = m/sample.length/sample.length * 0.7
+  let threshold = m/sample.length/sample.length * 0.33
   let bins = [], bc = 0
   i = 0
   for (;i < sample.length; i++) {
@@ -2244,8 +2244,8 @@ function dist3d__ (p1, p2) {
 function interesting (color) {
   let average = (color[0] + color[1] + color[2])/3
   let diff = Math.abs(color[0] - average) + Math.abs(color[1] - average) + Math.abs(color[2] - average)
-  if (Math.abs(average - color[0] < 11))
-    diff *= 0.5
+  if (Math.abs(average - color[0] < 3))
+    diff *= 0.6
   return diff
 }
 
