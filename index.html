@@ -1928,7 +1928,7 @@ function extractPalette (canvas) {
         x = 0
       }
     }
-    //topFiveColors(colors) // filter out matches that are very similar
+   // topFiveColors(colors)
     let sorted = []
     sorted.push(colors[0])
     sorted.push(colors[1])
@@ -1945,28 +1945,20 @@ function extractPalette (canvas) {
   return (colors)
 }
 
-function topFiveColors (colors) {
+function topFiveColors0 (colors) {
   let i = 0, j = 0
   let scores = []
   for (; i < colors.length; i++) {
     j = 0
     scores.push(0)
     for (; j < colors.length; j++) {
-      scores[i] += colorDistance(colors[i], colors[j])/10
-      //scores[i] = grayness (colors[i])
+      scores[i] += colorDistance(colors[i], colors[j])
     }
   }
   console.log(colors, scores)
 }
 
-
-function grayness (c) {
-  let color = [hexToR(c), hexToG(c), hexToB(c)]
-  let average = (color[0] + color[1] + color[2])/3
-  return (Math.abs(average-color[0]))
-}
-
-function topFiveColorsXX (colors) {
+function topFiveColors (colors) {
   let i = 0, j = 0
   let scores = []
   for (; i < colors.length; i++) {
@@ -2004,17 +1996,19 @@ function colorSamplePalette (canvas) {
   let pixels = imgData.data;
   let sample = []
   let i = 0, j = 0
-  let skip = pixels.length/8000
-  skip -= skip%4 // must be multiple of 4
-  //skip = 128
-  for (; i < pixels.length; i += skip) {
-    let n = i
-    let c = []
-    c.push(pixels[n])
-    c.push(pixels[n+1])
-    c.push(pixels[n+2])
-    if (pixels[n+3] > 0) // don't push transparent pixels
-      sample.push(c)
+  let r = 6e-11*pixels.length + 0.995
+  if (r > 0.998)
+    r = 0.998
+  for (; i < pixels.length; i += 4) {
+    if (Math.random() > r) {
+      let n = i
+      let c = []
+      c.push(pixels[n])
+      c.push(pixels[n+1])
+      c.push(pixels[n+2])
+      if (pixels[n+3] > 0) // don't push transparent pixels
+        sample.push(c)
+    }
   }
   i = 0, j = 1
   let m = 0
@@ -2025,7 +2019,7 @@ function colorSamplePalette (canvas) {
       maxd = (maxd < m)? m: maxd
     }
   }
-  let threshold = m/sample.length/sample.length * 0.7
+  let threshold = m/sample.length/sample.length * 0.65
   let bins = [], bc = 0
   i = 0
   for (;i < sample.length; i++) {
@@ -2158,7 +2152,7 @@ function colorSample () {
       maxd = (maxd < m)? m: maxd
     }
   }
-  let threshold = m/sample.length/sample.length * 0.33
+  let threshold = m/sample.length/sample.length * 0.7
   let bins = [], bc = 0
   i = 0
   for (;i < sample.length; i++) {
@@ -2244,8 +2238,8 @@ function dist3d__ (p1, p2) {
 function interesting (color) {
   let average = (color[0] + color[1] + color[2])/3
   let diff = Math.abs(color[0] - average) + Math.abs(color[1] - average) + Math.abs(color[2] - average)
-  if (Math.abs(average - color[0] < 3))
-    diff *= 0.6
+  if (Math.abs(average - color[0] < 10))
+    diff *= 0.5
   return diff
 }
 
