@@ -1989,8 +1989,11 @@ function colorSamplePalette (canvas) {
   let ctx = canvas.getContext("2d");
   let off = document.createElement('CANVAS')
   let offctx = off.getContext("2d");
-  let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
-  let alt = document.getElementById("grungy").checked
+  let W = canvas.width, H = canvas.height
+  let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  if (document.getElementById("grungy").checked)
+    imgData = ctx.getImageData(W/10, H/10, W-2*W/10, H-2*H/10)
+  //ctx.strokeRect(W/10, H/10, W-2*W/10, H-2*H/10)
   let mind = 1000000
   let maxd = -1000000
   let pixels = imgData.data;
@@ -2177,8 +2180,8 @@ function colorSample () {
   let colors = [], clrs = []
   i = 0
   for (; i < count; i++) {
-    colors.push(averageColor(bins[i]))
-    clrs.push(averageColor(bins[i], true))
+    colors.push(averageColor(bins[i][0]))
+    clrs.push(averageColor(bins[i][0], true))
   }
   //resort clrs by interesting
   clrs.sort(function(a, b) { return interesting(b) - interesting(a);});
@@ -2219,11 +2222,55 @@ function averageColor (b, dec) {
 }
 
 function dist3d (p1, p2) {
-  let rmean = (p1[0] + p2[0]) / 2;
+  let rmean = (p1[0] + p2[0]) / 2
   let r = p1[0] - p2[0]
   let g = p1[1] - p2[1]
   let b = p1[2] - p2[2]
-  return Math.sqrt((((512+rmean)*r*r)>>8) + 4*g*g + (((767-rmean)*b*b)>>8));
+  return Math.sqrt((((512+rmean)*r*r)>>8) + 4*g*g + (((767-rmean)*b*b)>>8))
+ //https://www.compuphase.com/cmetric.htm
+}
+
+
+/**
+ * Compare color difference in RGB
+ * @param {Array} rgb1 First RGB color in array
+ * @param {Array} rgb2 Second RGB color in array
+ */
+function dist3deltaE (rgb1, rgb2) {
+  const [ r1, g1, b1 ] = rgb1,
+        [ r2, g2, b2 ] = rgb2,
+        drp2 = Math.pow(r1 - r2, 2),
+        dgp2 = Math.pow(g1 - g2, 2),
+        dbp2 = Math.pow(b1 - b2, 2),
+        t = (r1 + r2) / 2
+  return Math.sqrt(2 * drp2 + 4 * dgp2 + 3 * dbp2 + t * (drp2 - dbp2) / 256)
+
+ // return sqrt((((512+rmean)*r*r)>>8) + 4*g*g + (((767-rmean)*b*b)>>8));
+}
+
+/**
+ * calculate the perceptual distance between colors in CIELAB
+ * https://github.com/THEjoezack/ColorMine/blob/master/ColorMine/ColorSpaces/Comparisons/Cie94Comparison.cs
+ * 
+ * @param {Array} labA First LAB color in array
+ * @param {Array} labB Second LAB color in array
+ */
+function deltaE(labA, labB){
+  var deltaL = labA[0] - labB[0];
+  var deltaA = labA[1] - labB[1];
+  var deltaB = labA[2] - labB[2];
+  var c1 = Math.sqrt(labA[1] * labA[1] + labA[2] * labA[2]);
+  var c2 = Math.sqrt(labB[1] * labB[1] + labB[2] * labB[2]);
+  var deltaC = c1 - c2;
+  var deltaH = deltaA * deltaA + deltaB * deltaB - deltaC * deltaC;
+  deltaH = deltaH < 0 ? 0 : Math.sqrt(deltaH);
+  var sc = 1.0 + 0.045 * c1;
+  var sh = 1.0 + 0.015 * c1;
+  var deltaLKlsl = deltaL / (1.0);
+  var deltaCkcsc = deltaC / (sc);
+  var deltaHkhsh = deltaH / (sh);
+  var i = deltaLKlsl * deltaLKlsl + deltaCkcsc * deltaCkcsc + deltaHkhsh * deltaHkhsh;
+  return i < 0 ? 0 : Math.sqrt(i);
 }
 
 function dist3dOG (p1, p2) {
@@ -2238,11 +2285,19 @@ function dist3d__ (p1, p2) {
 function interesting (color) {
   let average = (color[0] + color[1] + color[2])/3
   let diff = Math.abs(color[0] - average) + Math.abs(color[1] - average) + Math.abs(color[2] - average)
-  if (Math.abs(average - color[0] < 10))
-    diff *= 0.5
+  if (colorfulScore(color, average) < 8) {
+    diff *= 0.8
+    //console.log(color, colorfulScore(color, average))
+  }
   return diff
 }
 
+function colorfulScore (color, average) {
+  let score = Math.abs(color[0] - average)
+      score += Math.abs(color[1] - average)
+      score += Math.abs(color[2] - average)
+  return score
+}
 function bright (c) { //-ness
   return (hexToR(c)*0.2126 + hexToG(c)*0.7152 + hexToB(c)*0.0722)
 }
