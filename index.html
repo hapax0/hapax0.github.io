@@ -57,7 +57,7 @@
     vertical-align: baseline;
   }
   canvas[id='palettecanvas'] {
-    margin:4px;
+    margin:2px;
   }
   div[id='background'] {
     background-color: #ffffff;
@@ -290,7 +290,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
        <input type='color' id='pal3'>
        <input type='color' id='pal4'>
        <input type='color' id='pal5'><br>
-       <canvas id="palettecanvas" width="240" height="80"></canvas><br>
+       <canvas id="palettecanvas" width="252" height="84"></canvas><br>
        <button  onclick="makePalette()">Remix</button>&nbsp;<button id="randompalette" onclick="randomPalette()">Load palette</button>&nbsp;<button onclick="extractPalette()">Extract</button>&nbsp;<button  onclick="showHex()" title="show hex values">#</div></td></tr></button>
          <a href="extractpalette.html">tool</a><br>
 </div>
@@ -1896,10 +1896,10 @@ function updateExtraColors (colors) {
   ctx.fillRect(0,0,canvas.width, canvas.height)
   for (; i < colors.length; i++) {
     ctx.fillStyle = colors[i]
-    ctx.fillRect(x,y,40,40)
-    x += 40
+    ctx.fillRect(x,y,42,42)
+    x += 42
     if (i > 0 && i % 6 === 0) {
-      y += 40
+      y += 42
       x = 0
     }
   }
@@ -1921,10 +1921,10 @@ function extractPalette (canvas) {
     ctx.fillRect(0,0,canvas.width, canvas.height)
     for (; i < colors.length; i++) {
       ctx.fillStyle = colors[i]
-      ctx.fillRect(x,y,40,40)
-      x += 40
+      ctx.fillRect(x,y,42,42)
+      x += 42
       if (i > 0 && i % 6 === 0) {
-        y += 40
+        y += 42
         x = 0
       }
     }
@@ -1994,8 +1994,6 @@ function colorSamplePalette (canvas) {
   if (document.getElementById("grungy").checked)
     imgData = ctx.getImageData(W/10, H/10, W-2*W/10, H-2*H/10)
   //ctx.strokeRect(W/10, H/10, W-2*W/10, H-2*H/10)
-  let mind = 1000000
-  let maxd = -1000000
   let pixels = imgData.data;
   let sample = []
   let i = 0, j = 0
@@ -2013,16 +2011,20 @@ function colorSamplePalette (canvas) {
         sample.push(c)
     }
   }
-  i = 0, j = 1
-  let m = 0
+  i = 0
+  let m = 0, ct = 0
   for (; i < sample.length; i++) {
     j = i + 1
     for (; j < sample.length; j++) {
       m += dist3d(sample[i], sample[j])
-      maxd = (maxd < m)? m: maxd
+      ct++
     }
   }
-  let threshold = m/sample.length/sample.length * 0.65
+  
+ // let threshold = m/sample.length/sample.length * 0.65
+  //console.log(threshold, m/ct)
+  let threshold = m/ct/2.2
+
   let bins = [], bc = 0
   i = 0
   for (;i < sample.length; i++) {
@@ -2031,7 +2033,7 @@ function colorSamplePalette (canvas) {
       let bc = bins.length - 1
       j = i + 1
       for (; j < sample.length; j++) {
-        if (sample[j] && dist3d(sample[j], bins[bc][0]) < threshold) {
+        if (sample[j] && dist3d(sample[j], bins[bc][0]) < threshold) { // low threshold ~ more colors
           bins[bc].push(sample[j])
           sample[j] = null
         }
@@ -2251,7 +2253,7 @@ function dist3deltaE (rgb1, rgb2) {
 /**
  * calculate the perceptual distance between colors in CIELAB
  * https://github.com/THEjoezack/ColorMine/blob/master/ColorMine/ColorSpaces/Comparisons/Cie94Comparison.cs
- * 
+ *
  * @param {Array} labA First LAB color in array
  * @param {Array} labB Second LAB color in array
  */
