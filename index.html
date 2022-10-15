@@ -288,7 +288,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
        <input type='color' id='pal4'>
        <input type='color' id='pal5'><br>
        <canvas id="palettecanvas" width="252" height="84"></canvas><br>
-       <button  onclick="makePalette()">Remix</button>&nbsp;<button id="randompalette" onclick="randomPalette()">Load palette</button>&nbsp;<button onclick="extractPalette()">Extract</button>&nbsp;<button  onclick="showHex()" title="show hex values">#</div></td></tr></button>
+       <button  onclick="makePalette()">Remix</button>&nbsp;<button id="randompalette" onclick="randomPalette()">Load palette</button>&nbsp;<button onclick="extractPalette()">Extract</button>&nbsp;<button  onclick="showHex()" title="show hex values">#</button></div></td></tr>
 </div>
   </td>
 </tr>
@@ -395,6 +395,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="haze">haze</option>
     <option value="yellowedEdges">yellowed edge</option>
     <option value="lightenEdges">lighten edge</option>
+    <option value="darkenEdges">darken edge</option>
     <option value="tint">tint</option>
     <option value="lightleak">light leak</option>
     <option value="multileak">multi leak</option>
@@ -4804,7 +4805,6 @@ function retro () {
     lightleak()
     ctx.restore()
   }
-  
   if (Math.random() > 0.3 && alt) {
     document.getElementById("paintcolor").value = randomPick(["#d4f595", "#80dfff", "#ffee80", "#ff80aa", "#45de45"])
     document.getElementById("opacity").value = 25 + Math.random() * 10
@@ -14099,17 +14099,13 @@ function expandMargins (all) {
 function tiltshift () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
-  let grunge = document.getElementById("grungy").checked
   let mode = ctx.globalCompositeOperation
   let alpha = document.getElementById("opacity").value
   clearOff()
   copyToOff()
   copyToOff()
   fadeDown()
-  if (grunge)
-    motionblur()
-  else
-    smeardown2()
+  smeardown2()
   document.getElementById("opacity").value = alpha
   ctx.globalAlpha = alpha/100
   ctx.globalCompositeOperation = "destination-over"
@@ -17702,6 +17698,49 @@ function fade () {
 
 function edgeDistance (x,W) {
   return ((x < W/2)? x: W-x)
+}
+
+async function darkenEdges () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let w = canvas.width, h = canvas.height
+  let maxdist = canvas.width
+  let data = ctx.getImageData(0,0,canvas.width,canvas.height)
+  let divisor = Math.floor(document.getElementById("featuresize").value/25) + 4
+  //invert range of divisor [3- 25] => [25 - 3]
+  divisor = 25 - divisor + 4
+  let margin = w/divisor + pet(w/divisor/2)
+  let i = 0, x = 0, y = 0, dx = 0, dy = 0
+  let len = w * h
+  for (;i < len; i++) {
+    x = i % w
+    if (i > 0 && i % w === 0) {
+      x = 0
+      y += 1
+    }
+    if (Math.random() > 0.25)
+      margin = w/divisor + pet(w/divisor/2)
+    dx = edgeDistance(x,w)
+    dy = edgeDistance(y,h)
+    if (dx < margin && dx > 0) {
+      dx += 10 // prevent 100% dark at very close to edge
+      let px = data.data.slice(i*4, i*4+4)
+      px[0] -= margin/dx * Math.random()*4
+      px[1] -= margin/dx * Math.random()*4
+      px[2] -= margin/dx * Math.random()*4
+      data.data.set(px, i*4)
+    }
+    if (dy < margin && dy > 0) {
+      dy+= 10
+      let px = data.data.slice(i*4, i*4+4)
+      px[0] -= margin/dy * Math.random()*4
+      px[1] -= margin/dy * Math.random()*4
+      px[2] -= margin/dy * Math.random()*4
+      data.data.set(px, i*4)
+    }
+  }
+  await ctx.putImageData(data, 0, 0);
+  return true
 }
 
 async function lightenEdges () {
