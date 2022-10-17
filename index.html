@@ -642,12 +642,12 @@ marker.addEventListener('click', function(event) {
     syncMarker()
 }, false);
 
-  document.getElementById("opacity").addEventListener ('change', function(event) {
-    ctx.globalAlpha = document.getElementById("opacity").value/100
-  }, false);
-  
   document.getElementById("mode").addEventListener ('change', function(event) {
     refreshMode()
+  }, false);
+  
+  document.getElementById("opacity").addEventListener ('change', function(event) {
+    ctx.globalAlpha = document.getElementById("opacity").value/100
   }, false);
   
   let result = document.getElementById("background")
@@ -18968,7 +18968,8 @@ function lum () {
 }
 
 function threshold_soft () {
-  let threshold = lum() * 255
+  //let threshold = lum() * 255
+  let threshold = document.getElementById("opacity").value *2.55
   let low = threshold - threshold/2
   let high = threshold + threshold/2
   let canvas = document.getElementById("myCanvas");
@@ -18995,7 +18996,10 @@ function threshold_soft () {
 }
 
 function threshold (L) {
-  let threshold = lum() * 255
+  if (document.getElementById("opacity").value == 100) {
+    alert("Opacity is set to 100%.")
+  }
+  let threshold = document.getElementById("opacity").value *2.55
   if (L)
     threshold = L
   let canvas = document.getElementById("myCanvas");
