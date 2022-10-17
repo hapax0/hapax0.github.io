@@ -642,6 +642,10 @@ marker.addEventListener('click', function(event) {
     syncMarker()
 }, false);
 
+  document.getElementById("opacity").addEventListener ('change', function(event) {
+    ctx.globalAlpha = document.getElementById("opacity").value/100
+  }, false);
+  
   document.getElementById("mode").addEventListener ('change', function(event) {
     refreshMode()
   }, false);
