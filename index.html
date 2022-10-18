@@ -501,7 +501,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="script">script</option>
     <option value="randomTexture" >random texture</option>
     <option value="randomTexture2">random texture2</option>
-    <option value="landscape3">landscape2</option>
+    <option value="landscape3">landscape</option>
     <option value="numberShow">numbers</option>
     <option value="coloringbook">coloring book</option>
     <option value="edgeSmear">streak left</option>
@@ -513,7 +513,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="necker">necker (fill)</option>
     <option value="house">house (fill)</option>
     <!--option value="quads" >quads</option-->
-    <option value="atom" >atom</option>
+    <!--option value="atom" >atom</option-->
     <!--option value="venn">venn</option-->
     <option value="network">network</option>
     <option value="core">core</option>
@@ -542,57 +542,53 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
   </select>
 </td>
 </tr>
+<tr><td></td><td></td><td></td><td></td><td>
+  &nbsp;<button onclick="testImage('paperfunctions')" title="fade, darken, blur, gray"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="white" viewBox="0 0 16 16">
+    <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
+  </svg></button>
+      <select id="paperfunctions">
+        <option value="roadmap">road map</option>
+        <option value="datedue">date due</option>
+        <option value="interdepartmental">interdepartmental</option>
+        <option value="moleskine">moleskine</option>
+        <option value="moleskine2" selected>moleskine 3D</option>
+        <option value="sketchpad">sketch pad</option>
+        <option value="floppyPage">stack of pages</option>
+        <option value="justlines">martin</option>
+        <option value="gridpaper" >grid paper</option>
+        <option value="linedPad">lined pad</option>
+        <option value="messagepad">message</option>
+        <option value="dividedPad" >divided pad</option>
+        <option value="requirements">requirements pad</option>
+        <option value="postcard">postcard</option>
+        <option value="indexcard">index card</option>
+        <option value="thisSpace">this space</option>
+        <option value="spiralbound">spiral bound</option>
+        <option value="periodictable" >periodic table</option>
+        <option value="calendar" >calendar</option>
+        <option value="clock" >clock</option>
+        <option value="planet" >planet</option>
+        <option value="system" >system</option>
+        <option value="rings" >rings</option>
+        <option value="star">star</option>
+        <option value="photoBook">photo book</option>
+      </select></td><td>
+        &nbsp;
+        <button onclick='drawShape()'><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" class="white" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+      </svg></button>
+        &nbsp;
+         <button onclick='drawShape(1)'><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" class="white" viewBox="0 0 16 16">
+        <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+      </svg></button>
+        
+        &nbsp;<textarea id="points" rows="1" cols="18" placeholder="points here"></textarea>&nbsp;<button onclick='clearPoints()'>x</button>
+        
+        &nbsp;<a href="mouse.html"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" class="white" style="padding:4px;" viewBox="0 0 18 18">
+          <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+        </svg></a>
+      </td></tr>
 </table>
-</div>
-<div style="margin-left:24px;">
- font: <input type="text" id="fontface" value="SnellRoundhand-Black"> caption: <input type="text" id="caption" value=""> <button onclick='caption()'>caption</button>
-
-&nbsp;<button onclick="testImage('paperfunctions')" title="fade, darken, blur, gray"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="white" viewBox="0 0 16 16">
-  <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
-</svg></button>
-    <select id="paperfunctions">
-      <option value="roadmap">road map</option>
-      <option value="datedue">date due</option>
-      <option value="interdepartmental">interdepartmental</option>
-      <option value="moleskine">moleskine</option>
-      <option value="moleskine2" >moleskine 3D</option>
-      <option value="sketchpad">sketch pad</option>
-      <option value="floppyPage">stack of pages</option>
-      <option value="justlines" selected>martin</option>
-      <option value="gridpaper" >grid paper</option>
-      <option value="linedPad">lined pad</option>
-      <option value="messagepad">message</option>
-      <option value="dividedPad" >divided pad</option>
-      <option value="requirements" >requirements pad</option>
-      <option value="postcard">postcard</option>
-      <option value="indexcard">index card</option>
-      <option value="thisSpace">this space</option>
-      <option value="spiralbound">spiral bound</option>
-      <option value="periodictable" >periodic table</option>
-      <option value="calendar" >calendar</option>
-      <option value="clock" >clock</option>
-      <option value="planet" >planet</option>
-      <option value="system" >system</option>
-      <option value="rings" >rings</option>
-      <option value="star">star</option>
-      <option value="dayandnight" >day and night</option>
-      <option value="photoBook">photo book</option>
-    </select>
-    
-  &nbsp;
-  <button onclick='drawShape()'><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" class="white" viewBox="0 0 16 16">
-  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-</svg></button>
-  &nbsp;
-   <button onclick='drawShape(1)'><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" class="white" viewBox="0 0 16 16">
-  <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-</svg></button>
-  
-  &nbsp;<textarea id="points" rows="1" cols="20" placeholder="points here"></textarea>&nbsp;<button onclick='clearPoints()'>x</button>
-  
-  &nbsp;<a href="mouse.html"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" class="white" style="padding:4px;" viewBox="0 0 18 18">
-    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
-  </svg></a>
 </div>
 <canvas id="marker" width='512' height='6' style="border:1px solid #000000;" title="touch canvas: red mark shows location of clip or rip"></canvas>
 <div id="background" style="width:1024px;height:1024px;float:left;position:absolute;">
@@ -6988,7 +6984,6 @@ function natural () {
        x += 0.15
        y += pet(1)
      }
-     
   }
   ctx.stroke()
   document.getElementById("mode").value = mode
@@ -7034,9 +7029,6 @@ function envelope () {
   y = H - pad - ctx.lineWidth
   ctx.lineTo(x,y)
   ctx.stroke()
-  
- 
-  //ctx.strokeRect(cx-r*2, cy-r*2, r*4, r*4)
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
 }
@@ -7054,8 +7046,7 @@ function phase () {
   let R = canvas.height * 0.1, r = R*2
   let R2 = R*3
   ctx.strokeStyle = (colors[0])
-
-  //moons
+  //moon
   let mult = Math.random()
   x=cx,y=cy
   ctx.fillStyle = (colors[0])
@@ -7063,13 +7054,11 @@ function phase () {
     ctx.beginPath()
     ctx.ellipse(x, y, R2*mult, R2, 0, Math.PI * 1.5, Math.PI/2)
     ctx.ellipse(x, y, R2, R2, 0, Math.PI/2, Math.PI*1.5, true)
-    //ctx.closePath()
     ctx.stroke()
   } else {
     ctx.beginPath()
     ctx.ellipse(x, y, R2*mult, R2, 0, Math.PI * 1.5, Math.PI/2, true)
     ctx.ellipse(x, y, R2, R2, 0, Math.PI/2, Math.PI*1.5)
-    //ctx.closePath()
     ctx.stroke()
   }
   ctx.beginPath()
@@ -7093,10 +7082,8 @@ function phases () {
   let a = Math.random() * 2 * Math.PI
   let R = canvas.height * 0.1, r = R*2
   let R2 = R
-  
   // background
   let R3 = R+r
-  
   // left disc
   ctx.fillStyle = colors[2]
   ctx.beginPath()
@@ -7239,7 +7226,6 @@ function phases () {
     x += R2 * 3
     mult += 0.25
   }
-  
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
 }
@@ -7262,14 +7248,12 @@ function tides () {
   let k = 0
   for (; k < 2; k++) {
     let R3 = R
-    //ctx.fillStyle = (colors[4])
     ctx.beginPath()
     ctx.moveTo(0,cy-R3)
     ctx.lineTo(0,cy+R3)
     ctx.lineTo(canvas.width,cy+R3)
     ctx.lineTo(canvas.width,cy-R3)
     ctx.closePath()
-   // ctx.fill()
     // sun
     ctx.fillStyle = colors[0]
     ctx.beginPath()
@@ -7280,7 +7264,6 @@ function tides () {
     let rotation = 0, mult = 0.9
     if (moon === 3 || moon === 4) // plane of sun
       rotation = Math.PI/2
-    
     // moon tide
     ctx.fillStyle = (colors[2])
     ctx.beginPath()
@@ -7294,14 +7277,12 @@ function tides () {
     ctx.ellipse(cx+cx/3, cy, R2*0.8, R2*1.0, rotation, 0, Math.PI * 2)
     ctx.closePath()
     ctx.fill()
-    
     // earth
     ctx.fillStyle = (colors[1])
     ctx.beginPath()
     ctx.arc(cx+cx/3, cy, R2*0.7, 0, Math.PI * 2)
     ctx.closePath()
     ctx.fill()
-    
     //moons
     R3 = R2 * 0.3
     if (moon === 1) { // bottom
@@ -7318,7 +7299,6 @@ function tides () {
       ctx.closePath()
       ctx.fill()
     }
-    
     if (moon === 3) { // right
       ctx.fillStyle = (colors[2])
       ctx.beginPath()
@@ -7442,8 +7422,7 @@ function constellations () {
   numpoints = (W/Rf*H/Rf) * 2
   let row = 0
   while (i < numpoints) {
-   // if (Math.random() > 0.41)
-      points.push([W*Math.random(), H*Math.random(), 0])
+    points.push([W*Math.random(), H*Math.random(), 0])
     i++
   }
   let j = 0
@@ -7494,7 +7473,6 @@ function glass () {
   let a = Math.random() * 2 * Math.PI
   let pad = 50
   let R2 = R/2
- 
   // top
   let height = cy*0.4
   r = (canvas.height + height*-0.5) * 0.3
@@ -7507,7 +7485,6 @@ function glass () {
   ctx.ellipse(cx, height, r, r/2, 0,  0, Math.PI)
   ctx.closePath()
   ctx.fill()
-
   ctx.globalAlpha /= 2
   height = cy*0.4
   r = (canvas.height + height*-0.5) * 0.3
@@ -7519,7 +7496,6 @@ function glass () {
   ctx.closePath()
   ctx.fill()
   ctx.globalAlpha = alpha/10*20
-
   // fill
   ctx.fillStyle = (colors[0])
   ctx.beginPath()
@@ -7533,7 +7509,6 @@ function glass () {
   ctx.closePath()
   ctx.fill()
   ctx.globalAlpha /= 2
-
   ctx.beginPath()
   height = savedheight
   r = (canvas.height + height*-0.5) * 0.28 // slightly smaller
@@ -7545,13 +7520,11 @@ function glass () {
   document.getElementById("opacity").value = alpha
 }
 
-
 function braid () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.clearRect(0,0,canvas.width,canvas.height)
-  ctx.lineWidth = 16//1 + Math.floor(document.getElementById("featuresize").value/10)
-  //let R = canvas.width * 0.3
+  ctx.lineWidth = 16
   let W = canvas.width, H = canvas.height
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let colors = shuffle(getCurrentPalette())
@@ -7577,36 +7550,29 @@ function braid () {
   ctx.moveTo(hip/8, H)
   ctx.ellipse(hip/8+r, y, r, r, 0, Math.PI, 1.5 * Math.PI)
   ctx.stroke()
-  
   //left neck
-  
   ctx.beginPath()
   ctx.ellipse(hip/8+2*r/2, y-r*2, r, r, 0, Math.PI/2, 0, true)
   ctx.lineTo(hip/8+2*r/2+r, 0)
   ctx.stroke()
-  
   // second strand
   ctx.strokeStyle = (colors[1])
-
   ctx.beginPath()
-  
   ctx.moveTo(hip/8+2*r/2+r, H)
   console.log(H-y, y)
   ctx.ellipse(hip/8+r, y, r, r, 0, 0, 1.5 * Math.PI, true)
   ctx.stroke()
-  
   ctx.beginPath()
   ctx.ellipse(hip/8+2*r/2, y-r*2, r, r, 0, Math.PI/2, Math.PI)
   ctx.lineTo(hip/8, 0)
   ctx.stroke()
-  
 }
+
 function user () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.clearRect(0,0,canvas.width,canvas.height)
   ctx.lineWidth = 1 + Math.floor(document.getElementById("featuresize").value/10)
-  //let R = canvas.width * 0.3
   let W = canvas.width, H = canvas.height
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let colors = shuffle(getCurrentPalette())
@@ -7624,28 +7590,20 @@ function user () {
   let r = hip/6
   let savedr = r
   y = H - hip/4
-
   savedy = y
   //left shoulder
   ctx.beginPath()
   ctx.moveTo(hip/8, H)
   ctx.ellipse(hip/8+r, y, r, r, 0, Math.PI, 1.5 * Math.PI)
   ctx.stroke()
-  
   //left neck
   ctx.beginPath()
   ctx.ellipse(hip/8+2*r/2, y-r*2, r, r, 0, Math.PI/2, 0, true)
- // ctx.lineTo( hip/8+2*r/2+r, r*2)
   ctx.ellipse(hip/8+2*r/2+r*2, r*2.6 +Math.floor(Math.random()*40), r, r, 0, Math.PI, Math.PI*2)
- // ctx.lineTo( hip/8+2*r/2 + r*3, y-r*2)
-
   ctx.ellipse(hip/8+2*r/2 + r*4, y-r*2, r, r, 0, Math.PI, Math.PI/2, true)
-
   ctx.ellipse(hip/8+2*r/2 + r*4, y, r, r, 0, Math.PI * 1.5, 0)
   ctx.lineTo(hip/8+2*r/2 + r*5, H)
   ctx.stroke()
-  
-  // top of head
 }
 
 function blocksX () {
@@ -7672,18 +7630,12 @@ function blocksX () {
   ctx.fillStyle = randomPick([colors[0], colors[0]])
   ctx.fillRect(cx+pet(200),H*0.1+pet(120),W*0.8+pet(100),H*0.8+pet(100))
 
- // ctx.fillStyle = randomPick([colors[1], colors[0]])
- // ctx.fillRect(cx+pet(100),cy+pet(80),W/2,H*0.48)
-
-
   if (Math.random() > 0.5)
     flipV()
   if (Math.random() > 0.5)
     rc()
   if (Math.random() > 0.5)
     rc()
-
-
 }
 
 function blocks () {
@@ -7693,7 +7645,6 @@ function blocks () {
   ctx.lineWidth = 4 + Math.floor(document.getElementById("featuresize").value/10)
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let colors = shuffle(getCurrentPalette())
-  //let mode = document.getElementById("mode").value
   let alpha = document.getElementById("opacity").value
   let H = canvas.height, W = canvas.width
   let cx = W/2, cy = H/2, x = 0, y = 0
@@ -7714,8 +7665,6 @@ function blocks () {
     rc()
   if (Math.random() > 0.5)
     rc()
-
-
 }
 
 function foldings () {
@@ -7724,60 +7673,49 @@ function foldings () {
   ctx.clearRect(0,0,canvas.width,canvas.height)
   ctx.lineWidth = 4 + Math.floor(document.getElementById("featuresize").value/10)
   ctx.lineWidth *= 1.6
-  //ctx.lineJoin = "bevel"
-  //let R = canvas.width * 0.3
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let colors = shuffle(getCurrentPalette())
   let mode = document.getElementById("mode").value
   let alpha = document.getElementById("opacity").value
   let H = canvas.height, W = canvas.width
   let cx = 2*W/3, cy = H/2, x = 0, y = 0
-  let pad = 0//H/20
+  let pad = 0
   ctx.strokeStyle = colors[0]
   ctx.fillStyle = colors[1]
   let r = W/9 + Math.random() * W/12
-  
   ctx.fillRect(pad,pad,W-2*pad,H-2*pad)
-  
   pad = 80
   ctx.beginPath()
   ctx.moveTo(cx/2+pad, cy/2+pad*2)
   ctx.lineTo(pad*2, cy/4+pad*2)
   ctx.lineTo(cx/2+pad, pad*2)
   ctx.stroke()
-  
   ctx.beginPath()
   ctx.moveTo(pad*2, cy)
   ctx.lineTo(pad*2, H-pad)
   ctx.stroke()
-
   ctx.strokeStyle = colors[2]
-
   ctx.beginPath()
   ctx.moveTo(cx/2, pad+cy) // start
   ctx.lineTo(cx, pad+cy) // top right
   ctx.lineTo(cx, cy*2-pad) // bottom right
   ctx.lineTo(cx/2, cy*2-pad) // bottom right
   ctx.stroke()
-  
   ctx.strokeStyle = randomPick(colors)
   ctx.lineWidth *= 1.5
   ctx.beginPath()
   ctx.moveTo(W-pad*2, pad) // start
   ctx.lineTo(W-pad*2, H-pad)
   ctx.stroke()
-  
   if (Math.random() > 0.5)
     flipV()
   if (Math.random() > 0.5)
     rc()
   if (Math.random() > 0.5)
     rcc()
-    
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
 }
-
 
 function arch () {
   let canvas = document.getElementById("myCanvas");
@@ -7785,7 +7723,6 @@ function arch () {
   ctx.clearRect(0,0,canvas.width,canvas.height)
   ctx.lineWidth = 4 + Math.floor(document.getElementById("featuresize").value/10)
   ctx.lineWidth *= 1.6
-  //let R = canvas.width * 0.3
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let colors = shuffle(getCurrentPalette())
   let mode = document.getElementById("mode").value
@@ -7796,9 +7733,7 @@ function arch () {
   ctx.strokeStyle = colors[0]
   ctx.fillStyle = colors[1]
   let r = W/9 + Math.random() * W/12
-  
   ctx.fillRect(pad,pad,W-2*pad,H-2*pad)
-  
   if (Math.random() > 0.5) {
     ctx.fillStyle = colors[2]
     ctx.beginPath()
@@ -7812,33 +7747,27 @@ function arch () {
   ctx.beginPath()
   ctx.arc(cx, cy-cy/3 , r+ctx.lineWidth/2, Math.PI,Math.PI*2)
   ctx.stroke()
-  
   ctx.beginPath()
   ctx.moveTo(cx-r, H-cy/3)
   ctx.lineTo(cx+r+ctx.lineWidth/2, H-cy/3)
   ctx.lineTo(cx+r + ctx.lineWidth/2, cy-cy/3)//-ctx.lineWidth)
   ctx.stroke()
-  
   cx = W/4
-
   ctx.strokeStyle = randomPick(colors)
   ctx.beginPath()
   ctx.moveTo(cx-r/2, cy/3-ctx.lineWidth/2)
   ctx.lineTo(cx-r/2, H-cy/3+ctx.lineWidth/2)
   ctx.stroke()
-  
   ctx.beginPath()
   ctx.moveTo(cx-r/2, cy/3)
   ctx.lineTo(cx+ctx.lineWidth/2, cy/3)
   ctx.stroke()
-  
   if (Math.random() > 0.5)
     flipV()
   if (Math.random() > 0.5)
     rc()
   if (Math.random() > 0.5)
     rcc()
-  
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
 }
@@ -7848,7 +7777,6 @@ function venus () {
   let ctx = canvas.getContext("2d");
   ctx.clearRect(0,0,canvas.width,canvas.height)
   ctx.lineWidth = 1 + Math.floor(document.getElementById("featuresize").value/10)
-  //let R = canvas.width * 0.3
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let colors = shuffle(getCurrentPalette())
   let mode = document.getElementById("mode").value
@@ -7868,32 +7796,24 @@ function venus () {
   let savedr = r
   let DY = 30, DX = 100
   y = cy + r
-  
   ctx.beginPath()
-  
   ctx.ellipse(cx-r*2+35+DX, canvas.height+r+DY, r*2, r*3.5, 0, Math.PI, Math.PI * 1.35) // left hip
-
   ctx.ellipse(hip/4+r/2+DX, y+r+DY, r*0.85, r*0.50, -Math.PI/10, Math.PI/2, Math.PI)   // left arm
   ctx.ellipse(hip/4+r/2+DX, y+r+DY, r*0.85, r*0.50, -Math.PI/10, Math.PI, Math.PI*2)
   ctx.ellipse(hip/4+r/2+DX, y+r+DY, r*0.85, r*0.50, -Math.PI/10, Math.PI*2, Math.PI)
-  
   ctx.ellipse(hip/4+r/2-20+DX, y-r*1.5+40+DY, r, r, 0, Math.PI, Math.PI*1.3) // left shoulder
   ctx.ellipse(hip/4+r-90+DX,  y-r*3.5+40+DY, r*0.9, r, 0, Math.PI/2-0.1, Math.PI *1.95, true) // left neck
   ctx.ellipse(cx-r*1.5-20+DX, r*1.9+DY, r*1.7, r*1.2, Math.PI/2.1, Math.PI/2, Math.PI*1.5) // face
   ctx.ellipse(cx-r*1.5-20+DX, r*1.9+DY, r*1.7, r*1.2, Math.PI/2.1, Math.PI*1.5, Math.PI/2) // face
-
   ctx.stroke()
   //left boob
   ctx.beginPath()
   ctx.ellipse(cx-hip/6+DX, y+DY, r, r, 0, Math.PI*1.35, 0, true)
   ctx.stroke()
-  
-
   ctx.beginPath()
   ctx.ellipse(cx+r/2+DX, canvas.height+DY, r*2, r*3.0, 0, Math.PI/2, Math.PI * 1.7, true) // right hip
   ctx.ellipse(cx+hip/9+DX, y-r/2+DY, r, r, 0, Math.PI*2.1, Math.PI*0.9)  //right boob
   ctx.ellipse(cx+hip/9+DX, y-r/2+DY, r, r, 0, Math.PI*0.9, Math.PI*1.8,true)  //right boob
-  
   ctx.ellipse(canvas.width - 360+DX, 428+DY, 8, 70, 0, Math.PI/2, Math.PI*2) // right arm
   ctx.ellipse(canvas.width - 360+DX, 428+DY, 8, 70, 0, Math.PI*2, 0) // right arm
   ctx.ellipse(canvas.width - 360+DX, 428+DY, 8, 70, 0, 0, Math.PI*1.5, true) // right arm
@@ -7901,22 +7821,18 @@ function venus () {
   ctx.lineTo(cx-58+DX, 330+DY)
   ctx.lineTo(cx-64+DX, 270+DY)
   ctx.stroke()
- 
   ctx.beginPath()
   ctx.ellipse(cx-20+DX, canvas.height-r-10+DY, 6, 2, 0, Math.PI*2, 0, true) // navel
   ctx.stroke()
-  
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
 }
-
 
 function buns () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.clearRect(0,0,canvas.width,canvas.height)
   ctx.lineWidth = 1 + Math.floor(document.getElementById("featuresize").value/10)
-  //let R = canvas.width * 0.3
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let colors = shuffle(getCurrentPalette())
   let mode = document.getElementById("mode").value
@@ -7933,9 +7849,7 @@ function buns () {
   height = cy+pet(cy*1.2)
   let r = hip/4
   let savedr = r
-  
   y = cy*0.5 + r
-
   savedheight = y
   //upper part
   ctx.beginPath()
@@ -7949,7 +7863,6 @@ function buns () {
   ctx.moveTo(cx, y)
   ctx.lineTo(cx-30, canvas.height)
   ctx.stroke()
-  
   ctx.beginPath()
   ctx.moveTo(cx, y)
   ctx.lineTo(cx+30, canvas.height)
@@ -7959,12 +7872,10 @@ function buns () {
   ctx.moveTo(cx-r*2, y)
   ctx.lineTo(cx-r*2+30, canvas.height)
   ctx.stroke()
-  
   ctx.beginPath()
   ctx.moveTo(cx+r*2, y)
   ctx.lineTo(cx+2*r-30, canvas.height)
   ctx.stroke()
-  
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
 }
@@ -7986,7 +7897,6 @@ function tape () {
   let cy =  LASTCLICK[1]
   let rotate = (cx < D*1.5 || canvas.width - cx < D*1.5)
   let angle = Math.PI/19
-
   ctx.save()
   if (rotate)
     angle += Math.PI/2
@@ -8034,7 +7944,6 @@ function tape () {
 function scraps () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-//  ctx.clearRect(0,0,canvas.width,canvas.height)
   let D = 200 + Math.random() * 300//Math.floor(document.getElementById("featuresize").value/10)
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let colors = shuffle(getCurrentPalette())
@@ -8145,8 +8054,6 @@ function comets () {
       ctx.stroke()
     }
   }
-  //fill()
-
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
 }
@@ -8170,7 +8077,6 @@ function pants () {
   height = cy+pet(cy*1.2)
   let r = (canvas.height + height*-0.5) * 0.27 // slightly smaller
   let savedr = r
-  
   // top
   y = cy*0.5 + r/2/div
   savedheight = y
@@ -8190,10 +8096,8 @@ function pants () {
   r *= 1.1
   ctx.ellipse(canvas.width - cx/2, leglength, r, r/div, 0-rotation, 2 * Math.PI, 0)
   ctx.ellipse(canvas.width - cx/2, leglength, r, r/div, 0-rotation, 0, Math.PI)
-  
   ctx.lineTo(cx+cx*0.03, cy*1.3)
   ctx.lineTo(cx-cx*0.03, cy*1.3)
-
   ctx.ellipse(cx/2, leglength, r, r/div, 0+rotation, 0, 2 * Math.PI)
   ctx.ellipse(cx/2, leglength, r, r/div, 0+rotation, 0,  Math.PI)
   r = canvas.width/2 * 0.8
@@ -8203,7 +8107,6 @@ function pants () {
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
 }
-
 
 function glass_line () {
   let canvas = document.getElementById("myCanvas");
@@ -8216,7 +8119,6 @@ function glass_line () {
   let mode = document.getElementById("mode").value
   let alpha = document.getElementById("opacity").value
   let cx = canvas.width/2, cy = canvas.height/2, x = 0, y = 0
-
   let div = 1 + Math.random() * 5
   let height = 0
   let savedheight = 0
@@ -8232,12 +8134,10 @@ function glass_line () {
   ctx.beginPath()
   ctx.ellipse(cx, height, r, r/div, 0, Math.PI, 2 * Math.PI) // level -> top of filled
   height = canvas.height*0.84
-
   r = (canvas.height + height*-0.5) * 0.27 // bottom of glass
   ctx.ellipse(cx, height, r, r/div, 0, 0, Math.PI)
   ctx.lineTo(cx-savedr,savedheight) //: \
   ctx.stroke()
-
   ctx.beginPath()
   height = savedheight
   r = (canvas.height + height*-0.5) * 0.27 // slightly smaller
@@ -8283,8 +8183,6 @@ function eclipse () {
   let colors = shuffle(getCurrentPalette())
   let mode = document.getElementById("mode").value
   let alpha = document.getElementById("opacity").value
-// if (Math.random() > 0.5)
-  // colors = shuffle(['#ff00ff', '#ffff00', '#00ffff', '#7fff7f'])
   let cx = canvas.width/2, cy = canvas.height/2, x = 0, y = 0
   let a = Math.random() * 2 * Math.PI
 
@@ -8325,10 +8223,8 @@ function eclipse () {
   ctx.arc(cx, cy+cy/3, R2, 0, Math.PI * 2)
   ctx.closePath()
   ctx.fill()
-  
   R += R/2
   R *= 2
-  
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
 }
@@ -8346,7 +8242,6 @@ function core () {
   let mode = document.getElementById("mode").value
   let alpha = document.getElementById("opacity").value
   let cx = canvas.width/2, cy = canvas.height/2, x = 0, y = 0
-
   // whole world
   //left side surface
   ctx.fillStyle = colors[0]
@@ -8411,16 +8306,6 @@ function core () {
   ctx.closePath()
   ctx.fill()
  // core glint
-/*
-  ctx.beginPath()
-  ctx.arc(cx, cy, R/3*0.97, Math.PI/2, Math.PI * 1.5)
-  ctx.ellipse(cx, cy, R/3*0.7, R/3*0.97, 0, Math.PI*1.5, Math.PI/2) // top to bottom
-  ctx.closePath()
-  ctx.globalAlpha /= 20
-  ctx.fillStyle = "#ffffff"
- // ctx.fill()
-  ctx.globalAlpha = alpha/100*/
-
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
 }
@@ -8443,15 +8328,12 @@ function fruit () {
   let sixth = Math.PI/6
   let i = 0
   for (; i < 20; i++) {
-    R = 100//canvas.height * 0.05 + 55 * Math.random()
+    R = 100
     //left side surface
     cx = Math.random() *W, cy = Math.random() * H
-   // cy += 44//pet(20)
     let d = 10 + cy * 0.1
-  
     a = Math.random() * Math.PI * 2
-  //a += 0.3
-    R2 =  R * 0.6//Math.random() * R*0.9
+    R2 =  R * 0.6
     ctx.fillStyle = colors[0]
     ctx.beginPath()
     ctx.ellipse(cx, cy, R, R, a, 0, Math.PI)
@@ -8463,8 +8345,6 @@ function fruit () {
     for (; j < 6; j++) {
       ctx.fillStyle = colors[3]
       ctx.beginPath()
-    
-    // ctx.ellipse(cx, cy, R, R, a, 0, Math.PI)
       ctx.ellipse(cx, cy, R, R2, a, 0, Math.PI/6, true)
       ctx.lineTo(cx,cy)
       ctx.closePath()
@@ -8472,11 +8352,9 @@ function fruit () {
       a -= Math.PI/6
     }
   }
-
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
 }
-
 
 function atom () {
   let canvas = document.getElementById("myCanvas");
@@ -8588,7 +8466,7 @@ function necker () {
   let W = canvas.width
   let margin = W/20
   let w4 = (W-2*margin)/(2+Math.floor(Math.random() * 10))//document.getElementById("rows").value
-  ctx.globalAlpha = document.getElementById("opacity").value/100
+ // ctx.globalAlpha = document.getElementById("opacity").value/100
   let colors = shuffle(getCurrentPalette())
   let grunge = document.getElementById("grungy").checked
   if (Math.random() > 0.5) {
@@ -8607,8 +8485,7 @@ function necker () {
     ctx.lineTo(margin, W-margin)
     ctx.fillStyle = colors[4]
     ctx.fill()
-    
-      //upper right
+    //upper right
     ctx.beginPath();
     ctx.moveTo(w4+margin, 0+margin)
     ctx.lineTo(W-margin, 0+margin)
@@ -8767,7 +8644,7 @@ function justlines () { // grid paper
   let text  = 0
   let cycle = Math.floor(10 + Math.random() * 50), index = 0
   let cols = ((W - pad*2)/w)/50
-  let lines = 6//Math.floor((H - pad*2)/h)
+  let lines = 6
   i = 0
   let j = 0, p = 0.5;
   y = Math.floor(pad)
@@ -8889,15 +8766,7 @@ function gridpaper () { // grid paper
           if (Math.random() > 0.75)
           ctx.globalAlpha = 0.4
           text = numbers[n++]
-        //  if (Math.random() > 0.4)
-        //    text = "__"
           width = ctx.measureText(text).width
-        //  ctx.fillText(text,x+cols/2-width/2+pet(5),y-lines/2+pet(5)+r/2)
-       //   ctx.fillText(text,x+cols/2-width/2+pet(5),y-lines/2+pet(5)+r/2)
-        //  if (Math.random() > 0.8 && n > 0)
-       //     text = numbers[n-1]
-      //    ctx.fillText(text,x+cols/2-width/2+pet(5),y-lines/2+pet(5)+r/2)
-      //    ctx.fillText(text,x+cols/2-width/2+pet(5),y-lines/2+pet(5)+r/2)
           ctx.save()
           ctx.translate(x+cols/2-width/2+pet(2),y-lines/2+pet(2)+r/2)
           ctx.rotate(Math.random() * 2 * Math.PI) // need to adjust x & y offsets per line
@@ -9032,24 +8901,6 @@ function dividedPad () {
   ctx.shadowColor = "#303020"
   ctx.shadowOffsetX = 2
   ctx.shadowOffsetY = 2
-  
- // ctx.fillRect(pad,pad,canvas.width-pad*2,canvas.height-pad*2)
- /* ctx.beginPath()
-  ctx.moveTo(pad,pad)
- // ragged(ctx,W-pad,pad+pet(3),x,y)
-  ragged(ctx,cx1,cy1,x,y)
-  ctx.lineTo(cx2,cy2)
-  x = W-pad
-  y = cy2
-  ragged(ctx,W-pad,H-pad+pet(3),x,y)
-  y = H-pad+pet(9)
-  ragged(ctx,pad,H-pad+pet(3),x,y)
-  x = pad+pet(9)
-  y = W-pad+pet(9)
-  ragged(ctx,pad+pet(9),pad+pet(3),x,y)
-  ctx.closePath()
-  ctx.fill()*/
-  
   ctx.beginPath()
   ctx.moveTo(pad,pad)
   ragged(ctx,W-pad,pad,x,y)
@@ -10843,10 +10694,8 @@ function moleskine () { // grid paper
   let color = document.getElementById("paintcolor").value
   let small = true, half = true
   document.getElementById("paintcolor").value = "#fdffee"
- // canvas.width = 1160
- // canvas.height = 900
   fill()
-  // optonal grid?
+
   ctx.strokeStyle = "#ccccdc"
   ctx.lineWidth = 1
   let i = 0, x = 27, y = 28
@@ -10880,7 +10729,6 @@ function moleskine () { // grid paper
   document.getElementById("paintcolor").value = "#565555"
   edgeSmear(small)
   document.getElementById("paintcolor").value = "#fefeee"
-  flipH()
   ctx.fillRect(0,0,25,canvas.height)
   edgeSmear(small)
   document.getElementById("opacity").value = 100
@@ -10889,7 +10737,6 @@ function moleskine () { // grid paper
   document.getElementById("opacity").value = alpha
   document.getElementById("paintcolor").value = color
 }
-
 
 function moleskinDay () { // day planer
   let canvas = document.getElementById("myCanvas");
@@ -10907,17 +10754,14 @@ function moleskinDay () { // day planer
  // canvas.width = 1160
  // canvas.height = 900
   fill()
-  // optonal grid?
   ctx.strokeStyle = "#ccccdc"
   ctx.lineWidth = 1
   let hour = 8
   ctx.font = 12+"px serif"
   ctx.fillStyle = document.getElementById("paintcolor").value = "#666666"
   let voff = randomPick([1,2,-1,-2])
-    let lasty = 0
-
+  let lasty = 0
   let linespace = Math.floor((canvas.height - 220)/22)
- //console.log( (canvas.height - 144)/22 )
   let i = 0, x = 27, y = 144, last = 0
   while (i < 22) {
     ctx.beginPath()
@@ -10978,7 +10822,6 @@ function moleskinDay () { // day planer
   ctx.fillText(months[tomorrow.getMonth()], x, y+26)
   ctx.font = 22+"px serif"
   ctx.fillText(tomorrow.getDate(), x, y+56)
-
   rcc()
   afold()
   rc()
@@ -12738,16 +12581,14 @@ function crackle () {
       }
     }
     ctx.stroke()
-    if (true) {
-      if (flip)
-        flipV()
-      else
-        rc()
-      flip != flip
-    }
-    if (i > 3)
-      R *= 0.98
+    if (flip)
+      flipV()
+    else
+      rc()
+    flip != flip
   }
+  if (i > 3)
+    R *= 0.98
 }
 
 function isOff (x,y,W,H) {
@@ -12921,7 +12762,7 @@ function roundedFrame () {
   ctx.restore()
   let mode = document.getElementById("mode").value
   ctx.globalCompositeOperation = "destination-over"
-  fill()
+  //fill()
   ctx.globalCompositeOperation = mode
 }
 
