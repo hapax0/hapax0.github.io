@@ -356,7 +356,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <select id="patternfunctions">
     <option value="diss" selected>distress</option>
     <option value="increaseGrain">increase grain</option>
-    <option value="increaseGrainPrinty">printy grain</option>
+    <!--option value="increaseGrainPrinty">printy grain</option-->
     <option value="specksRadial">specks</option>
     <option value="blobs">blobs</option>
     <option value="fog">fog</option>
@@ -436,9 +436,6 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
       <option value="alphaWhite">filter light</option>
       <option value="alphaBlack">filter dark</option>
       <option value="filterGrays">filter grays</option>
-      <!--option value="filterRed">filter red</option>
-      <option value="filterGreen">filter green</option>
-      <option value="filterBlue">filter blue</option-->
       <option value="highContrast">high contrast</option>
       <option value="threshold">threshold</option>
       <option value="threshold_soft">threshold soft</option>
@@ -512,9 +509,6 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="neckerline">necker</option>
     <option value="necker">necker (fill)</option>
     <option value="house">house (fill)</option>
-    <!--option value="quads" >quads</option-->
-    <!--option value="atom" >atom</option-->
-    <!--option value="venn">venn</option-->
     <option value="network">network</option>
     <option value="core">core</option>
     <option value="eclipse">eclipse</option>
@@ -562,7 +556,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
         <option value="requirements">requirements pad</option>
         <option value="postcard">postcard</option>
         <option value="indexcard">index card</option>
-        <option value="thisSpace">this space</option>
+        <!--option value="thisSpace">this space</option-->
         <option value="spiralbound">spiral bound</option>
         <option value="periodictable" >periodic table</option>
         <option value="calendar" >calendar</option>
@@ -581,9 +575,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
          <button onclick='drawShape(1)'><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" class="white" viewBox="0 0 16 16">
         <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
       </svg></button>
-        
         &nbsp;<textarea id="points" rows="1" cols="18" placeholder="points here"></textarea>&nbsp;<button onclick='clearPoints()'>x</button>
-        
         &nbsp;<a href="mouse.html"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" class="white" style="padding:4px;" viewBox="0 0 18 18">
           <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
         </svg></a>
@@ -666,20 +658,15 @@ function printcanvas () {
    // Get URL beforehand to reduce delay between write and print
   // (probably unnecessary but just being on the safe side)
   let url = canvas.toDataURL();
-
   // New tab to isolate canvas for printing
   let win = window.open();
-
   // 'img' element will show url as image
   win.document.write("<img src='" + url + "'/>");
-
   // Print preview shows empty page... almost as if to be called before write
   //win.print();
-
   // Magically seems to cause print to be called after write
   win.setTimeout(() => win.print(), 0);
 }
-  
 
 function adjustBrightnessC (col, amt) {
   if (col[0] == "#") {
@@ -716,7 +703,6 @@ function halfway (c1,c5) {
   var GG = ((G.toString(16).length==1)?"0"+G.toString(16):G.toString(16));
   var BB = ((B.toString(16).length==1)?"0"+B.toString(16):B.toString(16));
   console.log("#" , RR , GG , BB)
-
   return "#" + RR + GG + BB;
 }
 
@@ -747,7 +733,6 @@ function randomPalette () {
     document.getElementById("pal3").value = c3
     document.getElementById("pal2").value = halfway(c1,c3)
     document.getElementById("pal4").value = halfway(c3,c5)
-
     updateExtraColors(b)
     return
   } else
@@ -857,7 +842,6 @@ function randomPalette () {
   } else
   if (type === "cloud") {
     a = ["#e3dec8", "#f2c665", "#99beb7", "#ef7546", "#ca3c4a"].reverse()
-
     updateExtraColors(b)
   } else
   if (type === "dark forest") {
@@ -1030,8 +1014,6 @@ function pushMarker() {
   let s = Math.floor(value)
   if (w <= value)
     value = w/3
-  //if (value < 1)
-  //  value = 1
   document.getElementById("rednumber").value = value
   LASTCLICK[0] = value
   m.width = w
@@ -1144,7 +1126,6 @@ function pointN (x, y, id) {
 
 function getAngles (pt) {
   let angles = [], i = 0
-  //console.log(pt.neighbors.length)
   let c = pt.center
   if (c)
   for (; i < pt.neighbors.length; i++) {
@@ -1181,7 +1162,6 @@ function drawPointsN (ptsN) {
       ctx.fillStyle = randomGradientRect(canvas, "#000000",  ptsN.min.x,  ptsN.min.y,  ptsN.max.x,  ptsN.max.y)
       ctx.globalAlpha = 0.05
       ctx.save()
-    
       ctx.beginPath()
       ctx.moveTo(pts[i].neighbors[0].x, pts[i].neighbors[0].y)
       let j = 1
@@ -1216,36 +1196,19 @@ function facets (canvas) {
 	  }
 	}
 	i = 0
-//	console.log(pointsN.length)
 	for (; i < 2; i++) {
 	  let c = findCenter(pointsN[i].neighbors)
 	  pointsN[i].center = c[0]
 	  pointsN[i].min = c[1]
 	  pointsN[i].max = c[2]
 	  getAngles(pointsN[i])
-
 	  let N = pointsN[i].neighbors//, A = pointsN[i].angles
 	  let A = pointsN[i].angles
-	//  console.log(N)
-
-   // a, b indicies of neighbors array
-    //N.sort((a, b) => console.log(A[a] - A[b]));
-
-    //  N.sort(function(a, b) {
-     //console.log(N.indexOf(a), N.indexOf(b))
-      //console.log(A[N.indexOf(a)], A[N.indexOf(b)])
-     // console.log(A[N.indexOf(a)] - A[N.indexOf(b)])
-    //  return (A[N.indexOf(a)] > A[N.indexOf(b)])? 1 : -1;
-    //});
-	  //console.log(N)
     pointsN[i].neighbors = N
-	//}
-  console.log(pointsN[i])
-	drawPointsN(pointsN[i])//.slice(0,3))
-}
+	  drawPointsN(pointsN[i])//.slice(0,3))
+  }
 	return
 }
-
 
 function diss () {
   let canvas = document.getElementById("myCanvas")
@@ -1515,7 +1478,6 @@ function landscape2 () {
   rcc()
   document.getElementById("opacity").value = 5 + Math.random() + 5
   smear()
-  //smear()
   rc()
   contrastImage(5 + Math.random() *11)
   document.getElementById("opacity").value = val
@@ -1608,11 +1570,9 @@ function landscape3 () {
       document.getElementById("opacity").value = 15 + Math.random() + 65
     }
   }
- // rc()
   diss()
   let nf = 2 + Math.floor(Math.random() * 5)
   i = 0
-  
   for (; i < nf; i++) {
     randomPickColor()
     let f = randomPick(functions)
@@ -1654,19 +1614,12 @@ function impasto_smudge () {
 function impasto (soft) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
-  //let val = document.getElementById("opacity").value
   let num = document.getElementById("number").value
   let size = document.getElementById("featuresize").value
   let checked = document.getElementById("grungy").checked
   document.getElementById("grungy").checked = false
   let mode = ctx.globalCompositeOperation
   functions = ["dotblur", "jaggyblur", "dirblur"]
-  //document.getElementById("featuresize").value = 280 + pet(30)
- // document.getElementById("opacity").value = 30 + pet(10)
-  //document.getElementById("featuresize").value = 11 + Math.random() * 4
-
-  //if (soft)
-    //document.getElementById("opacity").value = 25 + pet(10)
   let f = randomPick(functions)
   window[f](canvas)
   f = randomPick(functions)
@@ -1676,7 +1629,6 @@ function impasto (soft) {
   //restore values
   ctx.globalCompositeOperation = mode
   refreshMode()
-  //document.getElementById("opacity").value = val
   document.getElementById("number").value = num
   document.getElementById("featuresize").value = size
   document.getElementById("grungy").checked = checked
@@ -1908,7 +1860,6 @@ function extractPalette (canvas) {
   if (isCanvasBlank(canvas))
     return
   let colors = colorSamplePalette(canvas)
- // colors.sort((a, b) => bright(b) - bright(a));
   if (colors.length >= 1) {
     let i = 0, x = 0, y = 0
     let canvas = document.getElementById("palettecanvas")
@@ -1959,9 +1910,7 @@ function topFiveColors (colors) {
   let i = 0, j = 0
   let scores = []
   for (; i < colors.length; i++) {
-
     scores.push( interesting( [hexToR(colors[i]), hexToG(colors[i]), hexToB(colors[i])] ) )
-    
   }
   console.log(colors, scores)
 }
@@ -2021,7 +1970,6 @@ function colorSamplePalette (canvas) {
  // let threshold = m/sample.length/sample.length * 0.65
   //console.log(threshold, m/ct)
   let threshold = m/ct/2.2
-
   let bins = [], bc = 0
   i = 0
   for (;i < sample.length; i++) {
@@ -2170,7 +2118,7 @@ function colorSample () {
       }
     }
   }
-    console.log("2_")
+  console.log("2_")
 
   bins.sort(function(a, b) { return b.length - a.length;});
   let count = bins.length;
@@ -2193,8 +2141,7 @@ function colorSample () {
     B = ('0'+(rgb[2]).toString(16)).slice(-2);
     colors2.push('#'+R+G+B)
   }
-    console.log("3_")
-
+  console.log("3_")
   return colors2
 }
 
@@ -2206,7 +2153,6 @@ function averageColor (b, dec) {
     aG += b[i][1]
     aB += b[i][2]
   }
-  
   aR = Math.floor(aR/b.length)
   aG = Math.floor(aG/b.length)
   aB = Math.floor(aB/b.length)
@@ -2229,7 +2175,6 @@ function dist3d (p1, p2) {
  //https://www.compuphase.com/cmetric.htm
 }
 
-
 /**
  * Compare color difference in RGB
  * @param {Array} rgb1 First RGB color in array
@@ -2243,7 +2188,6 @@ function dist3deltaE (rgb1, rgb2) {
         dbp2 = Math.pow(b1 - b2, 2),
         t = (r1 + r2) / 2
   return Math.sqrt(2 * drp2 + 4 * dgp2 + 3 * dbp2 + t * (drp2 - dbp2) / 256)
-
  // return sqrt((((512+rmean)*r*r)>>8) + 4*g*g + (((767-rmean)*b*b)>>8));
 }
 
@@ -2308,13 +2252,11 @@ async function palettetint (canvas) {
   let grunge = document.getElementById("grungy").checked
   let alpha = document.getElementById("opacity").value
   let colors = []
-  
   colors.push(document.getElementById("pal1").value)
   colors.push(document.getElementById("pal2").value)
   colors.push(document.getElementById("pal3").value)
   colors.push(document.getElementById("pal4").value)
   colors.push(document.getElementById("pal5").value)
-   // console.log(colors)
   let saved = document.getElementById("paintcolor").value
   document.getElementById("lower").value = 100
   document.getElementById("upper").value = 20
@@ -2345,7 +2287,6 @@ async function posterize (canvas) {
   let t2 = 255 * 2/5
   let t3 = 255 * 3/5
   let t4 = 255 * 4/5
-
   let colors = []
   colors.push(document.getElementById("pal1").value)
   colors.push(document.getElementById("pal2").value)
@@ -4890,7 +4831,7 @@ function contrastImage (contrast, canvas) {  //input range [-100..100]
   let intercept = 128 * (1 - contrast)
   for( ;i < d.length; i +=4){   //r,g,b,a
     brightness = (d[i]+d[i+1]+d[i+2])/(255*3)
-    if (brightness > lowest && brightness <= highest) {
+    if (brightness >= lowest && brightness <= highest) {
       d[i] =   d[i]*contrast + intercept
       d[i+1] = d[i+1]*contrast + intercept
       d[i+2] = d[i+2]*contrast + intercept
@@ -17533,7 +17474,7 @@ function fade () {
     d = Math.random() * w
     let px = data.data.slice(i*4, i*4+4)
     brightness = (px[0]+px[1]+px[2])/(255*3)
-    if (brightness > lowest && brightness <= highest) {
+    if (brightness >= lowest && brightness <= highest) {
       px[3] *= d/maxdist
       data.data.set(px, i*4)
     }
@@ -17758,7 +17699,7 @@ async function fadeDown () {
       d = 0
     let px = data.data.slice(i*4, i*4+4)
     brightness = (px[0]+px[1]+px[2])/(255*3)
-    if (brightness > lowest && brightness <= highest) {
+    if (brightness >= lowest && brightness <= highest) {
       px[3] *= d/maxdist
       data.data.set(px, i*4)
     }
@@ -17887,7 +17828,7 @@ function vig_rect (canvas, FADE) {
     d = frameDistance(x, y, w, h)
     let px = data.data.slice(i*4, i*4+4)
     brightness = (px[0]+px[1]+px[2])/(255*3)
-    if (brightness > lowest && brightness <= highest) {
+    if (brightness >= lowest && brightness <= highest) {
       
       if (FADE && d + pet(s/2) < s) {
         px[3] *= 0.5//maxdist/d
@@ -17918,14 +17859,10 @@ function vig (canvas, FADE) {
   let s5 = s/10
   // decrease d as s increases?
   let w = canvas.width, h = canvas.height
-  //let w_wide = w * 0.6
   let weight = 0.33
-  
-  let maxdist = Math.min(w,h)/2//.pow(Math.pow(cx, 2) + Math.pow(cy, 2), 0.5)
+  let maxdist = Math.min(w,h)/2
   maxdist *= 1.2
-  
   let w_wide = maxdist * 0.9
-
   let d = 1000, brightness = 0
   let data = ctx.getImageData(0,0,canvas.width,canvas.height)
   let i = 0, x = 0, y = 0
@@ -17937,9 +17874,9 @@ function vig (canvas, FADE) {
     d = distance(x, y, cx+pet(29), cy+pet(29), w, h)
     let px = data.data.slice(i*4, i*4+4)
     brightness = (px[0]+px[1]+px[2])/(255*3)
-    if (brightness > lowest && brightness <= highest) {
+    if (brightness >= lowest && brightness <= highest) {
       if (!FADE && d < w_wide + pet(s5)) {
-        px[3] *= weight//d/maxdist
+        px[3] *= weight
         data.data.set(px, i*4)
       } else
       if (FADE) {
@@ -18338,18 +18275,15 @@ function transparenter (x,y,w,h) {
   if (!w)
     imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
   else {
-    console.log(x,y,w,h)
-  
     imgData = ctx.getImageData(x,y,w,h);
   }
   let pixels = imgData.data;
-
   let lh = rangecheck()
   let lowest = lh[0], highest = lh[1]
   let i = 0, brightness = 0
   for (; i < pixels.length; i += 4) {
     brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3)
-    if (brightness > lowest && brightness <= highest) {
+    if (brightness >= lowest && brightness <= highest) {
       pixels[i + 3] *= 0.9;
     }
   }
@@ -18366,7 +18300,7 @@ function opaqueer () {
   let i = 0
   for (; i < pixels.length; i += 4) {
     brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3)
-    if (brightness > lowest && brightness <= highest) {
+    if (brightness >= lowest && brightness <= highest) {
       pixels[i + 3] *= 1.1;
     }
   }
@@ -18408,7 +18342,7 @@ function decolorSky () {
       var green = dA[i + 1];
       var blue = dA[i + 2];
       brightness = (dA[i]+dA[i+1]+dA[i+2])/(255*3)
-      if (brightness > lowest && brightness <= highest) {
+      if (brightness >= lowest && brightness <= highest) {
         var saturatedRed = (az*red + bz*green + cz*blue);
         var saturatedGreen = (dz*red + ez*green + fz*blue);
         var saturateddBlue = (gz*red + hz*green + iz*blue);
@@ -18450,7 +18384,7 @@ function tintSky (canvas) {
     }
     if (y < touch - (Math.random() * 70)) {
       brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3)
-      if (brightness > lowest && brightness <= highest) {
+      if (brightness >= lowest && brightness <= highest) {
         pixels[i] =     Math.min(pixels[i] * 0.9 + r * 0.1, 255);
         pixels[i + 1] = Math.min(pixels[i+1] * 0.9+ g * 0.1, 255);
         pixels[i + 2] = Math.min(pixels[i+2] * 0.9 + b * 0.1, 255);
@@ -18489,7 +18423,7 @@ function darkenSky (canvas) {
     }
     if (y < touch - (Math.random() * 70)) {
       brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3)
-      if (brightness > lowest && brightness <= highest) {
+      if (brightness >= lowest && brightness <= highest) {
         pixels[i] += n;
         pixels[i + 1] += n;
         pixels[i + 2] += n;
@@ -18517,7 +18451,7 @@ function increaseGrain (canvas) {
   for (; i < pixels.length; i += 4) {
     if (Math.random() > 0.5) {
     brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3)
-    if (brightness > lowest && brightness <= highest) {
+    if (brightness >= lowest && brightness <= highest) {
       pixels[i] += n;
       pixels[i + 1] += n;
       pixels[i + 2] += n;
@@ -18552,7 +18486,7 @@ function increaseGrainPrinty (canvas) {
   i = 0
   for (; i < pixels.length; i += 4) {
     brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3)
-    if (brightness > lowest && brightness <= highest) {
+    if (brightness >= lowest && brightness <= highest) {
       pixels[i] += n;
       pixels[i + 1] += n;
       pixels[i + 2] += n;
@@ -18575,7 +18509,7 @@ function adjustBrightness (n, canvas) {
   let i = 0
   for (; i < pixels.length; i += 4) {
     brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3)
-    if (brightness > lowest && brightness <= highest) {
+    if (brightness >= lowest && brightness <= highest) {
       pixels[i] += n;
       pixels[i + 1] += n;
       pixels[i + 2] += n;
@@ -18598,7 +18532,7 @@ function rotateBrightness (canvas, n) {
   let i = 0
   for (; i < pixels.length; i += 4) {
     brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3)
-    if (brightness > lowest && brightness <= highest) {
+    if (brightness >= lowest && brightness <= highest) {
       pixels[i] = (pixels[i] + n) % 256;
       pixels[i + 1] = (pixels[i+1] + n) % 256;
       pixels[i + 2] = (pixels[i+2] + n) % 256;
@@ -18623,7 +18557,7 @@ async function randomizeColors (canvas) {
   let i = 0
   for (; i < pixels.length; i += 4) {
     brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3)
-    if (brightness > lowest && brightness <= highest) {
+    if (brightness >= lowest && brightness <= highest) {
       pixels[i] =     (pixels[i] + n1) % 256;
       pixels[i + 1] = (pixels[i+1] + n2) % 256;
       pixels[i + 2] = (pixels[i+2] + n3) % 256;
@@ -18636,7 +18570,6 @@ async function randomizeColors (canvas) {
 async function rotateColors (canvas, D) {
   if (!canvas)
     canvas = document.getElementById("myCanvas")
- 
   let ctx = canvas.getContext("2d");
   let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
   let pixels = imgData.data;
@@ -18678,7 +18611,7 @@ function tint (canvas) {
   i = 0
   for (; i < pixels.length; i += 4) {
     brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3) + fudge[ct%31]
-    if (brightness > lowest && brightness <= highest) {
+    if (brightness >= lowest && brightness <= highest) {
       pixels[i] =     Math.min(pixels[i] * 0.7 + r * 0.3, 255);
       pixels[i + 1] = Math.min(pixels[i+1] * 0.7 + g * 0.3, 255);
       pixels[i + 2] = Math.min(pixels[i+2] * 0.7 + b * 0.3, 255);
@@ -18706,7 +18639,7 @@ function adjustWarmth (n, canvas) {
   
   for (; i < pixels.length; i += 4) {
     brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3)
-    if (brightness > lowest && brightness <= highest) {
+    if (brightness >= lowest && brightness <= highest) {
       pixels[i] += n;
      // pixels[i + 1] += g;
       pixels[i + 2] -= n;
@@ -18743,7 +18676,7 @@ function saturationScale (sv, canvas) {
       var green = dA[i + 1];
       var blue = dA[i + 2];
       brightness = (dA[i]+dA[i+1]+dA[i+2])/(255*3)
-    if (brightness > lowest && brightness <= highest) {
+    if (brightness >= lowest && brightness <= highest) {
         var saturatedRed = (az*red + bz*green + cz*blue);
         var saturatedGreen = (dz*red + ez*green + fz*blue);
         var saturateddBlue = (gz*red + hz*green + iz*blue);
@@ -18783,7 +18716,7 @@ function greyScale (canvas) {
     let lightness = parseInt((pixels[i] + pixels[i + 1] + pixels[i + 2]) / 3);
     
     brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3)
-    if (brightness > lowest && brightness <= highest) {
+    if (brightness >= lowest && brightness <= highest) {
       pixels[i] = lightness;
       pixels[i + 1] = lightness;
       pixels[i + 2] = lightness;
@@ -18907,6 +18840,13 @@ function gaussianBlur () {
   
 }
 
+function blurAlpha () {
+  canvas = document.getElementById("myCanvas")
+  let k = [1,1,1,1,1,1,1,1,1]
+  convolutionMatrixAlpha(k, 0, canvas, 9)
+}
+
+
 function blurCanvas (canvas) {
   if (!canvas)
     canvas = document.getElementById("myCanvas")
@@ -18998,6 +18938,36 @@ function convolutionMatrix (kernel, offset, canvas, div) {
     canvas = document.getElementById("myCanvas")
   if (!div)
     div = 1
+  let i = 0
+  let ctx = canvas.getContext("2d")
+  let input = ctx.getImageData(0, 0, canvas.width, canvas.height)
+  let output = ctx.createImageData(input)
+  let w = input.width, h = input.height
+  let iD = input.data, oD = output.data
+  for (let y = 1; y < h - 1; y += 1) {
+    for (let x = 1; x < w - 1; x += 1) {
+      for (let c = 0; c < 3; c += 1) {
+        i = (y * w + x) * 4 + c
+        oD[i] = offset +
+        (kernel[0] * iD[i - w * 4 - 4] +
+          kernel[1] * iD[i - w * 4] +
+          kernel[2] * iD[i - w * 4 + 4] +
+          kernel[3] * iD[i - 4] +
+          kernel[4] * iD[i] +
+          kernel[5] * iD[i + 4] +
+          kernel[6] * iD[i + w * 4 - 4] +
+          kernel[7] * iD[i + w * 4] +
+          kernel[8] * iD[i + w * 4 + 4])/div
+      }
+      oD[(y * w + x) * 4 + 3] = 255
+    }
+  }
+  ctx.putImageData(output, 0, 0)
+}
+
+function convolutionMatrixAlpha (kernel, offset) {
+  let canvas = document.getElementById("myCanvas")
+  let div = 1
   let i = 0
   let ctx = canvas.getContext("2d")
   let input = ctx.getImageData(0, 0, canvas.width, canvas.height)
