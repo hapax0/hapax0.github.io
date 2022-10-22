@@ -366,6 +366,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="smudgestreaks2">streaks2</option>
     <option value="smudgehorizontal">horizontal</option>
     <option value="smudgehorizontal2">horizontal2</option>
+    <option value="vanishingpoint">vanishing point</option>
     <option value="smudgearcs">arcs</option>
     <option value="smudgearcs2" >arcs2</option>
     <option value="smudgestars">stars</option>
@@ -16186,6 +16187,40 @@ function skinnyRings () {
     ctx.arc(x,y,radius,start,end)
     ctx.stroke();
     radius += inc
+  }
+}
+
+
+function vanishingpoint () { // vertical lines
+  let grunge = document.getElementById("grungy").checked
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext('2d');
+  let x = -canvas.height-10, y = -canvas.height;
+  let vpx = canvas.width * 2 + pet (200)
+  let vpy = canvas.height * Math.random()
+  let x_inc = 20, y_inc = 20
+  ctx.globalAlpha = (document.getElementById("opacity").value) /100
+  alpha0 = ctx.globalAlpha
+  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.lineWidth = 5//1
+  ctx.lineCap = 'round'
+  ctx.lineJoin = 'round'
+  ctx.lineWidth = 1 + Math.floor(document.getElementById("featuresize").value/10)
+  let inc = ctx.lineWidth*3//512/rows
+  numlines = 0;
+  let maxy = canvas.height * 0.7
+  let i = canvas.height/2
+  for (; i < maxy; i++) {
+    //if (grunge) {
+      ctx.lineWidth = randomPick([1,1,1,2,3,4,1,1,1,1,2,2])
+   // }
+    if (Math.random() > 0.96) {
+      ctx.beginPath();
+      ctx.moveTo(x, y)
+      ctx.lineTo(vpx, vpy)
+      ctx.stroke();
+    }
+    y += inc
   }
 }
 
