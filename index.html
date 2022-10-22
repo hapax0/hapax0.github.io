@@ -16263,13 +16263,12 @@ function vanishingpoint () { // vertical lines
   ctx.lineWidth = 1 + Math.floor(document.getElementById("featuresize").value/10)
   let inc = ctx.lineWidth*3//512/rows
   numlines = 0;
-  let maxy = canvas.height * 0.7
+  let maxy = canvas.height/2
+  if (grunge)
+    maxy *= 2
   let i = canvas.height/2
- // for (; i < maxy; i++) {
   while (y < canvas.height/2) {
-    //if (grunge) {
-      ctx.lineWidth = randomPick([1,1,1,2,3,4,1,1,1,1,2,2])
-   // }
+    ctx.lineWidth = randomPick([1,1,1,2,3,4,1,1,1,1,2,2])
     if (Math.random() > 0.94) {
       ctx.beginPath();
       ctx.moveTo(x, y)
