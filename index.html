@@ -16264,10 +16264,11 @@ function vanishingpoint () { // vertical lines
   let inc = ctx.lineWidth*3//512/rows
   numlines = 0;
   let maxy = canvas.height/2
+  let W = canvas.width, H = canvas.height
   if (grunge)
-    maxy *= 2
-  let i = canvas.height/2
-  while (y < canvas.height/2) {
+    maxy *= 4
+  vpx = W + LASTCLICK[0]*2, vpy = LASTCLICK[1]
+  while (y < maxy) {
     ctx.lineWidth = randomPick([1,1,1,2,3,4,1,1,1,1,2,2])
     if (Math.random() > 0.94) {
       ctx.beginPath();
