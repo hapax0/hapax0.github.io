@@ -260,7 +260,7 @@ value="100" onchange="rangecheck()"> <span class='sample' id='lowsample' style="
 value="100" onchange="rangecheck()"> <span class='sample' id='highsample' style="background-color:#fff;">&nbsp;</span> <span id="upperrange">100</span> %<br>
      <div
 style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
-        <select id="palettechoice" onchange="randomPalette()">
+        <select id="palettechoice" onchange="loadPalette()">
           <option value="halfway">ramp 1 to 5</option>
           <option value="ramp">mixed ramp</option>
           <option value="light">light</option>
@@ -281,6 +281,8 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
           <option value="mod1">mod1</option>
           <option value="retro1" selected>retro1</option>
           <option value="retro2">retro2</option>
+          <option value="none">none</option>
+
         </select><br>
        <input type='color' id='pal1'>
        <input type='color' id='pal2'>
@@ -288,12 +290,9 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
        <input type='color' id='pal4'>
        <input type='color' id='pal5'><br>
        <canvas id="palettecanvas" width="252" height="84"></canvas><br>
-       <button  onclick="makePalette()">Remix</button>&nbsp;<button id="randompalette" onclick="randomPalette()">Load palette</button>&nbsp;<button onclick="extractPalette()">Extract</button>&nbsp;<button  onclick="showHex()" title="show hex values">#</button>
+       <button  onclick="makePalette()">Remix</button>&nbsp;<button id="randompalette" onclick="loadPalette()">Load palette</button>&nbsp;<button onclick="extractPalette()">Extract</button>&nbsp;<button  onclick="showHex()" title="show hex values">#</button>
         <a id="palettedownloader" onclick="savePaletteAs()" download="image.png" title="save palette as png file"
-        ><button>&darr;</button><!--svg xmlns="http://www.w3.org/2000/svg" width="24" height="28" fill="black" class="white" viewBox="0 0 16 16">
-          <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
-          <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
-        </svg--></a>
+        ><button>&darr;</button></a>
        </div></td></tr>
 </div>
   </td>
@@ -651,7 +650,7 @@ marker.addEventListener('click', function(event) {
   let result = document.getElementById("background")
   result.style.backgroundColor = "#fff";
   document.getElementById("paintcolor").value = randomColor()
-  randomPalette()
+  loadPalette()
   const selectElement = document.getElementById("mode");
   selectElement.addEventListener('change', (event) => {
   let ctx = document.getElementById("myCanvas").getContext("2d");
@@ -737,10 +736,11 @@ function restorePalette (p) {
   document.getElementById("pal5").value = p[4]
 }
 
-function randomPalette () {
+function loadPalette () {
   let a = [], b = []
   let type = document.getElementById("palettechoice").value
-  
+  if (type === "none")
+    return
   if (type === "halfway") {
     let c1 = document.getElementById("pal1").value
     let c5 = document.getElementById("pal5").value
@@ -1857,7 +1857,7 @@ function updateExtraColors (colors) {
   let canvas = document.getElementById("palettecanvas")
   let ctx = canvas.getContext("2d");
   ctx.fillStyle = "#a0a0a0"
-  ctx.fillRect(0,0,canvas.width, canvas.height)
+  ctx.clearRect(0,0,canvas.width, canvas.height)
   for (; i < colors.length; i++) {
     ctx.fillStyle = colors[i]
     ctx.fillRect(x,y,42,42)
@@ -1881,7 +1881,7 @@ function extractPalette (canvas) {
     let ctx = canvas.getContext("2d");
     ctx.globalAlpha = 1.0
     ctx.fillStyle = "#a0a0a0"
-    ctx.fillRect(0,0,canvas.width, canvas.height)
+    ctx.clearRect(0,0,canvas.width, canvas.height)
     for (; i < colors.length; i++) {
       ctx.fillStyle = colors[i]
       ctx.fillRect(x,y,42,42)
@@ -1904,6 +1904,7 @@ function extractPalette (canvas) {
     document.getElementById("pal3").value = sorted[2]
     document.getElementById("pal4").value = sorted[3]
     document.getElementById("pal5").value = sorted[4]
+    document.getElementById("palettechoice").value = "none"
   }
   return (colors)
 }
@@ -4749,7 +4750,7 @@ function retro () {
   
   let type = document.getElementById("palettechoice").value
   document.getElementById("palettechoice").value = "rainbow"
-  randomPalette()
+  loadPalette()
   palettetint()
   contrastImage(-5)
   adjustBrightness(5)
