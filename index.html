@@ -289,11 +289,11 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
        <input type='color' id='pal5'><br>
        <canvas id="palettecanvas" width="252" height="84"></canvas><br>
        <button  onclick="makePalette()">Remix</button>&nbsp;<button id="randompalette" onclick="randomPalette()">Load palette</button>&nbsp;<button onclick="extractPalette()">Extract</button>&nbsp;<button  onclick="showHex()" title="show hex values">#</button>
-        <a href="#" id="palettedownloader" onclick="savePaletteAs()" download="image.png" title="save palette as png file"
-        ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="28" fill="black" class="white" viewBox="0 0 16 16">
+        <a id="palettedownloader" onclick="savePaletteAs()" download="image.png" title="save palette as png file"
+        ><button>&darr;</button><!--svg xmlns="http://www.w3.org/2000/svg" width="24" height="28" fill="black" class="white" viewBox="0 0 16 16">
           <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
           <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
-        </svg></a>
+        </svg--></a>
        </div></td></tr>
 </div>
   </td>
