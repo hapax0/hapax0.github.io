@@ -540,6 +540,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="strokes2">strokes2</option>
     <option value="strokesH">strokes horizontal</option>
     <option value="scratch">scratch</option>
+    <option value="shape2">shape</option>
     <option value="chair">chair</option>
     <option value="nested">nested sqrs</option>
   </select>
@@ -15679,7 +15680,7 @@ function offwatercolor (colors) {
   let x = 0, y = 0
   ctx.clearRect(0,0,ctx.canvas.width,ctx.canvas.height)
   ctx.globalAlpha = 0.05
-  let maxradius = 20 + document.getElementById("featuresize").value/11
+  let maxradius = 20 + document.getElementById("featuresize").value/5
   let d = 14 + Math.random() * maxradius
   d *= 5
   let count = 10
@@ -16259,33 +16260,38 @@ function skinnyRings () {
 
 
 function vanishingpoint () { // vertical lines
-  let grunge = document.getElementById("grungy").checked
+  let alt = document.getElementById("grungy").checked
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext('2d');
-  let x = -canvas.height-10, y = -canvas.height;
+  let x = -canvas.height-10, y = -canvas.height/2;
   let vpx = canvas.width * 2 + pet (200)
   let vpy = canvas.height * Math.random()
-  let x_inc = 20, y_inc = 20
   ctx.globalAlpha = (document.getElementById("opacity").value) /100
   alpha0 = ctx.globalAlpha
   ctx.strokeStyle = document.getElementById("paintcolor").value
-  ctx.lineWidth = 5//1
+  ctx.lineWidth = 5
   ctx.lineCap = 'round'
   ctx.lineJoin = 'round'
   ctx.lineWidth = 1 + Math.floor(document.getElementById("featuresize").value/10)
-  let inc = ctx.lineWidth*3//512/rows
+  let inc = 6
   numlines = 0;
   let maxy = canvas.height/2
   let W = canvas.width, H = canvas.height
-  if (grunge)
-    maxy *= 4
+  //if (grunge)
+  maxy *= 3
   vpx = W + LASTCLICK[0]*2, vpy = LASTCLICK[1]
+  let cpx = 0, cpy = 0
   while (y < maxy) {
     ctx.lineWidth = randomPick([1,1,1,2,3,4,1,1,1,1,2,2])
-    if (Math.random() > 0.94) {
+    if (Math.random() > 0.98) {
       ctx.beginPath();
-      ctx.moveTo(x, y)
-      ctx.lineTo(vpx, vpy)
+      ctx.moveTo(x, y) 
+      cpx = (vpx-x)/1.9 + pet(520)
+      cpy = Math.max(vpy,y) +Math.random() * 300
+      if (alt)
+        ctx.lineTo(vpx,vpy)
+      else
+        ctx.quadraticCurveTo(cpx,cpy,vpx,vpy)
       ctx.stroke();
     }
     y += inc
