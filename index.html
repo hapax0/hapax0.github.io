@@ -58,6 +58,9 @@
   }
   canvas[id='palettecanvas'] {
     margin:2px;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
   }
   div[id='background'] {
     background-color: #ffffff;
@@ -283,7 +286,16 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
           <option value="retro2">retro2</option>
           <option value="none">none</option>
 
-        </select><br>
+        </select>
+        Use <select id="numcolors" style="width:50px;">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5" selected>5</option>
+        </select> colors
+        <br>
+
        <input type='color' id='pal1'>
        <input type='color' id='pal2'>
        <input type='color' id='pal3'>
@@ -709,24 +721,22 @@ function savePaletteAs () {
 }
 
 function halfway (c1,c5) {
-  
   let R = Math.floor((hexToR(c1) + hexToR(c5))/2)
   let G = Math.floor((hexToG(c1) + hexToG(c5))/2)
   let B = Math.floor((hexToR(c1) + hexToB(c5))/2)
-  console.log(R,G,B)
   var RR = ((R.toString(16).length==1)?"0"+R.toString(16):R.toString(16));
   var GG = ((G.toString(16).length==1)?"0"+G.toString(16):G.toString(16));
   var BB = ((B.toString(16).length==1)?"0"+B.toString(16):B.toString(16));
-  console.log("#" , RR , GG , BB)
   return "#" + RR + GG + BB;
 }
 
 function getCurrentPalette () {
+  let n = document.getElementById("numcolors").value
   return ([document.getElementById("pal1").value,
     document.getElementById("pal2").value,
     document.getElementById("pal3").value,
     document.getElementById("pal4").value,
-    document.getElementById("pal5").value])
+    document.getElementById("pal5").value].slice(0,n))
 }
 
 function restorePalette (p) {
