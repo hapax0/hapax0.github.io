@@ -461,7 +461,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
       <option value="threshold_soft">threshold soft</option>
       <option value="posterize" >posterize</option>
       <option value="palettetint" selected>palette tint</option>
-      <!--option value="colorSample">simplify colors</option-->
+      <option value="simplifyColors">simplify colors</option>
       <option value="cymk">CYMK</option>
       <option value="stipple">stipple</option>
       <option value="etch">etch</option>
@@ -1902,7 +1902,6 @@ function extractPalette (canvas) {
         x = 0
       }
     }
-   // topFiveColors(colors)
     let sorted = []
     sorted.push(colors[0])
     sorted.push(colors[1])
@@ -1920,28 +1919,6 @@ function extractPalette (canvas) {
   return (colors)
 }
 
-function topFiveColors0 (colors) {
-  let i = 0, j = 0
-  let scores = []
-  for (; i < colors.length; i++) {
-    j = 0
-    scores.push(0)
-    for (; j < colors.length; j++) {
-      scores[i] += colorDistance(colors[i], colors[j])
-    }
-  }
-  console.log(colors, scores)
-}
-
-function topFiveColors (colors) {
-  let i = 0, j = 0
-  let scores = []
-  for (; i < colors.length; i++) {
-    scores.push( interesting( [hexToR(colors[i]), hexToG(colors[i]), hexToB(colors[i])] ) )
-  }
-  console.log(colors, scores)
-}
-
 function colorDistance (c1, c2) {
   return Math.abs(hexToR(c1) - hexToR(c2)) + Math.abs(hexToG(c1) - hexToG(c2)) + Math.abs(hexToB(c1) - hexToB(c2))/3
 }
@@ -1956,7 +1933,11 @@ function showHex () {
   alert(hex)
 }
 
-function colorSamplePalette (canvas) {
+function simplifyColors () {
+  colorSamplePalette (document.getElementById("myCanvas"), true)
+}
+
+function colorSamplePalette (canvas, SIMPLIFY) {
   if (!canvas)
     canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d");
@@ -1966,6 +1947,8 @@ function colorSamplePalette (canvas) {
   let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
   if (document.getElementById("grungy").checked)
     imgData = ctx.getImageData(W/10, H/10, W-2*W/10, H-2*H/10)
+  if (SIMPLIFY)
+    imgData = ctx.getImageData(0, 0, W, H)
   //ctx.strokeRect(W/10, H/10, W-2*W/10, H-2*H/10)
   let pixels = imgData.data;
   let sample = []
@@ -1993,7 +1976,6 @@ function colorSamplePalette (canvas) {
       ct++
     }
   }
-  
  // let threshold = m/sample.length/sample.length * 0.65
   //console.log(threshold, m/ct)
   let threshold = m/ct/2.2
@@ -2033,28 +2015,20 @@ function colorSamplePalette (canvas) {
     B = ('0'+(rgb[2]).toString(16)).slice(-2);
     colors2.push('#'+R+G+B)
   }
-  return colors2
-}
-
-function showColors () {
-  let canvas = document.getElementById("myCanvas");
-  let ctx = canvas.getContext("2d");
-  let colors = colorSample()
-  let i = 0, x = 10, y = 10
-  if (document.getElementById("grungy").checked) {
-    ctx.clearRect(10,10,40,canvas.height)
-    for (;i < colors.length; i++) {
-      ctx.beginPath()
-      ctx.moveTo(x, y)
-      ctx.lineTo(x+40, y)
-      ctx.lineTo(x+40, y+40)
-      ctx.lineTo(x, y+40)
-      ctx.closePath()
-      ctx.fillStyle = colors[i]
-      ctx.fill()
-      y += 44
+  // replace - simplify
+  if (SIMPLIFY) {
+    let c
+    i = 0, j = 0
+    for (; i < pixels.length; i += 4) {
+      c = minDistance (clrs, pixels, i)
+      pixels[i] = c[0]
+      pixels[i+1] = c[1]
+      pixels[i+2] = c[2]
     }
+    ctx.putImageData(imgData, 0, 0);
   }
+//
+  return colors2
 }
 
 function exposureInfo () {
@@ -2099,77 +2073,16 @@ function exposureInfo () {
   alert("Exposure Info\n\nmin brightness: "+Math.round(100*minbright)/100+ ", max brightness: "+Math.round(maxbright*100)/100+"\naverage brightness: "+Math.round(100*averageb)/100+"\nrange: "+Math.round(100*(maxbright-minbright))/100+"\n\nmax tonal distance: "+Math.round(100*maxd)/100 + "\naverage tonal distance: "+Math.round(100*averaged)/100+"\ncolorfullness: "+Math.round(100*colorfull)/100)
 }
 
-function colorSample () {
-  let canvas = document.getElementById("myCanvas")
-  let ctx = canvas.getContext("2d");
-  let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
-  //let alt = document.getElementById("alt").checked
-  let mind = 1000000
-  let maxd = -1000000
-  let pixels = imgData.data;
-  let sample = []
-  let i = 0, j = 0
-  let x = 1, y = 1
-  let cnt = (canvas.width * canvas.height)
-  for (; i < pixels.length; i+= 128) {
-    let n = i//4 * Math.floor(Math.random() * pixels.length/4)
-    let c = []
-    c.push(pixels[n])
-    c.push(pixels[n+1])
-    c.push(pixels[n+2])
-    sample.push(c)
-  }
-  console.log("1_")
-  i = 0, j = 1
-  let m = 0
-  for (; i < sample.length; i++) {
-    j = i + 1
-    for (; j < sample.length; j++) {
-      m += dist3d(sample[i], sample[j])
-      maxd = (maxd < m)? m: maxd
+function minDistance (colors, pixels, i) {
+  let minD = 10000000, j = 0, d, index = 0
+  for (; j < colors.length; j++) {
+    d = dist3d(colors[j], [pixels[i], pixels[i+1], pixels[i+2]])
+    if (d < minD) {
+      index = j
+      minD = d
     }
   }
-  let threshold = m/sample.length/sample.length * 0.7
-  let bins = [], bc = 0
-  i = 0
-  for (;i < sample.length; i++) {
-    if (sample[i]) {
-      bins.push([sample[i]])
-      let bc = bins.length - 1
-      j = i + 1
-      for (; j < sample.length; j++) {
-        if (sample[j] && dist3d(sample[j], bins[bc][0]) < threshold) {
-          bins[bc].push(sample[j])
-          sample[j] = null
-        }
-      }
-    }
-  }
-  console.log("2_")
-
-  bins.sort(function(a, b) { return b.length - a.length;});
-  let count = bins.length;
-  if (count > 21)
-    count = 21
-  let colors = [], clrs = []
-  i = 0
-  for (; i < count; i++) {
-    colors.push(averageColor(bins[i][0]))
-    clrs.push(averageColor(bins[i][0], true))
-  }
-  //resort clrs by interesting
-  clrs.sort(function(a, b) { return interesting(b) - interesting(a);});
-  let colors2 = []
-  i = 0, j = 0
-  for (; i < clrs.length; i++) {
-    let rgb = clrs[i]
-    let R = ('0'+(rgb[0]).toString(16)).slice(-2),
-    G = ('0'+(rgb[1]).toString(16)).slice(-2),
-    B = ('0'+(rgb[2]).toString(16)).slice(-2);
-    colors2.push('#'+R+G+B)
-  }
-  console.log("3_")
-  return colors2
+  return colors[index] 
 }
 
 function averageColor (b, dec) {
@@ -6902,7 +6815,7 @@ function automatic () {
        //start -= inc
      }
   }
-  console.log(R,R2)
+ // console.log(R,R2)
   ctx.stroke()
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
@@ -10002,8 +9915,6 @@ function labyrinth () {
   ctx.lineJoin = "round"
   ctx.strokeStyle = randomPick(colors)
   let bump = randomPick([1.25, 1.5, 2, 1, 0.5])
-  
-  console.log(bump)
   let pad = 40, r = W/2.5, offset = ctx.lineWidth * 1.7
   let x = W/2, y = H/2
   let a = Math.random() * 2 * Math.PI
@@ -16033,7 +15944,6 @@ function caption () {
   ctx.strokeStyle = document.getElementById("paintcolor").value
   ctx.font = size+"pt " + face
   let x = canvas.width/2, y = canvas.height/2+size/2
-  console.log(size)
   w = ctx.measureText(text).width
   ctx.fillText(text, x-w/2, y)
 }
@@ -16352,7 +16262,6 @@ function bezRandom () {
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
   let x = 0, y = 0, x0, y0;
   let edges = 8 + 4 * Math.floor(document.getElementById("number").value/1000)
-  //console.log(edges)
   if (Math.random() > 0.5)
    ;// edges += 8
   let points = [];
@@ -18601,7 +18510,6 @@ function increaseGrainPrinty (canvas) {
   let i = 0, ct = 0
   let ff = [53, 59, 61, 67, 71, 73, 37, 41, 43]
   let mm = randomPick(ff)
-  console.log(mm)
   for (; i < mm; i++)
     fudge.push((Math.random() > 0.5)?1:-1)
   i = 0
