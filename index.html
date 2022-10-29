@@ -520,7 +520,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="randomTexture2">random texture2</option>
     <option value="landscape3">landscape</option>
     <option value="numberShow">numbers</option>
-    <option value="coloringbook">coloring book</option>
+    <!--option value="coloringbook">coloring book</option-->
     <option value="edgeSmear">streak left</option>
     <option value="smeardownOff">vertical streaks</option>
     <option value="crackle" selected>crackle curves</option>
@@ -530,7 +530,6 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="neckerline">necker</option>
     <option value="necker">necker (fill)</option>
     <option value="house">house (fill)</option>
-    <option value="network">network</option>
     <option value="core">core</option>
     <option value="eclipse">eclipse</option>
     <option value="constellations" >constellations</option>
@@ -546,7 +545,6 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="user">user</option>
     <option value="glass_line" >glass</option>
     <option value="glass" >glass (fill)</option>
-    <option value="labyrinth" >labyrinth</option>
     <option value="scratchOut">scratch out</option>
     <option value="strokes">strokes</option>
     <option value="strokes2">strokes2</option>
@@ -2082,7 +2080,7 @@ function minDistance (colors, pixels, i) {
       minD = d
     }
   }
-  return colors[index] 
+  return colors[index]
 }
 
 function averageColor (b, dec) {
@@ -16205,7 +16203,7 @@ function vanishingpoint () { // vertical lines
     ctx.lineWidth = randomPick([1,1,1,2,3,4,1,1,1,1,2,2])
     if (Math.random() > 0.98) {
       ctx.beginPath();
-      ctx.moveTo(x, y) 
+      ctx.moveTo(x, y)
       cpx = (vpx-x)/1.9 + pet(520)
       cpy = Math.max(vpy,y) +Math.random() * 300
       if (alt)
