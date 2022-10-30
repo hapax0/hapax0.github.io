@@ -238,7 +238,6 @@ id="ff" onclick="testImage('framefunctions')" title="frame functions"><svg xmlns
      <option value="roundedFrame">rounded frame</option>
      <option value="frameCircle">circle frame</option>
      <option value="framePolaroid">polaroid frame</option>
-     <option value="frameInstax">instax frame</option>
      <option value="frame">jaggy frame</option>
      <option value="ripFrame">rip frame</option>
      <option value="makeSquare">pad to square</option>
@@ -314,7 +313,6 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
       <option value="square">square</option>
       <option value="portrait" >portrait</option>
       <option value="landscape">landscape</option>
-      <!--option value="instax">instax mini</option-->
     </select> &nbsp;<span id="redspan" style="color:red;">cut </span><input type="number" step="1" id="rednumber" style="color:red;" onchange="pushMarker()">
     <!--input type="range" id="canvas_size" class="range" min="1" max="5" value="5" onchange="resizeCanvas()"-->
   </td><td style="text-align:right;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-camera" viewBox="0 0 16 16">
@@ -12790,74 +12788,6 @@ function framePolaroid (rect) {
   //ctx.restore()
 }
 
-function frameInstax () {
-  let rect = false
-  let canvas = document.getElementById("myCanvas");
-  let ctx = canvas.getContext("2d");
-  let D = 1
-  let grunge = document.getElementById("grungy").checked
-  let W = canvas.width
-  let H = canvas.height
-  ctx.globalAlpha = document.getElementById("opacity").value/100
-
-  ctx.fillStyle = "#FFFFFF"
-  let x = -1, y = -1
-  let w = 1
-  let i = 0
-  let  R = false
-  if (W > H) {
-    rc()
-    let T = W
-    W = H
-    H = T
-    R = true
-  }
-  while (y < canvas.height) {
-    ctx.fillStyle = "#FFFFFF"
-    w = (W * 0.0706)
-    ctx.beginPath()
-    ctx.moveTo(x, y)
-    ctx.lineTo(x + w, y)
-    ctx.lineTo(x + w, y+w)
-    ctx.lineTo(x , y+w)
-    ctx.closePath()
-    ctx.fill()
-    
-    ctx.beginPath()
-    ctx.moveTo(W, y)
-    ctx.lineTo(W - w, y)
-    ctx.lineTo(W - w, y+w)
-    ctx.lineTo(W, y+w)
-    ctx.closePath()
-    ctx.fill()
-    y += 2
-  }
-  x = 0, y = -1
-  while (x < canvas.width) {
-    w = (W * 0.135)
-    //top
-    ctx.beginPath()
-    ctx.moveTo(x, y)
-    ctx.lineTo(x + w, y)
-    ctx.lineTo(x + w, y+w)
-    ctx.lineTo(x, y+w)
-    ctx.closePath()
-    ctx.fill()
-    //bottom
-    w = (W * 0.281)
-    ctx.beginPath()
-    ctx.moveTo(x, H)
-    ctx.lineTo(x - w, H)
-    ctx.lineTo(x - w, H-w)
-    ctx.lineTo(x, H-w)
-    ctx.closePath()
-    ctx.fill()
-    x += 2
-  }
-  if (R)
-    rcc()
-  //ctx.restore()
-}
 
 function frameCircle () {
   let canvas = document.getElementById("myCanvas");
@@ -13715,47 +13645,6 @@ function make4to5 (all) {
   ctx.globalAlpha = alpha/100
 }
 
-function cropInstaxMini () {
-  let canvas = document.getElementById("myCanvas");
-  let ctx = canvas.getContext("2d")
-  let mode = ctx.globalCompositeOperation
-
-  W = canvas.width
-  H = canvas.height
-  let iAR = W/H
-  let dAR = 1.5926
-  if (H > W)
-    dAR = 0.6279
-  if (Math.abs(iAR - dAR) < 0.01) {
-    return
-  }
-  ctx.globalAlpha = document.getElementById("opacity").value/100
-  let canvasoff = document.getElementById("off")
-  let ctxoff = canvasoff.getContext("2d")
-  canvasoff.width = canvas.width
-  canvasoff.height = canvas.height
-  ctxoff.drawImage(canvas,0,0)
-  let x = 0, y = 0
-  let oW = W
-  let oH = H
-  if (iAR > dAR) {
-    oW = H * dAR
-  } else {
-    oH = W / dAR
-  }
-  canvas.height = oH
-  canvas.width = oW
-  x = (oW - W)/2
-  y = (oH - H)/2
-  document.getElementById("canvaswidth").value = canvas.width
-  document.getElementById("canvasheight").value = canvas.height
-  ctx.drawImage(canvasoff, x, y)
-  canvasoff.width = oW
-  canvasoff.height = oH
-  syncBackground(canvas)
-  syncMarker()
-  ctx.globalCompositeOperation = mode
-}
 
 function cropSquare (all) {
   let canvas = document.getElementById("myCanvas");
@@ -18244,11 +18133,6 @@ function resizeCanvas () {
   if (selection == "landscape") {
     canvas.width = 1080
     canvas.height = 608
-  } else
-  if (selection == "instax") {
-    canvas.width = 344
-    canvas.height = 550
-    // inset frame
   }
   syncBackground(canvas)
   document.getElementById("canvaswidth").value = canvas.width
