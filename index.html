@@ -1993,8 +1993,8 @@ function colorSamplePalette (canvas, SIMPLIFY) {
   }
   bins.sort(function(a, b) { return b.length - a.length;});
   let count = bins.length;
-  if (count > 13)
-    count = 13
+  if (count > 16)
+    count = 16
   let colors = [], clrs = []
   i = 0
   for (; i < count; i++) {
@@ -2029,14 +2029,17 @@ function colorSamplePalette (canvas, SIMPLIFY) {
 }
 
 function tintByCloseness () {
-  canvas = document.getElementById("myCanvas")
+  let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d");
   let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
   let pixels = imgData.data;
   let colors = getCurrentPalette(true) // need more colors. post extract colors
   let clrs = []
   let i = 0, R,G,B
-  for (; i < colors.length; i++) {
+  let max = colors.length
+  if (document.getElementById("grungy").checked && colors.length >= 12)
+    max = 12
+  for (; i < max; i++) {
     R = hexToR(colors[i])
     G = hexToG(colors[i])
     B = hexToB(colors[i])
