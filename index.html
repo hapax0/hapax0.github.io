@@ -337,7 +337,6 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
       <option value="afold" >fold</option>
       <option value="trifold">tri-fold</option>
       <!--option value="crumple">crumple</option-->
-      <!--option value="mirror">mirror &varr;</option-->
       <option value="distortion">fisheye</option>
       <option value="ripinhalf">rip in half</option>
       <option value="duplicate">duplicate</option>
@@ -371,7 +370,6 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <select id="patternfunctions">
     <option value="diss" selected>distress</option>
     <option value="increaseGrain">increase grain</option>
-    <!--option value="increaseGrainPrinty">printy grain</option-->
     <option value="specksRadial">specks</option>
     <option value="blobs">blobs</option>
     <option value="fog">fog</option>
@@ -458,7 +456,8 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
       <option value="threshold">threshold</option>
       <option value="threshold_soft">threshold soft</option>
       <option value="posterize" >posterize</option>
-      <option value="palettetint" selected>palette tint</option>
+      <option value="palettetint">palette tint</option>
+      <option value="tintByCloseness" selected>extracted tint</option>
       <option value="simplifyColors">simplify colors</option>
       <option value="cymk">CYMK</option>
       <option value="stipple">stipple</option>
@@ -625,8 +624,6 @@ window.onload = function () {
   let myCanvas = document.getElementById("myCanvas")
   let ctx = myCanvas.getContext("2d")
   ctx.willReadFrequently = true
-  //ctx.imageSmoothingEnabled = false
-  //document.getElementById("face").value = "monospace"
   resizeCanvas()
   LASTCLICK[0] = myCanvas.width/2
   LASTCLICK[1] = myCanvas.height/2
@@ -726,9 +723,14 @@ function halfway (c1,c5) {
   return "#" + RR + GG + BB;
 }
 
-function getCurrentPalette () {
+let extendedPalette = []
+
+function getCurrentPalette (ALL) {
   let n = document.getElementById("numcolors").value
-  return ([document.getElementById("pal1").value,
+  if (ALL && extendedPalette.length > 0)
+    return extendedPalette
+  else
+    return ([document.getElementById("pal1").value,
     document.getElementById("pal2").value,
     document.getElementById("pal3").value,
     document.getElementById("pal4").value,
@@ -1860,12 +1862,14 @@ function testHW () {// number to divide height by, to match width's divisor
 }
 
 function updateExtraColors (colors) {
+  extendedPalette = []
   let i = 0, x = 0, y = 0
   let canvas = document.getElementById("palettecanvas")
   let ctx = canvas.getContext("2d");
   ctx.fillStyle = "#a0a0a0"
   ctx.clearRect(0,0,canvas.width, canvas.height)
   for (; i < colors.length; i++) {
+    extendedPalette.push(colors[i])
     ctx.fillStyle = colors[i]
     ctx.fillRect(x,y,42,42)
     x += 42
@@ -1945,7 +1949,6 @@ function colorSamplePalette (canvas, SIMPLIFY) {
     imgData = ctx.getImageData(W/10, H/10, W-2*W/10, H-2*H/10)
   if (SIMPLIFY)
     imgData = ctx.getImageData(0, 0, W, H)
-  //ctx.strokeRect(W/10, H/10, W-2*W/10, H-2*H/10)
   let pixels = imgData.data;
   let sample = []
   let i = 0, j = 0
@@ -1972,8 +1975,6 @@ function colorSamplePalette (canvas, SIMPLIFY) {
       ct++
     }
   }
- // let threshold = m/sample.length/sample.length * 0.65
-  //console.log(threshold, m/ct)
   let threshold = m/ct/2.2
   let bins = [], bc = 0
   i = 0
@@ -2023,8 +2024,33 @@ function colorSamplePalette (canvas, SIMPLIFY) {
     }
     ctx.putImageData(imgData, 0, 0);
   }
-//
+  extendedPalette = colors2
   return colors2
+}
+
+function tintByCloseness () {
+  canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d");
+  let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  let pixels = imgData.data;
+  let colors = getCurrentPalette(true) // need more colors. post extract colors
+  let clrs = []
+  let i = 0, R,G,B
+  for (; i < colors.length; i++) {
+    R = hexToR(colors[i])
+    G = hexToG(colors[i])
+    B = hexToB(colors[i])
+    clrs.push([R,G,B])
+  }
+  let c
+  i = 0, j = 0
+  for (; i < pixels.length; i += 4) {
+    c = minDistance (clrs, pixels, i)
+    pixels[i] = c[0]
+    pixels[i+1] = c[1]
+    pixels[i+2] = c[2]
+  }
+  ctx.putImageData(imgData, 0, 0);
 }
 
 function exposureInfo () {
@@ -2712,6 +2738,65 @@ function findBrightSpots (FLARE) {
     else
       bokehAt(filteredpoints[i][0], filteredpoints[i][1], filteredpoints[i][3], filteredpoints[i][2], ctx.globalAlpha/10, offctx)
   }
+  ctx.drawImage(off, 0, 0)
+}
+
+function sampleImageDataR () { // darkness
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let off = document.createElement('CANVAS')
+  off.width = canvas.width
+  off.height = canvas.height
+  let offctx = off.getContext("2d")
+  offctx.fillStyle = document.getElementById("paintcolor").value
+  let grunge = document.getElementById("grungy").checked
+  // set above as in rectify
+  let W = 0.5 + Math.floor(document.getElementById("featuresize").value/2)
+  //invert range of W [2- 102] => [102 - 2]
+  W = 251 - W + 0.5
+  let wdivs = W
+  let cw = canvas.width
+  let ch = canvas.height
+  let w = cw/wdivs
+  let hdivs = Math.round(wdivs * ch/cw)
+  let h = ch/hdivs
+  let i = 0, x = 0, y = 0
+  let ox = 0, oy = -w*2
+  let numsquares = (1+wdivs) * (1+hdivs)
+  let radius = w, j = 0, linecount = 0
+  let lightness = 0
+  for (;j < numsquares; j++) {
+    let imgData = ctx.getImageData(x, y, w, h)
+    let threshold = 127 - document.getElementById("opacity").value * 1.27
+    let pixels = imgData.data
+    let i = 0, lightness = 0
+    for (; i < pixels.length; i += 4) {
+      lightness += parseInt((pixels[i] + pixels[i + 1] + pixels[i + 2]) / 3)
+    }
+    lightness /= (pixels.length/4) //avg = 0 to 255
+    // invert scale
+    lightness = 255 - lightness
+    radius = lightness/255 * w/2
+    offctx.beginPath()
+    offctx.arc(x+w/2, y+h/2-oy, radius, 0, Math.PI*2)
+    offctx.closePath()
+    offctx.fill()
+    x += w
+   
+    oy += h
+    if (oy > h*2)
+      oy = 0
+    
+    if (x >= (wdivs)*w) {
+      linecount++
+      if (!grunge && linecount % 2 == 1)
+        x = -w/2
+      else
+        x = 0
+      y += h
+    }
+  }
+  ctx.clearRect(0,0,canvas.width,canvas.height)
   ctx.drawImage(off, 0, 0)
 }
 
