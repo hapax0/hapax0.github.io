@@ -230,7 +230,7 @@ id="canvaswidth" min="40" size="3" onchange="checkWidth()">
      H: <input
 type="number" id="canvasheight" min="40" size="3"
 onchange="checkHeight()">&nbsp;<span
-id="aspectratio" ></span></td><td style="text-align:left;"></td><td>07-25-22
+id="aspectratio" ></span></td><td style="text-align:left;"></td><td>11-02-22
    </td><td>
    &nbsp;<button
 id="ff" onclick="testImage('framefunctions')" title="frame functions"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" class="white" viewBox="0 0 16 16">
@@ -695,34 +695,35 @@ function wavyPaper () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   ctx.fillStyle = "#ffffff"
+  ctx.clearRect(0,0,canvas.width,canvas.height)
   ctx.fillRect(0,0,canvas.width,canvas.height)
   let fs = document.getElementById("featuresize").value
-  let d = 2+Math.floor(fs/25)
+  let d = 5+Math.floor(fs/20)
   let alpha = document.getElementById("opacity").value
   let n = document.getElementById("number").value
   let c = document.getElementById("paintcolor").value
   let functions = ["fog", "smudge", "smudgewatercolor"]
   document.getElementById("featuresize").value = 500
-  document.getElementById("opacity").value = 20
+  document.getElementById("opacity").value = 30
   document.getElementById("number").value = 6000
-  document.getElementById("paintcolor").value = "#cccccc"
+  document.getElementById("paintcolor").value = "#aaaaaa"
   let i = 0, f
   for (;i < 3; i++) {
     f = randomPick(functions)
     window[f]("")
   }
-  document.getElementById("opacity").value = 5
+  document.getElementById("opacity").value = 9
   dirblur()
  // dotblur()
   dirblur()
   document.getElementById("number").value = n
   document.getElementById("featuresize").value = fs
-  document.getElementById("opacity").value = alpha 
+  document.getElementById("opacity").value = alpha
   ctx.globalAlpha = alpha/100
   document.getElementById("paintcolor").value = c
   emboseCanvas()
   zoomImage(false, d)
-  smearzoom()
+  shrinkBlur()
 }
 
 function adjustBrightnessC (col, amt) {
