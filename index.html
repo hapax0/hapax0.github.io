@@ -6,16 +6,13 @@
 <style>
   div[class=buttons] {margin-top:8px}
   body {background-color:#ccc;}
-  td {
-    white-space: nowrap;
-  }
   button {background-color:#fff;
    border:none;
    border-radius:4px;
    min-width:24px;
    padding:4px 4px 2px 4px;
   }
-  select {width:100px;}
+  select {width:120px;}
   input, img, span, a{
     vertical-align: middle;
   }
@@ -78,7 +75,7 @@
 </head>
 <body>
   
-<div style='margin:4px;float: left; white-space: nowrap;'>
+<div style='margin:4px;'>
   &nbsp;&nbsp;<a href="javascript:showtools()" title="show tools"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-sliders" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3h9.05zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8h2.05zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1h9.05z"/>
 </svg></a>
@@ -226,7 +223,7 @@ id="canvaswidth" min="40" size="3" onchange="checkWidth()">
      H: <input
 type="number" id="canvasheight" min="40" size="3"
 onchange="checkHeight()">&nbsp;<span
-id="aspectratio" ></span></td><td style="text-align:left;"></td><td>11-01-22
+id="aspectratio" ></span></td><td style="text-align:left;"></td><td>07-25-22
    </td><td>
    &nbsp;<button
 id="ff" onclick="testImage('framefunctions')" title="frame functions"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" class="white" viewBox="0 0 16 16">
@@ -393,6 +390,7 @@ style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <option value="skinnyRings">rings</option>
     <option value="linearSpiral">spiral</option>
     <option value="waves">waves</option>
+    <option value="wavyPaper">paper</option>
     </select>
   </td>
    
@@ -684,6 +682,40 @@ function printcanvas () {
   //win.print();
   // Magically seems to cause print to be called after write
   win.setTimeout(() => win.print(), 0);
+}
+
+function wavyPaper () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  ctx.fillStyle = "#ffffff"
+  ctx.fillRect(0,0,canvas.width,canvas.height)
+  let fs = document.getElementById("featuresize").value
+  let d = 2+Math.floor(fs/25)
+  let alpha = document.getElementById("opacity").value
+  let n = document.getElementById("number").value
+  let c = document.getElementById("paintcolor").value
+  let functions = ["fog", "smudge", "smudgewatercolor"]
+  document.getElementById("featuresize").value = 500
+  document.getElementById("opacity").value = 20
+  document.getElementById("number").value = 6000
+  document.getElementById("paintcolor").value = "#cccccc"
+  let i = 0, f
+  for (;i < 3; i++) {
+    f = randomPick(functions)
+    window[f]("")
+  }
+  document.getElementById("opacity").value = 5
+  dirblur()
+ // dotblur()
+  dirblur()
+  document.getElementById("number").value = n
+  document.getElementById("featuresize").value = fs
+  document.getElementById("opacity").value = alpha 
+  ctx.globalAlpha = alpha/100
+  document.getElementById("paintcolor").value = c
+  emboseCanvas()
+  zoomImage(false, d)
+  smearzoom()
 }
 
 function adjustBrightnessC (col, amt) {
@@ -1996,8 +2028,8 @@ function colorSamplePalette (canvas, SIMPLIFY) {
   }
   bins.sort(function(a, b) { return b.length - a.length;});
   let count = bins.length;
-  if (count > 16)
-    count = 16
+  if (count > 13)
+    count = 13
   let colors = [], clrs = []
   i = 0
   for (; i < count; i++) {
@@ -2032,17 +2064,14 @@ function colorSamplePalette (canvas, SIMPLIFY) {
 }
 
 function tintByCloseness () {
-  let canvas = document.getElementById("myCanvas")
+  canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d");
   let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
   let pixels = imgData.data;
   let colors = getCurrentPalette(true) // need more colors. post extract colors
   let clrs = []
   let i = 0, R,G,B
-  let max = colors.length
-  if (document.getElementById("grungy").checked && colors.length >= 12)
-    max = 12
-  for (; i < max; i++) {
+  for (; i < colors.length; i++) {
     R = hexToR(colors[i])
     G = hexToG(colors[i])
     B = hexToB(colors[i])
@@ -15146,7 +15175,11 @@ function zoomImage (out, d) {
   
   let dx = (out)? canvas.width * 0.95: canvas.width * 1.05
   let dy = (out)? canvas.height * 0.95: canvas.height * 1.05
+  if (d) {
+    dx = (out)? canvas.width * 1/d: canvas.width * d
+    dy = (out)? canvas.height * 1/d: canvas.height * d
 
+  }
   let diffx = dx - W
   let diffy = dy - H
   let ox = (W/2/W * diffx)
