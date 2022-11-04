@@ -4965,34 +4965,34 @@ function OGImage() {
 function drawFile () {
   let canvas = document.getElementById('myCanvas')
   let ctx = canvas.getContext('2d')
+  let SHRINK = document.getElementById("grungy").checked
   let IMG = new Image()
   let f = document.getElementById("uploadimage").files[0]
   let url = window.URL || window.webkitURL
   let src = url.createObjectURL(f);
   IMG.src = src;
- // let a = ctx.globalAlpha
   ctx.globalAlpha = 1.0
   let mode = ctx.globalCompositeOperation
   ctx.globalCompositeOperation = "source-over"
-  //document.getElementById('mode')
   IMG.onload = function() {
     canvas.height = this.height
     canvas.width = this.width
+    if (SHRINK) {
+      canvas.height = Math.floor(canvas.height * 0.8)
+      canvas.width = Math.floor(canvas.width * 0.8)
+    }
     syncBackground(canvas)
     document.getElementById("canvaswidth").value = canvas.width
     document.getElementById("canvasheight").value = canvas.height
-    ctx.drawImage(IMG, 0, 0);
+    ctx.drawImage(IMG, 0, 0, canvas.width, canvas.height);
     url.revokeObjectURL(src);
     LASTCLICK[0] = canvas.width/2
     LASTCLICK[1] = canvas.height/2
     ctx.globalCompositeOperation = mode
-    //ctx.globalAlpha = a
     syncMarker()
   }
   document.getElementById("uploadimage").value = ""
   ctx.globalCompositeOperation = mode
-  //refreshMode()
-  //syncMarker()
 }
 
 function drawFile_other () {
