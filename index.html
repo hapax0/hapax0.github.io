@@ -53,7 +53,7 @@
       width: 114px;
     }
     input[type='number'] {
-      width: 44px;
+      width: 50px;
     }
     span[class='sample'] {
       display:inline-block;
@@ -4980,12 +4980,14 @@ function drawFile () {
     canvas.height = this.height
     canvas.width = this.width
     if (SHRINK) {
-      canvas.height = Math.floor(canvas.height * 0.8)
-      canvas.width = Math.floor(canvas.width * 0.8)
+      canvas.height = Math.round(canvas.height/1.2)
+      canvas.width = Math.round(canvas.width/1.2)
     }
     syncBackground(canvas)
     document.getElementById("canvaswidth").value = canvas.width
     document.getElementById("canvasheight").value = canvas.height
+    ctx.imageSmoothingEnabled = true
+    ctx.imageSmoothingQuality = "high"
     ctx.drawImage(IMG, 0, 0, canvas.width, canvas.height);
     url.revokeObjectURL(src);
     LASTCLICK[0] = canvas.width/2
