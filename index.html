@@ -9,6 +9,7 @@
       float: left;
       white-space: nowrap;
     }
+    
     td {
       white-space: nowrap;
     }
@@ -291,7 +292,6 @@
             <option value="retro1" selected>retro1</option>
             <option value="retro2">retro2</option>
             <option value="none">none</option>
-  
           </select>
           Use <select id="numcolors" style="width:50px;">
             <option value="1">1</option>
@@ -301,7 +301,6 @@
             <option value="5" selected>5</option>
           </select> colors
           <br>
-  
          <input type='color' id='pal1'>
          <input type='color' id='pal2'>
          <input type='color' id='pal3'>
@@ -2009,12 +2008,14 @@ function colorDistance (c1, c2) {
 }
 
 function showHex () {
-  let hex = ""
-  hex += "\"" + document.getElementById("pal1").value + "\", "
-  hex += "\"" + document.getElementById("pal2").value + "\", "
+  let colors = getCurrentPalette(true)
+  let hex = "", i = 0
+  for (; i < colors.length; i++)
+  hex += "\"" + colors[i] + "\", "
+ /* hex += "\"" + document.getElementById("pal2").value + "\", "
   hex += "\"" + document.getElementById("pal3").value + "\", "
   hex += "\"" + document.getElementById("pal4").value + "\", "
-  hex += "\"" + document.getElementById("pal5").value + "\""
+  hex += "\"" + document.getElementById("pal5").value + "\""*/
   alert(hex)
 }
 
