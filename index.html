@@ -374,6 +374,7 @@
     <path d="M0 .5A.5.5 0 0 1 .5 0h15a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H14v2h1.5a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H14v2h1.5a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5H2v-2H.5a.5.5 0 0 1-.5-.5v-3A.5.5 0 0 1 .5 6H2V4H.5a.5.5 0 0 1-.5-.5v-3zM3 4v2h4.5V4H3zm5.5 0v2H13V4H8.5zM3 10v2h4.5v-2H3zm5.5 0v2H13v-2H8.5zM1 1v2h3.5V1H1zm4.5 0v2h5V1h-5zm6 0v2H15V1h-3.5zM1 7v2h3.5V7H1zm4.5 0v2h5V7h-5zm6 0v2H15V7h-3.5zM1 13v2h3.5v-2H1zm4.5 0v2h5v-2h-5zm6 0v2H15v-2h-3.5z"/>
   </svg></button>
       <select id="patternfunctions">
+      <option value="wavyPaper" selected>paper</option>
       <option value="diss" >distress</option>
       <option value="increaseGrain">increase grain</option>
       <option value="specksRadial">specks</option>
@@ -396,7 +397,6 @@
       <option value="skinnyRings">rings</option>
       <option value="linearSpiral">spiral</option>
       <option value="waves">waves</option>
-      <option value="wavyPaper" selected>paper</option>
       </select>
     </td>
      
@@ -530,6 +530,7 @@
       <option value="crackle" selected>crackle curves</option>
       <option value="cracklelines" >crackle lines</option>
       <option value="tv">tv</option>
+      <option value="room">room</option>
       <option value="envelope">envelope</option>
       <option value="neckerline">necker</option>
       <option value="necker">necker (fill)</option>
@@ -7037,6 +7038,43 @@ function natural () {
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
 }
+
+function room () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let colors = shuffle(getCurrentPalette())//['red', 'blue', 'yellow', 'orange', 'purple', "green"])
+  let mode = document.getElementById("mode").value
+  let alpha = document.getElementById("opacity").value
+  let cx = canvas.width/2, cy = canvas.height/2, x = 0, y = 0
+  let a = Math.random() * 2 * Math.PI
+  let H = canvas.height, W = canvas.width
+  let pad = 100
+  ctx.strokeStyle = (colors[0])
+  ctx.lineCap = "square"
+  ctx.lineJoin = "square"
+  ctx.fillStyle = (colors[0])
+  ctx.beginPath()
+  x = W - pad - ctx.lineWidth*1.5, y = H-pad
+  //ctx.strokeRect(pad, pad, W-pad*2, H-pad*2)
+  ctx.beginPath()
+  ctx.moveTo(2*W/3-pad,pad)
+  ctx.lineTo(pad,pad)
+  ctx.lineTo(pad,H-pad)
+  ctx.lineTo(W-pad,H-pad)
+  ctx.lineTo(W-pad,pad)
+  ctx.lineTo(W-pad-40,pad)
+  ctx.lineTo(W-pad-W/4,pad*2.5)
+  //ctx.closePath()
+  ctx.stroke()
+
+
+  
+  document.getElementById("mode").value = mode
+  document.getElementById("opacity").value = alpha
+}
+
 
 function tv () {
   let canvas = document.getElementById("myCanvas");
