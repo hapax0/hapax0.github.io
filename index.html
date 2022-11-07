@@ -757,7 +757,6 @@ function wavyPaperAlt () {
   
   document.getElementById("opacity").value = 10
   document.getElementById("featuresize").value = 150
- 
   document.getElementById("number").value = n
   document.getElementById("featuresize").value = fs
   document.getElementById("opacity").value = alpha
@@ -810,8 +809,9 @@ function halfway (c1,c5) {
 
 let extendedPalette = []
 
-function getCurrentPalette (ALL) {
+function getCurrentPalette (ALL,N) {
   let n = document.getElementById("numcolors").value
+  if (N) n = n
   if (ALL && extendedPalette.length > 0)
     return extendedPalette
   else
@@ -4832,7 +4832,7 @@ function retro () {
   let number = document.getElementById("number").value
   let color = document.getElementById("paintcolor").value
   let alt = document.getElementById("grungy").checked
-  let pal = getCurrentPalette()
+  let pal = getCurrentPalette(true)
   let ga = ctx.globalAlpha
   document.getElementById("number").value = 1500 + pet(500)
   document.getElementById("opacity").value = 100
@@ -4846,6 +4846,7 @@ function retro () {
   palettetint()
   contrastImage(-5)
   adjustBrightness(5)
+  
   yellowedEdges()
   yellowedEdges()
   if (Math.random() > 0.3 && alt) {
@@ -4888,6 +4889,7 @@ function retro () {
       smudgestars()
     ctx.restore()
   }
+  console.log(pal)
   restorePalette(pal)
   ctx.globalAlpha = alpha/100
   document.getElementById("opacity").value = alpha
@@ -6876,7 +6878,7 @@ function seasons () {
   document.getElementById("opacity").value = alpha
 }
 
-function room () {
+function roomOG () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
@@ -7060,19 +7062,20 @@ function room () {
   ctx.beginPath()
   x = W - pad - ctx.lineWidth*1.5, y = H-pad
   //ctx.strokeRect(pad, pad, W-pad*2, H-pad*2)
-  ctx.beginPath()
-  ctx.moveTo(2*W/3-pad,pad)
-  ctx.lineTo(pad,pad)
-  ctx.lineTo(pad,H-pad)
-  ctx.lineTo(W-pad,H-pad)
-  ctx.lineTo(W-pad,pad)
-  ctx.lineTo(W-pad-40,pad)
-  ctx.lineTo(W-pad-W/4,pad*2.5)
-  //ctx.closePath()
-  ctx.stroke()
+  let i = 0
+  for (; i < 1; i++) {
+    ctx.beginPath()
+    ctx.moveTo(2*W/3-pad,pad)
+    ctx.lineTo(pad,pad)
+    ctx.lineTo(pad,H-pad)
+    ctx.lineTo(W-pad,H-pad)
+    ctx.lineTo(W-pad,pad)
+    ctx.lineTo(W-pad-40,pad)
+    ctx.lineTo(W-pad-W/4,pad*2.5)
+    ctx.stroke()
+    pad*=2
+  }
 
-
-  
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
 }
