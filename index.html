@@ -421,6 +421,7 @@
       <option value="lightleak">light leak</option>
       <option value="multileak">multi leak</option>
       <option value="sobel">sobel</option>
+      <option value="redshift">shift-tint</option>
       <option value="emboseCanvas">embose</option>
       <option value="blurAlpha">blur alpha</option>
       
@@ -2139,6 +2140,31 @@ function tintByCloseness () {
   }
   ctx.putImageData(imgData, 0, 0);
 }
+
+
+function filter (n) { // red only
+  if (n < 0 || n > 2) return
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d");
+  let offcanvas = document.createElement('CANVAS')
+  let offctx = canvas.getContext("2d");
+  offcanvas.width = canvas.width
+  offcanvas.height = canvas.height
+  offctx.drawImage(canvas, 0,0)
+  let imgData = offctx.getImageData(0, 0, canvas.width, canvas.height);
+  let pixels = imgData.data;
+  let i = 0
+  let c
+  i = 0, j = 0
+  for (; i < pixels.length; i += 4) {
+    pixels[i+n] /= 2
+    //pixels[i+1] /= 2
+    //pixels[i+2] /= 2
+   // pixels[i+3] = pixels[i]
+  }
+  ctx.putImageData(imgData, 0, 0);
+}
+
 
 function exposureInfo () {
   let canvas = document.getElementById("myCanvas");
@@ -4119,7 +4145,7 @@ function filterRed () {
   let pixels = imgData.data
   let i = 0
   for (; i < pixels.length; i += 4) {
-    pixels[i] *= 0.9
+    pixels[i] *= 0.1
   }
   ctx.putImageData(imgData, 0, 0)
 }
@@ -4131,7 +4157,7 @@ function filterGreen () {
   let pixels = imgData.data
   let i = 0
   for (; i < pixels.length; i += 4) {
-    pixels[i+1] *= 0.9
+    pixels[i+1] *= 0.1
   }
   ctx.putImageData(imgData, 0, 0)
 }
@@ -4143,7 +4169,7 @@ function filterBlue () {
   let pixels = imgData.data
   let i = 0
   for (; i < pixels.length; i += 4) {
-    pixels[i+2] *= 0.9
+    pixels[i+2] *= 0.1
   }
   ctx.putImageData(imgData, 0, 0)
 }
@@ -7446,6 +7472,46 @@ function tides () {
   }
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
+}
+
+function redshift () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let alpha = document.getElementById("opacity").value
+  let mode = document.getElementById("mode").value
+  let offset = canvas.width/200
+  if (Math.random() > 0.5)
+    offset *= -1
+  document.getElementById("rednumber").value = offset
+
+  clearOff()
+  copyToOff()
+  nudgeRight()
+  if (Math.random() > 0.5)
+    offset *= -1
+  document.getElementById("rednumber").value = offset
+  nudgeDown()
+  swapWithOff()
+  
+  
+  swapWithOff()
+  document.getElementById("mode").value = "difference"
+  let a = document.getElementById("opacity")
+ // document.getElementById("opacity").value = 0.5
+ // ctx.globalAlpha = 0.5
+  pasteFromOff()
+  
+  tint()
+  tint()
+  tint()
+  tint()
+  tint()
+  swapWithOff()
+  document.getElementById("mode").value = "color-dodge"
+  pasteFromOff()
+  document.getElementById("opacity").value = a
+  ctx.globalAlpha = alpha/100
+  document.getElementById("mode").value = mode
 }
 
 function nudgehalfdown () {
@@ -18963,7 +19029,13 @@ function gaussianBlur () {
   
 }
 
-
+function shiftRightCanvas () {
+  let canvas = document.getElementById("myCanvas")
+  let k = [1,0,0,
+           1,0,0,
+           1,0,0]
+  convolutionMatrix(k, 0, canvas, 3)
+}
 
 function blurCanvas (canvas) {
   if (!canvas)
