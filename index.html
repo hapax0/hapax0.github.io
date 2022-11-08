@@ -410,7 +410,7 @@
         <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z"/>
       </svg></button>
       <select id="fadefunctions">
-      <option value="retro" selected>retro</option>
+      <option value="retro">retro</option>
       <option value="pop">pop</option>
       <option value="adjustExposure">enhance exposure</option>
       <option value="haze">haze</option>
@@ -421,7 +421,7 @@
       <option value="lightleak">light leak</option>
       <option value="multileak">multi leak</option>
       <option value="sobel">sobel</option>
-      <option value="redshift">shift-tint</option>
+      <option value="aura" selected>aura</option>
       <option value="emboseCanvas">embose</option>
       <option value="blurAlpha">blur alpha</option>
       
@@ -4107,11 +4107,13 @@ function filterGrays2 () {
   document.getElementById("paintcolor").value = oc
 }
 
-function alphaBlack () {
+function alphaBlack (t) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height)
   let threshold = 127 - document.getElementById("opacity").value * 1.27
+  if (t)
+    threshold = t
   let pixels = imgData.data
   let i = 0
   for (; i < pixels.length; i += 4) {
@@ -7474,16 +7476,17 @@ function tides () {
   document.getElementById("opacity").value = alpha
 }
 
-function redshift () {
+function aura () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let alpha = document.getElementById("opacity").value
   let mode = document.getElementById("mode").value
+  let size = 1+document.getElementById("featuresize").value/200
   let offset = canvas.width/200
   if (Math.random() > 0.5)
     offset *= -1
+  offset *= size
   document.getElementById("rednumber").value = offset
-
   clearOff()
   copyToOff()
   nudgeRight()
@@ -7492,25 +7495,20 @@ function redshift () {
   document.getElementById("rednumber").value = offset
   nudgeDown()
   swapWithOff()
-  
-  
   swapWithOff()
+  
   document.getElementById("mode").value = "difference"
-  let a = document.getElementById("opacity")
- // document.getElementById("opacity").value = 0.5
- // ctx.globalAlpha = 0.5
   pasteFromOff()
-  
+  document.getElementById("mode").value = "source-over"
   tint()
   tint()
   tint()
   tint()
-  tint()
+  alphaBlack(20)
   swapWithOff()
-  document.getElementById("mode").value = "color-dodge"
+  document.getElementById("mode").value = "color"
   pasteFromOff()
-  document.getElementById("opacity").value = a
-  ctx.globalAlpha = alpha/100
+  document.getElementById("opacity").value = alpha
   document.getElementById("mode").value = mode
 }
 
