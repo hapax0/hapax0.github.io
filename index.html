@@ -7489,14 +7489,18 @@ function aura () {
   document.getElementById("rednumber").value = offset
   clearOff()
   copyToOff()
-  nudgeRight()
-  if (Math.random() > 0.5)
-    offset *= -1
-  document.getElementById("rednumber").value = offset
-  nudgeDown()
-  swapWithOff()
-  swapWithOff()
   
+  if (document.getElementById("grungy").checked)
+    motionblur()
+  else {
+    nudgeRight()
+    if (Math.random() > 0.5)
+      offset *= -1
+    document.getElementById("rednumber").value = offset
+    nudgeDown()
+  }
+  swapWithOff()
+  swapWithOff()
   document.getElementById("mode").value = "difference"
   pasteFromOff()
   document.getElementById("mode").value = "source-over"
@@ -7504,7 +7508,7 @@ function aura () {
   tint()
   tint()
   tint()
-  alphaBlack(20)
+  alphaBlack(15)
   swapWithOff()
   document.getElementById("mode").value = "color"
   pasteFromOff()
