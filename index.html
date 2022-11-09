@@ -7481,8 +7481,8 @@ function aura () {
   let ctx = canvas.getContext("2d");
   let alpha = document.getElementById("opacity").value
   let mode = document.getElementById("mode").value
-  let size = 1+document.getElementById("featuresize").value/200
-  let offset = canvas.width/200
+  let size = 1+document.getElementById("featuresize").value/50
+  let offset = size//canvas.width/200
   if (Math.random() > 0.5)
     offset *= -1
   offset *= size
