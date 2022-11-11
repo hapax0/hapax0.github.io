@@ -530,6 +530,7 @@
       <option value="smeardownOff">vertical streaks</option>
       <option value="crackle" selected>crackle curves</option>
       <option value="cracklelines" >crackle lines</option>
+      <option value="regMarks" >registration</option>
       <option value="tv">tv</option>
       <option value="room">room</option>
       <option value="envelope">envelope</option>
@@ -13260,6 +13261,50 @@ function bwash (x, y, w) {
   ctx.restore()
 }
 
+function regMarks () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let pad = 60
+  let W = canvas.width
+  let H = canvas.height
+  let d = (canvas.width-2*pad)/50
+  let space = 3
+  if (document.getElementById("grungy").checked)
+    space = 2
+  ctx.strokeStyle = "#000000"
+  ctx.lineWidth = 3
+  let x = pad*1.5, y = pad*1.5
+  while (y < H - pad) {
+    while (x < W - pad) {
+      ctx.strokeStyle = brightnessOf(ctx, x,y,d)
+      ctx.beginPath()
+      ctx.moveTo(x+d/2, y)
+      ctx.lineTo(x+d/2, y+d)
+      ctx.stroke()
+      ctx.beginPath()
+      ctx.moveTo(x,   y+d/2)
+      ctx.lineTo(x+d, y+d/2)
+      ctx.stroke()
+      x += space * d
+    }
+    x = pad*1.5
+    y += space * d
+  }
+}
+
+function brightnessOf(ctx,x,y,d) {
+  let imgData = ctx.getImageData(x,y,d,d)
+  let pixels = imgData.data;
+  let i = 0, brightness = 0
+  for (; i < pixels.length; i += 4) {
+    brightness += (pixels[i]/255+pixels[i+1]/255+pixels[i+2]/255)
+  }
+  let div = pixels.length/4
+  if (brightness/div/3 < 0.5)
+    return "#ffffff"
+  else
+    return "#000000"
+}
 /*
 function tile (type) {
   let canvas = document.getElementById("myCanvas");
@@ -16131,10 +16176,10 @@ function character () {
   let alpha0 = ctx.globalAlpha
   ctx.fillStyle = document.getElementById("paintcolor").value
   ctx.strokeStyle = document.getElementById("paintcolor").value
-  let text = document.getElementById("atext").value
+  let text = "+"//document.getElementById("atext").value
   let radius = document.getElementById("featuresize").value/6.25
   let rad0 = radius
-  let rows = Math.pow(2, 9-document.getElementById("rows").value)
+  let rows = 24//Math.pow(2, 9-document.getElementById("rows").value)
   let inc = rows
   let maxy = canvas.height/2
   numlines = 0;
