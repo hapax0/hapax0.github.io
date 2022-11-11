@@ -13272,11 +13272,11 @@ function regMarks () {
   if (document.getElementById("grungy").checked)
     space = 2
   ctx.strokeStyle = "#000000"
-  ctx.lineWidth = 3
+  ctx.lineWidth = 2+Math.floor(document.getElementById("featuresize").value/100)
   let x = pad*1.5, y = pad*1.5
-  while (y < H - pad) {
-    while (x < W - pad) {
-      ctx.strokeStyle = brightnessOf(ctx, x,y,d)
+  while (y < H - pad*1.5) {
+    while (x < W - pad*1.5) {
+      ctx.strokeStyle = brightnessOf(ctx,x,y,d)
       ctx.beginPath()
       ctx.moveTo(x+d/2, y)
       ctx.lineTo(x+d/2, y+d)
@@ -13292,7 +13292,7 @@ function regMarks () {
   }
 }
 
-function brightnessOf(ctx,x,y,d) {
+function brightnessOf (ctx,x,y,d) {
   let imgData = ctx.getImageData(x,y,d,d)
   let pixels = imgData.data;
   let i = 0, brightness = 0
