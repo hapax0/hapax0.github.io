@@ -13262,12 +13262,19 @@ function bwash (x, y, w) {
   ctx.restore()
 }
 
+
 function paintByNumbers () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
+  let OC = document.getElementById("OC")
+  let ctxOC = OC.getContext("2d")
   let pad = 60
   let W = canvas.width
   let H = canvas.height
+  OC.width = W, OC.height = H
+  ctxOC.clearRect(0,0,W,H)
+  let grays = ["#000000", "#1e1e1e", "#353535", "#4e4e4e", "#696969", "#858585", "#a2a2a2", "#c0c0c0", "#dfdfdf", "#ffffff"]
+
   let d = (canvas.width-2*pad)/50
   let space = 3
   if (document.getElementById("grungy").checked)
@@ -13276,6 +13283,8 @@ function paintByNumbers () {
   let text = ""
   let size = d*0.75
   ctx.font = size+"pt " + face
+  ctxOC.font = size+"pt " + face
+  
  // ctx.strokeStyle = "#000000"
   //ctx.lineWidth = 2+Math.floor(document.getElementById("featuresize").value/100)
   let x = pad*1.5, y = pad*1.5
@@ -13294,6 +13303,8 @@ function paintByNumbers () {
   while (y < H - pad*1.5) {
     while (x < W - pad*1.5) {
       //ctx.strokeRect(x,y,d,d)
+      ctxOC.fillStyle = grays[values[i]]
+      ctxOC.fillText(values[i], x+d/4, y+d*0.8)
       ctx.fillStyle = colors[i]
       ctx.fillText(values[i++], x+d/4, y+d*0.8)
       x += space * d
