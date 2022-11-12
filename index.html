@@ -13273,7 +13273,7 @@ function paintByNumbers () {
   if (document.getElementById("grungy").checked)
     space = 2
     
-  let face = "courier"
+  let face = "AmericanTypewriter"
   let text = ""
   let size = d
   ctx.font = size+"pt " + face
@@ -13294,8 +13294,9 @@ function paintByNumbers () {
   x = pad*1.5, y = pad*1.5
   while (y < H - pad*1.5) {
     while (x < W - pad*1.5) {
+      //ctx.strokeRect(x,y,d,d)
       ctx.fillStyle = colors[i]
-      ctx.fillText(values[i++], x, y)
+      ctx.fillText(values[i++], x, y+d)
       x += space * d
     }
     x = pad*1.5
