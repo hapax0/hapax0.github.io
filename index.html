@@ -531,6 +531,7 @@
       <option value="crackle" selected>crackle curves</option>
       <option value="cracklelines" >crackle lines</option>
       <option value="regMarks" >registration</option>
+      <option value="paintByNumbers" selected>by numbers</option>
       <option value="tv">tv</option>
       <option value="room">room</option>
       <option value="envelope">envelope</option>
@@ -13261,6 +13262,58 @@ function bwash (x, y, w) {
   ctx.restore()
 }
 
+function paintByNumbers () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let pad = 60
+  let W = canvas.width
+  let H = canvas.height
+  let d = (canvas.width-2*pad)/50
+  let space = 3
+  if (document.getElementById("grungy").checked)
+    space = 2
+    
+  let face = "courier"
+  let text = ""
+  let size = d
+  ctx.font = size+"pt " + face
+  ctx.strokeStyle = "#000000"
+  ctx.lineWidth = 2+Math.floor(document.getElementById("featuresize").value/100)
+  let x = pad*1.5, y = pad*1.5
+  let values = [], colors = []
+  while (y < H - pad*1.5) {
+    while (x < W - pad*1.5) {
+      values.push(brightnessOf10(ctx,x,y,d))
+      colors.push(brightnessOf(ctx,x,y,d))
+      x += space * d
+    }
+    x = pad*1.5
+    y += space * d
+  }
+  let i = 0
+  x = pad*1.5, y = pad*1.5
+  while (y < H - pad*1.5) {
+    while (x < W - pad*1.5) {
+      ctx.fillStyle = colors[i]
+      ctx.fillText(values[i++], x, y)
+      x += space * d
+    }
+    x = pad*1.5
+    y += space * d
+  }
+}
+
+function brightnessOf10 (ctx,x,y,d) {
+  let imgData = ctx.getImageData(x,y,d,d)
+  let pixels = imgData.data;
+  let i = 0, brightness = 0
+  for (; i < pixels.length; i += 4) {
+    brightness += (pixels[i]/255+pixels[i+1]/255+pixels[i+2]/255)
+  }
+  let div = pixels.length/4
+    return Math.floor(10*brightness/div/3)
+}
+
 function regMarks () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -13274,9 +13327,20 @@ function regMarks () {
   ctx.strokeStyle = "#000000"
   ctx.lineWidth = 2+Math.floor(document.getElementById("featuresize").value/100)
   let x = pad*1.5, y = pad*1.5
+  let values = []
   while (y < H - pad*1.5) {
     while (x < W - pad*1.5) {
-      ctx.strokeStyle = brightnessOf(ctx,x,y,d)
+      values.push(brightnessOf(ctx,x,y,d))
+      x += space * d
+    }
+    x = pad*1.5
+    y += space * d
+  }
+  let i = 0
+  x = pad*1.5, y = pad*1.5
+  while (y < H - pad*1.5) {
+    while (x < W - pad*1.5) {
+      ctx.strokeStyle = values[i++]
       ctx.beginPath()
       ctx.moveTo(x+d/2, y)
       ctx.lineTo(x+d/2, y+d)
