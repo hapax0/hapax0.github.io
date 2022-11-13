@@ -531,7 +531,8 @@
       <option value="crackle" selected>crackle curves</option>
       <option value="cracklelines" >crackle lines</option>
       <option value="regMarks" >registration</option>
-      <option value="paintByNumbers" selected>by numbers</option>
+      <option value="paintByNumbers">mono by numbers</option>
+      <option value="paintByNumbers2" selected>color by numbers</option>
       <option value="tv">tv</option>
       <option value="room">room</option>
       <option value="envelope">envelope</option>
@@ -2024,7 +2025,7 @@ function showHex () {
 }
 
 function simplifyColors () {
-  colorSamplePalette (document.getElementById("myCanvas"), true)
+  return colorSamplePalette (document.getElementById("myCanvas"), true)
 }
 
 function colorSamplePalette (canvas, SIMPLIFY) {
@@ -13262,6 +13263,61 @@ function bwash (x, y, w) {
   ctx.restore()
 }
 
+function paintByNumbers2 () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let OC = document.getElementById("OC")
+  let ctxOC = OC.getContext("2d")
+  let pad = 0
+  let W = canvas.width
+  let H = canvas.height
+  OC.width = W, OC.height = H
+  ctxOC.clearRect(0,0,W,H)
+  let d = (canvas.width)/50
+  let space = 1
+  if (document.getElementById("grungy").checked)
+    space = 2
+  let face = "AmericanTypewriter"
+  let text = ""
+  let size = d*0.75
+  ctx.font = size+"pt " + face
+  ctxOC.font = size+"pt " + face
+  let colors = extractPalette()
+  tintByCloseness()
+  //let colors = simplifyColors(),
+  //console.log(colors)
+  let colors2 = []
+  let colorkeys = [0,1,2,3,4,5,6,7,8,9,"A","B","C","D","E"]
+  let j = 0, vals = {}
+  for (; j < colors.length; j++)
+    vals[colors[j]] = colorkeys[j]
+ // console.log(vals)
+  let x = pad*1.5, y = pad*1.5
+  let values = []
+  while (y < H - pad*1.5) {
+    while (x < W - pad*1.5) {
+      let c = colorOf(ctx,x,y,d)
+      colors2.push(c)
+      values.push(vals[c] || colorkeys[colors.length])
+      x += space * d
+    }
+    x = pad*1.5
+    y += space * d
+  }
+  let i = 0
+  x = pad*1.5, y = pad*1.5
+  while (y < H - pad*1.5) {
+    while (x < W - pad*1.5) {
+      ctxOC.fillStyle = colors2[i]
+      ctxOC.fillText(values[i], x+d/4, y+d*0.8)
+      i++
+      x += space * d
+    }
+    x = pad*1.5
+    y += space * d
+  }
+}
+
 
 function paintByNumbers () {
   let canvas = document.getElementById("myCanvas")
@@ -13284,7 +13340,6 @@ function paintByNumbers () {
   let size = d*0.75
   ctx.font = size+"pt " + face
   ctxOC.font = size+"pt " + face
-  
  // ctx.strokeStyle = "#000000"
   //ctx.lineWidth = 2+Math.floor(document.getElementById("featuresize").value/100)
   let x = pad*1.5, y = pad*1.5
@@ -13323,6 +13378,18 @@ function brightnessOf10 (ctx,x,y,d) {
   }
   let div = pixels.length/4
     return Math.floor(10*brightness/div/3)
+}
+
+function colorOf (ctx,x,y,d) {
+  d = Math.floor(d)
+  let imgData = ctx.getImageData(Math.floor(x),Math.floor(y),d,d)
+  let pixels = imgData.data;
+  let i = 0, color = 0
+    let R = ('0'+(Math.round(pixels[0])).toString(16)).slice(-2),
+      G = ('0'+(Math.round(pixels[1])).toString(16)).slice(-2),
+      B = ('0'+(Math.round(pixels[2])).toString(16)).slice(-2);
+    color = "#"+R+G+B
+  return color
 }
 
 function regMarks () {
