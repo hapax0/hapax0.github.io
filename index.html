@@ -2116,6 +2116,7 @@ function colorSamplePalette (canvas, SIMPLIFY) {
     ctx.putImageData(imgData, 0, 0);
   }
   extendedPalette = colors2
+  console.log(clrs.length, colors.length, colors2.length)
   return colors2
 }
 
@@ -9245,6 +9246,7 @@ function thisSpace () {
   ctx.stroke()
   ctx.globalAlpha = document.getElementById("opacity").value/100
 }
+
 function requirements () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -9366,7 +9368,6 @@ function numberShow () {
   ctx.fillText(text-1, -w*1.1+pet(50), pad*2+size+pet(50))
 
   ctx.setTransform(1, 0, 0, 1, 0, 0);
-    
   ctx.globalAlpha = document.getElementById("opacity").value/100
 }
 
@@ -9379,15 +9380,18 @@ function linedPad () {
   let W = canvas.width, H = canvas.height
   let pad = 30 + Math.floor(Math.random() * 12)
   let linespace = 34 + Math.floor(pet(16))
-  ctx.shadowColor = "#403030"
-  ctx.shadowBlur = 9 + Math.random() * 5
-  ctx.shadowOffsetY = 2 + Math.random() * 3
-  ctx.shadowOffsetX = -2 + Math.random() * 2
-  ctx.fillStyle = color
-  ctx.fillRect(pad,pad,W-pad*2, H-pad*2)
-  ctx.shadowBlur = 0
-  ctx.shadowOffsetY = 0
-  ctx.shadowOffsetX = 0
+ // ctx.shadowColor = "#403030"
+ // ctx.shadowBlur = 9 + Math.random() * 5
+ // ctx.shadowOffsetY = 2 + Math.random() * 3
+ // ctx.shadowOffsetX = -2 + Math.random() * 2
+  ctx.fillStyle = "#ffffff"//color
+  //ctx.fillRect(pad,pad,W-pad*2, H-pad*2)
+  wavyPaper()
+  //zoomImage(true)
+  dropFrame()
+ // ctx.shadowBlur = 0
+ // ctx.shadowOffsetY = 0
+ // ctx.shadowOffsetX = 0
   let colors = ["#ed6060", "#6060ba", "#6060ed", "#ed6060", "#000000"]
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.strokeStyle = "#6060ed"
@@ -13277,7 +13281,7 @@ function paintByNumbers2 () {
   let space = 1
   if (document.getElementById("grungy").checked)
     space = 2
-  let face = "AmericanTypewriter"
+  let face = "AmericanTypewriter-Bold"
   let text = ""
   let size = d*0.75
   ctx.font = size+"pt " + face
@@ -13335,7 +13339,7 @@ function paintByNumbers () {
   let space = 3
   if (document.getElementById("grungy").checked)
     space = 2
-  let face = "AmericanTypewriter"
+  let face = "AmericanTypewriter-Bold"
   let text = ""
   let size = d*0.75
   ctx.font = size+"pt " + face
