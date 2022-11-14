@@ -13398,15 +13398,21 @@ function colorOf (ctx,x,y,d) {
 function regMarks () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
+  let OC = document.getElementById("OC")
+  let ctxOC = OC.getContext("2d")
   let pad = 60
   let W = canvas.width
   let H = canvas.height
-  let d = (canvas.width-2*pad)/50
+  OC.width = W, OC.height = H
+  ctxOC.clearRect(0,0,W,H)
+  let div = Math.floor(document.getElementById("featuresize").value/5)
+  div = 8 + 100 - div
+  let d = (canvas.width-2*pad)/div
   let space = 3
   if (document.getElementById("grungy").checked)
-    space = 2
+    space = 1.5
   ctx.strokeStyle = "#000000"
-  ctx.lineWidth = 2+Math.floor(document.getElementById("featuresize").value/100)
+  ctx.lineWidth = 2//2+Math.floor(document.getElementById("featuresize").value/100)
   let x = pad*1.5, y = pad*1.5
   let values = []
   while (y < H - pad*1.5) {
@@ -13421,7 +13427,7 @@ function regMarks () {
   x = pad*1.5, y = pad*1.5
   while (y < H - pad*1.5) {
     while (x < W - pad*1.5) {
-      ctx.strokeStyle = values[i++]
+      ctx.strokeStyle = values[i]
       ctx.beginPath()
       ctx.moveTo(x+d/2, y)
       ctx.lineTo(x+d/2, y+d)
@@ -13430,6 +13436,17 @@ function regMarks () {
       ctx.moveTo(x,   y+d/2)
       ctx.lineTo(x+d, y+d/2)
       ctx.stroke()
+      
+      ctxOC.strokeStyle = values[i]
+      ctxOC.beginPath()
+      ctxOC.moveTo(x+d/2, y)
+      ctxOC.lineTo(x+d/2, y+d)
+      ctxOC.stroke()
+      ctxOC.beginPath()
+      ctxOC.moveTo(x,   y+d/2)
+      ctxOC.lineTo(x+d, y+d/2)
+      ctxOC.stroke()
+      i++
       x += space * d
     }
     x = pad*1.5
