@@ -13277,7 +13277,7 @@ function paintByNumbers2 () {
   let H = canvas.height
   OC.width = W, OC.height = H
   ctxOC.clearRect(0,0,W,H)
-  let d = (canvas.width)/50
+  let d = (canvas.width)/60
   let space = 1
   if (document.getElementById("grungy").checked)
     space = 2
@@ -13291,18 +13291,17 @@ function paintByNumbers2 () {
   //let colors = simplifyColors(),
   //console.log(colors)
   let colors2 = []
-  let colorkeys = [0,1,2,3,4,5,6,7,8,9,"A","B","C","D","E"]
+  let colorkeys = ["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"]
   let j = 0, vals = {}
   for (; j < colors.length; j++)
     vals[colors[j]] = colorkeys[j]
- // console.log(vals)
   let x = pad*1.5, y = pad*1.5
   let values = []
   while (y < H - pad*1.5) {
     while (x < W - pad*1.5) {
       let c = colorOf(ctx,x,y,d)
       colors2.push(c)
-      values.push(vals[c] || colorkeys[colors.length])
+      values.push(vals[c] || "x")//colorkeys[colors.length])
       x += space * d
     }
     x = pad*1.5
