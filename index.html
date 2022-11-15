@@ -10818,6 +10818,31 @@ function roundedRectFrame (x, y, w, h, r, ctx) {
  
 }
 
+
+function wavyPaperRounded (x, y, w, h, r) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let oc = document.createElement('CANVAS')
+  let ctxoc = oc.getContext("2d")
+  oc.width = canvas.width
+  oc.height = canvas.height
+  
+  roundedRect(x, y, w, h, r, ctxoc, false) // draw to off
+  
+  swapWithOff() // switch to OC
+  
+  wavyPaper()
+  adjustBrightness(8)
+  contrastImage(8)
+  ctxoc.globalCompositeOperation = "source-atop"
+  ctxoc.drawImage(canvas,0,0,oc.width,oc.height)
+  swapWithOff()
+  document.getElementById("mode").value = "source-over"
+  ctx.globalCompositeOperation = "source-over"
+  ctx.drawImage(oc,0,0,canvas.width,canvas.height)
+  //pasteFromOff()
+}
+
 function roundedRect (x, y, w, h, r, ctx, BF) {
   if (w < 2 * r) r = w / 2;
   if (h < 2 * r) r = h / 2;
@@ -10853,7 +10878,7 @@ function moleskine2 () { // 3D
   document.getElementById("paintcolor").value = "#fdffee"
   ctx.clearRect(0,0,W,H)
   ctx.shadowColor = '#404040';
-  let j = 0, x = 20, y = 20, d = 0, BF = true
+  let j = 0, x = 20, y = 20, d = 0, BF = true, PAPER = false
   for(;j < 5; j++) {
     BF = true
     if (j % 2 ===0)
@@ -10871,33 +10896,20 @@ function moleskine2 () { // 3D
     if (j === 4) {
       BF = false
       ctx.fillStyle = "#feffee"
-    }
-    
-    roundedRect(x+d, y, W-49-d, H-49, 14, ctx, BF)
+      wavyPaperRounded(x+d, y, W-49-d, H-49, 14)
+    } else
+      roundedRect(x+d, y, W-49-d, H-49, 14, ctx, BF)
     d += 7 + pet(3)
     ctx.shadowBlur = 0
     ctx.shadowOffsetX = 0;
     ctx.shadowOffsetY = 0;
   }
-
   rcc()
   let mode = document.getElementById("mode").value
   ctx.globalCompositeOperation = "source-atop"
   afold()
   ctx.globalCompositeOperation = mode
   rc()
- // document.getElementById("paintcolor").value = "#565555"
- // document.getElementById("opacity").value = 21
- // flipH()
-//  document.getElementById("paintcolor").value = "#565555"
- // edgeSmear(small)
-//  document.getElementById("paintcolor").value = "#fefeee"
-//  flipH()
- //ctx.fillRect(0,0,25,canvas.height)
-  //edgeSmear(small)
- // document.getElementById("opacity").value = 100
-//  document.getElementById("paintcolor").value = "#222228"
-  //roundedFrame()
   document.getElementById("opacity").value = alpha
   document.getElementById("paintcolor").value = color
 }
