@@ -10826,11 +10826,8 @@ function wavyPaperRounded (x, y, w, h, r) {
   let ctxoc = oc.getContext("2d")
   oc.width = canvas.width
   oc.height = canvas.height
-  
   roundedRect(x, y, w, h, r, ctxoc, false) // draw to off
-  
   swapWithOff() // switch to OC
-  
   wavyPaper()
   adjustBrightness(8)
   contrastImage(8)
@@ -10963,7 +10960,7 @@ function moleskine () { // grid paper
   edgeSmear(small)
   document.getElementById("opacity").value = 100
   document.getElementById("paintcolor").value = "#222228"
-  roundedFrame(12)
+  roundedFrame(8)
   document.getElementById("opacity").value = alpha
   document.getElementById("paintcolor").value = color
 }
