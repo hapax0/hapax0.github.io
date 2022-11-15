@@ -574,6 +574,7 @@
           <option value="datedue">date due</option>
           <option value="interdepartmental">interdepartmental</option>
           <option value="moleskine">moleskine</option>
+          <option value="moleskineDay">day planner</option>
           <option value="moleskine2" selected>moleskine 3D</option>
           <option value="sketchpad">sketch pad</option>
           <option value="floppyPage">stack of pages</option>
@@ -698,8 +699,8 @@ function printcanvas () {
 
 function wavyPaper () {
   if (document.getElementById("grungy").checked) {
-    wavyPaperAlt()
-    return
+;//wavyPaperAlt()
+  //  return
   }
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -10871,6 +10872,7 @@ function moleskine2 () { // 3D
       BF = false
       ctx.fillStyle = "#feffee"
     }
+    
     roundedRect(x+d, y, W-49-d, H-49, 14, ctx, BF)
     d += 7 + pet(3)
     ctx.shadowBlur = 0
@@ -10901,10 +10903,6 @@ function moleskine2 () { // 3D
 }
 
 function moleskine () { // grid paper
-  if (document.getElementById("grungy").checked) {
-    moleskinDay()
-    return
-  }
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
@@ -10913,8 +10911,10 @@ function moleskine () { // grid paper
   let small = true, half = true
   document.getElementById("paintcolor").value = "#fdffee"
   fill()
-
-  ctx.strokeStyle = "#ccccdc"
+  wavyPaper()
+  adjustBrightness(8)
+  contrastImage(8)
+  ctx.strokeStyle = "#bbbbd0"
   ctx.lineWidth = 1
   let i = 0, x = 27, y = 28
   while (y < canvas.height) {
@@ -10951,12 +10951,12 @@ function moleskine () { // grid paper
   edgeSmear(small)
   document.getElementById("opacity").value = 100
   document.getElementById("paintcolor").value = "#222228"
-  roundedFrame()
+  roundedFrame(12)
   document.getElementById("opacity").value = alpha
   document.getElementById("paintcolor").value = color
 }
 
-function moleskinDay () { // day planer
+function moleskineDay () { // day planer
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
@@ -10969,9 +10969,14 @@ function moleskinDay () { // day planer
   let days = ["DOMINGO", "SEGUNDA-FEIRA", "TERÇA-FEIRA", "QUARTA-FEIRA", "QUINTA-FEIRA", "SEXTA-FEIRA", "SÁBADO"]
   let week = "semana "
   document.getElementById("paintcolor").value = "#fdffee"
+  ctx.fillStyle = "#fdffee"
  // canvas.width = 1160
  // canvas.height = 900
-  fill()
+  fill(canvas,"#ffff00")
+  wavyPaper()
+  
+  adjustBrightness(8)
+  contrastImage(8)
   ctx.strokeStyle = "#ccccdc"
   ctx.lineWidth = 1
   let hour = 8
@@ -11053,7 +11058,7 @@ function moleskinDay () { // day planer
   edgeSmear(small)
   document.getElementById("opacity").value = 100
   document.getElementById("paintcolor").value = "#222228"
-  roundedFrame()
+  roundedFrame(8)
   document.getElementById("opacity").value = alpha
   document.getElementById("paintcolor").value = color
 }
@@ -12937,12 +12942,14 @@ function frame () {
   ctx.restore()
 }
 
-function roundedFrame () {
+function roundedFrame (n) {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let off = document.createElement('CANVAS')
   let ctxoff = off.getContext("2d");
   let D =  (5 + Math.floor(document.getElementById("featuresize").value/3))
+  if (n)
+    D = n
   let grunge = document.getElementById("grungy").checked
   let W = canvas.width
   let H = canvas.height
