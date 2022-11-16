@@ -10779,27 +10779,6 @@ function interdepartmental () { // ideal 8 X 10
   document.getElementById("opacity").value = alpha
   document.getElementById("paintcolor").value = color
 }
-/*
-function roundedRect (x,y,W,H) {
-  x = 0, y = 0, W = 1080 , H = 1080
-  let radius = 18, h = 20
- let r = W -60
- let  b = H-60
-  ctx.fillStyle = 'red'
-  ctx.beginPath();
-  ctx.lineWidth="4";
-  ctx.moveTo(x+radius, y);
-  ctx.lineTo(r-radius, y);
-  ctx.quadraticCurveTo(r, y, r, y+radius);
-  ctx.lineTo(r, y+h-radius);
-  ctx.quadraticCurveTo(r, b, r-radius, b);
-  ctx.lineTo(x+radius, b);
-  ctx.quadraticCurveTo(x, b, x, b-radius);
-  ctx.lineTo(x, y+radius);
-  ctx.quadraticCurveTo(x, y, x+radius, y);
-  ctx.closePath()
-  ctx.fill()
-}*/
 
 function roundedRectFrame (x, y, w, h, r, ctx) {
   if (w < 2 * r) r = w / 2;
@@ -10823,9 +10802,13 @@ function wavyPaperRounded (x, y, w, h, r) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let oc = document.createElement('CANVAS')
+  let ob = document.getElementById("OC")
   let ctxoc = oc.getContext("2d")
   oc.width = canvas.width
   oc.height = canvas.height
+  ob.width = canvas.width
+  ob.height = canvas.height
+  console.log(oc.width,oc.height)
   roundedRect(x, y, w, h, r, ctxoc, false) // draw to off
   swapWithOff() // switch to OC
   wavyPaper()
@@ -10864,7 +10847,7 @@ function roundedRect (x, y, w, h, r, ctx, BF) {
 }
 
 
-function moleskine2 () { // 3D
+function moleskine2 (options) { // 3D
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
@@ -10901,6 +10884,40 @@ function moleskine2 () { // 3D
     ctx.shadowOffsetX = 0;
     ctx.shadowOffsetY = 0;
   }
+  // grid
+  if (options && options === 1) {
+    ctx.strokeStyle = "#bbbbd0"
+    ctx.lineWidth = 1
+    let i = 0
+    x = x+d, y = 28
+    while (y < canvas.height-47) {
+      ctx.beginPath()
+      ctx.moveTo(x, y)
+      ctx.lineTo(canvas.width-32, y)
+      ctx.closePath()
+      ctx.stroke()
+      y += 20
+    }
+    i = 0,
+    y = 22, x = 58
+    while (x < canvas.width-d) {
+      ctx.beginPath()
+      ctx.moveTo(x, y)
+      ctx.lineTo(x, canvas.height-34)
+      ctx.closePath()
+      ctx.stroke()
+      x += 20
+      if (x > canvas.width/2 && half) {
+        half = false
+        x -= 4
+      }
+    }
+  }
+  
+  if (options && options === 2) {
+    moleDates()
+  }
+  
   rcc()
   let mode = document.getElementById("mode").value
   ctx.globalCompositeOperation = "source-atop"
@@ -10911,7 +10928,98 @@ function moleskine2 () { // 3D
   document.getElementById("paintcolor").value = color
 }
 
-function moleskine () { // grid paper
+
+function moleskine () {
+  moleskine2(1)
+}
+
+function moleskineDay () {
+  moleskine2(2)
+}
+
+function moleDates () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
+  let alpha = document.getElementById("opacity").value
+  let color = document.getElementById("paintcolor").value
+  let small = true, half = true
+  ctx.strokeStyle = "#ccccdc"
+  ctx.lineWidth = 1
+  let hour = 8
+  let monthsFR = [ "janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"]
+  let months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
+  let daysFR = ["DIMANCHE", "LUNDI", "MARDI","MERCREDI","JEUDI","VENDREDI","SAMEDI"]
+  let days = ["DOMINGO", "SEGUNDA-FEIRA", "TERÇA-FEIRA", "QUARTA-FEIRA", "QUINTA-FEIRA", "SEXTA-FEIRA", "SÁBADO"]
+  let week = "semana "
+  ctx.font = 12+"px serif"
+  ctx.fillStyle = document.getElementById("paintcolor").value = "#666666"
+  let voff = randomPick([1,2,-1,-2])
+  let lasty = 0
+  let linespace = Math.floor((canvas.height - 220)/22)
+  let i = 0, x = 60, y = 144, last = 0
+  while (i < 22) {
+    ctx.beginPath()
+    ctx.moveTo(x, y)
+    ctx.lineTo(canvas.width/2, y)
+    ctx.closePath()
+    ctx.stroke()
+    if (hour < 23) {
+      ctx.fillText(hour, 76, y+linespace-5)
+      ctx.fillText(hour, canvas.width/2+44, y+linespace-5+voff)
+      last = y
+    }
+    y += linespace
+    hour += 1
+    i++
+  }
+  lasty = y - linespace
+  i = 0, x = canvas.width/2, y = 144 + voff
+  while (i < 22) {
+    ctx.beginPath()
+    ctx.moveTo(x, y)
+    ctx.lineTo(canvas.width-32, y)
+    ctx.closePath()
+    ctx.stroke()
+    y += linespace
+    i++
+  }
+  ctx.font = "12px serif monospace"
+  ctx.globalCompositeOperation ="luminosity"
+  ctx.fillText("\u{26C5}", 76, lasty-linespace-5)
+  ctx.fillText("\u{1F321}", 76, lasty-5)
+  ctx.fillText("\u{26C5}", canvas.width/2+44, lasty-linespace-5+voff)
+  ctx.fillText("\u{1F321}", canvas.width/2+44, lasty-5+voff)
+  ctx.globalCompositeOperation = "source-over"
+  const today = new Date()
+  const tomorrow = new Date(today)
+  tomorrow.setDate(tomorrow.getDate() + 1)
+  ctx.fillText(week+today.getWeek(), canvas.width - 88, lasty-5+voff)// FR: "la semaine"
+  let size = 20//document.getElementById("featuresize").value/6.25
+  if (Math.random() > 0.5) {
+    months = monthsFR
+    days = daysFR
+    week = "la semaine "
+  }
+  ctx.font = size+"px serif"
+  ctx.fillStyle = document.getElementById("paintcolor").value = "#666666"
+  x = 78, y = 70
+  ctx.fillText(days[today.getDay()], x, y)
+  ctx.font = 14+"px serif"
+  ctx.fillText(months[today.getMonth()], x, y+26)
+  ctx.font = 22+"px serif"
+  ctx.fillText(today.getDate(), x, y+56)
+  ctx.textAlign = 'right';
+  x = canvas.width-40, y = 70
+  ctx.font = size+"px serif"
+  ctx.fillText(days[tomorrow.getDay()], x, y)
+  ctx.font = 14+"px serif"
+  ctx.fillText(months[tomorrow.getMonth()], x, y+26)
+  ctx.font = 22+"px serif"
+  ctx.fillText(tomorrow.getDate(), x, y+56)
+}
+
+function moleskine_OG () { // grid paper
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
@@ -10965,7 +11073,7 @@ function moleskine () { // grid paper
   document.getElementById("paintcolor").value = color
 }
 
-function moleskineDay () { // day planer
+function moleskineDay_OG () { // day planer
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
