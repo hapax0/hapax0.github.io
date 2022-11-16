@@ -10994,7 +10994,7 @@ function moleDates () {
   const today = new Date()
   const tomorrow = new Date(today)
   tomorrow.setDate(tomorrow.getDate() + 1)
-  ctx.fillText(week+today.getWeek(), canvas.width - 88, lasty-5+voff)// FR: "la semaine"
+  ctx.fillText(week+today.getWeek(), canvas.width - 108, lasty-5+voff)// FR: "la semaine"
   let size = 20//document.getElementById("featuresize").value/6.25
   if (Math.random() > 0.5) {
     months = monthsFR
@@ -11010,7 +11010,7 @@ function moleDates () {
   ctx.font = 22+"px serif"
   ctx.fillText(today.getDate(), x, y+56)
   ctx.textAlign = 'right';
-  x = canvas.width-40, y = 70
+  x = canvas.width-60, y = 70
   ctx.font = size+"px serif"
   ctx.fillText(days[tomorrow.getDay()], x, y)
   ctx.font = 14+"px serif"
