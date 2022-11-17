@@ -311,13 +311,14 @@
           <a id="palettedownloader" onclick="savePaletteAs()" download="image.png" title="save palette as png file"
           ><button>&darr;</button></a>
          </div></td></tr>
-  </div>
+  <!--/div>
     </td>
-  </tr>
+  </tr-->
   <tr><td style="text-align:right;">canvas size </td><td>
       <select id="canvassizes" onchange="resizeCanvas()">
         <option value="square">square</option>
         <option value="portrait" >portrait</option>
+        <option value="1:0.75" >1:0.75</option>
         <option value="landscape">landscape</option>
       </select> &nbsp;<span id="redspan" style="color:red;">cut </span><input type="number" step="1" id="rednumber" style="color:red;" onchange="pushMarker()">
       <!--input type="range" id="canvas_size" class="range" min="1" max="5" value="5" onchange="resizeCanvas()"-->
@@ -18593,6 +18594,10 @@ function resizeCanvas () {
   if (selection == "landscape") {
     canvas.width = 1080
     canvas.height = 608
+  } else
+  if (selection == "1:0.75") {
+    canvas.width = 2224
+    canvas.height = 1667
   }
   syncBackground(canvas)
   document.getElementById("canvaswidth").value = canvas.width
