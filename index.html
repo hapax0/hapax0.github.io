@@ -10858,7 +10858,7 @@ function moleskine2 (options) { // 3D
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
   let alpha = document.getElementById("opacity").value
   let color = document.getElementById("paintcolor").value
-  let small = true, half = true, scale = canvas.width/1080
+  let small = true, half = true, scale = canvas.height/1080
   let W = canvas.width, H = canvas.height
   document.getElementById("paintcolor").value = "#fdffee"
   ctx.clearRect(0,0,W,H)
@@ -10963,7 +10963,7 @@ function moleDates () {
   let voff = randomPick([1,2,-1,-2])
   let lasty = 0
   let linespace = Math.floor((canvas.height - 220*scale)/22)
-  let i = 0, x = 60, y = 144*scale, last = 0
+  let i = 0, x = 60*scale, y = 144*scale, last = 0
   while (i < 22) {
     ctx.beginPath()
     ctx.moveTo(x, y)
@@ -10971,7 +10971,7 @@ function moleDates () {
     ctx.closePath()
     ctx.stroke()
     if (hour < 23) {
-      ctx.fillText(hour, 76, y+linespace-5)
+      ctx.fillText(hour, 76*scale, y+linespace-5)
       ctx.fillText(hour, canvas.width/2+44, y+linespace-5+voff)
       last = y
     }
@@ -10993,8 +10993,8 @@ function moleDates () {
   
   ctx.font = 12*scale+"px serif monospace"
   ctx.globalCompositeOperation ="luminosity"
-  ctx.fillText("\u{26C5}", 76, lasty-linespace-5)
-  ctx.fillText("\u{1F321}", 76, lasty-5)
+  ctx.fillText("\u{26C5}", 76*scale, lasty-linespace-5)
+  ctx.fillText("\u{1F321}", 76*scale, lasty-5)
   ctx.fillText("\u{26C5}", canvas.width/2+44, lasty-linespace-5+voff)
   ctx.fillText("\u{1F321}", canvas.width/2+44, lasty-5+voff)
   ctx.globalCompositeOperation = "source-over"
@@ -11012,7 +11012,7 @@ function moleDates () {
   }
   ctx.font = size+"px serif"
   ctx.fillStyle = document.getElementById("paintcolor").value = "#666666"
-  x = 78, y = 70*scale
+  x = 78*scale, y = 70*scale
   ctx.fillText(days[today.getDay()], x, y)
   ctx.font = 14*scale+"px serif"
   ctx.fillText(months[today.getMonth()], x, y+26*scale)
