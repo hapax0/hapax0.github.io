@@ -3354,7 +3354,7 @@ function mosaic () { // 4 sided
 }
 
 
-function pointillism2 () { // five sided
+function pointillism2 () { // multi sided
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let off = document.createElement('CANVAS')
@@ -3423,24 +3423,20 @@ function pointillism2 () { // five sided
     let y1 = y+h/2+pet(D)
     radius = r0 + Math.random()*D
     angle = Math.random() * 2 * Math.PI
-    //offctx.moveTo (x1, y1)
     // draw blobs here
-
-    let maxradius = 1 + radius/2 * Math.random();
+    let maxradius = 2 + radius*0.3;
+   
     let np = 5 + Math.floor(Math.random()*19)
     let increase = Math.PI * 2/np*0.98;
     let rc = radius
-    if (j < 10)
-      console.log(np,radius, increase)
     for (; k < np; k++) {
-      rc = rc + pet(maxradius)
+      rc = radius + pet(maxradius)
       x = x1 + rc * Math.cos(angle);
       y = y1 + rc * Math.sin(angle);
       offctx.lineTo(x, y)
-      //offctx.arc(x1, y1, radius+Math.random()*D/2, angle, inc)
       angle += increase
+      
     }
-    //offctx.arc(x+w/2+pet(D), y+h/2+pet(D), radius+Math.random()*D/2, 0, Math.PI*2)
     offctx.closePath()
     offctx.fill()
   }
