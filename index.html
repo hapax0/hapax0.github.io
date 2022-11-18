@@ -3369,7 +3369,8 @@ function pointillism2 () { // multi sided
   // set above as in rectify
   let W = 2 + Math.floor(document.getElementById("featuresize").value/2)
   //invert range of W [2- 102] => [102 - 2]
-  W = 251 - W + 2
+  W = 252 - W + 8
+  console.log(W)
   let wdivs = W
   let cw = canvas.width
   let ch = canvas.height
@@ -3426,9 +3427,9 @@ function pointillism2 () { // multi sided
     radius = r0 + Math.random()*D
     angle = Math.random() * 2 * Math.PI
     // draw blobs here
-    let maxradius = 2 + radius*0.3;
+    let maxradius = 2 + radius*0.5;
    
-    let np = 5 + Math.floor(Math.random()*19)
+    let np = 5 + Math.floor(Math.random()*7)
     let increase = Math.PI * 2/np*0.98;
     let rc = radius
     for (; k < np; k++) {
