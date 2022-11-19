@@ -418,6 +418,7 @@
       <option value="yellowedEdges">yellowed edge</option>
       <option value="lightenEdges">lighten edge</option>
       <option value="darkenEdges">darken edge</option>
+      <option value="infrared">infrared</option>
       <option value="tint">tint</option>
       <option value="lightleak">light leak</option>
       <option value="multileak">multi leak</option>
@@ -2119,7 +2120,6 @@ function colorSamplePalette (canvas, SIMPLIFY) {
     ctx.putImageData(imgData, 0, 0);
   }
   extendedPalette = colors2
-  console.log(clrs.length, colors.length, colors2.length)
   return colors2
 }
 
@@ -3370,7 +3370,6 @@ function pointillism2 () { // multi sided
   let W = 2 + Math.floor(document.getElementById("featuresize").value/2)
   //invert range of W [2- 102] => [102 - 2]
   W = 252 - W + 8
-  console.log(W)
   let wdivs = W
   let cw = canvas.width
   let ch = canvas.height
@@ -3440,6 +3439,77 @@ function pointillism2 () { // multi sided
       angle += increase
       
     }
+    offctx.closePath()
+    offctx.fill()
+  }
+  if (grunge)
+    ctx.clearRect(0,0,canvas.width,canvas.height)
+  ctx.drawImage(off, 0, 0)
+}
+
+function pointillismE () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let off = document.createElement('CANVAS')
+  off.width = canvas.width
+  off.height = canvas.height
+  let offctx = off.getContext("2d")
+  offctx.fillStyle = document.getElementById("paintcolor").value
+  let grunge = document.getElementById("grungy").checked
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  // set above as in rectify
+  let W = 2 + Math.floor(document.getElementById("featuresize").value/2)
+  //invert range of W [2- 102] => [102 - 2]
+  W = 251 - W + 2
+  let wdivs = W
+  let cw = canvas.width
+  let ch = canvas.height
+  let w = cw/wdivs
+  let hdivs = Math.round(wdivs * ch/cw)
+  let h = ch/hdivs
+  let i = 0, x = 0, y = 0
+  let numsquares = (1+wdivs) * (1+hdivs)
+  let radius = w/4, j = 0
+  let lightness = 0, linecount = 0
+  let r = 0, g = 0, b = 0
+  let D = radius * 5
+  // outer loop
+  let points = []
+  for (;j < numsquares; j++) {
+    points[j] = [x, y]
+    x += w
+    if (x >= (wdivs)*w) {
+      linecount++
+      x = 0
+      y += h
+    }
+  }
+  points = shuffle(points)
+  j = 0
+  let rot =  Math.random()*6.18, r1 = radius+Math.random()*D*2, r2 = r1/1.7//radius+Math.random()*D
+  for (;j < points.length; j++) {
+    x = points[j][0]
+    y = points[j][1]
+    let imgData = ctx.getImageData(x, y, w, h)
+    let threshold = 127 - document.getElementById("opacity").value * 1.27
+    let pixels = imgData.data
+    let i = 0, r = 0, g = 0, b = 0
+    for (; i < pixels.length; i += 4) {
+      r += parseInt(pixels[i])
+      g += parseInt(pixels[i+1])
+      b += parseInt(pixels[i+2])
+    }
+    r /= pixels.length/4
+    g /= pixels.length/4
+    b /= pixels.length/4
+    let R = ('0'+(Math.round(r)).toString(16)).slice(-2),
+      G = ('0'+(Math.round(g)).toString(16)).slice(-2),
+      B = ('0'+(Math.round(b)).toString(16)).slice(-2);
+    offctx.fillStyle = "#"+R+G+B
+    //radius = w/2
+    offctx.beginPath()
+   // offctx.arc(x+w/2+pet(D), y+h/2+pet(D), radius+Math.random()*D/2, 0, Math.PI*2)
+    ellipse1 (offctx, x+w/2+pet(D), y+h/2+pet(D), r1, r2+pet(h/2), rot+pet(0.9))
     offctx.closePath()
     offctx.fill()
   }
@@ -17829,6 +17899,41 @@ function drawPath (points, offsetX, offsetY, c) {
   }
   ctx.closePath();
   ctx.fill();
+}
+
+function infrared () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let cx = ctx.canvas.width/2
+  let cy = ctx.canvas.height/2
+  let w = canvas.width, h = canvas.height
+  let maxdist = 101 + Math.random() * w/2
+  maxdist = Math.pow(Math.pow(cx, 2) + Math.pow(cy, 2), 0.5)
+  let lh = rangecheck()
+  let lowest = lh[0], highest = lh[1]
+  let d = 1000
+  let data = ctx.getImageData(0,0,canvas.width,canvas.height)
+  let i = 0, x = 0, y = 0
+  let len = w * h
+  for (;i < len; i++) {
+    x = i % w
+    if (x === 0)
+      y += 1
+    d = Math.random() * w
+    let px = data.data.slice(i*4, i*4+4)
+    brightness = (px[0]+px[1]+px[2])/(255*3)
+    if (px[1] > (px[0] + px[2])/2.5) {
+      px[1] *= 1.5
+      px[0] += px[1]*0.9
+      px[2] += px[1]*0.9
+      
+     // px[1] *= 0.9
+    //  px[0] *= 0.8
+    //  px[2] *= 0.8
+      data.data.set(px, i*4)
+    }
+  }
+  ctx.putImageData(data, 0, 0);
 }
 
 function fade () {
