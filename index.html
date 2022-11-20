@@ -17919,7 +17919,7 @@ function infrared () {
     x = i % w
     if (x === 0)
       y += 1
-    d = Math.random() * w
+    //d = Math.random() * w
     let px = data.data.slice(i*4, i*4+4)
    // brightness = (px[0]+px[1]+px[2])/(255*3)
    // if (px[1] > (px[0] + px[2])/2.5) {
@@ -17927,10 +17927,11 @@ function infrared () {
       px[1] *= 1.2
       px[0] += px[1]*0.7
       px[2] += px[1]*0.7
-      
-     // px[1] *= 0.9
-    //  px[0] *= 0.8
-    //  px[2] *= 0.8
+      data.data.set(px, i*4)
+    } else {
+      px[1] *= 0.9
+      px[0] *= 0.8
+      px[2] *= 0.8
       data.data.set(px, i*4)
     }
   }
