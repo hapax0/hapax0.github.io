@@ -10923,7 +10923,6 @@ function roundedRect (x, y, w, h, r, ctx, BF) {
   ctx.restore()
 }
 
-
 function moleskine2 (options) { // 3D
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -10936,6 +10935,7 @@ function moleskine2 (options) { // 3D
   ctx.clearRect(0,0,W,H)
   ctx.shadowColor = '#404040';
   let j = 0, x = 20, y = 20, d = 0, BF = true, PAPER = false
+  let ld = 0
   for(;j < 5; j++) {
     BF = true
     if (j % 2 ===0)
@@ -10952,9 +10952,9 @@ function moleskine2 (options) { // 3D
     if (j === 4) {
       BF = false
       ctx.fillStyle = "#feffee"
-      wavyPaperRounded(x+d, y, W-49-d, H-49, 14)
+      wavyPaperRounded(x+d, y, W-49-d*2, H-49, 14)
     } else
-      roundedRect(x+d, y, W-49-d, H-49, 14, ctx, BF)
+      roundedRect(x+d, y, W-49-d*2, H-49, 14, ctx, BF)
     d += 9*scale + pet(3*scale)
     ctx.shadowBlur = 0
     ctx.shadowOffsetX = 0;
@@ -10969,14 +10969,14 @@ function moleskine2 (options) { // 3D
     while (y < canvas.height-47) {
       ctx.beginPath()
       ctx.moveTo(x, y)
-      ctx.lineTo(canvas.width-32, y)
+      ctx.lineTo(canvas.width-26-d, y)
       ctx.closePath()
       ctx.stroke()
       y += 20*scale
     }
     i = 0,
     y = 22, x = 62*scale
-    while (x < W-40) {
+    while (x < W-34-d) {
       ctx.beginPath()
       ctx.moveTo(x, y)
       ctx.lineTo(x, canvas.height-34)
@@ -10985,15 +10985,13 @@ function moleskine2 (options) { // 3D
       x += 20*scale
       if (x > canvas.width/2 && half) {
         half = false
-        x -= 4
+        x -= 6
       }
     }
   }
-  
   if (options && options === 2) {
-    moleDates()
+    moleDates(d)
   }
-  
   rcc()
   let mode = document.getElementById("mode").value
   ctx.globalCompositeOperation = "source-atop"
@@ -11013,7 +11011,7 @@ function moleskineDay () {
   moleskine2(2)
 }
 
-function moleDates () {
+function moleDates (d) {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
@@ -11055,7 +11053,7 @@ function moleDates () {
   while (i < 22) {
     ctx.beginPath()
     ctx.moveTo(x, y)
-    ctx.lineTo(canvas.width-32, y)
+    ctx.lineTo(canvas.width-28-d, y)
     ctx.closePath()
     ctx.stroke()
     y += linespace
@@ -11073,7 +11071,7 @@ function moleDates () {
   const tomorrow = new Date(today)
   tomorrow.setDate(tomorrow.getDate() + 1)
   
-  ctx.fillText(week+today.getWeek(), canvas.width - 108*scale, lasty-5+voff)// FR: "la semaine"
+  ctx.fillText(week+today.getWeek(), canvas.width - 108-d*scale, lasty-5+voff)// FR: "la semaine"
   
   let size = 20*scale//document.getElementById("featuresize").value/6.25
   if (Math.random() > 0.5) {
@@ -11089,8 +11087,9 @@ function moleDates () {
   ctx.fillText(months[today.getMonth()], x, y+26*scale)
   ctx.font = 22*scale+"px serif"
   ctx.fillText(today.getDate(), x, y+56*scale)
+  
   ctx.textAlign = 'right';
-  x = canvas.width-60*scale, y = 70*scale
+  x = canvas.width-52-d*scale, y = 70*scale
   ctx.font = size+"px serif"
   ctx.fillText(days[tomorrow.getDay()], x, y)
   ctx.font = 14*scale+"px serif"
@@ -13309,6 +13308,66 @@ function bwash (x, y, w) {
   }
   ctx.restore()
 }
+
+function paintByDots () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let OC = document.getElementById("OC")
+  let ctxOC = OC.getContext("2d")
+  let pad = 0
+  let W = canvas.width
+  let H = canvas.height
+  OC.width = W, OC.height = H
+  ctxOC.clearRect(0,0,W,H)
+  let d = (canvas.width)/60
+  let space = 1
+  if (document.getElementById("grungy").checked)
+    space = 2
+  let face = "AmericanTypewriter-Bold"
+  let text = ""
+  let size = d*0.75
+  ctx.font = size+"pt " + face
+  ctxOC.font = size+"pt " + face
+  let colors = extractPalette()
+  tintByCloseness()
+  //let colors = simplifyColors(),
+  //console.log(colors)
+  let colors2 = []
+  let colorkeys = ["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"]
+  let j = 0, vals = {}
+  for (; j < colors.length; j++)
+    vals[colors[j]] = colorkeys[j]
+  let x = pad*1.5, y = pad*1.5
+  let values = []
+  while (y < H - pad*1.5) {
+    while (x < W - pad*1.5) {
+      let c = colorOf(ctx,x,y,d)
+      colors2.push(c)
+      values.push(vals[c] || "x")//colorkeys[colors.length])
+      x += space * d
+    }
+    x = pad*1.5
+    y += space * d
+  }
+  let i = 0
+  x = pad*1.5, y = pad*1.5
+  while (y < H - pad*1.5) {
+    while (x < W - pad*1.5) {
+      if (Math.random() > 0.994) {
+        ctxOC.fillStyle = colors2[i]
+        ctxOC.beginPath()
+        ctxOC.arc(x+d/4, y+d*0.8, 34,0,Math.PI*2)
+        ctxOC.closePath()
+      ctxOC.fill()
+      }
+      i++
+      x += space * d
+    }
+    x = pad*1.5
+    y += space * d
+  }
+}
+
 
 function paintByNumbers2 () {
   let canvas = document.getElementById("myCanvas")
