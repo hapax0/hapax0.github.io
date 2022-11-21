@@ -536,6 +536,7 @@
       <option value="paintByNumbers">mono by numbers</option>
       <option value="paintByNumbers2" selected>color by numbers</option>
       <option value="tv">tv</option>
+      <option value="hand">hand</option>
       <option value="room">room</option>
       <option value="envelope">envelope</option>
       <option value="neckerline">necker</option>
@@ -7194,6 +7195,70 @@ function room () {
   document.getElementById("opacity").value = alpha
 }
 
+function hand () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let colors = shuffle(getCurrentPalette())//['red', 'blue', 'yellow', 'orange', 'purple', "green"])
+  let mode = document.getElementById("mode").value
+  let alpha = document.getElementById("opacity").value
+  let cx = canvas.width/2, cy = canvas.height/2, x = 0, y = 0
+  let a = Math.random() * 2 * Math.PI
+  let H = canvas.height, W = canvas.width
+  let pad = 40
+  ctx.strokeStyle = (colors[0])
+  ctx.lineCap = "round"
+  ctx.lineJoin = "round"
+  ctx.fillStyle = (colors[0])
+  ctx.beginPath()
+  x = W - pad - ctx.lineWidth*1.5, y = H-pad
+  let r = H*0.25, xo = r/10
+  ctx.beginPath()
+  ctx.arc(W/2, W*0.65, r, 0, Math.PI)
+  ctx.lineTo(W/2 - r, H/2)
+  x = W/2-r+xo*2
+  y = H/2
+  ctx.arc(x, y, xo*2, Math.PI, Math.PI*2) // thumb
+  x += xo*2
+  y = H/2 + H/8
+  ctx.lineTo(x, y)
+  y = H/4
+  ctx.lineTo(x, y)
+  x += xo*2
+  ctx.arc(x, y, xo*2, Math.PI, Math.PI*2) // index
+  
+  x += xo*2
+  y = H/2
+  ctx.lineTo(x, y)
+  y =H/5
+  ctx.lineTo(x, y)
+  x += xo*2
+  ctx.arc(x, y, xo*2, Math.PI, Math.PI*2) // middle
+
+  x += xo*2
+  y = H/2
+  ctx.lineTo(x, y)
+  y =H/4
+  ctx.lineTo(x, y)
+  x += xo*2
+  ctx.arc(x, y, xo*2, Math.PI, Math.PI*2) // ring
+  
+  x += xo*2
+  y = H/2 + H/20
+  ctx.lineTo(x, y)
+  y =H/2.8
+  ctx.lineTo(x, y)
+  x += xo*2
+  ctx.arc(x, y, xo*2, Math.PI, Math.PI*2) // pinkey
+  x += xo*2
+  y = H/2 +H/6.1
+  ctx.lineTo(x, y)
+  
+  ctx.stroke()
+  document.getElementById("mode").value = mode
+  document.getElementById("opacity").value = alpha
+}
 
 function tv () {
   let canvas = document.getElementById("myCanvas");
