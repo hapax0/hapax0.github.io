@@ -1623,14 +1623,13 @@ function blobFill (fs) {
   let size = document.getElementById("featuresize").value
   let color = document.getElementById("paintcolor").value
   let mode = ctx.globalCompositeOperation
-
-  document.getElementById("number").value = 2000
-  document.getElementById("featuresize").value = 250
+  document.getElementById("number").value = 800
+  document.getElementById("featuresize").value = 500
   document.getElementById("opacity").value = 100//15 + Math.random() + 75
-  randomPickColor()
   document.getElementById("paintcolor").value = randomColorVLight()
   fill()
- 
+  ctx.fillStyle = randomColorVLight()
+  ctx.fillRect(canvas.width/2, 0, canvas.width, canvas.height)
   let i = 0
   for (; i < 2; i++) {
     randomPickColor() // randomLight
@@ -10914,9 +10913,7 @@ function roundedRect (x, y, w, h, r, ctx, BF) {
   ctx.moveTo(x+r, y);
   ctx.arcTo(x+w, y,   x+w, y+h, r); // across to right
   ctx.arcTo(x+w, y+h, x,   y+h, r);
-  //x += pet(6)
   ctx.arcTo(x,   y+h, x,   y,   r);
- // x += pet(6)
   ctx.arcTo(x,   y,   x+w, y,   r);
   ctx.closePath();
   ctx.fill()
