@@ -537,6 +537,7 @@
       <option value="paintByNumbers2" selected>color by numbers</option>
       <option value="tv">tv</option>
       <option value="hand">hand</option>
+      <option value="heart">heart</option>
       <option value="room">room</option>
       <option value="envelope">envelope</option>
       <option value="neckerline">necker</option>
@@ -7195,6 +7196,49 @@ function room () {
   document.getElementById("opacity").value = alpha
 }
 
+function heart () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let colors = shuffle(getCurrentPalette())//['red', 'blue', 'yellow', 'orange', 'purple', "green"])
+  let mode = document.getElementById("mode").value
+  let alpha = document.getElementById("opacity").value
+  let cx = canvas.width/2, cy = canvas.height/2, x = 0, y = 0
+  let a = Math.random() * 2 * Math.PI
+  let H = canvas.height, W = canvas.width
+  let pad = 80, cpx = 0, cpy = 0
+  ctx.strokeStyle = (colors[0])
+  ctx.lineCap = "round"
+  ctx.lineJoin = "round"
+  ctx.fillStyle = (colors[0])
+  ctx.beginPath()
+  x = W - pad - ctx.lineWidth*1.5, y = H-pad
+  let r = W/4-pad, xo = r
+  ctx.beginPath()
+  ctx.moveTo(W/2, H-pad*2)
+  cpx = pad*2
+  cpy = H*.57
+  ctx.quadraticCurveTo(cpx,cpy,pad*2, H/3)
+  x = W/4+pad
+  y = H/3
+  ctx.arc(x, y, r, Math.PI, Math.PI*2) // thumb
+  x += r*2
+  ctx.arc(x, y, r, Math.PI, Math.PI*2) // thumb
+  cpx = W - pad*2
+  cpy = H*.57
+  ctx.quadraticCurveTo(cpx,cpy,W/2, H-pad*2)
+  
+  if (document.getElementById("grungy").checked) {
+    ctx.closePath()
+    ctx.fill()
+  } else
+    ctx.stroke()
+  document.getElementById("mode").value = mode
+  document.getElementById("opacity").value = alpha
+}
+
+
 function hand () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -7254,8 +7298,11 @@ function hand () {
   x += xo*2
   y = H/2 +H/6.1
   ctx.lineTo(x, y)
-  
-  ctx.stroke()
+  if (document.getElementById("grungy").checked) {
+    ctx.closePath()
+    ctx.fill()
+  } else
+    ctx.stroke()
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
 }
