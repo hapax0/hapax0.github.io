@@ -8062,24 +8062,27 @@ function user () {
   // fill
   ctx.lineJoin = "round"
   ctx.strokeStyle = (colors[0])
+  ctx.fillStyle = (colors[0])
   height = cy+pet(cy*1.2)
-  let r = hip/6
+  let r = hip/6, bottompad = 50
   let savedr = r
   y = H - hip/4
   savedy = y
   //left shoulder
   ctx.beginPath()
-  ctx.moveTo(hip/8, H)
+  ctx.moveTo(hip/8, H-bottompad)
   ctx.ellipse(hip/8+r, y, r, r, 0, Math.PI, 1.5 * Math.PI)
-  ctx.stroke()
   //left neck
-  ctx.beginPath()
   ctx.ellipse(hip/8+2*r/2, y-r*2, r, r, 0, Math.PI/2, 0, true)
   ctx.ellipse(hip/8+2*r/2+r*2, r*2.6 +Math.floor(Math.random()*40), r, r, 0, Math.PI, Math.PI*2)
   ctx.ellipse(hip/8+2*r/2 + r*4, y-r*2, r, r, 0, Math.PI, Math.PI/2, true)
   ctx.ellipse(hip/8+2*r/2 + r*4, y, r, r, 0, Math.PI * 1.5, 0)
-  ctx.lineTo(hip/8+2*r/2 + r*5, H)
-  ctx.stroke()
+  ctx.lineTo(hip/8+2*r/2 + r*5, H-bottompad)
+  if (document.getElementById("grungy").checked) {
+    ctx.closePath()
+    ctx.fill()
+  } else
+    ctx.stroke()
 }
 
 function blocksX () {
