@@ -538,6 +538,8 @@
       <option value="tv">tv</option>
       <option value="hand">hand</option>
       <option value="heart">heart</option>
+      <option value="talk">talk</option>
+      <option value="thought">thought</option>
       <option value="room">room</option>
       <option value="envelope">envelope</option>
       <option value="neckerline">necker</option>
@@ -7195,6 +7197,86 @@ function room () {
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
 }
+
+
+function thought () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let colors = shuffle(getCurrentPalette())//['red', 'blue', 'yellow', 'orange', 'purple', "green"])
+  let mode = document.getElementById("mode").value
+  let alpha = document.getElementById("opacity").value
+  let cx = canvas.width/2, cy = canvas.height/2, x = 0, y = 0
+  let a = Math.random() * 2 * Math.PI
+  let H = canvas.height, W = canvas.width
+  let pad = 80, cpx = 0, cpy = 0
+  ctx.strokeStyle = (colors[0])
+  ctx.lineCap = "round"
+  ctx.lineJoin = "round"
+  ctx.fillStyle = (colors[0])
+  x = W - pad - ctx.lineWidth*1.5, y = H-pad
+  let r = W/3, xo = r
+ // ctx.beginPath()
+  let alt = document.getElementById("grungy").checked
+  x = W/2
+  y = H/2-pad
+  ctx.beginPath()
+  ctx.arc(x, y, r, 0, Math.PI*2)
+  if (alt)
+    ctx.fill()
+  else
+    ctx.stroke()
+  ctx.beginPath()
+  ctx.arc(W/4 +r/15, H-pad*3, r/7, 0, Math.PI*2)
+  if (alt)
+    ctx.fill()
+  else
+    ctx.stroke()
+  ctx.beginPath()
+  ctx.arc(W/6, H-pad*2, r/12, 0, Math.PI*2)
+  if (alt)
+    ctx.fill()
+  else
+    ctx.stroke()
+  document.getElementById("mode").value = mode
+  document.getElementById("opacity").value = alpha
+}
+
+
+function talk () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let colors = shuffle(getCurrentPalette())//['red', 'blue', 'yellow', 'orange', 'purple', "green"])
+  let mode = document.getElementById("mode").value
+  let alpha = document.getElementById("opacity").value
+  let cx = canvas.width/2, cy = canvas.height/2, x = 0, y = 0
+  let a = Math.random() * 2 * Math.PI
+  let H = canvas.height, W = canvas.width
+  let pad = 80, cpx = 0, cpy = 0
+  ctx.strokeStyle = (colors[0])
+  ctx.lineCap = "round"
+  ctx.lineJoin = "round"
+  ctx.fillStyle = (colors[0])
+  x = W - pad - ctx.lineWidth*1.5, y = H-pad
+  let r = W/3, xo = r
+  ctx.beginPath()
+  x = W/2
+  y = H/2-pad
+  ctx.arc(x, y, r, Math.PI/2 + Math.PI/5, Math.PI/2 +Math.PI/10) // thumb
+  ctx.lineTo(W/5, H-pad*2)
+  ctx.closePath()
+
+  if (document.getElementById("grungy").checked) {
+    ctx.fill()
+  } else
+    ctx.stroke()
+  document.getElementById("mode").value = mode
+  document.getElementById("opacity").value = alpha
+}
+
 
 function heart () {
   let canvas = document.getElementById("myCanvas");
