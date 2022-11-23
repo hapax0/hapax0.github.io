@@ -413,7 +413,7 @@
       <select id="fadefunctions">
       <option value="retro">retro</option>
       <option value="pop">pop</option>
-      <option value="adjustExposure">enhance exposure</option>
+      <option value="enhanceExposure" selected>enhance exposure</option>
       <option value="haze">haze</option>
       <option value="yellowedEdges">yellowed edge</option>
       <option value="lightenEdges">lighten edge</option>
@@ -423,7 +423,7 @@
       <option value="lightleak">light leak</option>
       <option value="multileak">multi leak</option>
       <option value="sobel">sobel</option>
-      <option value="aura" selected>aura</option>
+      <option value="aura">aura</option>
       <option value="emboseCanvas">embose</option>
       <option value="blurAlpha">blur alpha</option>
       
@@ -705,10 +705,6 @@ function printcanvas () {
 }
 
 function wavyPaper () {
-  if (document.getElementById("grungy").checked) {
-    wavyPaperAlt()
-    return
-  }
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   ctx.shadowBlur = 0
@@ -741,11 +737,11 @@ function wavyPaper () {
   document.getElementById("number").value = n
   document.getElementById("featuresize").value = fs
   document.getElementById("opacity").value = alpha
-  ctx.globalAlpha = alpha/100
   emboseCanvas()
   zoomImage(false, d)
   shrinkBlur()
   document.getElementById("paintcolor").value = c
+  enhanceExposure()
 }
 
 function wavyPaperAlt () {
@@ -781,6 +777,7 @@ function wavyPaperAlt () {
   zoomImage(false, d)
   shrinkBlur()
   document.getElementById("paintcolor").value = c
+  enhanceExposure()
 }
 
 function adjustBrightnessC (col, amt) {
@@ -4754,8 +4751,8 @@ function dotblur (canvas, jaggy, dir) {
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let i = 0
   let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height)
-  if (grunge)
-    ctx.clearRect(0,0,canvas.width, canvas.height)
+ // if (grunge)
+  //  ctx.clearRect(0,0,canvas.width, canvas.height)
   for (; i < 3; i++) {
     offctx.clearRect(0,0,canvas.width, canvas.height)
     offctx.putImageData(imgData, pet(17), pet(17))
@@ -5018,7 +5015,7 @@ function retro () {
   document.getElementById("palettechoice").value = type
 }
 
-function adjustExposure (n, canvas) {
+function enhanceExposure (n, canvas) {
   if (!canvas)
     canvas = document.getElementById("myCanvas");
   let lh = rangecheck()
@@ -11086,13 +11083,12 @@ function wavyPaperRounded (x, y, w, h, r) {
   roundedRect(x, y, w, h, r, ctxoc, false) // draw to off
   swapWithOff() // switch to OC
   wavyPaper()
-  adjustBrightness(8)
-  contrastImage(8)
-  
+  //adjustBrightness(8)
+ // contrastImage(8)
   ctxoc.shadowColor = 'rgba(10, 10, 10, .3)'//'#808080';
-      ctxoc.shadowBlur = 5 + Math.random() * 3
-      ctxoc.shadowOffsetX = -2 - Math.random() * 2;
-      ctxoc.shadowOffsetY = 1 + Math.random() * 1
+  ctxoc.shadowBlur = 5 + Math.random() * 3
+  ctxoc.shadowOffsetX = -2 - Math.random() * 2;
+  ctxoc.shadowOffsetY = 1 + Math.random() * 1
   ctxoc.globalCompositeOperation = "source-atop"
   ctxoc.drawImage(canvas,0,0,oc.width,oc.height)
   swapWithOff()
@@ -16280,10 +16276,10 @@ function fog () {
   ctx.globalAlpha = document.getElementById("opacity").value/100 //* 0.75
   let smudge_size = 51 + Math.random()* 100
   let colors = []
-  let grunge = document.getElementById("grungy").checked
-  if (grunge)
-    colors.push(randomColor())
-  else
+ // let grunge = document.getElementById("grungy").checked
+ // if (grunge)
+    //colors.push(randomColor())
+ // else
     colors.push(document.getElementById("paintcolor").value)
   //clip()
   let smudge_ct = 1 + document.getElementById("number").value/100
