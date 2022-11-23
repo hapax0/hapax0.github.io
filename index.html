@@ -533,6 +533,7 @@
       <option value="crackle" selected>crackle curves</option>
       <option value="cracklelines" >crackle lines</option>
       <option value="regMarks" >registration</option>
+      <option value="paintBalls" >paint balls</option>
       <option value="paintByNumbers">mono by numbers</option>
       <option value="paintByNumbers2" selected>color by numbers</option>
       <option value="tv">tv</option>
@@ -13678,6 +13679,37 @@ function paintByNumbers () {
     y += space * d
   }
 }
+
+function paintBalls () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let pad = 60
+  let W = canvas.width
+  let H = canvas.height
+  let grays = getCurrentPalette().reverse()//extractPalette().reverse()//["#000000", "#1e1e1e", "#353535", "#4e4e4e", "#696969", "#858585", "#a2a2a2", "#c0c0c0", "#dfdfdf", "#ffffff"].reverse()
+  let d = (canvas.width-2*pad)/50
+  let space = 3
+  if (document.getElementById("grungy").checked)
+    space = 2
+  let x = pad*1.5, y = pad*1.5
+  let values = [], colors = []
+  let max = 7, m = 0
+  d = 20 + document.getElementById("featuresize").value/2
+  while (m < max) {
+    x = Math.random() * W
+    y = Math.random() * H
+    values.push(Math.floor(Math.random()*grays.length))//Math.(brightnessOf10(ctx,x,y,d))
+    colors.push(brightnessOf(ctx,x,y,d))
+    ctx.beginPath()
+    ctx.fillStyle = grays[values[m]]
+    ctx.arc(x+d/4, y+d*0.8, d, 0, Math.PI*2)
+    ctx.closePath()
+    ctx.fill()
+    m++
+  }
+}
+
 
 function brightnessOf10 (ctx,x,y,d) {
   let imgData = ctx.getImageData(x,y,d,d)
