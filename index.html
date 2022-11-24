@@ -577,32 +577,33 @@
       <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
     </svg></button>
         <select id="paperfunctions">
-          <option value="roadmap">road map</option>
-          <option value="datedue">date due</option>
-          <option value="interdepartmental">interdepartmental</option>
-          <option value="moleskine">moleskine</option>
+          <!--option value="roadmap">road map</option-->
+          <option value="moleskine2" selected>mole blank</option>
+          <option value="moleskine">mole grid</option>
           <option value="moleskineDay">day planner</option>
-          <option value="moleskine2" selected>moleskine 3D</option>
           <option value="sketchpad">sketch pad</option>
           <option value="floppyPage">stack of pages</option>
-          <option value="justlines">martin</option>
-          <option value="gridpaper" >grid paper</option>
           <option value="linedPad">lined pad</option>
-          <option value="messagepad">message</option>
-          <option value="dividedPad" >divided pad</option>
+          <option value="dividedPad">divided pad</option>
           <option value="requirements">requirements pad</option>
+          <option value="messagepad">message</option>
+          <option value="datedue">date due</option>
+          <option value="interdepartmental">interdepartmental</option>
           <option value="postcard">postcard</option>
           <option value="indexcard">index card</option>
           <!--option value="thisSpace">this space</option-->
           <option value="spiralbound">spiral bound</option>
-          <option value="periodictable" >periodic table</option>
-          <option value="calendar" >calendar</option>
-          <option value="clock" >clock</option>
-          <option value="planet" >planet</option>
-          <option value="system" >system</option>
-          <option value="rings" >rings</option>
-          <option value="star">star</option>
           <option value="photoBook">photo book</option>
+          <option value="gridpaper_og">grid paper</option>
+          <option value="gridpaper">grid</option>
+          <option value="justlines">martin</option>
+          <option value="periodictable">periodic table</option>
+          <option value="calendar">calendar</option>
+          <option value="clock">clock</option>
+          <option value="planet">planet</option>
+          <option value="system">system</option>
+          <option value="rings">rings</option>
+          <option value="star">star</option>
         </select></td><td>
           &nbsp;
           <button onclick='drawShape()'><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" class="white" viewBox="0 0 16 16">
@@ -9362,7 +9363,7 @@ function dividedPad () {
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
   let color = document.getElementById("paintcolor").value
   let alt = document.getElementById("grungy").checked
-  let pad = 24
+  let pad = 2
   let H = canvas.height, W = canvas.width
   let x = pad+pet(9), y = pad+pet(9)
 
@@ -9370,6 +9371,88 @@ function dividedPad () {
     cx2 = W -pad+pet(21), cy2 = 3*pad+pet(21),
     px = cx1+8, py = cy2-3
     
+  let colors = ["#ed6060", "#6060ba", "#6060ed", "#ed6060", "#000000"]
+  ctx.lineWidth = 1.5
+  ctx.fillStyle = color
+ /* ctx.shadowBlur = 10
+  ctx.shadowColor = "#303020"
+  ctx.shadowOffsetX = 2
+  ctx.shadowOffsetY = 2
+  ctx.beginPath()
+  ctx.moveTo(pad,pad)
+  ragged(ctx,W-pad,pad,x,y)
+  x = W-pad
+  y = pad
+  ragged(ctx,W-pad,H-pad+pet(3),x,y)
+  y = H-pad
+  ragged(ctx,pad,H-pad+pet(3),x,y)
+  x = pad
+  y = W-pad
+  ragged(ctx,pad,pad+pet(3),x,y)
+  ctx.closePath()
+  ctx.fill()
+  
+ // ctx.fillStyle = "#ffaaaa"
+  // dogear
+  
+  ctx.shadowBlur = 20
+  ctx.shadowOffsetX = -4
+  ctx.shadowOffsetY = -4
+  ctx.beginPath()
+  ctx.moveTo(cx1,cy1)
+  ragged(ctx, px,py,cx1,cy1)
+  ragged(ctx, cx2,cy2,px,py)
+  ctx.lineTo(cx1, cy1)
+  ctx.closePath()
+  //ctx.fill()
+
+  ctx.shadowBlur = 0
+  ctx.shadowOffsetX = 0
+  ctx.shadowOffsetY = 0
+  ctx.strokeStyle = "#ff0000"
+  ctx.beginPath()
+  ctx.moveTo(canvas.width/2, 8+pad)
+  ctx.lineTo(canvas.width/2, canvas.height-pad-4)
+  ctx.closePath()
+  ctx.stroke()*/
+  ctx.lineWidth = 1
+  ctx.strokeStyle = randomPick(colors)//"#6060ed"
+  let i = 0
+  x = 2+pad, y = 100+pad
+  while (y < canvas.height-pad) {
+    ctx.beginPath()
+    ctx.moveTo(x, y)
+    ctx.lineTo(canvas.width-pad-4, y)
+    ctx.closePath()
+    ctx.stroke()
+    y += 28
+  }
+  ctx.strokeStyle = "#ee6060"
+  i = 0, y = pad, x = 32+pad
+  for (; i < 2; i++) {
+    ctx.beginPath()
+    ctx.moveTo(x, y+100)
+    ctx.lineTo(x, canvas.height-pad-4)
+    ctx.closePath()
+    ctx.stroke()
+    x = canvas.width/2 + 32
+  }
+}
+
+
+function dividedPad_OG () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
+  let color = document.getElementById("paintcolor").value
+  let alt = document.getElementById("grungy").checked
+  let pad = 24
+  let H = canvas.height, W = canvas.width
+  let x = pad+pet(9), y = pad+pet(9)
+
+  let cx1 = W - pad*4+pet(91), cy1 = pad+pet(21),
+    cx2 = W -pad+pet(21), cy2 = 3*pad+pet(21),
+    px = cx1+8, py = cy2-3
     
   let colors = ["#ed6060", "#6060ba", "#6060ed", "#ed6060", "#000000"]
   ctx.lineWidth = 1.5
@@ -16211,7 +16294,6 @@ function smudge (type) {
   smudge_ct *= shapemultiplier
   if (type == "watercolor")
     smudge_ct /= 2
-  //clip()
   for (; n < smudge_ct; n++) {
     if (type === "streaks")
       offstreaks()
@@ -16247,20 +16329,19 @@ function smudge (type) {
       moves = 1
     for (; i < moves; i++) {
       ctx.drawImage(canvasoff, x,   y)
-      ctx.drawImage(canvasoff, x-W, y-H)
+     /* ctx.drawImage(canvasoff, x-W, y-H)
       ctx.drawImage(canvasoff, x,   y-H)
       ctx.drawImage(canvasoff, x+W, y-H)
       ctx.drawImage(canvasoff, x-W, y+H)
       ctx.drawImage(canvasoff, x,   y+H)
       ctx.drawImage(canvasoff, x+W, y+H)
       ctx.drawImage(canvasoff, x-W, y)
-      ctx.drawImage(canvasoff, x+W, y)
+      ctx.drawImage(canvasoff, x+W, y)*/
       x += dx + pet(23)
       y += dy + pet(23)
     }
   }
   ctxoff.clearRect(0,0,canvasoff.width, canvasoff.height)
- // ctx.restore()
 }
 
 function fog () {
