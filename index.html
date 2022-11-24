@@ -530,18 +530,18 @@
       <!--option value="coloringbook">coloring book</option-->
       <option value="edgeSmear">streak left</option>
       <option value="smeardownOff">vertical streaks</option>
-      <option value="crackle" selected>crackle curves</option>
+      <option value="crackle">crackle curves</option>
       <option value="cracklelines" >crackle lines</option>
       <option value="regMarks" >registration</option>
       <option value="paintBalls" >paint balls</option>
       <option value="paintByNumbers">mono by numbers</option>
-      <option value="paintByNumbers2" selected>color by numbers</option>
+      <option value="paintByNumbers2">color by numbers</option>
       <option value="tv">tv</option>
       <option value="hand">hand</option>
       <option value="heart">heart</option>
       <option value="talk">talk</option>
       <option value="thought">thought</option>
-      <option value="ivy">ivy</option>
+      <option value="ivy" selected>ivy</option>
       <option value="room">room</option>
       <option value="envelope">envelope</option>
       <option value="neckerline">necker</option>
@@ -7332,36 +7332,52 @@ function ivy () {
   let a = Math.random() * 2 * Math.PI
   let H = canvas.height, W = canvas.width
   let pad = 40, i = 0
-  let r1 = W/2-pad, r2 = W/4, r3 = W/8
+  let r1 = W/2-pad, r2 = W/4, r3 = 20
   let cx = W/2, cy = W*0.65
-  let angle = Math.PI + Math.PI/6
-  let cangle = Math.PI
+  ctx.clearRect(0,0,W,H)
   ctx.strokeStyle = (colors[0])
   ctx.lineCap = "round"
   ctx.lineJoin = "round"
   ctx.fillStyle = (colors[0])
+  
+  let K = randomPick([3,4,5])
+  let angle = Math.PI + Math.PI/6 // good for three K
+  let cangle = Math.PI
+
+  if (K === 4) {
+    angle = Math.PI
+    cangle = angle - Math.PI/6
+  }
+    
+  if (K === 5) {
+    angle = Math.PI - Math.PI/6
+    cangle = angle - Math.PI/6
+  }
   ctx.beginPath()
   x = W - pad - ctx.lineWidth*1.5, y = H-pad
-  let r = H*0.25, xo = r/10
   let cpx = r1 * Math.cos(cangle)+cx;
   let cpy = r1 * Math.sin(cangle)+cy;
+  let rx = 9 * Math.cos(cangle)+cx;
+  let ry = 9 * Math.sin(cangle)+cy;
+  let x0 = rx, y0 = ry
   ctx.beginPath()
-  ctx.moveTo(cx-5,cy)
-  for (;i < 3; i++) {
+  ctx.moveTo(rx,ry)
+  for (;i < K; i++) {
     x = r1 * Math.cos(angle)+cx;
     y = r1 * Math.sin(angle)+cy;
     ctx.quadraticCurveTo(cpx,cpy,x,y)
     cangle += Math.PI/3
     cpx = r1 * Math.cos(cangle)+cx;
     cpy = r1 * Math.sin(cangle)+cy;
-    if (i === 2)
-    cx += 5
-    ctx.quadraticCurveTo(cpx,cpy,cx,cy)
+    
+    rx = 9 * Math.cos(cangle)+cx;
+    ry = 9 * Math.sin(cangle)+cy;
+    ctx.quadraticCurveTo(cpx,cpy,rx,ry)
     angle += Math.PI/3
   }
-  ctx.lineTo(cx+15,H-80)
-  ctx.lineTo(cx-25,H-80)
-  ctx.lineTo(cx-10, cy)
+  ctx.lineTo(rx+15,H-80)
+  ctx.lineTo(rx-25,H-80)
+  ctx.lineTo(x0, y0)
   if (document.getElementById("grungy").checked) {
     ctx.closePath()
     ctx.fill()
