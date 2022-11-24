@@ -10595,7 +10595,7 @@ function messagepad () { // while you were ouy
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.lineWidth = 5
   ctx.fillStyle = document.getElementById("paintcolor").value//"#ffc0cb"
-  ctx.fillRect(0,0,W,H)
+  //ctx.fillRect(0,0,W,H)
   ctx.strokeStyle = "#000000"
   let pad = 40
   ctx.strokeRect(pad-3,pad-3,W-pad*2,H-pad*2) // frame
@@ -10608,10 +10608,10 @@ function messagepad () { // while you were ouy
   
   ctx.globalAlpha /= 2
   ctx.fillStyle = "#505050"
-  ctx.fillRect(W-pad-210, pad*1.4-8, 196, 53)
+  ctx.fillRect(W-pad-218, pad*1.4-8, 204, 53)
   ctx.globalAlpha *= 2
-  ctx.fillStyle = document.getElementById("paintcolor").value
-  ctx.fillRect(W-pad-60, pad+16, 40, 40) // check box
+  //ctx.fillStyle = document.getElementById("paintcolor").value
+ // ctx.fillRect(W-pad-60, pad+16, 40, 40) // check box
   ctx.strokeRect(W-pad-60, pad+16, 40, 40) // check box
   let text = "Urgent"
   let face = "serif"
