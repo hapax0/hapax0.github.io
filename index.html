@@ -595,7 +595,7 @@
           <!--option value="thisSpace">this space</option-->
           <option value="spiralbound">spiral bound</option>
           <option value="photoBook">photo book</option>
-          <option value="gridpaper_og">grid paper</option>
+          <option value="gridLinear">grid paper</option>
           <option value="gridLog">log paper</option>
           <option value="gridpaper">grid</option>
           <option value="justlines">martin</option>
@@ -9861,6 +9861,54 @@ function numberShow () {
 
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   ctx.globalAlpha = document.getElementById("opacity").value/100
+}
+
+function gridLinear () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
+  let color = document.getElementById("paintcolor").value
+  let alt = document.getElementById("grungy").checked
+  let W = canvas.width, H = canvas.height
+  let pad = 24 + Math.floor(Math.random() * 44)
+  let divisions = randomPick([1,2,3,4,5,6,7])
+  let avail = (W-2*pad)/divisions
+  let linespace = avail/10
+  ctx.fillStyle = "#ffffff"//color
+  let colors = ["#ed6060", "#6060ba", "#6060ed", "#ed6060", "#000000"]
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctx.strokeStyle = randomPick(colors)
+  ctx.lineWidth = 3
+  let i = 0, x = pad, y = pad
+  while (i < divisions*10+1) {
+    ctx.beginPath()
+    ctx.moveTo(x, y)
+    ctx.lineTo(canvas.width-pad, y)
+    ctx.closePath()
+    ctx.stroke()
+    y += linespace
+    i++
+    if (i % 10 === 0)
+      ctx.lineWidth = 3
+      else
+      ctx.lineWidth = 1
+  }
+  
+  ctx.lineWidth = 3
+  i = 0, y = pad, x = pad
+  while (i < divisions*10+1) {
+    ctx.beginPath()
+    ctx.moveTo(x, y)
+    ctx.lineTo(x, canvas.height-pad)
+    ctx.closePath()
+    ctx.stroke()
+    x += linespace
+    i++
+    if (i % 10 === 0)
+      ctx.lineWidth = 3
+      else
+      ctx.lineWidth = 1  }
+  document.getElementById("paintcolor").value = color
 }
 
 function gridLog () {
