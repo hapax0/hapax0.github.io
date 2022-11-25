@@ -9870,7 +9870,7 @@ function gridLog () {
   let color = document.getElementById("paintcolor").value
   let alt = document.getElementById("grungy").checked
   let W = canvas.width, H = canvas.height
-  let pad = 24 + Math.floor(Math.random() * 2)
+  let pad = 24 + Math.floor(Math.random() * 24)
   let divisions = randomPick([1,2,3,4,5,6,7])
   let avail = (W-2*pad)/divisions
   let spacerx = avail/55 * 10
@@ -9882,7 +9882,7 @@ function gridLog () {
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.strokeStyle = randomPick(colors)
   ctx.lineWidth = 1
-  let i = 0, x = pad, y = pad+94
+  let i = 0, x = pad, y = pad
   while (i < divisions*10+1) {
     ctx.beginPath()
     ctx.moveTo(x, y)
@@ -9896,11 +9896,11 @@ function gridLog () {
       linespace = LS
   }
   linespace = LS
-  i = 0, y = pad+94, x = pad
+  i = 0, y = pad, x = pad
   while (i < divisions*10+1) {
     ctx.beginPath()
     ctx.moveTo(x, y)
-    ctx.lineTo(x, canvas.height)
+    ctx.lineTo(x, canvas.height-pad)
     ctx.closePath()
     ctx.stroke()
     x += linespace
