@@ -11524,10 +11524,10 @@ function moleText (d) {
   let small = true, half = true
   let scale = canvas.height/1080
   ctx.strokeStyle = "#ccccdc"
-  let thebook = randomPick([emily, book])
+  let thebook = randomPick([emily, book, crossword])
   let lines = thebook.split(/\\n/gm) // moby.js = book
   let fs = 13
-  if (thebook === emily)
+  if (thebook === emily|| thebook === crossword)
     fs = 18
   ctx.font = fs*scale+"px Georgia"
   ctx.fillStyle = "#666666"
