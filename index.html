@@ -11524,19 +11524,23 @@ function moleText (d) {
   let small = true, half = true
   let scale = canvas.height/1080
   ctx.strokeStyle = "#ccccdc"
-  ctx.lineWidth = 1
-  let lines = book.split(/\\n/gm) // moby.js
-  ctx.font = 13*scale+"px Georgia"
+  let thebook = randomPick([emily, book])
+  let lines = thebook.split(/\\n/gm) // moby.js = book
+  let fs = 13
+  if (thebook === emily)
+    fs = 18
+  ctx.font = fs*scale+"px Georgia"
   ctx.fillStyle = "#666666"
-  let linespace = 24*scale
-  let i = 0, x = 80*scale, y = 60*scale
-  while (i < 40*scale) {
+  let linespace = 2*fs*scale
+  let avspace = Math.floor((canvas.height - 20 - 60*scale)/linespace - 1)
+  let i = 0, x = 90*scale, y = 60*scale
+  while (i < avspace && lines[i] !== undefined) {
     ctx.fillText(lines[i], x, y)
     y += linespace
     i++
   }
   x += canvas.width/2-60*scale,  y = 60*scale
-  while (i < 80*scale) {
+  while (i < avspace*2 && lines[i] !== undefined) {
     ctx.fillText(lines[i], x, y)
     y += linespace
     i++
