@@ -11527,17 +11527,16 @@ function moleText (d) {
   ctx.lineWidth = 1
   let lines = book.split(/\\n/gm) // moby.js
   ctx.font = 13*scale+"px Georgia"
-  ctx.fillStyle = "#666666"//document.getElementById("paintcolor").value = "#666666"
-  
-  let linespace = 20*scale//Math.floor((canvas.height - 220*scale)/22)
-  let i = 0, x = 80*scale, y = 50*scale
-  while (i < 48*scale) {
+  ctx.fillStyle = "#666666"
+  let linespace = 24*scale
+  let i = 0, x = 80*scale, y = 60*scale
+  while (i < 40*scale) {
     ctx.fillText(lines[i], x, y)
     y += linespace
     i++
   }
-  x += canvas.width/2-60*scale,  y = 50*scale
-  while (i < 96*scale) {
+  x += canvas.width/2-60*scale,  y = 60*scale
+  while (i < 80*scale) {
     ctx.fillText(lines[i], x, y)
     y += linespace
     i++
