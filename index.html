@@ -715,6 +715,17 @@ function printcanvas () {
   win.setTimeout(() => win.print(), 0);
 }
 
+function paperSelect () {
+  let sel = document.getElementById("patternfunctions").value
+  if (sel === "watercolorPaper")
+    watercolorPaper()
+  else
+  if (sel === "canvas1")
+    canvas1()
+  else
+    wavyPaper()
+}
+
 function watercolorPaper () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -729,7 +740,7 @@ function watercolorPaper () {
   let alpha = document.getElementById("opacity").value
   let n = document.getElementById("number").value
   let c = document.getElementById("paintcolor").value
-  document.getElementById("featuresize").value = 250
+  document.getElementById("featuresize").value = 350
   document.getElementById("opacity").value = 90
   document.getElementById("number").value = 6000
   document.getElementById("paintcolor").value = "#cccccc"
@@ -10007,8 +10018,8 @@ function gridLog () {
   let color = document.getElementById("paintcolor").value
   let alt = document.getElementById("grungy").checked
   let W = canvas.width, H = canvas.height
-  let pad = 24 + Math.floor(Math.random() * 24)
-  let divisions = randomPick([1,2,3,4,5,6,7])
+  let pad = 24 + Math.floor(Math.random() * 36)
+  let divisions = randomPick([1,2,3,4])
   let avail = (W-2*pad)/divisions
   let spacerx = avail/55 * 10
   let linespace = spacerx//24 + Math.random() * 20,
@@ -10059,7 +10070,6 @@ function linedPad () {
   let pad = 4 + Math.floor(Math.random() * 2)
   let linespace = 34 + Math.floor(pet(16))
   ctx.fillStyle = "#ffffff"//color
-//  wavyPaper()
   let colors = ["#ed6060", "#6060ba", "#6060ed", "#ed6060", "#000000"]
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.strokeStyle = "#6060ed"
@@ -11473,7 +11483,7 @@ function wavyPaperRounded (x, y, w, h, r) {
   ob.height = canvas.height
   roundedRect(x, y, w, h, r, ctxoc, false) // draw to off
   swapWithOff() // switch to OC
-  wavyPaper()
+  paperSelect()
   //adjustBrightness(8)
  // contrastImage(8)
   ctxoc.shadowColor = 'rgba(10, 10, 10, .3)'//'#808080';
