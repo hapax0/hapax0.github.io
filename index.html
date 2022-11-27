@@ -84,6 +84,7 @@
   
   <script src="moby.js"></script>
   <script src="emily.js"></script>
+  <script src="wordlist2.js"></script>
 
   </head>
   <body>
@@ -745,14 +746,9 @@ function watercolorPaper () {
   document.getElementById("number").value = 6000
   document.getElementById("paintcolor").value = "#cccccc"
   smudgestreaks2()
-  //rc()
   smudgestreaks2()
-  //rc()
   document.getElementById("paintcolor").value = "#ffffff"
   smudgestreaks2()
- // rc()
-  //smudgestreaks()
- // rc()
   document.getElementById("number").value = n
   document.getElementById("featuresize").value = fs
   document.getElementById("opacity").value = alpha
@@ -781,7 +777,7 @@ function canvas1 () {
   let alpha = document.getElementById("opacity").value
   let n = document.getElementById("number").value
   let c = document.getElementById("paintcolor").value
-  document.getElementById("featuresize").value = 250
+  //document.getElementById("featuresize").value = 250
   document.getElementById("opacity").value = 90
   document.getElementById("number").value = 6000
   document.getElementById("paintcolor").value = "#cccccc"
@@ -11609,6 +11605,45 @@ function moleskine2 (options) { // 3D
   document.getElementById("paintcolor").value = color
 }
 
+function randomWords () {
+  let r = words.split(/\n/gm)
+  return (shuffle(r)).slice(0,200)
+}
+
+function clues () {
+  let result = "HORIZONTAL\n"
+  let num = 1, cnt = 0
+  while (cnt < 24) {
+    result += "\n"
+    if (num < 10)
+      result += " "
+    result += num+" "+randomWord()
+    if (Math.random()> 0.8) {
+      result += ", " + randomWord()
+    }
+    num += 1 // bump by one more occasionally
+    if (Math.random() > 0.8)
+      num ++
+    cnt++
+  }
+  num = 1, cnt = 0
+  result += "\nVERTICAL\n"
+  while (cnt < 24) {
+    result += "\n"
+    if (num < 10)
+      result += " "
+    result += num+" "+randomWord()
+    if (Math.random()> 0.8) {
+      result += ", " + randomWord()
+    }
+    num += 1 // bump by one more occasionally
+    if (Math.random() > 0.8)
+      num ++
+    cnt++
+  }
+  return result
+}
+
 function moleText (d) {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -11619,14 +11654,15 @@ function moleText (d) {
   let scale = canvas.height/1080
   ctx.strokeStyle = "#ccccdc"
   let thebook = randomPick([emily, book, crossword])
-  
-  let text = document.getElementById("points").value
-  if (text.length> 0)
-  thebook = text
-  let lines = thebook.split(/\n/gm) // moby.js = book
   let fs = 13
   if (thebook === emily|| thebook === crossword)
     fs = 18
+  if (thebook === crossword)
+    thebook = clues()
+  let text = document.getElementById("points").value
+  if (text.length > 0)
+    thebook = text
+  let lines = thebook.split(/\n/gm) // moby.js = book
   ctx.font = fs*scale+"px Georgia"
   ctx.fillStyle = "#666666"
   let linespace = 2*fs*scale
