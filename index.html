@@ -382,6 +382,7 @@
       <select id="patternfunctions">
       <option value="wavyPaper" selected>paper</option>
       <option value="canvas1">canvas</option>
+      <option value="watercolorPaper">wc paper</option>
       <option value="diss" >distress</option>
       <option value="increaseGrain">increase grain</option>
       <option value="specksRadial">specks</option>
@@ -712,6 +713,46 @@ function printcanvas () {
   //win.print();
   // Magically seems to cause print to be called after write
   win.setTimeout(() => win.print(), 0);
+}
+
+function watercolorPaper () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  ctx.shadowBlur = 0
+  ctx.shadowOffsetX = 0;
+  ctx.shadowOffsetY = 0;
+  ctx.fillStyle = "#eeeeee"
+  ctx.clearRect(0,0,canvas.width,canvas.height)
+  ctx.fillRect(0,0,canvas.width,canvas.height)
+  let fs = document.getElementById("featuresize").value
+  let d = 5+Math.floor(fs/20)
+  let alpha = document.getElementById("opacity").value
+  let n = document.getElementById("number").value
+  let c = document.getElementById("paintcolor").value
+  document.getElementById("featuresize").value = 250
+  document.getElementById("opacity").value = 90
+  document.getElementById("number").value = 6000
+  document.getElementById("paintcolor").value = "#cccccc"
+  smudgestreaks2()
+  //rc()
+  smudgestreaks2()
+  //rc()
+  document.getElementById("paintcolor").value = "#ffffff"
+  smudgestreaks2()
+ // rc()
+  //smudgestreaks()
+ // rc()
+  document.getElementById("number").value = n
+  document.getElementById("featuresize").value = fs
+  document.getElementById("opacity").value = alpha
+  document.getElementById("paintcolor").value = c
+  emboseCanvas()
+  //shrinkBlur()
+  let mode = ctx.globalCompositeOperation
+  ctx.globalCompositeOperation = "destination-over"
+  ctx.fillStyle = "#dedede"
+  ctx.fillRect(0,0,canvas.width,canvas.height)
+  ctx.globalCompositeOperation = mode
 }
 
 
