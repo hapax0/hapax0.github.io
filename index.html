@@ -82,7 +82,6 @@
     svg[class=white] { background-color:#fff;}
   </style>
   
-  <script src="moby.js"></script>
   <script src="emily.js"></script>
   <script src="wordlist2.js"></script>
 
@@ -591,6 +590,7 @@
           <option value="moleskine">mole grid</option>
           <option value="moleskineDay">day planner</option>
           <option value="moleText">moby</option>
+          <option value="crosswordPad">crossword</option>
           <option value="sketchpad">sketch pad</option>
           <option value="floppyPage">stack of pages</option>
           <option value="linedPad">lined pad</option>
@@ -9399,6 +9399,7 @@ function rr () {
     }
   }
 }
+
 function gridpaper () { // grid paper
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -9958,6 +9959,72 @@ function numberShow () {
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   ctx.globalAlpha = document.getElementById("opacity").value/100
 }
+
+function crosswordPad () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
+  let color = document.getElementById("paintcolor").value
+  let alt = document.getElementById("grungy").checked
+  let W = canvas.width, H = canvas.height
+  let pad = 24 + Math.floor(Math.random() * 44)
+  let MULT = randomPick([8,9,10,11])
+  let divisions = 1
+  let avail = (W-2*pad)/divisions
+  let linespace = avail/MULT
+  ctx.fillStyle = "#ffffff"//color
+  let colors = ["#ed6060", "#6060ba", "#6060ed", "#ed6060", "#000000"]
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctx.strokeStyle = randomPick(colors)
+  ctx.fillStyle = ctx.strokeStyle
+  ctx.lineWidth = 3
+  let i = 0, x = pad, y = pad, num = 1
+  while (i < divisions*MULT+1) {
+    ctx.beginPath()
+    ctx.moveTo(x, y)
+    ctx.lineTo(canvas.width-pad, y)
+    ctx.closePath()
+    ctx.stroke()
+    y += linespace
+    i++
+    
+  }
+  ctx.lineWidth = 3
+  i = 0, y = pad, x = pad
+  while (i < divisions*MULT+1) {
+    ctx.beginPath()
+    ctx.moveTo(x, y)
+    ctx.lineTo(x, canvas.height-pad)
+    ctx.closePath()
+    ctx.stroke()
+    x += linespace
+    i++
+  }
+  i = 0, y = pad, x = pad
+  let face = "Courier"
+  ctx.font = "800 "+(18)+"pt " + face
+  for (;i < MULT; i++) {
+    j = 0
+    for (; j < MULT; j++) {
+      if (Math.random() > 0.67) {
+        ctx.fillRect(x,y,linespace, linespace)
+      } else {
+        //if (Math.random() > 0.1) {
+          ctx.fillText(num,x+4,y+20)
+          num++
+        //}
+      }
+      x += linespace
+      if (x > linespace*MULT)
+        x = pad
+    }
+    y += linespace
+      if (y > linespace*MULT)
+        y = pad
+  }
+  document.getElementById("paintcolor").value = color
+}
+
 
 function gridLinear () {
   let canvas = document.getElementById("myCanvas");
@@ -11665,10 +11732,8 @@ function moleText (d) {
   let small = true, half = true
   let scale = canvas.height/1080
   ctx.strokeStyle = "#ccccdc"
-  let thebook = randomPick([ crossword])
-  let fs = 13
- // if (thebook === emily|| thebook === crossword)
-    fs = 18
+  let thebook = randomPick([crossword])
+  let fs = 18
   if (thebook === crossword)
     thebook = clues()
   let text = document.getElementById("points").value
@@ -11676,7 +11741,7 @@ function moleText (d) {
     thebook = text
   let lines = thebook.split(/\n/gm) // moby.js = book
   ctx.font = fs*scale+"px Georgia"
-  ctx.fillStyle = "#666666"
+  ctx.fillStyle = randomPick(["#ed6060", "#6060ba", "#6060ed", "#ed6060", "#000000"])
   let linespace = 2*fs*scale
   let avspace = Math.floor((canvas.height - 20 - 60*scale)/linespace - 1)
   let i = 0, x = 90*scale, y = 60*scale
