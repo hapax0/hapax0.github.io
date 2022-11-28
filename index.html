@@ -10000,19 +10000,17 @@ function crosswordPad () {
     x += linespace
     i++
   }
+  let filled = {}
   i = 0, y = pad, x = pad
   let face = "Courier"
   ctx.font = "800 "+(18)+"pt " + face
   for (;i < MULT; i++) {
     j = 0
     for (; j < MULT; j++) {
+      filled[i+"-"+j] = "0"
       if (Math.random() > 0.67) {
         ctx.fillRect(x,y,linespace, linespace)
-      } else {
-        //if (Math.random() > 0.1) {
-          ctx.fillText(num,x+4,y+20)
-          num++
-        //}
+        filled[i+"-"+j] = "B"
       }
       x += linespace
       if (x > linespace*MULT)
@@ -10022,9 +10020,42 @@ function crosswordPad () {
       if (y > linespace*MULT)
         y = pad
   }
+  
+  i = 0, y = pad, x = pad
+  for (;i < MULT; i++) {
+    j = 0
+    for (; j < MULT; j++) {
+      if (filled[i+"-"+j] !== "B") {
+        if (blanksHorV(i,j,filled)) {
+          ctx.fillText(num,x+4,y+20)
+          filled[i+"-"+j] = "N"
+          num++
+        }
+      }
+      x += linespace
+      if (x > linespace*MULT)
+        x = pad
+    }
+    y += linespace
+      if (y > linespace*MULT)
+        y = pad
+  }
+ // console.log(filled)
   document.getElementById("paintcolor").value = color
 }
 
+function blanksHorV (i,j,filled) {
+  let okH = false, okV = false
+  if (filled[(i-1)+"-"+j] === undefined || filled[(i-1)+"-"+j] === "B")
+      okH = true
+  if (filled[(i+1)+"-"+j] === undefined || filled[(i+1)+"-"+j] === "B")
+      okH = false
+  if (filled[i+"-"+(j-1)] === undefined || filled[i+"-"+(j-1)] === "B")
+      okV = true
+  if (filled[i+"-"+(j+1)] === undefined || filled[i+"-"+(j+1)] === "B")
+      okV = false
+  return (okV || okH)
+}
 
 function gridLinear () {
   let canvas = document.getElementById("myCanvas");
