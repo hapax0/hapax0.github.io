@@ -11605,9 +11605,27 @@ function moleskine2 (options) { // 3D
   document.getElementById("paintcolor").value = color
 }
 
-function randomWords () {
-  let r = words.split(/\n/gm)
-  return (shuffle(r)).slice(0,200)
+function randomClue () {
+  let res = randomWord()
+  if (Math.random() > 0.9)
+    res = "\"" + res +"\""
+  else {
+    if (Math.random() > 0.9) {
+      if (Math.random() > 0.5)
+        res = " ____ " + res
+      else
+        res += " ____ "
+    }
+  }
+  if (Math.random() > 0.93)
+    res += ", " + randomWord()
+  if (Math.random() > 0.95) {
+    if (Math.random() > 0.5)
+      res += " (2 words)"
+    else
+      res += ", e.g."
+  }
+  return res
 }
 
 function clues () {
@@ -11617,10 +11635,7 @@ function clues () {
     result += "\n"
     if (num < 10)
       result += " "
-    result += num+" "+randomWord()
-    if (Math.random()> 0.8) {
-      result += ", " + randomWord()
-    }
+    result += num + " " + randomClue()
     num += 1 // bump by one more occasionally
     if (Math.random() > 0.8)
       num ++
@@ -11632,10 +11647,7 @@ function clues () {
     result += "\n"
     if (num < 10)
       result += " "
-    result += num+" "+randomWord()
-    if (Math.random()> 0.8) {
-      result += ", " + randomWord()
-    }
+    result += num+" "+randomClue()
     num += 1 // bump by one more occasionally
     if (Math.random() > 0.8)
       num ++
@@ -11653,9 +11665,9 @@ function moleText (d) {
   let small = true, half = true
   let scale = canvas.height/1080
   ctx.strokeStyle = "#ccccdc"
-  let thebook = randomPick([emily, book, crossword])
+  let thebook = randomPick([ crossword])
   let fs = 13
-  if (thebook === emily|| thebook === crossword)
+ // if (thebook === emily|| thebook === crossword)
     fs = 18
   if (thebook === crossword)
     thebook = clues()
