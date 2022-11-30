@@ -296,6 +296,13 @@
             <option value="mod1">mod1</option>
             <option value="retro1" selected>retro1</option>
             <option value="retro2">retro2</option>
+            <option value="a1">a1</option>
+            <option value="a2">a2</option>
+            <option value="a3">a3</option>
+            <option value="a4">a4</option>
+            <option value="a5">a5</option>
+            <option value="a6">a6</option>
+            <option value="a7">a7</option>
             <option value="none">none</option>
           </select>
           Use <select id="numcolors" style="width:50px;">
@@ -1094,6 +1101,38 @@ function loadPalette () {
   if (type === "earring") {
     a = ['#151518', '#232b4b', '#808aaf', '#e6cf94', '#eee6d9']
     b = ['#ebd7b3', '#c5bbbb', '#c3ad87', '#9ea7c8', '#9c907f', '#7a84aa', '#967f55', '#75675a', '#735b34', '#4e5b8e', '#4d433e', '#373031', '#151418']
+    updateExtraColors(b)
+  } else
+  if (type === "a1") {
+    a = ["#cad44a","##51c5c8","#5396d2","#958a42","#93d489"]
+    updateExtraColors(b)
+  } else
+  if (type === "a2") {
+    a = ["#bdd9bf","#2e4052", "#ffc857","#ffffff","#412234"]
+    updateExtraColors(b)
+  } else
+  if (type === "a3") {
+    a = ["#084c61","#db504a","#e3b505","#4f6d7a","#56a3a6"]
+    updateExtraColors(b)
+  } else
+  if (type === "a4") {
+    a = ["#464d77","#36827f","#f9db6d","#f4eded","#877666"]
+    updateExtraColors(b)
+  } else
+  if (type === "a5") {
+    a = ["#464d77","#36827f","#f9db6d","#f4eded","#877666"]
+    updateExtraColors(b)
+  } else
+  if (type === "a6") {
+    a = ["#083d77","#ebebd3","#da4167","#f4d35e","#f78764"]
+    updateExtraColors(b)
+  } else
+  if (type === "a7") {
+    a = ["#dbd56e","#88ab75","#2d93ad","#7d7c84","#de8f6e"]
+    updateExtraColors(b)
+  } else
+  if (type === "a7") {
+    a = ["#dbd56e","#88ab75","#2d93ad","#7d7c84","#de8f6e"]
     updateExtraColors(b)
   }
   document.getElementById("pal1").value = a[0]
@@ -11775,14 +11814,13 @@ function clues () {
 function moleText (d) {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
   let alpha = document.getElementById("opacity").value
   let color = document.getElementById("paintcolor").value
   let small = true, half = true
   let scale = canvas.height/1080
   ctx.strokeStyle = "#ccccdc"
   let thebook = randomPick([crossword])
-  let fs = 18
+  let fs = 8 + Math.floor(document.getElementById("featuresize").value/2)
   if (thebook === crossword)
     thebook = clues()
   let text = document.getElementById("points").value
