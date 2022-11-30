@@ -302,7 +302,6 @@
             <option value="a4">a4</option>
             <option value="a5">a5</option>
             <option value="a6">a6</option>
-            <option value="a7">a7</option>
             <option value="none">none</option>
           </select>
           Use <select id="numcolors" style="width:50px;">
@@ -1120,21 +1119,18 @@ function loadPalette () {
     updateExtraColors(b)
   } else
   if (type === "a5") {
-    a = ["#464d77","#36827f","#f9db6d","#f4eded","#877666"]
-    updateExtraColors(b)
-  } else
-  if (type === "a6") {
     a = ["#083d77","#ebebd3","#da4167","#f4d35e","#f78764"]
     updateExtraColors(b)
   } else
-  if (type === "a7") {
-    a = ["#dbd56e","#88ab75","#2d93ad","#7d7c84","#de8f6e"]
+  if (type === "a6") {
+    a = ["#0c090d","#e01a4f","#f15946","#f9c22e","#53b3cb"]
     updateExtraColors(b)
   } else
-  if (type === "a7") {
+  if (type === "a6") {
     a = ["#dbd56e","#88ab75","#2d93ad","#7d7c84","#de8f6e"]
     updateExtraColors(b)
   }
+  
   document.getElementById("pal1").value = a[0]
   document.getElementById("pal2").value = a[1]
   document.getElementById("pal3").value = a[2]
