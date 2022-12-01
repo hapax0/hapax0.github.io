@@ -7572,7 +7572,7 @@ function ivy () {
   let H = canvas.height, W = canvas.width
   let pad = 40, i = 0
   let r1 = W/2-pad, r2 = W/4, r3 = 20
-  let cx = W/2, cy = W*0.65
+  let cx = W/2, cy = W*0.55
   ctx.clearRect(0,0,W,H)
   ctx.strokeStyle = (colors[0])
   ctx.lineCap = "round"
@@ -7604,13 +7604,17 @@ function ivy () {
   for (;i < K; i++) {
     x = r1 * Math.cos(angle)+cx;
     y = r1 * Math.sin(angle)+cy;
+    x+= pet(66), y += pet(66)
     ctx.quadraticCurveTo(cpx,cpy,x,y)
     cangle += Math.PI/3
     cpx = r1 * Math.cos(cangle)+cx;
     cpy = r1 * Math.sin(cangle)+cy;
-    
+    cpx+= pet(66), cpy += pet(66)
+
     rx = 9 * Math.cos(cangle)+cx;
     ry = 9 * Math.sin(cangle)+cy;
+    rx+= pet(33), ry += pet(33)
+
     ctx.quadraticCurveTo(cpx,cpy,rx,ry)
     angle += Math.PI/3
   }
