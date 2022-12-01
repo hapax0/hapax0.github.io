@@ -5827,7 +5827,7 @@ function spiral4 () {
   ctx.stroke();
 }
 
-function script () {
+function script_OG () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let W = canvas.width
@@ -10318,6 +10318,40 @@ function gridLog () {
   document.getElementById("paintcolor").value = color
 }
 
+function script () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let fs = 13 + document.getElementById("featuresize").value/4
+  
+  let color = document.getElementById("paintcolor").value
+  let alt = document.getElementById("grungy").checked
+  let W = canvas.width, H = canvas.height
+  let pad = 4 + Math.floor(Math.random() * 2)
+  let linespace = 18 + Math.floor(pet(8))
+  ctx.fillStyle = "#ffffff"//color
+  let colors = ["#ed6060", "#6060ba", "#6060ed", "#ed6060", "#000000"]
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctx.strokeStyle = randomPick(colors)
+  ctx.lineWidth = 1
+  let i = 0, x = pad+2, y = LASTCLICK[1], rot = 1
+  let sa = Math.PI, ea = sa + Math.PI*Math.random()
+  ctx.beginPath()
+  while (x < W) {
+    rot = randomPick([1.7,1.8,1.9,2,1.6]) * Math.PI
+    ctx.ellipse(x,y+pet(fs/1.2),fs*1.9+pet(19),fs*0.5+pet(9), rot,sa,ea,Math.random() > 0.5)
+    x += fs/2// + Math.random() * fs/2
+    sa = ea//Math.PI * Math.random()
+    ea = sa+Math.PI * Math.random()
+    ctx.stroke()
+    if (Math.random() > 0.8) {
+      ctx.beginPath()
+      x += fs
+    }
+
+  }
+  document.getElementById("paintcolor").value = color
+}
+
 function musicpaper () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -10330,7 +10364,7 @@ function musicpaper () {
   ctx.fillStyle = "#ffffff"//color
   let colors = ["#ed6060", "#6060ba", "#6060ed", "#ed6060", "#000000"]
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = "#6060ed"
+  ctx.strokeStyle = randomPick(colors)
   ctx.lineWidth = 1
   let i = 0, x = pad+2, y = pad+94
   
