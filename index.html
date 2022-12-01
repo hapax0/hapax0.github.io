@@ -5558,6 +5558,106 @@ function drips () {
   ctx.restore()
 }
 
+function swingset () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  let C = W/2 + (Math.random() - 0.5) * W/4
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let color = randomPick(getCurrentPalette())
+  let grunge = document.getElementById("grungy").checked
+  ctx.lineWidth = 10+document.getElementById("featuresize").value/5
+  ctx.lineCap = "square"
+  ctx.strokeStyle = color
+  let pad = 74, x = 0, y = 0, vpad = 190
+  let dh = (W - 2*pad)/7
+  
+  x = pad, y = H-vpad
+  ctx.beginPath()
+  ctx.moveTo(x,y)
+  x += dh
+  y = vpad
+  ctx.lineTo(x, y)
+  ctx.stroke()
+
+  y = vpad
+  ctx.beginPath()
+  ctx.moveTo(x, y)
+  x += dh
+  y = H - vpad
+  ctx.lineTo(x,y)
+  ctx.stroke()
+  
+  ctx.beginPath() //top bad
+  x -= dh
+  y = vpad
+  ctx.moveTo(x,y)
+  x = W-pad-dh
+  ctx.lineTo(x, y)
+  ctx.stroke()
+  
+  ctx.beginPath()
+  x -= dh
+  y = H-vpad
+  ctx.moveTo(x,y)
+  x += dh
+  y = vpad
+  ctx.lineTo(x, y)
+  ctx.stroke()
+  
+  //x += dh
+  y = vpad
+  ctx.beginPath()
+  ctx.moveTo(x,y)
+  x += dh
+  y = H-vpad
+  ctx.lineTo(x, y)
+  ctx.stroke()
+  
+  
+  // swingd
+  y = vpad
+  x = pad + 2*dh
+  ctx.beginPath()
+  ctx.moveTo(x, y)
+  y = H - vpad*2
+  ctx.lineTo(x,y)
+  x += dh
+  ctx.lineTo(x,y)
+  y = vpad
+  ctx.lineTo(x,y)
+  ctx.stroke()
+  y = vpad
+  
+  x = pad + 4*dh
+  ctx.beginPath()
+  ctx.moveTo(x, y)
+  y = H - vpad*2
+  ctx.lineTo(x,y)
+  x += dh
+  ctx.lineTo(x,y)
+  y = vpad
+  ctx.lineTo(x,y)
+  ctx.stroke()
+  
+  ctx.beginPath()
+  x = pad + dh/2
+  y = H/2
+  ctx.moveTo(x,y)
+  x += dh
+  ctx.lineTo(x,y)
+  ctx.stroke()
+  
+  ctx.beginPath()
+  x = W - (pad + dh*1.5)
+  ctx.moveTo(x,y)
+  x += dh
+  ctx.lineTo(x,y)
+  ctx.stroke()
+
+}
+
+
 function spiral () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
