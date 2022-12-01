@@ -603,6 +603,7 @@
           <option value="sketchpad">sketch pad</option>
           <option value="floppyPage">stack of pages</option>
           <option value="linedPad">lined pad</option>
+          <option value="musicpaper">music</option>
           <option value="dividedPad">divided pad</option>
           <option value="requirements">requirements pad</option>
           <option value="messagepad">message</option>
@@ -10312,6 +10313,38 @@ function gridLog () {
   }
   document.getElementById("paintcolor").value = color
 }
+
+function musicpaper () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
+  let color = document.getElementById("paintcolor").value
+  let alt = document.getElementById("grungy").checked
+  let W = canvas.width, H = canvas.height
+  let pad = 4 + Math.floor(Math.random() * 2)
+  let linespace = 18 + Math.floor(pet(8))
+  ctx.fillStyle = "#ffffff"//color
+  let colors = ["#ed6060", "#6060ba", "#6060ed", "#ed6060", "#000000"]
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctx.strokeStyle = "#6060ed"
+  ctx.lineWidth = 1
+  let i = 0, x = pad+2, y = pad+94
+  
+  while (y < canvas.height-pad) {
+    ctx.beginPath()
+    ctx.moveTo(x, y)
+    ctx.lineTo(canvas.width-pad-2, y)
+    ctx.closePath()
+    ctx.stroke()
+    y += linespace
+    i++
+    if (i % 5 === 0)
+      y += linespace*4
+  }
+  
+  document.getElementById("paintcolor").value = color
+}
+
 
 function linedPad () {
   let canvas = document.getElementById("myCanvas");
