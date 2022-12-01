@@ -10321,8 +10321,7 @@ function gridLog () {
 function script () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  let fs = 13 + document.getElementById("featuresize").value/4
-  
+  let fs = 7 + document.getElementById("featuresize").value/10
   let color = document.getElementById("paintcolor").value
   let alt = document.getElementById("grungy").checked
   let W = canvas.width, H = canvas.height
@@ -10331,23 +10330,30 @@ function script () {
   ctx.fillStyle = "#ffffff"//color
   let colors = ["#ed6060", "#6060ba", "#6060ed", "#ed6060", "#000000"]
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = randomPick(colors)
-  ctx.lineWidth = 1
-  let i = 0, x = pad+2, y = LASTCLICK[1], rot = 1
-  let sa = Math.PI, ea = sa + Math.PI*Math.random()
+  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.lineJoin = "round"
+  ctx.lineWidth = 1 + fs/20
+  ctx.imageSmoothingQuality = "high"
+  let i = 0, x = pad+2+fs*2, y = LASTCLICK[1], rot = 1
+  let sa = Math.PI, ea = sa + Math.PI*Math.random(), cw = true
+  let yD = 0.9
+  if (alt)
+    yD = 0.3
   ctx.beginPath()
-  while (x < W) {
-    rot = randomPick([1.7,1.8,1.9,2,1.6]) * Math.PI
-    ctx.ellipse(x,y+pet(fs/1.2),fs*1.9+pet(19),fs*0.5+pet(9), rot,sa,ea,Math.random() > 0.5)
-    x += fs/2// + Math.random() * fs/2
+  while (x < W-fs*2) {
+    rot = randomPick([2.3,2.5,2.7,2.8,2.1,1.9])
+
+    ctx.ellipse(x,y+pet(fs/yD),fs*1.9+pet(fs),fs*0.6+pet(fs/2), rot,sa,ea,cw)
+    x += fs*0.7 + Math.random() * fs/2
     sa = ea//Math.PI * Math.random()
     ea = sa+Math.PI * Math.random()
     ctx.stroke()
     if (Math.random() > 0.8) {
       ctx.beginPath()
-      x += fs
+      x += fs*1.2
     }
-
+    if (alt)
+      y += 1
   }
   document.getElementById("paintcolor").value = color
 }
