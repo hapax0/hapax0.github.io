@@ -10328,11 +10328,11 @@ function script () {
   let pad = 4 + Math.floor(Math.random() * 2)
   let linespace = 18 + Math.floor(pet(8))
   ctx.fillStyle = "#ffffff"//color
-  let colors = ["#ed6060", "#6060ba", "#6060ed", "#ed6060", "#000000"]
+  //let colors = ["#ed6060", "#6060ba", "#6060ed", "#ed6060", "#000000"]
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.strokeStyle = document.getElementById("paintcolor").value
   ctx.lineJoin = "round"
-  ctx.lineWidth = 1 + fs/20
+  ctx.lineWidth = Math.floor(1 + fs/20)
   ctx.imageSmoothingQuality = "high"
   let i = 0, x = pad+2+fs*2, y = LASTCLICK[1], rot = 1
   let sa = Math.PI, ea = sa + Math.PI*Math.random()*2, cw = true
@@ -10342,9 +10342,8 @@ function script () {
   ctx.beginPath()
   while (x < W-fs*2) {
     rot = randomPick([2.3,2.5,2.7,2.8,2.1,1.9])
-
-    ctx.ellipse(x,y+pet(fs/yD),fs*1.9+pet(fs),fs*0.6+pet(fs/2), rot,sa,ea,cw)
-    x += fs*0.7 + Math.random() * fs/2
+    ctx.ellipse(x,y+pet(fs/yD),fs*1.9+pet(fs),fs*0.7+pet(fs/2), rot,sa,ea,cw)
+    x += fs/1.8 + Math.random() * fs/2
     sa = ea//Math.PI * Math.random()
     ea = sa+Math.PI * Math.random() *1.25
     ctx.stroke()
@@ -10355,7 +10354,7 @@ function script () {
     if (alt)
       y += 1
   }
-  document.getElementById("paintcolor").value = color
+  //document.getElementById("paintcolor").value = color
 }
 
 function musicpaper () {
