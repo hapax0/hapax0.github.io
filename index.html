@@ -10395,6 +10395,7 @@ function musicpaper () {
 
 function music (y, d) {
   d /= 2
+  
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   //let d = 3 + document.getElementById("featuresize").value/10
@@ -10406,7 +10407,8 @@ function music (y, d) {
   ctx.fillStyle = color
   ctx.imageSmoothingQuality = "high"
   let i = 1, x = pad+2+d*2//, y = LASTCLICK[1], rot = 1
-  let y0 = y
+  let y0 = y, max = y + d*7, min = y - d*6
+  y += d*2 * randomPick([0,1,-1,-2,2])
   ctx.beginPath()
   while (x < W-d*2) {
     ctx.beginPath()
@@ -10414,10 +10416,12 @@ function music (y, d) {
     ctx.closePath()
     ctx.fill()
     x += d*2
+    //if (Math.random() > 0.1)
     y += (Math.random() > 0.5)? d*2: -d*2;
-    if (Math.abs(y0-y) > d*7) {
-     y = y0
-    }
+    if (y > max)
+      y -= d*4
+    if (y < min)
+      y += d*4
     if (i % 5 === 0)
       x += d*3
     i++
