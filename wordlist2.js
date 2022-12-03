@@ -52,7 +52,6 @@ abe\n\
 abeam\n\
 abel\n\
 abele\n\
-aberdeen\n\
 aberrant\n\
 aberration\n\
 aberrations\n\
@@ -272,7 +271,6 @@ academics\n\
 academies\n\
 academy\n\
 acanthus\n\
-acapulco\n\
 accede\n\
 acceded\n\
 acceding\n\
@@ -722,7 +720,6 @@ adlib\n\
 adlibs\n\
 adman\n\
 admen\n\
-admin\n\
 administer\n\
 administered\n\
 administering\n\
@@ -1041,7 +1038,6 @@ afterwards\n\
 aga\n\
 again\n\
 against\n\
-agakhan\n\
 agape\n\
 agar\n\
 agaragar\n\
@@ -1748,7 +1744,6 @@ amuses\n\
 amusing\n\
 amusingly\n\
 an\n\
-ana\n\
 anabolic\n\
 anachronism\n\
 anachronisms\n\
@@ -2372,7 +2367,6 @@ apprenticeships\n\
 apprise\n\
 apprised\n\
 apprising\n\
-appro\n\
 approach\n\
 approachability\n\
 approachable\n\
@@ -2698,7 +2692,6 @@ arthritic\n\
 arthritis\n\
 arthropod\n\
 arthropods\n\
-arthur\n\
 artichoke\n\
 artichokes\n\
 article\n\
@@ -2800,7 +2793,6 @@ asks\n\
 aslant\n\
 asleep\n\
 asocial\n\
-asp\n\
 asparagus\n\
 aspect\n\
 aspects\n\
@@ -3477,7 +3469,6 @@ azores\n\
 aztec\n\
 aztecs\n\
 azure\n\
-baa\n\
 baaing\n\
 baal\n\
 babas\n\
@@ -4771,7 +4762,6 @@ billows\n\
 billowy\n\
 billposters\n\
 bills\n\
-billy\n\
 biltong\n\
 bimbo\n\
 bimodal\n\
@@ -7875,7 +7865,6 @@ chapping\n\
 chaps\n\
 chapter\n\
 chapters\n\
-char\n\
 charabanc\n\
 character\n\
 characterful\n\
@@ -12284,7 +12273,6 @@ damsel\n\
 damsels\n\
 damson\n\
 damsons\n\
-dan\n\
 dance\n\
 danceable\n\
 danced\n\
@@ -13840,7 +13828,6 @@ dextral\n\
 dextrose\n\
 dextrous\n\
 dextrously\n\
-dhow\n\
 diabetes\n\
 diabetic\n\
 diabetics\n\
@@ -16523,7 +16510,6 @@ eloping\n\
 eloquence\n\
 eloquent\n\
 eloquently\n\
-els\n\
 else\n\
 elsewhere\n\
 elucidate\n\
@@ -16546,7 +16532,6 @@ elven\n\
 elves\n\
 elvish\n\
 elysee\n\
-em\n\
 emaciate\n\
 emaciated\n\
 emaciation\n\
@@ -18364,7 +18349,6 @@ expurgating\n\
 exquisite\n\
 exquisitely\n\
 exquisiteness\n\
-ext\n\
 extend\n\
 extendability\n\
 extendable\n\

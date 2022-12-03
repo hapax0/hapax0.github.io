@@ -16774,6 +16774,53 @@ function dropFrame () {
   ctx.globalAlpha = alpha
 }
 
+function compress () { // vertical
+  let ocanvas = document.getElementById('off')
+  let octx = ocanvas.getContext('2d')
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let mode = ctx.globalCompositeOperation
+  ctx.globalCompositeOperation = "source-over"
+  let a = ctx.globalAlpha
+  ctx.globalAlpha = 1.0
+  ocanvas.height = canvas.height
+  ocanvas.width = canvas.width
+  octx.drawImage(canvas, 0, 0)
+  ctx.clearRect(0,0,canvas.width, canvas.height)
+  syncBackground(canvas)
+  ctx.drawImage(ocanvas,0,canvas.height*0.05,canvas.width,canvas.height-(canvas.height*0.1))
+  octx.clearRect(0,0,ocanvas.width,ocanvas.height)
+  document.getElementById("canvaswidth").value = canvas.width
+  document.getElementById("canvasheight").value = canvas.height
+  ctx.globalCompositeOperation = mode
+  ctx.globalAlpha = a
+  syncMarker()
+}
+
+function stretch () { // vertical
+  let ocanvas = document.getElementById('off')
+  let octx = ocanvas.getContext('2d')
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let mode = ctx.globalCompositeOperation
+  ctx.globalCompositeOperation = "source-over"
+  let a = ctx.globalAlpha
+  ctx.globalAlpha = 1.0
+  ocanvas.height = canvas.height
+  ocanvas.width = canvas.width
+  octx.drawImage(canvas, 0, 0)
+  ctx.clearRect(0,0,canvas.width, canvas.height)
+  canvas.height *= 1.1
+  syncBackground(canvas)
+  ctx.drawImage(ocanvas,0,0,canvas.width,canvas.height)
+  octx.clearRect(0,0,ocanvas.width,ocanvas.height)
+  document.getElementById("canvaswidth").value = canvas.width
+  document.getElementById("canvasheight").value = canvas.height
+  ctx.globalCompositeOperation = mode
+  ctx.globalAlpha = a
+  syncMarker()
+}
+
 function zoomOutImage () {
   zoomImage(true)
 }
