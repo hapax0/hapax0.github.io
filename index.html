@@ -84,6 +84,7 @@
   
   <script src="emily.js"></script>
   <script src="wordlist2.js"></script>
+  <script src="wordlist1.js"></script>
 
   </head>
   <body>
@@ -10385,12 +10386,72 @@ function musicpaper () {
     i++
     if (i % 5 === 0) {
       if (alt)
-        music(y - linespace*3, linespace)
+        lyrics(y - linespace*3, linespace)
       y += linespace*4
      // ctx.fillStyle = color
     }
   }
   //document.getElementById("paintcolor").value = color
+}
+
+function lyrics (y, d) {
+  d /= 2
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  //let d = 3 + document.getElementById("featuresize").value/10
+  let color = document.getElementById("paintcolor").value
+  let alt = document.getElementById("grungy").checked
+  let W = canvas.width, H = canvas.height
+  let pad = 4 + Math.floor(Math.random() * 2)
+  let linespace = 18 + Math.floor(pet(8))
+  ctx.fillStyle = color
+  ctx.imageSmoothingQuality = "high"
+  let functionwords = ["in", "on", "so", "which", "to", "and", "or", "not", "is", "for","some", "any", "most", "over", "under", "into", "she", "he", "his", "her", "it", "they","this", "the", "a", "if", "of", "by", "you","i", "they", "that", "no", "but", "there", "and", "cound", "should", "may", "how", "where", "what", "when", "why", "who"]
+  let i = 0, x = pad+2+d*2//, y = LASTCLICK[1], rot = 1
+  let y0 = y, max = y + d*7, min = y - d*6
+  //y += d*2 * randomPick([0,1,-1,-2,2])
+  let letters = []
+  let glom = []
+  let FW = true
+  for (;i < 9; i++) {
+    letters = randomWord().split("")
+    letters.push(" ")
+    //letters.push(" ")
+    
+    let j = 0
+    for (; j < letters.length; j++)
+      glom.push(letters[j])
+      
+    letters = []
+    
+    if (Math.random() > 0.2) {
+      letters = randomPick(functionwords).split("")
+      letters.push(" ")
+     // letters.push(" ")
+    }
+    j = 0
+    for (; j < letters.length; j++)
+      glom.push(letters[j])
+  }
+  i = 0
+  let face = "AmericanTypewriter-Bold"
+  ctx.font = "800 "+(d*1.5)+"pt " + face
+  ctx.beginPath()
+  y += d/2
+  while (x < W-d*2 && i < glom.length) {
+    ctx.fillText(glom[i], x,y)
+    // smudge
+    x += d*2.2
+    y += (Math.random() > 0.5)? d: -d;
+    if (y > max)
+      y -= d*2
+    if (y < min)
+      y += d*2
+    i++
+    
+    //if (Math.random() > 0.95)
+    //  dotsNear(ctx,x+pet(20),y+pet(11),7+pet(4))
+  }
 }
 
 function music (y, d) {
@@ -12039,10 +12100,11 @@ function moleText (d) {
   let small = true, half = true
   let scale = canvas.height/1080
   ctx.strokeStyle = "#ccccdc"
-  let thebook = randomPick([crossword])
+  let thebook = crossword
   let fs = 8 + Math.floor(document.getElementById("featuresize").value/2)
   if (thebook === crossword)
     thebook = clues()
+  console.log(thebook)
   let text = document.getElementById("points").value
   if (text.length > 0)
     thebook = text
@@ -18419,7 +18481,7 @@ function card2 () {
 
 
 function randomWord () {
-  return randomPick(words.split("\n"))
+  return randomPick(words2.split("\n"))
 }
 
 function diagonal () {
