@@ -1106,7 +1106,6 @@ browse\n\
 browser\n\
 browsers\n\
 browsing\n\
-bruce\n\
 brunei\n\
 brunette\n\
 brunswick\n\
@@ -1120,7 +1119,6 @@ budapest\n\
 buddy\n\
 budget\n\
 budgets\n\
-buf\n\
 buffalo\n\
 buffer\n\
 bufing\n\
@@ -1210,7 +1208,6 @@ called\n\
 calling\n\
 calls\n\
 calm\n\
-calvin\n\
 cam\n\
 cambodia\n\
 cambridge\n\
@@ -1220,7 +1217,6 @@ came\n\
 camel\n\
 camera\n\
 cameras\n\
-cameron\n\
 cameroon\n\
 camp\n\
 campaign\n\
@@ -1483,7 +1479,6 @@ chrome\n\
 chronic\n\
 chronicle\n\
 chronicles\n\
-chrysler\n\
 chubby\n\
 chuck\n\
 church\n\
@@ -1495,7 +1490,6 @@ cigarette\n\
 cigarettes\n\
 cincinnati\n\
 cinema\n\
-cingular\n\
 circle\n\
 circles\n\
 circuit\n\
@@ -1609,7 +1603,6 @@ coins\n\
 col\n\
 cold\n\
 cole\n\
-colin\n\
 collaboration\n\
 collaborative\n\
 collapse\n\
@@ -2533,7 +2526,6 @@ donated\n\
 donation\n\
 donations\n\
 done\n\
-donna\n\
 donor\n\
 donors\n\
 dont\n\
@@ -2546,8 +2538,6 @@ dose\n\
 dot\n\
 double\n\
 doubt\n\
-doug\n\
-douglas\n\
 dover\n\
 dow\n\
 down\n\
@@ -5281,8 +5271,6 @@ munich\n\
 municipal\n\
 municipality\n\
 murder\n\
-murphy\n\
-murray\n\
 muscle\n\
 muscles\n\
 museum\n\
@@ -5395,7 +5383,6 @@ newspaper\n\
 newspapers\n\
 newton\n\
 next\n\
-nextel\n\
 niagara\n\
 nicaragua\n\
 nice\n\
@@ -5434,7 +5421,6 @@ norfolk\n\
 norm\n\
 normal\n\
 normally\n\
-norman\n\
 north\n\
 northeast\n\
 northern\n\
@@ -5460,7 +5446,6 @@ notify\n\
 notion\n\
 notre\n\
 nottingham\n\
-nov\n\
 nova\n\
 novel\n\
 novels\n\
@@ -5628,7 +5613,6 @@ orders\n\
 ordinance\n\
 ordinary\n\
 oregon\n\
-org\n\
 organ\n\
 organic\n\
 organisation\n\
@@ -5735,7 +5719,6 @@ palestinian\n\
 palm\n\
 pan\n\
 panama\n\
-panasonic\n\
 panel\n\
 panels\n\
 panic\n\
@@ -6532,7 +6515,6 @@ ratios\n\
 rats\n\
 raw\n\
 ray\n\
-raymond\n\
 rays\n\
 reach\n\
 reached\n\
@@ -6648,7 +6630,6 @@ refund\n\
 refurbished\n\
 refuse\n\
 refused\n\
-reg\n\
 regard\n\
 regarded\n\
 regarding\n\
@@ -6738,7 +6719,6 @@ reno\n\
 rent\n\
 rental\n\
 rentals\n\
-rentcom\n\
 repair\n\
 repairs\n\
 repeat\n\
@@ -6864,7 +6844,6 @@ returned\n\
 returning\n\
 returns\n\
 reunion\n\
-reuters\n\
 rev\n\
 reveal\n\
 revealed\n\
@@ -6886,7 +6865,6 @@ revolution\n\
 revolutionary\n\
 reward\n\
 rewards\n\
-reynolds\n\
 rhode\n\
 rhythm\n\
 ribbon\n\
@@ -6998,7 +6976,6 @@ rural\n\
 rush\n\
 russia\n\
 russian\n\
-ruth\n\
 rwanda\n\
 sacramento\n\
 sacred\n\
@@ -7029,7 +7006,6 @@ salon\n\
 salt\n\
 salvador\n\
 salvation\n\
-sam\n\
 samba\n\
 same\n\
 samoa\n\
@@ -8478,7 +8454,6 @@ unified\n\
 uniform\n\
 union\n\
 unions\n\
-uniprotkb\n\
 unique\n\
 unit\n\
 united\n\
