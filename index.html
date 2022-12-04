@@ -5720,16 +5720,76 @@ function swingfill () {
 
 }
 
-function foursquares () {
+function foursquares_l () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let W = canvas.width, H = canvas.height
   ctx.globalAlpha = +document.getElementById("opacity").value/100
   let colors = shuffle(getCurrentPalette())
   let alt = document.getElementById("grungy").checked
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/10
+  let pad = 40 + Math.random() *100, x = pad, y = pad
+  let sqrW = W/2 + pad/2 -(2*pad), sqrH = sqrW
+  
+  ctx.strokeStyle = randomPick(colors)
+  ctx.beginPath()
+  ctx.moveTo(x,y)
+  ctx.lineTo(x+sqrW,y)
+  ctx.lineTo(x+sqrW,y+sqrH)
+  ctx.lineTo(x,y+sqrH)
+  ctx.lineTo(x,y)
+  ctx.closePath()
+  ctx.stroke()
+  
+  ctx.strokeStyle = randomPick(colors)
+  x = W/2 + pad/2
+  ctx.beginPath()
+  ctx.moveTo(x,y)
+  ctx.lineTo(x+sqrW,y)
+  ctx.lineTo(x+sqrW,y+sqrH)
+  ctx.lineTo(x,y+sqrH)
+  ctx.lineTo(x,y)
+  ctx.closePath()
+  ctx.stroke()
+  
+  ctx.strokeStyle = randomPick(colors)
+  y = H/2 + pad/2
+  ctx.beginPath()
+  ctx.moveTo(x,y)
+  ctx.lineTo(x+sqrW,y)
+  ctx.lineTo(x+sqrW,y+sqrH)
+  ctx.lineTo(x,y+sqrH)
+  ctx.lineTo(x,y)
+  ctx.closePath()
+  ctx.stroke()
+  
+  ctx.strokeStyle = randomPick(colors)
+  x = pad
+  ctx.beginPath()
+  ctx.moveTo(x,y)
+  ctx.lineTo(x+sqrW,y)
+  ctx.lineTo(x+sqrW,y+sqrH)
+  ctx.lineTo(x,y+sqrH)
+  ctx.lineTo(x,y)
+  ctx.closePath()
+  ctx.stroke()
+}
+
+
+function foursquares () {
+  let alt = document.getElementById("grungy").checked
+  if (alt) {
+    foursquares_l()
+    return
+  }
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let colors = shuffle(getCurrentPalette())
   ctx.strokeStyle = colors[0]
   ctx.fillStyle = colors[0]
-  let pad = 80, x = pad, y = pad
+  let pad = 40 + Math.random() *100, x = pad, y = pad
   let sqrW = W/2 + pad/2 -(2*pad), sqrH = sqrW
   ctx.beginPath()
   ctx.moveTo(x,y)
@@ -12103,10 +12163,10 @@ function moleskine2 (options) { // 3D
     }
     if (j === 4) {
       BF = false
-      roundedRect(x+d, y, W-49-d*2, H-49, 14, ctx, BF) // same size. to get drop-shadow
-      wavyPaperRounded(x+d, y, W-49-d*2, H-49, 14)
+      roundedRect(x+d, y, W-40-d*2, H-49, 14, ctx, BF) // same size. to get drop-shadow
+      wavyPaperRounded(x+d, y, W-40-d*2, H-49, 14)
     } else
-      roundedRect(x+d, y, W-49-d*2, H-49, 14, ctx, BF)
+      roundedRect(x+d, y, W-40-d*2, H-49, 14, ctx, BF)
     d += 9*scale + pet(3*scale)
     ctx.shadowBlur = 0
     ctx.shadowOffsetX = 0;
@@ -19352,6 +19412,66 @@ function edgeDistance (x,W) {
   return ((x < W/2)? x: W-x)
 }
 
+async function contraEdges () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let w = canvas.width, h = canvas.height
+  let maxdist = canvas.width
+  let data = ctx.getImageData(0,0,canvas.width,canvas.height)
+  let divisor = Math.floor(document.getElementById("featuresize").value/25) + 4
+  //invert range of divisor [3- 25] => [25 - 3]
+  divisor = 25 - divisor + 4
+  let margin = w/divisor + pet(w/divisor/2)
+  let i = 0, x = 0, y = 0, dx = 0, dy = 0
+  let len = w * h
+  for (;i < len; i++) {
+    x = i % w
+    if (i > 0 && i % w === 0) {
+      x = 0
+      y += 1
+    }
+    if (Math.random() > 0.25)
+      margin = w/divisor + pet(w/divisor/2)
+    dx = edgeDistance(x,w)
+    dy = edgeDistance(y,h)
+    if (x > margin && dx < margin && dx > 0) {
+      dx += 10 // prevent 100% dark at very close to edge
+      let px = data.data.slice(i*4, i*4+4)
+      px[0] -= margin/dx * Math.random()*4
+      px[1] -= margin/dx * Math.random()*4
+      px[2] -= margin/dx * Math.random()*4
+      data.data.set(px, i*4)
+    }
+    if (y > margin && dy < margin && dy > 0) {
+      dy+= 10
+      let px = data.data.slice(i*4, i*4+4)
+      px[0] -= margin/dy * Math.random()*4
+      px[1] -= margin/dy * Math.random()*4
+      px[2] -= margin/dy * Math.random()*4
+      data.data.set(px, i*4)
+    }
+    // lighten top & left
+    if (x < w - margin && dx < margin && dx > 0) {
+      dx += 10 // prevent 100% dark at very close to edge
+      let px = data.data.slice(i*4, i*4+4)
+      px[0] += margin/dx * Math.random()*4
+      px[1] += margin/dx * Math.random()*4
+      px[2] += margin/dx * Math.random()*4
+      data.data.set(px, i*4)
+    }
+    if (y < h - margin && dy < margin && dy > 0) {
+      dy+= 10
+      let px = data.data.slice(i*4, i*4+4)
+      px[0] += margin/dy * Math.random()*4
+      px[1] += margin/dy * Math.random()*4
+      px[2] += margin/dy * Math.random()*4
+      data.data.set(px, i*4)
+    }
+  }
+  await ctx.putImageData(data, 0, 0);
+  return true
+}
+ 
 async function darkenEdges () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
