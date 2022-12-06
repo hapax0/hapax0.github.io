@@ -12360,17 +12360,16 @@ function index () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let alpha = document.getElementById("opacity").value
-  ctx.font = 18+"px monospace"
-  ctx.fillStyle = randomPick(["#706060", "#6060ba", "#6060ed", "#506060", "#202020"])
+  ctx.font = 20+"px monospace"
+  ctx.fillStyle = randomPick(["#302020", "#505080", "#404060", "#506060", "#202020"])
   let scale = 1
   let linespace = 2*14
   let avspace = Math.floor((canvas.height - 20 - 100*scale)/linespace - 1)
   let nums = []
-  ctx.fillText("Index", 70*scale, 60)
+  ctx.fillText("Index", 80*scale, 70)
   ctx.font = 14+"px monospace"
-  let puff = 0
-  i = 0, x = 80*scale, y = 120*scale
-  while ((i+ puff) < avspace && chunk[i] !== undefined) {
+  i = 0, x = 100*scale, y = 120*scale
+  while (y < canvas.height-80  && chunk[i] !== undefined) {
     nums = pagenumbers()
     ctx.fillText(chunk[i]+" "+dotpad(chunk[i].length+nums.length)+nums, x, y)
     y += linespace
@@ -12378,13 +12377,12 @@ function index () {
     if (nl) {
       ctx.fillText(nl, x-11, y)
       y += linespace
-      puff += 2
     }
     i++
   }
   puff = 0
-  x += canvas.width/2-20*scale,  y = 120*scale
-  while ((i+puff) < avspace*2 && chunk[i] !== undefined) {
+  x += canvas.width/2-30*scale,  y = 120*scale
+  while (y < canvas.height-80 && chunk[i] !== undefined) {
     nums = pagenumbers()
     ctx.fillText(chunk[i]+" "+dotpad(chunk[i].length+nums.length)+nums, x, y)
     y += linespace
@@ -12392,7 +12390,6 @@ function index () {
     if (nl) {
       ctx.fillText(nl, x-11, y)
       y += linespace
-      puff += 2
     }
     i++
   }
