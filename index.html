@@ -12368,8 +12368,9 @@ function index () {
   let nums = []
   ctx.fillText("Index", 70*scale, 60)
   ctx.font = 14+"px monospace"
+  let puff = 0
   i = 0, x = 80*scale, y = 120*scale
-  while (i < avspace && chunk[i] !== undefined) {
+  while ((i+ puff) < avspace && chunk[i] !== undefined) {
     nums = pagenumbers()
     ctx.fillText(chunk[i]+" "+dotpad(chunk[i].length+nums.length)+nums, x, y)
     y += linespace
@@ -12377,12 +12378,13 @@ function index () {
     if (nl) {
       ctx.fillText(nl, x-11, y)
       y += linespace
-      i++
+      puff += 2
     }
     i++
   }
+  puff = 0
   x += canvas.width/2-20*scale,  y = 120*scale
-  while (i < avspace*2 && chunk[i] !== undefined) {
+  while ((i+puff) < avspace*2 && chunk[i] !== undefined) {
     nums = pagenumbers()
     ctx.fillText(chunk[i]+" "+dotpad(chunk[i].length+nums.length)+nums, x, y)
     y += linespace
@@ -12390,7 +12392,7 @@ function index () {
     if (nl) {
       ctx.fillText(nl, x-11, y)
       y += linespace
-      i++
+      puff += 2
     }
     i++
   }
