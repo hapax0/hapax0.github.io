@@ -601,6 +601,7 @@
           <option value="moleskine">mole grid</option>
           <option value="moleskineDay">day planner</option>
           <option value="moleText">moby</option>
+          <option value="index">index</option>
           <option value="crosswordPad">crossword</option>
           <option value="sketchpad">sketch pad</option>
           <option value="floppyPage">stack of pages</option>
@@ -8366,6 +8367,84 @@ function network () {
   document.getElementById("opacity").value = alpha
 }
 
+function lattice () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.clearRect(0,0,canvas.width,canvas.height)
+  ctx.lineWidth = 5
+  ctx.lineCap = "round"
+  let rads = [3,4,5,6,7,8,3,4,5,6,7,8,13]
+  let widths = [1,2,3, 4, 5]
+  let H  = canvas.height, W = canvas.width
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let mode = document.getElementById("mode").value
+  let alpha = document.getElementById("opacity").value
+  let colors = getCurrentPalette()
+  colors = shuffle(colors)
+  let points = []
+  let i = 0, numpoints = randomPick([27,37,47])
+  let Rf = W/7
+  numpoints = (W/Rf*H/Rf) * 2
+  let row = 0
+  
+  let pad = 50
+  let div = Math.floor(document.getElementById("featuresize").value/5)
+  div = 12 + 100 - div
+  let d = (canvas.width-2*pad)/div
+
+  let space = 3
+  let mindist = W/3.14 //(space+2)*d*2
+
+  if (document.getElementById("grungy").checked)
+    space = 1.5
+  ctx.strokeStyle = "#000000"
+  ctx.lineWidth = 2//2+Math.floor(document.getElementById("featuresize").value/100)
+  let x = pad*1.5, y = pad*1.5
+  let values = []
+  while (y < H - pad*1.5) {
+    while (x < W - pad*1.5) {
+      points.push([x,y, 0])
+      x += space * d
+    }
+    x = pad*1.5
+    y += space * d
+  }
+  console.log(mindist)
+ // return
+  let j = 0
+  i = 0
+  ctx.strokeStyle = colors[0]
+  for (;i < points.length; i++) {
+   // j = i + 1
+   // for (; j < points.length; j++) {
+      if (distance(points[i][0],points[i][1],points[j][0],points[j][1]) < mindist*1.3) {
+        //ctx.lineWidth = randomPick(widths)
+        j = Math.floor(Math.random() * points.length)
+        if (points[j][2] < 4 && points[i][2] < 4) {
+          ctx.beginPath()
+          ctx.moveTo(points[i][0], points[i][1])
+          ctx.lineTo(points[j][0], points[j][1])
+          ctx.stroke()
+          points[j][2] += 1
+          points[i][2] += 1
+        }
+      }
+   // }
+  }
+  i = 0
+  ctx.fillStyle = colors[1]
+  while (i < points.length) {
+    ctx.beginPath()
+    ctx.arc(points[i][0], points[i][1], randomPick(rads), 0, Math.PI * 2)
+    ctx.closePath()
+    //ctx.fill()
+    i++
+  }
+  document.getElementById("mode").value = mode
+  document.getElementById("opacity").value = alpha
+}
+
+
 function constellations () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -12267,6 +12346,87 @@ function clues () {
     cnt++
   }
   return result
+}
+
+
+function index () {
+  let words = [], i = 0
+  for (; i < 200; i++) {
+    words.push(randomWord())
+  }
+  let start = Math.floor(Math.random()*(words.length-100))
+  let end = start + 100
+  let chunk = words.sort().slice(start,end)
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let alpha = document.getElementById("opacity").value
+  ctx.font = 18+"px monospace"
+  ctx.fillStyle = randomPick(["#706060", "#6060ba", "#6060ed", "#506060", "#202020"])
+  let scale = 1
+  let linespace = 2*14
+  let avspace = Math.floor((canvas.height - 20 - 100*scale)/linespace - 1)
+  let nums = []
+  ctx.fillText("Index", 70*scale, 60)
+  ctx.font = 14+"px monospace"
+  i = 0, x = 80*scale, y = 120*scale
+  while (i < avspace && chunk[i] !== undefined) {
+    nums = pagenumbers()
+    ctx.fillText(chunk[i]+" "+dotpad(chunk[i].length+nums.length)+nums, x, y)
+    y += linespace
+    let nl = nextLetter(chunk,i)
+    if (nl) {
+      ctx.fillText(nl, x-11, y)
+      y += linespace
+      i++
+    }
+    i++
+  }
+  x += canvas.width/2-20*scale,  y = 120*scale
+  while (i < avspace*2 && chunk[i] !== undefined) {
+    nums = pagenumbers()
+    ctx.fillText(chunk[i]+" "+dotpad(chunk[i].length+nums.length)+nums, x, y)
+    y += linespace
+    let nl = nextLetter(chunk,i)
+    if (nl) {
+      ctx.fillText(nl, x-11, y)
+      y += linespace
+      i++
+    }
+    i++
+  }
+}
+
+function nextLetter (chunk, i) {
+  result = false
+  if (i < chunk.length - 2) {
+    let d = (chunk[i][0] != chunk[i+1][0])
+    if (d)
+      result = chunk[i+1][0].toUpperCase()
+  }
+  
+  return result
+}
+
+function dotpad(n) {
+  result = "", g = 0
+  if (n < 44) {
+    g = 44-n
+    while (result.length < g)
+      result += "."
+  }
+  return result
+}
+
+function pagenumbers () {
+  let pages = "", i = 0, max = 1+ Math.floor(Math.random() * 4)
+  let nums = []
+  for (; i < max; i++)
+    nums.push(3+Math.floor(Math.random()* 389))
+  nums - nums.sort(function(a, b) {return a - b;});
+  i = 0
+  for (; i < nums.length; i++)
+    pages += nums[i] + ", "
+  return pages.slice(0, -2)
 }
 
 function moleText (d) {
@@ -18705,7 +18865,7 @@ function card2 () {
 
 
 function randomWord () {
-  return randomPick(words2.split("\n"))
+  return randomPick(words.split("\n"))
 }
 
 function diagonal () {
