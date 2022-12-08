@@ -85,6 +85,7 @@
   <script src="emily.js"></script>
   <script src="wordlist2.js"></script>
   <script src="wordlist1.js"></script>
+  <script src="ptwords.js"></script>
 
   </head>
   <body>
@@ -248,6 +249,7 @@
        <option value="zoomImage">zoom in</option>
        <option value="dropFrame">drop shadow</option>
        <option value="rectFrame">rect frame</option>
+       <option value="filmFrame">film frame</option>
        <option value="lineFrame">line frame</option>
        <option value="roundedFrame">rounded frame</option>
        <option value="frameCircle">circle frame</option>
@@ -5722,7 +5724,7 @@ function swingfill () {
 
 }
 
-function cube () {
+function box () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let W = canvas.width, H = canvas.height
@@ -5738,20 +5740,27 @@ function cube () {
   let da = randomPick([2.1,3,5,8,13,100,200])
   let div = d/da
   
-  ctx.fillStyle = (colors[0])
-  
+  ctx.fillStyle = "red"//(colors[0])
   ctx.beginPath()
-  ctx.moveTo(x,y+div)
-  ctx.lineTo(x+d/2,y+d/2)
-
+  ctx.moveTo(x,y) // top center
+  ctx.lineTo(x,y+d/d) // bottom center (dowm)
   ctx.lineTo(x,y+d-div)
-  
   ctx.lineTo(x-d/2,y+d/2)
   ctx.lineTo(x,y+div)
   ctx.closePath()
   ctx.fill()
   
-
+  ctx.fillStyle = (colors[3])
+  ctx.beginPath()
+  ctx.moveTo(x,y+div)
+  ctx.lineTo(x+d/2,y+d/2)
+  ctx.lineTo(x,y+d-div)
+  ctx.lineTo(x,y+d/2)
+  ctx.lineTo(x,y+div)
+  ctx.closePath()
+  ctx.fill()
+  
+  
   ctx.fillStyle = (colors[1])
   ctx.beginPath()
   x = W/2-d/2, y = pad + d/2
@@ -5775,7 +5784,8 @@ function cube () {
   ctx.fill()
 }
 
-function cubeOG () {
+
+function cube () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let W = canvas.width, H = canvas.height
@@ -5783,28 +5793,30 @@ function cubeOG () {
   let colors = shuffle(getCurrentPalette())
   let alt = document.getElementById("grungy").checked
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/10
-  let pad = 40 + Math.random() *40, x = W/2, y = pad
+  let pad = 40 //+ Math.random() *40,
+  let x = W/2, y = pad
   let sqrW = W/2 + pad/2 -(2*pad), sqrH = sqrW
   let d = (W-2*pad)/2
   d *= 1.3
+  let da = randomPick([2.1,3,5,8,13,100,200])
+  let div = d/da
   
   ctx.fillStyle = (colors[0])
   ctx.beginPath()
-  ctx.moveTo(x,y)
+  ctx.moveTo(x,y+div)
   ctx.lineTo(x+d/2,y+d/2)
-  ctx.lineTo(x,y+d)
+  ctx.lineTo(x,y+d-div)
   ctx.lineTo(x-d/2,y+d/2)
-  ctx.lineTo(x,y)
+  ctx.lineTo(x,y+div)
   ctx.closePath()
   ctx.fill()
   
-
   ctx.fillStyle = (colors[1])
   ctx.beginPath()
   x = W/2-d/2, y = pad + d/2
   ctx.moveTo(x,y)         // top left
-  ctx.lineTo(x+d/2,y+d/2) // top right
-  ctx.lineTo(x+d/2,y+d) // bottom right
+  ctx.lineTo(x+d/2,y+d/2-div) // top right
+  ctx.lineTo(x+d/2,y+d-div) // bottom right
   ctx.lineTo(x,y+d/2)
   ctx.lineTo(x,y)
   ctx.closePath()
@@ -5813,14 +5825,15 @@ function cubeOG () {
   ctx.fillStyle = (colors[2])
   ctx.beginPath()
   x = W/2, y = pad + d
-  ctx.moveTo(x,y)
+  ctx.moveTo(x,y-div)
   ctx.lineTo(x+d/2,y-d/2)
   ctx.lineTo(x+d/2,y)
-  ctx.lineTo(x,y+d/2)
+  ctx.lineTo(x,y+d/2-div)
   ctx.lineTo(x,y)
   ctx.closePath()
   ctx.fill()
 }
+
 
 
 function foursquares_l () {
@@ -12274,9 +12287,7 @@ function wavyPaperRounded (x, y, w, h, r) {
   roundedRect(x, y, w, h, r, ctxoc, false) // draw to off
   swapWithOff() // switch to OC
   paperSelect()
-  //adjustBrightness(8)
- // contrastImage(8)
-  ctxoc.shadowColor = 'rgba(10, 10, 10, .3)'//'#808080';
+  ctxoc.shadowColor = 'rgba(10, 10, 10, .3)'
   ctxoc.shadowBlur = 5 + Math.random() * 3
   ctxoc.shadowOffsetX = -2 - Math.random() * 2;
   ctxoc.shadowOffsetY = 1 + Math.random() * 1
@@ -12286,6 +12297,39 @@ function wavyPaperRounded (x, y, w, h, r) {
   document.getElementById("mode").value = "source-over"
   ctx.globalCompositeOperation = "source-over"
   ctx.drawImage(oc,0,0,canvas.width,canvas.height)
+}
+
+
+function roundedRectP (){//(x, y, w, h, r, ctx, BF) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  
+  let x = 20, y = 20, w = 1000, h = 1000, r = 20
+  if (w < 2 * r) r = w / 2;
+  if (h < 2 * r) r = h / 2;
+  y += pet(5)
+  x += pet(5)
+  ctx.save()
+  ctx.beginPath();
+  ctx.moveTo(x+r, y);
+  ctx.arcTo(x+w, y,   x+w, y+h, r); // across to right
+  ctx.arcTo(x+w, y+h, x,   y+h, r);
+  ctx.arcTo(x,   y+h, x,   y,   r);
+  ctx.arcTo(x,   y,   x+w, y,   r);
+  ctx.closePath();
+  //wavyPaper()
+  ctx.clip()
+    //
+  ctx.fill()
+  ctx.globalCompositeOperation = "source-atop"
+  wavyPaper()
+
+ // if (BF) {
+//    blobFill(ctx.fillStyle)
+ //   ctx.fillStyle = "#ececdb"
+ //   ctx.fillRect(w/2, y, w/2, h)
+//  }
+  ctx.restore()
 }
 
 function roundedRect (x, y, w, h, r, ctx, BF) {
@@ -12399,8 +12443,8 @@ function moleskine2 (options) { // 3D
   document.getElementById("paintcolor").value = color
 }
 
-function randomClue () {
-  let res = randomWord()
+function randomClue (PT) {
+  let res = randomWord(PT)
   if (Math.random() > 0.9)
     res = "\"" + res +"\""
   else {
@@ -12412,7 +12456,7 @@ function randomClue () {
     }
   }
   if (Math.random() > 0.93)
-    res += ", " + randomWord()
+    res += ", " + randomWord(PT);
   if (Math.random() > 0.95) {
     if (Math.random() > 0.5)
       res += " (2 words)"
@@ -12422,14 +12466,14 @@ function randomClue () {
   return res
 }
 
-function clues () {
+function clues (PT) {
   let result = "HORIZONTAL\n"
   let num = 1, cnt = 0
-  while (cnt < 24) {
+  while (cnt < 22) {
     result += "\n"
     if (num < 10)
       result += " "
-    result += num + " " + randomClue()
+    result += num + " " + randomClue(PT)
     num += 1 // bump by one more occasionally
     if (Math.random() > 0.8)
       num ++
@@ -12441,7 +12485,7 @@ function clues () {
     result += "\n"
     if (num < 10)
       result += " "
-    result += num+" "+randomClue()
+    result += num+" "+randomClue(PT)
     num += 1 // bump by one more occasionally
     if (Math.random() > 0.8)
       num ++
@@ -12530,6 +12574,51 @@ function pagenumbers () {
   return pages.slice(0, -2)
 }
 
+function filmFrame () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let alpha = document.getElementById("opacity").value
+  let color = document.getElementById("paintcolor").value
+  let W = canvas.width, H = canvas.height
+  let scale = W/1080
+  ctx.strokeStyle = "#201010"
+  ctx.fillStyle = "#eece60"
+  let lw = (28 + Math.random() *12) * scale
+  ctx.lineWidth = lw
+  ctx.lineJoin = "square"
+  ctx.beginPath()
+  ctx.moveTo(lw,lw/2)
+  ctx.lineTo(W-lw/2,lw/2)
+  ctx.lineTo(W-lw/2,H-lw/2)
+  ctx.lineTo(lw/2,H-lw/2)
+  ctx.lineTo(lw/2,0)
+  ctx.closePath()
+  ctx.stroke()
+  let num = 2 + Math.floor(Math.random() * 33)
+  let text = "         "+ num + "                         KODAK PORTRA "+randomPick([160,400,800])+"                                              " + (num+1)
+  if (Math.random() > 0.5)
+    text = "    AGFA HDC 400                                  AGFA HDC 400                                  AGFA HDC 400"
+  text = randomPick([" ", "         ", "                "]) + text
+  ctx.font = lw*0.7+"px Helvetica"
+  
+  ctx.save()
+  ctx.translate(lw*0.8 + pet(4), H - 40*scale + pet(24))
+  ctx.rotate(-Math.PI/2) // need to adjust x & y offsets per line
+  ctx.fillText(text, 0,0)
+  ctx.restore()
+  let arrow = "\u2BC8"
+  num = 2 + Math.floor(Math.random() * 33)
+  text = "   "+arrow+"	 " + num + "A                                                      \u2BC8	"+ (num+1)+"                                                      "+arrow+" " + (num+1) + "A  "
+  
+  text = randomPick(["    ", "                 ", "                          "]) + text
+
+  ctx.save()
+  ctx.translate(W-lw/4 + pet(6), H - 40*scale + pet(24))
+  ctx.rotate(-Math.PI/2) // need to adjust x & y offsets per line
+  ctx.fillText(text, 0,0)
+  ctx.restore()
+}
+
 function moleText (d) {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -12539,10 +12628,10 @@ function moleText (d) {
   let scale = canvas.height/1080
   ctx.strokeStyle = "#ccccdc"
   let thebook = crossword
+  let PT = Math.random() > 0.5
   let fs = 8 + Math.floor(document.getElementById("featuresize").value/2)
   if (thebook === crossword)
-    thebook = clues()
-  console.log(thebook)
+    thebook = clues(PT)
   let text = document.getElementById("points").value
   if (text.length > 0)
     thebook = text
@@ -18874,7 +18963,6 @@ function card2 () {
   else
     drawXAt(ctx,x,y,r)
     
-    
   x = centerx/3, y =  centery/3 + h * 1/3
   ctx.fillStyle = randomPick(colors)
   f = (Math.floor(Math.random() * 4))
@@ -18918,7 +19006,6 @@ function card2 () {
     drawXAt(ctx,x,y,r)
     
   // botton row
-   
   x = centerx/3, y =  centery/3 + h * 2/3
   ctx.fillStyle = randomPick(colors)
   f = (Math.floor(Math.random() * 4))
@@ -18960,13 +19047,18 @@ function card2 () {
     drawRectAt(ctx,x,y,r)
   else
     drawXAt(ctx,x,y,r)
-  //pushColor(randomPick(colors))
   ctx.restore()
 }
 
+function randomWord (PT) {
+  if (PT)
+    return randomPick(ptwords)
+  else
+    return randomPick(words.split("\n"))
+}
 
-function randomWord () {
-  return randomPick(words.split("\n"))
+function randomWordPT () {
+  return randomPick(ptwords)
 }
 
 function diagonal () {
