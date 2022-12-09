@@ -22,7 +22,7 @@
     }
     select {width:100px;}
     select[id='palettechoice'] {
-      width:5em;
+      width:7em;
     }
     input, img, span, a{
       vertical-align: middle;
@@ -262,38 +262,6 @@
        <option value="expandMarginsAll">expand margins</option>
        <option value="expandMarginsDown">expand bottom</option>
      </select>
-    
-      &nbsp;
-      <button onclick="testImage('patternfunctions')" title="patterns"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" class="white" viewBox="0 0 16 16">
-      <path d="M0 .5A.5.5 0 0 1 .5 0h15a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H14v2h1.5a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H14v2h1.5a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5H2v-2H.5a.5.5 0 0 1-.5-.5v-3A.5.5 0 0 1 .5 6H2V4H.5a.5.5 0 0 1-.5-.5v-3zM3 4v2h4.5V4H3zm5.5 0v2H13V4H8.5zM3 10v2h4.5v-2H3zm5.5 0v2H13v-2H8.5zM1 1v2h3.5V1H1zm4.5 0v2h5V1h-5zm6 0v2H15V1h-3.5zM1 7v2h3.5V7H1zm4.5 0v2h5V7h-5zm6 0v2H15V7h-3.5zM1 13v2h3.5v-2H1zm4.5 0v2h5v-2h-5zm6 0v2H15v-2h-3.5z"/>
-      </svg></button>
-      <select id="patternfunctions">
-        <option value="wavyPaper" selected>paper</option>
-        <option value="canvas1">canvas</option>
-        <option value="watercolorPaper">wc paper</option>
-        <option value="diss" >distress</option>
-        <option value="increaseGrain">increase grain</option>
-        <option value="specksRadial">specks</option>
-        <option value="blobs">blobs</option>
-        <option value="fog">fog</option>
-        <option value="smudge">smudges</option>
-        <option value="smudgewatercolor" >watercolor</option>
-        <option value="smudgestreaks">streaks</option>
-        <option value="smudgestreaks2">streaks2</option>
-        <option value="smudgehorizontal">horizontal</option>
-        <option value="smudgehorizontal2">horizontal2</option>
-        <option value="vanishingpoint">vanishing point</option>
-        <option value="smudgearcs">arcs</option>
-        <option value="smudgearcs2" >arcs2</option>
-        <option value="smudgestars">stars</option>
-        <option value="rays">rays</option>
-        <option value="chips">chips</option>
-        <option value="skinnyLines">horizontal3</option>
-        <option value="slantedLines">slanted</option>
-        <option value="skinnyRings">rings</option>
-        <option value="linearSpiral">spiral</option>
-        <option value="waves">waves</option>
-      </select>
       &nbsp;<button onclick="testImage('fadefunctions')" title="fade, darken, blur, gray"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" class="white" viewBox="0 0 16 16">
         <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z"/>
       </svg></button>
@@ -357,6 +325,37 @@
       <option value="mosaic">mosaic</option>
       <option value="nearest">squares mosaic</option>
       <option value="dotmosaic">dot mosaic</option>
+      </select>
+      &nbsp;
+      <button onclick="testImage('patternfunctions')" title="patterns"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" class="white" viewBox="0 0 16 16">
+      <path d="M0 .5A.5.5 0 0 1 .5 0h15a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H14v2h1.5a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H14v2h1.5a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5H2v-2H.5a.5.5 0 0 1-.5-.5v-3A.5.5 0 0 1 .5 6H2V4H.5a.5.5 0 0 1-.5-.5v-3zM3 4v2h4.5V4H3zm5.5 0v2H13V4H8.5zM3 10v2h4.5v-2H3zm5.5 0v2H13v-2H8.5zM1 1v2h3.5V1H1zm4.5 0v2h5V1h-5zm6 0v2H15V1h-3.5zM1 7v2h3.5V7H1zm4.5 0v2h5V7h-5zm6 0v2H15V7h-3.5zM1 13v2h3.5v-2H1zm4.5 0v2h5v-2h-5zm6 0v2H15v-2h-3.5z"/>
+      </svg></button>
+      <select id="patternfunctions">
+        <option value="wavyPaper" selected>paper</option>
+        <option value="canvas1">canvas</option>
+        <option value="watercolorPaper">wc paper</option>
+        <option value="diss" >distress</option>
+        <option value="increaseGrain">increase grain</option>
+        <option value="specksRadial">specks</option>
+        <option value="blobs">blobs</option>
+        <option value="fog">fog</option>
+        <option value="smudge">smudges</option>
+        <option value="smudgewatercolor" >watercolor</option>
+        <option value="smudgestreaks">streaks</option>
+        <option value="smudgestreaks2">streaks2</option>
+        <option value="smudgehorizontal">horizontal</option>
+        <option value="smudgehorizontal2">horizontal2</option>
+        <option value="vanishingpoint">vanishing point</option>
+        <option value="smudgearcs">arcs</option>
+        <option value="smudgearcs2" >arcs2</option>
+        <option value="smudgestars">stars</option>
+        <option value="rays">rays</option>
+        <option value="chips">chips</option>
+        <option value="skinnyLines">horizontal3</option>
+        <option value="slantedLines">slanted</option>
+        <option value="skinnyRings">rings</option>
+        <option value="linearSpiral">spiral</option>
+        <option value="waves">waves</option>
       </select>
        &nbsp;<button onclick="testImage('drawingfunctions')" title="drawing functions">
       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" class="white" viewBox="0 0 16 16">
