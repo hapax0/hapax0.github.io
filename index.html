@@ -17224,8 +17224,8 @@ function dropFrame () {
   ctx.shadowBlur = 25 + Math.random() * 5
   ctx.shadowOffsetY = 13 + Math.random() * 2
   ctx.shadowOffsetX = 4 + Math.random() * 2
-  let padx = (canvas.width - 0.95 * canvas.width)/2
-  let pady = (canvas.height - 0.95 * canvas.height)/2
+  let padx = (canvas.width - 0.9 * canvas.width)/2
+  let pady = (canvas.height - 0.9 * canvas.height)/2
   ctx.fillRect(padx,pady,canvas.width-2*padx,canvas.height-2*pady)
   ctx.shadowBlur = 0
   ctx.shadowOffsetY = 0
@@ -17306,8 +17306,8 @@ function zoomImage (out, d) {
   ctx.imageSmoothingQuality = 'high'
   octx.drawImage(canvas, 0, 0)
   
-  let dx = (out)? canvas.width * 0.95: canvas.width * 1.05
-  let dy = (out)? canvas.height * 0.95: canvas.height * 1.05
+  let dx = (out)? canvas.width * 0.9: canvas.width * 1.1
+  let dy = (out)? canvas.height * 0.9: canvas.height * 1.1
   if (d) {
     dx = (out)? canvas.width * 1/d: canvas.width * d
     dy = (out)? canvas.height * 1/d: canvas.height * d
