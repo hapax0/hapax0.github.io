@@ -5200,7 +5200,6 @@ function openFile () {
   let mode = ctx.globalCompositeOperation
   document.getElementById('uploadimage').click();
   ctx.globalCompositeOperation = mode
-  syncMarker()
 }
 
 function OGImage() {
@@ -14691,16 +14690,14 @@ function framePolaroid (rect) {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let D =  (5 + Math.floor(document.getElementById("featuresize").value/3))
-  let grunge = document.getElementById("grungy").checked
+  let alt = document.getElementById("grungy").checked
   let W = canvas.width
   let H = canvas.height
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.fillStyle = document.getElementById("paintcolor").value
   let x = -1, y = -1
   let w = 6 + Math.random()*14
-  let wobble = 8
-  if (document.getElementById("grungy").checked)
-    wobble = 4
+  let wobble = 6
   let i = 0
   while (y < canvas.height) {
     w = D +Math.random()*D/wobble
@@ -14721,6 +14718,9 @@ function framePolaroid (rect) {
     ctx.fill()
     y += 2
   }
+  
+  if (alt)
+    return
   x = 0, y = -1
   while (x < canvas.width) {
     w = D +Math.random()*D/wobble
