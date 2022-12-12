@@ -74,6 +74,18 @@
       border-color: black;
       border-width: 1px;
     }
+    div[id=tip] {
+      position:absolute;
+      top:160px;
+      left:24px;
+      color:#c00;
+      display: none;
+      background-color: #fff;
+      border:3px solid #222222;
+      padding:8px;
+      font-size:24px;
+      z-index:2;
+    }
     div[id='background'] {
       background-color: #ffffff;
       opacity: 1.0;
@@ -647,8 +659,10 @@
   </tr>
   </table>
   </div>
+  <div class="progresslabel" id="tip"></div>
   <canvas id="marker" width='512' height='6' style="border:1px solid #000000;" title="touch canvas: red mark shows location of clip or rip"></canvas>
   <div id="background" style="width:1024px;height:1024px;float:left;position:absolute;">
+  
   <canvas id="myCanvas" width="512" height="512" style="border:1px solid #000000;">
   </canvas><canvas id="OC" width="512" height="512" style="border:1px solid #000000;display:none;"></canvas>
   </div>
@@ -715,6 +729,26 @@ marker.addEventListener('click', function(event) {
   });
   rangecheck()
   syncMarker()
+}
+
+function showTip (msg, item) {
+  var e = document.getElementById("tip")
+  e.innerHTML = msg;
+  e.style.display = "block"
+  e.style.zIndex = "5"
+  let rect = document.getElementById(item).getBoundingClientRect()
+  let top = -24 + Math.floor(rect.top + window.scrollY)+"px"
+  let left = 24 + Math.floor(rect.left + window.scrollX)+"px"
+  if (top)
+    e.style.top = top
+  if (left)
+    e.style.left = left
+  else
+    e.style.left = "66px"
+  setTimeout(function() {
+    e.style.display = "none"
+    e.innerHTML = ""
+  }, 4000);
 }
 
 function printcanvas () {
@@ -1249,6 +1283,7 @@ function pushMarker() {
 function syncMarker () {
   let m = document.getElementById("marker")
   let w = document.getElementById("myCanvas").width
+  let h = document.getElementById("myCanvas").height
   let s = Math.floor(LASTCLICK[0])
   m.width = w
   ctx = m.getContext("2d")
@@ -1265,6 +1300,8 @@ function syncMarker () {
   ctx.lineTo(0,6)
   ctx.closePath()
   ctx.fill()
+  showTip ("WxH: "+w+" x "+h, "marker")
+
   //displayRatio()
 }
 
@@ -20517,6 +20554,8 @@ function resizeCanvas () {
   ctx.globalCompositeOperation = mode
   //syncMarker()
   //displayRatio()
+  
+  showTip ("WxH: "+canvas.width+" x "+canvas.height, "marker")
 }
 
 function clearCanvas () {
