@@ -698,14 +698,14 @@ window.onload = function () {
     LASTCLICK = []
     LASTCLICK.push(x)
     LASTCLICK.push(y)
-    syncMarker()
+    syncMarker(true)
 }, false);
 let marker = document.getElementById("marker")
 marker.addEventListener('click', function(event) {
     let rect = marker.getBoundingClientRect();
     let x = event.clientX - rect.left;
     LASTCLICK[0] = x
-    syncMarker()
+    syncMarker(true)
 }, false);
 
   document.getElementById("mode").addEventListener ('change', function(event) {
@@ -748,7 +748,7 @@ function showTip (msg, item) {
   setTimeout(function() {
     e.style.display = "none"
     e.innerHTML = ""
-  }, 4000);
+  }, 3000);
 }
 
 function printcanvas () {
@@ -1280,7 +1280,7 @@ function pushMarker() {
   ctx.fill()
 }
 
-function syncMarker () {
+function syncMarker (NOSHOW) {
   let m = document.getElementById("marker")
   let w = document.getElementById("myCanvas").width
   let h = document.getElementById("myCanvas").height
@@ -1300,9 +1300,8 @@ function syncMarker () {
   ctx.lineTo(0,6)
   ctx.closePath()
   ctx.fill()
-  showTip ("WxH: "+w+" x "+h, "marker")
-
-  //displayRatio()
+  if (!NOSHOW)
+    showTip ("WxH: "+w+" x "+h, "marker")
 }
 
 function showCanvasSettings () {
@@ -16437,16 +16436,6 @@ function hazeo () {
     ctx.fillRect(0,0,canvas.width, canvas.height)
 }
 
-function rc_simple () { // canvas must be opaque
-  let canvas = document.getElementById("myCanvas");
-  let ctx = canvas.getContext("2d")
-  ctx.save()
-  ctx.translate(canvas.width/2 ,canvas.height/2)
-  ctx.rotate(Math.PI / 2)
-  ctx.drawImage(canvas,-canvas.width/2,-canvas.height/2,canvas.width,canvas.height)
-  ctx.restore()
-}
-
 function rc () {
   let ocanvas = document.getElementById('off')
   let octx = ocanvas.getContext('2d')
@@ -16475,14 +16464,10 @@ function rc () {
   ctx.setTransform(1,0,0,1,0,0)
   ctx.drawImage(ocanvas,0,0,canvas.width,canvas.height)
   octx.clearRect(0,0,ocanvas.width,ocanvas.height)
-  //document.getElementById("canvaswidth").value = canvas.width
-  //document.getElementById("canvasheight").value = canvas.height
-  //LASTCLICK[0] = myCanvas.width/2
-  //LASTCLICK[1] = myCanvas.height/2
   ctx.globalAlpha = a
   refreshMode()
-  //syncMarker()
   ctx.globalCompositeOperation = mode
+  syncMarker()
 }
 
 function rcc () {
@@ -16513,14 +16498,10 @@ function rcc () {
   ctx.setTransform(1,0,0,1,0,0)
   ctx.drawImage(ocanvas,0,0,canvas.width,canvas.height)
   octx.clearRect(0,0,ocanvas.width,ocanvas.height)
-  //document.getElementById("canvaswidth").value = canvas.width
-  //document.getElementById("canvasheight").value = canvas.height
-  //LASTCLICK[0] = myCanvas.width/2
-  //LASTCLICK[1] = myCanvas.height/2
   ctx.globalAlpha = a
   refreshMode()
- // syncMarker()
- ctx.globalCompositeOperation = mode
+  syncMarker()
+  ctx.globalCompositeOperation = mode
 }
 
 function flipH () {
