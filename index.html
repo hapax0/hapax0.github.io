@@ -706,6 +706,7 @@ marker.addEventListener('click', function(event) {
     let x = event.clientX - rect.left;
     LASTCLICK[0] = x
     syncMarker(true)
+    showTip("X: "+x, "marker")
 }, false);
 
   document.getElementById("mode").addEventListener ('change', function(event) {
@@ -15892,13 +15893,12 @@ function make4to5 (all) {
     x = (canvas.width-W)/2
   }
   syncBackground(canvas)
-  //document.getElementById("canvaswidth").value = canvas.width
-  //document.getElementById("canvasheight").value = canvas.height
   ctx.drawImage(canvasoff, x, y)
   canvasoff.width = canvas.width
   canvasoff.height = canvas.height
   ctx.globalCompositeOperation = mode
   ctx.globalAlpha = alpha/100
+  syncMarker()
 }
 
 
@@ -15927,8 +15927,6 @@ function cropSquare (all) {
     canvas.width -= (W-H)
   }
   syncBackground(canvas)
- // document.getElementById("canvaswidth").value = canvas.width
- // document.getElementById("canvasheight").value = canvas.height
   ctx.drawImage(canvasoff, x, y)
   canvasoff.width = canvas.width
   canvasoff.height = canvas.height
@@ -15962,13 +15960,12 @@ function makeSquare (all) {
     canvas.height += (W-H)
   }
   syncBackground(canvas)
-  //document.getElementById("canvaswidth").value = canvas.width
-  //document.getElementById("canvasheight").value = canvas.height
   ctx.drawImage(canvasoff, x, y)
   canvasoff.width = canvas.width
   canvasoff.height = canvas.height
   ctx.globalCompositeOperation = mode
   ctx.globalAlpha = alpha/100
+  syncMarker()
 }
 
 function expandMarginsDown() {
@@ -16001,9 +15998,6 @@ function expandMargins (all) {
     canvas.height *= 2
   else
     canvas.height += value
-  //document.getElementById("canvaswidth").value = canvas.width
-  //document.getElementById("canvasheight").value = canvas.height
-
   let yoffset = 0
   if (all)
     yoffset = (canvas.height-H)/2
