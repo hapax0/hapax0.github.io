@@ -5860,6 +5860,35 @@ function corner () {
   ctx.closePath()
   ctx.fill()
   
+  // add windows to right pane
+  let wh = H/20, ww = wh/2, i = 0
+  let slope = (H/2-yr)/(W-xt)
+  x = (xt+ww), y = H/2 - ww
+  let yd = -slope*ww, r = 0
+  while (r < 16) {
+    i = 0
+    while (i < 18) {
+      ctx.fillStyle = (colors[1])
+      ctx.beginPath()
+      ctx.moveTo(x,y)
+      ctx.lineTo(x+ww,y+yd)
+      ctx.lineTo(x+ww,y+yd-wh)
+      ctx.lineTo(x,y-wh)
+      ctx.lineTo(x,y)
+      ctx.closePath()
+      ctx.fill()
+      x += ww*1.5
+      y += yd*1.5
+      i++
+    }
+    y = H/2 - ww - wh*r*1.5
+    x = (xt+ww)
+    //y -=  wh*(r+1.5)
+    console.log(y,"*")
+   // y -= wh *1.5
+    r++
+  }
+  console.log(wh)
 }
 
 function cube2 () {
