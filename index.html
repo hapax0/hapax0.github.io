@@ -20876,39 +20876,6 @@ function increaseGrain (canvas) {
   ctx.putImageData(imgData, 0, 0);
 }
 
-function increaseGrainPrinty (canvas) {
-  if (!canvas)
-    canvas = document.getElementById("myCanvas");
-  let n = document.getElementById("number").value/200
-  let lh = rangecheck()
-  let lowest = lh[0], highest = lh[1]
-  let brightness = 0
-  let ctx = canvas.getContext("2d");
-  let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
-  let pixels = imgData.data;
-  let flip = 0.5
-  if (document.getElementById("grungy").checked)
-    flip = 0.87
-  let fudge = []
-  let i = 0, ct = 0
-  let ff = [53, 59, 61, 67, 71, 73, 37, 41, 43]
-  let mm = randomPick(ff)
-  for (; i < mm; i++)
-    fudge.push((Math.random() > 0.5)?1:-1)
-  i = 0
-  for (; i < pixels.length; i += 4) {
-    brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3)
-    if (brightness >= lowest && brightness <= highest) {
-      pixels[i] += n;
-      pixels[i + 1] += n;
-      pixels[i + 2] += n;
-      n *= fudge[ct % mm]
-      ct++
-    }
-  }
-  ctx.putImageData(imgData, 0, 0);
-}
-
 function adjustBrightness (n, canvas) {
   if (!canvas)
     canvas = document.getElementById("myCanvas");
@@ -21014,15 +20981,12 @@ function tint (canvas) {
   let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
   let pixels = imgData.data;
   let i = 0
-  let fudge = []
-  for (; i < 31; i++)
-    fudge.push((Math.random() - 0.5)/5)
   let brightness = 0, ct = 0
   let lh = rangecheck()
   let lowest = lh[0], highest = lh[1]
   i = 0
   for (; i < pixels.length; i += 4) {
-    brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3) + fudge[ct%31]
+    brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3)
     if (brightness >= lowest && brightness <= highest) {
       pixels[i] =     Math.min(pixels[i] * 0.7 + r * 0.3, 255);
       pixels[i + 1] = Math.min(pixels[i+1] * 0.7 + g * 0.3, 255);
