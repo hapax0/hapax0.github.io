@@ -12579,25 +12579,25 @@ function filmFrame () {
     text = "    AGFA HDC 400                                  AGFA HDC 400                                  AGFA HDC 400"
   text = randomPick([" ", "         ", "                "]) + text
   ctx.font = lw*0.7+"px Helvetica"
-  
+  console.log(ctx.font, lw*0.8)
   ctx.save()
   ctx.translate(lw*0.8 + pet(4), H - 40*scale + pet(24))
   ctx.rotate(-Math.PI/2) // need to adjust x & y offsets per line
   ctx.fillText(text, 0,0)
   ctx.restore()
-  let arrow = ""
+
   let y = 25+H - Math.random() * H/4, x = W-lw/4 + pet(2)
   ctx.beginPath()
   ctx.moveTo(x,y)
-  ctx.lineTo(x-10,y)
-  ctx.lineTo(x-4, y-20)
+  ctx.lineTo(x-lw/2,y)
+  ctx.lineTo(x-lw/4, y-lw)
   ctx.closePath()
   ctx.fill()
   num = 2 + Math.floor(Math.random() * 33)
   
   text = " "+num
   ctx.save()
-  ctx.translate(x, y - 22)
+  ctx.translate(x, y - lw)
   ctx.rotate(-Math.PI/2) // need to adjust x & y offsets per line
   ctx.fillText(text, 0,0)
   ctx.restore()
@@ -12606,14 +12606,14 @@ function filmFrame () {
   num +=1
   ctx.beginPath()
   ctx.moveTo(x,y)
-  ctx.lineTo(x-10,y)
-  ctx.lineTo(x-4, y-20)
+  ctx.lineTo(x-lw/2,y)
+  ctx.lineTo(x-lw/4, y-lw)
   ctx.closePath()
   ctx.fill()
 
   text = " "+(num)+"A"
   ctx.save()
-  ctx.translate(x, y - 22)
+  ctx.translate(x, y - lw)
   ctx.rotate(-Math.PI/2) // need to adjust x & y offsets per line
   ctx.fillText(text, 0,0)
   ctx.restore()
