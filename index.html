@@ -403,6 +403,7 @@
       <option value="house">house (fill)</option>
       <option value="cube" selected>cube (fill)</option>
       <option value="cube2">cube2</option>
+      <option value="corner">corner</option>
       <option value="core">core</option>
       <option value="eclipse">eclipse</option>
       <option value="constellations" >constellations</option>
@@ -1052,7 +1053,7 @@ function loadPalette () {
     document.getElementById("pal2").value = adjustBrightnessC(c, amt)
     document.getElementById("pal3").value = adjustBrightnessC(c, amt*2)
     document.getElementById("pal4").value = adjustBrightnessC(c, amt*3)
-    document.getElementById("pal5").value = adjustBrightnessC(c, amt*3)
+    document.getElementById("pal5").value = adjustBrightnessC(c, amt*4)
     updateExtraColors(b)
     return
   } else
@@ -1063,7 +1064,7 @@ function loadPalette () {
     document.getElementById("pal2").value = adjustBrightnessC(c, amt)
     document.getElementById("pal3").value = adjustBrightnessC(c, amt*2)
     document.getElementById("pal4").value = adjustBrightnessC(c, amt*3)
-    document.getElementById("pal5").value = adjustBrightnessC(c, amt*3)
+    document.getElementById("pal5").value = adjustBrightnessC(c, amt*4)
     updateExtraColors(b)
     return
   } else
@@ -5812,6 +5813,53 @@ function cube () {
   ctx.lineTo(x,y)
   ctx.closePath()
   ctx.fill()
+}
+
+function corner () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let colors = shuffle(getCurrentPalette())
+  let alt = document.getElementById("grungy").checked
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/10
+  let pad = 4 //+ Math.random() *40,
+  let x = W/2, y = pad
+  let sqrW = W/2 + pad/2 -(2*pad), sqrH = sqrW
+  let yl = H - Math.random() * H/2, yr = H - Math.random() * H/2
+  let xt = W/4 + Math.random() * W/2
+  
+  y = 0
+  ctx.fillStyle = (colors[0])
+  ctx.beginPath()
+  ctx.moveTo(xt,y)
+  ctx.lineTo(W,y)
+  ctx.lineTo(W,yr)
+  ctx.lineTo(xt,H/2)
+  ctx.lineTo(xt,y)
+  ctx.closePath()
+  ctx.fill()
+
+  ctx.fillStyle = (colors[1])
+  ctx.beginPath()
+  ctx.moveTo(xt,y)
+  ctx.lineTo(0,y)
+  ctx.lineTo(0,yl)
+  ctx.lineTo(xt,H/2)
+  ctx.lineTo(xt,y)
+  ctx.closePath()
+  ctx.fill()
+  
+  ctx.fillStyle = (colors[2])
+  ctx.beginPath()
+  ctx.moveTo(xt,H/2)
+  ctx.lineTo(0,yl)
+  ctx.lineTo(0,H)
+  ctx.lineTo(W,H)
+  ctx.lineTo(W,yr)
+  ctx.closePath()
+  ctx.fill()
+  
 }
 
 function cube2 () {
