@@ -5859,22 +5859,24 @@ function corner () {
   ctx.lineTo(W,yr)
   ctx.closePath()
   ctx.fill()
-  
+  let p = 0
+  if (alt)
+    p = 4
   // add windows to right pane
   let wh = H/20+pet(32), ww = wh/2, i = 0
   let slope = (H/2-yr)/(W-xt)
   x = (xt+ww), y = H/2 - ww
   let y0 = y
-  let yd = -slope*ww, r = 0
-  while (r < 18) {
+  let yd = -slope*ww, r = 1
+  while (r < 28) {
     i = 0
-    while (i < 30) {
+    while (i < 48) {
       ctx.fillStyle = (colors[1])
       ctx.beginPath()
-      ctx.moveTo(x,y)       // lower left
+      ctx.moveTo(x+pet(p),y+pet(p))       // lower left
       ctx.lineTo(x+ww,y+yd) // lower right
-      ctx.lineTo(x+ww,y+yd-wh)//upper right
-      ctx.lineTo(x,y-wh) // upper left
+      ctx.lineTo(x+ww+pet(p),y+yd-wh)//upper right
+      ctx.lineTo(x,y-wh+pet(p)) // upper left
       ctx.lineTo(x,y) // lower left
       ctx.closePath()
       ctx.fill()
@@ -5890,23 +5892,17 @@ function corner () {
   // left side
   slope = (H/2-yl)/(-xt)
   x = (xt-ww*2), y = H/2 - ww
-  yd = -slope*ww, r = 0
-  while (r < 18) {
+  yd = -slope*ww, r = 1
+  while (r < 28) {
     i = 0
-    while (i < 30) {
+    while (i < 48) {
       ctx.fillStyle = (colors[2])
       ctx.beginPath()
-   /*   ctx.moveTo(x,y)       // lower left
-      ctx.lineTo(x+ww,y+yd) // lower right
-      ctx.lineTo(x+ww,y+yd-wh)//upper right
-      ctx.lineTo(x,y-wh) // upper left
-      ctx.lineTo(x,y) // lower left
-       */
-      ctx.moveTo(x+ww,y+yd) // lower right
-      ctx.lineTo(x+ww,y+yd-wh)//upper right
-      ctx.lineTo(x,y-wh) // upper left
-      ctx.lineTo(x,y)       // lower left
-      ctx.lineTo(x+ww,y+yd) // lower right
+      ctx.moveTo(x+ww+pet(p),y+yd) // lower right
+      ctx.lineTo(x+ww,y+yd-wh+pet(p))//upper right
+      ctx.lineTo(x+pet(p),y-wh) // upper left
+      ctx.lineTo(x,y+pet(p))       // lower left
+      ctx.lineTo(x+ww+pet(p),y+yd) // lower right
       
       ctx.closePath()
       ctx.fill()
