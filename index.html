@@ -5861,17 +5861,17 @@ function corner () {
   ctx.fill()
   let p = 0
   if (alt)
-    p = 4
+    p = 7
   // add windows to right pane
   let wh = H/20+pet(32), ww = wh/2, i = 0
   let slope = (H/2-yr)/(W-xt)
   x = (xt+ww), y = H/2 - ww
   let y0 = y
   let yd = -slope*ww, r = 1
+  ctx.fillStyle = (colors[1])
   while (r < 28) {
     i = 0
     while (i < 48) {
-      ctx.fillStyle = (colors[1])
       ctx.beginPath()
       ctx.moveTo(x+pet(p),y+pet(p))       // lower left
       ctx.lineTo(x+ww,y+yd) // lower right
@@ -5896,7 +5896,10 @@ function corner () {
   while (r < 28) {
     i = 0
     while (i < 48) {
-      ctx.fillStyle = (colors[2])
+      if (r === 3 && i === 4)
+        ctx.fillStyle = (colors[3])
+      else
+        ctx.fillStyle = (colors[2])
       ctx.beginPath()
       ctx.moveTo(x+ww+pet(p),y+yd) // lower right
       ctx.lineTo(x+ww,y+yd-wh+pet(p))//upper right
