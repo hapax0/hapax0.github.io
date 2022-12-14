@@ -401,9 +401,9 @@
       <option value="neckerline">necker</option>
       <option value="necker">necker (fill)</option>
       <option value="house">house (fill)</option>
-      <option value="cube" selected>cube (fill)</option>
+      <option value="cube">cube (fill)</option>
       <option value="cube2">cube2</option>
-      <option value="corner">corner</option>
+      <option value="corner" selected>corner</option>
       <option value="core">core</option>
       <option value="eclipse">eclipse</option>
       <option value="constellations" >constellations</option>
@@ -5864,17 +5864,18 @@ function corner () {
   let wh = H/20, ww = wh/2, i = 0
   let slope = (H/2-yr)/(W-xt)
   x = (xt+ww), y = H/2 - ww
+  let y0 = y
   let yd = -slope*ww, r = 0
-  while (r < 16) {
+  while (r < 18) {
     i = 0
-    while (i < 18) {
+    while (i < 24) {
       ctx.fillStyle = (colors[1])
       ctx.beginPath()
-      ctx.moveTo(x,y)
-      ctx.lineTo(x+ww,y+yd)
-      ctx.lineTo(x+ww,y+yd-wh)
-      ctx.lineTo(x,y-wh)
-      ctx.lineTo(x,y)
+      ctx.moveTo(x,y)       // lower left
+      ctx.lineTo(x+ww,y+yd) // lower right
+      ctx.lineTo(x+ww,y+yd-wh)//upper right
+      ctx.lineTo(x,y-wh) // upper left
+      ctx.lineTo(x,y) // lower left
       ctx.closePath()
       ctx.fill()
       x += ww*1.5
@@ -5883,12 +5884,41 @@ function corner () {
     }
     y = H/2 - ww - wh*r*1.5
     x = (xt+ww)
-    //y -=  wh*(r+1.5)
-    console.log(y,"*")
-   // y -= wh *1.5
     r++
   }
-  console.log(wh)
+
+  // left side
+  slope = (H/2-yl)/(-xt)
+  x = (xt-ww*2), y = H/2 - ww
+  yd = -slope*ww, r = 0
+  while (r < 18) {
+    i = 0
+    while (i < 24) {
+      ctx.fillStyle = (colors[2])
+      ctx.beginPath()
+   /*   ctx.moveTo(x,y)       // lower left
+      ctx.lineTo(x+ww,y+yd) // lower right
+      ctx.lineTo(x+ww,y+yd-wh)//upper right
+      ctx.lineTo(x,y-wh) // upper left
+      ctx.lineTo(x,y) // lower left
+       */
+      ctx.moveTo(x+ww,y+yd) // lower right
+      ctx.lineTo(x+ww,y+yd-wh)//upper right
+      ctx.lineTo(x,y-wh) // upper left
+      ctx.lineTo(x,y)       // lower left
+      ctx.lineTo(x+ww,y+yd) // lower right
+      
+      ctx.closePath()
+      ctx.fill()
+      x -= ww*1.5
+      y -= yd*1.5
+      i++
+    }
+    y = H/2 - ww - wh*r*1.5
+    x = (xt-ww*2)
+    r++
+  }
+  flipV()
 }
 
 function cube2 () {
