@@ -250,9 +250,9 @@
       <path d="M3.5.5A.5.5 0 0 1 4 1v13h13a.5.5 0 0 1 0 1h-2v2a.5.5 0 0 1-1 0v-2H3.5a.5.5 0 0 1-.5-.5V4H1a.5.5 0 0 1 0-1h2V1a.5.5 0 0 1 .5-.5zm2.5 3a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4H6.5a.5.5 0 0 1-.5-.5z"/>
       </svg></button>
      <select id="framefunctions">
+       <option value="dropFrame">drop shadow</option>
        <option value="zoomOutImage">zoom out</option>
        <option value="zoomImage">zoom in</option>
-       <option value="dropFrame">drop shadow</option>
        <option value="rectFrame">rect frame</option>
        <option value="filmFrame">film frame</option>
        <option value="lineFrame">line frame</option>
@@ -397,6 +397,8 @@
       <option value="ivy" >ivy</option>
       <option value="room">room</option>
       <option value="envelope">envelope</option>
+      <option value="onesquare" selected>1 square</option>
+      <option value="twosquares">2 squares</option>
       <option value="foursquares">4 squares</option>
       <option value="neckerline">necker</option>
       <option value="necker">necker (fill)</option>
@@ -404,7 +406,7 @@
       <option value="cube">cube (fill)</option>
       <option value="cube2">cube2</option>
       <option value="corner">corner</option>
-      <option value="facade" selected>facade</option>
+      <option value="facade" >facade</option>
       <option value="core">core</option>
       <option value="eclipse">eclipse</option>
       <option value="constellations" >constellations</option>
@@ -973,6 +975,12 @@ function halfway (c1,c5) {
   return "#" + RR + GG + BB;
 }
 
+function brightnessOfColor(color) {
+  let sum = hexToR(color)
+  sum += hexToG(color)
+  sum += hexToB(color)
+  return sum/3
+}
 let extendedPalette = []
 
 function getCurrentPalette (ALL,N) {
@@ -1049,7 +1057,8 @@ function loadPalette () {
   } else
   if (type === "monodown") {
     let c = document.getElementById("pal1").value//randomColorVDark(),
-    let amt = -45
+    let b = Math.floor(brightnessOfColor(c)/5)
+    let amt = -b
     document.getElementById("pal1").value = c
     document.getElementById("pal2").value = adjustBrightnessC(c, amt)
     document.getElementById("pal3").value = adjustBrightnessC(c, amt*2)
@@ -1060,7 +1069,8 @@ function loadPalette () {
   } else
   if (type === "mono") {
     let c = document.getElementById("pal1").value//randomColorVDark(),
-    let amt = 45
+    let b = Math.floor((255-brightnessOfColor(c))/5)
+    let amt = b
     document.getElementById("pal1").value = c
     document.getElementById("pal2").value = adjustBrightnessC(c, amt)
     document.getElementById("pal3").value = adjustBrightnessC(c, amt*2)
@@ -6018,7 +6028,86 @@ function cube2 () {
   ctx.lineTo(x,y)
   ctx.closePath()
   ctx.fill()
+}
+
+function twosquares () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let colors = shuffle(getCurrentPalette())
+  let alt = document.getElementById("grungy").checked
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/10
+  let xpad = 40 + pet(70), ypad = 180 +pet(174), x = xpad, y = ypad
+  let sqrW = W/2-(1.1*xpad)
+  let sqrH = H - (2*ypad)
+
+  ctx.shadowBlur = 15
+  ctx.shadowColor = colors[0]
+  ctx.shadowOffsetX = (Math.random()-0.5) * 8
+  ctx.shadowOffsetY  = (Math.random()-0.5) * 8
   
+  ctx.fillStyle = colors[0]
+  ctx.beginPath()
+  ctx.moveTo(x,y)
+  ctx.lineTo(x+sqrW,y)
+  ctx.lineTo(x+sqrW,y+sqrH)
+  ctx.lineTo(x,y+sqrH)
+  ctx.lineTo(x,y)
+  ctx.closePath()
+  ctx.fill()
+  
+  x = W/2+xpad/10
+  ctx.fillStyle = colors[0]
+  if (alt) {
+    ctx.fillStyle = colors[1]
+    ctx.shadowColor = colors[1]
+  }
+
+  ctx.beginPath()
+  ctx.moveTo(x,y)
+  ctx.lineTo(x+sqrW,y)
+  ctx.lineTo(x+sqrW,y+sqrH)
+  ctx.lineTo(x,y+sqrH)
+  ctx.lineTo(x,y)
+  ctx.closePath()
+  ctx.fill()
+  
+  ctx.shadowBlur = 0
+  ctx.shadowOffsetX = 0
+  ctx.shadowOffsetY  = 0
+}
+
+
+function onesquare () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let colors = shuffle(getCurrentPalette())
+  let alt = document.getElementById("grungy").checked
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/10
+  let xpad = 100 + pet(90), ypad = 180 +pet(174), x = xpad, y = ypad
+  let sqrW = W  -(2*xpad), sqrH = H - (2*ypad)
+
+  ctx.shadowBlur = 15
+  ctx.shadowColor = colors[0]
+  ctx.shadowOffsetX = (Math.random()-0.5) * 8
+  ctx.shadowOffsetY  = (Math.random()-0.5) * 8
+  
+  ctx.fillStyle = colors[0]
+  ctx.beginPath()
+  ctx.moveTo(x,y)
+  ctx.lineTo(x+sqrW,y)
+  ctx.lineTo(x+sqrW,y+sqrH)
+  ctx.lineTo(x,y+sqrH)
+  ctx.lineTo(x,y)
+  ctx.closePath()
+  ctx.fill()
+  
+  ctx.shadowBlur = 0
+  ctx.shadowOffsetX = 0
+  ctx.shadowOffsetY  = 0
 }
 
 
