@@ -397,7 +397,8 @@
       <option value="ivy" >ivy</option>
       <option value="room">room</option>
       <option value="envelope">envelope</option>
-      <option value="onesquare" selected>1 square</option>
+      <option value="hairs" selected>hairs</option>
+      <option value="onesquare">1 square</option>
       <option value="twosquares">2 squares</option>
       <option value="foursquares">4 squares</option>
       <option value="neckerline">necker</option>
@@ -6078,6 +6079,30 @@ function twosquares () {
   ctx.shadowOffsetY  = 0
 }
 
+function hairs () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let colors = shuffle(getCurrentPalette())
+  let alt = document.getElementById("grungy").checked
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/10
+  let xpad = 40, ypad = 40, x = xpad, y = H-ypad
+  let sqrW = W  -(2*xpad), sqrH = H - (2*ypad)
+  ctx.fillStyle = colors[0]
+  ctx.beginPath()
+  ctx.moveTo(x,y)
+  ctx.lineTo(x,H-ypad -Math.random() * H/2)
+  while (x < W-xpad) {
+    x += 1
+    y = H-Math.random() * H
+    ctx.lineTo(x,y)
+  }
+  ctx.lineTo(x,H-ypad)
+  ctx.lineTo(xpad, H-ypad)
+  ctx.closePath()
+  ctx.fill()
+}
 
 function onesquare () {
   let canvas = document.getElementById("myCanvas")
