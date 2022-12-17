@@ -6088,8 +6088,24 @@ function hairs () {
   let alt = document.getElementById("grungy").checked
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/10
   let xpad = 40, ypad = 40, x = xpad, y = H-ypad
-  let sqrW = W  -(2*xpad), sqrH = H - (2*ypad)
+  let sqrW = W  -(2*xpad), sqrH = H - (2*ypad), FLIP=true
   ctx.fillStyle = colors[0]
+  ctx.beginPath()
+  ctx.moveTo(x,y)
+  ctx.lineTo(x,H-ypad -Math.random() * H/2)
+  while (x < W/2) {
+    x += 1
+    y = H-Math.random() * H
+    ctx.lineTo(x,y)
+  }
+  ctx.lineTo(x,H-ypad)
+  ctx.lineTo(xpad, H-ypad)
+  ctx.closePath()
+  ctx.fill()
+  
+  x=W/2, y = H-ypad
+  if (alt)
+    ctx.fillStyle = colors[1]
   ctx.beginPath()
   ctx.moveTo(x,y)
   ctx.lineTo(x,H-ypad -Math.random() * H/2)
