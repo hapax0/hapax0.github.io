@@ -397,7 +397,8 @@
       <option value="ivy" >ivy</option>
       <option value="room">room</option>
       <option value="envelope">envelope</option>
-      <option value="hairs" selected>hairs</option>
+      <option value="hairs">hairs</option>
+      <option value="mnts" selected>mnts</option>
       <option value="onesquare">1 square</option>
       <option value="twosquares">2 squares</option>
       <option value="foursquares">4 squares</option>
@@ -6077,6 +6078,64 @@ function twosquares () {
   ctx.shadowBlur = 0
   ctx.shadowOffsetX = 0
   ctx.shadowOffsetY  = 0
+}
+
+function mnts () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let colors = shuffle(getCurrentPalette())
+  let alt = document.getElementById("grungy").checked
+  delta = 11 + document.getElementById("featuresize").value/2
+  let xpad = 0, ypad = 0, x = xpad, y = H/3
+  let sqrW = W  -(2*xpad), sqrH = H - (2*ypad), FLIP=true
+  
+  ctx.fillStyle = colors[0]
+  ctx.beginPath()
+  ctx.moveTo(x,y)
+  ctx.lineTo(x,Math.random() * H/3)
+  while (x < W) {
+    x += delta
+    y = Math.random() * H/4
+    ctx.lineTo(x,y)
+  }
+  ctx.lineTo(x,H-ypad)
+  ctx.lineTo(xpad, H-ypad)
+  ctx.closePath()
+  ctx.fill()
+  
+  x = xpad
+  y = 2*H/3
+  ctx.fillStyle = colors[1]
+  ctx.beginPath()
+  ctx.moveTo(x,y)
+  ctx.lineTo(x,2*H/3+pet(H/3))
+  while (x < W) {
+    x += delta
+    y = 2*H/3+pet(H/3)
+    ctx.lineTo(x,y)
+  }
+  ctx.lineTo(x,H-ypad)
+  ctx.lineTo(xpad, H-ypad)
+  ctx.closePath()
+  ctx.fill()
+  /*
+  x = xpad
+  y = H - H/3
+  ctx.fillStyle = colors[2]
+  ctx.beginPath()
+  ctx.moveTo(x,y)
+  ctx.lineTo(x,H-H/3+Math.random() * H/3)
+  while (x < W) {
+    x += delta
+    y = H-H/3+Math.random() * H/4
+    ctx.lineTo(x,y)
+  }
+  ctx.lineTo(x,H-ypad)
+  ctx.lineTo(xpad, H-ypad)
+  ctx.closePath()
+ // ctx.fill()*/
 }
 
 function hairs () {
