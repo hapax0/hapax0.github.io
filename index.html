@@ -19480,7 +19480,7 @@ function drawShape (line) {
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.globalCompositeOperation = document.getElementById("mode").value
   let alt = document.getElementById("grungy").checked
-  ctx.lineWidth = 1 + Math.floor(document.getElementById("featuresize").value/10)
+  ctx.lineWidth = 1 + Math.floor(document.getElementById("featuresize").value/2)
   ctx.lineCap = "round"
   ctx.lineJoin = "round"
   let pm = document.getElementById("number").value/4000
