@@ -59,7 +59,7 @@ function onMouseUp (e) {
 function onMouseMove (e) {
   getMousePos(e)
   if (mouseDown == 1) {
-    if (distance(lastX, lastY, mouseX, mouseY) > 4)
+   // if (distance(lastX, lastY, mouseX, mouseY) > 4)
       apoint()
   }
 }
@@ -94,10 +94,9 @@ clearAll()
 frameVisible()
 
 function closePath () {
-  let ap = [], i = 0
-  for (; i<allpoints.length; i++) {
-    if (i%2!=1) ap.push(allpoints[i])
-  }
+  allpoints = allpoints.filter(function(_, i) {
+    return (i + 1) % 2;
+  })
   buffer.push(allpoints)
   allpoints = []
  
