@@ -154,7 +154,11 @@ function writeMessage (canvas, message) {
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
+function preventBehavior(e) {
+    e.preventDefault();
+};
 
+document.addEventListener("touchmove", preventBehavior, {passive: false});
 </script>
 </body>
 </html>
