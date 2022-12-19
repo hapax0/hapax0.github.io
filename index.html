@@ -19483,7 +19483,10 @@ function drawShape (line) {
   ctx.lineWidth = 1 + Math.floor(document.getElementById("featuresize").value/2)
   ctx.lineCap = "round"
   ctx.lineJoin = "round"
-  let pm = document.getElementById("number").value/4000
+  let pm = Math.floor(document.getElementById("number").value/2000)
+  // 0 to 10
+  pm = 10 - pm
+  //console.log(pm)
   ctx.fillStyle=randomPick(getCurrentPalette())
   let s = canvas.width/800, p = 23 * pm
   
@@ -19499,7 +19502,7 @@ function drawShape (line) {
       for (; i < pk.length; i++) {
         j = 0
         for (; j < 2; j++) {
-          pk[i][j] = pk[i][j] * s + pet(p)
+          pk[i][j] = pk[i][j] * s //+ pet(p)
         }
       }
       ctx.strokeStyle = randomPick(getCurrentPalette())

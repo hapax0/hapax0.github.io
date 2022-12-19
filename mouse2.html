@@ -29,10 +29,11 @@ ctx.fillRect(0, 0, canvas.width, canvas.height);
 let message = '';
 let cps = [];
 let i = 0;
-var mouseX, mouseY, mouseDown = 0
+var mouseX, mouseY, lastX = -10, lastY = -1, mouseDown = 0
 let colors = ['red', 'green', 'blue', 'orange', 'purple', 'yellow']
 let buffer = []
 let allpoints = []
+
 function draw(ctx,x,y,size) {
   ctx.fillStyle = "#000000"
   ctx.beginPath()
@@ -58,7 +59,8 @@ function onMouseUp (e) {
 function onMouseMove (e) {
   getMousePos(e)
   if (mouseDown == 1) {
-    apoint()
+    if (distance(lastX, lastY, mouseX, mouseY) > 4)
+      apoint()
   }
 }
 
@@ -68,19 +70,19 @@ function apoint () {
 }
 
 function getMousePos (e) {
-
   if(e.type == 'touchstart' || e.type == 'touchmove' || e.type == 'touchend' || e.type == 'touchcancel') {
-      var touch = e.touches[0] || e.changedTouches[0];
-      mouseX = touch.pageX;
-      mouseY = touch.pageY;
-    }
+    var touch = e.touches[0] || e.changedTouches[0];
+    lastX = mouseX
+    lastY = mouseY
+    mouseX = touch.pageX;
+    mouseY = touch.pageY;
+  }
  }
  
 
 function init () {
   canvas = document.getElementById('myCanvas')
   ctx = canvas.getContext('2d')
-  
   canvas.addEventListener('touchstart', onMouseDown, false)
   canvas.addEventListener('touchmove', onMouseMove, false)
   canvas.addEventListener('touchend', onMouseUp, false)
@@ -91,13 +93,12 @@ init()
 clearAll()
 frameVisible()
 
-
 function closePath () {
   let ap = [], i = 0
   for (; i<allpoints.length; i++) {
     if (i%2!=1) ap.push(allpoints[i])
   }
-  buffer.push(ap)
+  buffer.push(allpoints)
   allpoints = []
  
   ctx.globalAlpha = 1.0
@@ -138,10 +139,8 @@ function frameVisible () {
   ctx.strokeRect(200,200,400,400)
 }
 
-function writeMessage (canvas, message) {
-  var ctx = canvas.getContext('2d');
-  ctx.fillStyle = '#ffffff';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+function distance (x1, y1, x2, y2) {
+  return Math.pow(Math.pow(x1-x2, 2) + Math.pow(y1-y2, 2), 0.5)
 }
 
 function preventBehavior(e) {
