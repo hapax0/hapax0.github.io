@@ -22,8 +22,8 @@
     <option>lines</option>
     <option>curves</option>
   </select>
-  <br><br>
-  <canvas id="myCanvas" width="800" height="800"></canvas>
+  <br>
+  <canvas id="myCanvas" width="800" height="800" draggable="false"></canvas>
   <textarea id="text1" name="text1" rows="4" cols="80" wrap="soft"></textarea>
 <script>
 let canvas = document.getElementById('myCanvas');
@@ -50,10 +50,10 @@ function clearCanvas(canvas,ctx) {
   ctx.clearRect(0, 0, canvas.width, canvas.height)
 }
 
-function onMouseDown() {
+function onMouseDown(e) {
+  console.log(e, mouseX, mouseY)
   mouseDown = 1
   draw(ctx, mouseX, mouseY, 2)
- // clearAll()
   //beginPath record first point
   ctx.beginPath();
   ctx.moveTo(mouseX, mouseY);
@@ -62,13 +62,13 @@ function onMouseDown() {
   allpoints.push([2*mouseX-400, 2*mouseY-400] )
 }
 
-function onMouseUp() {
+function onMouseUp (e) {
   mouseDown = 0
   closePath()
   showPoints()
 }
 
-function onMouseMove(e) {
+function onMouseMove (e) {
   getMousePos(e)
   if (mouseDown == 1) {
     apoint()
@@ -77,28 +77,30 @@ function onMouseMove(e) {
 
 function apoint () {
   draw(ctx, mouseX, mouseY, 2)
-  allpoints.push([2*mouseX-400, 2*mouseY-400] )
+  allpoints.push([2*mouseX-400, 2*mouseY-400])
 }
 
-function getMousePos(e) {
-  if (!e)
-      var e = event
-  if (e.offsetX) {
-      mouseX = e.offsetX
-      mouseY = e.offsetY
-  }
-  else if (e.layerX) {
-      mouseX = e.layerX
-      mouseY = e.layerY
-  }
+function getMousePos (e) {
+  console.log(e.type)
+      
+  if(e.type == 'touchstart' || e.type == 'touchmove' || e.type == 'touchend' || e.type == 'touchcancel') {
+      var touch = e.touches[0] || e.changedTouches[0];
+      mouseX = touch.pageX;
+      mouseY = touch.pageY;
+    }
  }
+ 
 
 function init () {
   canvas = document.getElementById('myCanvas')
   ctx = canvas.getContext('2d')
-  canvas.addEventListener('mousedown', onMouseDown, false)
-  canvas.addEventListener('mousemove', onMouseMove, false)
-  window.addEventListener('mouseup', onMouseUp, false)
+  //canvas.addEventListener('mousedown', onMouseDown, false)
+  //canvas.addEventListener('mousemove', onMouseMove, false)
+  //window.addEventListener('mouseup', onMouseUp, false)
+  
+  canvas.addEventListener('touchstart', onMouseDown, false)
+  canvas.addEventListener('touchmove', onMouseMove, false)
+  canvas.addEventListener('touchend', onMouseUp, false)
   frameVisible()
 }
 
@@ -112,7 +114,6 @@ function closePath () {
   for (; i<allpoints.length; i++) {
     if (i%2!=1) ap.push(allpoints[i])
   }
-  console.log (allpoints.length, ap.length)
   buffer.push(ap)
   allpoints = []
   ctx.closePath()
