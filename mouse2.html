@@ -1,0 +1,172 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+    textarea {
+      font-size:12px;
+    }
+    body {
+      background-color: #cccccc;
+    }
+    </style>
+  </head>
+  <body>
+  <button onclick="clearAll()">clear</button>
+  &nbsp;<input type='file' name='img' size='65' id='uploadimage' style="display:none;">
+  <!--button onclick="openFile()" id="imgloader" title="open image file...">open...</button-->
+  <button onclick="closePath()">close path</button>
+  &nbsp;
+  <button onclick="copy()">copy</button>
+  &nbsp;Type:&nbsp;
+  <select id="type" >
+    <option>lines</option>
+    <option>curves</option>
+  </select>
+  <br><br>
+  <canvas id="myCanvas" width="800" height="800"></canvas>
+  <textarea id="text1" name="text1" rows="4" cols="80" wrap="soft"></textarea>
+<script>
+let canvas = document.getElementById('myCanvas');
+let ctx = canvas.getContext('2d');
+ctx.fillStyle = '#ffffff';
+ctx.lineWidth = 3
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+let message = '';
+let cps = [];
+let i = 0;
+var mouseX, mouseY, mouseDown = 0
+let colors = ['red', 'green', 'blue', 'orange', 'purple', 'yellow']
+let buffer = []
+let allpoints = []
+function draw(ctx,x,y,size) {
+  ctx.fillStyle = "#000000"
+  ctx.beginPath()
+  ctx.arc(x, y, size, 0, Math.PI*2, true)
+  ctx.closePath()
+  ctx.fill()
+}
+
+function clearCanvas(canvas,ctx) {
+  ctx.clearRect(0, 0, canvas.width, canvas.height)
+}
+
+function onMouseDown() {
+  mouseDown = 1
+  draw(ctx, mouseX, mouseY, 2)
+ // clearAll()
+  //beginPath record first point
+  ctx.beginPath();
+  ctx.moveTo(mouseX, mouseY);
+  ctx.fillStyle = '#0000ff';
+  ctx.fillRect(mouseX, mouseY, 5, 5);
+  allpoints.push([2*mouseX-400, 2*mouseY-400] )
+}
+
+function onMouseUp() {
+  mouseDown = 0
+  closePath()
+  showPoints()
+}
+
+function onMouseMove(e) {
+  getMousePos(e)
+  if (mouseDown == 1) {
+    apoint()
+  }
+}
+
+function apoint () {
+  draw(ctx, mouseX, mouseY, 2)
+  allpoints.push([2*mouseX-400, 2*mouseY-400] )
+}
+
+function getMousePos(e) {
+  if (!e)
+      var e = event
+  if (e.offsetX) {
+      mouseX = e.offsetX
+      mouseY = e.offsetY
+  }
+  else if (e.layerX) {
+      mouseX = e.layerX
+      mouseY = e.layerY
+  }
+ }
+
+function init () {
+  canvas = document.getElementById('myCanvas')
+  ctx = canvas.getContext('2d')
+  canvas.addEventListener('mousedown', onMouseDown, false)
+  canvas.addEventListener('mousemove', onMouseMove, false)
+  window.addEventListener('mouseup', onMouseUp, false)
+  frameVisible()
+}
+
+init()
+clearAll()
+frameVisible()
+
+
+function closePath () {
+  let ap = [], i = 0
+  for (; i<allpoints.length; i++) {
+    if (i%2!=1) ap.push(allpoints[i])
+  }
+  console.log (allpoints.length, ap.length)
+  buffer.push(ap)
+  allpoints = []
+  ctx.closePath()
+  ctx.globalAlpha = 0.2
+  ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)]
+  ctx.fill()
+  ctx.globalAlpha = 1.0
+  i = 0
+}
+
+function clearAll () {
+  buffer = []
+  allpoints = []
+  cps = []
+  i = 0
+  let canvas = document.getElementById("myCanvas")
+  ctx = canvas.getContext('2d');
+  ctx.fillStyle = 'white'
+  ctx.fillRect(0,0,canvas.width,canvas.height)
+  frameVisible()
+}
+
+function copy () {
+  closePath()
+  showPoints()
+  let copyText = document.getElementById("text1");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); /* For mobile devices */
+  navigator.clipboard.writeText(copyText.value);
+}
+
+function showPoints () {
+  let arrayString = JSON.stringify(buffer)
+  document.getElementById("text1").innerHTML = arrayString
+}
+
+function frameVisible () {
+  let canvas = document.getElementById('myCanvas')
+  let ctx = canvas.getContext('2d')
+  ctx.strokeStyle = "#cccccc"
+  ctx.strokeRect(200,200,400,400)
+}
+
+function writeMessage (canvas, message) {
+  var ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+
+function openFile () {
+  let canvas = document.getElementById('myCanvas')
+  let ctx = canvas.getContext('2d')
+  document.getElementById('uploadimage').click();
+}
+</script>
+</body>
+</html>
