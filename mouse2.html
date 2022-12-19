@@ -11,19 +11,15 @@
     </style>
   </head>
   <body>
-  <canvas id="myCanvas" width="760" height="800" draggable="false"></canvas>
-  <br>
+  <canvas id="myCanvas" width="800" height="800" draggable="false"></canvas>
+  <br><br>
   <button onclick="clearAll()">clear</button>
   &nbsp;
-  <button onclick="closePath()">close path</button>
+  <!--button onclick="closePath()">close path</button-->
   &nbsp;
   <button onclick="copy()">copy</button>
-  &nbsp;Type:&nbsp;
-  <select id="type" >
-    <option>lines</option>
-  </select>
-  <br>
-  <textarea id="text1" name="text1" rows="4" cols="80" wrap="soft"></textarea>
+  <br><br>
+  <textarea id="text1" name="text1" rows="3" cols="80" wrap="soft"></textarea>
 <script>
 let canvas = document.getElementById('myCanvas');
 let ctx = canvas.getContext('2d');
@@ -51,9 +47,6 @@ function clearCanvas(canvas,ctx) {
 
 function onMouseDown(e) {
   mouseDown = 1
-  //draw(ctx, mouseX, mouseY, 2)
-  //beginPath record first point
-  //allpoints.push([2*mouseX-400, 2*mouseY-400] )
 }
 
 function onMouseUp (e) {
@@ -106,10 +99,7 @@ function closePath () {
   }
   buffer.push(ap)
   allpoints = []
-  ctx.closePath()
-  ctx.globalAlpha = 0.2
-  ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)]
-  ctx.fill()
+ 
   ctx.globalAlpha = 1.0
   i = 0
 }
