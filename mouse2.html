@@ -11,6 +11,8 @@
     </style>
   </head>
   <body>
+  <canvas id="myCanvas" width="760" height="800" draggable="false"></canvas>
+  <br>
   <button onclick="clearAll()">clear</button>
   &nbsp;
   <button onclick="closePath()">close path</button>
@@ -21,7 +23,6 @@
     <option>lines</option>
   </select>
   <br>
-  <canvas id="myCanvas" width="760" height="800" draggable="false"></canvas>
   <textarea id="text1" name="text1" rows="4" cols="80" wrap="soft"></textarea>
 <script>
 let canvas = document.getElementById('myCanvas');
@@ -49,15 +50,10 @@ function clearCanvas(canvas,ctx) {
 }
 
 function onMouseDown(e) {
-  console.log(e, mouseX, mouseY)
   mouseDown = 1
-  draw(ctx, mouseX, mouseY, 2)
+  //draw(ctx, mouseX, mouseY, 2)
   //beginPath record first point
-  ctx.beginPath();
-  ctx.moveTo(mouseX, mouseY);
-  ctx.fillStyle = '#0000ff';
-  ctx.fillRect(mouseX, mouseY, 5, 5);
-  allpoints.push([2*mouseX-400, 2*mouseY-400] )
+  //allpoints.push([2*mouseX-400, 2*mouseY-400] )
 }
 
 function onMouseUp (e) {
@@ -79,12 +75,11 @@ function apoint () {
 }
 
 function getMousePos (e) {
-  console.log(e.type)
-      
+
   if(e.type == 'touchstart' || e.type == 'touchmove' || e.type == 'touchend' || e.type == 'touchcancel') {
       var touch = e.touches[0] || e.changedTouches[0];
       mouseX = touch.pageX;
-      mouseY = touch.pageY-40;
+      mouseY = touch.pageY;
     }
  }
  
