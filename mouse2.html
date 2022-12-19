@@ -12,18 +12,16 @@
   </head>
   <body>
   <button onclick="clearAll()">clear</button>
-  &nbsp;<input type='file' name='img' size='65' id='uploadimage' style="display:none;">
-  <!--button onclick="openFile()" id="imgloader" title="open image file...">open...</button-->
+  &nbsp;
   <button onclick="closePath()">close path</button>
   &nbsp;
   <button onclick="copy()">copy</button>
   &nbsp;Type:&nbsp;
   <select id="type" >
     <option>lines</option>
-    <option>curves</option>
   </select>
   <br>
-  <canvas id="myCanvas" width="800" height="800" draggable="false"></canvas>
+  <canvas id="myCanvas" width="760" height="800" draggable="false"></canvas>
   <textarea id="text1" name="text1" rows="4" cols="80" wrap="soft"></textarea>
 <script>
 let canvas = document.getElementById('myCanvas');
@@ -86,7 +84,7 @@ function getMousePos (e) {
   if(e.type == 'touchstart' || e.type == 'touchmove' || e.type == 'touchend' || e.type == 'touchcancel') {
       var touch = e.touches[0] || e.changedTouches[0];
       mouseX = touch.pageX;
-      mouseY = touch.pageY;
+      mouseY = touch.pageY-40;
     }
  }
  
@@ -94,9 +92,6 @@ function getMousePos (e) {
 function init () {
   canvas = document.getElementById('myCanvas')
   ctx = canvas.getContext('2d')
-  //canvas.addEventListener('mousedown', onMouseDown, false)
-  //canvas.addEventListener('mousemove', onMouseMove, false)
-  //window.addEventListener('mouseup', onMouseUp, false)
   
   canvas.addEventListener('touchstart', onMouseDown, false)
   canvas.addEventListener('touchmove', onMouseMove, false)
@@ -133,6 +128,7 @@ function clearAll () {
   ctx = canvas.getContext('2d');
   ctx.fillStyle = 'white'
   ctx.fillRect(0,0,canvas.width,canvas.height)
+  document.getElementById("text1").innerHTML = ""
   frameVisible()
 }
 
@@ -163,11 +159,7 @@ function writeMessage (canvas, message) {
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
-function openFile () {
-  let canvas = document.getElementById('myCanvas')
-  let ctx = canvas.getContext('2d')
-  document.getElementById('uploadimage').click();
-}
+
 </script>
 </body>
 </html>
