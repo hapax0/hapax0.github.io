@@ -578,8 +578,6 @@
             <option value="a8">a8</option>
             <option value="none">none</option>
           </select>
-         <br>
-         <canvas id="palettecanvas" width="336" height="42"></canvas><br>
           <select id="numcolors" style="width:50px;" title='use N colors'>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -587,12 +585,27 @@
             <option value="4">4</option>
             <option value="5" selected>5</option>
           </select>
+         <br>
+         <canvas id="palettecanvas" width="336" height="42"></canvas><br>
+          
          <button  onclick="makePalette()">Remix</button>&nbsp;<button id="randompalette" onclick="loadPalette()">Load palette</button>&nbsp;<button onclick="extractPalette()">Extract</button>&nbsp;<button  onclick="showHex()" title="show hex values">#</button>
-          <a id="palettedownloader" onclick="savePaletteAs()" download="image.png" title="save palette as png file"
-          ><button>&darr;</button></a>
+
+    <input type='file' name='img' size='65' id='openextract' style="display:none;">
+    <button onclick="openFileExtract()" id="paletteloader" title="extract from file..."><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="white" viewBox="0 0 16 16">
+    <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+    <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+    </svg></button>
+    
+    <button>
+    <a id="palettedownloader" onclick="savePaletteAs()" download="image.png" title="save palette as png file">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="white" viewBox="0 0 16 16">
+    <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+    <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+  </svg></a></button>
          </div></td></tr>
   <!--/div>
-    </td>
+    <!--/td>
   </tr-->
   <tr>
 
@@ -737,9 +750,15 @@ marker.addEventListener('click', function(event) {
   selectElement.addEventListener('change', (event) => {
   let ctx = document.getElementById("myCanvas").getContext("2d");
   ctx.globalCompositeOperation = selectElement.value
+  
   let filePicker = document.getElementById("uploadimage");
   filePicker.addEventListener("click", function(){this.value = null;}, false);
+  
+  
+  let filePicker2 = document.getElementById("openextract");
+  filePicker2.addEventListener("click", function(){this.value = null;}, false);
   });
+  
   rangecheck()
   syncMarker()
 }
@@ -968,6 +987,7 @@ function adjustBrightnessC (col, amt) {
 }
 
 function savePaletteAs () {
+  console.log("here")
   document.getElementById("palettedownloader").download = "image.png";
   document.getElementById("palettedownloader").href = document.getElementById("palettecanvas").toDataURL("image/png").replace(/^data:image\/[^;]/, 'data:application/octet-stream');
 }
@@ -5206,6 +5226,15 @@ function contrastImage (contrast, canvas) {  //input range [-100..100]
   ctx.putImageData(imgData, 0, 0)
 }
 
+function openFileExtract () {
+  let canvas = document.createElement('CANVAS')
+  let ctx = canvas.getContext('2d')
+  let mode = ctx.globalCompositeOperation
+  document.getElementById('openextract').click();
+  ctx.globalCompositeOperation = mode
+}
+
+
 function openFile () {
   let canvas = document.getElementById('myCanvas')
   let ctx = canvas.getContext('2d')
@@ -5219,6 +5248,30 @@ function OGImage() {
     let ctx = document.getElementById('myCanvas').getContext('2d')
     ctx.drawImage(IMG, 0, 0);
   }
+}
+
+function extractFile () {
+  let canvas = document.createElement('CANVAS')
+  let ctx = canvas.getContext('2d')
+  let IMG = new Image()
+  let f = document.getElementById("openextract").files[0]
+  let url = window.URL || window.webkitURL
+  let src = url.createObjectURL(f);
+  IMG.src = src;
+  ctx.globalAlpha = 1.0
+  let mode = ctx.globalCompositeOperation
+  ctx.globalCompositeOperation = "source-over"
+  IMG.onload = function() {
+    canvas.height = this.height
+    canvas.width = this.width
+    ctx.drawImage(IMG, 0, 0, canvas.width, canvas.height);
+    url.revokeObjectURL(src);
+    LASTCLICK[0] = canvas.width/2
+    LASTCLICK[1] = canvas.height/2
+    extractPalette(canvas)
+  }
+  document.getElementById("uploadimage").value = ""
+  ctx.globalCompositeOperation = mode
 }
 
 function drawFile () {
@@ -5254,29 +5307,6 @@ function drawFile () {
   }
   document.getElementById("uploadimage").value = ""
   ctx.globalCompositeOperation = mode
-}
-
-function drawFile_other () {
-  let canvas = document.getElementById('myCanvas')
-  let ctx = canvas.getContext('2d')
-  let IMG = new Image()
-  let f = document.getElementById("uploadimage").files[0]
-  let url = window.URL || window.webkitURL
-  let src = url.createObjectURL(f);
-  IMG.src = src;
-  ctx.globalAlpha = 1
-  let mode = ctx.globalCompositeOperation
-  ctx.globalCompositeOperation = "source-over"
-  document.getElementById('mode')
-  IMG.onload = function () {
-    canvas.height = this.height
-    canvas.width = this.width
-    ctx.drawImage(IMG, 0, 0);
-    //resizeCanvas()
-    url.revokeObjectURL(src);
-    extractPalette()
-  }
-  //document.getElementById("uploadimage").value = ""
 }
 
 function clearOff () {
@@ -5344,6 +5374,7 @@ function swapWithOff () {
 }
 
 document.getElementById("uploadimage").addEventListener("change", drawFile, true)
+document.getElementById("openextract").addEventListener("change", extractFile, true)
 
 function pushColor (c) {
   document.getElementById("paintcolor").value = c
