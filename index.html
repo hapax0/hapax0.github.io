@@ -586,7 +586,7 @@
             <option value="5" selected>5</option>
           </select>
          <br>
-         <canvas id="palettecanvas" width="336" height="42"></canvas><br>
+         <canvas id="palettecanvas" width="420" height="42"></canvas><br>
           
          <button  onclick="makePalette()">Remix</button>&nbsp;<button id="randompalette" onclick="loadPalette()">Load palette</button>&nbsp;<button onclick="extractPalette()">Extract</button>&nbsp;<button  onclick="showHex()" title="show hex values">#</button>
 
@@ -5259,19 +5259,19 @@ function extractFile () {
   let src = url.createObjectURL(f);
   IMG.src = src;
   ctx.globalAlpha = 1.0
-  let mode = ctx.globalCompositeOperation
   ctx.globalCompositeOperation = "source-over"
   IMG.onload = function() {
     canvas.height = this.height
     canvas.width = this.width
+    canvas.height = Math.round(canvas.height/1.6)
+    canvas.width = Math.round(canvas.width/1.6)
     ctx.drawImage(IMG, 0, 0, canvas.width, canvas.height);
     url.revokeObjectURL(src);
     LASTCLICK[0] = canvas.width/2
     LASTCLICK[1] = canvas.height/2
     extractPalette(canvas)
   }
-  document.getElementById("uploadimage").value = ""
-  ctx.globalCompositeOperation = mode
+  document.getElementById("openextract").value = ""
 }
 
 function drawFile () {
