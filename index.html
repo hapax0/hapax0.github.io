@@ -5263,8 +5263,10 @@ function extractFile () {
   IMG.onload = function() {
     canvas.height = this.height
     canvas.width = this.width
-    canvas.height = Math.round(canvas.height/1.6)
-    canvas.width = Math.round(canvas.width/1.6)
+    if (canvas.height > 1000 && canvas.width > 1000) {
+      canvas.height = Math.round(canvas.height/1.6)
+      canvas.width = Math.round(canvas.width/1.6)
+    }
     ctx.drawImage(IMG, 0, 0, canvas.width, canvas.height);
     url.revokeObjectURL(src);
     LASTCLICK[0] = canvas.width/2
