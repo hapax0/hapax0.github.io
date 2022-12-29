@@ -9299,201 +9299,195 @@ function blocks () {
     rc()
 }
 
+function drawFold(x,y,x2,y2, ctx) {
+  ctx.lineWidth = randomPick([0.5,3,0.5,1,1,1,1,1,1,2])
+  ctx.beginPath()
+  ctx.moveTo(x,y)
+  ctx.lineTo(x2+pet(2),y2+pet(2))
+  if (Math.random() > 0.11)
+  ctx.stroke()
+  chipAt(x+pet(2),y+pet(2))
+}
+
 function unfolded () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let W = canvas.width, H = canvas.height
-  ctx.fillStyle = "#999900"
-  //ctx.clearRect(0,0,canvas.width,canvas.height)
-  //ctx.fillRect(0,0,canvas.width,canvas.height)
+  ctx.fillStyle = "#608010"
+  ctx.clearRect(0,0,canvas.width,canvas.height)
+  ctx.fillRect(0,0,canvas.width,canvas.height)
   let widths = [1,2,3,4,0,0,0,2,0,2,2,1,1]
   ctx.strokeStyle = "#ffffff"
-  ctx.lineWidth =1
+  ctx.lineWidth = 0.5
   ctx.lineCap = "round"
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let mode = document.getElementById("mode").value
   let alpha = document.getElementById("opacity").value
-  let i = 0, x = 0, y = 0, L = 1, skip = 11
+  let i = 0, x = 0, y = 0, L = 1, skip = 5
+  let x2 = 0, y2 = 0
   while (x < W) { // \ L = 1// + pet(1)
     L = 1
     if (Math.random() > 0.9)
       L += skip
+    drawFold(x,y,x+L,y+L,ctx)
     x += L, y += L
-    if (Math.random() > 0.00)
-      chipAt(x+pet(3),y+pet(3))
   }
   x = W/4, y = 0
   while (y < H) { // \
-    L = 1// + pet(1)
+    L = 1
     if (Math.random() > 0.9)
       L += skip
+    drawFold(x,y,x+L/2,y+L,ctx)
     x += L/2, y += L
-    if (Math.random() > 0.00)
-      chipAt(x+pet(3), y+pet(3))
   }
   x = 3*W/4, y = 0
   while (y < H) {
-    L = 1//3 + pet(3)
+    L = 1
     if (Math.random() > 0.9)
       L += skip
+    drawFold(x,y,x-L/2,y+L,ctx)
     x -= L/2, y += L
-    if (Math.random() > 0.0)
-      chipAt(x+pet(3), y+pet(3))
-    i++
   }
   x = 0, y = H
   while (x < W) {
     L = 1
     if (Math.random() > 0.9)
       L += skip
+    drawFold(x,y,x+L,y-L,ctx)
     x += L, y -= L
-    if (Math.random() > 0)
-      chipAt(x+pet(3), y+pet(3))
   }
   x = 0, y = H/2
   while (x < W) {
     L = 1
     if (Math.random() > 0.9)
       L += skip
+    drawFold(x,y,x+L,y,ctx)
     x += L
-    if (Math.random() > 0)
-      chipAt(x+pet(3), y+pet(3))
   }
   x = 0, y = H/4
   while (x < W) {
     L = 1
     if (Math.random() > 0.9)
       L += skip
+    drawFold(x,y,x+L,y,ctx)
     x += L
-    if (Math.random() > 0)
-      chipAt(x+pet(3), y+pet(3))
   }
   x = 0, y = 3*H/4
   while (x < W) {
     L = 1
     if (Math.random() > 0.9)
       L += skip
+    drawFold(x,y,x+L,y,ctx)
     x += L
-    if (Math.random() > 0)
-      chipAt(x+pet(3), y+pet(3))
   }
   x = W/2, y = 0
   while (y < H) {
     L = 1
     if (Math.random() > 0.9)
       L += skip
+    drawFold(x,y,x,y+L,ctx)
     y += L
-    if (Math.random() > 0)
-      chipAt(x+pet(3), y+pet(3))
   }
   x = W/4, y = 0
   while (y < H) {
     L = 1
     if (Math.random() > 0.9)
       L += skip
+    drawFold(x,y,x,y+L,ctx)
     y += L
-    if (Math.random() > 0)
-      chipAt(x+pet(3), y+pet(3))
   }
   x = 3*W/4, y = 0
   while (y < H) {
     L = 3 + pet(2)
     if (Math.random() > 0.9)
       L += skip
+    drawFold(x,y,x,y+L,ctx)
     y += L
-    if (Math.random() > 0)
-      chipAt(x+pet(3), y+pet(3))
   }
   x = 0, y = H/4
   while (y < H) {
     L = 1
     if (Math.random() > 0.9)
       L += skip
+    drawFold(x,y,x+L,y+L/2,ctx)
     y += L/2, x += L
-    if (Math.random() > 0)
-      chipAt(x+pet(3), y+pet(3))
   }
   x = 0, y = 3*H/4
   while (x < W) {
    L = 1
     if (Math.random() > 0.9)
       L += skip
+    drawFold(x,y,x+L,y-L/2,ctx)
     y -= L/2, x += L
-    if (Math.random() > 0)
-      chipAt(x+pet(3), y+pet(3))
   }
   x = 0, y = H/2
   while (x < W/2) {
     L = 1
     if (Math.random() > 0.9)
       L += skip
+    drawFold(x,y,x+L,y-L,ctx)
     y -= L, x += L
-    if (Math.random() > 0)
-      chipAt(x+pet(3), y+pet(3))
   }
   x = 0, y = H/2
   while (x < W/2) {
     L = 1
     if (Math.random() > 0.9)
       L += skip
+    drawFold(x,y,x+L,y+L,ctx)
     y += L, x += L
-    if (Math.random() > 0)
-      chipAt(x+pet(3), y+pet(3))
   }
   x = 0, y = 3*H/4
   while (x < W/4) {
     L = 1
     if (Math.random() > 0.9)
       L += skip
+    drawFold(x,y,x+L,y+L,ctx)
     y += L, x += L
-    if (Math.random() > 0)
-      chipAt(x+pet(3), y+pet(3))
   }
   x = 0, y = H/4
   while (x < W/4) {
     L = 1
     if (Math.random() > 0.9)
       L += skip
+    drawFold(x,y,x+L,y-L,ctx)
     y -= L, x += L
-    if (Math.random() > 0)
-      chipAt(x+pet(3), y+pet(3))
   }
   x = W/2, y = 0
   while (x < W) {
     L = 1
     if (Math.random() > 0.9)
       L += skip
+    drawFold(x,y,x+L,y+L,ctx)
     y += L, x += L
-    if (Math.random() > 0)
-      chipAt(x+pet(3), y+pet(3))
   }
   x = W/2, y = H
   while (x < W) {
     L = 1
     if (Math.random() > 0.9)
       L += skip
+    drawFold(x,y,x+L,y-L,ctx)
     y -= L, x += L
-    if (Math.random() > 0)
-      chipAt(x+pet(3), y+pet(3))
   }
   x = 3*W/4, y = 0
   while (x < W) {
     L = 1
     if (Math.random() > 0.9)
       L += skip
+    drawFold(x,y,x+L,y+L,ctx)
     y += L, x += L
-    if (Math.random() > 0)
-      chipAt(x+pet(3), y+pet(3))
   }
   x = 3*W/4, y = H
   while (x < W) {
     L = 1
     if (Math.random() > 0.9)
       L += skip
+    drawFold(x,y,x+L,y-L,ctx)
     y -= L, x += L
-    if (Math.random() > 0)
-      chipAt(x+pet(3), y+pet(3))
   }
+  
+  for (; i < 69; i++)
+    chipAt(Math.random()*W,Math.random()*H)
+
 }
 
 function foldings () {
@@ -16404,7 +16398,7 @@ function chipAt (x,y) {
   let ctx = canvas.getContext("2d");
   ctx.globalAlpha = document.getElementById("opacity").value/100
   //let maxdist = Math.pow(Math.pow(cx, 2) + Math.pow(cy, 2), 0.5) +200
-  let r = 1 + Math.random()*0.5
+  let r = 1 + Math.random()*0.9
   ctx.fillStyle = "#ffffff"//document.getElementById("paintcolor").value
   for (var t = 0; t < 1; t++) {
     let radius = r + pet(r/2)
@@ -21222,6 +21216,10 @@ function clearCanvas () {
 function saveAs () {
   document.getElementById("downloader").download = "image.png";
   document.getElementById("downloader").href = document.getElementById("myCanvas").toDataURL("image/png").replace(/^data:image\/[^;]/, 'data:application/octet-stream');
+}
+
+function inBounds(x,y,minx,miny,maxx,maxy) {
+  return (x >= minx && x <= maxx && y >= miny && y <= maxy)
 }
 
 function pet (v) {
