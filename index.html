@@ -9493,8 +9493,8 @@ function unfolded () {
 function foldings () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  ctx.clearRect(0,0,canvas.width,canvas.height)
-  ctx.lineWidth = 4 + Math.floor(document.getElementById("featuresize").value/10)
+  //ctx.clearRect(0,0,canvas.width,canvas.height)
+ // ctx.lineWidth = 4 + Math.floor(document.getElementById("featuresize").value/10)
   ctx.lineWidth *= 1.6
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let colors = shuffle(getCurrentPalette())
