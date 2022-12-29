@@ -493,7 +493,7 @@
       <option value="tiltshift" selected>tilt-shift</option>
       <option value="afold" >fold</option>
       <option value="unfolded" >unfolded</option>
-      <option value="trifold">tri-fold</option>
+      <option value="fourfold">fourfold</option>
       <option value="distortion">fisheye</option>
       <option value="ripinhalf">rip in half</option>
       <option value="duplicate">duplicate</option>
@@ -16938,6 +16938,31 @@ function crumple () {
     centy = Math.random()*H;
   }
   ctx.globalCompositeOperation = mode
+}
+
+function fourfold () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let nudge = canvas.height/20
+  let alpha = document.getElementById("opacity").value
+  let colors = (["#ffffff", "#000000"])
+  ctx.globalAlpha = 0.1
+  let x1 = canvas.width/2, y1 = 0, x2 = canvas.width/2, y2 = canvas.height/4
+  ctx.fillStyle = randomGradientRect(canvas, colors[1], x1, y1, x2, y2 + nudge)// - Math.random() * canvas.width/3)
+  ctx.fillRect(0,0,canvas.width,canvas.height/4)
+  
+  y1 = canvas.height/4, y2 = 2*canvas.height/4
+  ctx.fillStyle = randomGradientRect(canvas, colors[0], x1, y1, x2, y2 - nudge)//Math.random() * canvas.width/3)
+  ctx.fillRect(0, canvas.height/4, canvas.width, 2*canvas.height/4)
+
+  y1 = 2*canvas.height/4, y2 = 3*canvas.height/4
+  ctx.fillStyle = randomGradientRect(canvas, colors[1], x1, y1, x2, y2 - nudge)//Math.random() * canvas.width/3)
+  ctx.fillRect(0, 2*canvas.height/4, canvas.width, 3*canvas.height/4)
+  
+  y1 = 3*canvas.height/4, y2 = canvas.height
+  ctx.fillStyle = randomGradientRect(canvas, colors[0], x1, y1, x2, y2 - nudge)//Math.random() * canvas.width/3)
+  ctx.fillRect(0, 3*canvas.height/4, canvas.width, canvas.height)
+  ctx.globalAlpha = alpha/100
 }
 
 function trifold () {
