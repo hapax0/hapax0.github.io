@@ -494,6 +494,7 @@
       <option value="afold" >fold</option>
       <option value="unfolded" >unfolded</option>
       <option value="fourfold">fourfold</option>
+      <option value="origami">origami</option>
       <option value="distortion">fisheye</option>
       <option value="ripinhalf">rip in half</option>
       <option value="duplicate">duplicate</option>
@@ -9299,21 +9300,198 @@ function blocks () {
     rc()
 }
 
-function drawFold(x,y,x2,y2, ctx) {
+function drawFold(x,y,x2,y2, ctx, big) {
   ctx.lineWidth = randomPick([0.5,3,0.5,1,1,1,1,1,1,2])
   ctx.beginPath()
   ctx.moveTo(x,y)
   ctx.lineTo(x2+pet(2),y2+pet(2))
   if (Math.random() > 0.11)
   ctx.stroke()
-  chipAt(x+pet(2),y+pet(2))
+  chipAt(x+pet(2),y+pet(2),big)
+}
+
+function bkg_unfolded_bkg () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let W = canvas.width, H = canvas.height
+  ctx.fillStyle = "#606060"
+  //ctx.clearRect(0,0,canvas.width,canvas.height)
+  //ctx.fillRect(0,0,canvas.width,canvas.height)
+  let widths = [1,2,3,4,0,0,0,2,0,2,2,1,1]
+  ctx.strokeStyle = "#606060"
+  ctx.lineWidth = 0.5
+  ctx.lineCap = "round"
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let mode = document.getElementById("mode").value
+  let alpha = document.getElementById("opacity").value
+  let i = 0, x = 0, y = 4, L = 1, skip = 5
+  let x2 = 0, y2 = 0
+  while (x < W) { // \ L = 1// + pet(1)
+    L = 1
+    if (Math.random() > 0.9)
+      L += skip
+    drawFold(x,y,x+L,y+L,ctx,true)
+    x += L, y += L
+  }
+  x = W/4, y = 1
+  while (y < H) { // \
+    L = 1
+    if (Math.random() > 0.9)
+      L += skip
+    drawFold(x,y,x+L/2,y+L,ctx)
+    x += L/2, y += L
+  }
+  x = 3*W/4, y = 1
+  while (y < H) {
+    L = 1
+    if (Math.random() > 0.9)
+      L += skip
+    drawFold(x,y,x-L/2,y+L,ctx)
+    x -= L/2, y += L
+  }
+  x = 0, y = H+1
+  while (x < W) {
+    L = 1
+    if (Math.random() > 0.9)
+      L += skip
+    drawFold(x,y,x+L,y-L,ctx,true)
+    x += L, y -= L
+  }
+  x = 0, y = H/2+1
+  while (x < W) {
+    L = 1
+    if (Math.random() > 0.9)
+      L += skip
+    drawFold(x,y,x+L,y,ctx)
+    x += L
+  }
+  x = 0, y = H/4+1
+  while (x < W) {
+    L = 1
+    if (Math.random() > 0.9)
+      L += skip
+    drawFold(x,y,x+L,y,ctx)
+    x += L
+  }
+  x = 0, y = 3*H/4+1
+  while (x < W) {
+    L = 1
+    if (Math.random() > 0.9)
+      L += skip
+    drawFold(x,y,x+L,y,ctx)
+    x += L
+  }
+  x = W/2, y = 0+1
+  while (y < H) {
+    L = 1
+    if (Math.random() > 0.9)
+      L += skip
+    drawFold(x,y,x,y+L,ctx)
+    y += L
+  }
+  x = W/4, y = 0
+  while (y < H) {
+    L = 1
+    if (Math.random() > 0.9)
+      L += skip
+    drawFold(x,y,x,y+L,ctx)
+    y += L
+  }
+  x = 3*W/4, y = 0
+  while (y < H) {
+    L = 3 + pet(2)
+    if (Math.random() > 0.9)
+      L += skip
+    drawFold(x,y,x,y+L,ctx)
+    y += L
+  }
+  x = 0, y = H/4
+  while (y < H) {
+    L = 1
+    if (Math.random() > 0.9)
+      L += skip
+    drawFold(x,y,x+L,y+L/2,ctx)
+    y += L/2, x += L
+  }
+  x = 0, y = 3*H/4
+  while (x < W) {
+   L = 1
+    if (Math.random() > 0.9)
+      L += skip
+    drawFold(x,y,x+L,y-L/2,ctx)
+    y -= L/2, x += L
+  }
+  x = 0, y = H/2
+  while (x < W/2) {
+    L = 1
+    if (Math.random() > 0.9)
+      L += skip
+    drawFold(x,y,x+L,y-L,ctx)
+    y -= L, x += L
+  }
+  x = 0, y = H/2
+  while (x < W/2) {
+    L = 1
+    if (Math.random() > 0.9)
+      L += skip
+    drawFold(x,y,x+L,y+L,ctx)
+    y += L, x += L
+  }
+  x = 0, y = 3*H/4
+  while (x < W/4) {
+    L = 1
+    if (Math.random() > 0.9)
+      L += skip
+    drawFold(x,y,x+L,y+L,ctx)
+    y += L, x += L
+  }
+  x = 0, y = H/4
+  while (x < W/4) {
+    L = 1
+    if (Math.random() > 0.9)
+      L += skip
+    drawFold(x,y,x+L,y-L,ctx)
+    y -= L, x += L
+  }
+  x = W/2, y = 0
+  while (x < W) {
+    L = 1
+    if (Math.random() > 0.9)
+      L += skip
+    drawFold(x,y,x+L,y+L,ctx)
+    y += L, x += L
+  }
+  x = W/2, y = H
+  while (x < W) {
+    L = 1
+    if (Math.random() > 0.9)
+      L += skip
+    drawFold(x,y,x+L,y-L,ctx)
+    y -= L, x += L
+  }
+  x = 3*W/4, y = 0
+  while (x < W) {
+    L = 1
+    if (Math.random() > 0.9)
+      L += skip
+    drawFold(x,y,x+L,y+L,ctx)
+    y += L, x += L
+  }
+  x = 3*W/4, y = H
+  while (x < W) {
+    L = 1
+    if (Math.random() > 0.9)
+      L += skip
+    drawFold(x,y,x+L,y-L,ctx)
+    y -= L, x += L
+  }
 }
 
 function unfolded () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let W = canvas.width, H = canvas.height
-  ctx.fillStyle = "#608010"
+  ctx.fillStyle = "#ffffff"
   //ctx.clearRect(0,0,canvas.width,canvas.height)
   //ctx.fillRect(0,0,canvas.width,canvas.height)
   let widths = [1,2,3,4,0,0,0,2,0,2,2,1,1]
@@ -9323,13 +9501,12 @@ function unfolded () {
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let mode = document.getElementById("mode").value
   let alpha = document.getElementById("opacity").value
-  let i = 0, x = 0, y = 0, L = 1, skip = 5
-  let x2 = 0, y2 = 0
+  let i = 0, x = pet(4), y = pet(4), L = 1, skip = 5
   while (x < W) { // \ L = 1// + pet(1)
     L = 1
     if (Math.random() > 0.9)
       L += skip
-    drawFold(x,y,x+L,y+L,ctx)
+    drawFold(x,y,x+L,y+L,ctx, true)
     x += L, y += L
   }
   x = W/4, y = 0
@@ -9353,7 +9530,7 @@ function unfolded () {
     L = 1
     if (Math.random() > 0.9)
       L += skip
-    drawFold(x,y,x+L,y-L,ctx)
+    drawFold(x,y,x+L,y-L,ctx, true)
     x += L, y -= L
   }
   x = 0, y = H/2
@@ -9483,6 +9660,42 @@ function unfolded () {
       L += skip
     drawFold(x,y,x+L,y-L,ctx)
     y -= L, x += L
+  }
+  
+  
+  x = 0, y = 1
+  while (x < W) {
+    L = 1
+    if (Math.random() > 0.9)
+      ;//L += skip
+    drawFold(x,y,x+L,y,ctx,true)
+    x += L
+  }
+  x = 0, y = H-1
+  while (x < W) {
+    L = 1
+    if (Math.random() > 0.9)
+      ;//L += skip
+    drawFold(x,y,x+L,y,ctx,true)
+    x += L
+  }
+  
+  x = 1, y = 0
+  while (y < H) {
+    L = 1
+    if (Math.random() > 0.9)
+      ;//L += skip
+    drawFold(x,y,x,y+L,ctx,true)
+    y += L
+  }
+  
+  x = W-1, y = 0
+  while (y < H) {
+    L = 1
+    if (Math.random() > 0.9)
+      ;//L += skip
+    drawFold(x,y,x,y+L,ctx,true)
+    y += L
   }
   
   for (; i < 69; i++)
@@ -14028,61 +14241,50 @@ function house () {
     ctx.fill()
   }
 }
-/*
-function origamir () {
-  let canvas = document.getElementById("myCanvas");
-  let ctx = canvas.getContext("2d");
-  ctx.globalAlpha = document.getElementById("opacity").value/100
-  clip()
-  origami()
-  ctx.restore()
-}
+/**/
+
 
 function origami () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let W = canvas.width
   let len = W/2, maxy = W/2
-  
+  let colors = getCurrentPalette()
   // four triangles
-  ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+  ctx.fillStyle = randomGradient(canvas, randomPick(colors))
   ctx.beginPath();
   ctx.moveTo(len, len)
   ctx.lineTo(W, W)
   ctx.lineTo(0, W)
   ctx.closePath()
-  if (grunge33())
-    ctx.fill()
+  ctx.fill()
   
-  ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+  ctx.fillStyle = randomGradient(canvas, randomPick(colors))
   ctx.beginPath();
   ctx.moveTo(len, len)
   ctx.lineTo(0, 0)
   ctx.lineTo(W, 0)
   ctx.closePath()
-  if (grunge33())
-    ctx.fill()
+  ctx.fill()
   
-  ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+  ctx.fillStyle = randomGradient(canvas, randomPick(colors))
   ctx.beginPath();
   ctx.moveTo(len, len)
   ctx.lineTo(0, 0)
   ctx.lineTo(0, W)
   ctx.closePath()
-  if (grunge33())
-    ctx.fill()
+  ctx.fill()
   
-  ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+  ctx.fillStyle = randomGradient(canvas, randomPick(colors))
   ctx.beginPath();
   ctx.moveTo(len, len)
   ctx.lineTo(W, 0)
   ctx.lineTo(W, W)
   ctx.closePath()
-  if (grunge33())
-    ctx.fill()
+  ctx.fill()
 
   // 4 rects
-  ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)  // top Horizontal
+  ctx.fillStyle = randomGradient(canvas, randomPick(colors))  // top Horizontal
   ctx.beginPath();
   ctx.moveTo(0, 0)
   ctx.lineTo(W, 0)
@@ -14091,46 +14293,42 @@ function origami () {
   ctx.closePath()
   ctx.fill()
   
-  ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+  ctx.fillStyle = randomGradient(canvas, randomPick(colors))
   ctx.beginPath();
   ctx.moveTo(0, len)
   ctx.lineTo(W, len)
   ctx.lineTo(W, W)
   ctx.lineTo(0, W)
   ctx.closePath()
-  if (grunge33())
-    ctx.fill()
+  ctx.fill()
   
-  ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+  ctx.fillStyle = randomGradient(canvas, randomPick(colors))
   ctx.beginPath();
   ctx.moveTo(0, 0)
   ctx.lineTo(len, 0)
   ctx.lineTo(len, W)
   ctx.lineTo(0, W)
   ctx.closePath()
-  if (grunge33())
-    ctx.fill()
+  ctx.fill()
   
-  ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+  ctx.fillStyle = randomGradient(canvas, randomPick(colors))
   ctx.beginPath();
   ctx.moveTo(len, 0)
   ctx.lineTo(W, 0)
   ctx.lineTo(W, W)
   ctx.lineTo(len, W)
   ctx.closePath()
-  if (grunge33())
-    ctx.fill()
+  ctx.fill()
 
   // diamond
-  ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+  ctx.fillStyle = randomGradient(canvas, randomPick(colors))
   ctx.beginPath();
   ctx.moveTo(len, 0)
   ctx.lineTo(W, len)
   ctx.lineTo(len, W)
   ctx.lineTo(0, len)
   ctx.closePath()
-  if (grunge33())
-    ctx.fill()
+  ctx.fill()
 }
 
 
@@ -14140,89 +14338,90 @@ function origami4by4 () {
   let W = canvas.width
   let len = W/2, maxy = W/2
   let quat = len/2
-  
+    let colors = getCurrentPalette()
+
   // 4 rects
   // top Horizontal
-  ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+  ctx.fillStyle = randomGradient(canvas, randomPick(colors))
   ctx.beginPath();
   ctx.moveTo(0, 0)
   ctx.lineTo(W, 0)
   ctx.lineTo(W, quat)
   ctx.lineTo(0, quat)
-  if (grunge33())
+  //if (grunge33())
     ctx.fill()
     
-  ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+  ctx.fillStyle = randomGradient(canvas, randomPick(colors))
   ctx.beginPath();
   ctx.moveTo(0, 0)
   ctx.lineTo(quat, 0)
   ctx.lineTo(quat, W)
   ctx.lineTo(0, W)
   ctx.closePath()
-  if (grunge33())
+  ////if (grunge33())
     ctx.fill()
     
-  ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+  ctx.fillStyle = randomGradient(canvas, randomPick(colors))
   ctx.beginPath();
   ctx.moveTo(0, quat)
   ctx.lineTo(W, quat)
   ctx.lineTo(W, len)
   ctx.lineTo(0, len)
   ctx.closePath()
-  if (grunge33())
+  //if (grunge33())
     ctx.fill()
     
-  ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+  ctx.fillStyle = randomGradient(canvas, randomPick(colors))
   ctx.beginPath();
   ctx.moveTo(quat, 0)
   ctx.lineTo(len, 0)
   ctx.lineTo(len, W)
   ctx.lineTo(quat, W)
   ctx.closePath()
-  if (grunge33())
+  //if (grunge33())
     ctx.fill()
     
-  ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+  ctx.fillStyle = randomGradient(canvas, randomPick(colors))
   ctx.beginPath();
   ctx.moveTo(0, len)
   ctx.lineTo(W, len)
   ctx.lineTo(W, len + quat)
   ctx.lineTo(0, len + quat)
   ctx.closePath()
-  if (grunge33())
+  //if (grunge33())
     ctx.fill()
     
-  ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+  ctx.fillStyle = randomGradient(canvas, randomPick(colors))
   ctx.beginPath();
   ctx.moveTo(len, 0)
   ctx.lineTo(len+quat, 0)
   ctx.lineTo(len+quat, W)
   ctx.lineTo(len, W)
   ctx.closePath()
-  if (grunge33())
+ // if (grunge33())
     ctx.fill()
     
-  ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+  ctx.fillStyle = randomGradient(canvas, randomPick(colors))
   ctx.beginPath();
   ctx.moveTo(0, len + quat)
   ctx.lineTo(W, len + quat)
   ctx.lineTo(W, W)
   ctx.lineTo(0, W)
   ctx.closePath()
-  if (grunge33())
+ // if (grunge33())
     ctx.fill()
     
-  ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+  ctx.fillStyle = randomGradient(canvas, randomPick(colors))
   ctx.beginPath();
   ctx.moveTo(len+quat, 0)
   ctx.lineTo(W, 0)
   ctx.lineTo(W, W)
   ctx.lineTo(len+quat, W)
   ctx.closePath()
-  if (grunge33())
+ // if (grunge33())
     ctx.fill()
 }
-*/
+/**/
 function strokes () {
   let increase = Math.PI * 2 / 40;
   let x = 0, y = 0, angle = 4.7;
@@ -16393,13 +16592,15 @@ function concentricrect () {
 }*/
 
 
-function chipAt (x,y) {
+function chipAt (x,y,big) {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.globalAlpha = document.getElementById("opacity").value/100
   //let maxdist = Math.pow(Math.pow(cx, 2) + Math.pow(cy, 2), 0.5) +200
-  let r = 1 + Math.random()*0.9
-  ctx.fillStyle = "#ffffff"//document.getElementById("paintcolor").value
+  let r = 0.5 + Math.random()*0.2
+  if (big)
+    r += Math.random() * 1
+  //ctx.fillStyle = "#ffffff"//document.getElementById("paintcolor").value
   for (var t = 0; t < 1; t++) {
     let radius = r + pet(r/2)
     let r0 = radius
@@ -16407,13 +16608,14 @@ function chipAt (x,y) {
     ctx.beginPath();
     var cent = x//Math.random()*ctx.canvas.width+50;
     var centy = y//Math.random()*ctx.canvas.height+50;
-    var edges = 3+Math.random()*16;
+    var edges = 13+Math.random()*16;
     let max = Math.PI * 1.4
     let increase = Math.PI * 2/edges;
     let turn = 0
     for (var i = 0; i < 100; i++) {
       increase += Math.random()/100
       radius = r0+pet(r/2)
+      radius += radius * i%2*1.2
       x = radius * Math.cos(angle)+cent;
       y = radius * Math.sin(angle)+centy;
       ctx.lineTo(x, y);
