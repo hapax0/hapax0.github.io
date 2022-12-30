@@ -325,8 +325,8 @@
       <option value="threshold">threshold</option>
       <option value="threshold_soft">threshold soft</option>
       <option value="posterize" >posterize</option>
-      <option value="palettetint">palette tint</option>
-      <option value="tintByCloseness" selected>extracted tint</option>
+      <option value="palettetint" selected>palette tint</option>
+      <option value="tintByCloseness" >extracted tint</option>
       <option value="simplifyColors">simplify colors</option>
       <option value="cymk">CYMK</option>
       <option value="stipple">stipple</option>
@@ -402,6 +402,7 @@
       <option value="envelope">envelope</option>
       <option value="hairs">hairs</option>
       <option value="mnts" selected>mnts</option>
+      <option value="origami">origami</option>
       <option value="onesquare">1 square</option>
       <option value="twosquares">2 squares</option>
       <option value="foursquares">4 squares</option>
@@ -494,7 +495,6 @@
       <option value="afold" >fold</option>
       <option value="unfolded" >unfolded</option>
       <option value="fourfold">fourfold</option>
-      <option value="origami">origami</option>
       <option value="distortion">fisheye</option>
       <option value="ripinhalf">rip in half</option>
       <option value="duplicate">duplicate</option>
@@ -9300,14 +9300,16 @@ function blocks () {
     rc()
 }
 
-function drawFold(x,y,x2,y2, ctx, big) {
-  ctx.lineWidth = randomPick([0.5,3,0.5,1,1,1,1,1,1,2])
-  ctx.beginPath()
-  ctx.moveTo(x,y)
-  ctx.lineTo(x2+pet(2),y2+pet(2))
-  if (Math.random() > 0.11)
+function drawFold (x,y,x2,y2, ctx, big) {
+  if (!document.getElementById("grungy").checked) {
+    ctx.lineWidth = randomPick([0.5,3,0.5,1,1,1,1,1,1,2])
+    ctx.beginPath()
+    ctx.moveTo(x,y)
+    ctx.lineTo(x2+pet(2),y2+pet(2))
+    if (Math.random() > 0.11)
   ctx.stroke()
-  chipAt(x+pet(2),y+pet(2),big)
+  } else
+    chipAt(x+pet(2),y+pet(2),big)
 }
 
 function bkg_unfolded_bkg () {
