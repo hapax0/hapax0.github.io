@@ -401,8 +401,10 @@
       <option value="room">room</option>
       <option value="envelope">envelope</option>
       <option value="hairs">hairs</option>
-      <option value="mnts" selected>mnts</option>
-      <option value="origami">origami</option>
+      <option value="mnts" >mnts</option>
+      <option value="origami" selected>origami</option>
+      <option value="fourXfour">fourXfour</option>
+      <option value="origami4by4">4x4</option>
       <option value="onesquare">1 square</option>
       <option value="twosquares">2 squares</option>
       <option value="foursquares">4 squares</option>
@@ -14350,8 +14352,7 @@ function origami4by4 () {
   ctx.lineTo(W, 0)
   ctx.lineTo(W, quat)
   ctx.lineTo(0, quat)
-  //if (grunge33())
-    ctx.fill()
+  ctx.fill()
     
   ctx.fillStyle = randomGradient(canvas, randomPick(colors))
   ctx.beginPath();
@@ -14360,8 +14361,7 @@ function origami4by4 () {
   ctx.lineTo(quat, W)
   ctx.lineTo(0, W)
   ctx.closePath()
-  ////if (grunge33())
-    ctx.fill()
+  ctx.fill()
     
   ctx.fillStyle = randomGradient(canvas, randomPick(colors))
   ctx.beginPath();
@@ -14370,8 +14370,7 @@ function origami4by4 () {
   ctx.lineTo(W, len)
   ctx.lineTo(0, len)
   ctx.closePath()
-  //if (grunge33())
-    ctx.fill()
+  ctx.fill()
     
   ctx.fillStyle = randomGradient(canvas, randomPick(colors))
   ctx.beginPath();
@@ -14380,8 +14379,7 @@ function origami4by4 () {
   ctx.lineTo(len, W)
   ctx.lineTo(quat, W)
   ctx.closePath()
-  //if (grunge33())
-    ctx.fill()
+  ctx.fill()
     
   ctx.fillStyle = randomGradient(canvas, randomPick(colors))
   ctx.beginPath();
@@ -14390,8 +14388,7 @@ function origami4by4 () {
   ctx.lineTo(W, len + quat)
   ctx.lineTo(0, len + quat)
   ctx.closePath()
-  //if (grunge33())
-    ctx.fill()
+  ctx.fill()
     
   ctx.fillStyle = randomGradient(canvas, randomPick(colors))
   ctx.beginPath();
@@ -14400,8 +14397,7 @@ function origami4by4 () {
   ctx.lineTo(len+quat, W)
   ctx.lineTo(len, W)
   ctx.closePath()
- // if (grunge33())
-    ctx.fill()
+  ctx.fill()
     
   ctx.fillStyle = randomGradient(canvas, randomPick(colors))
   ctx.beginPath();
@@ -14410,8 +14406,7 @@ function origami4by4 () {
   ctx.lineTo(W, W)
   ctx.lineTo(0, W)
   ctx.closePath()
- // if (grunge33())
-    ctx.fill()
+  ctx.fill()
     
   ctx.fillStyle = randomGradient(canvas, randomPick(colors))
   ctx.beginPath();
@@ -14420,8 +14415,7 @@ function origami4by4 () {
   ctx.lineTo(W, W)
   ctx.lineTo(len+quat, W)
   ctx.closePath()
- // if (grunge33())
-    ctx.fill()
+  ctx.fill()
 }
 /**/
 function strokes () {
@@ -17144,6 +17138,37 @@ function crumple () {
   ctx.globalCompositeOperation = mode
 }
 
+function fourXfour () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let alpha = document.getElementById("opacity").value
+  let colors = getCurrentPalette()
+  ctx.globalAlpha = alpha/100
+  let i = 0, j = 0, w = canvas.width/4, h = canvas.height/4
+  let x1 = canvas.width/2, y1 = 0, x2 = canvas.width/2, y2 = canvas.height/4
+  let t = 0
+  for (; i < 4; i++) {
+    j = 0
+    for (; j < 4; j++) {
+      x1 = i*w, x2 = x1+w
+      y1 = j*h, y2 = y1+h
+      if (j % 2 === 0) {
+        t = x1
+        x1 = x2
+        x2 = t
+      }
+      if (i % 2 === 0) {
+        t = y1
+        y1 = y2
+        y2 = t
+      }
+      ctx.fillStyle = randomGradientRect(canvas, randomPick(colors), x1, y1, x2, y2)
+      ctx.fillRect(i*w,j*h,w,h)
+    }
+  }
+}
+
+
 function fourfold () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
@@ -17152,19 +17177,19 @@ function fourfold () {
   let colors = (["#ffffff", "#000000"])
   ctx.globalAlpha = 0.1
   let x1 = canvas.width/2, y1 = 0, x2 = canvas.width/2, y2 = canvas.height/4
-  ctx.fillStyle = randomGradientRect(canvas, colors[1], x1, y1, x2, y2 + nudge)// - Math.random() * canvas.width/3)
+  ctx.fillStyle = randomGradientRect(canvas, colors[1], x1, y1, x2, y2 + nudge)
   ctx.fillRect(0,0,canvas.width,canvas.height/4)
   
   y1 = canvas.height/4, y2 = 2*canvas.height/4
-  ctx.fillStyle = randomGradientRect(canvas, colors[0], x1, y1, x2, y2 - nudge)//Math.random() * canvas.width/3)
+  ctx.fillStyle = randomGradientRect(canvas, colors[0], x1, y1, x2, y2 - nudge)
   ctx.fillRect(0, canvas.height/4, canvas.width, 2*canvas.height/4)
 
   y1 = 2*canvas.height/4, y2 = 3*canvas.height/4
-  ctx.fillStyle = randomGradientRect(canvas, colors[1], x1, y1, x2, y2 - nudge)//Math.random() * canvas.width/3)
+  ctx.fillStyle = randomGradientRect(canvas, colors[1], x1, y1, x2, y2 - nudge)
   ctx.fillRect(0, 2*canvas.height/4, canvas.width, 3*canvas.height/4)
   
   y1 = 3*canvas.height/4, y2 = canvas.height
-  ctx.fillStyle = randomGradientRect(canvas, colors[0], x1, y1, x2, y2 - nudge)//Math.random() * canvas.width/3)
+  ctx.fillStyle = randomGradientRect(canvas, colors[0], x1, y1, x2, y2 - nudge)
   ctx.fillRect(0, 3*canvas.height/4, canvas.width, canvas.height)
   ctx.globalAlpha = alpha/100
 }
@@ -17177,15 +17202,15 @@ function trifold () {
   let colors = (["#ffffff", "#000000"])
   ctx.globalAlpha = 0.1
   let x1 = canvas.width/2, y1 = 0, x2 = canvas.width/2, y2 = canvas.height/3
-  ctx.fillStyle = randomGradientRect(canvas, colors[1], x1, y2, x2, y1 + nudge)// - Math.random() * canvas.width/3)
+  ctx.fillStyle = randomGradientRect(canvas, colors[1], x1, y2, x2, y1 + nudge)
   ctx.fillRect(0,0,canvas.width,canvas.height/3)
   
   y1 = canvas.height/3, y2 = 2*canvas.height/3
-  ctx.fillStyle = randomGradientRect(canvas, colors[0], x1, y1, x2, y2 - nudge)//Math.random() * canvas.width/3)
+  ctx.fillStyle = randomGradientRect(canvas, colors[0], x1, y1, x2, y2 - nudge)
   ctx.fillRect(0, canvas.height/3, canvas.width, 2*canvas.height/3)
 
   y1 = 2*canvas.height/3, y2 = canvas.height
-  ctx.fillStyle = randomGradientRect(canvas, colors[1], x1, y1, x2, y2 - nudge)//Math.random() * canvas.width/3)
+  ctx.fillStyle = randomGradientRect(canvas, colors[1], x1, y1, x2, y2 - nudge)
   ctx.fillRect(0, 2*canvas.height/3, canvas.width, canvas.height)
   ctx.globalAlpha = alpha/100
 }
