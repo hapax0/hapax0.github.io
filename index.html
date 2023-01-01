@@ -18117,8 +18117,9 @@ function sample () { // rect samples
 function dropFrameRagged () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
-  let mode = ctx.globalCompositeOperation
+  let mode = document.getElementById("mode").value//ctx.globalCompositeOperation
   ctx.globalCompositeOperation = "source-over"
+  document.getElementById("mode").value = "source-over"
   let alpha = ctx.globalAlpha
   ctx.globalAlpha = 1.0
   let W = canvas.width, H = canvas.height
@@ -18152,6 +18153,7 @@ function dropFrameRagged () {
   ctx.closePath()
   ctx.fillStyle = document.getElementById("paintcolor").value
   ctx.fill()
+  
   pasteFromOff()
   ctx.clip()
 
@@ -18161,6 +18163,7 @@ function dropFrameRagged () {
   
   ctx.restore()
   ctx.globalCompositeOperation = mode
+  document.getElementById("mode").value = mode
   ctx.globalAlpha = alpha
 }
 
@@ -18169,6 +18172,8 @@ function dropFrame () {
   let ctx = canvas.getContext("2d")
   let mode = ctx.globalCompositeOperation
   ctx.globalCompositeOperation = "source-over"
+  document.getElementById("mode").value = "source-over"
+
   let alpha = document.getElementById("opacity").value/100
   ctx.globalAlpha = 1.0
   clearOff()
@@ -18187,6 +18192,7 @@ function dropFrame () {
   ctx.shadowOffsetX = 0
   pasteFromOff()
   ctx.globalCompositeOperation = mode
+  document.getElementById("mode").value = mode
   ctx.globalAlpha = alpha
 }
 
