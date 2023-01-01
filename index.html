@@ -404,7 +404,7 @@
       <option value="mnts" >mnts</option>
       <option value="origami" selected>origami</option>
       <option value="fourXfour">fourXfour</option>
-      <option value="origami4by4">4x4</option>
+      <!--option value="origami4by4">4x4</option-->
       <option value="onesquare">1 square</option>
       <option value="twosquares">2 squares</option>
       <option value="foursquares">4 squares</option>
@@ -17142,11 +17142,13 @@ function fourXfour () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let alpha = document.getElementById("opacity").value
+  let alt = document.getElementById("grungy").checked
   let colors = getCurrentPalette()
+  let bnw = ["#ffffff", "#000000"]
   ctx.globalAlpha = alpha/100
   let i = 0, j = 0, w = canvas.width/4, h = canvas.height/4
   let x1 = canvas.width/2, y1 = 0, x2 = canvas.width/2, y2 = canvas.height/4
-  let t = 0
+  let t = 0, cnt = 0
   for (; i < 4; i++) {
     j = 0
     for (; j < 4; j++) {
@@ -17162,9 +17164,14 @@ function fourXfour () {
         y1 = y2
         y2 = t
       }
-      ctx.fillStyle = randomGradientRect(canvas, randomPick(colors), x1, y1, x2, y2)
+      if (alt)
+        ctx.fillStyle = randomGradientRect(canvas, bnw[cnt%2], x1, y1, x2, y2)
+      else
+        ctx.fillStyle = randomGradientRect(canvas, randomPick(colors), x1, y1, x2, y2)
       ctx.fillRect(i*w,j*h,w,h)
+      cnt++
     }
+    cnt--
   }
 }
 
@@ -18381,7 +18388,7 @@ function sliceHC (y, h, ctx, octx, canvas, ocanvas, t, tctx, g) {
   tctx.setTransform(1,0,0,1,0,0)
 }
 
-function randomGradientRect(canvas, col1, x1, y1, x2, y2, R) {
+function randomGradientRect (canvas, col1, x1, y1, x2, y2, R) {
   let centx = Math.random() * canvas.width;
   let centy = Math.random() * canvas.height;
   let radius = canvas.width/2;
