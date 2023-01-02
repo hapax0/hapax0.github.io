@@ -389,7 +389,6 @@
       <option value="crackle">crackle curves</option>
       <option value="cracklelines" >crackle lines</option>
       <option value="regMarks" >registration</option>
-      <option value="paintBalls" >paint balls</option>
       <option value="paintByNumbers">mono by numbers</option>
       <option value="paintByNumbers2">color by numbers</option>
       <option value="tv">tv</option>
@@ -402,6 +401,7 @@
       <option value="envelope">envelope</option>
       <option value="hairs">hairs</option>
       <option value="mnts" >mnts</option>
+      <option value="circle" >disc</option>
       <option value="origami" selected>origami</option>
       <option value="fourXfour">fourXfour</option>
       <!--option value="origami4by4">4x4</option-->
@@ -15682,19 +15682,17 @@ function shuffle (array) {
 function circle () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  let cx = canvas.width/2 + (Math.random()-0.5) * 200
-  let cy = canvas.height/2 + (Math.random()-0.5) * 200
-  let r = 10 + Math.floor(document.getElementById("featuresize").value)
-  r += pet(r/3)
-  //clip()
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  let cx = canvas.width/2
+  let cy = canvas.height/2
+  let pad = 0 + Math.floor(document.getElementById("featuresize").value)
+  let r = canvas.width/2 - pad
+  ctx.fillStyle = randomPick(getCurrentPalette())
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.beginPath()
   ctx.moveTo(cx, cy)
   ctx.arc (cx, cy, r, 0, 2*Math.PI)
   ctx.closePath()
   ctx.fill()
-  //ctx.restore()
 }
 
 function sides () {
