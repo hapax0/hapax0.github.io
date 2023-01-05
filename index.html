@@ -283,7 +283,7 @@
       <select id="fadefunctions">
         <option value="retro">retro</option>
         <option value="pop">pop</option>
-        <option value="enhanceExposure" selected>enhance exposure</option>
+        <option value="enhanceExposure" >enhance exposure</option>
         <option value="haze">haze</option>
         <option value="yellowedEdges">yellowed edge</option>
         <option value="lightenEdges">lighten edge</option>
@@ -291,6 +291,7 @@
         <option value="fadeEdges">fade edge</option>
         <option value="infrared">infrared</option>
         <option value="tint">tint</option>
+        <option value="spotlight" selected>spotlight</option>
         <option value="lightleak">light leak</option>
         <option value="multileak">multi leak</option>
         <option value="sobel">sobel</option>
@@ -10395,6 +10396,25 @@ function fruit () {
   }
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
+}
+
+
+function spotlight () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let cx = canvas.width/2, cy = canvas.height/2, x = 0, y = 0
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let rg = ctx.createRadialGradient(cx+pet (900), cy-400+pet(100), 6, cx, cy-400, 700)
+  let col1 = "#ffffff"
+  let col2 = "rgba("+hexToR(col1)+", "+hexToG(col1)+", "+hexToB(col1)+", 0.0)";// transparent
+  rg.addColorStop(0.0, col1);
+  rg.addColorStop(0.75, col2);
+  ctx.fillStyle = rg
+  let a = Math.random() * 2 * Math.PI
+  ctx.beginPath()
+  ctx.ellipse(cx+pet(1100), cy-400+pet(600), 900, 700, a, 0, Math.PI * 2)
+  ctx.closePath()
+  ctx.fill()
 }
 
 function atom () {
