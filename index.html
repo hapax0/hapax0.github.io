@@ -4065,6 +4065,70 @@ function randomBokeh () {
 */
 
 function nicksmith () {
+  if (document.getElementById("grungy").checked) {
+    nicksmithWords()
+    return
+  }
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let off = document.createElement('CANVAS')
+  off.width = canvas.width
+  off.height = canvas.height
+  let offctx = off.getContext("2d")
+  offctx.fillStyle = "#000000"//document.getElementById("paintcolor").value
+  let grunge = document.getElementById("grungy").checked
+  // set above as in rectify
+  let W = 4 + Math.floor(document.getElementById("featuresize").value/10)
+  //invert range of W [2- 102] => [102 - 2]
+  W = 58 - W + 2
+  let text = ""
+  let wdivs = W
+  let cw = canvas.width
+  let ch = canvas.height
+  let w = cw/wdivs
+  let hdivs = Math.round(wdivs * ch/cw)
+  let h = ch/hdivs
+  let i = 0, x = 0, y = 0
+  let numsquares = (1+wdivs) * (1+hdivs)
+  let radius = w, j = 0
+  let lightness = 0, linecount = 0
+  let r = 0, g = 0, b = 0
+  h*= 1.5
+  // outer loop
+  for (;j < numsquares; j++) {
+    let imgData = ctx.getImageData(x, y, w, h)
+    let threshold = 127 - document.getElementById("opacity").value * 1.27
+    let pixels = imgData.data
+    let i = 0, r = 0, g = 0, b = 0
+    for (; i < pixels.length; i += 4) {
+      r += parseInt(pixels[i])
+      g += parseInt(pixels[i+1])
+      b += parseInt(pixels[i+2])
+    }
+    r /= pixels.length/4
+    g /= pixels.length/4
+    b /= pixels.length/4
+    let R = ('0'+(Math.round(r)).toString(16)).slice(-2),
+      G = ('0'+(Math.round(g)).toString(16)).slice(-2),
+      B = ('0'+(Math.round(b)).toString(16)).slice(-2);
+    offctx.fillStyle = "#"+R+G+B
+    radius = w/2
+    offctx.fillRect(x, y, w*0.9, h*0.9)
+    x += w
+    if (x >= (wdivs)*w) {
+      linecount++
+      x = 0
+      y += h
+    }
+    if (y+h > canvas.height)
+      break;
+  }
+  ctx.clearRect(0,0,canvas.width,canvas.height)
+  ctx.drawImage(off, 0, 0)
+}
+
+
+function nicksmithWords () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let off = document.createElement('CANVAS')
