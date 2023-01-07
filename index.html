@@ -4308,6 +4308,7 @@ function nicksmithWords () {
   let W = 2 + Math.floor(document.getElementById("featuresize").value/10)
   //invert range of W [2- 102] => [102 - 2]
   W = 54 - W + 2
+  let usertext = document.getElementById("points").value.split(/\s/g)
   let text = ""
   let wdivs = W
   let cw = canvas.width
@@ -4321,7 +4322,7 @@ function nicksmithWords () {
   let lightness = 0, linecount = 0
   let r = 0, g = 0, b = 0
   //h*= 1.2
-  let fs = w/12
+  let fs = w/12, cnt = 0
   for (;j < numsquares; j++) {
     let imgData = ctx.getImageData(x, y, w, h)
     let threshold = 127 - document.getElementById("opacity").value * 1.27
@@ -4345,6 +4346,8 @@ function nicksmithWords () {
     offctx.fillRect(x+randomPick([1,1,2,3]), y+randomPick([1,1,2,3]), w, h*0.8)
     
     text = closest[1]//offctx.fillStyle//randomWordPT()
+    if (usertext.length > 1)
+      text = usertext[cnt%usertext.length]
     let face = "Arial"
     offctx.font = "100 "+(fs)+"pt " + face
   //let width = ctx.measureText(text).width
@@ -4359,7 +4362,7 @@ function nicksmithWords () {
     if (y+h > canvas.height)
       break;
     
-    
+    cnt++
   }
   ctx.clearRect(0,0,canvas.width,canvas.height)
   ctx.drawImage(off, 0, 0)
