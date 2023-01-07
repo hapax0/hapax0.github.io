@@ -4246,6 +4246,7 @@ function nicksmith () {
   let W = 4 + Math.floor(document.getElementById("featuresize").value/10)
   //invert range of W [2- 102] => [102 - 2]
   W = 58 - W + 2
+  let H = W
   let text = ""
   let wdivs = W
   let cw = canvas.width
@@ -4254,11 +4255,11 @@ function nicksmith () {
   let hdivs = Math.round(wdivs * ch/cw)
   let h = ch/hdivs
   let i = 0, x = 0, y = 0
-  let numsquares = (1+wdivs) * (1+hdivs)
+  let numsquares = (1+wdivs) * (1+hdivs) * 1.2
   let radius = w, j = 0
   let lightness = 0, linecount = 0
   let r = 0, g = 0, b = 0
-  h*= 1.5
+  //h *= 1.1
   // outer loop
   for (;j < numsquares; j++) {
     let imgData = ctx.getImageData(x, y, w, h)
@@ -4286,7 +4287,7 @@ function nicksmith () {
       y += h
     }
     if (y+h > canvas.height)
-      break;
+      ;//break;
   }
   ctx.clearRect(0,0,canvas.width,canvas.height)
   ctx.drawImage(off, 0, 0)
@@ -4318,9 +4319,8 @@ function nicksmithWords () {
   let radius = w, j = 0
   let lightness = 0, linecount = 0
   let r = 0, g = 0, b = 0
-  h*= 1.2
+  //h*= 1.2
   let fs = w/12
-  // outer loop
   for (;j < numsquares; j++) {
     let imgData = ctx.getImageData(x, y, w, h)
     let threshold = 127 - document.getElementById("opacity").value * 1.27
