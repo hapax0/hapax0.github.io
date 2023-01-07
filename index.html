@@ -4243,9 +4243,10 @@ function nicksmith () {
   offctx.fillStyle = "#000000"//document.getElementById("paintcolor").value
   let grunge = document.getElementById("grungy").checked
   // set above as in rectify
-  let W = 4 + Math.floor(document.getElementById("featuresize").value/10)
+  let W = 4 + Math.floor(document.getElementById("featuresize").value/5)
   //invert range of W [2- 102] => [102 - 2]
-  W = 58 - W + 2
+  console.log(W)
+  W = 105 - W + 2
   let H = W
   let text = ""
   let wdivs = W
