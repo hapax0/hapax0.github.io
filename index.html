@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+filter<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -6,7 +6,7 @@
   <style>
     div[class=buttons] {
       margin-top:8px;
-      float: left;
+      float: left;filter
       white-space: nowrap;
     }
     
@@ -2334,6 +2334,20 @@ let htmlcolors = {
   "ivory": "#FFFFF0"
 }
 
+function closestHTMLColor (c) {
+  let colors = Object.values(htmlcolors), i = 0
+  let min = 100000, mincolor = c, idx = 0
+  for (; i < colors.length; i++) {
+    let d = colorDistance(c, colors[i])
+    if (d < min) {
+      min = d
+      mincolor = colors[i]
+      idx = i
+    }
+  }
+  return [mincolor, Object.keys(htmlcolors)[idx]]
+}
+
 function closestColor (c) {
   let colors = Object.values(pantonecolors)[1], i = 0
   let min = 100000, mincolor = c, idx = 0
@@ -4294,7 +4308,6 @@ function nicksmith () {
   ctx.drawImage(off, 0, 0)
 }
 
-
 function nicksmithWords () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -4341,6 +4354,79 @@ function nicksmithWords () {
       B = ('0'+(Math.round(b)).toString(16)).slice(-2);
     //offctx.fillStyle = "#"+R+G+B
     let closest = closestColor("#"+R+G+B)
+    offctx.fillStyle = closest[0]
+    radius = w/2
+    offctx.fillRect(x+randomPick([1,1,2,3]), y+randomPick([1,1,2,3]), w, h*0.8)
+    
+    text = closest[1]//offctx.fillStyle//randomWordPT()
+    if (usertext.length > 1)
+      text = usertext[cnt%usertext.length]
+    let face = "Arial"
+    offctx.font = "100 "+(fs)+"pt " + face
+  //let width = ctx.measureText(text).width
+    offctx.fillStyle = "#000000"
+    offctx.fillText(text, x+8, y+h-fs*0.6)
+    x += w
+    if (x >= (wdivs)*w) {
+      linecount++
+      x = 0
+      y += h
+    }
+    if (y+h > canvas.height)
+      break;
+    
+    cnt++
+  }
+  ctx.clearRect(0,0,canvas.width,canvas.height)
+  ctx.drawImage(off, 0, 0)
+}
+
+function namedcolorWords () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let off = document.createElement('CANVAS')
+  off.width = canvas.width
+  off.height = canvas.height
+  let offctx = off.getContext("2d")
+  offctx.fillStyle = "#000000"//document.getElementById("paintcolor").value
+  let grunge = document.getElementById("grungy").checked
+  // set above as in rectify
+  let W = 2 + Math.floor(document.getElementById("featuresize").value/10)
+  //invert range of W [2- 102] => [102 - 2]
+  W = 54 - W + 2
+  let usertext = document.getElementById("points").value.split(/\s/g)
+  let text = ""
+  let wdivs = W
+  let cw = canvas.width
+  let ch = canvas.height
+  let w = cw/wdivs
+  let hdivs = Math.round(wdivs * ch/cw)
+  let h = ch/hdivs
+  let i = 0, x = 0, y = 0
+  let numsquares = (1+wdivs) * (1+hdivs)
+  let radius = w, j = 0
+  let lightness = 0, linecount = 0
+  let r = 0, g = 0, b = 0
+  //h*= 1.2
+  let fs = w/12, cnt = 0
+  for (;j < numsquares; j++) {
+    let imgData = ctx.getImageData(x, y, w, h)
+    let threshold = 127 - document.getElementById("opacity").value * 1.27
+    let pixels = imgData.data
+    let i = 0, r = 0, g = 0, b = 0
+    for (; i < pixels.length; i += 4) {
+      r += parseInt(pixels[i])
+      g += parseInt(pixels[i+1])
+      b += parseInt(pixels[i+2])
+    }
+    r /= pixels.length/4
+    g /= pixels.length/4
+    b /= pixels.length/4
+    let R = ('0'+(Math.round(r)).toString(16)).slice(-2),
+      G = ('0'+(Math.round(g)).toString(16)).slice(-2),
+      B = ('0'+(Math.round(b)).toString(16)).slice(-2);
+    //offctx.fillStyle = "#"+R+G+B
+    let closest = closestHTMLColor("#"+R+G+B)
     offctx.fillStyle = closest[0]
     radius = w/2
     offctx.fillRect(x+randomPick([1,1,2,3]), y+randomPick([1,1,2,3]), w, h*0.8)
@@ -4707,7 +4793,9 @@ function filterRed () {
   let pixels = imgData.data
   let i = 0
   for (; i < pixels.length; i += 4) {
-    pixels[i] *= 0.1
+    //pixels[i] *= 1.0
+    pixels[i+1] *= 0
+    pixels[i+2] *= 0
   }
   ctx.putImageData(imgData, 0, 0)
 }
@@ -4719,7 +4807,8 @@ function filterGreen () {
   let pixels = imgData.data
   let i = 0
   for (; i < pixels.length; i += 4) {
-    pixels[i+1] *= 0.1
+    pixels[i] *= 0
+    pixels[i+2] *= 0
   }
   ctx.putImageData(imgData, 0, 0)
 }
@@ -4731,7 +4820,8 @@ function filterBlue () {
   let pixels = imgData.data
   let i = 0
   for (; i < pixels.length; i += 4) {
-    pixels[i+2] *= 0.1
+    pixels[i] *= 0
+    pixels[i+1] *= 0
   }
   ctx.putImageData(imgData, 0, 0)
 }
@@ -13881,9 +13971,16 @@ function moleDates (d) {
   ctx.font = 12*scale+"px serif monospace"
   ctx.globalCompositeOperation ="luminosity"
   ctx.fillText("\u{26C5}", 76*scale, lasty-linespace-5)
+ /greyScaleSpot (76*scale, lasty-linespace-5,40,40)
   ctx.fillText("\u{1F321}", 76*scale, lasty-5)
+  greyScaleSpot (76*scale, lasty-5,40,40)
+
   ctx.fillText("\u{26C5}", canvas.width/2+44, lasty-linespace-5+voff)
+  greyScaleSpot(canvas.width/2+44, lasty-linespace-5+voff,40,40)
+
   ctx.fillText("\u{1F321}", canvas.width/2+44, lasty-5+voff)
+  greyScaleSpot (canvas.width/2+44, lasty-5+voff,40,40)
+
   ctx.globalCompositeOperation = "source-over"
   const today = new Date()
   const tomorrow = new Date(today)
@@ -22303,7 +22400,6 @@ function greyScale (canvas) {
   let i = 0, brightness = 0
   for (; i < pixels.length; i += 4) {
     let lightness = parseInt((pixels[i] + pixels[i + 1] + pixels[i + 2]) / 3);
-    
     brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3)
     if (brightness >= lowest && brightness <= highest) {
       pixels[i] = lightness;
@@ -22312,6 +22408,26 @@ function greyScale (canvas) {
     }
   }
   ctx.putImageData(imgData, 0, 0);
+}
+
+function greyScaleSpot (x,y,w,h) {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let imgData = ctx.getImageData(x, y, w, h);
+  let pixels = imgData.data;
+  let lh = rangecheck()
+  let lowest = lh[0], highest = lh[1]
+  let i = 0, brightness = 0
+  for (; i < pixels.length; i += 4) {
+    let lightness = parseInt((pixels[i] + pixels[i + 1] + pixels[i + 2]) / 3);
+    brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3)
+    if (brightness >= lowest && brightness <= highest) {
+      pixels[i] = lightness;
+      pixels[i + 1] = lightness;
+      pixels[i + 2] = lightness;
+    }
+  }
+  ctx.putImageData(imgData, x, y);
 }
 
 function lum () {
