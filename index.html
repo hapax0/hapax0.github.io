@@ -13970,16 +13970,18 @@ function moleDates (d) {
   
   ctx.font = 12*scale+"px serif monospace"
   ctx.globalCompositeOperation ="luminosity"
+  
   ctx.fillText("\u{26C5}", 76*scale, lasty-linespace-5)
- /greyScaleSpot (76*scale, lasty-linespace-5,40,40)
+  greyScaleSpot(76*scale, lasty-linespace-5-12*scale, 18*scale, 18*scale)
+ 
   ctx.fillText("\u{1F321}", 76*scale, lasty-5)
-  greyScaleSpot (76*scale, lasty-5,40,40)
-
+  greyScaleSpot (76*scale, lasty-5-12*scale, 18*scale, 18*scale)
+  
   ctx.fillText("\u{26C5}", canvas.width/2+44, lasty-linespace-5+voff)
-  greyScaleSpot(canvas.width/2+44, lasty-linespace-5+voff,40,40)
+  greyScaleSpot(canvas.width/2+44, lasty-linespace-5+voff-12*scale, 18*scale, 18*scale)
 
   ctx.fillText("\u{1F321}", canvas.width/2+44, lasty-5+voff)
-  greyScaleSpot (canvas.width/2+44, lasty-5+voff,40,40)
+  greyScaleSpot (canvas.width/2+44, lasty-5+voff-12*scale, 18*scale, 18*scale)
 
   ctx.globalCompositeOperation = "source-over"
   const today = new Date()
@@ -22415,19 +22417,14 @@ function greyScaleSpot (x,y,w,h) {
   let ctx = canvas.getContext("2d");
   let imgData = ctx.getImageData(x, y, w, h);
   let pixels = imgData.data;
-  let lh = rangecheck()
-  let lowest = lh[0], highest = lh[1]
-  let i = 0, brightness = 0
+  let i = 0
   for (; i < pixels.length; i += 4) {
     let lightness = parseInt((pixels[i] + pixels[i + 1] + pixels[i + 2]) / 3);
-    brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3)
-    if (brightness >= lowest && brightness <= highest) {
-      pixels[i] = lightness;
-      pixels[i + 1] = lightness;
-      pixels[i + 2] = lightness;
-    }
+    pixels[i] = lightness;
+    pixels[i + 1] = lightness;
+    pixels[i + 2] = lightness;
   }
-  ctx.putImageData(imgData, x, y);
+  ctx.putImageData(imgData, x,y);
 }
 
 function lum () {
