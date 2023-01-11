@@ -4261,7 +4261,7 @@ function nicksmith () {
   //invert range of W [2- 102] => [102 - 2]
   console.log(W)
   W = 105 - W + 2
-  let H = W
+  //let H = W*1.5
   let text = ""
   let wdivs = W
   let cw = canvas.width
@@ -4274,7 +4274,7 @@ function nicksmith () {
   let radius = w, j = 0
   let lightness = 0, linecount = 0
   let r = 0, g = 0, b = 0
-  //h *= 1.1
+  h *= 1.25
   // outer loop
   for (;j < numsquares; j++) {
     let imgData = ctx.getImageData(x, y, w, h)
@@ -4294,7 +4294,7 @@ function nicksmith () {
       B = ('0'+(Math.round(b)).toString(16)).slice(-2);
     offctx.fillStyle = "#"+R+G+B
     radius = w/2
-    offctx.fillRect(x, y, w*0.9, h*0.9)
+    offctx.fillRect(x, y, w*0.9, w*0.9)
     x += w
     if (x >= (wdivs)*w) {
       linecount++
@@ -13988,14 +13988,14 @@ function moleDates (d) {
   const tomorrow = new Date(today)
   tomorrow.setDate(tomorrow.getDate() + 1)
   
-  ctx.fillText(week+today.getWeek(), canvas.width - 108-d*scale, lasty-5+voff)// FR: "la semaine"
-  
   let size = 20*scale//document.getElementById("featuresize").value/6.25
   if (Math.random() > 0.5) {
     months = monthsFR
     days = daysFR
     week = "la semaine "
   }
+  ctx.fillText(week+today.getWeek(), canvas.width - 108-d*scale, lasty-5+voff)// FR: "la semaine"
+  
   ctx.font = size+"px serif"
   ctx.fillStyle = document.getElementById("paintcolor").value = "#666666"
   x = 78*scale, y = 70*scale
