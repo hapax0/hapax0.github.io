@@ -2368,14 +2368,20 @@ function colorDistance (c1, c2) {
 
 function showHex () {
   let colors = getCurrentPalette(true)
-  let hex = "", i = 0
+  let hex = "Hex values\n", i = 0
   for (; i < colors.length; i++)
   hex += "\"" + colors[i] + "\", "
  /* hex += "\"" + document.getElementById("pal2").value + "\", "
   hex += "\"" + document.getElementById("pal3").value + "\", "
   hex += "\"" + document.getElementById("pal4").value + "\", "
   hex += "\"" + document.getElementById("pal5").value + "\""*/
-  alert(hex)
+  
+  let pan = ""
+    i = 0
+    for (; i < colors.length; i++) {
+      pan += closestColor(colors[i])+"\n"
+    }
+  alert(hex+"\n\nClosest Pantone matches\n"+pan)
 }
 
 function simplifyColors () {
