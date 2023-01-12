@@ -53,6 +53,7 @@
   svg {background-color:#ccc;}
   svg[class=white] { background-color:#fff;}
 </style>
+  <script src="pantone.js"></script>
 </head>
 <body>
 <div>
@@ -72,6 +73,7 @@
 <br>
 <canvas id="palettecanvas" width="400" height="40"></canvas><br>
 <input type="text" id="colorlist"><br>
+<input type="text" id="pantonelist"><br>
 <canvas id="myCanvas" width="400" height="500" style="border:1px solid #000000;"></canvas>
 
 </div>
@@ -102,6 +104,24 @@ function testInteresting() {
     ctx.fillText(i1, 26, 24+i*24)
     ctx.fillText(i2, 56, 24+i*24)
   }
+}
+
+function closestColor (c) {
+  let colors = Object.values(pantonecolors)[1], i = 0
+  let min = 100000, mincolor = c, idx = 0
+  for (; i < colors.length; i++) {
+    let d = colorDistance(c, colors[i])
+    if (d < min) {
+      min = d
+      mincolor = colors[i]
+      idx = i
+    }
+  }
+  return [mincolor, Object.values(pantonecolors)[0][idx]]
+}
+
+function colorDistance (c1, c2) {
+  return Math.abs(hexToR(c1) - hexToR(c2)) + Math.abs(hexToG(c1) - hexToG(c2)) + Math.abs(hexToB(c1) - hexToB(c2))/3
 }
 
 function hexToR(h) { return parseInt((cutHex(h)).substring(0,2),16) }
@@ -163,6 +183,12 @@ function extractPalette () {
         x = 0
       }
     }
+    let pan = ""
+    i = 0
+    for (; i < colors.length; i++) {
+      pan += closestColor(colors[i])+"|"
+    }
+    document.getElementById("pantonelist").value = pan
   }
 }
 
