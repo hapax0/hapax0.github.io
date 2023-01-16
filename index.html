@@ -13675,7 +13675,7 @@ function moleskine2 (options) { // 3D
   rcc()
   let mode = document.getElementById("mode").value
   ctx.globalCompositeOperation = "source-atop"
-  afold()
+  afold(20)
   ctx.globalCompositeOperation = mode
   rc()
   stiches(20)
@@ -17682,7 +17682,9 @@ function stiches (pad) {
   ctx.globalAlpha = alpha/100
 }
 
-function afold () {
+function afold (pad) {
+  if (!pad)
+    pad = 0
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let alpha = document.getElementById("opacity").value
@@ -17690,19 +17692,21 @@ function afold () {
   let x1 = canvas.width/2, y1 = 0, x2 = canvas.width/2, y2 = canvas.height/2
   ctx.fillStyle = randomGradientRect(canvas, colors[0], x1, y1, x2, y2 - Math.random() * canvas.width/3)
   ctx.globalAlpha = 0.2
-  ctx.fillRect(0,0,canvas.width,canvas.height/2)
+  ctx.fillRect(pad,0,canvas.width-pad*2,canvas.height/2)
   y1 = canvas.height/2, y2 = canvas.height
   ctx.fillStyle = randomGradientRect(canvas, colors[0], x1, y1, x2, y2 - Math.random() * canvas.width/3)
-  ctx.fillRect(0,canvas.height/2, canvas.width, canvas.height)
+  ctx.fillRect(pad,canvas.height/2, canvas.width-pad*2, canvas.height)
+ 
+  
  
   y1 = canvas.height/2, y2 = canvas.height/2-80
   ctx.fillStyle = randomGradientRect(canvas, colors[1], x1, y1, x2, y2)// - Math.random() * canvas.width/3)
-  ctx.fillRect(0,canvas.height/2 - 140, canvas.width, 140)
+  ctx.fillRect(pad,canvas.height/2 - 140, canvas.width-pad*2, 140)
   
   
   y1 = canvas.height/2, y2 = canvas.height/2+13+Math.random()*11
   ctx.fillStyle = randomGradientRect(canvas, "#202020", x1, y1, x2, y2)// - Math.random() * canvas.width/3)
-  ctx.fillRect(0,canvas.height/2, canvas.width, 40+Math.random() *15)
+  ctx.fillRect(pad,canvas.height/2, canvas.width-pad*2, 40+Math.random() *15)
   ctx.globalAlpha = alpha/100
 }
 
