@@ -465,7 +465,7 @@
       <option value="postcard">postcard</option>
       <option value="indexcard">index card</option>
       <!--option value="thisSpace">this space</option-->
-      <option value="spiralbound">spiral bound</option>
+      <!--option value="spiralbound">spiral bound</option-->
       <option value="photoBook">photo book</option>
       <option value="gridLinear">grid paper</option>
       <option value="gridLog">log paper</option>
@@ -21222,20 +21222,20 @@ async function fadeEdges () {
       x = 0
       y += 1
     }
-    if (Math.random() > 0.25)
-      margin = w/divisor + pet(w/divisor/2)
+   // if (Math.random() > 0.1)
+    margin = w/divisor + pet(w/divisor/2)
     dx = edgeDistance(x,w)
     dy = edgeDistance(y,h)
     if (dx < margin && dx > 0) {
       dx += 10 // prevent 100% dark at very close to edge
       let px = data.data.slice(i*4, i*4+4)
-      px[3] -= margin/dx * Math.random()*4
+      px[3] -= margin/dx * Math.random()*10
       data.data.set(px, i*4)
     }
     if (dy < margin && dy > 0) {
       dy+= 10
       let px = data.data.slice(i*4, i*4+4)
-      px[3] -= margin/dy * Math.random()*4
+      px[3] -= margin/dy * Math.random()*10
       data.data.set(px, i*4)
     }
   }
@@ -21263,8 +21263,6 @@ async function darkenEdges () {
       x = 0
       y += 1
     }
-    if (i < 1000)
-      console.log(x,y)
     if (Math.random() > 0.25)
       margin = w/divisor + pet(w/divisor/2)
     dx = edgeDistance(x,w)
