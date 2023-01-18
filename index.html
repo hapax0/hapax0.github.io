@@ -827,7 +827,7 @@ function watercolorPaper () {
   ctx.clearRect(0,0,canvas.width,canvas.height)
   ctx.fillRect(0,0,canvas.width,canvas.height)
   let fs = document.getElementById("featuresize").value
-  let d = 5+Math.floor(fs/20)
+  let d = 1+Math.floor(fs/100)
   let alpha = document.getElementById("opacity").value
   let n = document.getElementById("number").value
   let c = document.getElementById("paintcolor").value
@@ -844,6 +844,7 @@ function watercolorPaper () {
   document.getElementById("opacity").value = alpha
   document.getElementById("paintcolor").value = c
   emboseCanvas()
+  zoomImage(false, d)
   //shrinkBlur()
   let mode = ctx.globalCompositeOperation
   ctx.globalCompositeOperation = "destination-over"
@@ -921,48 +922,12 @@ function wavyPaper () {
   document.getElementById("featuresize").value = 150
   dirblur()
   dotblur()
-  dotblur()
+  //dotblur()
   dotblur()
   document.getElementById("number").value = n
   document.getElementById("featuresize").value = fs
   document.getElementById("opacity").value = alpha
   emboseCanvas()
-  zoomImage(false, d)
-  shrinkBlur()
-  document.getElementById("paintcolor").value = c
-  enhanceExposure()
-}
-
-function wavyPaperAlt () {
-  let canvas = document.getElementById("myCanvas")
-  let ctx = canvas.getContext("2d")
-  ctx.shadowBlur = 0
-  ctx.shadowOffsetX = 0;
-  ctx.shadowOffsetY = 0;
-  ctx.fillStyle = "#ffffff"
-  ctx.clearRect(0,0,canvas.width,canvas.height)
-  ctx.fillRect(0,0,canvas.width,canvas.height)
-  let fs = document.getElementById("featuresize").value
-  let d = 5+Math.floor(fs/20)
-  let alpha = document.getElementById("opacity").value
-  let n = document.getElementById("number").value
-  let c = document.getElementById("paintcolor").value
-  let functions = ["smudgestreaks2", "smudgearcs"]
-  document.getElementById("featuresize").value = 330
-  document.getElementById("opacity").value = 30
-  document.getElementById("number").value = 8000
-  document.getElementById("paintcolor").value = "#bbbbbb"
-  let i = 0, f
-  for (;i < 3; i++) {
-    f = randomPick(functions)
-    window[f]("")
-  }
-  document.getElementById("opacity").value = 10
-  document.getElementById("featuresize").value = 150
-  document.getElementById("number").value = n
-  document.getElementById("featuresize").value = fs
-  document.getElementById("opacity").value = alpha
-  ctx.globalAlpha = alpha/100
   zoomImage(false, d)
   shrinkBlur()
   document.getElementById("paintcolor").value = c
@@ -1355,7 +1320,7 @@ function syncMarker (NOSHOW) {
 function showCanvasSettings () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
-  alert("y: "+LASTCLICK[1] +"\n"+objToString(ctx))
+  alert("W: "+canvas.width+" H: "+canvas.height+"\ny: "+LASTCLICK[1] +"\n"+objToString(ctx))
 }
 
 function objToString (obj) {
@@ -2569,7 +2534,7 @@ function exposureInfo () {
   averaged /= 441.6729559300637
   maxd /= 441.6729559300637
   colorfull /= (255*2000)
-  alert("Exposure Info\n\nmin brightness: "+Math.round(100*minbright)/100+ ", max brightness: "+Math.round(maxbright*100)/100+"\naverage brightness: "+Math.round(100*averageb)/100+"\nrange: "+Math.round(100*(maxbright-minbright))/100+"\n\nmax tonal distance: "+Math.round(100*maxd)/100 + "\naverage tonal distance: "+Math.round(100*averaged)/100+"\ncolorfullness: "+Math.round(100*colorfull)/100)
+  alert("W: "+canvas.width+" H: "+canvas.height+"\nExposure Info\n\nmin brightness: "+Math.round(100*minbright)/100+ ", max brightness: "+Math.round(maxbright*100)/100+"\naverage brightness: "+Math.round(100*averageb)/100+"\nrange: "+Math.round(100*(maxbright-minbright))/100+"\n\nmax tonal distance: "+Math.round(100*maxd)/100 + "\naverage tonal distance: "+Math.round(100*averaged)/100+"\ncolorfullness: "+Math.round(100*colorfull)/100)
 }
 
 function minDistance (colors, pixels, i) {
@@ -4911,7 +4876,7 @@ function filterBlue () {
   }
   ctx.putImageData(imgData, 0, 0)
 }
-
+let functionStack = []
 let LATESTFUNCTION = ""
 
 function testImage (id) {
@@ -4922,6 +4887,7 @@ function testImage (id) {
   let f = document.getElementById(id).value
   window[f]()
   LATESTFUNCTION = f
+  functionStack.push(f)
   document.getElementById("last").title = "repeat: "+f
   // after function call check slider agreement with context values
   let sel = document.getElementById("mode").value
@@ -4937,6 +4903,22 @@ function testImage (id) {
   }*/
   ctx.globalCompositeOperation = sel
   ctx.globalAlpha = sga
+}
+
+function lastNFunctions (N) {
+ // return
+  if (N === undefined)
+    N = 3
+  let i = 0
+  if (functionStack.length > N-1) {
+
+    let end = functionStack.slice(-N, functionStack.length)
+
+    i = 0
+    for (; i < end.length; i++) {
+      window[end[i]]()
+    }
+  }
 }
 
 function doAgain () {
@@ -13706,10 +13688,10 @@ function moleskine2 (options) { // 3D
     }
     if (j === 4) {
       BF = false
-      roundedRect(x+d, y, W-40-d*2, H-49, 14, ctx, BF) // same size. to get drop-shadow
-      wavyPaperRounded(x+d, y, W-40-d*2, H-49, 14)
+      roundedRect(x+d, y, W-40-d*2, H-40, 14, ctx, BF) // same size. to get drop-shadow
+      wavyPaperRounded(x+d, y, W-40-d*2, H-40, 14)
     } else
-      roundedRect(x+d, y, W-40-d*2, H-49, 14, ctx, BF)
+      roundedRect(x+d, y, W-40-d*2, H-40, 14, ctx, BF)
     d += 9*scale + pet(3*scale)
     ctx.shadowBlur = 0
     ctx.shadowOffsetX = 0;
