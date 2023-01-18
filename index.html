@@ -135,11 +135,23 @@
     <path d="M2.522 5H2a.5.5 0 0 0-.494.574l1.372 9.149A1.5 1.5 0 0 0 4.36 16h7.278a1.5 1.5 0 0 0 1.483-1.277l1.373-9.149A.5.5 0 0 0 14 5h-.522A5.5 5.5 0 0 0 2.522 5zm1.005 0a4.5 4.5 0 0 1 8.945 0H3.527zm9.892 1-1.286 8.574a.5.5 0 0 1-.494.426H4.36a.5.5 0 0 1-.494-.426L2.58 6h10.838z"/>
   </svg></a>
   &nbsp;
-  <a href="javascript:doAgain()" id="last" title="repeat last function">
+  <a href="javascript:lastNFunctions()" id="last" title="repeat last function">
   <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
     <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
     <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
   </svg></a>
+  <select id="nfunctions" style="width:50px">
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+    <option>6</option>
+    <option>7</option>
+    <option>8</option>
+    <option>9</option>
+    <option>10</option>
+  </select>
   &nbsp;
   <a href="javascript:clearOff()" title="clear offscreen">
     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-clipboard-x" viewBox="0 0 16 16">
@@ -4905,16 +4917,11 @@ function testImage (id) {
   ctx.globalAlpha = sga
 }
 
-function lastNFunctions (N) {
- // return
-  if (N === undefined)
-    N = 3
+function lastNFunctions () {
+  N = document.getElementById("nfunctions").value
   let i = 0
   if (functionStack.length > N-1) {
-
     let end = functionStack.slice(-N, functionStack.length)
-
-    i = 0
     for (; i < end.length; i++) {
       window[end[i]]()
     }
