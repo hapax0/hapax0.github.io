@@ -151,6 +151,7 @@
     <option>8</option>
     <option>9</option>
     <option>10</option>
+    <option>0</option>
   </select>
   &nbsp;
   <a href="javascript:stack_clearOff()" title="clear offscreen">
@@ -4885,6 +4886,7 @@ function filterBlue () {
   ctx.putImageData(imgData, 0, 0)
 }
 
+let LATESTFUNCTION = ""
 let functionStack = []
 
 function pushFunction (f) {
@@ -4894,7 +4896,11 @@ function pushFunction (f) {
   document.getElementById("last").setAttribute('title', functionStack.join("\n"))
 }
 
-let LATESTFUNCTION = ""
+function clearFunctionStack () {
+  functionStack = []
+  document.getElementById("nfunctions").setAttribute('title', "no functions")
+  document.getElementById("last").setAttribute('title', "no functions")
+}
 
 function testImage (id) {
   let canvas = document.getElementById("myCanvas")
@@ -4915,14 +4921,18 @@ function testImage (id) {
 
 function lastNFunctions () {
   functionStack = functionStack.slice(-10, functionStack.length)
-  //console.log(functionStack)
   document.getElementById("nfunctions").setAttribute('title', functionStack.join("\n"))
   N = document.getElementById("nfunctions").value
+  if (N == 0) {
+    clearFunctionStack()
+    return
+  }
   let i = 0
   let end = functionStack.slice(-N, functionStack.length)
   for (; i < end.length; i++) {
     window[end[i]]()
   }
+  
 }
 
 function doAgain () {
