@@ -21417,17 +21417,13 @@ async function darkenEdges () {
       margin = w/divisor + pet(w/divisor/2)
     dx = edgeDistance(x,w)
     dy = edgeDistance(y,h)
-    if (dx < margin && dx > 0) {
-      dx += 10 // prevent 100% dark at very close to edge
+    if (dx < margin && dx > 0 || dy < margin && dy > 0) {
+      //dx += 10 // prevent 100% dark at very close to edge
       let px = data.data.slice(i*4, i*4+4)
       px[0] -= margin/dx * Math.random()*4
       px[1] -= margin/dx * Math.random()*4
       px[2] -= margin/dx * Math.random()*4
-      data.data.set(px, i*4)
-    }
-    if (dy < margin && dy > 0) {
-      dy+= 10
-      let px = data.data.slice(i*4, i*4+4)
+      
       px[0] -= margin/dy * Math.random()*4
       px[1] -= margin/dy * Math.random()*4
       px[2] -= margin/dy * Math.random()*4
@@ -21461,17 +21457,12 @@ async function lightenEdges () {
       margin = w/divisor + pet(w/divisor/2)
     dx = edgeDistance(x,w)
     dy = edgeDistance(y,h)
-    if (dx < margin && dx > 0) {
+    if (dx < margin && dx > 0 || dy < margin && dy > 0) {
       dx += 10 // prevent 100% dark at very close to edge
       let px = data.data.slice(i*4, i*4+4)
       px[0] += margin/dx * Math.random()*4
       px[1] += margin/dx * Math.random()*4
       px[2] += margin/dx * Math.random()*4
-      data.data.set(px, i*4)
-    }
-    if (dy < margin && dy > 0) {
-      dy+= 10
-      let px = data.data.slice(i*4, i*4+4)
       px[0] += margin/dy * Math.random()*4
       px[1] += margin/dy * Math.random()*4
       px[2] += margin/dy * Math.random()*4
