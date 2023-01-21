@@ -17839,6 +17839,7 @@ function snow () {
   let H = canvas.height;
   let W = canvas.width;
   let N = document.getElementById("number").value/10
+  let SIZE = 0.5+document.getElementById("featuresize").value/50
   let alpha = document.getElementById("opacity").value
   let i = 0, x, y, scale = 1, dx=1, dy=1
   ctx.strokeStyle = document.getElementById("paintcolor").value
@@ -17852,7 +17853,7 @@ function snow () {
     y = -50 + Math.random() * (H+100)
     scale = 1 + Math.random() * 23
     ctx.globalAlpha = Math.random() * maxAlpha
-    ctx.lineWidth = scale/2
+    ctx.lineWidth = Math.min(scale/2, SIZE)
     ctx.beginPath()
     ctx.moveTo(x,y)
     ctx.lineTo(x+dx*(scale+pet(scale)), y+dy*(scale+pet(scale)))
