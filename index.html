@@ -510,7 +510,8 @@
       <option value="halojaggy" style="color:red">halo jaggy</option>
       <option value="smearside">smear right</option>
       <option value="motionblur">motion blur</option>
-      <option value="tiltshift" selected>tilt-shift</option>
+      <option value="shaken" selected>shaken</option>
+      <option value="tiltshift">tilt-shift</option>
       <option value="afold" >fold</option>
       <option value="unfolded" >unfolded</option>
       <option value="fourfold">fourfold</option>
@@ -13770,12 +13771,12 @@ function moleskine2 (options) { // 3D
     moleText(d)
   }
 
-  rcc()
+  //rcc()
   let mode = document.getElementById("mode").value
   ctx.globalCompositeOperation = "source-atop"
   afold(20)
   ctx.globalCompositeOperation = mode
-  rc()
+  //rc()
   stiches(20)
   document.getElementById("opacity").value = alpha
   document.getElementById("paintcolor").value = color
@@ -17781,6 +17782,7 @@ function stiches (pad) {
 }
 
 function afold (pad) {
+  rcc()
   if (!pad)
     pad = 0
   let canvas = document.getElementById("myCanvas");
@@ -17795,8 +17797,8 @@ function afold (pad) {
   ctx.fillStyle = randomGradientRect(canvas, colors[0], x1, y1, x2, y2 - Math.random() * canvas.width/3)
   ctx.fillRect(pad,canvas.height/2, canvas.width-pad*2, canvas.height)
  
+ // if pad ??
   
- 
   y1 = canvas.height/2, y2 = canvas.height/2-80
   ctx.fillStyle = randomGradientRect(canvas, colors[1], x1, y1, x2, y2)// - Math.random() * canvas.width/3)
   ctx.fillRect(pad,canvas.height/2 - 140, canvas.width-pad*2, 140)
@@ -17806,6 +17808,7 @@ function afold (pad) {
   ctx.fillStyle = randomGradientRect(canvas, "#202020", x1, y1, x2, y2)// - Math.random() * canvas.width/3)
   ctx.fillRect(pad,canvas.height/2, canvas.width-pad*2, 40+Math.random() *15)
   ctx.globalAlpha = alpha/100
+  rc()
 }
 
 function dfold () {
@@ -17893,6 +17896,40 @@ function nudgeCWorCCW (cc, canvas) {
   ctx.globalAlpha = alpha/100
 }
 
+function shaken () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let canvasoff = document.createElement("CANVAS")
+  let ctxoff = canvasoff.getContext("2d")
+  let alt = document.getElementById("grungy").checked
+  canvasoff.width = canvas.width
+  canvasoff.height = canvas.height//clearOff()
+  ctx.globalAlpha = 1
+  ctxoff.globalAlpha = 1
+  ctxoff.drawImage(canvas, 0, 0)
+  ctx.clearRect(0,0,canvas.width, canvas.height)
+  let n = canvas.width/40, i = 0
+  let d = 0
+  let N = 5
+  ctx.globalAlpha = 1/N * 1.8
+  for (; i < N; i++) {
+    d = n + pet(33)
+    if (Math.random() > 0.5)
+      d *= -1
+    if (Math.random() > 0.19)
+      ctx.drawImage(canvasoff, d, 0)
+    else
+      ctx.drawImage(canvasoff, 0, d)
+    if (alt) {
+      opaqueer()
+      contrastImage(5)
+    }
+  }
+  
+  ctx.globalAlpha = 1
+}
+
+
 function nudgeRight () {
   nudgeCanvas(true)
 }
@@ -17910,8 +17947,6 @@ function nudgeCanvas (right) {
   let canvasoff = document.getElementById("off")
   let ctxoff = canvasoff.getContext("2d")
   let value = +document.getElementById("rednumber").value
-  //if (up)
- //   value *= -1
   canvasoff.width = canvas.width
   canvasoff.height = canvas.height
   ctxoff.drawImage(canvas,0,0)
@@ -17921,7 +17956,6 @@ function nudgeCanvas (right) {
   else
     ctx.drawImage(canvasoff, 0, value)
   ctxoff.clearRect(0,0,canvasoff.width, canvasoff.height)
-//  syncBackground(canvas)
   ctx.globalAlpha = alpha/100
 }
 
