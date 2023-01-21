@@ -17905,27 +17905,26 @@ function shaken () {
   canvasoff.width = canvas.width
   canvasoff.height = canvas.height//clearOff()
   ctx.globalAlpha = 1
-  ctxoff.globalAlpha = 1
+  ctxoff.globalAlpha = 0.2
   ctxoff.drawImage(canvas, 0, 0)
-  ctx.clearRect(0,0,canvas.width, canvas.height)
-  let n = canvas.width/40, i = 0
+ // ctx.clearRect(0,0,canvas.width, canvas.height)
+  let n = canvas.width/10, i = 0
   let d = 0
-  let N = 5
-  ctx.globalAlpha = 1/N * 1.8
+  let N = 9
+//ctx.globalAlpha = 1/N * 1.8
   for (; i < N; i++) {
-    d = n + pet(33)
+    d = 5 + Math.random() * n
     if (Math.random() > 0.5)
       d *= -1
-    if (Math.random() > 0.19)
+    if (Math.random() > 0.1)
       ctx.drawImage(canvasoff, d, 0)
     else
       ctx.drawImage(canvasoff, 0, d)
     if (alt) {
-      opaqueer()
+      //opaqueer()
       contrastImage(5)
     }
   }
-  
   ctx.globalAlpha = 1
 }
 
