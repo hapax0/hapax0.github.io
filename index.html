@@ -17902,16 +17902,15 @@ function shaken () {
   let canvasoff = document.createElement("CANVAS")
   let ctxoff = canvasoff.getContext("2d")
   let alt = document.getElementById("grungy").checked
+  let a = document.getElementById("opacity").value/100
   canvasoff.width = canvas.width
-  canvasoff.height = canvas.height//clearOff()
-  ctx.globalAlpha = 1
+  canvasoff.height = canvas.height
+  ctx.globalAlpha = a
   ctxoff.globalAlpha = 0.2
   ctxoff.drawImage(canvas, 0, 0)
- // ctx.clearRect(0,0,canvas.width, canvas.height)
   let n = canvas.width/10, i = 0
   let d = 0
   let N = 9
-//ctx.globalAlpha = 1/N * 1.8
   for (; i < N; i++) {
     d = 5 + Math.random() * n
     if (Math.random() > 0.5)
@@ -17921,7 +17920,6 @@ function shaken () {
     else
       ctx.drawImage(canvasoff, 0, d)
     if (alt) {
-      //opaqueer()
       contrastImage(5)
     }
   }
