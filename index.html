@@ -6388,13 +6388,16 @@ function acube (x,y,w,h) {
   let colors = shuffle(getCurrentPalette())
   let alt = document.getElementById("grungy").checked
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/10
-
+  let div = 2, m = 1
+  if (alt) {
+    div = 3, m = 2
+  }
   ctx.fillStyle = (colors[3])
   ctx.beginPath()
   ctx.moveTo(x+pet(4),y)
-  ctx.lineTo(x+w/2+pet(4),y)
-  ctx.lineTo(x+w/2,y+h/2+pet(4))
-  ctx.lineTo(x+pet(4),y+h/2)
+  ctx.lineTo(x+m*w/div+pet(4),y)
+  ctx.lineTo(x+m*w/div,y+m*h/div+pet(4))
+  ctx.lineTo(x+pet(4),y+m*h/div)
   ctx.lineTo(x,y+pet(4))
   ctx.closePath()
   if (Math.random() < 0.81)
@@ -6403,9 +6406,9 @@ function acube (x,y,w,h) {
   ctx.fillStyle = (colors[0])
   ctx.beginPath()
   ctx.moveTo(x,y+pet(4))
-  ctx.lineTo(x+w/2,y+h/2+pet(4))
-  ctx.lineTo(x+w/2+pet(4),y+h)
-  ctx.lineTo(x+pet(4),y+h/2)
+  ctx.lineTo(x+w/div,y+h/div+pet(4))
+  ctx.lineTo(x+w/div+pet(4),y+h)
+  ctx.lineTo(x+pet(4),y+m*h/div)
   ctx.lineTo(x,y+pet(4))
   ctx.closePath()
   if (Math.random() < 0.96)
@@ -6413,22 +6416,22 @@ function acube (x,y,w,h) {
   
   ctx.fillStyle = (colors[1])
   ctx.beginPath()
-  ctx.moveTo(x+w/2+pet(4),y)
-  ctx.lineTo(x+w,y+h/2+pet(4))
+  ctx.moveTo(x+m*w/div+pet(4),y)
+  ctx.lineTo(x+w,y+h/div+pet(4))
   ctx.lineTo(x+w,y+h+pet(4))
-  ctx.lineTo(x+w/2,y+h/2+pet(4))
-  ctx.lineTo(x+w/2+pet(4),y)
+  ctx.lineTo(x+m*w/div,y+m*h/div+pet(4))
+  ctx.lineTo(x+m*w/div+pet(4),y)
   ctx.closePath()
   if (Math.random() < 0.96)
     ctx.fill()
-  
+  m = 1
   ctx.fillStyle = (colors[2])
   ctx.beginPath()
-  ctx.moveTo(x+w/2,y+h/2+pet(4))
-  ctx.lineTo(x+w+pet(4),y+h/2)
+  ctx.moveTo(x+m*w/div,y+m*h/div+pet(4))
+  ctx.lineTo(x+w+pet(4),y+m*h/div)
   ctx.lineTo(x+w+pet(4),y+h)
-  ctx.lineTo(x+w/2+pet(4),y+h)
-  ctx.lineTo(x+w/2,y+h/2+pet(4))
+  ctx.lineTo(x+m*w/div+pet(4),y+h)
+  ctx.lineTo(x+m*w/div,y+m*h/div+pet(4))
   ctx.closePath()
   if (Math.random() < 0.81)
     ctx.fill()
