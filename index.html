@@ -414,7 +414,7 @@
       <option value="talk">talk</option>
       <option value="thought">thought</option>
       <option value="ivy" >ivy</option>
-      <option value="room">room</option>
+      <!--option value="room">room</option-->
       <option value="envelope">envelope</option>
       <option value="hairs">hairs</option>
       <option value="mnts" >mnts</option>
@@ -13797,8 +13797,12 @@ function randomClue (PT) {
   if (Math.random() > 0.93)
     res += ", " + randomWord(PT);
   if (Math.random() > 0.95) {
-    if (Math.random() > 0.5)
-      res += " (2 words)"
+    if (Math.random() > 0.5) {
+      if (PT)
+        res += " (2 palavras)"
+      else
+        res += " (2 words)"
+    }
     else
       res += ", e.g."
   }
@@ -13987,10 +13991,10 @@ function moleText (d) {
   let small = true, half = true
   let scale = canvas.height/1080
   ctx.strokeStyle = "#ccccdc"
-  let thebook = crossword
+  let thebook//= crossword
   let PT = Math.random() > 0.5
   let fs = 8 + Math.floor(document.getElementById("featuresize").value/2)
-  if (thebook === crossword)
+  //if (thebook === crossword)
     thebook = clues(PT)
   let text = document.getElementById("points").value
   if (text.length > 0)
