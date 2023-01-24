@@ -419,7 +419,8 @@
       <option value="hairs">hairs</option>
       <option value="mnts" >mnts</option>
       <option value="circle" >disc</option>
-      <option value="origami" selected>origami</option>
+      <option value="origami">origami</option>
+      <option value="kites" selected>kites</option>
       <option value="fourXfour">fourXfour</option>
       <!--option value="origami4by4">4x4</option-->
       <option value="onesquare">1 square</option>
@@ -6314,7 +6315,6 @@ function box () {
   ctx.fill()
 }
 
-
 function cube () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -6362,6 +6362,76 @@ function cube () {
   ctx.lineTo(x,y)
   ctx.closePath()
   ctx.fill()
+}
+
+function kites () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  let delta = W/3
+  let x = 0, y = 0, i = 0
+  for (; i < 9; i++) {
+    acube(x,y,delta,delta)
+    x += delta
+    if (x >= W) {
+      x = 0
+      y += delta
+    }
+  }
+}
+
+function acube (x,y,w,h) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let colors = shuffle(getCurrentPalette())
+  let alt = document.getElementById("grungy").checked
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/10
+
+  ctx.fillStyle = (colors[3])
+  ctx.beginPath()
+  ctx.moveTo(x+pet(4),y)
+  ctx.lineTo(x+w/2+pet(4),y)
+  ctx.lineTo(x+w/2,y+h/2+pet(4))
+  ctx.lineTo(x+pet(4),y+h/2)
+  ctx.lineTo(x,y+pet(4))
+  ctx.closePath()
+  if (Math.random() < 0.81)
+    ctx.fill()
+  
+  ctx.fillStyle = (colors[0])
+  ctx.beginPath()
+  ctx.moveTo(x,y+pet(4))
+  ctx.lineTo(x+w/2,y+h/2+pet(4))
+  ctx.lineTo(x+w/2+pet(4),y+h)
+  ctx.lineTo(x+pet(4),y+h/2)
+  ctx.lineTo(x,y+pet(4))
+  ctx.closePath()
+  if (Math.random() < 0.96)
+    ctx.fill()
+  
+  ctx.fillStyle = (colors[1])
+  ctx.beginPath()
+  ctx.moveTo(x+w/2+pet(4),y)
+  ctx.lineTo(x+w,y+h/2+pet(4))
+  ctx.lineTo(x+w,y+h+pet(4))
+  ctx.lineTo(x+w/2,y+h/2+pet(4))
+  ctx.lineTo(x+w/2+pet(4),y)
+  ctx.closePath()
+  if (Math.random() < 0.96)
+    ctx.fill()
+  
+  ctx.fillStyle = (colors[2])
+  ctx.beginPath()
+  ctx.moveTo(x+w/2,y+h/2+pet(4))
+  ctx.lineTo(x+w+pet(4),y+h/2)
+  ctx.lineTo(x+w+pet(4),y+h)
+  ctx.lineTo(x+w/2+pet(4),y+h)
+  ctx.lineTo(x+w/2,y+h/2+pet(4))
+  ctx.closePath()
+  if (Math.random() < 0.81)
+    ctx.fill()
 }
 
 function facade () {
