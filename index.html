@@ -420,7 +420,8 @@
       <option value="mnts" >mnts</option>
       <option value="circle" >disc</option>
       <option value="origami">origami</option>
-      <option value="kites" selected>kites</option>
+      <option value="kites">kites</option>
+      <option value="flags" selected>flags</option>
       <option value="fourXfour">fourXfour</option>
       <!--option value="origami4by4">4x4</option-->
       <option value="onesquare">1 square</option>
@@ -6363,6 +6364,65 @@ function cube () {
   ctx.closePath()
   ctx.fill()
 }
+
+function flags () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  let delta = W/3
+  let x = 0, y = 0, i = 0
+  for (; i < 9; i++) {
+    aflag(x,y,delta,delta,i)
+    x += delta
+    if (x >= W) {
+      x = 0
+      y += delta
+    }
+  }
+}
+
+function aflag (x,y,w,h,V) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let colors = shuffle(getCurrentPalette())
+  let alt = document.getElementById("grungy").checked
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/10
+  let div = 3, m = 1
+  if (alt) {
+    div = 4, m = 2
+  }
+  let i = 0
+  if (V % 2 === 0)
+    for (; i < div; i++) {
+      ctx.fillStyle = (colors[i])
+      ctx.beginPath()
+      ctx.moveTo(x+pet(4),y+pet(4))
+      ctx.lineTo(x+w+pet(4),y+pet(4))
+      ctx.lineTo(x+w+pet(4),y+h/div+pet(4))
+      ctx.lineTo(x+pet(4),y+h/div+pet(4))
+      ctx.lineTo(x+pet(4),y+pet(4))
+      ctx.closePath()
+      ctx.fill()
+      y+=h/div
+    }
+    else
+    for (; i < div; i++) {
+      ctx.fillStyle = (colors[i])
+      ctx.beginPath()
+      ctx.moveTo(x+pet(4),y+pet(4))
+      ctx.lineTo(x+w/div+pet(4),y+pet(4))
+      ctx.lineTo(x+w/div+pet(4)+pet(4),y+h+pet(4))
+      ctx.lineTo(x+pet(4),y+h+pet(4))
+      ctx.lineTo(x+pet(4),y)+pet(4)
+      ctx.closePath()
+      ctx.fill()
+      x+=h/div
+    }
+}
+
+
 
 function kites () {
   let canvas = document.getElementById("myCanvas")
