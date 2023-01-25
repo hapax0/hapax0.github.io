@@ -6372,9 +6372,11 @@ function dflags () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let W = canvas.width, H = canvas.height
-  let delta = W/3
+  let N = randomPick([4,5,6,8,9])
+  let delta = Math.round(W/N)
   let x = 0, y = 0, i = 0
-  for (; i < 9; i++) {
+  console.log(N, N*N)
+  for (; i < N*N; i++) {
     adiagflag(x,y,delta,delta,i)
     x += delta
     if (x >= W) {
@@ -6383,6 +6385,7 @@ function dflags () {
     }
   }
 }
+
 function flags () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -6412,7 +6415,7 @@ function adiagflag (x,y,w,h,V) {
     div = 4, m = 2
   }
   let i = 0
-  if (V % 2 === 0) {
+  if (Math.random() > 0.5) {
       ctx.fillStyle = colors[0]
       ctx.beginPath()
       ctx.moveTo(x+pet(4),y+pet(4))
@@ -6681,7 +6684,7 @@ function weave () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let W = canvas.width, H = canvas.height
-  let N = randomPick([3])
+  let N = randomPick([4,5,6,8,9])
   let pad = 20
   let delta = W/N
   let x = 0, y = 0, i = 0
