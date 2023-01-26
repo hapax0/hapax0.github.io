@@ -2351,17 +2351,15 @@ function showHex () {
   let colors = getCurrentPalette(true)
   let hex = "Hex values\n", i = 0
   for (; i < colors.length; i++)
-  hex += "\"" + colors[i] + "\", "
- /* hex += "\"" + document.getElementById("pal2").value + "\", "
-  hex += "\"" + document.getElementById("pal3").value + "\", "
-  hex += "\"" + document.getElementById("pal4").value + "\", "
-  hex += "\"" + document.getElementById("pal5").value + "\""*/
-  
+    hex += "\"" + colors[i] + "\", "
   let pan = ""
-    i = 0
-    for (; i < colors.length; i++) {
-      pan += closestColor(colors[i])+"\n"
-    }
+  i = 0
+  for (; i < colors.length; i++) {
+    pan += closestColor(colors[i])+"\n"
+  }
+  // show code for palette
+  let code = "\nif (type === '<name>') {\n  a = [\""+colors.slice(0,5).join('", "')+"\"]\n  b = [\""+colors.join('", "')+"\"]\n  updateExtraColors(b)\n}"
+  console.log(code)
   alert(hex+"\n\nClosest Pantone matches\n"+pan)
 }
 
@@ -6690,13 +6688,35 @@ function weave () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let W = canvas.width, H = canvas.height
-  let N = randomPick([4,5,6,7,8,9])
+  let N = randomPick([3,4,5,6,7,8,9])
   let pad = 20
   let delta = W/N
   let x = 0, y = 0, i = 0, cnt = 0
   for (; i < N*N; i++) {
     if (Math.random() > 0.5)
-      aflag(x,y,delta,delta, i % 2 === 0)
+      akite(x,y,delta,delta, i % 2 === 0)
+    else
+      adiagflag(x,y,delta,delta, i % 2 === 0)
+    x += delta
+    cnt++
+    if (cnt > 1 && cnt%N === 0) {
+      x = 0
+      y += delta
+    }
+  }
+}
+
+function weave2 () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  let N = randomPick([3,4,5,6,7,8,9])
+  let pad = 20
+  let delta = W/N
+  let x = 0, y = 0, i = 0, cnt = 0
+  for (; i < N*N; i++) {
+    if (Math.random() > 0.5)
+      apinwheel(x,y,delta,delta)
     else
       adiagflag(x,y,delta,delta, i % 2 === 0)
     x += delta
