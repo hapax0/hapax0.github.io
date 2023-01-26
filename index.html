@@ -424,6 +424,7 @@
       <option value="flags">flags</option>
       <option value="dflags">diags</option>
       <option value="weave">weave</option>
+      <option value="weave2">weave2</option>
       <option value="pinwheels" selected>pinwheels</option>
       <option value="fourXfour">fourXfour</option>
       <!--option value="origami4by4">4x4</option-->
@@ -6582,7 +6583,7 @@ function pinwheels () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let W = canvas.width, H = canvas.height
-  let N = randomPick([3,4,5])
+  let N = randomPick([3,4,5,6,7,8,9])
   let delta = W/N
   let x = 0, y = 0, i = 0, cnt = 0
   for (; i < N*N; i++) {
@@ -6694,7 +6695,7 @@ function weave () {
   let x = 0, y = 0, i = 0, cnt = 0
   for (; i < N*N; i++) {
     if (Math.random() > 0.5)
-      akite(x,y,delta,delta, i % 2 === 0)
+      aflag(x,y,delta,delta, i % 2 === 0)
     else
       adiagflag(x,y,delta,delta, i % 2 === 0)
     x += delta
