@@ -308,7 +308,7 @@
         <option value="multileak">multi leak</option>
         <option value="sobel">sobel</option>
         <option value="aura">aura</option>
-        <option value="emboseCanvas">embose</option>
+        <option value="embossCanvas">emboss</option>
         <option value="blurAlpha">blur alpha</option>
         <option value="edgeDarken" style="color:red">darken edges</option>
         <option value="edgeLighten" style="color:red">lighten edges</option>
@@ -867,7 +867,7 @@ function watercolorPaper () {
   document.getElementById("featuresize").value = fs
   document.getElementById("opacity").value = alpha
   document.getElementById("paintcolor").value = c
-  emboseCanvas()
+  embossCanvas()
   zoomImage(false, d)
   //shrinkBlur()
   let mode = ctx.globalCompositeOperation
@@ -909,7 +909,7 @@ function canvas1 () {
   document.getElementById("featuresize").value = fs
   document.getElementById("opacity").value = alpha
   document.getElementById("paintcolor").value = c
-  emboseCanvas()
+  embossCanvas()
   //shrinkBlur()
   let mode = ctx.globalCompositeOperation
   ctx.globalCompositeOperation = "destination-over"
@@ -951,7 +951,7 @@ function wavyPaper () {
   document.getElementById("number").value = n
   document.getElementById("featuresize").value = fs
   document.getElementById("opacity").value = alpha
-  emboseCanvas()
+  embossCanvas()
   zoomImage(false, d)
   shrinkBlur()
   document.getElementById("paintcolor").value = c
@@ -23526,7 +23526,7 @@ function blurCanvas (canvas) {
   convolutionMatrix(k, 0, canvas, 9)
 }
 
-function emboseCanvas () {
+function embossCanvas () {
   let k = [[-1,-1,-1,
            -1,1,1,
             1,1,1],
