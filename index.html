@@ -624,7 +624,7 @@
          <br>
          <canvas id="palettecanvas" width="420" height="42"></canvas><br>
           
-         <button  onclick="makePalette()">Remix</button>&nbsp;<button id="randompalette" onclick="loadPalette()">Load palette</button>&nbsp;<button onclick="extractPalette()">Extract</button>&nbsp;<button  onclick="showHex()" title="show hex values">#</button>
+         <button  onclick="makePalette()">Remix</button>&nbsp;<button id="randompalette" onclick="loadPalette()">Load palette</button>&nbsp;<button onclick="extractPalette()">Extract</button>&nbsp;<button  onclick="rampContrast()" title="ramp contrast">/</button>&nbsp;<button  onclick="showHex()" title="show hex values">#</button>
 
     <input type='file' name='img' size='65' id='openextract' style="display:none;">
     <button onclick="openFileExtract()" id="paletteloader" title="extract from file..."><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="white" viewBox="0 0 16 16">
@@ -1108,15 +1108,6 @@ function loadPalette () {
     updateExtraColors(b)
     return
   }else
-  if (type === "shade") {
-    document.getElementById("pal1").value = shadeColor(document.getElementById("pal1").value, -10)
-    document.getElementById("pal2").value = shadeColor(document.getElementById("pal2").value, -5)
-    //document.getElementById("pal3").value = // no change
-    document.getElementById("pal4").value = shadeColor(document.getElementById("pal4").value, 5)
-    document.getElementById("pal5").value = shadeColor(document.getElementById("pal5").value, 10)
-    updateExtraColors(b)
-    return
-  } else
   if (type === "ramp") {
     document.getElementById("pal1").value = randomColorVDark() //darkest
     document.getElementById("pal2").value = randomColorDark()
@@ -1296,6 +1287,15 @@ function loadPalette () {
   document.getElementById("pal3").value = a[2]
   document.getElementById("pal4").value = a[3]
   document.getElementById("pal5").value = a[4]
+}
+
+function rampContrast () {
+  document.getElementById("pal1").value = shadeColor(document.getElementById("pal1").value, -10)
+  document.getElementById("pal2").value = shadeColor(document.getElementById("pal2").value, -5)
+  //document.getElementById("pal3").value = // no change
+  document.getElementById("pal4").value = shadeColor(document.getElementById("pal4").value, 5)
+  document.getElementById("pal5").value = shadeColor(document.getElementById("pal5").value, 10)
+  //updateExtraColors(b)
 }
 
 function clearPoints () {
@@ -6476,16 +6476,18 @@ function hstripes () {
   let W = canvas.width, H = canvas.height
   let fs = 3 + document.getElementById("featuresize").value/2
   let N = Math.floor(H/fs)
+  let idx =shuffle([0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,2,2,2,3,3,4])
   let delta = H/N
+  //console.log(fs,delta, N)
   let x = 0, y = 0, i = 0
   for (; i < N; i++) {
-    ctx.fillStyle = randomPick(colors)
+    ctx.fillStyle = colors[randomPick(idx)]
     ctx.beginPath()
-    let y0 = y+pet(fs/2)
+    let y0 = y+pet(delta/2)
     ctx.moveTo(0,y0)
-    ctx.lineTo(W, y + pet(fs/2))
-    ctx.lineTo(W, y + delta*2 + pet(fs/2))
-    ctx.lineTo(0, y + delta*2 + pet(fs/2))
+    ctx.lineTo(W, y + pet(delta/2))
+    ctx.lineTo(W, y + delta*2 + pet(delta/2))
+    ctx.lineTo(0, y + delta*2 + pet(delta/2))
     ctx.lineTo(0, y0)
     ctx.closePath()
     ctx.fill()
