@@ -1289,7 +1289,7 @@ function loadPalette () {
   document.getElementById("pal5").value = a[4]
 }
 
-function rampContrast () {
+function rampContrast () { // dark to light
   document.getElementById("pal1").value = shadeColor(document.getElementById("pal1").value, -10)
   document.getElementById("pal2").value = shadeColor(document.getElementById("pal2").value, -5)
   //document.getElementById("pal3").value = // no change
@@ -6476,7 +6476,7 @@ function hstripes () {
   let W = canvas.width, H = canvas.height
   let fs = 3 + document.getElementById("featuresize").value/2
   let N = Math.floor(H/fs)
-  let idx =shuffle([0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,2,2,2,3,3,4])
+  let idx =shuffle([0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,2,2,2,3,3,4])
   let delta = H/N
   //console.log(fs,delta, N)
   let x = 0, y = 0, i = 0
