@@ -583,10 +583,10 @@
             <option value="dark">dark</option>
             <option value="quad">tetradic 90</option>
             <option value="quadrnd">tetradic rnd</option>
+            <option value="complementary">complementary</option>
             <option value="by 72">pentadic</option>
             <option value="by 30">anagolous</option>
             <option value="by 60">by 60</option>
-            <option value="shade">shade up</option>
 
             <option value="mono">mono up</option>
             <option value="monodown">mono down</option>
@@ -1069,12 +1069,25 @@ function loadPalette () {
     updateExtraColors(b)
     return
   } else
+  if (type === "complementary") {
+    let c1 = document.getElementById("pal1").value
+    let c2 = colorAngle(c1,180)
+    let c3 = colorAngle(c2,-45)
+    let c4 = colorAngle(c2,45)
+    let c5 = colorAngle(c1,45)
+    document.getElementById("pal2").value = c2
+    document.getElementById("pal3").value = c3
+    document.getElementById("pal4").value = c4
+    document.getElementById("pal5").value = c5
+    updateExtraColors(b)
+    return
+  }else
   if (type === "by 60") {
     let c1 = document.getElementById("pal1").value
     let c2 = colorAngle(c1,60)
-    let c3 = colorAngle(c2,60)
-    let c4 = colorAngle(c3,60)
-    let c5 = colorAngle(c4,60)
+    let c3 = colorAngle(c2,30)
+    let c4 = colorAngle(c3,30)
+    let c5 = colorAngle(c4,30)
     document.getElementById("pal2").value = c2
     document.getElementById("pal3").value = c3
     document.getElementById("pal4").value = c4
