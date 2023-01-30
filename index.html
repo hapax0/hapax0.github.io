@@ -405,6 +405,7 @@
       <option value="smeardownOff">vertical streaks</option>
       <option value="crackle">crackle curves</option>
       <option value="cracklelines" >crackle lines</option>
+      <option value="typewritter" >typewritter</option>
       <option value="regMarks" >registration</option>
       <option value="paintByNumbers">mono by numbers</option>
       <option value="paintByNumbers2">color by numbers</option>
@@ -17069,6 +17070,60 @@ function paintByNumbers2 () {
   }
 }
 
+function typewritter () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let OC = document.getElementById("OC")
+  let ctxOC = OC.getContext("2d")
+  let pad = 0
+  let W = canvas.width
+  let H = canvas.height
+  OC.width = W, OC.height = H
+  ctxOC.globalAlpha = document.getElementById("opacity").value/100
+  let grays = ["#000000", "#1e1e1e", "#353535", "#4e4e4e", "#696969", "#858585", "#a2a2a2", "#c0c0c0", "#dfdfdf", "#ffffff"]
+  
+  let d = (canvas.width-2*pad)/80
+  let space = d/9
+  if (document.getElementById("grungy").checked)
+    space = 2
+  let face = "AmericanTypewriter-Bold"
+  let text = ""
+  let size = d
+  ctx.font = size+"pt " + face
+  ctxOC.font = size+"pt " + face
+  let chars = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q"
+    ,"r","s","t","u","v","w","x","y","z"]
+ // ctx.strokeStyle = "#000000"
+  //ctx.lineWidth = 2+Math.floor(document.getElementById("featuresize").value/100)
+  //console.log(d, space)
+  let x = pad, y = pad
+  let values = [], colors = []
+  while (y < H - pad) {
+    while (x < W - pad) {
+      values.push(9-brightnessOf10(ctx,x,y,d))
+      colors.push("#303030")//9-brightnessOf(ctx,x,y,d))
+      x += space * d
+    }
+    x = pad*1.5
+    y += space * d
+  }
+  ctxOC.fillStyle = document.getElementById("paintcolor").value
+  let i = 0, j = 0
+  x = pad, y = pad
+  while (y < H - pad) {
+    while (x < W - pad) {
+      j = 0
+      for (; j < values[i]*3; j++)
+        ctxOC.fillText(randomPick(chars), x+pet(d*3), y+pet(d*3))
+      ctx.fillStyle = colors[i]
+      i++
+      x += space * d
+    }
+    x = pad
+    y += space * d
+  }
+  swapWithOff()
+}
 
 function paintByNumbers () {
   let canvas = document.getElementById("myCanvas")
