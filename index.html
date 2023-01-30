@@ -17075,14 +17075,12 @@ function typewriter () {
   let ctx = canvas.getContext("2d")
   let OC = document.getElementById("OC")
   let ctxOC = OC.getContext("2d")
-  let pad = 0
   let W = canvas.width
   let H = canvas.height
   OC.width = W, OC.height = H
   ctxOC.globalAlpha = document.getElementById("opacity").value/100
   let grays = ["#000000", "#1e1e1e", "#353535", "#4e4e4e", "#696969", "#858585", "#a2a2a2", "#c0c0c0", "#dfdfdf", "#ffffff"].reverse()
-  
-  let d = (canvas.width)/80
+  let d = 9+document.getElementById("featuresize").value/100
   let space = d/12
   if (document.getElementById("grungy").checked)
     space = 2
@@ -17091,34 +17089,32 @@ function typewriter () {
   let size = d*2
   ctx.font = size+"pt " + face
   ctxOC.font = size+"pt " + face
-  let chars = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q"
+  let chars = ["s","s","s","s","e","e","e","e","e","e","e","e","e","e","r","r","r","r","r","i","a","t","i","a","t","i","a","t","n","n","n","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q"
     ,"r","s","t","u","v","w","x","y","z"]
-  //ctx.lineWidth = 2+Math.floor(document.getElementById("featuresize").value/100)
-  //console.log(d, space)
-  let x = pad, y = pad
+  let x = 0, y = 0
   let values = [], colors = []
-  while (y < H - pad) {
-    while (x < W - pad) {
+  while (y < H) {
+    while (x < W) {
       values.push(9-brightnessOf10(ctx,x,y,d))
       colors.push(brightnessOf(ctx,x,y,d))
       x += space * d
     }
-    x = pad*1.5
+    x = 0
     y += space * d
   }
   ctxOC.fillStyle = document.getElementById("paintcolor").value
   let i = 0, j = 0
-  x = pad, y = pad
-  while (y < H - pad) {
-    while (x < W - pad) {
+  x = 0, y = 0
+  while (y < H) {
+    while (x < W) {
       ctxOC.fillStyle = grays[values[i]]
       j = 0
-      for (; j < 5; j++)
+      for (; j < 3; j++)
         ctxOC.fillText(randomPick(chars), x+pet(d*3), y+pet(d*3))
       i++
       x += space * d
     }
-    x = pad
+    x = 0
     y += space * d
   }
   swapWithOff()
