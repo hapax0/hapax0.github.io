@@ -405,7 +405,7 @@
       <option value="smeardownOff">vertical streaks</option>
       <option value="crackle">crackle curves</option>
       <option value="cracklelines" >crackle lines</option>
-      <option value="typewritter" >typewritter</option>
+      <option value="typewriter" >typewriter</option>
       <option value="regMarks" >registration</option>
       <option value="paintByNumbers">mono by numbers</option>
       <option value="paintByNumbers2">color by numbers</option>
@@ -17070,7 +17070,7 @@ function paintByNumbers2 () {
   }
 }
 
-function typewritter () {
+function typewriter () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let OC = document.getElementById("OC")
@@ -17080,20 +17080,19 @@ function typewritter () {
   let H = canvas.height
   OC.width = W, OC.height = H
   ctxOC.globalAlpha = document.getElementById("opacity").value/100
-  let grays = ["#000000", "#1e1e1e", "#353535", "#4e4e4e", "#696969", "#858585", "#a2a2a2", "#c0c0c0", "#dfdfdf", "#ffffff"]
+  let grays = ["#000000", "#1e1e1e", "#353535", "#4e4e4e", "#696969", "#858585", "#a2a2a2", "#c0c0c0", "#dfdfdf", "#ffffff"].reverse()
   
-  let d = (canvas.width-2*pad)/80
-  let space = d/9
+  let d = (canvas.width)/80
+  let space = d/12
   if (document.getElementById("grungy").checked)
     space = 2
-  let face = "AmericanTypewriter-Bold"
+  let face = "AmericanTypewriter"
   let text = ""
-  let size = d
+  let size = d*2
   ctx.font = size+"pt " + face
   ctxOC.font = size+"pt " + face
   let chars = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q"
     ,"r","s","t","u","v","w","x","y","z"]
- // ctx.strokeStyle = "#000000"
   //ctx.lineWidth = 2+Math.floor(document.getElementById("featuresize").value/100)
   //console.log(d, space)
   let x = pad, y = pad
@@ -17101,7 +17100,7 @@ function typewritter () {
   while (y < H - pad) {
     while (x < W - pad) {
       values.push(9-brightnessOf10(ctx,x,y,d))
-      colors.push("#303030")//9-brightnessOf(ctx,x,y,d))
+      colors.push(brightnessOf(ctx,x,y,d))
       x += space * d
     }
     x = pad*1.5
@@ -17112,10 +17111,10 @@ function typewritter () {
   x = pad, y = pad
   while (y < H - pad) {
     while (x < W - pad) {
+      ctxOC.fillStyle = grays[values[i]]
       j = 0
-      for (; j < values[i]*3; j++)
+      for (; j < 5; j++)
         ctxOC.fillText(randomPick(chars), x+pet(d*3), y+pet(d*3))
-      ctx.fillStyle = colors[i]
       i++
       x += space * d
     }
