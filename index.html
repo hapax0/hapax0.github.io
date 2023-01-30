@@ -6491,20 +6491,25 @@ function hstripes () {
   let N = Math.floor(H/fs)
   let idx =shuffle([0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,2,2,2,3,3,4])
   let delta = H/N
-  //console.log(fs,delta, N)
-  let x = 0, y = 0, i = 0
-  for (; i < N; i++) {
+  
+  let pad = 0, div = 2, mult = 1.4
+  if (document.getElementById("grungy").checked)
+    pad = W/20, mult = 1.9
+  
+  let x = 0, y = pad/5, i = 0
+  for (; i < N/mult; i++) {
     ctx.fillStyle = colors[randomPick(idx)]
     ctx.beginPath()
-    let y0 = y+pet(delta/2)
-    ctx.moveTo(0,y0)
-    ctx.lineTo(W, y + pet(delta/2))
-    ctx.lineTo(W, y + delta*2 + pet(delta/2))
-    ctx.lineTo(0, y + delta*2 + pet(delta/2))
-    ctx.lineTo(0, y0)
+    let y0 = y+pet(delta/div)+pad
+    let x0 = x+pet(delta/div)+pad
+    ctx.moveTo(x0,y0)
+    ctx.lineTo(W-2*pad+pet(delta/div), y + pet(delta/div))
+    ctx.lineTo(W- 2*pad+pet(delta/div), y + delta*2 + pet(delta/div))
+    ctx.lineTo(pad+pet(delta/div), y + delta*2 + pet(delta/div))
+    ctx.lineTo(x0, y0)
     ctx.closePath()
     ctx.fill()
-    y += delta
+    y += delta*mult
   }
 }
 
