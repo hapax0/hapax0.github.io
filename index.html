@@ -17077,16 +17077,13 @@ function typewriter () {
   let ctxOC = OC.getContext("2d")
   let W = canvas.width
   let H = canvas.height
-  OC.width = W, OC.height = H
+ // OC.width = W, OC.height = H
   ctxOC.globalAlpha = document.getElementById("opacity").value/100
   let grays = ["#000000", "#1e1e1e", "#353535", "#4e4e4e", "#696969", "#858585", "#a2a2a2", "#c0c0c0", "#dfdfdf", "#ffffff"].reverse()
   let d = 9+document.getElementById("featuresize").value/50
   let N = 1+Math.floor(document.getElementById("number").value/5000)
   let alt = document.getElementById("grungy").checked
-  console.log(N)
-  let space = d/12
-  if (alt)
-    space = 2
+  let space = 2
   let face = "AmericanTypewriter"
   let text = ""
   let size = d*2
