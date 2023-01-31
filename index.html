@@ -406,6 +406,7 @@
       <option value="crackle">crackle curves</option>
       <option value="cracklelines" >crackle lines</option>
       <option value="typewriter" >typewriter</option>
+      <option value="markwriter" >markwriter</option>
       <option value="regMarks" >registration</option>
       <option value="paintByNumbers">mono by numbers</option>
       <option value="paintByNumbers2">color by numbers</option>
@@ -17068,6 +17069,101 @@ function paintByNumbers2 () {
     x = pad*1.5
     y += space * d
   }
+}
+
+function ascript () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let fs = 17 + document.getElementById("featuresize").value/10
+  let color = document.getElementById("paintcolor").value
+  let alt = document.getElementById("grungy").checked
+  let W = canvas.width, H = canvas.height
+  let pad = 4 + Math.floor(Math.random() * 2)
+  let linespace = 18 + Math.floor(pet(8))
+  ctx.fillStyle = "#ffffff"//color
+  //let colors = ["#ed6060", "#6060ba", "#6060ed", "#ed6060", "#000000"]
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.lineJoin = "round"
+  ctx.lineWidth = Math.floor(1 + fs/20)
+  ctx.imageSmoothingQuality = "high"
+  let i = 0, x = 100, y = 100, rot = 1
+  let sa = Math.PI*Math.random(), ea = sa + Math.PI*Math.random()*2, cw = true
+  let yD = fs/2
+  ctx.beginPath()
+  while (i < 2) {
+    ctx.beginPath()
+    rot = randomPick([2.3,2.5,2.7,2.8,2.1,1.9])
+    ctx.ellipse(x,y+pet(fs/yD),fs*1.9+pet(fs),fs*0.7+pet(fs/2), rot,sa,ea,cw)
+ // ellipse1 (ctx, x, y, x, y, rot)
+    x += fs/1.8 + Math.random() * fs/2
+    sa = ea//Math.PI * Math.random()
+    ea = sa+Math.PI * Math.random() *1.25
+    ctx.stroke()
+    ctx.closePath()
+
+    i++
+  }
+  //document.getElementById("paintcolor").value = color
+}
+
+function markwriter () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let OC = document.getElementById("OC")
+  let ctxOC = OC.getContext("2d")
+  let W = canvas.width
+  let H = canvas.height
+ // OC.width = W, OC.height = H
+  ctxOC.globalAlpha = document.getElementById("opacity").value/100
+  let grays = ["#000000", "#1e1e1e", "#353535", "#4e4e4e", "#696969", "#858585", "#a2a2a2", "#c0c0c0", "#dfdfdf", "#ffffff"].reverse()
+  let d = 9+document.getElementById("featuresize").value/50
+  let N = 1+Math.floor(document.getElementById("number").value/5000)
+  let alt = document.getElementById("grungy").checked
+  let space = 1
+  let face = "AmericanTypewriter"
+  let text = ""
+  let size = d*2, fs = d/2
+  let x = 0, y = 0
+  let values = [], colors = []
+  const PI = Math.PI
+  let sa = Math.PI*Math.random(), ea = sa + Math.PI*Math.random()*2, cw = true
+  let yD = fs/2, rot = 1
+  ctx.lineWidth = 0.5
+  while (y < H) {
+    while (x < W) {
+      values.push(9-brightnessOf10(ctx,x,y,d))
+      colors.push(brightnessOf(ctx,x,y,d))
+      x += space * d
+    }
+    x = 0
+    y += space * d
+  }
+  ctxOC.strokeStyle = document.getElementById("paintcolor").value
+  let i = 0, j = 0, N1 = N
+  x = 0, y = 0
+  while (y < H) {
+    while (x < W) {
+      N1 = values[i]
+      if (alt) {
+        ctxOC.strokeStyle = grays[values[i]]
+        N1 = N * 1.5
+      }
+      j = 0
+      for (; j < N1; j++) {
+        ctxOC.beginPath()
+        sa = Math.random() * PI, ea = sa + Math.random() * PI
+        ctxOC.ellipse(x+pet(fs*3), y+pet(fs*3) ,fs+pet(fs/2),fs*3*Math.random(),Math.random()*PI,sa,ea,cw)
+        ctxOC.stroke()
+        ctxOC.closePath()
+      }
+      i++
+      x += space * d
+    }
+    x = 0
+    y += space * d
+  }
+  swapWithOff()
 }
 
 function typewriter () {
