@@ -7674,7 +7674,9 @@ function spiral4 () {
   ctx.stroke();
 }
 
-function script_OG () {
+
+
+function scriptbez () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let W = canvas.width
@@ -7687,49 +7689,23 @@ function script_OG () {
   ctx.lineWidth = 2+document.getElementById("featuresize").value/20
   ctx.lineCap = "round"
   ctx.strokeStyle = document.getElementById("paintcolor").value
-  let radius = W/10 + Math.random() * W/10
-  let angle = Math.random() * 6.28
-  if (Math.random() > 0.5)
-    angle *= -1
+  
   let n = 0, end = 20000//17000
   var x = 10//cx + radius * Math.cos(angle);
-  var y = 58//cy //+ radius * Math.sin(angle);
-  let pf = 10
-  let amult = 0.01 + Math.random()/100
-  let ydrift = 0.001//0.01 + Math.random()/100
-  if (Math.random() > 0.5)
-    ydrift *= -1
-  if (grunge)
-    pf = 20
-  while (y < canvas.height) {
-    ctx.beginPath();
-    ctx.moveTo(x, y);
-    let avg = 0
-    let gs = 1000 * Math.random()
-    //for (; n < end; n++) {
-    while (x < W) {
-      n++
-    
-      x = x + Math.sin(angle) + 0.25 + pet(0.2)
-      y = y + Math.cos(angle) + ydrift
-      ctx.lineTo(x, y);
-      if (gs > 500) {
-        angle += gs/W * amult + pet(3)/pf
-      } else {
-        angle -= gs/W * amult + pet(3)/pf
-      }
-     // if (Math.random() > 0.95)
-        //angle *= -1
-      if (Math.random() > 0.99) {
-        amult = 0.01 + Math.random()/10
-        ydrift *= -1
-      }
-      if (x > W)
-        break;
-    }
-    ctx.stroke();
-    y += 27
-    x = 10
+  var y = 100//cy //+ radius * Math.sin(angle);
+  let fs = 32, bump = fs/2
+  
+  while (x < canvas.width) {
+    ctx.beginPath()
+    ctx.moveTo(x, y)
+    cx1 = x+fs*2, cy1 = y -3*fs
+    cx2 = x-fs*2, cy2 = y +3*fs
+    bump = fs/2 + pet(fs)
+    ctx.bezierCurveTo(cx1+pet(fs*4),cy1+pet(fs*4),cx2+pet(fs*4),cy2+pet(fs*4), x+bump, y)
+
+    ctx.stroke()
+    ctx.closePath()
+    x += bump
   }
 }
 
@@ -12675,6 +12651,7 @@ function script () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let fs = 7 + document.getElementById("featuresize").value/10
+  let bump = fs/2
   let color = document.getElementById("paintcolor").value
   let alt = document.getElementById("grungy").checked
   let W = canvas.width, H = canvas.height
@@ -12688,25 +12665,20 @@ function script () {
   ctx.lineWidth = Math.floor(1 + fs/20)
   ctx.imageSmoothingQuality = "high"
   let i = 0, x = pad+2+fs*2, y = LASTCLICK[1], rot = 1
-  let sa = Math.PI, ea = sa + Math.PI*Math.random()*2, cw = true
-  let yD = 0.9
-  if (alt)
-    yD = 0.3
+  let cx1, cy1, cx2, cy2
   ctx.beginPath()
-  while (x < W-fs*2) {
-    rot = randomPick([2.3,2.5,2.7,2.8,2.1,1.9])
-    ctx.ellipse(x,y+pet(fs/yD),fs*1.9+pet(fs),fs*0.7+pet(fs/2), rot,sa,ea,cw)
-    x += fs/1.8 + Math.random() * fs/2
-    sa = ea//Math.PI * Math.random()
-    ea = sa+Math.PI * Math.random() *1.25
+  while (x < canvas.width-fs*3) {
+    ctx.beginPath()
+    ctx.moveTo(x, y)
+    cx1 = x+fs*2, cy1 = y -3*fs
+    cx2 = x-fs*2, cy2 = y +3*fs
+    bump = fs/2 + pet(fs)
+    ctx.bezierCurveTo(cx1+pet(fs*4),cy1+pet(fs*4),cx2+pet(fs*4),cy2+pet(fs*4), x+bump, y)
     ctx.stroke()
-    if (Math.random() > 0.88) {
-      ctx.beginPath()
-      x += fs*1.6
-    }
-    if (alt)
-      y += 1
+    ctx.closePath()
+    x += bump
   }
+
   //document.getElementById("paintcolor").value = color
 }
 
