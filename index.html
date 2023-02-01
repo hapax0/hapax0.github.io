@@ -17092,7 +17092,11 @@ function markwriter () {
  // OC.width = W, OC.height = H
   ctxOC.globalAlpha = document.getElementById("opacity").value/100
   let grays = ["#000000", "#1e1e1e", "#353535", "#4e4e4e", "#696969", "#858585", "#a2a2a2", "#c0c0c0", "#dfdfdf", "#ffffff"].reverse()
-  let d = 9+document.getElementById("featuresize").value/10
+  let d = 9+document.getElementById("featuresize").value/40
+  
+  // use w and h to prevent off-canvas sampling like nicksmith?
+  //let w = W/d
+  //let h = H/d
   let N = 1+Math.floor(document.getElementById("number").value/5000)
   let alt = document.getElementById("grungy").checked
   let space = 1
@@ -17102,36 +17106,25 @@ function markwriter () {
   let x = 0, y = 0
   let values = [], colors = []
   const PI = Math.PI
-  let sa = Math.PI*Math.random(), ea = sa + Math.PI*Math.random()*2, cw = true
-  let yD = fs/2, rot = 1
+  let sa = Math.PI*Math.random(), ea = sa + Math.PI*Math.random()*2//, cw = true
   ctx.lineWidth = 1
-  while (y < H) {
-    while (x < W) {
-      values.push(9-brightnessOf10(ctx,x,y,d))
-      colors.push(brightnessOf(ctx,x,y,d))
-      x += space * d
-    }
-    x = 0
-    y += space * d
-  }
   ctxOC.strokeStyle = document.getElementById("paintcolor").value
-  let i = 0, j = 0, N1 = N
+  let i = 0, j = 0, N1 = N, v = 0
   x = 0, y = 0
   while (y < H) {
     while (x < W) {
-      N1 = values[i]
+      v = 9-brightnessOf10(ctx,x,y,d)
+      N1 = v
       if (alt) {
-        ctxOC.strokeStyle = grays[values[i]]
+        ctxOC.strokeStyle = grays[v]
         N1 = N * 1.5
       }
       j = 0
       for (; j < N1; j++) {
         ctxOC.beginPath()
         sa = Math.random() * PI, ea = sa + Math.random() * PI
-
         ctxOC.moveTo(x,y)
         ctxOC.bezierCurveTo(x+pet(fs*13),y+pet(fs*13), x+pet(fs*13),y+pet(fs*13),x+pet(fs*3), y+pet(fs*3))
-  
         ctxOC.stroke()
         ctxOC.closePath()
       }
@@ -17154,36 +17147,26 @@ function typewriter () {
  // OC.width = W, OC.height = H
   ctxOC.globalAlpha = document.getElementById("opacity").value/100
   let grays = ["#000000", "#1e1e1e", "#353535", "#4e4e4e", "#696969", "#858585", "#a2a2a2", "#c0c0c0", "#dfdfdf", "#ffffff"].reverse()
-  let d = 9+document.getElementById("featuresize").value/50
+  let d = 9+document.getElementById("featuresize").value/40
   let N = 1+Math.floor(document.getElementById("number").value/5000)
   let alt = document.getElementById("grungy").checked
   let space = 2
   let face = "AmericanTypewriter"
-  let text = ""
   let size = d*2
   ctx.font = size+"pt " + face
   ctxOC.font = size+"pt " + face
   let chars = ["s","s","s","s","e","e","e","e","e","e","e","e","e","e","r","r","r","r","r","i","a","t","i","a","t","i","a","t","n","n","n","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q"
     ,"r","s","t","u","v","w","x","y","z"]
   let x = 0, y = 0
-  let values = [], colors = []
-  while (y < H) {
-    while (x < W) {
-      values.push(9-brightnessOf10(ctx,x,y,d))
-      colors.push(brightnessOf(ctx,x,y,d))
-      x += space * d
-    }
-    x = 0
-    y += space * d
-  }
   ctxOC.fillStyle = document.getElementById("paintcolor").value
-  let i = 0, j = 0, N1 = N
+  let i = 0, j = 0, N1 = N, v = 0
   x = 0, y = 0
   while (y < H) {
     while (x < W) {
-      N1 = values[i]
+      v = (9-brightnessOf10(ctx,x,y,d))
+      N1 = v//values[i]
       if (alt) {
-        ctxOC.fillStyle = grays[values[i]]
+        ctxOC.fillStyle = grays[v]//values[i]]
         N1 = N * 1.5
       }
       j = 0
