@@ -626,7 +626,7 @@
          <br>
          <canvas id="palettecanvas" width="420" height="42"></canvas><br>
           
-         <button  onclick="makePalette()">Remix</button>&nbsp;<button id="randompalette" onclick="loadPalette()">Load palette</button>&nbsp;<button onclick="extractPalette()">Extract</button>&nbsp;<button  onclick="rampContrast()" title="ramp contrast">/</button>&nbsp;<button  onclick="showHex()" title="show hex values">#</button>
+         <button  onclick="makePalette()">Remix</button>&nbsp;<button id="randompalette" onclick="loadPalette()">Load palette</button>&nbsp;<button onclick="extractPalette()">Extract</button>&nbsp;<button  onclick="rampContrast()" title="ramp contrast">/</button>&nbsp;<button  onclick="showHex()" title="show hex values">#</button>&nbsp;<button  onclick="rgbDistance()" title="show distance c1, c2">D</button>
 
     <input type='file' name='img' size='65' id='openextract' style="display:none;">
     <button onclick="openFileExtract()" id="paletteloader" title="extract from file..."><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="white" viewBox="0 0 16 16">
@@ -5508,13 +5508,37 @@ function dotblur (canvas, jaggy, dir) {
   refreshMode()
 }
 
+function rgbDistance () {
+  let c1 = document.getElementById("pal1").value
+  let c2 = document.getElementById("pal2").value
+  
+  let r1 = hexToR(c1)
+  let g1 = hexToG(c1)
+  let b1 = hexToB(c1)
+  
+  let r2 = hexToR(c2)
+  let g2 = hexToG(c2)
+  let b2 = hexToB(c2)
+  
+  let distance = Math.round(Math.sqrt(Math.pow(r1 - r2, 2) + Math.pow(g1 - g2, 2) + Math.pow(b1 - b2, 2)))
+  //console.log(distance, " dist")
+  maxdistance = 442 // = distance (0,0,0, 255,255,255)
+  //console.log(document.getElementById("opacity").value+" op")
+  //console.log(+document.getElementById("opacity").value * 2.55)
+  let threshold = Math.round(+document.getElementById("opacity").value * 4.42)
+  threshold = 443 - threshold
+  //console.log(threshold, distance <= threshold)
+  
+  alert("distance: "+ distance+"\nthreshold:"+threshold+"\n"+r1+", "+g1+", "+b1+"\n"+r2+", "+g2+", "+b2)
+}
+
 function colorFilterOut () { // filter unselected color
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height)
   let target = document.getElementById("paintcolor").value
-  let threshold = +document.getElementById("opacity").value * 2.55
-  threshold = 255 - threshold
+  let threshold = Math.round(+document.getElementById("opacity").value * 4.42)
+  threshold = 443 - threshold
   let grunge = document.getElementById("grungy").checked
   let mode = ctx.globalCompositeOperation
   let r = hexToR(target)
@@ -5648,7 +5672,7 @@ function colorFilter () {
   let ctx = canvas.getContext("2d")
   let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height)
   let target = document.getElementById("paintcolor").value
-  let threshold = +document.getElementById("opacity").value * 2.55
+  let threshold = +document.getElementById("opacity").value * 4.42
   let grunge = document.getElementById("grungy").checked
   let r = hexToR(target)
   let g = hexToG(target)
