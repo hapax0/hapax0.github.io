@@ -488,6 +488,7 @@
       <option value="interdepartmental">interdepartmental</option>
       <option value="postcard">postcard</option>
       <option value="indexcard">index card</option>
+      <option value="oiloncanvas">oiloncanvas</option>
       <!--option value="thisSpace">this space</option-->
       <!--option value="spiralbound">spiral bound</option-->
       <option value="photoBook">photo book</option>
@@ -13016,6 +13017,83 @@ function postcard () {
   document.getElementById("paintcolor").value = color
 }
 
+function oiloncanvas () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
+  let color = document.getElementById("paintcolor").value
+  let alt = document.getElementById("grungy").checked
+  let W = canvas.width, H = canvas.height
+  let hpad = 24, pad = 7 * hpad
+  let linespace = 34 + Math.floor(pet(16))
+  ctx.globalAlpha = document.getElementById("opacity")/100
+  fill()
+  spotlight()
+  ctx.fillColor = "#ffffff"
+  ctx.shadowColor = "#403030"
+  ctx.shadowBlur = 9 + Math.random() * 15
+  ctx.shadowOffsetY = 2 + Math.random() * 13
+  ctx.shadowOffsetX = 4 + Math.random() * 12
+  ctx.fillStyle = "#ffffff"
+  let x = pad, y = hpad+100
+  ctx.fillRect(pad, hpad, W-2*pad, H-2*hpad)
+  ctx.shadowBlur = 0
+  ctx.shadowOffsetY = 0
+  ctx.shadowOffsetX = 0
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let i = 0
+  let fs = W/40
+  ctx.fillStyle = "#000000"
+  let text = "Unknown artist"
+  let face = "helvetica"
+  ctx.font = "800 "+(fs)+"pt " + face
+  let w = ctx.measureText(text+" ").width
+  x = 1.5*pad, y = hpad * 6
+
+  ctx.fillText(text, x, y)
+  fs = W/50
+  ctx.font = "100 "+(fs)+"pt " + face
+ // ctx.fillText("(b 19"+Math.floor(50+Math.random()*49)+")", x+w, y)
+  text = randomWord(Math.random() > 0.5)
+  if (Math.random() > 0.67)
+      text += " "+randomWord(Math.random() > 0.5)
+  text = text.charAt(0).toUpperCase() + text.slice(1);
+
+  ctx.font = "800 italic "+(fs)+"pt " + face
+  w = ctx.measureText(text+" ").width
+  y += fs * 2
+  ctx.fillText(text, x, y) // itallic
+  fs *= 0.9
+  ctx.font = "100 "+(fs)+"pt " + face
+  ctx.fillText("(20"+(10 +Math.floor(Math.random() * 13))+")", x+w, y)
+  y += fs * 2
+  
+  text = randomPick(["Oil on canvas", "Mixed media", "Watercolor", "Gouache", "Acrylic", "Ink", "Collage", "Encaustic", "Digital"])
+  ctx.fillText(text, x, y)
+
+  y += fs * 2
+  ctx.fillText(Math.floor(20+Math.random() * 100) + " X " + Math.floor(20+Math.random() * 100) + " " +randomPick(["cm", "inches"]), x, y)
+}
+
+function randomName () {
+  let name = ""
+  let v = ["a", "e", "i", "o", "u"]
+  
+  //"t", "n", "s", "h",
+  
+  let c = ["r", "r", "r", "r", "t", "n", "s", "h","t", "n", "s", "h","t", "n", "s", "h","t", "n", "s", "h", "s", "l", "m", "b", "d", "c", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "t", "s", "v", "w", "x", "y", "z"]
+  let len = 1 + Math.floor(Math.random() * 5)
+  let i = 0
+  if (Math.random()> 0.7)
+    name += randomPick(v)
+    
+  for (; i < len; i++)
+    name += randomPick(c) + randomPick(v)
+    
+  if (Math.random()> 0.5)
+    name += randomPick(c)
+  return name.charAt(0).toUpperCase() + name.slice(1)
+}
 
 function indexcard () {
   let canvas = document.getElementById("myCanvas");
