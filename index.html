@@ -2556,14 +2556,8 @@ function colorSamplePalette (canvas, SIMPLIFY) {
     colors.push(averageColor(bins[i]))
     clrs.push(averageColor(bins[i], true))
   }
-  
-  //console.log(clrs)
-  
   let bad = testColors(clrs)
-  console.log(bad)
-  
   clrs = clrs.filter(x => !bad.includes(x));
-  //console.log(clrs)
   //resort clrs by interesting
   clrs.sort(function(a, b) { return interesting(b) - interesting(a);});
   let colors2 = []
@@ -2784,6 +2778,8 @@ function interesting (color) {
     diff *= 0.8
     //console.log(color, colorfulScore(color, average))
   }
+  
+  diff = Math.max(color[0], color[1], color[2]) - Math.min(color[0], color[1], color[2])
   return diff
 }
 
