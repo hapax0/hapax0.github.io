@@ -844,6 +844,47 @@ function paperSelect () {
     wavyPaper()
 }
 
+function watercolorPaperD (x,y,w,h) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  ctx.shadowBlur = 0
+  ctx.shadowOffsetX = 0;
+  ctx.shadowOffsetY = 0;
+  ctx.fillStyle = "#eeeeee"
+  ctx.clearRect(0,0,canvas.width,canvas.height)
+  ctx.fillRect(0,0,canvas.width,canvas.height)
+  let fs = document.getElementById("featuresize").value
+  let d = 1+Math.floor(fs/100)
+  let alpha = document.getElementById("opacity").value
+  let n = document.getElementById("number").value
+  let c = document.getElementById("paintcolor").value
+  document.getElementById("featuresize").value = 350
+  document.getElementById("opacity").value = 90
+  document.getElementById("number").value = 6000
+  document.getElementById("paintcolor").value = "#cccccc"
+  smudgestreaks2()
+  smudgestreaks2()
+  document.getElementById("paintcolor").value = "#ffffff"
+  smudgestreaks2()
+  document.getElementById("number").value = n
+  document.getElementById("featuresize").value = fs
+  document.getElementById("opacity").value = alpha
+  document.getElementById("paintcolor").value = c
+  embossCanvas()
+  zoomImage(false, d)
+  //shrinkBlur()
+  let mode = ctx.globalCompositeOperation
+  ctx.globalCompositeOperation = "destination-over"
+  ctx.fillStyle = "#dedede"
+  ctx.fillRect(0,0,canvas.width,canvas.height)
+  ctx.globalCompositeOperation = mode
+  
+  ctx.clearRect(0,0,x,canvas.height)
+  ctx.clearRect(0,0,canvas.width,y)
+  ctx.clearRect(canvas.width - x, 0, canvas.width, canvas.height)
+  ctx.clearRect(0,canvas.height-y,canvas.width,canvas.height)
+}
+
 function watercolorPaper () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -873,6 +914,7 @@ function watercolorPaper () {
   embossCanvas()
   zoomImage(false, d)
   //shrinkBlur()
+  
   let mode = ctx.globalCompositeOperation
   ctx.globalCompositeOperation = "destination-over"
   ctx.fillStyle = "#dedede"
@@ -13024,34 +13066,38 @@ function oiloncanvas () {
   let color = document.getElementById("paintcolor").value
   let alt = document.getElementById("grungy").checked
   let W = canvas.width, H = canvas.height
-  let hpad = 24, pad = 7 * hpad
+  let hpad = 20 + Math.random()*6, pad = 7 * hpad + pet(33)
   let linespace = 34 + Math.floor(pet(16))
   ctx.globalAlpha = document.getElementById("opacity")/100
-  fill()
+  watercolorPaperD(pad, hpad, W-2*pad, H-2*hpad)
+  copyToOff()
+  ctx.fillStyle = randomColorVLight()
+  ctx.fillRect(0,0,W,H)
   spotlight()
   ctx.fillColor = "#ffffff"
-  ctx.shadowColor = "#403030"
-  ctx.shadowBlur = 9 + Math.random() * 15
-  ctx.shadowOffsetY = 2 + Math.random() * 13
-  ctx.shadowOffsetX = 4 + Math.random() * 12
+  ctx.shadowColor = "#707070"
+  ctx.shadowBlur = 4 + Math.random() * 5
+  ctx.shadowOffsetY = 2 + Math.random() * 3
+  ctx.shadowOffsetX = 4 + Math.random() * 3
   ctx.fillStyle = "#ffffff"
   let x = pad, y = hpad+100
-  ctx.fillRect(pad, hpad, W-2*pad, H-2*hpad)
+  pasteFromOff()
+  //ctx.fillRect(pad, hpad, W-2*pad, H-2*hpad)
   ctx.shadowBlur = 0
   ctx.shadowOffsetY = 0
   ctx.shadowOffsetX = 0
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let i = 0
-  let fs = W/40
+  let fs = W/40 + pet(7)
   ctx.fillStyle = "#000000"
   let text = "Unknown artist"
-  let face = "helvetica"
+  let face = randomPick(["Helvetica", "Arial", "Courier", "Georgia", "Futura"])
   ctx.font = "800 "+(fs)+"pt " + face
   let w = ctx.measureText(text+" ").width
-  x = 1.5*pad, y = hpad * 6
+  x = 1.4*pad +pet(13), y = hpad * 6 + pet(13)
 
   ctx.fillText(text, x, y)
-  fs = W/50
+  fs = W/50 + pet(7)
   ctx.font = "100 "+(fs)+"pt " + face
  // ctx.fillText("(b 19"+Math.floor(50+Math.random()*49)+")", x+w, y)
   text = randomWord(Math.random() > 0.5)
@@ -13067,12 +13113,31 @@ function oiloncanvas () {
   ctx.font = "100 "+(fs)+"pt " + face
   ctx.fillText("(20"+(10 +Math.floor(Math.random() * 13))+")", x+w, y)
   y += fs * 2
+  let media = ["Oil on canvas", "Mixed media", "Watercolor", "Gouache", "Acrylic on canvas", "Ink", "Collage", "Encaustic", "Digital"]
+  text = randomPick(media)
   
-  text = randomPick(["Oil on canvas", "Mixed media", "Watercolor", "Gouache", "Acrylic", "Ink", "Collage", "Encaustic", "Digital"])
+  if (Math.random() > 0.8)
+    text += ", " + randomPick(media.filter(x => x !== text))
   ctx.fillText(text, x, y)
 
   y += fs * 2
   ctx.fillText(Math.floor(20+Math.random() * 100) + " X " + Math.floor(20+Math.random() * 100) + " " +randomPick(["cm", "inches"]), x, y)
+  
+  x = canvas.width - pad*2 + pet(90), y = H/2+pet(90)
+  if (Math.random() > 0.5) {
+    
+    ctx.shadowColor = "#aa9090"
+    ctx.shadowBlur = 1 + Math.random() * 2
+    ctx.shadowOffsetY = 1 + Math.random() * 2
+    ctx.shadowOffsetX = 1 + Math.random() * 2
+  
+    ctx.fillStyle = randomPick(["#ee2000","#ff0000", "#ee0020"])
+    ctx.beginPath()
+    ctx.moveTo(x,y)
+    ctx.arc(x,y, W/19 + pet(11), 0, Math.PI*2)
+    ctx.closePath()
+    ctx.fill()
+  }
 }
 
 function randomName () {
