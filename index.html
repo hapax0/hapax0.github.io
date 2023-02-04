@@ -489,6 +489,7 @@
       <option value="postcard">postcard</option>
       <option value="indexcard">index card</option>
       <option value="oiloncanvas">oiloncanvas</option>
+      <option value="sold">sold</option>
       <!--option value="thisSpace">this space</option-->
       <!--option value="spiralbound">spiral bound</option-->
       <option value="photoBook">photo book</option>
@@ -516,12 +517,13 @@
       <option value="jaggyblur">jaggy blur</option>
       <option value="bokehs">bokeh</option>
       <option value="flares">flares</option>
-      <option value="haloblur" style="color:red">halo dot</option>
-      <option value="halojaggy" style="color:red">halo jaggy</option>
+      <!--option value="haloblur" style="color:red">halo dot</option>
+      <option value="halojaggy" style="color:red">halo jaggy</option-->
       <option value="smearside">smear right</option>
       <option value="motionblur">motion blur</option>
       <option value="shaken" selected>shaken</option>
       <option value="tiltshift">tilt-shift</option>
+      <option value="wrap" >wrap</option>
       <option value="afold" >fold</option>
       <option value="unfolded" >unfolded</option>
       <option value="fourfold">fourfold</option>
@@ -3113,6 +3115,25 @@ function fisheye (srcpixels, w, h) {
     }
   }
   return dstpixels;
+}
+
+function wrap () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let canvasoff = document.createElement("CANVAS")
+  let ctxoff = canvasoff.getContext("2d")
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+
+  let W = canvas.width, H = canvas.height
+  canvasoff.width = W, canvasoff.height = H
+  
+  ctxoff.drawImage(canvas,  0,0)
+  let D = Math.floor(pet(W/2))
+  let half = W/2 + D
+  ctx.clearRect(0,0,W,H)
+  
+  ctx.drawImage(canvasoff,  half,0,W,H, 0,0,W,H)
+  ctx.drawImage(canvasoff,  0,0,W,H,  half-D*2,0,W,H)
 }
 
 function mirror () {
@@ -13057,6 +13078,24 @@ function postcard () {
   ctx.fillText(text,CENT-width/2,y+2*140/3)
   
   document.getElementById("paintcolor").value = color
+}
+
+function sold () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let W = canvas.width, H = canvas.height
+  let x = W/2 + pet(W/4), y = H/2 + pet(H/4)
+  ctx.shadowColor = "#aa9090"
+  ctx.shadowBlur = 1 + Math.random() * 2
+  ctx.shadowOffsetY = 1 + Math.random() * 2
+  ctx.shadowOffsetX = 1 + Math.random() * 2
+
+  ctx.fillStyle = randomPick(["#ee2000","#ff0000", "#ee0020"])
+  ctx.beginPath()
+  ctx.moveTo(x,y)
+  ctx.arc(x,y, W/13 + pet(11), 0, Math.PI*2)
+  ctx.closePath()
+  ctx.fill()
 }
 
 function oiloncanvas () {
