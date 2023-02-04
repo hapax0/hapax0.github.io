@@ -96,8 +96,6 @@ function testInteresting() {
   for (;i < 20; i++) {
     let c = randomColor()
     let i1 = Math.floor(interesting([hexToR(c), hexToG(c), hexToB(c)]))
-    let i2 = Math.floor(interestingB([hexToR(c), hexToG(c), hexToB(c)]))
-    console.log(i1, i2)
 
     ctx.fillStyle = c
     ctx.fillRect(0, i*24, 24, 24)
@@ -247,6 +245,9 @@ function colorSamplePalette () {
     colors.push(averageColor(bins[i]))
     clrs.push(averageColor(bins[i], true))
   }
+  
+  let bad = testColors(clrs)
+  clrs = clrs.filter(x => !bad.includes(x));
   //resort clrs by interesting
   clrs.sort(function(a, b) { return interesting(b) - interesting(a);});
   let colors2 = []
@@ -259,6 +260,30 @@ function colorSamplePalette () {
     colors2.push('#'+R+G+B)
   }
   return colors2
+}
+
+function testColors (colors) {
+  let i = 0, j = 0, bad = []
+  let cr1,cr2,d,d2
+  for (; i < colors.length; i++) {
+    cr1 = /* hextorgb*/(colors[i])
+    j = i+1
+    for (; j < colors.length; j++) {
+      cr2 = (colors[j])
+      d = Math.round(
+        Math.pow(
+        Math.pow(cr1[0] - cr2[0], 2) +
+        Math.pow(cr1[1] - cr2[1], 2) +
+        Math.pow(cr1[2] - cr2[2], 2),
+        0.5))
+      d2 = dist3d(cr1, cr2)
+      if (d2 < 40)
+        bad.push(cr2)
+      //console.log(cr1,"|",cr2)
+      //console.log(d," | ",d2)
+    }
+  }
+  return bad
 }
 
 function averageColor (b, dec) {
@@ -303,8 +328,8 @@ function dist3d (p1, p2) {
 
 
 function interesting (color) {
-  let average = (color[0] + color[1] + color[2])/3
-  return Math.abs(color[0] - average) + Math.abs(color[1] - average) + Math.abs(color[2] - average)
+  let diff = Math.max(color[0], color[1], color[2]) - Math.min(color[0], color[1], color[2])
+  return diff
 }
 
 function interestingB (color) {

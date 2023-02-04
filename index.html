@@ -2817,14 +2817,7 @@ function dist3d__ (p1, p2) {
 }
 
 function interesting (color) {
-  let average = (color[0] + color[1] + color[2])/3
-  let diff = Math.abs(color[0] - average) + Math.abs(color[1] - average) + Math.abs(color[2] - average)
-  if (colorfulScore(color, average) < 8) {
-    diff *= 0.8
-    //console.log(color, colorfulScore(color, average))
-  }
-  
-  diff = Math.max(color[0], color[1], color[2]) - Math.min(color[0], color[1], color[2])
+  let diff = Math.max(color[0], color[1], color[2]) - Math.min(color[0], color[1], color[2])
   return diff
 }
 
