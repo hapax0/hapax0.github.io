@@ -475,6 +475,7 @@
       <option value="moleskine">mole grid</option>
       <option value="moleskineDay">day planner</option>
       <option value="moleText">moby</option>
+      <option value="cuttingboard">cutting board</option>
       <option value="index">index</option>
       <option value="crosswordPad">crossword</option>
       <option value="sketchpad">sketch pad</option>
@@ -12102,6 +12103,71 @@ function gridpaper () { // grid paper
     }
     x += cols
   }
+}
+
+function cuttingboard () { // white grid on teal
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let W = canvas.width, H = canvas.height
+  let color = document.getElementById("paintcolor").value
+  let space = 6 + Math.floor(document.getElementById("featuresize").value/10)
+  let mod = randomPick([4,5,6])
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctx.lineWidth = randomPick([4,5])
+  ctx.fillStyle = "#008080"
+  ctx.strokeStyle = "#ffffff"
+  ctx.fillRect(0,0,W,H)
+  let pad = 1080/10 + pet(40)
+  let x =  - Math.random() *100, y = pad - Math.random() *100
+  let w = 1080/20, h = 1080/20
+  let i = 0
+  let offset = (Math.random() - 0.5) *27
+  for (; i < w; i++) {  // horizontal
+    ctx.beginPath()
+    ctx.moveTo(x, y+offset)
+    ctx.lineTo(x + W+200, y-offset)
+    ctx.closePath()
+    ctx.stroke()
+    y += pad
+  }
+  x = -100
+  i = 0
+  y = -100
+  for (; i < w; i++) {  // vertical
+    ctx.beginPath()
+    ctx.moveTo(x-offset, y)
+    ctx.lineTo(x+offset, y + H+200)
+    ctx.closePath()
+    ctx.stroke()
+    x += pad
+  }
+  //diag from bottom left
+  x = pet(240)
+  ctx.beginPath()
+  ctx.moveTo(x, H+100)
+  ctx.lineTo(W/2+pet(W/3), -10)
+  ctx.closePath()
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.moveTo(x, H+100)
+  ctx.lineTo(W+ Math.random() * W/2, 100 + Math.random()+ H/3)
+  ctx.closePath()
+  ctx.stroke()
+  let alpha = document.getElementById("opacity").value
+  let fs = document.getElementById("featuresize").value
+  document.getElementById("paintcolor").value = "#ddffff"
+  document.getElementById("opacity").value = 17
+  haze()
+  document.getElementById("paintcolor").value = "#ddffff"
+  document.getElementById("featuresize").value = 170
+  document.getElementById("opacity").value = 100
+  rays()
+  document.getElementById("paintcolor").value = "#006060"
+  rays()
+  document.getElementById("paintcolor").value = color
+  document.getElementById("opacity").value = alpha
+  document.getElementById("featuresize").value = fs
 }
 
 function gridpaper_og () { // grid paper
