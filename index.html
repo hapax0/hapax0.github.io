@@ -2837,7 +2837,7 @@ async function palettetint (canvas) {
   if (!canvas)
     canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  let grunge = document.getElementById("grungy").checked
+  let alt = document.getElementById("grungy").checked
   let alpha = document.getElementById("opacity").value
   let colors = []
   colors.push(document.getElementById("pal1").value)
@@ -2846,16 +2846,25 @@ async function palettetint (canvas) {
   colors.push(document.getElementById("pal4").value)
   colors.push(document.getElementById("pal5").value)
   let saved = document.getElementById("paintcolor").value
-  document.getElementById("lower").value = 100
-  document.getElementById("upper").value = 20
+
   let level = 20
+  let lows = [100, 83.33, 66.67, 50, 16.67]
+  let highs = [100, 83.33, 66.67, 50, 16.67].reverse()
+  
+  if (!alt) {
+    lows = [100, 80, 60, 40, 20]
+    highs = [100, 80, 60, 40, 20].reverse()
+  }
+  
+  //console.log(lows, highs)
   let i = 0
   for (; i < colors.length; i++) {
     document.getElementById("paintcolor").value = colors[i]
+    document.getElementById("lower").value = lows[i]
+    document.getElementById("upper").value = highs[i]
     tint()
-    document.getElementById("lower").value -= +level
-    document.getElementById("upper").value = level * (i+2)
   }
+  
   document.getElementById("lower").value = 100
   document.getElementById("upper").value = 100
   rangecheck()
