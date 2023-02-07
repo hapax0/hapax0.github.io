@@ -12838,6 +12838,7 @@ function script () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let fs = 7 + document.getElementById("featuresize").value/10
+  let D = 1 + document.getElementById("number").value/5000
   let bump = fs/2
   let color = document.getElementById("paintcolor").value
   let alt = document.getElementById("grungy").checked
@@ -12859,11 +12860,15 @@ function script () {
     ctx.moveTo(x, y)
     cx1 = x+fs*2, cy1 = y -3*fs
     cx2 = x-fs*2, cy2 = y +3*fs
-    bump = fs/2 + pet(fs)
-    ctx.bezierCurveTo(cx1+pet(fs*4),cy1+pet(fs*4),cx2+pet(fs*4),cy2+pet(fs*4), x+bump, y)
+    bump = 2*fs/3 + pet(fs*D/4)
+    //ctx.bezierCurveTo(cx1+pet(fs*4),cy1+pet(fs*4),cx2+pet(fs*4),cy2+pet(fs*4), x+bump, y)
+    ctx.bezierCurveTo(cx1+pet(D*fs),cy1+pet(D*fs),cx2+pet(D*fs),cy2+pet(D*fs), x+bump, y)
     ctx.stroke()
     ctx.closePath()
     x += bump
+    
+    if (alt && Math.random() > 0.9)
+      x += bump
   }
 
   //document.getElementById("paintcolor").value = color
