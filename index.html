@@ -12506,26 +12506,17 @@ function checklist () {
   let color = document.getElementById("paintcolor").value
   let alt = document.getElementById("grungy").checked
   ctx.globalAlpha = document.getElementById("opacity").value/100
-
-  let pad = 0
   let H = canvas.height, W = canvas.width
-  let x = pad+pet(9), y = pad+pet(9)
-  
-  let cx1 = W - pad*4+pet(91), cy1 = pad+pet(21),
-    cx2 = W -pad+pet(21), cy2 = 3*pad+pet(21),
-    px = cx1+8, py = cy2-3
-    
   ctx.fillStyle = color
-  let colors = getCurrentPalette()//[ "#6060ba", "#6060ed", "#000000"]
+  let colors = getCurrentPalette()
   ctx.lineWidth = 3
   ctx.strokeStyle = randomPick(colors)
   ctx.fillStyle = ctx.strokeStyle
   let w = Math.floor(W/8.5)
-  let h = Math.floor(H/19)
+  let h = Math.floor(H/20)
   let i = 1, ct = 1, im = i
   let hoff = 0
-  x = 64, y = 0
-  let MAX = randomPick([141,197,187,194])
+  let MAX = randomPick([141,139,138,142])
   let box = randomPick([20,22,24])
   for (; i < MAX; i+=2) {
     im = i % 10
@@ -12543,7 +12534,6 @@ function checklist () {
       im = 1
     }
   }
-  
   ctx.globalAlpha = document.getElementById("opacity").value/100
 }
 
