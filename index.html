@@ -1248,7 +1248,7 @@ function loadPalette () {
   } else
   if (type === "rust"){
     a = ['#120402', '#482519', '#837a4e', '#c0ab7c', '#f2efec']
-    b = ['#120402', '#482519', '#837a4e', '#c0ab7c', '#f2efec']
+    //b = ['#120402', '#482519', '#837a4e', '#c0ab7c', '#f2efec']
     updateExtraColors(b)
   } else
   if (type === "yellowed"){
@@ -6804,7 +6804,8 @@ function pointys () {
   let ctx = canvas.getContext("2d")
   let W = canvas.width, H = canvas.height
   let N = randomPick([2,2,2,3,4,5,6,7,8])
-  let delta = W/N, dv = H/N
+  let delta = Math.floor(W/N), dv = Math.floor(H/N)
+
   let x = 0, y = 0, i = 0, cnt = 0
   for (; i < N*N; i++) {
     apoint(x,y,delta,dv,i)
@@ -6817,7 +6818,7 @@ function pointys () {
   }
 }
 
-function apoint (x,y,w,h,V) {
+function apoint (x,y,w,h,V) { //Natalia Cacchiarelli
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let W = canvas.width, H = canvas.height
@@ -6825,8 +6826,8 @@ function apoint (x,y,w,h,V) {
   let colors = shuffle(getCurrentPalette(true,13))
   let alt = document.getElementById("grungy").checked
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/10
-  let idx =shuffle([0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,2,2,2,3,3,4])
-  let cx = x+(w)/2 + pet(w/2) , cy = y+(h)/2 + pet (h/2)
+  let idx =shuffle([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,2,2,2,3,3,4])
+  let cx = Math.floor(x+(w)/2 + pet(w*0.96)), cy = Math.floor(y+(h)/2 + pet (h*0.96))
 
   ctx.fillStyle = colors[0]
   if (alt)
