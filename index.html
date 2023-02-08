@@ -425,6 +425,7 @@
       <option value="hstripes">stripes</option>
       <option value="kites">kites</option>
       <option value="flags">flags</option>
+      <option value="pointys">pointy</option>
       <option value="dflags">diags</option>
       <option value="weave">weave</option>
       <option value="weave2">weave2</option>
@@ -6797,6 +6798,81 @@ function adiagflag (x,y,w,h,V) {
       ctx.fill()
     }
 }
+
+function pointys () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  let N = randomPick([3,4,5,6,7,8,9])
+  let delta = W/N
+  let x = 0, y = 0, i = 0, cnt = 0
+  for (; i < N*N; i++) {
+    apoint(x,y,delta,delta,i)
+    x += delta
+    cnt++
+    if (cnt > 1 && cnt%N === 0) {
+      x = 0
+      y += delta
+    }
+  }
+}
+
+function apoint (x,y,w,h,V) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let colors = shuffle(getCurrentPalette())
+  let alt = document.getElementById("grungy").checked
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/10
+  let idx =shuffle([0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,2,2,2,3,3,4])
+  let cx = x+(w)/2 + pet(w/2) , cy = y+(h)/2 + pet (h/2)
+
+  ctx.fillStyle = colors[0]
+  if (alt)
+    ctx.fillStyle = colors[randomPick(idx)]
+  ctx.beginPath()
+  ctx.moveTo(x,y)
+  ctx.lineTo(x+w,y)
+  ctx.lineTo(cx, cy)
+  ctx.lineTo(x,y)
+  ctx.closePath()
+  ctx.fill()
+  
+  ctx.fillStyle = colors[1]
+  if (alt)
+    ctx.fillStyle = colors[randomPick(idx)]
+  ctx.beginPath()
+  ctx.moveTo(x+w,y)
+  ctx.lineTo(x+w,y+h)
+  ctx.lineTo(cx, cy)
+  ctx.lineTo(x+w,y)
+  ctx.closePath()
+  ctx.fill()
+  
+  ctx.fillStyle = colors[2]
+  if (alt)
+    ctx.fillStyle = colors[randomPick(idx)]
+  ctx.beginPath()
+  ctx.moveTo(x+w,y+h)
+  ctx.lineTo(x,y+h)
+  ctx.lineTo(cx, cy)
+  ctx.lineTo(x+w,y+h)
+  ctx.closePath()
+  ctx.fill()
+  
+  ctx.fillStyle = colors[3]
+  if (alt)
+    ctx.fillStyle = colors[randomPick(idx)]
+  ctx.beginPath()
+  ctx.moveTo(x,y+h)
+  ctx.lineTo(x,y)
+  ctx.lineTo(cx, cy)
+  ctx.lineTo(x,y+h)
+  ctx.closePath()
+  ctx.fill()
+}
+
 
 function aflag (x,y,w,h,V) {
   let canvas = document.getElementById("myCanvas")
