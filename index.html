@@ -6803,12 +6803,14 @@ function pointys () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let W = canvas.width, H = canvas.height
-  let N = randomPick([2,2,2,3,4,5,6,7,8])
-  let delta = Math.floor(W/N), dv = Math.floor(H/N)
+  let CX = W/2, CY = H/2
+  let N = randomPick([2,2,2,3,4,5,6,7,8,13,20])
+  let colors = shuffle(getCurrentPalette(true,13))
 
+  let delta = Math.floor(W/N), dv = Math.floor(H/N)
   let x = 0, y = 0, i = 0, cnt = 0
   for (; i < N*N; i++) {
-    apoint(x,y,delta,dv,i)
+    apoint(x,y,delta,dv,CX,CY,colors)
     x += delta
     cnt++
     if (cnt > 1 && cnt%N === 0) {
@@ -6818,20 +6820,26 @@ function pointys () {
   }
 }
 
-function apoint (x,y,w,h,V) { //Natalia Cacchiarelli
+function apoint (x,y,w,h,CX,CY,colors) { //Natalia Cacchiarelli
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let W = canvas.width, H = canvas.height
   ctx.globalAlpha = +document.getElementById("opacity").value/100
-  let colors = shuffle(getCurrentPalette(true,13))
   let alt = document.getElementById("grungy").checked
-  ctx.lineWidth = 1 + document.getElementById("featuresize").value/10
-  let idx =shuffle([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,2,2,2,3,3,4])
-  let cx = Math.floor(x+(w)/2 + pet(w*0.96)), cy = Math.floor(y+(h)/2 + pet (h*0.96))
-
+  //let colors = getCurrentPalette(true,13)
+  if (!alt)
+    colors = shuffle(colors)
+  let idx =shuffle([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,2,2,3,4])
+  let cx = Math.floor(x+(w)/2 + pet(w*0.96))
+  let cy = Math.floor(y+(h)/2 + pet (h*0.96))
+  let dist = distance((cx),(cy),CX,CY)
+  let percent = (100 - (dist/CX)*100)*2
+  
+  //console.log(x,y,percent)
   ctx.fillStyle = colors[0]
   if (alt)
     ctx.fillStyle = colors[randomPick(idx)]
+  //ctx.fillStyle = shadeColor(ctx.fillStyle,percent)
   ctx.beginPath()
   ctx.moveTo(x,y)
   ctx.lineTo(x+w,y)
@@ -6843,6 +6851,7 @@ function apoint (x,y,w,h,V) { //Natalia Cacchiarelli
   ctx.fillStyle = colors[1]
   if (alt)
     ctx.fillStyle = colors[randomPick(idx)]
+  //ctx.fillStyle = shadeColor(ctx.fillStyle,percent)
   ctx.beginPath()
   ctx.moveTo(x+w,y)
   ctx.lineTo(x+w,y+h)
@@ -6854,6 +6863,7 @@ function apoint (x,y,w,h,V) { //Natalia Cacchiarelli
   ctx.fillStyle = colors[2]
   if (alt)
     ctx.fillStyle = colors[randomPick(idx)]
+  //ctx.fillStyle = shadeColor(ctx.fillStyle,percent)
   ctx.beginPath()
   ctx.moveTo(x+w,y+h)
   ctx.lineTo(x,y+h)
@@ -6865,6 +6875,7 @@ function apoint (x,y,w,h,V) { //Natalia Cacchiarelli
   ctx.fillStyle = colors[3]
   if (alt)
     ctx.fillStyle = colors[randomPick(idx)]
+ // ctx.fillStyle = shadeColor(ctx.fillStyle,percent)
   ctx.beginPath()
   ctx.moveTo(x,y+h)
   ctx.lineTo(x,y)
