@@ -6835,8 +6835,8 @@ function apoint (x,y,w,h,CX,CY,colors) { //Natalia Cacchiarelli
   let cy = Math.floor(y+(h)/2)// + pet (h*0.96))
   //console.log((CX-cx)/W)
 
-  cx -= (CX-cx)/W * 0.8*w
-  cy -= (CY-cy)/H * 0.8*h
+  cx -= (LASTCLICK[0]-cx)/W * 0.8*w
+  cy -= (LASTCLICK[1]-cy)/H * 0.8*h
  // console.log(cx + " cx after")
   
   //let dist = distance((cx),(cy),CX,CY)
@@ -11984,53 +11984,6 @@ function necker () {
   }
 }
 
-function scratchOut_og () {
-  let canvas = document.getElementById("myCanvas");
-  let ctx = canvas.getContext("2d");
-  ctx.lineWidth = 1 + document.getElementById("featuresize").value/10
-  let lw = ctx.lineWidth
-  ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = document.getElementById("paintcolor").value
-  let alt = document.getElementById("grungy").checked
-  ctx.lineCap = 'round'
-  ctx.lineJoin = 'round'
-  let W = canvas.width
-  if (W > canvas.height)
-    W = canvas.height
-  W -= 150
-  let depth = W / (lw*3) -25
-  if (alt) {
-    ctx.save()
-    clipIrregular()
-  }
-  lw *= 2
-  let x = 22, y = 32
-  let i = 0, x2 = 0, y2 = 0
-  for (;i < depth; i++) {
-    ctx.beginPath()
-    ctx.moveTo(x, y)
-    if (y > W) {
-      x += lw*6 + pet(lw*2)
-      y += pet(33)
-      ctx.lineTo(x2, y2)
-      x2 += pet(33)
-      y2 += lw*6 + pet(lw*2)
-      ctx.lineTo(x, y)
-    } else {
-      x2 += lw*6 + pet(lw*2)
-      y2 += pet(33)
-      ctx.lineTo(x2, y2)
-      x += pet(33)
-      y += lw*6 + pet(lw*2)
-      ctx.lineTo(x, y)
-    }
-    ctx.lineWidth = lw + 0.9 * pet(lw)
-    ctx.stroke()
-  }
-  if (alt)
-    ctx.restore()
-}
-
 function justlines () { // grid paper
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -12997,7 +12950,7 @@ function scratchout () {
   ctx.lineWidth = Math.floor(1 + fs/20)
   ctx.imageSmoothingQuality = "high"
   let i = 0, x = LASTCLICK[0], y = LASTCLICK[1], rot = 1
-  let maxX = fs*10, maxY = fs*0.8
+  let maxX = fs*4 + Math.random() * 4 * fs, maxY = fs*0.8
   let cx1, cy1, cx2, cy2
   ctx.beginPath()
  // x = x + maxX/2
@@ -13007,12 +12960,12 @@ function scratchout () {
     d = fs
     cx1 = x+maxX+pet(d*3), cy1 = y+maxY+pet(d/8)
     cx2 = x-maxX+pet(d*3), cy2 = y-maxY+pet(d/8)
-    
     x = x + pet(d)
     y = y + pet(d)
     ctx.bezierCurveTo(cx1,cy1,cx2,cy2, x+pet(d/2), y)
     maxY *= -1
   }
+  LASTCLICK[0] = x + maxX*0.67
   ctx.stroke()
   ctx.closePath()
 }
@@ -13424,6 +13377,9 @@ function oiloncanvas () {
     ctx.closePath()
     ctx.fill()
   }
+  ctx.shadowBlur = 0
+  ctx.shadowOffsetY = 0
+  ctx.shadowOffsetX = 0
 }
 
 function randomName () {
