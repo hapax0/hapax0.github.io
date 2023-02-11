@@ -396,6 +396,8 @@
     <select id="drawingfunctions" >
       <option value="spiral4">scribble</option>
       <option value="script">script</option>
+      <option value="scratchout" selected>scratch out</option>
+
       <option value="randomTexture" >random texture</option>
       <option value="randomTexture2">random texture2</option>
       <option value="landscape3">landscape</option>
@@ -406,7 +408,7 @@
       <option value="crackle">crackle curves</option>
       <option value="cracklelines" >crackle lines</option>
       <option value="typewriter" >typewriter</option>
-      <option value="markwriter" selected>markwriter</option>
+      <option value="markwriter">markwriter</option>
       <option value="regMarks" >registration</option>
       <option value="paintByNumbers">mono by numbers</option>
       <option value="paintByNumbers2">color by numbers</option>
@@ -425,7 +427,7 @@
       <option value="hstripes">stripes</option>
       <option value="kites">kites</option>
       <option value="flags">flags</option>
-      <option value="pointys">pointy</option>
+      <option value="pointys" >pointy</option>
       <option value="dflags">diags</option>
       <option value="weave">weave</option>
       <option value="weave2">weave2</option>
@@ -458,7 +460,6 @@
       <option value="swingset">swing set</option>
       <option value="glass_line" >glass</option>
       <option value="glass" >glass (fill)</option>
-      <option value="scratchOut">scratch out</option>
       <option value="strokes">strokes</option>
       <option value="strokes2">strokes2</option>
       <option value="strokesH">strokes horizontal</option>
@@ -6804,7 +6805,7 @@ function pointys () {
   let ctx = canvas.getContext("2d")
   let W = canvas.width, H = canvas.height
   let CX = W/2, CY = H/2
-  let N = randomPick([2,2,2,3,4,5,6,7,8,13,20])
+  let N = randomPick([2,29,37,3,4,5,6,7,8,13,20])
   let colors = shuffle(getCurrentPalette(true,13))
 
   let delta = Math.floor(W/N), dv = Math.floor(H/N)
@@ -6828,12 +6829,18 @@ function apoint (x,y,w,h,CX,CY,colors) { //Natalia Cacchiarelli
   let alt = document.getElementById("grungy").checked
   //let colors = getCurrentPalette(true,13)
   if (!alt)
-    colors = shuffle(colors)
-  let idx =shuffle([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,2,2,3,4])
-  let cx = Math.floor(x+(w)/2 + pet(w*0.96))
-  let cy = Math.floor(y+(h)/2 + pet (h*0.96))
-  let dist = distance((cx),(cy),CX,CY)
-  let percent = (100 - (dist/CX)*100)*2
+    ;//colors = shuffle(colors)
+  let idx =shuffle([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,2,2,3,4])
+  let cx = Math.floor(x+(w)/2) //+ pet(w*0.96))
+  let cy = Math.floor(y+(h)/2)// + pet (h*0.96))
+  //console.log((CX-cx)/W)
+
+  cx -= (CX-cx)/W * 0.8*w
+  cy -= (CY-cy)/H * 0.8*h
+ // console.log(cx + " cx after")
+  
+  //let dist = distance((cx),(cy),CX,CY)
+  //let percent = (100 - (dist/CX)*100)*2
   
   //console.log(x,y,percent)
   ctx.fillStyle = colors[0]
@@ -11977,7 +11984,7 @@ function necker () {
   }
 }
 
-function scratchOut () {
+function scratchOut_og () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/10
@@ -12971,6 +12978,45 @@ function gridLog () {
   document.getElementById("paintcolor").value = color
 }
 
+function scratchout () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let fs = 7 + document.getElementById("featuresize").value/10
+  let D = 1 + document.getElementById("number").value/5000
+  let bump = fs/2
+  let color = document.getElementById("paintcolor").value
+  let alt = document.getElementById("grungy").checked
+  let W = canvas.width, H = canvas.height
+  let pad = 4 + Math.floor(Math.random() * 2)
+  let linespace = 18 + Math.floor(pet(8))
+  ctx.fillStyle = "#ffffff"//color
+  //let colors = ["#ed6060", "#6060ba", "#6060ed", "#ed6060", "#000000"]
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.lineJoin = "round"
+  ctx.lineWidth = Math.floor(1 + fs/20)
+  ctx.imageSmoothingQuality = "high"
+  let i = 0, x = LASTCLICK[0], y = LASTCLICK[1], rot = 1
+  let maxX = fs*10, maxY = fs*0.8
+  let cx1, cy1, cx2, cy2
+  ctx.beginPath()
+ // x = x + maxX/2
+  ctx.moveTo(x, y)
+  let d = 20, N = 3*Math.random()*8
+  for (; i < 5; i++) {
+    d = fs
+    cx1 = x+maxX+pet(d*3), cy1 = y+maxY+pet(d/8)
+    cx2 = x-maxX+pet(d*3), cy2 = y-maxY+pet(d/8)
+    
+    x = x + pet(d)
+    y = y + pet(d)
+    ctx.bezierCurveTo(cx1,cy1,cx2,cy2, x+pet(d/2), y)
+    maxY *= -1
+  }
+  ctx.stroke()
+  ctx.closePath()
+}
+
 function script () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -12989,10 +13035,11 @@ function script () {
   ctx.lineJoin = "round"
   ctx.lineWidth = Math.floor(1 + fs/20)
   ctx.imageSmoothingQuality = "high"
-  let i = 0, x = pad+2+fs*2, y = LASTCLICK[1], rot = 1
+  let i = 0, x = LASTCLICK[0]/*pad+2+fs*2*/, y = LASTCLICK[1], rot = 1
   let cx1, cy1, cx2, cy2
+  let maxX = x+2*fs + Math.random() * 5 * fs
   ctx.beginPath()
-  while (x < canvas.width-fs*3) {
+  while (x < maxX) {
     ctx.beginPath()
     ctx.moveTo(x, y)
     cx1 = x+fs*2, cy1 = y -3*fs
@@ -13007,8 +13054,7 @@ function script () {
     if (alt && Math.random() > 0.9)
       x += bump
   }
-
-  //document.getElementById("paintcolor").value = color
+  LASTCLICK[0] = x + bump
 }
 
 function musicpaper () {
