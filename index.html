@@ -7901,41 +7901,6 @@ function spiral4 () {
   ctx.stroke();
 }
 
-
-
-function scriptbez () {
-  let canvas = document.getElementById("myCanvas");
-  let ctx = canvas.getContext("2d");
-  let W = canvas.width
-  let cx = 0
-  let cy = 12//LASTCLICK[1]//W/2 + pet(W/3)
-  let C = W/2 + (Math.random() - 0.5) * W/4
-  ctx.globalAlpha = +document.getElementById("opacity").value/100
-  let colors = shuffle(['red', 'blue', 'yellow', 'orange', 'purple', "green"])
-  let grunge = document.getElementById("grungy").checked
-  ctx.lineWidth = 2+document.getElementById("featuresize").value/20
-  ctx.lineCap = "round"
-  ctx.strokeStyle = document.getElementById("paintcolor").value
-  
-  let n = 0, end = 20000//17000
-  var x = 10//cx + radius * Math.cos(angle);
-  var y = 100//cy //+ radius * Math.sin(angle);
-  let fs = 32, bump = fs/2
-  
-  while (x < canvas.width) {
-    ctx.beginPath()
-    ctx.moveTo(x, y)
-    cx1 = x+fs*2, cy1 = y -3*fs
-    cx2 = x-fs*2, cy2 = y +3*fs
-    bump = fs/2 + pet(fs)
-    ctx.bezierCurveTo(cx1+pet(fs*4),cy1+pet(fs*4),cx2+pet(fs*4),cy2+pet(fs*4), x+bump, y)
-
-    ctx.stroke()
-    ctx.closePath()
-    x += bump
-  }
-}
-
 function drops () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -12974,7 +12939,7 @@ function script () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let fs = 7 + document.getElementById("featuresize").value/10
-  let D = 1 + document.getElementById("number").value/5000
+  let D = 1 + document.getElementById("number").value/000
   let bump = fs/2
   let color = document.getElementById("paintcolor").value
   let alt = document.getElementById("grungy").checked
@@ -12990,7 +12955,7 @@ function script () {
   ctx.imageSmoothingQuality = "high"
   let i = 0, x = LASTCLICK[0]/*pad+2+fs*2*/, y = LASTCLICK[1], rot = 1
   let cx1, cy1, cx2, cy2
-  let maxX = x+2*fs + Math.random() * 5 * fs
+  let maxX = x+1*fs + Math.random() * 8 * fs
   ctx.beginPath()
   while (x < maxX) {
     ctx.beginPath()
@@ -12998,6 +12963,12 @@ function script () {
     cx1 = x+fs*2, cy1 = y -3*fs
     cx2 = x-fs*2, cy2 = y +3*fs
     bump = 2*fs/3 + pet(fs*D/4)
+    if (Math.random() < 0.15) {
+      cy2 += 4*fs
+    } else
+    if (Math.random() < 0.23) {
+      cy1 -= 4*fs
+    }
     //ctx.bezierCurveTo(cx1+pet(fs*4),cy1+pet(fs*4),cx2+pet(fs*4),cy2+pet(fs*4), x+bump, y)
     ctx.bezierCurveTo(cx1+pet(D*fs),cy1+pet(D*fs),cx2+pet(D*fs),cy2+pet(D*fs), x+bump, y)
     ctx.stroke()
