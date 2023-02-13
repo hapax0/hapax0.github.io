@@ -486,6 +486,7 @@
       <option value="musicpaper">music</option>
       <option value="dividedPad">divided pad</option>
       <option value="checklist">checklist</option>
+      <option value="survey">survey</option>
       <option value="requirements">requirements pad</option>
       <option value="messagepad">message</option>
       <option value="datedue">date due</option>
@@ -12518,6 +12519,50 @@ function thisSpace () {
   ctx.moveTo(pad*3, pad*3)
   ctx.lineTo(W-pad*3, H-pad*3)
   ctx.stroke()
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+}
+
+function survey () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
+  let color = document.getElementById("paintcolor").value
+  let alt = document.getElementById("grungy").checked
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let H = canvas.height, W = canvas.width
+  ctx.fillStyle = color
+  let colors = getCurrentPalette()
+  ctx.lineWidth = 3
+  ctx.strokeStyle = randomPick(colors)
+  ctx.fillStyle = ctx.strokeStyle
+  let agree = ["1 [  ] strongly disagree", "2 [  ] somewhat disagree", "3 [  ] neutral", "4 [  ] somewhat agree", "5 [  ] strongly agree"]
+  let text =""
+  let face = "helvetica"
+  ctx.fillStyle = ctx.strokeStyle
+  let width = ctx.measureText("[  ] ").width
+  let w = Math.floor(W/8.5)
+  let h = Math.floor(H/20)
+  let i = 0, qn = 1+Math.floor(Math.random() * 100)
+  let hoff = 0
+  let MAX = 16//randomPick([141,139,138,142])
+  for (; i < 15; i+=1) {
+    if (i % 5 === 0) {
+      h += Math.floor(H/24)
+      if (alt) {
+        ctx.font = "100 "+(18)+"pt " + face
+        ctx.fillText(randomWord() +randomPick([" > "," is "," before "," over "," becomes "," follows "," makes "," before "," takes "," means "," causes "])+ randomWord(), w+15, h+13)
+      }
+      ctx.font = "800 "+(24)+"pt " + face
+      ctx.fillText(qn++, w -37, h+18)
+      ctx.beginPath()
+      ctx.moveTo(w+pet(3), h+24+pet(9))
+      ctx.lineTo(W-W/10, h+24+pet(9))
+      ctx.stroke()
+    }
+    h += Math.floor(H/20) + pet(6)
+    ctx.font = "500 "+(randomPick([21,20]))+"pt " + face
+    ctx.fillText(agree[i%agree.length], w+pet(7), h+pet(5))
+  }
   ctx.globalAlpha = document.getElementById("opacity").value/100
 }
 
