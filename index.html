@@ -395,8 +395,8 @@
       </svg></button>
     <select id="drawingfunctions" >
       <option value="spiral4">scribble</option>
-      <option value="script">script</option>
-      <option value="scratchout" selected>scratch out</option>
+      <option value="script" selected>script</option>
+      <option value="scratchout">scratch out</option>
 
       <option value="randomTexture" >random texture</option>
       <option value="randomTexture2">random texture2</option>
@@ -12935,10 +12935,10 @@ function scratchout () {
   ctx.closePath()
 }
 
-function script () {
+function aletter () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  let fs = 7 + document.getElementById("featuresize").value/10
+  let fs = 48//7 + document.getElementById("featuresize").value/10
   let D = 1 + document.getElementById("number").value/4000
   let bump = fs/2
   let color = document.getElementById("paintcolor").value
@@ -12947,17 +12947,18 @@ function script () {
   let pad = 4 + Math.floor(Math.random() * 2)
   let linespace = 18 + Math.floor(pet(8))
   ctx.fillStyle = "#ffffff"//color
+  ctx.fillRect(0,0,W,H)
   //let colors = ["#ed6060", "#6060ba", "#6060ed", "#ed6060", "#000000"]
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = "#000000"
   ctx.lineJoin = "round"
   ctx.lineWidth = Math.floor(1 + fs/20)
   ctx.imageSmoothingQuality = "high"
-  let i = 0, x = LASTCLICK[0]/*pad+2+fs*2*/, y = LASTCLICK[1], rot = 1
+  let i = 0, x = 200, y = 200, rot = 1
   let cx1, cy1, cx2, cy2
   let maxX = x+1*fs + Math.random() * 8 * fs
   ctx.beginPath()
-  while (x < maxX) {
+  while (i < 2) {
     ctx.beginPath()
     ctx.moveTo(x, y)
     cx1 = x+fs*2, cy1 = y -3*fs
@@ -12969,12 +12970,81 @@ function script () {
     if (Math.random() < 0.23) {
       cy1 -= 4*fs
     }
+    cx1+=pet(D*fs)
+    cy1+=pet(D*fs)
+    
+    cx2+=pet(D*fs)
+    cy2+=pet(D*fs)
+    console.log(D,x,y)
+    console.log(cx1, cy1, cx2, cy2, x+bump,y)
     //ctx.bezierCurveTo(cx1+pet(fs*4),cy1+pet(fs*4),cx2+pet(fs*4),cy2+pet(fs*4), x+bump, y)
-    ctx.bezierCurveTo(cx1+pet(D*fs),cy1+pet(D*fs),cx2+pet(D*fs),cy2+pet(D*fs), x+bump, y)
+    ctx.bezierCurveTo(cx1,cy1,cx2,cy2, x+bump, y)
     ctx.stroke()
     ctx.closePath()
     x += bump
+    i++
     
+    if (alt && Math.random() > 0.9)
+      x += bump
+  }
+  LASTCLICK[0] = x + bump
+}
+
+
+function script () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let fs = 7 + document.getElementById("featuresize").value/10
+  let D = 1 + document.getElementById("number").value/4000
+  let bump = fs/2.2
+  let color = document.getElementById("paintcolor").value
+  let alt = document.getElementById("grungy").checked
+  let W = canvas.width, H = canvas.height
+  let pad = 4 + Math.floor(Math.random() * 2)
+  let linespace = 18 + Math.floor(pet(8))
+  ctx.fillStyle = "#ffffff"
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.lineJoin = "round"
+  ctx.lineWidth = Math.floor(1 + fs/20)
+  ctx.imageSmoothingQuality = "high"
+  let i = 0, x = LASTCLICK[0], y = LASTCLICK[1]
+  let cx1, cy1, cx2, cy2
+  let maxX = x+1*fs + Math.random() * 8 * fs
+  let x2 = 0,y2 = 0
+  ctx.beginPath()
+  while (x < maxX) {
+    ctx.beginPath()
+    ctx.moveTo(x, y)
+    cx1 = x+fs*2, cy1 = y -3*fs
+    cx2 = x-fs*2, cy2 = y +3*fs
+    bump = 2*fs/3 + pet(fs*D/4)
+    if (Math.random() < 0.07) {
+      cy2 += 4*fs
+    } else
+    if (Math.random() < 0.23) {
+      cy1 -= 4*fs
+    }
+    ctx.bezierCurveTo(cx1+pet(D*fs),cy1+pet(D*fs),cx2+pet(D*fs),cy2+pet(D*fs), x+bump, y)
+    ctx.stroke()
+    ctx.closePath()
+    
+    // occasional dot or cross
+    if (Math.random() < 0.08) {
+      x2 = x + pet(fs/3)
+      y2 = y - fs*1.3+pet(fs)
+      ctx.beginPath()
+      ctx.moveTo(x2, y2)
+      cx1 = x2 + fs/4
+      cy1 = y2 - fs/5 +pet(fs/4)
+      cx2 = x2 + fs/4 + pet(fs)
+      cy2 = y2 - fs/5 + pet(fs/4)
+      ctx.bezierCurveTo(cx1,cy1,cx2,cy2, x2+pet(fs/2), y2 += pet(fs/2))
+      ctx.stroke()
+      ctx.closePath()
+    }
+    
+    x += bump
     if (alt && Math.random() > 0.9)
       x += bump
   }
