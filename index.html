@@ -16911,12 +16911,12 @@ function cracklelines () {
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.imageSmoothingQuality = "high"
   ctx.strokeStyle = "#000000"
-  ctx.lineCap = "round"
-  ctx.lineJoin = "round"
+  //ctx.lineCap = "round"
+  //ctx.lineJoin = "round"
   ctx.fillStyle = "#ffffff"
   //ctx.fillRect(0,0,W,H)
   let i = 0, j = 0
-  let nx = 0, ny = 0
+  let nx = 0, ny = 0, lw = 200
   let x = Math.random() * W/2, y = Math.random() * H/2, a
   a = Math.PI*2
   for (; i < 44; i++) {
@@ -16928,14 +16928,12 @@ function cracklelines () {
     let xinc = 0.12+(Math.random()), yinc = 0.2+(Math.random())
     if (Math.random() > 0.5) xinc *= -1
     if (Math.random() > 0.5) yinc *= -1
-    ctx.lineWidth = 1
+    lw*=0.90
+    ctx.lineWidth = lw
     ctx.beginPath()
     ctx.moveTo(x,y)
     for (; j < 5000; j++) {
-      if (alt)
-        ctx.lineWidth = 2
-      else
-        ctx.lineWidth = 1
+      
       x += xinc
       y += yinc
       ctx.lineTo(x,y)
@@ -16959,8 +16957,8 @@ function crackle () {
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.imageSmoothingQuality = "high"
   ctx.strokeStyle = "#000000"
-  ctx.lineCap = "round"
-  ctx.lineJoin = "round"
+  //ctx.lineCap = "round"
+  //ctx.lineJoin = "round"
   ctx.fillStyle = "#ffffff"
   let R = Math.floor(W*0.69)
   let i = 0, j = 0
@@ -16969,19 +16967,23 @@ function crackle () {
   let a = Math.PI*2
   let N = 24,  ct = 0
   let flip = false
+  ctx.lineWidth = 200
+  let lw = 200
   for (; i < N; i++) {
     x = Math.floor(Math.random() * W)/2
     y = Math.floor(Math.random() * H)
     j = 0
     let ba = a
     let ea =  ba += Math.PI/1800, inc = 1
-    ctx.lineWidth = 1
+    //ctx.lineWidth = 20
+    lw*=0.90
+    ctx.lineWidth = lw
     ctx.beginPath()
     for (; j < 3600; j++) {
-      if (alt)
+     /* if (alt)
         ctx.lineWidth = 2
       else
-        ctx.lineWidth = 1
+        ctx.lineWidth = 1*/
       ctx.ellipse(x,y,R,R,a,ba,ea)
       ba = ea
       ea += Math.PI/1800
@@ -16993,8 +16995,11 @@ function crackle () {
       if (pixelIsDark(nextx, nexty) || pixelIsDark(nx, ny) || (isOff(nx,ny,W,H))) {
         break;
       }
+      
     }
     ctx.stroke()
+    
+    
     if (flip)
       flipV()
     else
