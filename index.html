@@ -16908,21 +16908,22 @@ function cracklelines () {
   let W = canvas.width
   let H = canvas.height
   let cx = W/2, cy = H/2
-  let fs = 10 + document.getElementById("featuresize").value/2
+  let fs = 10 + +document.getElementById("featuresize").value
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.imageSmoothingQuality = "high"
   ctx.strokeStyle = randomPick(getCurrentPalette())
   let i = 0, j = 0
-  let nx = 0, ny = 0
-  let x = Math.random() * W/2, y = Math.random() * H/2, a
+  let nx = 0, ny = 0, x0, y0, NOPE = false
+  let x = Math.random() * W/2, y = Math.random() * H/2//, a
   a = Math.PI*2
-  for (; i < 44; i++) {
+  for (; i < 99; i++) {
+    NOPE = false
     x = Math.floor(Math.random() * W)
     y = Math.floor(Math.random() * H)
     j = 0
-    let ba = a
-    let ea =  ba += Math.PI/1800, inc = 1
-    let xinc = 0.12+(Math.random()), yinc = 0.2+(Math.random())
+    let inc = 1
+    let xinc = 0.2+(Math.random()), yinc = 0.2+(Math.random())
+    
     if (Math.random() > 0.5) xinc *= -1
     if (Math.random() > 0.5) yinc *= -1
     if (alt)
@@ -16930,18 +16931,22 @@ function cracklelines () {
     ctx.lineWidth = fs
     ctx.beginPath()
     ctx.moveTo(x,y)
-    for (; j < 5000; j++) {
-      
+    
+    let wmax = 5*fs//(xinc*yinc)
+    //console.log(wmax)
+    for (; j < wmax; j++) {
       x += xinc
       y += yinc
       ctx.lineTo(x,y)
       nx = x + xinc*2;
       ny = y + yinc*2;
-      if (pixelIsColor(nx, ny, ctx.strokeStyle)) {
+      if (pixelIsColor(nx, ny, ctx.strokeStyle)){
+        NOPE = true
         break;
       }
     }
-    ctx.stroke()
+    if (!NOPE)
+      ctx.stroke()
   }
 }
 
@@ -16949,6 +16954,8 @@ function crackle () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let alt = document.getElementById("grungy").checked
+  let fs = 20//10 + +document.getElementById("featuresize").value
+
   let W = canvas.width
   let H = canvas.height
   let cx = W/2, cy = H/2
@@ -16956,27 +16963,30 @@ function crackle () {
   ctx.imageSmoothingQuality = "high"
   let color = randomPick(getCurrentPalette())
   ctx.strokeStyle = color
-  console.log(ctx.strokeStyle)
+  ctx.lineJoin = "miter"
+  ctx.miterLimit = 100
   let R = Math.floor(W*0.69)
   let i = 0, j = 0
   let nextx = 0, nextY = 0
   let x = Math.random() * W/2, y = Math.random() * H/2
   let a = Math.PI*2
-  let N = 24,  ct = 0
+  let N = 34,  ct = 0
   let flip = false
   ctx.lineWidth = 200
-  let lw = 200
+  let lw = fs, NOPE = false
   for (; i < N; i++) {
+    NOPE = false
     x = Math.floor(Math.random() * W)/2
     y = Math.floor(Math.random() * H)
     j = 0
     let ba = a
     let ea =  ba += Math.PI/1800, inc = 1
-    //ctx.lineWidth = 20
-    lw*=0.90
+    if (alt)
+      lw*=0.90
     ctx.lineWidth = lw
     ctx.beginPath()
-    for (; j < 3600; j++) {
+    for (; j < 2600; j++) {
+      //ctx.moveTo(x,y)
       ctx.ellipse(x,y,R,R,a,ba,ea)
       ba = ea
       ea += Math.PI/1800
@@ -16986,19 +16996,22 @@ function crackle () {
       let nx = (R) * Math.cos(ea+Math.PI/1800)+x;
       let ny = (R) * Math.sin(ea+Math.PI/1800)+y;
       if (pixelIsColor(nextx, nexty, color)) {
+        NOPE = true
         break;
       }
     }
-    ctx.stroke()
-    /*
+    
+    if (!NOPE) {
+      ctx.stroke()
+    } else
+      ctx.closePath()
     if (flip)
       flipV()
     else
       rc()
-    flip != flip*/
+    flip != flip
+    ctx.strokeStyle = color
   }
-  console.log(ctx.strokeStyle)
-  
 }
 
 function isOff (x,y,W,H) {
