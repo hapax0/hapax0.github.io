@@ -12961,6 +12961,10 @@ function scratchout () {
   ctx.imageSmoothingQuality = "high"
   let i = 0, x = LASTCLICK[0], y = LASTCLICK[1], rot = 1
   let maxX = fs*4 + Math.random() * 4 * fs, maxY = fs*0.8
+  
+  if (alt)
+    maxY = maxX
+    
   let cx1, cy1, cx2, cy2
   ctx.beginPath()
  // x = x + maxX/2
@@ -13088,10 +13092,14 @@ function script () {
       ctx.stroke()
       ctx.closePath()
     }
-    
+    if (alt)
+      ctx.lineWidth = Math.floor(1 + fs/20) + pet(1)
     x += bump
-    if (alt && Math.random() > 0.9)
-      x += bump
+    if (x > W) {
+      LASTCLICK[1] += fs*4
+      LASTCLICK[0] = 0
+      return
+    }
   }
   LASTCLICK[0] = x + bump
 }
@@ -16912,6 +16920,7 @@ function cracklelines () {
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.imageSmoothingQuality = "high"
   ctx.strokeStyle = randomPick(getCurrentPalette())
+  ctx.lineCap = "square"
   let i = 0, j = 0
   let nx = 0, ny = 0, x0, y0, NOPE = false
   let x = Math.random() * W/2, y = Math.random() * H/2//, a
