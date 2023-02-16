@@ -478,6 +478,7 @@
       <option value="moleskineDay">day planner</option>
       <option value="moleText">moby</option>
       <option value="cuttingboard">cutting board</option>
+      <option value="perforations">perforations</option>
       <option value="index">index</option>
       <option value="crosswordPad">crossword</option>
       <option value="sketchpad">sketch pad</option>
@@ -13563,6 +13564,79 @@ function photoBook () {
   document.getElementById("opacity").value = alpha
 }
 
+function perforations () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  const H = canvas.height, W = canvas.width
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
+  let color = document.getElementById("paintcolor").value
+  let alpha = document.getElementById("opacity").value
+  let mode = ctx.globalCompositeOperation
+  let small = true, half = true
+  let pad = 0//40
+  ctx.fillStyle = color//"#101010"
+  ctx.globalCompositeOperation = "source-over"
+ // ctx.clearRect(0, 0, H, H)
+ // ctx.fillRect(pad, pad, W-pad*2, H-pad*2)
+  ctx.fillStyle = "#101010"
+  ctx.strokeStyle = "#867033"
+  ctx.lineWidth = 5
+  ctx.lineCap = "round"
+  ctx.lineJoin = "round"
+  ctx.globalCompositeOperation = "source-over"
+  let x = -8, y = pad + 20, i = 0
+  let r = 56
+  let sa = Math.PI * 1.35, ea = Math.PI * 1.78
+  let sa2 = Math.PI * 0.56, ea2 = Math.PI * 0.81
+  let sa3 = Math.PI * 0.36, ea3 = sa2
+  let SQUARE = document.getElementById("grungy").checked
+  let RIPPED = Math.random() > 0.3
+  let yoff = 0
+  let a = 1//randomPick([0,1,2,3,4])
+  if (SQUARE)
+    y -= 12
+  let ct = 0
+  while (y < H - 30) {
+    ct++
+    ctx.lineWidth = 5
+    
+    ctx.strokeStyle = "#555555"
+    ctx.globalCompositeOperation = "darken"
+    ctx.globalAlpha = 0.5
+    
+    ctx.globalCompositeOperation = "source-over"
+    ctx.strokeStyle = "#867033"
+    ctx.globalAlpha = 1.0
+    ctx.globalCompositeOperation = "destination-out"
+
+    if (SQUARE) {
+      ctx.fillRect(x+38,y+27, 24, 24) // hole
+    } else {
+      ctx.beginPath()
+      ctx.arc(x+50, y+27, 14, 0, Math.PI * 2)
+      ctx.closePath()
+      ctx.fill()
+    }/*
+    if (RIPPED) {
+      ctx.globalAlpha = 1.0
+      let big = 0
+     // if (Math.random() > 0.97)
+      //  big += 58
+      //y += a
+      ctx.beginPath()
+      ctx.moveTo(0, y+4+pet(19)+yoff)
+      ctx.lineTo(x+50, y+24+pet(9)+yoff)
+      ctx.lineTo(x+50, y+30+pet(7)+yoff+big)
+      ctx.lineTo(0, y+30 +pet(7)+yoff+big)
+      ctx.closePath()
+      ctx.fill();
+    }*/
+    y += 62
+  }
+  ctx.globalCompositeOperation = mode
+  document.getElementById("opacity").value = alpha
+}
+
 function sketchpad () {
   if (document.getElementById("grungy").checked) {
     sketchpage ()
@@ -16916,7 +16990,7 @@ function cracklelines () {
   let W = canvas.width
   let H = canvas.height
   let cx = W/2, cy = H/2
-  let fs = 10 + +document.getElementById("featuresize").value
+  let fs = 2 + +document.getElementById("featuresize").value
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.imageSmoothingQuality = "high"
   ctx.strokeStyle = randomPick(getCurrentPalette())
@@ -16936,12 +17010,12 @@ function cracklelines () {
     if (Math.random() > 0.5) xinc *= -1
     if (Math.random() > 0.5) yinc *= -1
     if (alt)
-      fs*=0.92
+      fs*=0.95
     ctx.lineWidth = fs
     ctx.beginPath()
     ctx.moveTo(x,y)
     
-    let wmax = 5*fs//(xinc*yinc)
+    let wmax = 200//20*Math.random()*fs//(xinc*yinc)
     //console.log(wmax)
     for (; j < wmax; j++) {
       x += xinc
@@ -16949,7 +17023,7 @@ function cracklelines () {
       ctx.lineTo(x,y)
       nx = x + xinc*2;
       ny = y + yinc*2;
-      if (pixelIsColor(nx, ny, ctx.strokeStyle)){
+      if (pixelIsColor(nx, ny, ctx.strokeStyle) || !inBounds(nx,ny,-100,-100,W+100,H+100)){
         NOPE = true
         break;
       }
@@ -16959,18 +17033,18 @@ function cracklelines () {
   }
 }
 
-function crackle () {
+function crackle () { // curves
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let alt = document.getElementById("grungy").checked
-  let fs = 20//10 + +document.getElementById("featuresize").value
+  let fs = 10 //+ +document.getElementById("featuresize").value
 
   let W = canvas.width
   let H = canvas.height
   let cx = W/2, cy = H/2
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.imageSmoothingQuality = "high"
-  let color = randomPick(getCurrentPalette())
+  let color = "#ff0000"//randomPick(getCurrentPalette())
   ctx.strokeStyle = color
   ctx.lineJoin = "miter"
   ctx.miterLimit = 100
@@ -16978,48 +17052,47 @@ function crackle () {
   let i = 0, j = 0
   let nextx = 0, nextY = 0
   let x = Math.random() * W/2, y = Math.random() * H/2
-  let a = Math.PI*2
-  let N = 34,  ct = 0
+  let a = Math.PI*2 * Math.random()
+  let N = 4//24
   let flip = false
-  ctx.lineWidth = 200
   let lw = fs, NOPE = false
+  let ba = a
+  let ea =  ba += Math.PI/1800, inc = 1
+  let BA = a
   for (; i < N; i++) {
     NOPE = false
-    x = Math.floor(Math.random() * W)/2
+    x = Math.floor(Math.random() * W)
     y = Math.floor(Math.random() * H)
+    console.log(x,y)
     j = 0
-    let ba = a
-    let ea =  ba += Math.PI/1800, inc = 1
     if (alt)
       lw*=0.90
     ctx.lineWidth = lw
-    ctx.beginPath()
-    for (; j < 2600; j++) {
-      //ctx.moveTo(x,y)
-      ctx.ellipse(x,y,R,R,a,ba,ea)
+    for (; j < 100; j++) {
       ba = ea
       ea += Math.PI/1800
       // point on a circle
       nextx = (R) * Math.cos(ea+Math.PI/1800*2)+x;
       nexty = (R) * Math.sin(ea+Math.PI/1800*2)+y;
-      let nx = (R) * Math.cos(ea+Math.PI/1800)+x;
-      let ny = (R) * Math.sin(ea+Math.PI/1800)+y;
       if (pixelIsColor(nextx, nexty, color)) {
-        NOPE = true
+        //NOPE = true
+        //console.log("n")
         break;
       }
     }
-    
     if (!NOPE) {
+      ctx.beginPath()
+      ctx.arc(x,y,R,BA,ea)//,Math.random() > 0.5)
+      console.log(BA,ea,ea-BA)
       ctx.stroke()
-    } else
-      ctx.closePath()
+    }
+    /*
     if (flip)
       flipV()
     else
       rc()
     flip != flip
-    ctx.strokeStyle = color
+    ctx.strokeStyle = color*/
   }
 }
 
