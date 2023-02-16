@@ -17061,6 +17061,7 @@ function crackle () { // curves
   let ea =  ba += Math.PI/1800, inc = 1
   let BA = a
   for (; i < N; i++) {
+    R = R + pet(R*0.5)
     x = Math.floor(Math.random() * W)
     y = Math.floor(Math.random() * H)
     j = 0
@@ -17070,7 +17071,7 @@ function crackle () { // curves
       lw*=0.94
     ctx.lineWidth = lw
     ctx.beginPath()
-    for (; j < 3200; j++) {
+    for (; j < 380; j++) {
       ctx.ellipse(x,y,R,R,a,ba,ea)
       ba = ea
       ea += Math.PI/180
@@ -17151,7 +17152,7 @@ function crackle_OG () {
 
 
 function isOff (x,y,W,H) {
-  return ((x<0 || x>W) || (y<0||y>H))
+  return ((x<=100 || x>W+100) || (y<-100||y>H+100))
 }
 
 function pixelIsColor (x, y, color) {
