@@ -17037,64 +17037,118 @@ function crackle () { // curves
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let alt = document.getElementById("grungy").checked
-  let fs = 10 //+ +document.getElementById("featuresize").value
+  let fs = 2+ +document.getElementById("featuresize").value/2
 
   let W = canvas.width
   let H = canvas.height
   let cx = W/2, cy = H/2
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.imageSmoothingQuality = "high"
-  let color = "#ff0000"//randomPick(getCurrentPalette())
+  let color = randomPick(getCurrentPalette())
   ctx.strokeStyle = color
   ctx.lineJoin = "miter"
   ctx.miterLimit = 100
-  let R = Math.floor(W*0.69)
+  let R = Math.floor(W*0.4)
   let i = 0, j = 0
   let nextx = 0, nextY = 0
   let x = Math.random() * W/2, y = Math.random() * H/2
-  let a = Math.PI*2 * Math.random()
-  let N = 4//24
+  let a = 0//Math.PI*2 * Math.random()
+  let N = 32
   let flip = false
   let lw = fs, NOPE = false
+  ctx.lineWidth = lw
+
   let ba = a
   let ea =  ba += Math.PI/1800, inc = 1
   let BA = a
   for (; i < N; i++) {
-    NOPE = false
     x = Math.floor(Math.random() * W)
     y = Math.floor(Math.random() * H)
-    console.log(x,y)
     j = 0
+    let ba = a
+    let ea =  ba += Math.PI/180, inc = 1
     if (alt)
-      lw*=0.90
+      lw*=0.94
     ctx.lineWidth = lw
-    for (; j < 100; j++) {
+    ctx.beginPath()
+    for (; j < 3200; j++) {
+      ctx.ellipse(x,y,R,R,a,ba,ea)
       ba = ea
-      ea += Math.PI/1800
+      ea += Math.PI/180
       // point on a circle
-      nextx = (R) * Math.cos(ea+Math.PI/1800*2)+x;
-      nexty = (R) * Math.sin(ea+Math.PI/1800*2)+y;
-      if (pixelIsColor(nextx, nexty, color)) {
-        //NOPE = true
-        //console.log("n")
+      nextx = (R) * Math.cos(ea+Math.PI/180*2)+x;
+      nexty = (R) * Math.sin(ea+Math.PI/180*2)+y;
+      let nx = (R) * Math.cos(ea+Math.PI/180)+x;
+      let ny = (R) * Math.sin(ea+Math.PI/180)+y;
+      if (pixelIsColor(nextx, nexty, color) || pixelIsColor(nx, ny, color) || isOff(nx,ny,W,H)) {
         break;
       }
     }
-    if (!NOPE) {
-      ctx.beginPath()
-      ctx.arc(x,y,R,BA,ea)//,Math.random() > 0.5)
-      console.log(BA,ea,ea-BA)
-      ctx.stroke()
-    }
-    /*
+    ctx.stroke()
     if (flip)
       flipV()
     else
       rc()
     flip != flip
-    ctx.strokeStyle = color*/
+    ctx.strokeStyle = color
   }
 }
+
+function crackle_OG () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let alt = document.getElementById("grungy").checked
+  let W = canvas.width
+  let H = canvas.height
+  let cx = W/2, cy = H/2
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctx.imageSmoothingQuality = "high"
+  ctx.strokeStyle = "#000000"
+  ctx.lineCap = "round"
+  ctx.lineJoin = "round"
+  ctx.fillStyle = "#ffffff"
+  let R = Math.floor(W*0.69)
+  let i = 0, j = 0
+  let nextx = 0, nextY = 0
+  let x = Math.random() * W/2, y = Math.random() * H/2
+  let a = Math.PI*2
+  let N = 24,  ct = 0
+  let flip = false
+  for (; i < N; i++) {
+    x = Math.floor(Math.random() * W)/2
+    y = Math.floor(Math.random() * H)
+    j = 0
+    let ba = a
+    let ea =  ba += Math.PI/1800, inc = 1
+    ctx.lineWidth = 1
+    ctx.beginPath()
+    for (; j < 3600; j++) {
+      if (alt)
+        ctx.lineWidth = 2
+      else
+        ctx.lineWidth = 1
+      ctx.ellipse(x,y,R,R,a,ba,ea)
+      ba = ea
+      ea += Math.PI/1800
+      // point on a circle
+      nextx = (R) * Math.cos(ea+Math.PI/1800*2)+x;
+      nexty = (R) * Math.sin(ea+Math.PI/1800*2)+y;
+      let nx = (R) * Math.cos(ea+Math.PI/1800)+x;
+      let ny = (R) * Math.sin(ea+Math.PI/1800)+y;
+      if (pixelIsDark(nextx, nexty) || pixelIsDark(nx, ny) || (isOff(nx,ny,W,H))) {
+        break;
+      }
+    }
+    ctx.stroke()
+    if (flip)
+      flipV()
+    else
+      rc()
+    flip != flip
+  }
+  if (i > 3)
+    R *= 0.98
+}
+
 
 function isOff (x,y,W,H) {
   return ((x<0 || x>W) || (y<0||y>H))
