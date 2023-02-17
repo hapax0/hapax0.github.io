@@ -479,6 +479,7 @@
       <option value="moleText">moby</option>
       <option value="cuttingboard">cutting board</option>
       <option value="perforations">perforations</option>
+      <option value="labels">labels</option>
       <option value="index">index</option>
       <option value="crosswordPad">crossword</option>
       <option value="sketchpad">sketch pad</option>
@@ -20276,13 +20277,34 @@ function dropFrameRagged () {
   ctx.globalAlpha = alpha
 }
 
+function labels () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  let x = Math.random() * W, y = Math.random() *H
+  let color = document.getElementById("paintcolor").value
+  ctx.lineWidth = 1 +document.getElementById("featuresize").value/50
+  ctx.strokeStyle = color
+  let w = W / 40, lw = W/9
+  x = 40, dx = 50 + W*0.8*Math.random()
+  y = LASTCLICK[1], dy = 20 + H*0.9*Math.random()
+  let yend = y
+  ctx.beginPath()
+  ctx.moveTo(x,y)
+  ctx.lineTo(x+lw, y)
+  ctx.lineTo(x+lw+dx, yend = Math.random()*H*0.9)
+  ctx.stroke()
+  ctx.strokeRect(x+dx+lw,yend,w,w)
+  LASTCLICK[1] += lw*0.6
+}
+
 function dropFrame () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let mode = ctx.globalCompositeOperation
   ctx.globalCompositeOperation = "source-over"
   document.getElementById("mode").value = "source-over"
-  let r = 5
+  let r = 7
   let alpha = document.getElementById("opacity").value/100
   ctx.globalAlpha = 1.0
   clearOff()
@@ -20291,12 +20313,20 @@ function dropFrame () {
   ctx.clearRect(0,0,canvas.width,canvas.height)
   ctx.fillStyle = "#ffffff"
   ctx.shadowColor = "#202020"
-  ctx.shadowBlur = 25 + Math.random() * 5
+  ctx.shadowBlur = 15 + Math.random() * 5
   ctx.shadowOffsetY = 13 + Math.random() * 2
   ctx.shadowOffsetX = 4 + Math.random() * 2
   let padx = (canvas.width - 0.9 * canvas.width)/2
   let pady = (canvas.height - 0.9 * canvas.height)/2
   roundedRect(padx, pady, canvas.width-2*padx, canvas.height-2*pady, r, ctx)
+  
+  ctx.fillStyle = "#ffffff"
+  ctx.shadowColor = "#707070"
+  ctx.shadowBlur = 6 + Math.random() * 5
+  ctx.shadowOffsetY = 3 + Math.random() * 2
+  ctx.shadowOffsetX =- 4 + Math.random() * 2
+  roundedRect(padx, pady, canvas.width-2*padx, canvas.height-2*pady, r, ctx)
+  
   ctx.shadowBlur = 0
   ctx.shadowOffsetY = 0
   ctx.shadowOffsetX = 0
