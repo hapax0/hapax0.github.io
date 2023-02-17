@@ -479,7 +479,7 @@
       <option value="moleText">moby</option>
       <option value="cuttingboard">cutting board</option>
       <option value="perforations">perforations</option>
-      <option value="labels">labels</option>
+      <option value="label">label</option>
       <option value="form1">form</option>
       <option value="index">index</option>
       <option value="crosswordPad">crossword</option>
@@ -7470,12 +7470,14 @@ function twosquares () {
   ctx.fill()
   
   x = W/2+xpad/10
-  ctx.fillStyle = colors[0]
+  /*ctx.fillStyle = colors[0]
   if (alt) {
     ctx.fillStyle = colors[1]
     ctx.shadowColor = colors[1]
-  }
-
+  }*/
+  let c2 = randomPick(colors)
+  ctx.fillStyle = c2
+  ctx.shadowColor = c2
   ctx.beginPath()
   ctx.moveTo(x,y)
   ctx.lineTo(x+sqrW,y)
@@ -20322,7 +20324,7 @@ function dropFrameRagged () {
   ctx.globalAlpha = alpha
 }
 
-function labels () {
+function label () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let W = canvas.width, H = canvas.height
@@ -20331,7 +20333,7 @@ function labels () {
   ctx.lineWidth = 1 +document.getElementById("featuresize").value/50
   ctx.strokeStyle = color
   let w = W / 40, lw = W/9
-  x = 40, dx = 50 + W*0.8*Math.random()
+  x = LASTCLICK[0], dx =(W-lw-x)*Math.random()-w*1.2
   y = LASTCLICK[1], dy = 20 + H*0.9*Math.random()
   if (document.getElementById("grungy").checked) {
     let face = "AmericanTypewriter"
@@ -20346,7 +20348,7 @@ function labels () {
   ctx.lineTo(x+lw, y)
   ctx.lineTo(x+lw+dx, yend = Math.random()*H*0.9)
   ctx.stroke()
-  ctx.strokeRect(x+dx+lw,yend,w+pet(3),w+pet(3))
+  ctx.strokeRect(x+lw+dx,yend,w+pet(3),w+pet(3))
   LASTCLICK[1] += lw*0.6
 }
 
