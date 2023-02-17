@@ -13057,7 +13057,7 @@ function script () {
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.strokeStyle = document.getElementById("paintcolor").value
   ctx.lineJoin = "round"
-  ctx.lineWidth = Math.floor(1 + fs/20)
+  ctx.lineWidth = Math.floor(1 + fs/18)
   ctx.imageSmoothingQuality = "high"
   let i = 0, x = LASTCLICK[0], y = LASTCLICK[1]
   let cx1, cy1, cx2, cy2
@@ -20288,13 +20288,20 @@ function labels () {
   let w = W / 40, lw = W/9
   x = 40, dx = 50 + W*0.8*Math.random()
   y = LASTCLICK[1], dy = 20 + H*0.9*Math.random()
+  if (document.getElementById("grungy").checked) {
+    let face = "AmericanTypewriter"
+    ctx.font = "100 "+(lw/6)+"pt " + face
+    ctx.fillStyle = color
+    ctx.fillText(randomWord(), x+pet(7), y-lw/9)
+  }
+  
   let yend = y
   ctx.beginPath()
-  ctx.moveTo(x,y)
+  ctx.moveTo(x+pet(7),y+pet(7))
   ctx.lineTo(x+lw, y)
   ctx.lineTo(x+lw+dx, yend = Math.random()*H*0.9)
   ctx.stroke()
-  ctx.strokeRect(x+dx+lw,yend,w,w)
+  ctx.strokeRect(x+dx+lw,yend,w+pet(3),w+pet(3))
   LASTCLICK[1] += lw*0.6
 }
 
