@@ -440,6 +440,7 @@
       <option value="neckerline">necker</option>
       <option value="necker">necker (fill)</option>
       <option value="house">house (fill)</option>
+      <option value="monocube">cube (mono)</option>
       <option value="cube">cube (fill)</option>
       <option value="cube2">cube2</option>
       <option value="corner">corner</option>
@@ -6551,6 +6552,46 @@ function box () {
   ctx.lineTo(x,y)
   ctx.closePath()
   ctx.fill()
+}
+
+function monocube () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let colors = shuffle(getCurrentPalette())
+  let alt = document.getElementById("grungy").checked
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/10
+  let pad = 150 //+ Math.random() *40,
+  ctx.shadowBlur = 40
+  ctx.shadowColor = colors[0]
+  ctx.shadowOffsetX = (Math.random()-0.5) * 28
+  ctx.shadowOffsetY  = (Math.random()-0.5) * 28
+  /* like this
+     ___
+    /   |
+   /    |
+  |    /
+  |___/
+  
+  */
+  let x = pad, y = H-pad
+  ctx.fillStyle = (colors[0])
+  ctx.beginPath()
+  ctx.moveTo(x,y)
+  x = 2*W/3
+  ctx.lineTo(x,y)
+  x = W - pad, y = 2*H/3
+  ctx.lineTo(x,y)
+  y = pad
+  ctx.lineTo(x,y)
+  x = W/3
+  ctx.lineTo(x,y)
+  x = pad, y = H/3
+  ctx.lineTo(x,y)
+  ctx.closePath()
+  ctx.fill()
+  
 }
 
 function cube () {
@@ -17394,6 +17435,49 @@ function form1 () {
     ctx.closePath()
     ctx.stroke()
   }
+  
+  // as alt
+  //ctx.strokeStyle = "#ff0000"
+ // ctx.lineWidth = 3
+  ctx.strokeRect(inset,inset,W-inset*2,H/4)
+  dx = inset+W/5
+  ctx.beginPath();
+  ctx.moveTo(x+dx, y+inset);
+  ctx.lineTo(x+dx, H/4+inset);
+  ctx.closePath()
+  ctx.stroke()
+  dx += W/4
+  ctx.beginPath();
+  ctx.moveTo(x+dx, y+inset);
+  ctx.lineTo(x+dx, H/4+inset);
+  ctx.closePath()
+  ctx.stroke()
+  dx += W/4
+  ctx.beginPath();
+  ctx.moveTo(x+dx, y+inset);
+  ctx.lineTo(x+dx, H/4+inset);
+  ctx.closePath()
+  ctx.stroke()
+  // horx div
+  ctx.beginPath();
+  ctx.moveTo(inset, H/8+inset);
+  ctx.lineTo(x+dx, H/8+inset);
+  ctx.closePath()
+  ctx.stroke()
+  // 2 H divs in rightmost cell
+  let dh = (H/4)/3
+  ctx.beginPath();
+  ctx.moveTo(x+dx, dh+inset);
+  ctx.lineTo(W-inset, dh+inset);
+  ctx.closePath()
+  ctx.stroke()
+  
+  ctx.beginPath();
+  ctx.moveTo(x+dx, dh*2+inset);
+  ctx.lineTo(W-inset, dh*2+inset);
+  ctx.closePath()
+  ctx.stroke()
+  
 }
 
 function lineFrame () {
