@@ -480,6 +480,7 @@
       <option value="cuttingboard">cutting board</option>
       <option value="perforations">perforations</option>
       <option value="labels">labels</option>
+      <option value="form1">form</option>
       <option value="index">index</option>
       <option value="crosswordPad">crossword</option>
       <option value="sketchpad">sketch pad</option>
@@ -17347,6 +17348,50 @@ function roundedFrame (n) {
   ctx.globalCompositeOperation = "destination-over"
   //fill()
   ctx.globalCompositeOperation = mode
+}
+
+function form1 () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let LW = 1 + Math.floor(document.getElementById("featuresize").value/50)
+  let alt = document.getElementById("grungy").checked
+  let inset = 20 + Math.random()*20
+  let W = canvas.width
+  let H = canvas.height
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.lineWidth = LW + 1
+  let x = 0, y = 0
+  ctx.strokeRect(inset,inset,W-inset*2, H-inset*2)
+  ctx.lineWidth = LW
+  if (Math.random() > 0.5) {
+    inset += 4 * Math.random() * 10
+    ctx.strokeRect(inset,inset,W-inset*2, H-inset*2)
+  }
+
+  // horirontal div
+  dy = 1*H/3+ pet(H/3)
+  ctx.beginPath();
+  ctx.moveTo(x+inset, y+dy);
+  ctx.lineTo(W-inset, y+dy);
+  ctx.closePath()
+  ctx.stroke()
+  
+  // lower vert divs
+  dx = W/2 + Math.random() * W/3
+  ctx.beginPath();
+  ctx.moveTo(x+dx, y+dy);
+  ctx.lineTo(x+dx, H-inset);
+  ctx.closePath()
+  ctx.stroke()
+  if (Math.random() > 0.5) {
+    dx = inset + Math.random() * W/3
+    ctx.beginPath();
+    ctx.moveTo(x+dx, y+dy);
+    ctx.lineTo(x+dx, H-inset);
+    ctx.closePath()
+    ctx.stroke()
+  }
 }
 
 function lineFrame () {
