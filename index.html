@@ -397,6 +397,7 @@
       <option value="spiral4">scribble</option>
       <option value="script" selected>script</option>
       <option value="placeTextAt">word</option>
+      <option value="placeRectAt">mockup</option>
       <option value="scratchout">scratch out</option>
 
       <option value="randomTexture" >random texture</option>
@@ -6582,29 +6583,30 @@ function monocube () {
   ctx.shadowOffsetX = (Math.random()-0.5) * 28
   ctx.shadowOffsetY  = (Math.random()-0.5) * 28
   /* like this
-     ___
-    /   |
-   /    |
-  |    /
-  |___/
-  
+         ___
+        /   |
+       /    |
+      |    /
+      |___/
   */
+  let N = 2, D = 3
   let x = pad, y = H-pad
   ctx.fillStyle = (colors[0])
   ctx.beginPath()
   ctx.moveTo(x,y)
-  x = 2*W/3
+  x = N*W/D
   ctx.lineTo(x,y)
-  x = W - pad, y = 2*H/3
+  x = W - pad, y = N*H/D
   ctx.lineTo(x,y)
   y = pad
   ctx.lineTo(x,y)
-  x = W/3
+  x = W/D
   ctx.lineTo(x,y)
-  x = pad, y = H/3
+  x = pad, y = H/D
   ctx.lineTo(x,y)
   ctx.closePath()
   ctx.fill()
+  ctx.shadowBlur = 0
 }
 
 function cube () {
@@ -20413,13 +20415,16 @@ function label () {
   ctx.lineWidth = 1 +document.getElementById("featuresize").value/50
   ctx.strokeStyle = color
   let w = W / 40, lw = W/9
+  let text = document.getElementById("points").value
+  if (text.length < 1)
+    text = randomWord()
   x = LASTCLICK[0], dx =(W-lw-x)*Math.random()-w*1.2
   y = LASTCLICK[1], dy = 20 + H*0.9*Math.random()
   if (document.getElementById("grungy").checked) {
     let face = "AmericanTypewriter"
     ctx.font = "100 "+(lw/6)+"pt " + face
     ctx.fillStyle = color
-    ctx.fillText(randomWord(), x+pet(7), y-lw/9)
+    ctx.fillText(text, x+pet(7), y-lw/9)
   }
   
   let yend = y
@@ -22635,6 +22640,32 @@ function clearFace () {
   document.getElementById("face").value = ""
 }
 
+function placeRectAt () { // word-shaped rect
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  W = canvas.width
+  ctx.globalAlpha = (document.getElementById("opacity").value)/100
+  ctx.fillStyle = document.getElementById("paintcolor").value
+  let fs = 2.6*(4 + document.getElementById("featuresize").value/10)
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle'
+  if (document.getElementById("grungy").checked)
+    ctx.fillStyle = randomPick(getCurrentPalette())
+  
+  let text = randomPick(["a","aa","aaa","aaaa","aaaaa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa", "aaaaaaaa", "aaaaaaaaa"])
+  let x = LASTCLICK[0]
+  let y = LASTCLICK[1]
+
+  ctx.font = "100 "+(fs)+"pt AmericanTypewriter,Courier"
+  let w = ctx.measureText(text).width
+ // ctx.fillText(text, x, y)
+  ctx.fillRect(x,y-fs/2,w,fs)
+  LASTCLICK[0] += w + fs
+  if (x+w > W) {
+    LASTCLICK[1] += fs*2
+    LASTCLICK[0] = 0
+  }
+}
 
 function placeTextAt () {
   let text = document.getElementById("points").value
@@ -22651,13 +22682,6 @@ function placeTextAt () {
   let x = LASTCLICK[0]
   let y = LASTCLICK[1]
  
-  ctx.fillStyle = document.getElementById("paintcolor").value
-  ctx.strokeStyle = document.getElementById("paintcolor").value
-  ctx.fillStyle = document.getElementById("paintcolor").value
-  ctx.globalAlpha = (document.getElementById("opacity").value)/100
-  
-  x = LASTCLICK[0]
-  y = LASTCLICK[1] //- fs/4
   ctx.font = "100 "+(fs)+"pt AmericanTypewriter,Courier"
   let w = ctx.measureText(" "+text).width
   ctx.fillText(text, x, y)
