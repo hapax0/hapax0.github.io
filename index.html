@@ -427,6 +427,7 @@
       <option value="circle" >disc</option>
       <option value="origami">origami</option>
       <option value="hstripes">stripes</option>
+      <option value="monocubes">mono cubes</option>
       <option value="kites">kites</option>
       <option value="flags">flags</option>
       <option value="pointys" >pointy</option>
@@ -7218,6 +7219,25 @@ function weave2 () {
   }
 }
 
+function monocubes () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  let N = randomPick([2,3,4])
+  let pad = document.getElementById("featuresize").value/10000 * W
+  let delta = W/N
+  let x = 0, y = 0, i = 0, cnt = 0
+  for (; i < N*N; i++) {
+    amonocube(x+pad,y+pad,delta-2*pad,delta-2*pad)
+    x += delta
+    cnt++
+    if (cnt > 1 && cnt%N === 0) {
+      x = 0
+      y += delta
+    }
+  }
+}
+
 function kites () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -7235,6 +7255,34 @@ function kites () {
       y += delta
     }
   }
+}
+
+function amonocube (x,y,w,h) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  w *= 0.8, h *= 0.8
+  x += w * 0.1, y += h * 0.1
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let colors = shuffle(getCurrentPalette())
+  let alt = document.getElementById("grungy").checked
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/10
+  let div = 3, m = 2
+  ctx.fillStyle = colors[0]
+  ctx.shadowBlur = 15
+  ctx.shadowColor = colors[0]
+  ctx.shadowOffsetX = (Math.random()-0.5) * 8
+  ctx.shadowOffsetY  = (Math.random()-0.5) * 8
+  ctx.beginPath()
+  ctx.moveTo(x,y)
+  ctx.lineTo(x+m*w/div,y)
+  ctx.lineTo(x+w, y+1*h/div)
+  ctx.lineTo(x+w,y+h)
+  ctx.lineTo(x+w/div,y+h)
+  ctx.lineTo(x,y+m*h/div)
+  ctx.closePath()
+  ctx.fill()
+  ctx.shadowBlur = 0
 }
 
 function acube (x,y,w,h) {
