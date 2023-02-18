@@ -437,6 +437,8 @@
       <option value="onesquare">1 square</option>
       <option value="twosquares">2 squares</option>
       <option value="foursquares">4 squares</option>
+      <option value="threeCircles">3 circles</option>
+
       <option value="neckerline">necker</option>
       <option value="necker">necker (fill)</option>
       <option value="house">house (fill)</option>
@@ -454,7 +456,6 @@
       <option value="phase">phase</option>
       <option value="phases">phases</option>
       <option value="comets">comets</option>
-      <option value="threeCircles">3 circles</option>
       <option value="scraps">scraps</option>
       <option value="tape">tape</option>
       <option value="user">user</option>
@@ -7683,7 +7684,7 @@ function foursquares_l () {
   let colors = shuffle(getCurrentPalette())
   let alt = document.getElementById("grungy").checked
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/10
-  let pad = 40 + Math.random() *100, x = pad, y = pad
+  let pad = 10 + Math.random() *100, x = pad, y = pad
   let sqrW = W/2 + pad/2 -(2*pad), sqrH = sqrW
   
   ctx.strokeStyle = randomPick(colors)
@@ -7744,7 +7745,7 @@ function foursquares () {
   let colors = shuffle(getCurrentPalette())
   ctx.strokeStyle = colors[0]
   ctx.fillStyle = colors[0]
-  let pad = 40 + Math.random() *100, x = pad, y = pad
+  let pad = 10 + Math.random() *100, x = pad, y = pad
   let sqrW = W/2 + pad/2 -(2*pad), sqrH = sqrW
   ctx.beginPath()
   ctx.moveTo(x,y)
@@ -22011,12 +22012,12 @@ function drawBlobAt (ctx, x, y, r) {
 
 function threeCircles () {
   let canvas = document.getElementById("myCanvas");
-  let mult = 1+ document.getElementById("featuresize").value/250
+  let mult = 1+ document.getElementById("featuresize").value/300
   let ctx = canvas.getContext("2d");
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let cy = ctx.canvas.height/2;
   let x = canvas.width/5, i = 0
-  let r = canvas.width/4 * mult
+  let r = canvas.width/6 * mult
   let colors = shuffle(getCurrentPalette())
   let offset = [canvas.width/5, canvas.width/2, 4*canvas.width/5
   ]
