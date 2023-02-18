@@ -396,6 +396,7 @@
     <select id="drawingfunctions" >
       <option value="spiral4">scribble</option>
       <option value="script" selected>script</option>
+      <option value="placeTextAt">word</option>
       <option value="scratchout">scratch out</option>
 
       <option value="randomTexture" >random texture</option>
@@ -13125,7 +13126,7 @@ function script () {
     ctx.moveTo(x, y)
     cx1 = x+fs*2, cy1 = y -3*fs
     cx2 = x-fs*2, cy2 = y +3*fs
-    bump = 2*fs/3 + pet(fs*D/4)
+    bump = 3*fs/4 + pet(fs*D/4)
     if (Math.random() < 0.07) {
       cy2 += 4*fs
     } else
@@ -16811,27 +16812,6 @@ function curveAcross () {
   }
 }
 
-function placeText (lines, angle) {
-  let canvas = document.getElementById("myCanvas");
-  let ctx = canvas.getContext("2d")
-  let H = canvas.height;
-  let W = canvas.width;
-  ctx.fillStyle = randomPick(["#404040", "#808080", "#101010"])
-  let faces = "serif"
-  let size = 6 + Math.floor(Math.random() * 20)
-  ctx.textAlign = 'left';
-  ctx.textBaseline = 'middle'
-  let x = Math.random() * W
-  let y = Math.random() * H
-  //ctx.font = "bold "+size+"px Helvetica"
-  
-  ctx.save()
-  ctx.font = size+"px SnellRoundhand-Black"
-  ctx.translate(x, y)
-  ctx.rotate(angle) // need to adjust x & y offsets per line
-  ctx.fillText(lines, 0, 0)
-  ctx.restore()
-}
 
 function roadmap () {
   let canvas = document.getElementById("myCanvas");
@@ -22657,64 +22637,36 @@ function clearFace () {
 
 
 function placeTextAt () {
-  let lines = document.getElementById("caption").value.split(/[\r\n]+/)
+  let text = document.getElementById("points").value
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
-  let h = canvas.height;
-  let w1 = canvas.width;
-  let W = w1
+  W = canvas.width
   ctx.globalAlpha = (document.getElementById("opacity").value)/100
   ctx.fillStyle = document.getElementById("paintcolor").value
-  let styles = document.getElementById("style").value
-  let faces = document.getElementById("face").value
-  let size0 = +document.getElementById("textsize").value
-  let angle = +document.getElementById("angle").value
+  let fs = 2.6*(4 + document.getElementById("featuresize").value/10)
   ctx.textAlign = 'left';
   ctx.textBaseline = 'middle'
-  angle = angle%360
-  angle *= Math.PI/180
-  let randomangle = document.getElementById("randomangle").checked
-  if (randomangle)
-    angle += pet(3.14/4)
-  if (!faces || faces.length < 1)
-    return
+  if (text.length < 1)
+    text = randomWord()
   let x = LASTCLICK[0]
   let y = LASTCLICK[1]
-  if (!faces || faces.length < 1)
-    return
+ 
   ctx.fillStyle = document.getElementById("paintcolor").value
   ctx.strokeStyle = document.getElementById("paintcolor").value
-  size = 24
-  ctx.font = (styles)+" "+size+"pt " + (faces)
-  let i = 0, w = 10
-  let H = 0, CW = 0, CH = 0
-  let sizes = [], widths = []
-  let maxH = 24
-  for (;i < lines.length; i++) {
-    w = ctx.measureText(lines[i]).width
-    CH += 12 + 28 * (W/w)
-    CW =  w * (W/w)
-    maxH = (12 + 28 * (W/w) > maxH)? 12 + 28 * (W/w): maxH;
-    sizes[i] = size0//24*W/w
-    if (w <= 0)
-      sizes[i]=10
-  }
   ctx.fillStyle = document.getElementById("paintcolor").value
   ctx.globalAlpha = (document.getElementById("opacity").value)/100
-  let center = lines.length * size0 / 2
-  i = 0
-  for (; i < lines.length; i++) {
-    x = LASTCLICK[0]
-    y = i*sizes[i] * 1.2 + LASTCLICK[1]
-    ctx.save()
-    ctx.translate(x, y)
-    ctx.rotate(angle) // need to adjust x & y offsets per line
-    ctx.font = (styles)+" "+sizes[i]+"pt " + (faces)
-    ctx.fillText(lines[i], 0, 0)
-    ctx.restore()
+  
+  x = LASTCLICK[0]
+  y = LASTCLICK[1] //- fs/4
+  ctx.font = "100 "+(fs)+"pt AmericanTypewriter,Courier"
+  let w = ctx.measureText(" "+text).width
+  ctx.fillText(text, x, y)
+  LASTCLICK[0] += w
+  if (x+w > W) {
+    LASTCLICK[1] += fs*2
+    LASTCLICK[0] = 0
   }
 }
-
 /*
 function stem (x,y,r, m) {
   this.x = x
