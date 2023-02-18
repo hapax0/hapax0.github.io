@@ -605,6 +605,7 @@
             <option value="mono">mono up</option>
             <option value="monodown">mono down</option>
             <option value="primary" selected>primary</option>
+            <option value="cmy">cmy</option>
             <option value="rainbow">rainbow</option>
             <option value="rust">rust</option>
             <option value="yellowed">yellowed</option>
@@ -1235,6 +1236,17 @@ function loadPalette () {
     document.getElementById("pal4").value = adjustBrightnessC(c, amt*3)
     document.getElementById("pal5").value = adjustBrightnessC(c, amt*4)
     updateExtraColors(b)
+    return
+  } else
+  if (type === "cmy") {
+    let rb = [randomColorCool(),randomColorCool(),"#cccccc",randomColorWarm(),randomColorWarm()]
+    document.getElementById("pal1").value = "#00ffff"
+    document.getElementById("pal2").value = "#ffff00"
+    document.getElementById("pal3").value = "#ff00ff"
+    document.getElementById("pal4").value = "#000000"
+    document.getElementById("pal5").value = "#ffffff"
+    updateExtraColors(b)
+    document.getElementById("numcolors").value = 3
     return
   } else
   if (type === "rainbow") {
@@ -6563,7 +6575,7 @@ function monocube () {
   let alt = document.getElementById("grungy").checked
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/10
   let pad = 150 //+ Math.random() *40,
-  ctx.shadowBlur = 40
+  ctx.shadowBlur = 10 + Math.random() * 50
   ctx.shadowColor = colors[0]
   ctx.shadowOffsetX = (Math.random()-0.5) * 28
   ctx.shadowOffsetY  = (Math.random()-0.5) * 28
@@ -6591,7 +6603,6 @@ function monocube () {
   ctx.lineTo(x,y)
   ctx.closePath()
   ctx.fill()
-  
 }
 
 function cube () {
@@ -17413,7 +17424,8 @@ function form1 () {
   }
 
   // horirontal div
-  dy = 1*H/3+ pet(H/3)
+  let dtop = H/4 + pet(H/8)
+  let dy = dtop + Math.random() * (H/5)
   ctx.beginPath();
   ctx.moveTo(x+inset, y+dy);
   ctx.lineTo(W-inset, y+dy);
@@ -17438,45 +17450,48 @@ function form1 () {
   
   // as alt
   //ctx.strokeStyle = "#ff0000"
- // ctx.lineWidth = 3
-  ctx.strokeRect(inset,inset,W-inset*2,H/4)
-  dx = inset+W/5
-  ctx.beginPath();
-  ctx.moveTo(x+dx, y+inset);
-  ctx.lineTo(x+dx, H/4+inset);
-  ctx.closePath()
-  ctx.stroke()
-  dx += W/4
-  ctx.beginPath();
-  ctx.moveTo(x+dx, y+inset);
-  ctx.lineTo(x+dx, H/4+inset);
-  ctx.closePath()
-  ctx.stroke()
-  dx += W/4
-  ctx.beginPath();
-  ctx.moveTo(x+dx, y+inset);
-  ctx.lineTo(x+dx, H/4+inset);
-  ctx.closePath()
-  ctx.stroke()
-  // horx div
-  ctx.beginPath();
-  ctx.moveTo(inset, H/8+inset);
-  ctx.lineTo(x+dx, H/8+inset);
-  ctx.closePath()
-  ctx.stroke()
-  // 2 H divs in rightmost cell
-  let dh = (H/4)/3
-  ctx.beginPath();
-  ctx.moveTo(x+dx, dh+inset);
-  ctx.lineTo(W-inset, dh+inset);
-  ctx.closePath()
-  ctx.stroke()
-  
-  ctx.beginPath();
-  ctx.moveTo(x+dx, dh*2+inset);
-  ctx.lineTo(W-inset, dh*2+inset);
-  ctx.closePath()
-  ctx.stroke()
+  //ctx.lineWidth = 3
+  if (alt) {
+    inset += 6+Math.random()*24
+    ctx.strokeRect(inset,inset,W-inset*2,dtop)
+    dx = inset+W/5
+    ctx.beginPath();
+    ctx.moveTo(x+dx, y+inset);
+    ctx.lineTo(x+dx, dtop+inset);
+    ctx.closePath()
+    ctx.stroke()
+    dx += W/4
+    ctx.beginPath();
+    ctx.moveTo(x+dx, y+inset);
+    ctx.lineTo(x+dx, dtop+inset);
+    ctx.closePath()
+    ctx.stroke()
+    dx += W/4
+    ctx.beginPath();
+    ctx.moveTo(x+dx, y+inset);
+    ctx.lineTo(x+dx, dtop+inset);
+    ctx.closePath()
+    ctx.stroke()
+    // horx div
+    ctx.beginPath();
+    ctx.moveTo(inset, dtop/2+inset);
+    ctx.lineTo(x+dx, dtop/2+inset);
+    ctx.closePath()
+    ctx.stroke()
+    // 2 H divs in rightmost cell
+    let dh = dtop/3
+    ctx.beginPath();
+    ctx.moveTo(x+dx, dh+inset);
+    ctx.lineTo(W-inset, dh+inset);
+    ctx.closePath()
+    ctx.stroke()
+    
+    ctx.beginPath();
+    ctx.moveTo(x+dx, dh*2+inset);
+    ctx.lineTo(W-inset, dh*2+inset);
+    ctx.closePath()
+    ctx.stroke()
+  }
   
 }
 
