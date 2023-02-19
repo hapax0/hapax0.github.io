@@ -428,6 +428,7 @@
       <option value="origami">origami</option>
       <option value="hstripes">stripes</option>
       <option value="monocubes">mono cubes</option>
+      <option value="monoballs">mono balls</option>
       <option value="kites">kites</option>
       <option value="flags">flags</option>
       <option value="pointys" >pointy</option>
@@ -6580,10 +6581,12 @@ function monocube () {
   let alt = document.getElementById("grungy").checked
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/10
   let pad = 150 //+ Math.random() *40,
-  ctx.shadowBlur = 10 + Math.random() * 50
-  ctx.shadowColor = colors[0]
-  ctx.shadowOffsetX = (Math.random()-0.5) * 28
-  ctx.shadowOffsetY  = (Math.random()-0.5) * 28
+  if (!alt) {
+    ctx.shadowBlur = 10 + Math.random() * 50
+    ctx.shadowColor = colors[0]
+    ctx.shadowOffsetX = (Math.random()-0.5) * 28
+    ctx.shadowOffsetY  = (Math.random()-0.5) * 28
+  }
   /* like this
          ___
         /   |
@@ -7269,10 +7272,12 @@ function amonocube (x,y,w,h) {
   let alt = document.getElementById("grungy").checked
   let div = 3, m = 2
   ctx.fillStyle = colors[0]
-  ctx.shadowBlur = 15
-  ctx.shadowColor = colors[0]
-  ctx.shadowOffsetX = (Math.random()-0.5) * 8
-  ctx.shadowOffsetY  = (Math.random()-0.5) * 8
+  if (!alt) {
+    ctx.shadowBlur = 10 + Math.random() * 15
+    ctx.shadowColor = colors[0]
+    ctx.shadowOffsetX = (Math.random()-0.5) * 8
+    ctx.shadowOffsetY  = (Math.random()-0.5) * 8
+  }
   ctx.beginPath()
   ctx.moveTo(x,y)
   ctx.lineTo(x+m*w/div,y)
@@ -7318,10 +7323,13 @@ function amonoball (x,y,w,h) {
   let alt = document.getElementById("grungy").checked
   let div = 3, m = 2
   ctx.fillStyle = colors[0]
-  ctx.shadowBlur = 15
-  ctx.shadowColor = colors[0]
-  ctx.shadowOffsetX = (Math.random()-0.5) * 8
-  ctx.shadowOffsetY = (Math.random()-0.5) * 8
+  if (!alt) {
+    console.log("blur")
+    ctx.shadowBlur = 10 + Math.random() * 50
+    ctx.shadowColor = colors[0]
+    ctx.shadowOffsetX = (Math.random()-0.5) * 28
+    ctx.shadowOffsetY  = (Math.random()-0.5) * 28
+  }
   ctx.beginPath()
   ctx.moveTo(x+r,y+r)
   ctx.arc(x+r,y+r,r,0,Math.PI*2)
@@ -8685,7 +8693,7 @@ function venn () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.clearRect(0,0,canvas.width,canvas.height)
-  ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
+  ctx.lineWidth = 1+ document.getElementById("featuresize").value/50
   let R = canvas.height * 0.31
   let margin = R/20
   ctx.globalAlpha = document.getElementById("opacity").value/100
@@ -9474,7 +9482,7 @@ function roomOG () {
 function automatic () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
+  ctx.lineWidth = 1+ document.getElementById("featuresize").value/50
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let colors = shuffle(getCurrentPalette())//['red', 'blue', 'yellow', 'orange', 'purple', "green"])
   let mode = document.getElementById("mode").value
@@ -9529,7 +9537,7 @@ function automatic () {
 function natural () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
+  ctx.lineWidth = 1+ document.getElementById("featuresize").value/50
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let colors = shuffle(getCurrentPalette())//['red', 'blue', 'yellow', 'orange', 'purple', "green"])
   let mode = document.getElementById("mode").value
@@ -9579,7 +9587,7 @@ function natural () {
 function room () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
+  ctx.lineWidth = 1+ document.getElementById("featuresize").value/50
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let colors = shuffle(getCurrentPalette())//['red', 'blue', 'yellow', 'orange', 'purple', "green"])
   let mode = document.getElementById("mode").value
@@ -9617,7 +9625,7 @@ function room () {
 function thought () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
+  ctx.lineWidth = 1+ document.getElementById("featuresize").value/50
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let colors = shuffle(getCurrentPalette())//['red', 'blue', 'yellow', 'orange', 'purple', "green"])
   let mode = document.getElementById("mode").value
@@ -9662,7 +9670,7 @@ function thought () {
 function talk () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
+  ctx.lineWidth = 1+ document.getElementById("featuresize").value/50
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let colors = shuffle(getCurrentPalette())//['red', 'blue', 'yellow', 'orange', 'purple', "green"])
   let mode = document.getElementById("mode").value
@@ -9696,7 +9704,7 @@ function talk () {
 function heart () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
+  ctx.lineWidth = 1+ document.getElementById("featuresize").value/50
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let colors = shuffle(getCurrentPalette())//['red', 'blue', 'yellow', 'orange', 'purple', "green"])
   let mode = document.getElementById("mode").value
@@ -9738,7 +9746,7 @@ function heart () {
 function ivy () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
+  ctx.lineWidth = 1+ document.getElementById("featuresize").value/50
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let colors = shuffle(getCurrentPalette())//['red', 'blue', 'yellow', 'orange', 'purple', "green"])
   let mode = document.getElementById("mode").value
@@ -9810,7 +9818,7 @@ function ivy () {
 function hand () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
+  ctx.lineWidth = 1+ document.getElementById("featuresize").value/50
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let colors = shuffle(getCurrentPalette())//['red', 'blue', 'yellow', 'orange', 'purple', "green"])
   let mode = document.getElementById("mode").value
@@ -9878,7 +9886,7 @@ function hand () {
 function tv () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
+  ctx.lineWidth = 1+ document.getElementById("featuresize").value/50
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let colors = shuffle(getCurrentPalette())//['red', 'blue', 'yellow', 'orange', 'purple', "green"])
   let mode = document.getElementById("mode").value
@@ -9916,7 +9924,7 @@ function tv () {
 function envelope () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
+  ctx.lineWidth = 1+ document.getElementById("featuresize").value/50
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let colors = shuffle(getCurrentPalette())//['red', 'blue', 'yellow', 'orange', 'purple', "green"])
   let mode = document.getElementById("mode").value
@@ -9958,7 +9966,7 @@ function envelope () {
 function phase () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
+  ctx.lineWidth = 1+ document.getElementById("featuresize").value/50
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let colors = shuffle(getCurrentPalette())//['red', 'blue', 'yellow', 'orange', 'purple', "green"])
   let mode = document.getElementById("mode").value
@@ -9995,7 +10003,7 @@ function phases () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.clearRect(0,0,canvas.width,canvas.height)
-  ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
+  ctx.lineWidth = 1+ document.getElementById("featuresize").value/50
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let colors = shuffle(getCurrentPalette())//['red', 'blue', 'yellow', 'orange', 'purple', "green"])
   let mode = document.getElementById("mode").value
@@ -10501,7 +10509,7 @@ function glass () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.clearRect(0,0,canvas.width,canvas.height)
-  ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
+  ctx.lineWidth = 1+ document.getElementById("featuresize").value/50
   let R = canvas.width * 0.3
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let colors = shuffle(getCurrentPalette())
@@ -11993,7 +12001,7 @@ function necker () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.clearRect(0,0,canvas.width,canvas.height)
-  ctx.lineWidth = 1 + Math.floor(document.getElementById("featuresize").value/10)
+  ctx.lineWidth = 1 + Math.floor(document.getElementById("featuresize").value/50)
   let W = canvas.width
   let margin = W/20
   let w4 = (W-2*margin)/(2+Math.floor(Math.random() * 10))//document.getElementById("rows").value
@@ -15573,7 +15581,7 @@ function nested () {
 function neckerline () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  ctx.lineWidth = 1+ document.getElementById("featuresize").value/4
+  ctx.lineWidth = 1+ document.getElementById("featuresize").value/50
   let W = canvas.width
   if (W > canvas.height)
     W = canvas.height
