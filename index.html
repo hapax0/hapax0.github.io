@@ -481,12 +481,13 @@
       <option value="moleskine2" selected>mole blank</option>
       <option value="moleskine">mole grid</option>
       <option value="moleskineDay">day planner</option>
-      <option value="moleText">moby</option>
       <option value="cuttingboard">cutting board</option>
       <option value="perforations">perforations</option>
       <option value="label">label</option>
       <option value="form1">form</option>
       <option value="index">index</option>
+      <option value="moleText">clues</option>
+
       <option value="crosswordPad">crossword</option>
       <option value="sketchpad">sketch pad</option>
       <option value="floppyPage">stack of pages</option>
@@ -7266,7 +7267,6 @@ function amonocube (x,y,w,h) {
   ctx.globalAlpha = +document.getElementById("opacity").value/100
   let colors = shuffle(getCurrentPalette())
   let alt = document.getElementById("grungy").checked
-  ctx.lineWidth = 1 + document.getElementById("featuresize").value/10
   let div = 3, m = 2
   ctx.fillStyle = colors[0]
   ctx.shadowBlur = 15
@@ -7283,6 +7283,54 @@ function amonocube (x,y,w,h) {
   ctx.closePath()
   ctx.fill()
   ctx.shadowBlur = 0
+  ctx.shadowOffsetX = 0
+  ctx.shadowOffsetY = 0
+}
+
+function monoballs () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  let N = randomPick([2,3,4])
+  let pad = document.getElementById("featuresize").value/10000 * W
+  let delta = W/N
+  let x = 0, y = 0, i = 0, cnt = 0
+  for (; i < N*N; i++) {
+    amonoball(x+pad,y+pad,delta-2*pad,delta-2*pad)
+    x += delta
+    cnt++
+    if (cnt > 1 && cnt%N === 0) {
+      x = 0
+      y += delta
+    }
+  }
+}
+
+function amonoball (x,y,w,h) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  w *= 0.8, h *= 0.8
+  x += w * 0.1, y += h * 0.1
+  let r = w/2
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let colors = shuffle(getCurrentPalette())
+  let alt = document.getElementById("grungy").checked
+  let div = 3, m = 2
+  ctx.fillStyle = colors[0]
+  ctx.shadowBlur = 15
+  ctx.shadowColor = colors[0]
+  ctx.shadowOffsetX = (Math.random()-0.5) * 8
+  ctx.shadowOffsetY = (Math.random()-0.5) * 8
+  ctx.beginPath()
+  ctx.moveTo(x+r,y+r)
+  ctx.arc(x+r,y+r,r,0,Math.PI*2)
+  
+  ctx.closePath()
+  ctx.fill()
+  ctx.shadowBlur = 0
+  ctx.shadowOffsetX = 0
+  ctx.shadowOffsetY = 0
 }
 
 function acube (x,y,w,h) {
@@ -12851,9 +12899,8 @@ function crosswordPad () {
   let avail = (W-2*pad)/divisions
   let linespace = avail/MULT
   ctx.fillStyle = "#ffffff"//color
-  let colors = ["#ed6060", "#6060ba", "#6060ed", "#ed6060", "#000000"]
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = randomPick(colors)
+  ctx.strokeStyle = color
   ctx.fillStyle = ctx.strokeStyle
   ctx.lineWidth = 3
   let i = 0, x = pad, y = pad, num = 1
@@ -15341,7 +15388,7 @@ function moleText (d) {
     thebook = text
   let lines = thebook.split(/\n/gm) // moby.js = book
   ctx.font = fs*scale+"px Georgia"
-  ctx.fillStyle = randomPick(["#ed6060", "#6060ba", "#6060ed", "#ed6060", "#000000"])
+  ctx.fillStyle = color
   let linespace = 2*fs*scale
   let avspace = Math.floor((canvas.height - 20 - 60*scale)/linespace - 1)
   let i = 0, x = 90*scale, y = 60*scale
@@ -15481,7 +15528,7 @@ Date.prototype.getWeek = function() {
 function nested () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.strokeStyle = document.getElementById("paintcolor").value
   ctx.lineCap = 'square'
@@ -15493,9 +15540,9 @@ function nested () {
   let adjust = ctx.lineWidth/2
   let x = 0, y = 0, line = true
   let xd = 0, yd = 0
+  let pad = 0//10 + Math.random() * 40
   drawRectAt(ctx, x+adjust, y+adjust, W-(adjust*2), line) // first square
-  let depth = Math.floor((-1/12 * ctx.lineWidth) +(49/6)) // tbd: 3 to 6
-
+  let depth = randomPick([3,4,5])//Math.floor((-1/12 * ctx.lineWidth) +(49/6)) // tbd: 3 to 6
   let i = 0, x2, y2, W0
   for (;i < depth; i++) {
     W0 = W
