@@ -486,6 +486,7 @@
       <option value="perforations">perforations</option>
       <option value="label">label</option>
       <option value="form1">form</option>
+      <option value="form2">form divs</option>
       <option value="index">index</option>
       <option value="moleText">clues</option>
 
@@ -17490,6 +17491,41 @@ function roundedFrame (n) {
   ctx.globalCompositeOperation = mode
 }
 
+function form2 () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let LW = 1 + Math.floor(document.getElementById("featuresize").value/50)
+  let alt = document.getElementById("grungy").checked
+  let inset = 20 + Math.random()*20
+  let W = canvas.width
+  let H = canvas.height
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.lineWidth = LW + 1
+  let x = 0, y = 0
+  //ctx.strokeRect(inset,inset,W-inset*2, H-inset*2)
+  ctx.lineWidth = LW
+  
+  let i = 0
+  for (; i < 2; i++) {
+  // horirontal div
+    x = inset
+    y = Math.random()*H
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(W-inset, y);
+    ctx.closePath()
+    ctx.stroke()
+    y = inset
+    x = Math.random()*H
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x, H-inset);
+    ctx.closePath()
+    ctx.stroke()
+  }
+}
+
 function form1 () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -22752,9 +22788,15 @@ function placeRectAt () { // word-shaped rect
   let fs = 2.6*(4 + document.getElementById("featuresize").value/10)
   ctx.textAlign = 'left';
   ctx.textBaseline = 'middle'
-  if (document.getElementById("grungy").checked)
-    ctx.fillStyle = randomPick(getCurrentPalette())
   
+  
+  if (document.getElementById("grungy").checked) {
+   // ctx.fillStyle = randomPick(getCurrentPalette())
+    ctx.shadowBlur = fs/4 + Math.random() * fs/4
+    ctx.shadowColor = ctx.fillStyle
+    ctx.shadowOffsetX = (Math.random()-0.5) * 4
+    ctx.shadowOffsetY  = (Math.random()-0.5) * 4
+  }
   let text = randomPick(["a","aa","aaa","aaaa","aaaaa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa", "aaaaaaaa", "aaaaaaaaa"])
   let x = LASTCLICK[0]
   let y = LASTCLICK[1]
@@ -22768,6 +22810,10 @@ function placeRectAt () { // word-shaped rect
     LASTCLICK[1] += fs*2
     LASTCLICK[0] = 0
   }
+  
+  ctx.shadowBlur = 0
+  ctx.shadowOffsetX = 0
+  ctx.shadowOffsetY = 0
 }
 
 function placeTextAt () {
