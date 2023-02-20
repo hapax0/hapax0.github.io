@@ -7257,8 +7257,10 @@ function monoblobs () {
   let delta = W/N
   let x = 0, y = 0, i = 0, cnt = 0
   for (; i < N*N; i++) {
-    if (alt)
-      ctx.strokeStyle = randomPick(colors)
+    //if (alt)
+    ctx.strokeStyle = randomPick(colors)
+    ctx.fillStyle = randomPick(colors)
+    
     ablob(x+pad,y+pad,delta-2*pad,delta-2*pad)
     x += delta
     cnt++
@@ -7272,14 +7274,15 @@ function monoblobs () {
 function ablob (cx,cy,w,h) {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
+  let alt = document.getElementById("grungy").checked
   let alpha0 = ctx.globalAlpha
-  let radius = w/2 *0.8
+  let radius = w/2 *0.9
   cx += w/2, cy += h/2
   let x = 0
   let y = 0
   let x0,y0
   let angle = Math.floor(Math.random() * 6.42);
-  let edges = randomPick([3,4,5,6,7,8])
+  let edges = randomPick([3,4,5,6,7])
   let increase = Math.PI * 2/edges*0.98;
   let points = [];
   //radius = (Math.random() * maxradius) + maxradius * 0.9;
@@ -7295,7 +7298,10 @@ function ablob (cx,cy,w,h) {
     angle += increase + pet(2)/5;
   }
   points.push([x0,y0])
-  strokePath(points)
+  if (alt)
+    drawPath(points,0,0)
+  else
+    strokePath(points)
 }
 
 
