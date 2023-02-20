@@ -8144,9 +8144,9 @@ function chair () {
   margin = H/5 + Math.floor(Math.random() * H/5)
   
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  let colors = shuffle(['red', 'blue', 'yellow', 'orange', 'purple', "green"])
+  //let colors = shuffle(['red', 'blue', 'yellow', 'orange', 'purple', "green"])
   let grunge = document.getElementById("grungy").checked
-  ctx.lineWidth = 1 + Math.floor(document.getElementById("featuresize").value/10)
+  ctx.lineWidth = 1 + Math.floor(document.getElementById("featuresize").value/50)
   ctx.lineCap = "round"
   let points = []
   points[0] = [margin, W/2+margin/2]
@@ -15593,7 +15593,6 @@ function neckerline () {
   ctx.lineCap = 'round'
   ctx.lineJoin = 'round'
 
-  let colors = shuffle(['red', 'blue', 'yellow', 'orange', 'purple', "green"])
   let grunge = document.getElementById("grungy").checked
   //bottom
   ctx.beginPath();
@@ -17491,6 +17490,108 @@ function roundedFrame (n) {
   ctx.globalCompositeOperation = mode
 }
 
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1)
+}
+
+function mockparagraphWords () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let fs = 2.6*(4 + document.getElementById("featuresize").value/10)
+  alpha = document.getElementById("opacity").value
+  document.getElementById("opacity").value = 50
+  let W = canvas.width
+  let H = canvas.height
+  let x = 20 + Math.random()*W * 0.5
+  let y = 20 + Math.random() * 3*H/4
+  let wrap = randomPick([3,4,5])
+  let N = 3 + Math.floor(Math.random() * 14)
+  let stops = [".", ".", ".",". ",".", ".","?", "!", ":"]
+  let stopwords = ["a","adeus","agora","ainda","alem","algo","ali","além","ambas","ambos","ano","anos","antes","ao","aonde","aos","apoio","apos","após","aqui","as","assim","atrás","até","aí","baixo","bem","boa","boas","bom","bons","breve","cada","cedo","cento","cima","cinco","coisa","com","como","cuja","cujas","cujo","cujos","custa","cá","da","dar","das","de","dela","delas","dele","deles","desde","dessa","desse","desta","deste","deve","devem","deverá","dez","dia","diz","dizem","dizer","do","dois","dos","doze","duas","dá","dão","dúvida","e","ela","elas","ele","eles","em","entao","entre","então","era","eram","essa","essas","esse","esses","esta","estar","estará","estas","este","estes","estou","está","estás","estão","eu","falta","fará","favor","faz","fazem","fazer","fazes","fazia","faço","fez","fim","final","foi","fomos","for","fora","foram","forem","forma","fosse","foste","fui","geral","grupo","ha","haja","hajam","havia","hei","hoje","hora","horas","houve","há","hão","ir","irá","isso","ista","iste","isto","já","lado","lhe","lhes","local","logo","longe","lugar","lá","maior","mais","mal","mas","me","meio","menor","menos","meses","mesma","mesmo","meu","meus","mil","minha","muito","máximo","mês","na","nada","nao","nas","nem","nessa","nesse","nesta","neste","no","noite","nome","nos","nossa","nosso","nova","novas","nove","novo","novos","num","numa","numas","nunca","nuns","não","nível","nós","número","o","obra","oito","onde","ontem","onze","os","ou","outra","outro","para","parte","pegar","pela","pelas","pelo","pelos","perto","pode","podem","poder","poderá","podia","pois","ponto","por","posso","pouca","pouco","povo","pôde","põe","põem","quais","qual","que","quem","quer","quero","questão","quáis","quê","relação","sabe","sabem","saber","se","sei","seis","seja","sejam","sem","sendo","ser","serei","seria","será","serão","seríamos","sete","seu","seus","sexta","sexto","sim","sob","sobre","sois","somos","sou","sua","suas","são","sétima","sétimo","só","tal","também","tanta","tanto","tarde","te","tem","temos","tempo","tenha","tenho","tens","tente","ter","terei","teria","terá","terão","teu","teus","teve","tinha","tipo","tive","tiver","toda","todas","todo","todos","treze","três","tu","tua","tuas","tudo","tão","tém","têm","um","uma","umas","uns","usa","usar","vai","vais","valor","veja","vem","vens","ver","vez","vezes","vindo","vinte","você","vocês","vos","vossa","vosso","vários","vão","vêm","vós","zero","à","às","área","é","éramos","és"]
+  let i = 0
+  for (; i < 50; i++)
+    stopwords.push(Math.floor(10+Math.random()*100))
+  //["is","a","the","to","on","in","at","but", "and", "or","was","it","for","by","this","that"]
+  LASTCLICK[0] = x
+  LASTCLICK[1] = y
+  i = 0
+  for(;i < N; i++) {
+    if (i > 0 && i % wrap === 0 || (LASTCLICK[0]+fs*3) > W) {
+      LASTCLICK[0] = x
+      LASTCLICK[1] += fs*2
+    }
+    let s = ""
+    if (Math.random() > 0.8)
+      s = randomPick(stops)
+    let word = randomWord(true)
+    if (i === 0)
+      word = capitalize(word)
+    placeTextAt(word+s) // str.charAt(0).toUpperCase() + str.slice(1)
+    if (Math.random() > 0.5) {
+      placeTextAt(randomPick(stopwords))
+      i++
+      if (i > 0 && i % wrap === 0 || (LASTCLICK[0]+fs*3) > W) {
+        LASTCLICK[0] = x
+        LASTCLICK[1] += fs*2
+      }
+    }
+  }
+  placeTextAt(randomPick(stops))
+  document.getElementById("opacity").value = alpha
+}
+
+function mockparagraphScript () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let fs = 2.6*(4 + document.getElementById("featuresize").value/10)
+  alpha = document.getElementById("opacity").value
+  document.getElementById("opacity").value = 50
+  let W = canvas.width
+  let H = canvas.height
+  let x = 20 + Math.random()*2*W/3
+  let y = 20 + Math.random() * 3*H/4
+  let wrap = randomPick([5,6,8])
+  let N = 3 + Math.floor(Math.random() * 23)
+  console.log(N)
+  LASTCLICK[0] = x
+  LASTCLICK[1] = y
+  let i = 0
+  for(;i < N; i++) {
+    if (i > 0 && i % wrap === 0 || (LASTCLICK[0]+fs*3) > W) {
+      LASTCLICK[0] = x
+      LASTCLICK[1] += fs*2
+    }
+    script()
+  }
+  document.getElementById("opacity").value = alpha
+}
+
+function divRects () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let LW = 1 + Math.floor(document.getElementById("featuresize").value/50)
+  let alt = document.getElementById("grungy").checked
+  let inset = 20 + Math.random()*20
+  let W = canvas.width
+  let H = canvas.height
+  ctx.globalAlpha = document.getElementById("opacity").value/200
+  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.lineWidth = LW + 1
+  let x = inset, y = inset
+  let div = 6+ Math.floor(Math.random()*20)
+  let d1 = (W-3*inset)/div
+  if (Math.random() > 0.5)
+    y = H-inset-d1
+  let ymax = (d1 > 80)? 80: d1;
+  ctx.lineWidth = LW
+  let i = 0
+  for (; i < div+6; i++) {
+  // horirontal div
+    ctx.fillRect(x+i*d1, y, d1/4, ymax)
+  }
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+}
+
 function form2 () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -17503,7 +17604,6 @@ function form2 () {
   ctx.strokeStyle = document.getElementById("paintcolor").value
   ctx.lineWidth = LW + 1
   let x = 0, y = 0
-  //ctx.strokeRect(inset,inset,W-inset*2, H-inset*2)
   ctx.lineWidth = LW
   
   let i = 0
@@ -17524,6 +17624,12 @@ function form2 () {
     ctx.closePath()
     ctx.stroke()
   }
+  if (Math.random() > 0.5)
+    divRects()
+  if (Math.random() > 0.5)
+    mockparagraphScript()
+  if (Math.random() > 0.5)
+    mockparagraphWords()
 }
 
 function form1 () {
@@ -22816,8 +22922,10 @@ function placeRectAt () { // word-shaped rect
   ctx.shadowOffsetY = 0
 }
 
-function placeTextAt () {
+function placeTextAt (t) {
   let text = document.getElementById("points").value
+  if (t)
+    text = t
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   W = canvas.width
