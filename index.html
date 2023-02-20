@@ -429,6 +429,7 @@
       <option value="hstripes">stripes</option>
       <option value="monocubes">mono cubes</option>
       <option value="monoballs">mono balls</option>
+      <option value="monoblobs">line polys</option>
       <option value="kites">kites</option>
       <option value="flags">flags</option>
       <option value="pointys" >pointy</option>
@@ -1253,7 +1254,7 @@ function loadPalette () {
     document.getElementById("pal4").value = "#000000"
     document.getElementById("pal5").value = "#ffffff"
     updateExtraColors(b)
-    document.getElementById("numcolors").value = 3
+    document.getElementById("numcolors").value = 4
     return
   } else
   if (type === "rainbow") {
@@ -7242,6 +7243,61 @@ function monocubes () {
     }
   }
 }
+
+function monoblobs () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let alt = document.getElementById("grungy").checked
+  ctx.globalAlpha = (document.getElementById("opacity").value)/100
+  let colors = getCurrentPalette()
+  let W = canvas.width, H = canvas.height
+  let N = randomPick([2,3,4])
+  let pad = document.getElementById("featuresize").value/10000 * W
+  ctx.strokeStyle = document.getElementById("paintcolor").value
+  let delta = W/N
+  let x = 0, y = 0, i = 0, cnt = 0
+  for (; i < N*N; i++) {
+    if (alt)
+      ctx.strokeStyle = randomPick(colors)
+    ablob(x+pad,y+pad,delta-2*pad,delta-2*pad)
+    x += delta
+    cnt++
+    if (cnt > 1 && cnt%N === 0) {
+      x = 0
+      y += delta
+    }
+  }
+}
+
+function ablob (cx,cy,w,h) {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let alpha0 = ctx.globalAlpha
+  let radius = w/2 *0.8
+  cx += w/2, cy += h/2
+  let x = 0
+  let y = 0
+  let x0,y0
+  let angle = Math.floor(Math.random() * 6.42);
+  let edges = randomPick([3,4,5,6,7,8])
+  let increase = Math.PI * 2/edges*0.98;
+  let points = [];
+  //radius = (Math.random() * maxradius) + maxradius * 0.9;
+  for (let i = 0; i < edges; i++) {
+    radius += pet(radius/4)
+    x = radius * Math.cos(angle)+cx;
+    y = radius * Math.sin(angle)+cy;
+    if (i === 0) {
+      x0 = x
+      y0 = y
+    }
+    points.push([x, y]);
+    angle += increase + pet(2)/5;
+  }
+  points.push([x0,y0])
+  strokePath(points)
+}
+
 
 function kites () {
   let canvas = document.getElementById("myCanvas")
@@ -23238,6 +23294,27 @@ function drawOutline (pts, offsetX, offsetY) {
   ctx.closePath();
   ctx.stroke();
 }
+
+function strokePath (points) {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  let x = 0, y = 0, x0 = 0, y0 = 0
+  ctx.beginPath()
+  let i = 0;
+  for (; i < points.length; i++) {
+    x = points[i][0];
+    y = points[i][1];
+    if (i === 0) {
+      x0 = x;
+      y0 = y;
+      ctx.moveTo(x, y);
+    } else
+    ctx.lineTo(x,y)
+  }
+  ctx.stroke();
+}
+
 
 function drawPath (points, offsetX, offsetY, c) {
   let canvas = document.getElementById("myCanvas");
