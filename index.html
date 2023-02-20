@@ -1320,8 +1320,8 @@ function loadPalette () {
     updateExtraColors(b)
   } else
   if (type === "primary") {
-    a = ['#ff0000', '#0000ff', '#ffff00', '#008000', '#ffa500']
-    updateExtraColors(b)
+    a = ['#ff0000', '#0000ff', '#ffff00', '#008000', '#ffa500', '#800080']
+    updateExtraColors(a)
   } else
   if (type === "nighthawks") {
     a = ["#f9f5a4", "#e76d38", "#33745b", "#762016", "#003e39"].reverse()
@@ -7249,7 +7249,7 @@ function monoblobs () {
   let ctx = canvas.getContext("2d")
   let alt = document.getElementById("grungy").checked
   ctx.globalAlpha = (document.getElementById("opacity").value)/100
-  let colors = getCurrentPalette()
+  let colors = getCurrentPalette(true,13)
   let W = canvas.width, H = canvas.height
   let N = randomPick([2,3,4])
   let pad = document.getElementById("featuresize").value/10000 * W
@@ -7331,7 +7331,7 @@ function amonocube (x,y,w,h) {
   w *= 0.8, h *= 0.8
   x += w * 0.1, y += h * 0.1
   ctx.globalAlpha = +document.getElementById("opacity").value/100
-  let colors = shuffle(getCurrentPalette())
+  let colors = shuffle(getCurrentPalette(true,13))
   let alt = document.getElementById("grungy").checked
   let div = 3, m = 2
   ctx.fillStyle = colors[0]
@@ -7382,7 +7382,7 @@ function amonoball (x,y,w,h) {
   x += w * 0.1, y += h * 0.1
   let r = w/2
   ctx.globalAlpha = +document.getElementById("opacity").value/100
-  let colors = shuffle(getCurrentPalette())
+  let colors = shuffle(getCurrentPalette(true,13))
   let alt = document.getElementById("grungy").checked
   let div = 3, m = 2
   ctx.fillStyle = colors[0]
