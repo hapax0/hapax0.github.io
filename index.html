@@ -4531,6 +4531,9 @@ function bricks () { //lego
   }
   ctx.clearRect(0,0,canvas.width,canvas.height)
   ctx.drawImage(off, 0, 0)
+  ctx.shadowBlur = 0
+  ctx.shadowOffsetY = 0
+  ctx.shadowOffsetX = 0
 }
 
 function nicksmith () {
@@ -6614,6 +6617,8 @@ function monocube () {
   ctx.closePath()
   ctx.fill()
   ctx.shadowBlur = 0
+  ctx.shadowOffsetY = 0
+  ctx.shadowOffsetX = 0
 }
 
 function cube () {
@@ -7388,10 +7393,10 @@ function amonoball (x,y,w,h) {
   ctx.fillStyle = colors[0]
   if (!alt) {
     console.log("blur")
-    ctx.shadowBlur = 10 + Math.random() * 50
+    ctx.shadowBlur = 10 + Math.random() * 15
     ctx.shadowColor = colors[0]
-    ctx.shadowOffsetX = (Math.random()-0.5) * 28
-    ctx.shadowOffsetY  = (Math.random()-0.5) * 28
+    ctx.shadowOffsetX = (Math.random()-0.5) * 8
+    ctx.shadowOffsetY  = (Math.random()-0.5) * 8
   }
   ctx.beginPath()
   ctx.moveTo(x+r,y+r)
@@ -12355,6 +12360,9 @@ function gridpaper () { // grid paper
     }
     x += cols
   }
+  ctx.shadowBlur = 0
+  ctx.shadowOffsetY = 0
+  ctx.shadowOffsetX = 0
 }
 
 function cuttingboard () { // white grid on teal
@@ -12582,88 +12590,6 @@ function dividedPad () {
   }
 }
 
-
-function dividedPad_OG () {
-  let canvas = document.getElementById("myCanvas");
-  let ctx = canvas.getContext("2d");
-  ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
-  let color = document.getElementById("paintcolor").value
-  let alt = document.getElementById("grungy").checked
-  let pad = 24
-  let H = canvas.height, W = canvas.width
-  let x = pad+pet(9), y = pad+pet(9)
-
-  let cx1 = W - pad*4+pet(91), cy1 = pad+pet(21),
-    cx2 = W -pad+pet(21), cy2 = 3*pad+pet(21),
-    px = cx1+8, py = cy2-3
-    
-  let colors = ["#ed6060", "#6060ba", "#6060ed", "#ed6060", "#000000"]
-  ctx.lineWidth = 1.5
-  ctx.fillStyle = color
-  ctx.shadowBlur = 10
-  ctx.shadowColor = "#303020"
-  ctx.shadowOffsetX = 2
-  ctx.shadowOffsetY = 2
-  ctx.beginPath()
-  ctx.moveTo(pad,pad)
-  ragged(ctx,W-pad,pad,x,y)
-  x = W-pad
-  y = pad
-  ragged(ctx,W-pad,H-pad+pet(3),x,y)
-  y = H-pad
-  ragged(ctx,pad,H-pad+pet(3),x,y)
-  x = pad
-  y = W-pad
-  ragged(ctx,pad,pad+pet(3),x,y)
-  ctx.closePath()
-  ctx.fill()
-  
- // ctx.fillStyle = "#ffaaaa"
-  // dogear
-  
-  ctx.shadowBlur = 20
-  ctx.shadowOffsetX = -4
-  ctx.shadowOffsetY = -4
-  ctx.beginPath()
-  ctx.moveTo(cx1,cy1)
-  ragged(ctx, px,py,cx1,cy1)
-  ragged(ctx, cx2,cy2,px,py)
-  ctx.lineTo(cx1, cy1)
-  ctx.closePath()
-  //ctx.fill()
-
-  ctx.shadowBlur = 0
-  ctx.shadowOffsetX = 0
-  ctx.shadowOffsetY = 0
-  ctx.strokeStyle = "#ff0000"
-  ctx.beginPath()
-  ctx.moveTo(canvas.width/2, 8+pad)
-  ctx.lineTo(canvas.width/2, canvas.height-pad-4)
-  ctx.closePath()
-  ctx.stroke()
-  ctx.lineWidth = 1
-  ctx.strokeStyle = randomPick(colors)//"#6060ed"
-  let i = 0
-  x = 2+pad, y = 100+pad
-  while (y < canvas.height-pad) {
-    ctx.beginPath()
-    ctx.moveTo(x, y)
-    ctx.lineTo(canvas.width-pad-4, y)
-    ctx.closePath()
-    ctx.stroke()
-    y += 28
-  }
-  ctx.strokeStyle = "#ee6060"
-  i = 0, y = pad, x = 32+pad
-  for (; i < 2; i++) {
-    ctx.beginPath()
-    ctx.moveTo(x, y+100)
-    ctx.lineTo(x, canvas.height-pad-4)
-    ctx.closePath()
-    ctx.stroke()
-    x = canvas.width/2 + 32
-  }
-}
 
 function thisSpace () {
   let canvas = document.getElementById("myCanvas");
@@ -12921,6 +12847,9 @@ function requirements () {
   ctx.face = "Arial"
   ctx.fillText(text, pad*2, H-pad*2)
   ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctx.shadowBlur = 0
+  ctx.shadowOffsetY = 0
+  ctx.shadowOffsetX = 0
 }
 
 function numberShow () {
@@ -13597,7 +13526,9 @@ function postcard () {
   ctx.font = "100 "+(18)+"pt " + face
   width = ctx.measureText(text).width
   ctx.fillText(text,CENT-width/2,y+2*140/3)
-  
+  ctx.shadowBlur = 0
+  ctx.shadowOffsetY = 0
+  ctx.shadowOffsetX = 0
   document.getElementById("paintcolor").value = color
 }
 
@@ -15605,13 +15536,15 @@ function nested () {
   ctx.lineCap = 'square'
   ctx.lineJoin = 'meter'
   let ratio = 1/1.61803
+  let pad = 0
   let W = canvas.width
   if (W > canvas.height)
     W = canvas.height
+  W -= pad * 2
   let adjust = ctx.lineWidth/2
-  let x = 0, y = 0, line = true
-  let xd = 0, yd = 0
-  let pad = 0//10 + Math.random() * 40
+  let x = pad, y = pad, line = true
+  let xd = pad, yd = pad
+  //let pad = 0//10 + Math.random() * 40
   drawRectAt(ctx, x+adjust, y+adjust, W-(adjust*2), line) // first square
   let depth = randomPick([3,4,5])//Math.floor((-1/12 * ctx.lineWidth) +(49/6)) // tbd: 3 to 6
   let i = 0, x2, y2, W0
@@ -15621,7 +15554,7 @@ function nested () {
     
     let r  = Math.random()
     if (r > 0.667)
-      xd = 0
+      xd = pad
     else
     if (r > 0.333)
       xd = W
@@ -15630,7 +15563,7 @@ function nested () {
     x += Math.floor(xd)
     r = Math.random()
     if (r > 0.667)
-      yd = 0
+      yd = pad
     else
     if (r > 0.333)
       yd = W
@@ -17665,6 +17598,7 @@ function form2 () {
   let H = canvas.height
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = document.getElementById("paintcolor").value
   ctx.lineWidth = LW + 1
   let x = 0, y = 0
   ctx.lineWidth = LW
@@ -17686,6 +17620,31 @@ function form2 () {
     ctx.lineTo(x, H-inset);
     ctx.closePath()
     ctx.stroke()
+  }
+  // date stamp
+  if (Math.random() > 0.5) {
+    let date = new Date()
+    date.setDate(date.getDate() - (365*randomPick([2.3,4.5,6.6,5.7,7.4,19.2])))
+    let t = date.toString().substring(0,16)
+    ctx.font = "11 pt AmericanTypewriter-Bold"
+    ctx.fillText(t, W*Math.random(), H-20 - Math.random()*10)
+  }
+  // column
+  if (Math.random() > 0.5) {
+    ctx.lineWidth += 1
+    i = 1, x = inset+Math.random() * W/2, y = H/3 +Math.random() * (H/3)
+    let h = H/2 + pet(H/4), w = h/1.8
+    ctx.strokeRect(x,y,w,h)
+    ctx.lineWidth -= 1
+    let divs = randomPick([6,7,8,9,11,14])
+    let d = h/divs
+    for (; i < divs; i++) {
+      ctx.beginPath();
+      ctx.moveTo(x+6, y + i * d);
+      ctx.lineTo(x+w-6, y + i * d);
+      ctx.closePath()
+      ctx.stroke()
+    }
   }
   
   if (Math.random() > 0.5) {
@@ -20803,6 +20762,9 @@ function dropFrame () {
   ctx.globalCompositeOperation = mode
   document.getElementById("mode").value = mode
   ctx.globalAlpha = alpha
+  ctx.shadowBlur = 0
+  ctx.shadowOffsetY = 0
+  ctx.shadowOffsetX = 0
 }
 
 function compress () { // vertical
