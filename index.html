@@ -17647,6 +17647,38 @@ function divRects () {
   ctx.globalAlpha = document.getElementById("opacity").value/100
 }
 
+function polar () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let fs = document.getElementById("featuresize").value
+  let LW = 1 + Math.floor(document.getElementById("featuresize").value/50)
+  let alt = document.getElementById("grungy").checked
+  let inset = 20 + Math.random()*20
+  let W = canvas.width
+  let H = canvas.height
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.lineCap = "square"
+  ctx.lineWidth = LW
+  let x = (Math.random() > 0.5)? 0: W;
+  let y = (Math.random() > 0.5)? 0: H;
+  x += pet(150), y += pet(150)
+  let r = 95 + Math.random() * 15
+  let r0 = r, b = 0
+  let i = 0, N = 7 + Math.floor(Math.random() * 5)
+  for (; i < N; i++) {
+    b = (Math.random() > 0.5)? 3: -3;
+    b = (LW + b)
+    ctx.lineWidth = b
+    ctx.beginPath()
+    ctx.arc(x,y,r,0,Math.PI*2)
+    ctx.closePath()
+    ctx.stroke()
+    r += r0
+  }
+}
+
 function form2 () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -17715,6 +17747,8 @@ function form2 () {
     ctx.strokeRect(x,y,W-(2*inset), H- (2*inset))
   }
   
+  if (Math.random() > 0.75)
+    polar()
   if (Math.random() > 0.5)
     divRects()
   document.getElementById("featuresize").value = 24
