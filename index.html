@@ -12388,11 +12388,13 @@ function halfTone () { // white grid on teal
   let w = 1080/20, h = 1080/20
   let i = 0
   //let Os = [100, 300, 400, 100, 300]
-  let offset = 20+ Math.random() * 300
+  let alt = document.getElementById("grungy").checked
+  let offset = 50 + document.getElementById("featuresize").value/4
   let xoffset = offset //+ pet(offset)
   let yoffset = offset //+ pet(offset)
   let r = offset * (0.15 + Math.random()/3), yd = 0
-  let D = 100, FH = true
+  let r0 = r
+  let FH = true
   let c = 0, off = Math.random() > 0.5
   let loopmax = W/xoffset*2
   for (;c < colors.length; c++) { // colors loop
@@ -12416,6 +12418,8 @@ function halfTone () { // white grid on teal
         ctx.beginPath()
         yd = calcY(x, slope, 0)
         ctx.moveTo(x, y+yd)
+        if (alt)
+          r = r0 + pet(r0/2)
         ctx.arc(x,y+yd,r,0,Math.PI*2)
         ctx.closePath()
         ctx.fill()
