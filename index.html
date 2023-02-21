@@ -404,6 +404,7 @@
       <option value="monocubes">mono cubes</option>
       <option value="monoballs">mono balls</option>
       <option value="monoblobs">line polys</option>
+      <option value="halfTone">half-tone</option>
       <option value="kites">kites</option>
       <option value="flags">flags</option>
       <option value="pointys" >pointy</option>
@@ -12368,6 +12369,60 @@ function gridpaper () { // grid paper
   ctx.shadowBlur = 0
   ctx.shadowOffsetY = 0
   ctx.shadowOffsetX = 0
+}
+
+function calcY (x, slope, offset) {
+  y = slope*x + offset
+  return (y)
+}
+
+function halfTone () { // white grid on teal
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let W = canvas.width, H = canvas.height
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctx.lineWidth = randomPick([4,5])
+  let colors = shuffle(getCurrentPalette())
+  let pad = 1080/10 + pet(40)
+  let x =  - Math.random() *100, y = pad - Math.random() *100
+  let w = 1080/20, h = 1080/20
+  let i = 0
+  let Os = [100, 300, 400, 100, 300]
+  let offset = 100
+  let xoffset = offset //+ pet(offset)
+  let yoffset = offset //+ pet(offset)
+  let r = offset * (0.2 + Math.random()/2.5), yd = 0
+  let D = 100, FH = true
+  let c = 0, off = Math.random() > 0.5
+  let loopmax = W/xoffset*2
+  for (;c < colors.length; c++) { // colors loop
+    ctx.fillStyle = colors[c]
+    let slope = Math.random()/10
+    if (Math.random() > 0.5)
+      slope *= -1
+    if (FH)
+      flipH()
+    else
+      flipV()
+    FH = !FH
+    let j = 0
+    for (; j < loopmax; j++) {
+      x = -xoffset, y = j * yoffset
+      if (off)
+        x -= xoffset/2
+      off = !off
+      i = 0
+      for (; i < loopmax; i++) {  // horizontal
+        ctx.beginPath()
+        yd = calcY(x, slope, 0)
+        ctx.moveTo(x, y+yd)
+        ctx.arc(x,y+yd,r,0,Math.PI*2)
+        ctx.closePath()
+        ctx.fill()
+        x += xoffset
+      }
+    }
+  }
 }
 
 function cuttingboard () { // white grid on teal
