@@ -12387,17 +12387,17 @@ function halfTone () { // white grid on teal
   let x =  - Math.random() *100, y = pad - Math.random() *100
   let w = 1080/20, h = 1080/20
   let i = 0
-  let Os = [100, 300, 400, 100, 300]
-  let offset = 100
+  //let Os = [100, 300, 400, 100, 300]
+  let offset = 20+ Math.random() * 300
   let xoffset = offset //+ pet(offset)
   let yoffset = offset //+ pet(offset)
-  let r = offset * (0.2 + Math.random()/2.5), yd = 0
+  let r = offset * (0.15 + Math.random()/3), yd = 0
   let D = 100, FH = true
   let c = 0, off = Math.random() > 0.5
   let loopmax = W/xoffset*2
   for (;c < colors.length; c++) { // colors loop
     ctx.fillStyle = colors[c]
-    let slope = Math.random()/10
+    let slope = Math.random()/7
     if (Math.random() > 0.5)
       slope *= -1
     if (FH)
@@ -13063,7 +13063,7 @@ function blanksHorV (i,j,filled) {
 function gridLinear () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/10
   let color = document.getElementById("paintcolor").value
   let alt = document.getElementById("grungy").checked
   let W = canvas.width, H = canvas.height
@@ -13072,9 +13072,8 @@ function gridLinear () {
   let avail = (W-2*pad)/divisions
   let linespace = avail/10
   ctx.fillStyle = "#ffffff"//color
-  let colors = ["#ed6060", "#6060ba", "#6060ed", "#ed6060", "#000000"]
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = randomPick(colors)
+  ctx.strokeStyle = color
   ctx.lineWidth = 3
   let i = 0, x = pad, y = pad
   while (i < divisions*10+1) {
@@ -13111,7 +13110,7 @@ function gridLinear () {
 function gridLog () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
+  ctx.lineWidth = 1 //+ document.getElementById("featuresize").value/10
   let color = document.getElementById("paintcolor").value
   let alt = document.getElementById("grungy").checked
   let W = canvas.width, H = canvas.height
@@ -13122,11 +13121,8 @@ function gridLog () {
   let linespace = spacerx//24 + Math.random() * 20,
   let LS = linespace
   let spacer = avail/55 * 1//linespace
-  ctx.fillStyle = "#ffffff"//color
-  let colors = ["#ed6060", "#6060ba", "#6060ed", "#ed6060", "#000000"]
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = randomPick(colors)
-  ctx.lineWidth = 1
+  ctx.strokeStyle = color
   let i = 0, x = pad, y = pad
   while (i < divisions*10+1) {
     ctx.beginPath()
@@ -21857,47 +21853,6 @@ function character () {
   ctx.restore()
 }
 
-function halftone () {
-  let grunge = document.getElementById("grungy").checked
-  //clearCanvas()
-  let canvas = document.getElementById("myCanvas");
-  let ctx = canvas.getContext('2d');
-  let x = -32, y = -32, x0 = x, y0 = y, off = 0;
-  let numlines = 0;
-  let x_inc = 16, y_inc = 16
-  ctx.globalAlpha = (document.getElementById("opacity").value)/100
-  let alpha0 = ctx.globalAlpha
-  ctx.fillStyle = document.getElementById("paintcolor").value
-  let radius = 0.2+document.getElementById("featuresize").value/62.5
-  let rad0 = radius
-  let rows = Math.pow(2, 9-document.getElementById("rows").value)
-  let inc = rows
-  let maxy = canvas.height/2
-  numlines = 0;
-  x_inc = inc, y_inc = inc
-  clip()
-  for (var i = 0; i < 24000; i++) {
-    if (grunge) {
-      ctx.globalAlpha = alpha0 + (Math.random() - 0.5) * alpha0
-      radius = rad0 + Math.random() * rad0/3
-    }
-    ctx.beginPath();
-    ctx.arc(x, y, radius, 0, 2*Math.PI);
-    ctx.closePath();
-    ctx.fill();
-    x += x_inc;
-    if (i % (160) === 0) {
-      numlines++;
-      if (numlines % 2 === 0)
-        off = x_inc/2;
-      else
-        off = 0;
-      x = off;
-      y += inc;
-    }
-  }
-  ctx.restore()
-}
 
 function straightLines (cross) { // vertical lines
   let grunge = document.getElementById("grungy").checked
