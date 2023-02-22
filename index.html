@@ -17722,17 +17722,18 @@ function pairedwords () {
   let fs = document.getElementById("featuresize").value/2
   let LW = 1 + Math.floor(document.getElementById("featuresize").value/50)
   ctx.lineWidth = LW
+  ctx.lineCap = "square"
   ctx.strokeStyle = document.getElementById("paintcolor").value
   ctx.fillStyle = document.getElementById("paintcolor").value
   let pairs =
   {"dir":"ls",
   "\\r":"\\n",
-  "Math":"Maths",
-  "colours":"colors","one":"1","5":"V","10":"X","1":"I", "hem":"haw", "xylem":"phloem", "rough":"tumble","weft":"warp","cake":"eat it",
+  "Math":"Maths","soft":"serve","read":"only","fish":"fish","hand":"wash","luke":"warm","check":"list","LP":"CD","hopes":"prayers","thermo":"nuclear",
+  "colours":"colors","one":"1","5":"V","10":"X","1":"I", "hem":"haw", "xylem":"phloem", "rough":"tumble","weft":"warp","cake":"eat it too",
   "in":"cm","tumble":"dry","a horse":"an horse","luke":"warm","either":"or",
   "null":"nil","0":"nil","zero":"","empty":"","vice":"versa","measure 2X":"cut 1X",
   "realise":"realize","gray":"grey",
-  "OK":"Okay",
+  "OK":"Okay","d'accord":"OK","shelf":"life","due":"date","the":"teh","bleu":"blue",
   "let":"var","bangers":"mash","beacon":"eggs",
   "row":"roe","roe":"eggs","flammable":"inflammable","half full":"half empty","half empty":"half full",
   "row":"fight","red":"#ff0000","yin":"yang","past":"prologue","time":"money",
