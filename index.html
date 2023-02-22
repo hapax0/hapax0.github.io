@@ -492,6 +492,9 @@
       <option value="label">label</option>
       <option value="form1">form</option>
       <option value="form2">form decoration</option>
+      <option value="pairedwords">form pairts</option>
+      
+      
       <option value="nested">nested sqrs</option>
       <option value="index">index</option>
       <option value="moleText">clues</option>
@@ -17607,7 +17610,6 @@ function mockparagraphScript () {
   let y = 20 + Math.random() * 3*H/4
   let wrap = randomPick([5,6,8])
   let N = 3 + Math.floor(Math.random() * 23)
-  console.log(N)
   LASTCLICK[0] = x
   LASTCLICK[1] = y
   let i = 0
@@ -17663,20 +17665,107 @@ function polar () {
   ctx.lineWidth = LW
   let x = (Math.random() > 0.5)? 0: W;
   let y = (Math.random() > 0.5)? 0: H;
-  x += pet(150), y += pet(150)
+  x += pet(200), y += pet(200)
   let r = 95 + Math.random() * 15
   let r0 = r, b = 0
   let i = 0, N = 7 + Math.floor(Math.random() * 5)
   for (; i < N; i++) {
     b = (Math.random() > 0.5)? 3: -3;
     b = (LW + b)
-    ctx.lineWidth = b
+    //ctx.lineWidth = randomPick[1,2,3,4,5]
     ctx.beginPath()
     ctx.arc(x,y,r,0,Math.PI*2)
     ctx.closePath()
     ctx.stroke()
     r += r0
   }
+  x = (Math.random() > 0.5)? 0: W;
+  y = (Math.random() > 0.5)? 0: H;
+  let x2 = W-x, y2 = H-y
+  ctx.beginPath()
+  ctx.moveTo(x,y)
+  ctx.lineTo(x2,y2)
+  ctx.closePath()
+  ctx.stroke()
+  
+  i = 0
+  //r0 = Math.pow(r0*r0, 0.5)
+  for(; i < N; i++) {
+    x += r0*1.42, x2 += r0*1.42
+    //ctx.lineWidth = randomPick[1,2,3,4,5]
+    ctx.beginPath()
+    ctx.moveTo(x,y)
+    ctx.lineTo(x2,y2)
+    ctx.closePath()
+    ctx.stroke()
+  }
+}
+
+function pairedwords () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let W = canvas.width
+  let H = canvas.height
+  let fs = document.getElementById("featuresize").value/2
+  let LW = 1 + Math.floor(document.getElementById("featuresize").value/50)
+  ctx.lineWidth = LW
+  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = document.getElementById("paintcolor").value
+  let pairs =
+  {"dir":"ls",
+  "\\r":"\\n",
+  "Math":"Maths",
+  "colours":"colors","one":"1","5":"V","10":"X","1":"I",
+  "in":"cm",
+  "null":"nil","0":"nil","zero":"","empty":"","vice":"versa","measure 2X":"cut 1X",
+  "realise":"realize","gray":"grey",
+  "OK":"Okay",
+  "let":"var",
+  "row":"roe","roe":"eggs","flammable":"inflammable","half full":"half empty","half empty":"half full",
+  "row":"fight","red":"#ff0000","yin":"yang","past":"prologue","time":"money",
+  "g":"oz",
+  "pair":"pear","e":"2.71828",
+  "deer":"dear","Pi":"3.14159","N":"1, 2, 3,...","col":"row","Oh":"0","et":"&","&":"+","and":"et","O":"Oh",
+  "pie":"pizza","port":"left","starboard":"right","dorsal":"back","ventral":"front",
+  "X":"X","y":"f(x)","[X]":"checked","=":"equals"
+  }
+  
+  let keys = shuffle(Object.keys(pairs))
+
+  let inset = 40
+  let i = 0
+  let w = W/7, h = w/1.61803
+  fs = h/7
+  let x = inset, y = inset*2
+  let N = 28
+  ctx.font = fs+"pt Helvetica"
+  let a = 1
+  // draw boxes
+  for (; i < N; i++) {
+    ctx.strokeRect(x+pet(4),y+pet(4),w+pet(4),h+pet(4))
+    // light fill of either side or big rect
+    a = ctx.globalAlpha
+    ctx.globalAlpha = 0.25
+    let d = +(Math.random()>0.5)?w/2:0;
+    ctx.fillRect(x+d,y,w/2-4,h-4)
+    ctx.globalAlpha = a
+    ctx.beginPath()
+    let p = pet(12)
+    ctx.moveTo(x+w/2+p, y + 6)
+    ctx.lineTo(x+w/2+p, y + h - 6)
+    ctx.closePath()
+    ctx.stroke()
+    ctx.fillText(keys[i]+"      ["+pairs[keys[i]]+"]", x, y - fs/2)
+    x += (w * 1.5)
+    if (x + w*1.5 > W - inset*2) {
+      x = inset
+      y += h * 1.5
+    }
+  }
+  a = ctx.globalAlpha
+  ctx.globalAlpha = 0.25
+  ctx.fillRect(W-inset*2.3+pet(20), y=inset*2+pet(30), 11+ Math.random()* 24, H - h)
+  ctx.globalAlpha = a
 }
 
 function form2 () {
@@ -17747,7 +17836,7 @@ function form2 () {
     ctx.strokeRect(x,y,W-(2*inset), H- (2*inset))
   }
   
-  if (Math.random() > 0.75)
+  if (Math.random() > 0.5)
     polar()
   if (Math.random() > 0.5)
     divRects()
