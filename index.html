@@ -17731,10 +17731,12 @@ function scale () {
   ctx.fillStyle = document.getElementById("paintcolor").value
   ctx.lineCap = "square"
   ctx.lineWidth = LW
-  let x = 3*inset + pet(inset);
-  let y = 3*inset + pet(inset);
+  let x = 3*inset + pet(inset), x0 = x
+  let y = 3*inset + pet(inset), d = 0
   let w = H/32, h = w
-  let b = 0
+  //let b = 0
+  ctx.font = w/2 + "pt Helvetica"
+
   let i = 0, N = 8, FLIP = true
   for (; i < N; i++) {
     ctx.globalAlpha = ctx.globalAlpha/2
@@ -17748,6 +17750,11 @@ function scale () {
     ctx.strokeRect(x,y,w,h)
     y += h
     FLIP = !FLIP
+    if (i == 0 || i === 4)
+       ctx.fillText((i+1),x0+w*1.2,y+d*w)
+    if (i === 6)
+       ctx.fillText("10",x0+w*1.2,y+d*w)
+    d = 1
     if (i === 4)
       h *= 5
     if (i === 6)
