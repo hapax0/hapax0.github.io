@@ -754,7 +754,7 @@
   <div id="background" style="width:1024px;height:1024px;float:left;position:absolute;">
   
   <canvas id="myCanvas" width="512" height="512" style="border:1px solid #000000;">
-  </canvas><canvas id="OC" width="512" height="512" style="border:1px solid #000000;display:none;"></canvas>
+  </canvas><canvas id="OC" width="1080" height="1080" style="border:1px solid #000000;display:none;"></canvas>
   </div>
   <div>
   </div>
@@ -12397,7 +12397,7 @@ function halfToneMono () {
   let w = 1080/20, h = 1080/20
   let i = 0
   let alt = document.getElementById("grungy").checked
-  let offset = 10 + document.getElementById("featuresize").value/40
+  let offset = 10 + document.getElementById("featuresize").value/10
   let xoffset = offset
   let yoffset = offset
   let r = offset * 0.5, yd = 0
@@ -12407,7 +12407,7 @@ function halfToneMono () {
   let loopmax = W/xoffset*2
   let color = document.getElementById("paintcolor").value
   ctxOC.fillStyle  = color
-  let slope = Math.random()/10
+  let slope = Math.random()/20
   if (Math.random() > 0.5)
     slope *= -1
   let j = 0, B = 0, C = 0
@@ -17775,6 +17775,7 @@ function pairedwords () {
   let W = canvas.width
   let H = canvas.height
   let fs = document.getElementById("featuresize").value/2
+  let alt = document.getElementById("grungy").checked
   let LW = 1 + Math.floor(document.getElementById("featuresize").value/50)
   ctx.lineWidth = LW
   ctx.lineCap = "square"
@@ -17822,7 +17823,8 @@ function pairedwords () {
     ctx.lineTo(x+w/2+p, y + h - 6)
     ctx.closePath()
     ctx.stroke()
-    ctx.fillText(keys[i]+"      ["+pairs[keys[i]]+"]", x, y - fs/2)
+    if (!alt)
+      ctx.fillText(keys[i]+"      ["+pairs[keys[i]]+"]", x, y - fs/2)
     x += (w * 1.5)
     if (x + w*1.5 > W - inset*2) {
       x = inset
