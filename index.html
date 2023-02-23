@@ -339,11 +339,11 @@
       <option value="threshold">threshold</option>
       <option value="threshold_soft">threshold soft</option>
       <option value="posterize" >posterize</option>
-      <option value="palettetint" selected>palette tint</option>
+      <option value="palettetint" >palette tint</option>
       <option value="tintByCloseness" >extracted tint</option>
       <option value="simplifyColors">simplify colors</option>
       <option value="cymk">CYMK</option>
-      <option value="halfToneMono">HT mono</option>
+      <option value="halfToneMono" selected>HT mono</option>
       <option value="stipple">stipple</option>
       <option value="etch">etch</option>
       <option value="hatches">hatches</option>
@@ -12418,11 +12418,8 @@ function halfToneMono () {
     off = !off
     i = 0
     for (; i < loopmax; i++) {  // horizontal
-    
       //B = brightnessOf10(ctx,x,y,offset)
       C = colorOf10(ctx,x,y,offset,color) // should be closenedd
-
-      //console.log(C)
       r = offset/20* C
       ctxOC.beginPath()
       yd = calcY(x, slope, 0)
