@@ -343,6 +343,7 @@
       <option value="tintByCloseness" >extracted tint</option>
       <option value="simplifyColors">simplify colors</option>
       <option value="cymk">CYMK</option>
+      <option value="halfToneMono">HT mono</option>
       <option value="stipple">stipple</option>
       <option value="etch">etch</option>
       <option value="hatches">hatches</option>
@@ -12379,7 +12380,65 @@ function calcY (x, slope, offset) {
   return (y)
 }
 
-function halfTone () { // white grid on teal
+function halfToneMono () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let OC = document.getElementById("OC")
+  let ctxOC = OC.getContext("2d")
+  let W = canvas.width
+  let H = canvas.height
+ // OC.width = W, OC.height = H // remove later!!
+  ctxOC.globalAlpha = document.getElementById("opacity").value/100
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctxOC.lineWidth = randomPick([4,5])
+  let colors = shuffle(getCurrentPalette())
+  let pad = 1080/10 + pet(40)
+  let x =  - Math.random() *100, y = pad - Math.random() *100
+  let w = 1080/20, h = 1080/20
+  let i = 0
+  let alt = document.getElementById("grungy").checked
+  let offset = 10 + document.getElementById("featuresize").value/40
+  let xoffset = offset
+  let yoffset = offset
+  let r = offset * 0.5, yd = 0
+  let r0 = r
+  let FH = true
+  let off = Math.random() > 0.5
+  let loopmax = W/xoffset*2
+  let color = document.getElementById("paintcolor").value
+  ctxOC.fillStyle  = color
+  let slope = Math.random()/10
+  if (Math.random() > 0.5)
+    slope *= -1
+  let j = 0, B = 0, C = 0
+  for (; j < loopmax; j++) {
+    x = -xoffset, y = j * yoffset
+    if (off)
+      x -= xoffset/2
+    off = !off
+    i = 0
+    for (; i < loopmax; i++) {  // horizontal
+    
+      //B = brightnessOf10(ctx,x,y,offset)
+      C = colorOf10(ctx,x,y,offset,color) // should be closenedd
+
+      //console.log(C)
+      r = offset/20* C
+      ctxOC.beginPath()
+      yd = calcY(x, slope, 0)
+      ctxOC.moveTo(x, y+yd)
+      if (alt)
+        r = r0 + pet(r0/2)
+      ctxOC.arc(x,y+yd,r,0,Math.PI*2)
+      ctxOC.closePath()
+      ctxOC.fill()
+      x += xoffset
+    }
+  }
+  swapWithOff()
+}
+
+function halfTone () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let W = canvas.width, H = canvas.height
@@ -18577,11 +18636,20 @@ function brightnessOf10 (ctx,x,y,d) {
     return Math.floor(10*brightness/div/3)
 }
 
-function colorOf (ctx,x,y,d) {
+function colorOf10 (ctx,x,y,d,color) {
+  let imgData = ctx.getImageData(x,y,d,d)
+  let pixels = imgData.data;
+  let i = 0, D = 0
+    
+  D  = colorDistance(colorOf(ctx,x,y,1), color)
+  return 10 - Math.floor(10*D/444) // invert
+}
+
+function colorOf (ctx,x,y,d) { // single pixel
   d = Math.floor(d)
   let imgData = ctx.getImageData(Math.floor(x),Math.floor(y),d,d)
   let pixels = imgData.data;
-  let i = 0, color = 0
+  let color = 0
     let R = ('0'+(Math.round(pixels[0])).toString(16)).slice(-2),
       G = ('0'+(Math.round(pixels[1])).toString(16)).slice(-2),
       B = ('0'+(Math.round(pixels[2])).toString(16)).slice(-2);
