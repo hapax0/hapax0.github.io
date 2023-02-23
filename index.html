@@ -17717,6 +17717,45 @@ function divRects () {
   ctx.globalAlpha = document.getElementById("opacity").value/100
 }
 
+function scale () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let fs = document.getElementById("featuresize").value
+  let LW = 1 + Math.floor(document.getElementById("featuresize").value/50)
+  let alt = document.getElementById("grungy").checked
+  let inset = 20 + Math.random()*20
+  let W = canvas.width
+  let H = canvas.height
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.lineCap = "square"
+  ctx.lineWidth = LW
+  let x = 3*inset + pet(inset);
+  let y = 3*inset + pet(inset);
+  let w = H/32, h = w
+  let b = 0
+  let i = 0, N = 8, FLIP = true
+  for (; i < N; i++) {
+    ctx.globalAlpha = ctx.globalAlpha/2
+    ctx.fillRect(x,y,w,h)
+    ctx.globalAlpha = document.getElementById("opacity").value/100
+    ctx.strokeRect(x,y,w,h)
+    if (FLIP)
+      x -= w
+    else
+      x += w
+    ctx.strokeRect(x,y,w,h)
+    y += h
+    FLIP = !FLIP
+    if (i === 4)
+      h *= 5
+    if (i === 6)
+      h *= 2
+    
+  }
+}
+
 function polar () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -17872,6 +17911,9 @@ function form2 () {
     ctx.closePath()
     ctx.stroke()
   }
+  
+  if (Math.random() > 0.5)
+    scale()
   // date stamp
   if (Math.random() > 0.5) {
     let date = new Date()
