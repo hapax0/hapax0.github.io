@@ -494,7 +494,8 @@
       <option value="form1">form</option>
       <option value="form2">form decoration</option>
       <option value="ctrlchart">ctrl chart</option>
-      <option value="stepchart" selected>step chart</option>
+      <option value="stepchart">step chart</option>
+      <option value="histograph" selected>histograph</option>
       <option value="pairedwords">form pairts</option>
       
       
@@ -17885,6 +17886,44 @@ function pairedwords () {
   ctx.globalAlpha = 0.25
   ctx.fillRect(W-inset*2.3+pet(20), y=inset*2+pet(30), 11+ Math.random()* 24, H - h)
   ctx.globalAlpha = a
+}
+
+function histograph () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let fs = document.getElementById("featuresize").value
+  let LW = 1 + Math.floor(document.getElementById("featuresize").value/50)
+  let alt = document.getElementById("grungy").checked
+  let inset = 50 + Math.random()*20
+  let W = canvas.width
+  let H = canvas.height
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.lineCap = "square"
+  ctx.lineWidth = LW + 3
+  let x = inset+12, y = H/2
+  let divs = randomPick([4,5,6,7,8,10])
+  let w = (W-2*inset)/divs - 20
+  let a = ctx.globalAlpha
+  let d = (W - inset*2) - (divs*w)
+  ctx.strokeRect(inset,inset*2,W-inset*2,H-inset*3)
+  x = d/2 + inset
+  ctx.lineWidth = LW
+  let i = 0
+  for (; i < divs; i++) {
+    y = inset*3 + Math.random() * H * 0.5
+    ctx.strokeRect(x,y,w-19 ,(H-inset*3)-y)
+    ctx.globalAlpha = Math.random() /2
+    ctx.fillRect(x+pet(15),y+pet(15),w-19 ,(H-inset*3)-y)
+    ctx.globalAlpha = a
+    x += w
+  }
+  let t = randomWord() + " - "
+  //t = randomPick(["CAT: ", "BOM: ", "Control:  ","S K U - ", "F I G U R E: ", "BAT - ", "___","I V E N T O R Y #", "L_E_M_ ", "Product - "])
+  t += Math.floor(Math.random() * 100)
+  ctx.font = "100 "+20+"pt AmericanTypewriter,'Courier New'"
+  ctx.fillText(t.toUpperCase(), W/2-10, inset)
 }
 
 function stepchart () {
