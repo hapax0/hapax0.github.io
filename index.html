@@ -17940,7 +17940,7 @@ function stepchart () {
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.strokeStyle = document.getElementById("paintcolor").value
   ctx.fillStyle = document.getElementById("paintcolor").value
-  ctx.lineCap = "square"
+  ctx.lineCap = "butt"
   ctx.lineWidth = LW + 1
   let x = inset, y = H/2
   ctx.lineWidth = LW
@@ -17951,7 +17951,6 @@ function stepchart () {
     ctx.moveTo(x,y)
     x += w
     ctx.lineTo(x-8,y)
-    ctx.closePath()
     ctx.stroke()
     
     ctx.beginPath()
@@ -17967,7 +17966,6 @@ function stepchart () {
       else
         gap = 0
       ctx.lineTo(x,y+gap)
-      ctx.closePath()
       ctx.stroke()
     }
   }
@@ -17977,7 +17975,6 @@ function stepchart () {
     ctx.moveTo(x,y)
     y += w
     ctx.lineTo(x,y-8)
-    ctx.closePath()
     ctx.stroke()
   }
   while (x > inset+8) { // botton rt to left
@@ -17985,7 +17982,6 @@ function stepchart () {
     ctx.moveTo(x,y)
     x -= w
     ctx.lineTo(x+8,y)
-    ctx.closePath()
     ctx.stroke()
   }
   while (y > inset+w) { // left to top
@@ -17993,7 +17989,6 @@ function stepchart () {
     ctx.moveTo(x,y)
     y -= w
     ctx.lineTo(x,y+8)
-    ctx.closePath()
     ctx.stroke()
   }
   while (x < W - inset-w) {
@@ -18001,16 +17996,13 @@ function stepchart () {
     ctx.moveTo(x,y)
     x += w
     ctx.lineTo(x-8,y)
-    ctx.closePath()
     ctx.stroke()
   }
-  
   while (y < yE) {
     ctx.beginPath()
     ctx.moveTo(x,y)
     y += w
     ctx.lineTo(x,y-8)
-    ctx.closePath()
     ctx.stroke()
   }
 }
