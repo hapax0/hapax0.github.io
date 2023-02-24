@@ -6096,6 +6096,8 @@ function clearOff () {
  let OC = document.getElementById('OC')
  let octx = OC.getContext('2d')
  octx.clearRect(0, 0, OC.width, OC.height)
+ let canvas = document.getElementById("myCanvas")
+ OC.width = canvas.width, OC.height = canvas.height
  OCISCLEAR = true
  return true
 }
@@ -12409,7 +12411,7 @@ function halfToneMono () {
   let loopmax = W/xoffset*2
   let color = document.getElementById("paintcolor").value
   ctxOC.fillStyle  = color
-  let slope = Math.random()/20
+  let slope = Math.random()/25
   if (Math.random() > 0.5)
     slope *= -1
   let j = 0, B = 0, C = 0
@@ -12422,7 +12424,7 @@ function halfToneMono () {
     for (; i < loopmax; i++) {  // horizontal
       //B = brightnessOf10(ctx,x,y,offset)
       C = colorOf10(ctx,x,y,offset,color) // should be closenedd
-      r = offset/20* C
+      r = offset/20 * C
       ctxOC.beginPath()
       yd = calcY(x, slope, 0)
       ctxOC.moveTo(x, y+yd)
