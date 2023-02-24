@@ -493,6 +493,7 @@
       <option value="label">label</option>
       <option value="form1">form</option>
       <option value="form2">form decoration</option>
+      <option value="ctrlchart">chart</option>
       <option value="pairedwords">form pairts</option>
       
       
@@ -17881,6 +17882,125 @@ function pairedwords () {
   ctx.globalAlpha = 0.25
   ctx.fillRect(W-inset*2.3+pet(20), y=inset*2+pet(30), 11+ Math.random()* 24, H - h)
   ctx.globalAlpha = a
+}
+
+function ctrlchart () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let fs = document.getElementById("featuresize").value
+  let LW = 1 + Math.floor(document.getElementById("featuresize").value/50)
+  let alt = document.getElementById("grungy").checked
+  let inset = 20 + Math.random()*20
+  let W = canvas.width
+  let H = canvas.height
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.lineCap = "square"
+  ctx.lineWidth = LW + 1
+  let x = inset, y = H/2
+  ctx.lineWidth = LW + 4
+  
+  ctx.beginPath()
+  ctx.moveTo(x,y)
+  ctx.lineTo(W-inset,y)
+  ctx.closePath()
+  ctx.stroke()
+  
+  ctx.lineWidth = LW
+  ctx.strokeStyle = "red"
+  ctx.beginPath()
+  ctx.moveTo(x,y-3*H/10)
+  ctx.lineTo(W-inset,y-3*H/10)
+  ctx.closePath()
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.moveTo(x,y-2*H/10)
+  ctx.lineTo(W-inset,y-2*H/10)
+  ctx.closePath()
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.moveTo(x,y-H/10)
+  ctx.lineTo(W-inset,y-H/10)
+  ctx.closePath()
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.moveTo(x,y+H/10)
+  ctx.lineTo(W-inset,y+H/10)
+  ctx.closePath()
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.moveTo(x,y+2*H/10)
+  ctx.lineTo(W-inset,y+2*H/10)
+  ctx.closePath()
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.moveTo(x,y+3*H/10)
+  ctx.lineTo(W-inset,y+3*H/10)
+  ctx.closePath()
+  ctx.stroke()
+  
+  ctx.strokeStyle = document.getElementById("paintcolor").value
+  y = H/2 + pet(H/8)
+  let w = W/40, i = 0
+  while (x < W-inset-w) {
+    ctx.beginPath()
+    ctx.moveTo(x,y)
+    y += pet(H/8)
+    x += w
+    ctx.lineTo(x,y)
+    ctx.closePath()
+    ctx.stroke()
+  }
+  
+  // bottom tics
+  let d = 60
+  y = H-inset, x = inset
+  i = 0
+  while (x < W-inset) {
+    ctx.beginPath()
+    ctx.moveTo(x,y)
+    if (i % 5 === 0)
+      d = 100
+    else
+      d = 50
+    ctx.lineTo(x,y-d)
+    ctx.closePath()
+    ctx.stroke()
+    x += w
+    i++
+  }
+  d = 60
+  y = inset, x = inset
+  i = 0
+  while (x < W-inset) {
+    ctx.beginPath()
+    ctx.moveTo(x,y)
+    if (i % 5 === 0)
+      d = 100
+    else
+      d = 50
+    ctx.lineTo(x,y+d)
+    ctx.closePath()
+    ctx.stroke()
+    x += w
+    i++
+  }
+  let date = new Date()
+  date.setDate(date.getDate() - (365*randomPick([2.3,4.5,6.6,5.7,7.4,19.2])))
+  let t = date.toString().substring(0,16)
+  ctx.font = "100 "+20+"pt AmericanTypewriter,'Courier New'"
+  ctx.fillText(t, W*Math.random(), H-inset*4 - Math.random()*10)
+  
+  t = randomPick(["CAT: ", "BOM: ", "Control:  ","S K U - ", "F I G U R E: ", "BAT - ", "___","I V E N T O R Y #", "L_E_M_ ", "Product - "])
+  t += Math.floor(Math.random() * 10000000)
+  ctx.font = "100 "+13+"pt AmericanTypewriter,'Courier New'"
+  ctx.fillText(t, W*Math.random(), inset*4 - Math.random()*10)
 }
 
 function form2 () {
