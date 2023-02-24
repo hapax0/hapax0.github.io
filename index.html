@@ -485,7 +485,7 @@
     </svg></button>
     <select id="paperfunctions">
       <!--option value="roadmap">road map</option-->
-      <option value="moleskine2" selected>mole blank</option>
+      <option value="moleskine2">mole blank</option>
       <option value="moleskine">mole grid</option>
       <option value="moleskineDay">day planner</option>
       <option value="cuttingboard">cutting board</option>
@@ -493,7 +493,8 @@
       <option value="label">label</option>
       <option value="form1">form</option>
       <option value="form2">form decoration</option>
-      <option value="ctrlchart">chart</option>
+      <option value="ctrlchart">ctrl chart</option>
+      <option value="stepchart" selected>step chart</option>
       <option value="pairedwords">form pairts</option>
       
       
@@ -17882,6 +17883,93 @@ function pairedwords () {
   ctx.globalAlpha = 0.25
   ctx.fillRect(W-inset*2.3+pet(20), y=inset*2+pet(30), 11+ Math.random()* 24, H - h)
   ctx.globalAlpha = a
+}
+
+function stepchart () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let fs = document.getElementById("featuresize").value
+  let LW = 1 + Math.floor(document.getElementById("featuresize").value/50)
+  let alt = document.getElementById("grungy").checked
+  let inset = 50 + Math.random()*20
+  let W = canvas.width
+  let H = canvas.height
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.lineCap = "square"
+  ctx.lineWidth = LW + 1
+  let x = inset, y = H/2
+  ctx.lineWidth = LW
+  y = H/2 + pet(H/8)
+  let w = W/randomPick([13,17,19,23,29]), y0 = y, i = 0, d = 0, gap = 8
+  while (x < W-inset-w) {
+    ctx.beginPath()
+    ctx.moveTo(x,y)
+    x += w
+    ctx.lineTo(x-8,y)
+    ctx.closePath()
+    ctx.stroke()
+    
+    ctx.beginPath()
+    ctx.moveTo(x,y)
+    d = randomPick([-w,0,w])
+    if (d !== 0) {
+      y += d
+      if (d < 0)
+        gap = 8
+      else
+      if (d > 0)
+        gap = -8
+      else
+        gap = 0
+      ctx.lineTo(x,y+gap)
+      ctx.closePath()
+      ctx.stroke()
+    }
+  }
+  let yE = y
+  while (y < H-inset-w) { // down from end
+    ctx.beginPath()
+    ctx.moveTo(x,y)
+    y += w
+    ctx.lineTo(x,y-8)
+    ctx.closePath()
+    ctx.stroke()
+  }
+  while (x > inset+8) { // botton rt to left
+    ctx.beginPath()
+    ctx.moveTo(x,y)
+    x -= w
+    ctx.lineTo(x+8,y)
+    ctx.closePath()
+    ctx.stroke()
+  }
+  while (y > inset+w) { // left to top
+    ctx.beginPath()
+    ctx.moveTo(x,y)
+    y -= w
+    ctx.lineTo(x,y+8)
+    ctx.closePath()
+    ctx.stroke()
+  }
+  while (x < W - inset-w) {
+    ctx.beginPath()
+    ctx.moveTo(x,y)
+    x += w
+    ctx.lineTo(x-8,y)
+    ctx.closePath()
+    ctx.stroke()
+  }
+  
+  while (y < yE) {
+    ctx.beginPath()
+    ctx.moveTo(x,y)
+    y += w
+    ctx.lineTo(x,y-8)
+    ctx.closePath()
+    ctx.stroke()
+  }
 }
 
 function ctrlchart () {
