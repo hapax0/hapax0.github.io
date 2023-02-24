@@ -17923,7 +17923,9 @@ function histograph () {
   //t = randomPick(["CAT: ", "BOM: ", "Control:  ","S K U - ", "F I G U R E: ", "BAT - ", "___","I V E N T O R Y #", "L_E_M_ ", "Product - "])
   t += Math.floor(Math.random() * 100)
   ctx.font = "100 "+20+"pt AmericanTypewriter,'Courier New'"
-  ctx.fillText(t.toUpperCase(), W/2-10, inset)
+  ctx.scale(-1, 1)
+  ctx.fillText(t.toUpperCase(), -W/2-100, inset)
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
 }
 
 function stepchart () {
