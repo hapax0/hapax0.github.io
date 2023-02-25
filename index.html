@@ -493,6 +493,7 @@
       <option value="label">label</option>
       <option value="form1">form</option>
       <option value="form2">form decoration</option>
+      <option value="form3">form (nest)</option>
       <option value="ctrlchart">ctrl chart</option>
       <option value="stepchart">step chart</option>
       <option value="histograph" selected>histograph</option>
@@ -15713,12 +15714,16 @@ Date.prototype.getWeek = function() {
                         - 3 + (week1.getDay() + 6) % 7) / 7);
 }
 
-function nested () {
+function nested (color,lw) {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  if (lw)
+    ctx.lineWidth = lw
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.strokeStyle = document.getElementById("paintcolor").value
+  if (color)
+    ctx.strokeStyle = color
   ctx.lineCap = 'square'
   ctx.lineJoin = 'meter'
   let ratio = 1/1.61803
@@ -18175,6 +18180,88 @@ function ctrlchart () {
   ctx.font = "100 "+13+"pt AmericanTypewriter,'Courier New'"
   ctx.fillText(t, W*Math.random(), inset*4 - Math.random()*10)
 }
+
+function form3 () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let fs = document.getElementById("featuresize").value
+  let LW = 1 + Math.floor(document.getElementById("featuresize").value/50)
+  let alt = document.getElementById("grungy").checked
+  let inset = 50 + Math.random()*20
+  let W = canvas.width
+  let H = canvas.height
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let colors = getCurrentPalette()
+  ctx.strokeStyle = colors[0]
+  ctx.fillStyle = colors[1]
+  ctx.lineCap = "square"
+  ctx.lineWidth = LW + 3
+  let x = 0, y = 0
+  let divs = randomPick([4,5,6,7,8,10])
+  let a = ctx.globalAlpha
+  
+  nested(colors[0], LW -3)
+  zoomOutImage()
+  nested(colors[0], LW +3)
+  zoomOutImage()
+  //ctx.strokeRect(inset,inset*2,W-inset*2,H-inset*3)
+  let x0 = 0, y0 = 0
+  ctx.lineWidth = LW
+  let i = 0
+  for (; i < 2; i++) {
+    ctx.strokeStyle = colors[0]
+    ctx.fillStyle = colors[1]
+    x = inset + Math.random() * W/2
+    y = inset + Math.random() * H/3
+    ctx.globalAlpha = Math.random() /3
+    ctx.fillRect(x+pet(15),y+pet(15),50+W/3*Math.random() , 50 + H/2 * Math.random())
+    x = inset + Math.random() * W/2 + W/3
+    y = inset + Math.random() * H/3 + H/3
+    ctx.globalAlpha = Math.random() /2
+    ctx.fillRect(x+pet(15),y+pet(15),50+W/3*Math.random() , 50 + H/2 * Math.random())
+    x = inset + Math.random() * W/2
+    y = inset + Math.random() * H/3
+    x0 = x, y0 = y
+    ctx.beginPath()
+    ctx.moveTo(x,y)
+    y += 150 + H/2 * Math.random()
+    ctx.lineTo(x,y)
+    
+    x += 150 +W/2*Math.random()
+    ctx.lineTo(x,y)
+    
+    y -= H/3 * Math.random()
+    ctx.lineTo(x,y)
+    x -= W/3 * Math.random()
+    ctx.lineTo(x,y)
+    
+    y = y0
+    ctx.lineTo(x,y)
+    
+    ctx.closePath()
+    ctx.fill()
+
+    ctx.globalAlpha = a
+    rc()
+  }
+  let t = randomWord(true) + " - "
+  //t = randomPick(["CAT: ", "BOM: ", "Control:  ","S K U - ", "F I G U R E: ", "BAT - ", "___","I V E N T O R Y #", "L_E_M_ ", "Product - "])
+  t += Math.floor(Math.random() * 100)
+  ctx.fillStyle = colors[0]
+  ctx.font = "100 "+14+"pt AmericanTypewriter,'Courier New'"
+
+  i = 0
+  for (; i < 31; i++) {
+        ctx.globalAlpha = Math.random() /3
+
+    t = randomWord(true)
+    t += Math.floor(Math.random() * 100)
+    ctx.scale(-1, 1)
+    ctx.fillText(t.toUpperCase(), -Math.random() * W, Math.random() *H)
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+  }
+}
+
 
 function form2 () {
   let canvas = document.getElementById("myCanvas");
