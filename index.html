@@ -418,8 +418,8 @@
       <option value="onesquare">1 square</option>
       <option value="twosquares">2 squares</option>
       <option value="foursquares">4 squares</option>
+      <option value="circle" >i circle</option>
       <option value="threeCircles">3 circles</option>
-      <option value="circle" >disc</option>
 
       <option value="typewriter" >typewriter</option>
       <option value="markwriter">markwriter</option>
@@ -12403,8 +12403,6 @@ function halfToneMono () {
   let alt = document.getElementById("grungy").checked
   let offset = 10 + document.getElementById("featuresize").value/10
   let offset2 = Math.floor(Math.random() * offset)// for drawing
-  
-  console.log(offset, offset2)
   let r = offset * 0.5, yd = 0
   let r0 = r
   let FH = true
@@ -12431,60 +12429,6 @@ function halfToneMono () {
       ctxOC.closePath()
       ctxOC.fill()
       x += offset
-    }
-  }
-  swapWithOff()
-}
-
-
-function halfToneMonoOG () {
-  let canvas = document.getElementById("myCanvas");
-  let ctx = canvas.getContext("2d");
-  let OC = document.getElementById("OC")
-  let ctxOC = OC.getContext("2d")
-  let W = canvas.width
-  let H = canvas.height
-  ctxOC.globalAlpha = document.getElementById("opacity").value/100
-  ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctxOC.lineWidth = randomPick([4,5])
-  let colors = shuffle(getCurrentPalette())
-  let pad = 1080/10 + pet(40)
-  let x =  - Math.random() *100, y = pad - Math.random() *100
-  let w = 1080/20, h = 1080/20
-  let i = 0
-  let alt = document.getElementById("grungy").checked
-  let offset = 10 + document.getElementById("featuresize").value/10
-  let xoffset = offset
-  let yoffset = offset
-  let r = offset * 0.5, yd = 0
-  let r0 = r
-  let FH = true
-  let off = Math.random() > 0.5
-  let loopmax = W/xoffset*2
-  let color = document.getElementById("paintcolor").value
-  ctxOC.fillStyle  = color
-  let slope = Math.random()/25
-  if (Math.random() > 0.5)
-    slope *= -1
-  let j = 0, B = 0, C = 0
-  for (; j < loopmax; j++) {
-    x = -xoffset, y = j * yoffset
-    if (off)
-      x -= xoffset/2
-    off = !off
-    i = 0
-    for (; i < loopmax; i++) {  // horizontal
-      //B = brightnessOf10(ctx,x,y,offset)
-      C = colorOf10(ctx,x,y,offset,color) // should be closenedd
-      r = offset/20 * C
-      ctxOC.beginPath()
-      yd = calcY(x, slope, 0)
-      ctxOC.moveTo(x, y+yd)
-      r = Math.max(r,0)
-      ctxOC.arc(x,y+yd,r,0,Math.PI*2)
-      ctxOC.closePath()
-      ctxOC.fill()
-      x += xoffset
     }
   }
   swapWithOff()
@@ -18626,7 +18570,9 @@ function circle () {
   let ctx = canvas.getContext("2d");
   let cx = canvas.width/2
   let cy = canvas.height/2
-  let pad = 0 + Math.floor(document.getElementById("featuresize").value)
+  let pad = 0 + document.getElementById("featuresize").value
+  pad = 500 - pad
+  console.log(pad)
   let r = canvas.width/2 - pad
   ctx.fillStyle = randomPick(getCurrentPalette())
   ctx.globalAlpha = document.getElementById("opacity").value/100
