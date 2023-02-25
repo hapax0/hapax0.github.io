@@ -12392,7 +12392,57 @@ function halfToneMono () {
   let ctxOC = OC.getContext("2d")
   let W = canvas.width
   let H = canvas.height
- // OC.width = W, OC.height = H // remove later!!
+  ctxOC.globalAlpha = document.getElementById("opacity").value/100
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctxOC.lineWidth = randomPick([4,5])
+  let pad = 1080/10 + pet(40)
+  let x =  - Math.random() *100, y = pad - Math.random() *100
+  let w = 1080/20, h = 1080/20
+  let i = 0
+  let alt = document.getElementById("grungy").checked
+  let offset = 10 + document.getElementById("featuresize").value/10
+  let offset2 = Math.floor(Math.random() * offset)// for drawing
+  
+  console.log(offset, offset2)
+  let r = offset * 0.5, yd = 0
+  let r0 = r
+  let FH = true
+  let off = Math.random() > 0.5
+  let loopmax = W/offset*2
+  let color = document.getElementById("paintcolor").value
+  ctxOC.fillStyle  = color
+  
+  let j = 0, B = 0, C = 0
+  for (; j < loopmax; j++) {
+    x = -offset, y = j * offset
+    if (off)
+      x -= offset/2
+    off = !off
+    i = 0
+    for (; i < loopmax; i++) {  // horizontal
+      C = colorOf10(ctx,x,y,1,color) // should be closenedd
+      r = offset/20 * C
+      ctxOC.beginPath()
+      yd = offset2
+      ctxOC.moveTo(x+yd, y+yd)
+      r = Math.max(r,0)
+      ctxOC.arc(x+yd,y+yd,r,0,Math.PI*2)
+      ctxOC.closePath()
+      ctxOC.fill()
+      x += offset
+    }
+  }
+  swapWithOff()
+}
+
+
+function halfToneMonoOG () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let OC = document.getElementById("OC")
+  let ctxOC = OC.getContext("2d")
+  let W = canvas.width
+  let H = canvas.height
   ctxOC.globalAlpha = document.getElementById("opacity").value/100
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctxOC.lineWidth = randomPick([4,5])
