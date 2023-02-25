@@ -18197,7 +18197,6 @@ function form3 () {
   ctx.lineCap = "square"
   ctx.lineWidth = LW + 3
   let x = 0, y = 0
-  let divs = randomPick([4,5,6,7,8,10])
   let a = ctx.globalAlpha
   
   nested(colors[0], LW -3)
@@ -18244,18 +18243,18 @@ function form3 () {
     ctx.globalAlpha = a
     rc()
   }
-  let t = randomWord(true) + " - "
-  //t = randomPick(["CAT: ", "BOM: ", "Control:  ","S K U - ", "F I G U R E: ", "BAT - ", "___","I V E N T O R Y #", "L_E_M_ ", "Product - "])
-  t += Math.floor(Math.random() * 100)
+  let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ....::::--1234567890".split("")
   ctx.fillStyle = colors[0]
   ctx.font = "100 "+14+"pt AmericanTypewriter,'Courier New'"
 
   i = 0
-  for (; i < 31; i++) {
-        ctx.globalAlpha = Math.random() /3
+  let N = 171 + Math.random() * 100
+  for (; i < 131; i++) {
+    ctx.globalAlpha = Math.random() /2
 
-    t = randomWord(true)
-    t += Math.floor(Math.random() * 100)
+    t = randomPick(letters)
+    if (Math.random() > 0.5)
+      t += randomPick(letters)
     ctx.scale(-1, 1)
     ctx.fillText(t.toUpperCase(), -Math.random() * W, Math.random() *H)
     ctx.setTransform(1, 0, 0, 1, 0, 0);
