@@ -12414,9 +12414,9 @@ function halfToneMono () {
   
   let j = 0, B = 0, C = 0
   for (; j < loopmax; j++) {
-    x = -offset, y = j * offset
+    x = 0, y = j * offset
     if (off)
-      x -= offset/2
+      x += offset/2
     off = !off
     i = 0
     for (; i < loopmax; i++) {  // horizontal
