@@ -11611,13 +11611,13 @@ function comets () {
   let R = canvas.width/2
   // fill
   ctx.lineJoin = "round"
-  ctx.strokeStyle = (colors[0])
-  ctx.fillStyle = colors[1]
+  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = document.getElementById("paintcolor").value
   let i = 0
   for (; i < 1 ;i++) {
     a = Math.random() * 2 * Math.PI
     r = canvas.width/9 * 0.8 + pet(80)
-    r2 = r * 0.5 + pet(30)
+    r2 = r * 0.1+ pet(10)
     if (Math.random() > 0.9)
       r2=5
     cx =  LASTCLICK[0]//Math.random() * canvas.width
@@ -11626,37 +11626,24 @@ function comets () {
       a = Math.random()  * Math.PI
     if (cy > canvas.height/2)
       a = Math.PI +Math.random()  * Math.PI
-
-    x = cx + r * Math.cos(a)
-    y = cy + r * Math.sin(a)
     
-    x2 = cx + r*4 * Math.cos(a)
-    y2 = cy + r*4 * Math.sin(a)
+    x = cx// + r * Math.cos(a)
+    y = cy// + r * Math.sin(a)
+    
+    x2 = cx + r*3 * Math.cos(a)
+    y2 = cy + r*3 * Math.sin(a)
  
     ctx.beginPath()
-    ctx.ellipse(x, y, r, r, a+Math.PI/2,  0, 2 * Math.PI)
-    if (Math.random() > 0.8) {
-      ctx.fillStyle = randomPick(colors)
-      ctx.fill()
-    }
-    ctx.ellipse(x2, y2, r2, r2, a+Math.PI/2, 2*Math.PI, 0)
-    if (Math.random() > 0.8) {
-      ctx.fillStyle = randomPick(colors)
-      ctx.fill()
-    }
-    ctx.ellipse(x2, y2, r2, r2, a+Math.PI/2, 0, Math.PI)
-    ctx.ellipse(x, y, r, r, a+Math.PI/2,  Math.PI,-0)
-    ctx.lineWidth += pet(2)
-    if (!alt)
-      ctx.strokeStyle = randomPick(colors)
+    ctx.ellipse(x, y, r2, r2, a+Math.PI/2,  0, 2 * Math.PI)
+    ctx.ellipse(x2, y2, r, r, a+Math.PI/2, 0, Math.PI)
+    ctx.ellipse(x, y, r2, r2, a+Math.PI/2,  Math.PI,1)
     ctx.stroke()
-
-    if (Math.random() > 0.9) {
-      ctx.beginPath()
-      ctx.moveTo(x,y)
-      ctx.lineTo(x2,y2)
-      ctx.stroke()
-    }
+    ctx.beginPath()
+    ctx.ellipse(x2, y2, r, r, a+Math.PI/2, Math.PI, 0)
+    ctx.stroke()
+    ctx.font = "100 "+(r/2)+"pt 'AmericanTypewriter'"
+    let t = randomPick("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""))
+    ctx.fillText(t, x2 - r/4,y2+r/4)
   }
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
@@ -12425,6 +12412,8 @@ function halfToneMono () {
       yd = offset2
       ctxOC.moveTo(x+yd, y+yd)
       r = Math.max(r,0)
+      if (alt)
+        r *= 2
       ctxOC.arc(x+yd,y+yd,r,0,Math.PI*2)
       ctxOC.closePath()
       ctxOC.fill()
@@ -21318,6 +21307,57 @@ function dropFrameRagged () {
   document.getElementById("mode").value = mode
   ctx.globalAlpha = alpha
 }
+
+function detail () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  let x = Math.random() * W, y = Math.random() *H
+  let color = document.getElementById("paintcolor").value
+  ctx.lineWidth = 4//1 +document.getElementById("featuresize").value/50
+  ctx.strokeStyle = color
+  let w = W / 40, lw = W/9, r = W/80
+  let text = document.getElementById("points").value
+  if (text.length < 1)
+    text = randomWord()
+  x = LASTCLICK[0], dx =(W-lw-x)*Math.random()-w*1.2
+  y = LASTCLICK[1], dy = 20 + H*0.9*Math.random()
+  if (document.getElementById("grungy").checked) {
+    let face = "AmericanTypewriter"
+    ctx.font = "100 "+(lw/6)+"pt " + face
+    ctx.fillStyle = color
+    ctx.fillText(text, x+pet(7), y-lw/9)
+  }
+  
+  let x0 = x, y0 = y
+  ctx.beginPath()
+  ctx.arc(x,y,r,0, Math.PI * 2)
+  ctx.stroke()
+  let r2 = r * 6
+  if (x < W/2)
+    x -= r2*2
+  else
+    x +=  r2*2
+    
+  if (y < H/2)
+    y -= r2*2
+  else
+    y += r2*2
+  ctx.beginPath()
+  ctx.arc(x,y,r2,0, Math.PI * 2)
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.moveTo(x0+r,y0+r)
+  ctx.lineTo(x-r2,y-r2)
+  ctx.closePath()
+  ctx.stroke()
+  
+    
+    
+    
+}
+
 
 function label () {
   let canvas = document.getElementById("myCanvas");
