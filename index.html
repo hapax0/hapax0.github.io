@@ -630,6 +630,7 @@
             <option value="primary" selected>primary</option>
             <option value="cmy">cmy</option>
             <option value="rainbow">rainbow</option>
+            <option value="monokai">monokai</option>
             <option value="rust">rust</option>
             <option value="yellowed">yellowed</option>
             <option value="nighthawks">nighthawks</option>
@@ -1295,6 +1296,11 @@ function loadPalette () {
   if (type === "yellowed"){
     a = ["#ecd27c","#e1c36b","#d6c293","#e1c452","#d8b758" ]
     b = ["#f4e8c4","#ecd89d","#e0d4bb","#c4b589","#d0ae46","#bfa55f","#c09e34","#b09225"]
+    updateExtraColors(b)
+  } else
+  if (type === "monokai") {
+    a = ["#2e2e2e", "#b4d273", "#e87d3e", "#9e86c8", "#b05279", "#6c99bb"]
+    b = ["#2e2e2e", "#e5b567", "#b4d273", "#e87d3e", "#9e86c8", "#b05279", "#6c99bb", "#797979", "#d6d6d6"]
     updateExtraColors(b)
   } else
   if (type === "scream"){
@@ -6638,7 +6644,6 @@ function monocube () {
   ctx.shadowOffsetX = 0
 }
 
-
 function cubeAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -6652,7 +6657,6 @@ function cubeAt (x,y,W,color) {
   let d = (W-2*pad)/2
   d *= 1.3
   let da = randomPick([3,5,8,13,24])
-  console.log(da)
   let div = d/da
   let x0 = x
   ctx.fillStyle = (colors[0])
@@ -15639,7 +15643,7 @@ Date.prototype.getWeek = function() {
                         - 3 + (week1.getDay() + 6) % 7) / 7);
 }
 
-function nested (color,lw) {
+function nested (color, lw) {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
@@ -18135,29 +18139,29 @@ function form3 () {
   for (; i < 2; i++) {
     ctx.strokeStyle = colors[0]
     ctx.fillStyle = colors[1]
-    x = inset + Math.random() * W/2
+    x = inset + Math.random() * W/2+pet(33)
     y = inset + Math.random() * H/3
-    ctx.globalAlpha = Math.random() /3
-    ctx.fillRect(x+pet(15),y+pet(15),50+W/3*Math.random() , 50 + H/2 * Math.random())
-    x = inset + Math.random() * W/2 + W/3
+    ctx.globalAlpha = Math.random() /4
+    ctx.fillRect(x+pet(15),y+pet(15),50+W/3*Math.random() , 150 + H/2 * Math.random())
+    x = inset + Math.random() * W/2 + W/3+pet(33)
     y = inset + Math.random() * H/3 + H/3
-    ctx.globalAlpha = Math.random() /2
-    ctx.fillRect(x+pet(15),y+pet(15),50+W/3*Math.random() , 50 + H/2 * Math.random())
+    ctx.globalAlpha = Math.random() /4
+    ctx.fillRect(x+pet(15),y+pet(33),50+W/3*Math.random() , 150 + H/2 * Math.random())
     x = inset + Math.random() * W/2
-    y = inset + Math.random() * H/3
+    y = inset + Math.random() * H/3+pet(33)
     x0 = x, y0 = y
     ctx.beginPath()
     ctx.moveTo(x,y)
     y += 150 + H/2 * Math.random()
-    ctx.lineTo(x,y)
+    ctx.lineTo(x,y+pet(33))
     
     x += 150 +W/2*Math.random()
-    ctx.lineTo(x,y)
+    ctx.lineTo(x+pet(33),y)
     
-    y -= H/3 * Math.random()
-    ctx.lineTo(x,y)
-    x -= W/3 * Math.random()
-    ctx.lineTo(x,y)
+    y -= H/2 * Math.random()
+    ctx.lineTo(x,y+pet(33))
+    x -= W/2 * Math.random()
+    ctx.lineTo(x+pet(33),y)
     
     y = y0
     ctx.lineTo(x,y)
@@ -18168,10 +18172,11 @@ function form3 () {
     ctx.globalAlpha = a
     rc()
   }
+  rc()
+  rc()
   let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ....::::--1234567890".split("")
   ctx.fillStyle = colors[0]
   ctx.font = "100 "+14+"pt AmericanTypewriter,'Courier New'"
-
   i = 0
   let N = 171 + Math.random() * 100
   for (; i < 131; i++) {
@@ -18185,7 +18190,6 @@ function form3 () {
     ctx.setTransform(1, 0, 0, 1, 0, 0);
   }
 }
-
 
 function form2 () {
   let canvas = document.getElementById("myCanvas");
@@ -21341,10 +21345,9 @@ function detail () {
     ctx.ellipse(x2, y2, r, r, a, 0, Math.PI)
     ctx.stroke()
     
-    ctx.font = "100 "+(r/4)+"pt 'AmericanTypewriter'"
-    let t = randomPick("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""))
+    //ctx.font = "100 "+(r/4)+"pt 'AmericanTypewriter'"
+    //let t = randomPick("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""))
    // ctx.fillText(t, x2 - r/8,y2+r/8)
-    
     cubeAt(x2,y2-r/2,r,ctx.strokeStyle)
   }
   document.getElementById("mode").value = mode
