@@ -418,7 +418,7 @@
       <option value="onesquare">1 square</option>
       <option value="twosquares">2 squares</option>
       <option value="foursquares">4 squares</option>
-      <option value="circle" >i circle</option>
+      <option value="circle" >1 circle</option>
       <option value="threeCircles">3 circles</option>
 
       <option value="typewriter" >typewriter</option>
@@ -463,7 +463,6 @@
       <option value="natural">loop</option>
       <option value="phase">phase</option>
       <option value="phases">phases</option>
-      <option value="comets">comets</option>
       <option value="shape2">shape</option>
       <option value="scraps">scraps</option>
       <option value="tape">tape</option>
@@ -494,9 +493,11 @@
       <option value="form1">form</option>
       <option value="form2">form decoration</option>
       <option value="form3">form (nest)</option>
+      <option value="details"selected>details</option>
+
       <option value="ctrlchart">ctrl chart</option>
       <option value="stepchart">step chart</option>
-      <option value="histograph" selected>histograph</option>
+      <option value="histograph" >histograph</option>
       <option value="pairedwords">form pairts</option>
       
       
@@ -6637,6 +6638,56 @@ function monocube () {
   ctx.shadowOffsetX = 0
 }
 
+
+function cubeAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let colors = shuffle(getCurrentPalette())
+  let alt = document.getElementById("grungy").checked
+  ctx.lineWidth = 2 + document.getElementById("featuresize").value/50
+  let pad = 0 //+ Math.random() *40,
+  ctx.strokeStyle = color
+  let d = (W-2*pad)/2
+  d *= 1.3
+  let da = randomPick([3,5,8,13,24])
+  console.log(da)
+  let div = d/da
+  let x0 = x
+  ctx.fillStyle = (colors[0])
+  ctx.beginPath()
+  ctx.moveTo(x,y+div)
+  ctx.lineTo(x+d/2,y+d/2)
+  ctx.lineTo(x,y+d-div)
+  ctx.lineTo(x-d/2,y+d/2)
+  ctx.lineTo(x,y+div)
+  ctx.closePath()
+  ctx.stroke()
+  
+  ctx.fillStyle = (colors[1])
+  ctx.beginPath()
+  x -= d/2, y += pad + d/2
+  ctx.moveTo(x,y)         // top left
+  ctx.lineTo(x+d/2,y+d/2-div) // top right
+  ctx.lineTo(x+d/2,y+d-div) // bottom right
+  ctx.lineTo(x,y+d/2)
+  ctx.lineTo(x,y)
+  ctx.closePath()
+  ctx.stroke()
+  
+  ctx.fillStyle = (colors[2])
+  ctx.beginPath()
+  x = x0, y += pad + d/2
+  ctx.moveTo(x,y-div)
+  ctx.lineTo(x+d/2,y-d/2)
+  ctx.lineTo(x+d/2,y)
+  ctx.lineTo(x,y+d/2-div)
+  ctx.lineTo(x,y)
+  ctx.closePath()
+  ctx.stroke()
+}
+
 function cube () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -11588,65 +11639,6 @@ function scraps () {
     ctx.closePath()
     ctx.fill()
   }
-}
-
-function comets () {
-  let canvas = document.getElementById("myCanvas");
-  let ctx = canvas.getContext("2d");
-  ctx.lineWidth = 1 + Math.floor(document.getElementById("featuresize").value/10)
-  ctx.globalAlpha = document.getElementById("opacity").value/100
-  let colors = shuffle(getCurrentPalette())
-  let mode = document.getElementById("mode").value
-  let alpha = document.getElementById("opacity").value
-  let alt = document.getElementById("grungy").checked
-  let cx = canvas.width/2, cy = canvas.height/2
-  let r = canvas.width/9 * 0.8 + pet(40)
-  let r2 = r * 0.5
-  let x = r + Math.random() * cx/2, y = r +Math.random() *cy/2
-  let x2 = cx + r ,y2 = cy + r
-  let div = 1 + Math.random() * 4
-  let height = 0
-  let savedheight = 0
-  let a = Math.random() * 2 * Math.PI
-  let R = canvas.width/2
-  // fill
-  ctx.lineJoin = "round"
-  ctx.strokeStyle = document.getElementById("paintcolor").value
-  ctx.fillStyle = document.getElementById("paintcolor").value
-  let i = 0
-  for (; i < 1 ;i++) {
-    a = Math.random() * 2 * Math.PI
-    r = canvas.width/9 * 0.8 + pet(80)
-    r2 = r * 0.1+ pet(10)
-    if (Math.random() > 0.9)
-      r2=5
-    cx =  LASTCLICK[0]//Math.random() * canvas.width
-    cy =  LASTCLICK[1]//Math.random() * canvas.height
-    if (cy < canvas.height/2)
-      a = Math.random()  * Math.PI
-    if (cy > canvas.height/2)
-      a = Math.PI +Math.random()  * Math.PI
-    
-    x = cx// + r * Math.cos(a)
-    y = cy// + r * Math.sin(a)
-    
-    x2 = cx + r*3 * Math.cos(a)
-    y2 = cy + r*3 * Math.sin(a)
- 
-    ctx.beginPath()
-    ctx.ellipse(x, y, r2, r2, a+Math.PI/2,  0, 2 * Math.PI)
-    ctx.ellipse(x2, y2, r, r, a+Math.PI/2, 0, Math.PI)
-    ctx.ellipse(x, y, r2, r2, a+Math.PI/2,  Math.PI,1)
-    ctx.stroke()
-    ctx.beginPath()
-    ctx.ellipse(x2, y2, r, r, a+Math.PI/2, Math.PI, 0)
-    ctx.stroke()
-    ctx.font = "100 "+(r/2)+"pt 'AmericanTypewriter'"
-    let t = randomPick("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""))
-    ctx.fillText(t, x2 - r/4,y2+r/4)
-  }
-  document.getElementById("mode").value = mode
-  document.getElementById("opacity").value = alpha
 }
 
 function pants () {
@@ -21308,56 +21300,56 @@ function dropFrameRagged () {
   ctx.globalAlpha = alpha
 }
 
-function detail () {
+function details () {
   let canvas = document.getElementById("myCanvas");
-  let ctx = canvas.getContext("2d")
-  let W = canvas.width, H = canvas.height
-  let x = Math.random() * W, y = Math.random() *H
-  let color = document.getElementById("paintcolor").value
-  ctx.lineWidth = 4//1 +document.getElementById("featuresize").value/50
-  ctx.strokeStyle = color
-  let w = W / 40, lw = W/9, r = W/80
-  let text = document.getElementById("points").value
-  if (text.length < 1)
-    text = randomWord()
-  x = LASTCLICK[0], dx =(W-lw-x)*Math.random()-w*1.2
-  y = LASTCLICK[1], dy = 20 + H*0.9*Math.random()
-  if (document.getElementById("grungy").checked) {
-    let face = "AmericanTypewriter"
-    ctx.font = "100 "+(lw/6)+"pt " + face
-    ctx.fillStyle = color
-    ctx.fillText(text, x+pet(7), y-lw/9)
-  }
-  
-  let x0 = x, y0 = y
-  ctx.beginPath()
-  ctx.arc(x,y,r,0, Math.PI * 2)
-  ctx.stroke()
-  let r2 = r * 6
-  if (x < W/2)
-    x -= r2*2
-  else
-    x +=  r2*2
-    
-  if (y < H/2)
-    y -= r2*2
-  else
-    y += r2*2
-  ctx.beginPath()
-  ctx.arc(x,y,r2,0, Math.PI * 2)
-  ctx.stroke()
-  
-  ctx.beginPath()
-  ctx.moveTo(x0+r,y0+r)
-  ctx.lineTo(x-r2,y-r2)
-  ctx.closePath()
-  ctx.stroke()
-  
-    
-    
-    
-}
+  let ctx = canvas.getContext("2d");
+  ctx.lineWidth = 1 + Math.floor(document.getElementById("featuresize").value/50)
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let colors = shuffle(getCurrentPalette())
+  let mode = document.getElementById("mode").value
+  let alpha = document.getElementById("opacity").value
+  let alt = document.getElementById("grungy").checked
+  let cx = canvas.width/2, cy = canvas.height/2
+  let r = canvas.width/9 * 0.8 + pet(40)
+  let r2 = r * 0.5
+  let x = r + Math.random() * cx/2, y = r +Math.random() *cy/2
+  let x2 = cx + r ,y2 = cy + r
+  //let div = 1 + Math.random() * 4
+  let a = Math.random() * 2 * Math.PI
+  ctx.lineJoin = "round"
+  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = document.getElementById("paintcolor").value
+  let i = 0
+  for (; i < 1 ;i++) {
+    a = Math.random() * 2 * Math.PI
+    r = canvas.width/9 * 0.8 + pet(80)
+    r2 = r * 0.1+ pet(10)
 
+    cx =  LASTCLICK[0], cy =  LASTCLICK[1]
+    if (cy < canvas.height/2)
+      a = Math.random()  * Math.PI
+    if (cy > canvas.height/2)
+      a = Math.PI +Math.random()  * Math.PI
+    x = cx, y = cy
+    
+    x2 = cx + r*3 * Math.cos(a)
+    y2 = cy + r*3 * Math.sin(a)
+    
+    ctx.beginPath()
+    ctx.ellipse(x, y, r2, r2, a,  0, 2 * Math.PI)
+    ctx.ellipse(x2, y2, r, r, a, Math.PI, Math.PI*2)
+    ctx.ellipse(x2, y2, r, r, a, 0, Math.PI)
+    ctx.stroke()
+    
+    ctx.font = "100 "+(r/4)+"pt 'AmericanTypewriter'"
+    let t = randomPick("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""))
+   // ctx.fillText(t, x2 - r/8,y2+r/8)
+    
+    cubeAt(x2,y2-r/2,r,ctx.strokeStyle)
+  }
+  document.getElementById("mode").value = mode
+  document.getElementById("opacity").value = alpha
+}
 
 function label () {
   let canvas = document.getElementById("myCanvas");
