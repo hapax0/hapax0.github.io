@@ -6644,6 +6644,75 @@ function monocube () {
   ctx.shadowOffsetX = 0
 }
 
+function chairAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  y += W/4
+  let H = W
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let colors = shuffle(getCurrentPalette())
+  let alt = document.getElementById("grungy").checked
+  ctx.lineWidth = 2 + document.getElementById("featuresize").value/50
+  let pad = 0 //+ Math.random() *40,
+  ctx.strokeStyle = color
+  let d = (W-2*pad)/2
+  d *= 1.3
+  let da = randomPick([3,5,8,13,24])
+  let div = d/da
+  let x0 = x, y0 = y
+  ctx.beginPath()
+  ctx.moveTo(x,y+div)
+  ctx.lineTo(x+d/2,y+d/2)
+  ctx.lineTo(x,y+d-div)
+  ctx.lineTo(x-d/2,y+d/2)
+  ctx.lineTo(x,y+div)
+  ctx.closePath()
+  ctx.stroke()
+  
+  ctx.beginPath()
+  x -= d/2, y += d/2
+  ctx.moveTo(x,y)         // top left
+  ctx.lineTo(x,y+d/2) // bottom right
+
+  ctx.stroke()
+  x += d
+  ctx.moveTo(x,y)         // top left
+  ctx.lineTo(x,y+d/2) // bottom right
+  ctx.stroke()
+  
+  x -= d/2, y += d/2
+  ctx.moveTo(x,y-div)         // top left
+  ctx.lineTo(x,y+d/2-div) // bottom right
+  ctx.closePath()
+  ctx.stroke()
+  
+  if (Math.random() > 0.5) {
+    // right back of chair
+    ctx.beginPath()
+    y = (y0+div-d/2)
+    ctx.moveTo(x,y)         // top left
+    ctx.lineTo(x+d/2,y+d/2-div) // top right
+    ctx.lineTo(x+d/2,y+d-div) // bottom right
+    ctx.lineTo(x,y+d/2)
+    ctx.lineTo(x,y)
+    ctx.closePath()
+    ctx.stroke()
+  } else {
+    // left side
+    ctx.fillStyle = (colors[2])
+    ctx.beginPath()
+    x = x0-d/2, y = (y0+div)
+    ctx.moveTo(x,y-div)
+    ctx.lineTo(x+d/2,y-d/2)
+    ctx.lineTo(x+d/2,y)
+    ctx.lineTo(x,y+d/2-div)
+    ctx.lineTo(x,y)
+    ctx.closePath()
+    ctx.stroke()
+  }
+}
+
+
 function cubeAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -21348,7 +21417,10 @@ function detail () {
     //ctx.font = "100 "+(r/4)+"pt 'AmericanTypewriter'"
     //let t = randomPick("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""))
    // ctx.fillText(t, x2 - r/8,y2+r/8)
-    cubeAt(x2,y2-r/2,r,ctx.strokeStyle)
+    if (Math.random() > 0.5)
+      cubeAt(x2,y2-r/2,r,ctx.strokeStyle)
+    else
+      chairAt(x2,y2-r/2,r,ctx.strokeStyle)
   }
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
