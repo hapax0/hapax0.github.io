@@ -6652,10 +6652,17 @@ function chairStorm () {
   ctx.globalAlpha = +document.getElementById("opacity").value/100
   let colors = shuffle(getCurrentPalette(true,13))
   let w = 14 + document.getElementById("number").value/100
-  //w = W/20
-  let i = 0
-  for (; i < 17; i++) {
-    chairAt (Math.random() * W, Math.random() * H ,w + pet (w/2),randomPick(colors))
+  let i = 0, dtop = 0, dcenter = 0, wt = 100
+  for (; i < 30; i++) {
+    wt = 100
+    x = Math.random() * W
+    y = Math.random() * H
+    //wt *= Math.abs(W-x)/W
+    wt /= (H-y)/H
+    
+  //  console.log(Math.floor(y),wt)
+    if (Math.random() * wt > 105)
+    chairAt (x, y ,w + pet (w/2),randomPick(colors))
   }
 }
 
