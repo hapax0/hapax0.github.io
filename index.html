@@ -18058,6 +18058,24 @@ function stepchart () {
     ctx.lineTo(x,y-8)
     ctx.stroke()
   }
+  
+  if (document.getElementById("grungy").checked) {
+    let face = 'Helvetica'
+    ctx.font = "500 "+randomPick([21,20,24])+"pt " + face
+    w = ctx.measureText("Table 1").width
+    ctx.fillText("Table 1", W/2-w/2, inset)
+    let wrd = randomWord()
+    w = ctx.measureText(wrd).width
+    ctx.fillText(wrd, W/2-w/2, H-inset/2)
+    
+    wrd = randomWord()
+    w = ctx.measureText(wrd).width
+    ctx.save()
+    ctx.translate(inset/2, H/2-w/2)
+    ctx.rotate(Math.PI / 2)
+    ctx.fillText(wrd, 0, 0)
+    ctx.restore()
+  }
 }
 
 function ctrlchart () {
@@ -21417,10 +21435,10 @@ function detail () {
     //ctx.font = "100 "+(r/4)+"pt 'AmericanTypewriter'"
     //let t = randomPick("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""))
    // ctx.fillText(t, x2 - r/8,y2+r/8)
-    if (Math.random() > 0.5)
-      cubeAt(x2,y2-r/2,r,ctx.strokeStyle)
-    else
+    if (alt)
       chairAt(x2,y2-r/2,r,ctx.strokeStyle)
+    else
+      cubeAt(x2,y2-r/2,r,ctx.strokeStyle)
   }
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
