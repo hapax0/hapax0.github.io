@@ -435,6 +435,8 @@
       <option value="ivy" >ivy</option>
       <option value="user">user</option>
       <option value="chair">chair</option>
+      <option value="chairStorm">chair storm</option>
+    
       <option value="swingset">swing set</option>
       <option value="glass_line" >glass</option>
       <option value="glass" >glass (fill)</option>
@@ -446,7 +448,6 @@
       <option value="cracklelines" >crackle lines</option>
       <option value="origami">origami</option>
       
-
       <option value="neckerline">necker</option>
       <option value="necker">necker (fill)</option>
       <option value="house">house (fill)</option>
@@ -6642,6 +6643,20 @@ function monocube () {
   ctx.shadowBlur = 0
   ctx.shadowOffsetY = 0
   ctx.shadowOffsetX = 0
+}
+
+function chairStorm () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let colors = shuffle(getCurrentPalette(true,13))
+  let w = 14 + document.getElementById("number").value/100
+  //w = W/20
+  let i = 0
+  for (; i < 17; i++) {
+    chairAt (Math.random() * W, Math.random() * H ,w + pet (w/2),randomPick(colors))
+  }
 }
 
 function chairAt (x,y,W,color) {
