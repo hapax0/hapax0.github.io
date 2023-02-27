@@ -6674,6 +6674,7 @@ function chairAt (x,y,W,color) {
   let pad = 0 //+ Math.random() *40,
   ctx.strokeStyle = color
   ctx.lineCap = "butt"
+  ctx.lineJoin = "round"
   let d = (W-2*pad)/2
   d *= 1.3
   let da = randomPick([3,5,8,13,24])
