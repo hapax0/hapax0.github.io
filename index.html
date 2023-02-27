@@ -6656,7 +6656,7 @@ function treeStorm () {
   let i = 0
   for (; i < 31; i++) {
     x = Math.random() * W
-    y = Math.random() * H
+    y = Math.random() * H - w
     //y += (H-y)*Math.random()
     //x += (W/2-x) * Math.random()
     treeAt (x, y ,w + pet (w/2),randomPick(colors))
