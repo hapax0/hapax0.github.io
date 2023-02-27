@@ -6683,7 +6683,7 @@ function chairStorm () {
 function treeAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
-  y += W/4
+  //y += W/4
   let H = W
   ctx.globalAlpha = +document.getElementById("opacity").value/100
   let colors = shuffle(getCurrentPalette())
@@ -6692,11 +6692,13 @@ function treeAt (x,y,W,color) {
   ctx.strokeStyle = color
   ctx.lineCap = "butt"
   ctx.lineJoin = "round"
-  
+  let p = 0
+  if (alt)
+    p = 11
   let x0 = x, y0 = y
   ctx.beginPath()
   ctx.moveTo(x,y)
-  ctx.lineTo(x,y+W)
+  ctx.lineTo(x,y+W+pet(p))
   ctx.closePath()
   ctx.stroke()
   let UP = Math.random() > 0.5
@@ -6704,29 +6706,28 @@ function treeAt (x,y,W,color) {
   for (; i < 6; i++) {
     y += d0
       d += (1+i) * d0/13
-
     if (UP) {
       ctx.beginPath()
-      ctx.moveTo(x,y)
-      ctx.lineTo(x+d,y-d)
+      ctx.moveTo(x,y+pet(p))
+      ctx.lineTo(x+d,y-d+pet(p))
       ctx.closePath()
       ctx.stroke()
       
       ctx.beginPath()
-      ctx.moveTo(x,y)
-      ctx.lineTo(x-d,y-d)
+      ctx.moveTo(x,y+pet(p))
+      ctx.lineTo(x-d,y-d+pet(p))
       ctx.closePath()
       ctx.stroke()
     } else {
       ctx.beginPath()
-      ctx.moveTo(x,y)
-      ctx.lineTo(x+d,y)
+      ctx.moveTo(x,y+pet(p))
+      ctx.lineTo(x+d,y+pet(p))
       ctx.closePath()
       ctx.stroke()
       
       ctx.beginPath()
-      ctx.moveTo(x,y)
-      ctx.lineTo(x-d,y)
+      ctx.moveTo(x,y+pet(p))
+      ctx.lineTo(x-d,y+pet(p))
       ctx.closePath()
       ctx.stroke()
     }
