@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
   <style>
-    div[class=buttons] {
+    div[class='buttons'] {
       margin-top:8px;
       float: left;filter
       white-space: nowrap;
@@ -1133,6 +1133,7 @@ function restorePalette (p) {
 function loadPalette () {
   let a = [], b = []
   let type = document.getElementById("palettechoice").value
+  paletteChange()
   if (type === "none")
     return
   if (type === "halfway") {
@@ -1285,7 +1286,7 @@ function loadPalette () {
     return
   } else
   if (type === "cmy") {
-    let rb = [randomColorCool(),randomColorCool(),"#cccccc",randomColorWarm(),randomColorWarm()]
+    //let rb = [randomColorCool(),randomColorCool(),"#cccccc",randomColorWarm(),randomColorWarm()]
     document.getElementById("pal1").value = "#00ffff"
     document.getElementById("pal2").value = "#ffff00"
     document.getElementById("pal3").value = "#ff00ff"
@@ -2337,6 +2338,8 @@ function updateExtraColors (colors) {
   let ctx = canvas.getContext("2d");
   ctx.fillStyle = "#a0a0a0"
   ctx.clearRect(0,0,canvas.width, canvas.height)
+  if (colors === null || colors.length < 1)
+    colors = getPaletteFromPickers()
   for (; i < colors.length; i++) {
     extendedPalette.push(colors[i])
     ctx.fillStyle = colors[i]
@@ -2345,6 +2348,15 @@ function updateExtraColors (colors) {
   }
 }
 
+function getPaletteFromPickers() {
+  let colors = []
+  colors.push(document.getElementById("pal1").value)
+  colors.push(document.getElementById("pal2").value)
+  colors.push(document.getElementById("pal3").value)
+  colors.push(document.getElementById("pal4").value)
+  colors.push(document.getElementById("pal5").value)
+  return colors
+}
 function testColors (colors) {
   let i = 0, j = 0, bad = []
   let cr1,cr2,d,d2
@@ -5207,6 +5219,16 @@ function setMode (a) {
   document.getElementById("mode").value = a
 }
 
+function paletteChange () {
+  let a = document.getElementById("palettechoice").value
+  pushFunction('setPalette', a)
+}
+
+function setPalette (a) {
+  document.getElementById("palettechoice").value = a
+  loadPalette()
+}
+
 function recordSettings () {
   let a = document.getElementById("number").value
   pushFunction('setNumber', a)
@@ -5218,6 +5240,8 @@ function recordSettings () {
   pushFunction('setPaintcolor', a)
   a = document.getElementById("mode").value
   pushFunction('setMode', a)
+  a = document.getElementById("palettechoice").value
+  pushFunction('setPalette', a)
 }
 
 let RECORDING = false
