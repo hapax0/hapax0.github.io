@@ -122,7 +122,7 @@
     <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
   </svg></a>
   &nbsp;
-  <input type="color" id="paintcolor" style="margin-bottom:6px;">
+  <input type="color" id="paintcolor" onchange="paintcolorChange()" style="margin-bottom:6px;">
   &nbsp;
   <a href="javascript:randomPickColor()" title='random color'>
   <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-palette" viewBox="0 0 16 16">
@@ -134,7 +134,13 @@
     <path d="M2.522 5H2a.5.5 0 0 0-.494.574l1.372 9.149A1.5 1.5 0 0 0 4.36 16h7.278a1.5 1.5 0 0 0 1.483-1.277l1.373-9.149A.5.5 0 0 0 14 5h-.522A5.5 5.5 0 0 0 2.522 5zm1.005 0a4.5 4.5 0 0 1 8.945 0H3.527zm9.892 1-1.286 8.574a.5.5 0 0 1-.494.426H4.36a.5.5 0 0 1-.494-.426L2.58 6h10.838z"/>
   </svg></a>
   &nbsp;
-  <a href="javascript:lastNFunctions()" id="last" title="repeat last function">
+
+  <a href='javascript:playFunctions()' id="play" title="play recorded macro (when red)"><svg xmlns="http://www.w3.org/2000/svg" id="playsvg" width="30" height="30" fill="#000000" class="bi bi-bucket" viewBox="0 0 16 16">
+    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+    <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
+    </svg></a>
+
+  <!--a href="javascript:lastNFunctions()" id="last" title="repeat last function">
   <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
     <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
     <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
@@ -151,7 +157,7 @@
     <option>9</option>
     <option>10</option>
     <option>0</option>
-  </select>
+  </select-->
   &nbsp;
   <a href="javascript:stack_clearOff()" title="clear offscreen">
     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-clipboard-x" viewBox="0 0 16 16">
@@ -678,35 +684,30 @@
     <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
   </svg></a></button>
   </div></td>
-  <td rowsapn="6">
-  <button id="record" onclick='clearFunctionStack()'><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="white" viewBox="0 0 16 16">
+  <td rowspan="5">
+    record macro<br>
+  <button id="record" onclick='record()'><svg xmlns="http://www.w3.org/2000/svg" id="recordsvg" width="30" height="30" fill="currentColor" class="white" viewBox="0 0 16 16">
   <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
   <path d="M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
   </svg></button>
     
-  <button id="stop"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="white" viewBox="0 0 16 16">
+  <button id="stop" onclick="stopRecording()"><svg xmlns="http://www.w3.org/2000/svg" id="stopsvg" width="30" height="30" fill="#cccccc" class="white" viewBox="0 0 16 16">
   <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
   <path d="M5 6.5A1.5 1.5 0 0 1 6.5 5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5v-3z"/>
   </svg></button>
-
-  <button id="play" onclick='lastNFunctions()'><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="white" viewBox="0 0 16 16">
-  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-  <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
-  </svg></button>
-
 
   <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
   <path d="M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
 </svg></td>
   </tr>
   <tr>
-    <td style="text-align:right;">feature size</td><td><input type="range" id="featuresize" min="0" max="500" value="25"></td>
+    <td style="text-align:right;">feature size</td><td><input type="range" id="featuresize" onchange="featuresizeChange()" min="0" max="500" value="25"></td>
     <td style="text-align:right;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-camera" viewBox="0 0 16 16">
       <path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/>
     </svg></td><td><button onclick="sharpen2()">+</button>&nbsp;&nbsp;<button onclick="shrinkBlur()">-</button></td>
     
     </tr>
-    <tr><td style="text-align:right;">quantity</td><td><input type="range" id="number" min="9" max="20000" value="10000">
+    <tr><td style="text-align:right;">quantity</td><td><input type="range" id="number" onchange="numberChange()" min="9" max="20000" value="10000">
     </td>
     <td style="text-align:right;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-droplet" viewBox="0 0 16 16">
     <path fill-rule="evenodd" d="M7.21.8C7.69.295 8 0 8 0c.109.363.234.708.371 1.038.812 1.946 2.073 3.35 3.197 4.6C12.878 7.096 14 8.345 14 10a6 6 0 0 1-12 0C2 6.668 5.58 2.517 7.21.8zm.413 1.021A31.25 31.25 0 0 0 5.794 3.99c-.726.95-1.436 2.008-1.96 3.07C3.304 8.133 3 9.138 3 10a5 5 0 0 0 10 0c0-1.201-.796-2.157-2.181-3.7l-.03-.032C9.75 5.11 8.5 3.72 7.623 1.82z"/>
@@ -715,14 +716,15 @@
     </td>
      
     </tr>
-    <tr> <td style="text-align:right;">opacity</td><td><input type="range" id="opacity" min="1" max="100" value="100" ></td><td style="text-align:right;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-circle-half" viewBox="0 0 16 16">
+    <tr> <td style="text-align:right;">opacity</td><td><input type="range" onchange='opacityChange()' id="opacity" min="1" max="100" value="100" ></td><td style="text-align:right;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-circle-half" viewBox="0 0 16 16">
     <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
     </svg></td><td><button onclick="contrastImage(5)">+</button>&nbsp;&nbsp;<button onclick="contrastImage(-5)">-</button></td>
     </tr>
     <tr>
       
       <td
-  style="text-align:right;">&nbsp;&nbsp;alt:<input type="checkbox" id="grungy" title="alternate behaviour"></td><td>mode: <select id="mode">
+  style="text-align:right;">&nbsp;&nbsp;alt:<input type="checkbox" id="grungy" title="alternate behaviour"></td>
+  <td>mode: <select id="mode" onchange="modeChange()">
       <option value="source-over" selected>source-over</option>
       <option value="source-in">source-in</option>
       <option value="source-out">source-out</option>
@@ -5160,20 +5162,113 @@ function filterBlue () {
   ctx.putImageData(imgData, 0, 0)
 }
 
+function featuresizeChange () {
+  let a = document.getElementById("featuresize").value
+  pushFunction('setFeaturesize', a)
+}
+
+function setFeaturesize (a) {
+  document.getElementById("featuresize").value = a
+}
+
+function paintcolorChange () {
+  let a = document.getElementById("paintcolor").value
+  pushFunction('setPaintcolor', a)
+}
+
+function setPaintcolor (a) {
+  document.getElementById("paintcolor").value = a
+}
+
+function numberChange () {
+  let a = document.getElementById("number").value
+  pushFunction('setNumber', a)
+}
+
+function setNumber (a) {
+  document.getElementById("number").value = a
+}
+
+function opacityChange () {
+  let a = document.getElementById("opacity").value
+  pushFunction('setOpacity', a)
+}
+
+function setOpacity (a) {
+  document.getElementById("opacity").value = a
+}
+
+function modeChange () {
+  let a = document.getElementById("mode").value
+  pushFunction('setMode', a)
+}
+
+function setMode (a) {
+  document.getElementById("mode").value = a
+}
+
+function recordSettings () {
+  let a = document.getElementById("number").value
+  pushFunction('setNumber', a)
+  a = document.getElementById("opacity").value
+  pushFunction('setOpacity', a)
+  a = document.getElementById("featuresize").value
+  pushFunction('setFeaturesize', a)
+  a = document.getElementById("paintcolor").value
+  pushFunction('setPaintcolor', a)
+  a = document.getElementById("mode").value
+  pushFunction('setMode', a)
+}
+
+let RECORDING = false
 let LATESTFUNCTION = ""
 let functionStack = []
 
-function pushFunction (f) {
-  functionStack.push(f)
-  functionStack = functionStack.slice(-10, functionStack.length)
-  document.getElementById("nfunctions").setAttribute('title', functionStack.join("\n"))
-  document.getElementById("last").setAttribute('title', functionStack.join("\n"))
+function pushFunction (f,args) {
+  if (!RECORDING)
+    return false
+  functionStack.push([f,args])
+  //document.getElementById("nfunctions").setAttribute('title', functionStack.join("\n"))
+  //document.getElementById("last").setAttribute('title', functionStack.join("\n"))
+}
+
+function record () {
+  document.getElementById("recordsvg").style.fill="#ff0000"
+  document.getElementById("stopsvg").style.fill="#000000"
+  document.getElementById("playsvg").style.fill="#000000"
+  clearFunctionStack()
+  RECORDING = true
+  recordSettings()
+}
+
+function stopRecording () {
+  RECORDING = false
+  document.getElementById("recordsvg").style.fill="#000000"
+  document.getElementById("stopsvg").style.fill="#cccccc"
+  if (functionStack.length > 0)
+    document.getElementById("playsvg").style.fill="#ff0000"
+}
+
+function playFunctions () {
+  RECORDING = false
+  document.getElementById("recordsvg").style.fill="#000000"
+  document.getElementById("stopsvg").style.fill="#cccccc"
+  if (functionStack.length > 0)
+    document.getElementById("playsvg").style.fill="#ff0000"
+  playAllFunctions()
 }
 
 function clearFunctionStack () {
   functionStack = []
-  document.getElementById("nfunctions").setAttribute('title', "no functions")
-  document.getElementById("last").setAttribute('title', "no functions")
+  //document.getElementById("nfunctions").setAttribute('title', "no functions")
+  //document.getElementById("last").setAttribute('title', "no functions")
+}
+
+function playAllFunctions () {
+  let i = 0
+  for (; i < functionStack.length; i++) {
+    window[functionStack[i][0]](functionStack[i][1])
+  }
 }
 
 function testImage (id) {
@@ -5184,7 +5279,7 @@ function testImage (id) {
   let f = document.getElementById(id).value
   window[f]()
   LATESTFUNCTION = f
-  pushFunction(f)
+  pushFunction(f,0)
  // document.getElementById("last").title = "repeat: "+f
   // after function call check slider agreement with context values
   let sel = document.getElementById("mode").value
@@ -5206,7 +5301,6 @@ function lastNFunctions () {
   for (; i < end.length; i++) {
     window[end[i]]()
   }
-  
 }
 
 function doAgain () {
@@ -6103,22 +6197,22 @@ function drawFile () {
 
 function stack_clearOff () {
   clearOff()
-  pushFunction('clearOff')
+  pushFunction('clearOff',0)
 }
 
 function stack_copyToOff () {
   copyToOff()
-  pushFunction('copyToOff')
+  pushFunction('copyToOff',0)
 }
 
 function stack_swapWithOff () {
   swapWithOff()
-  pushFunction('swapWithOff')
+  pushFunction('swapWithOff',0)
 }
 
 function stack_pasteFromOff () {
   pasteFromOff()
-  pushFunction('pasteFromOff')
+  pushFunction('pasteFromOff',0)
 }
 
 function clearOff () {
@@ -7643,7 +7737,6 @@ function amonoball (x,y,w,h) {
   let div = 3, m = 2
   ctx.fillStyle = colors[0]
   if (!alt) {
-    console.log("blur")
     ctx.shadowBlur = 10 + Math.random() * 15
     ctx.shadowColor = colors[0]
     ctx.shadowOffsetX = (Math.random()-0.5) * 8
@@ -25055,12 +25148,12 @@ function resizeCanvas () {
 
 function stack_fill () {
   fill()
-  pushFunction('fill')
+  pushFunction('fill', 0)
 }
 
 function stack_clearCanvas () {
   clearCanvas()
-  pushFunction('clearCanvas')
+  pushFunction('clearCanvas', 0)
 }
 
 function clearCanvas () {
