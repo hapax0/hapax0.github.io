@@ -586,7 +586,7 @@
    </div>
    
    <div style="margin-left:8px;display:block;" id="tools">
-   <table border="1" cellpadding="4" style="margin-left:6px;">
+   <table border="0" cellpadding="4" style="margin-left:6px;">
      <tr>
        <td style="text-align:right;">canvas size </td><td>
       <select id="canvassizes" onchange="resizeCanvas()">
@@ -684,8 +684,9 @@
     <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
   </svg></a></button>
   </div></td>
-  <td rowspan="5">
-    record macro<br>
+  <td rowspan="2">
+  <div style="display:inline-block;
+  vertical-align: baseline;">
   <button id="record" onclick='record()'><svg xmlns="http://www.w3.org/2000/svg" id="recordsvg" width="30" height="30" fill="currentColor" class="white" viewBox="0 0 16 16">
   <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
   <path d="M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
@@ -698,7 +699,7 @@
 
   <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
   <path d="M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-</svg></td>
+</svg></div></td>
   </tr>
   <tr>
     <td style="text-align:right;">feature size</td><td><input type="range" id="featuresize" onchange="featuresizeChange()" min="0" max="500" value="25"></td>
@@ -5269,7 +5270,7 @@ function stopRecording () {
   RECORDING = false
   document.getElementById("recordsvg").style.fill="#000000"
   document.getElementById("stopsvg").style.fill="#cccccc"
-  if (functionStack.length > 0)
+  if (functionStack.length > 6)
     document.getElementById("playsvg").style.fill="#ff0000"
 }
 
@@ -5277,7 +5278,7 @@ function playFunctions () {
   RECORDING = false
   document.getElementById("recordsvg").style.fill="#000000"
   document.getElementById("stopsvg").style.fill="#cccccc"
-  if (functionStack.length > 0)
+  if (functionStack.length > 6)
     document.getElementById("playsvg").style.fill="#ff0000"
   playAllFunctions()
 }
