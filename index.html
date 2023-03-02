@@ -1264,8 +1264,8 @@ function loadPalette () {
   } else
   if (type === "monodown") {
     let c = document.getElementById("pal1").value//randomColorVDark(),
-    let b = Math.floor(brightnessOfColor(c)/5)
-    let amt = -b
+    let k = Math.floor(brightnessOfColor(c)/5)
+    let amt = -k
     document.getElementById("pal1").value = c
     document.getElementById("pal2").value = adjustBrightnessC(c, amt)
     document.getElementById("pal3").value = adjustBrightnessC(c, amt*2)
@@ -1276,8 +1276,8 @@ function loadPalette () {
   } else
   if (type === "mono") {
     let c = document.getElementById("pal1").value//randomColorVDark(),
-    let b = Math.floor((255-brightnessOfColor(c))/5)
-    let amt = b
+    let k = Math.floor((255-brightnessOfColor(c))/5)
+    let amt = k
     document.getElementById("pal1").value = c
     document.getElementById("pal2").value = adjustBrightnessC(c, amt)
     document.getElementById("pal3").value = adjustBrightnessC(c, amt*2)
@@ -1287,7 +1287,6 @@ function loadPalette () {
     return
   } else
   if (type === "cmy") {
-    //let rb = [randomColorCool(),randomColorCool(),"#cccccc",randomColorWarm(),randomColorWarm()]
     document.getElementById("pal1").value = "#00ffff"
     document.getElementById("pal2").value = "#ffff00"
     document.getElementById("pal3").value = "#ff00ff"
@@ -1314,7 +1313,7 @@ function loadPalette () {
   } else
   if (type === "rust"){
     a = ['#120402', '#482519', '#837a4e', '#c0ab7c', '#f2efec']
-    //b = ['#120402', '#482519', '#837a4e', '#c0ab7c', '#f2efec']
+    b = ['#120402', '#482519', '#837a4e', '#c0ab7c', '#f2efec']
     updateExtraColors(b)
   } else
   if (type === "yellowed"){
@@ -1334,35 +1333,35 @@ function loadPalette () {
   } else
   if (type === "mod1") {
     a = ["#ffffff", "#7cf4fd", "#f5e8a8", "#292929", "#BC0000"].reverse()
-    updateExtraColors(b)
+    updateExtraColors(a)
   } else
   if (type === "avocado") {
     a = ["#ddd48f", "#cda989", "#6b8c21", "#4a7337", "#704010"].reverse()
-    updateExtraColors(b)
+    updateExtraColors(a)
   } else
   if (type === "planet") {
     a = ["#fdde55", "#6f8348", "#c94549", "#7a4945", "#1b4d3f"].reverse()
-    updateExtraColors(b)
+    updateExtraColors(a)
   } else
   if (type === "cherry") {
     a = ["#fff3d0", "#fa7e1e", "#d62976", "#4d1b7b", "#141d26"].reverse()
-    updateExtraColors(b)
+    updateExtraColors(a)
   } else
   if (type === "cloud") {
     a = ["#e3dec8", "#f2c665", "#99beb7", "#ef7546", "#ca3c4a"].reverse()
-    updateExtraColors(b)
+    updateExtraColors(a)
   } else
   if (type === "dark forest") {
     a = ["#556911", "#6a5c18", "#714b1e", "#296115", "#6e4024"]
-    updateExtraColors(b)
+    updateExtraColors(a)
   } else
   if (type === "retro1") {
     a = ["#f29b41", "#3d85c6", "#f64668", "#a6473f", "#274e13"].reverse()
-    updateExtraColors(b)
+    updateExtraColors(a)
   } else
   if (type === "retro2") {
     a = ["#f4c432", "#70a396", "#54877a", "#a32545", "#384054"].reverse()
-    updateExtraColors(b)
+    updateExtraColors(a)
   } else
   if (type === "primary") {
     a = ['#ff0000', '#0000ff', '#ffff00', '#008000', '#ffa500', '#800080']
@@ -1385,35 +1384,35 @@ function loadPalette () {
   } else
   if (type === "a1") {
     a = ["#cad44a","##51c5c8","#5396d2","#958a42","#93d489"]
-    updateExtraColors(b)
+    updateExtraColors(a)
   } else
   if (type === "a2") {
     a = ["#bdd9bf","#2e4052", "#ffc857","#ffffff","#412234"]
-    updateExtraColors(b)
+    updateExtraColors(a)
   } else
   if (type === "a3") {
     a = ["#084c61","#db504a","#e3b505","#4f6d7a","#56a3a6"]
-    updateExtraColors(b)
+    updateExtraColors(a)
   } else
   if (type === "a4") {
     a = ["#464d77","#36827f","#f9db6d","#f4eded","#877666"]
-    updateExtraColors(b)
+    updateExtraColors(a)
   } else
   if (type === "a5") {
     a = ["#083d77","#ebebd3","#da4167","#f4d35e","#f78764"]
-    updateExtraColors(b)
+    updateExtraColors(a)
   } else
   if (type === "a6") {
     a = ["#0c090d","#e01a4f","#f15946","#f9c22e","#53b3cb"]
-    updateExtraColors(b)
+    updateExtraColors(a)
   } else
   if (type === "a7") {
     a = ["#dbd56e","#88ab75","#2d93ad","#7d7c84","#de8f6e"]
-    updateExtraColors(b)
+    updateExtraColors(a)
   } else
   if (type === "a8") {
     a = ["#bac1b8","#58a4b0","#0c7c59","#2b303a","#d64933"]
-    updateExtraColors(b)
+    updateExtraColors(a)
   }
   
   document.getElementById("pal1").value = a[0]
