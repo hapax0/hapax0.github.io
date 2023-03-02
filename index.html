@@ -410,6 +410,7 @@
       <option value="placeTextAt">word</option>
       <option value="placeRectAt">mockup</option>
       <option value="scratchout">scratch out</option>
+      <option value="paintDrip">paint drips</option>
 
       <option value="hstripes">stripes</option>
       <option value="monocubes">mono cubes</option>
@@ -4794,13 +4795,11 @@ function namedcolorWords () {
     }
     if (y+h > canvas.height)
       break;
-    
     cnt++
   }
   ctx.clearRect(0,0,canvas.width,canvas.height)
   ctx.drawImage(off, 0, 0)
 }
-
 
 function sampleImageDataColor () {
   let canvas = document.getElementById("myCanvas")
@@ -22340,6 +22339,66 @@ function smudge (type) {
     }
   }
   ctxoff.clearRect(0,0,canvasoff.width, canvasoff.height)
+}
+
+function paintDrip (x,y) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d");
+  let W = canvas.width
+  let H = canvas.height
+  let alt = document.getElementById("grungy").checked
+  let off = document.getElementById("offscreen")
+  let ctoff = off.getContext("2d")
+  let canvasoff = document.getElementById("offscreen")
+  let ctxoff = canvasoff.getContext("2d")
+  ctx.globalAlpha = document.getElementById("opacity").value/100 //* 0.75
+  let smudge_size = 2 + Math.random()*13
+  let dx = pet(smudge_size*3), dy = pet(smudge_size*3)
+  let smudge_ct = 1 + document.getElementById("number").value/150
+  let maxradius = 4 + document.getElementById("featuresize").value/10
+  let color = null
+  if (!x)
+    x = LASTCLICK[0]
+  if (!y)
+    y = LASTCLICK[1]
+  if (alt)
+    color = colorOf (ctx,x,y,4)
+  x -= 256, y -= 256
+  offdrops(color)
+  dx = pet(1), dy = 3+pet(2)
+  let maxy = y + (H - y) * Math.random() + 51
+  while (y < maxy) {
+    ctx.drawImage(canvasoff, x, y)
+    if (Math.random() > 0.90)
+      x += dx + pet(maxradius)
+    y += dy + pet(maxradius/2)
+    if (Math.random() > 0.9)
+      offdrops(color)
+  }
+  ctxoff.clearRect(0,0,canvasoff.width, canvasoff.height)
+}
+
+function offdrops (color) {
+  let canvas = document.getElementById("offscreen");
+  let ctx = canvas.getContext("2d");
+  let cx = ctx.canvas.width/2;
+  let cy = ctx.canvas.height/2;
+  let x = 0, y = 0
+  ctx.clearRect(0,0,ctx.canvas.width, ctx.canvas.height)
+  ctx.globalAlpha = 0.85
+  let maxradius = 4 + document.getElementById("featuresize").value/10
+  ctx.fillStyle = document.getElementById("paintcolor").value
+  if (color)
+    ctx.fillStyle = color
+  let d =  1 + Math.random() * 1
+  let count = 5
+  for (let j = 0; j < count; j++) {
+    ctx.beginPath();
+    x = cx + pet(d)*Math.cos(Math.random()*6.28)
+    y = cy + pet(d)*Math.sin(Math.random()*6.28)
+    ctx.arc(x, y, Math.random()*maxradius, 0, 2*Math.PI);
+    ctx.fill();
+  }
 }
 
 function fog () {
