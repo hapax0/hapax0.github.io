@@ -13634,7 +13634,8 @@ py_t = (B0_t * ay) + (B1_t * by) + (B2_t * cy) + (B3_t * dy)
 function bez_pts (ax,ay, bx,by, cx,cy, dx, dy) { // b and c are control points, a = start, d = end
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  //ctx.fillStyle = "#000000"
+  let fs = 7 + document.getElementById("featuresize").value/10
+  let lw = fs/45
   let t = 0, a = 1.6*Math.PI
   for (; t < 1; t += 0.0005) {
     let B0_t = (1-t) * (1-t) * (1-t)
@@ -13644,20 +13645,12 @@ function bez_pts (ax,ay, bx,by, cx,cy, dx, dy) { // b and c are control points, 
     let px_t = (B0_t * ax) + (B1_t * bx) + (B2_t * cx) + (B3_t * dx)
     let py_t = (B0_t * ay) + (B1_t * by) + (B2_t * cy) + (B3_t * dy)
     ctx.beginPath()
-    ctx.ellipse(px_t, py_t, 2.5+pet(1), 1, a, 0, 2* Math.PI)
+    ctx.ellipse(px_t, py_t, 2.5*lw+pet(lw), lw, a, 0, 2* Math.PI)
     if (Math.random() > 0.995)
       a += pet (1)/2
     ctx.closePath()
     ctx.fill()
   }
-  /*
-  ctx.lineWidth = 3
-  ctx.fillStyle = "#000000"
-  ctx.beginPath()
-  ctx.moveTo(ax,ay)
-  ctx.bezierCurveTo(bx,by,cx,cy,dx,dy)
-  ctx.stroke()
-  */
 }
 
 function script () {
@@ -13665,7 +13658,8 @@ function script () {
   let ctx = canvas.getContext("2d");
   let fs = 7 + document.getElementById("featuresize").value/10
   let D = 1 + document.getElementById("number").value/4000
-  let bump = fs/2.2
+  D/= 4
+  let bump = fs/2.4
   let color = document.getElementById("paintcolor").value
   let alt = document.getElementById("grungy").checked
   let W = canvas.width, H = canvas.height
@@ -13684,36 +13678,26 @@ function script () {
   let x2 = 0,y2 = 0
   ctx.beginPath()
   while (x < maxX) {
-    //ctx.beginPath()
-    //ctx.moveTo(x, y)
-    cx1 = x+fs*2, cy1 = y -3*fs
-    cx2 = x-fs*2, cy2 = y +3*fs
+    cx1 = x+fs*2, cy1 = y -2*fs
+    cx2 = x-fs*2, cy2 = y +2*fs
     bump = 3*fs/4 + pet(fs*D/4)
     if (Math.random() < 0.07) {
-      cy2 += 4*fs
+      cy2 += 2*fs
     } else
     if (Math.random() < 0.23) {
-      cy1 -= 4*fs
+      cy1 -= 2*fs
     }
-    //ctx.bezierCurveTo(cx1+pet(D*fs),cy1+pet(D*fs),cx2+pet(D*fs),cy2+pet(D*fs), x+bump, y)
-    bez_pts (x,y,cx1+pet(D*fs),cy1+pet(D*fs),cx2+pet(D*fs),cy2+pet(D*fs), x+bump, y)
-    //ctx.stroke()
-    //ctx.closePath()
-    
+    bez_pts (x,y,cx1+pet(D*fs),cy1+pet(D*fs),cx2+pet(D*fs),cy2+pet(D*fs), x+bump, y)    
     // occasional dot or cross
     if (Math.random() < 0.08) {
       x2 = x + pet(fs/3)
       y2 = y - fs*1.3+pet(fs)
-      //ctx.beginPath()
-      //ctx.moveTo(x2, y2)
       cx1 = x2 + fs/4
       cy1 = y2 - fs/5 +pet(fs/4)
       cx2 = x2 + fs/4 + pet(fs)
       cy2 = y2 - fs/5 + pet(fs/4)
       ctx.bezierCurveTo(cx1,cy1,cx2,cy2, x2+pet(fs/2), y2 += pet(fs/2))
       bez_pts (x2,y2,cx1,cy1,cx2,cy2, x2+pet(fs/2), y2 += pet(fs/2))
-      //ctx.stroke()
-      //ctx.closePath()
     }
     if (alt)
       ctx.lineWidth = Math.floor(1 + fs/20) + pet(1)
