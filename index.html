@@ -22372,7 +22372,7 @@ function paintDrip (x,y) {
     x = LASTCLICK[0]
   if (!y)
     y = LASTCLICK[1]
-  if (alt)
+  if (!alt)
     color = colorOf (ctx,x,y,4)
   x -= 256, y -= 256
   offdrops(color)
