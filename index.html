@@ -13631,11 +13631,11 @@ Any intermediate point (px_t, py_t) will be given by the following (vary t from 
 px_t = (B0_t * ax) + (B1_t * bx) + (B2_t * cx) + (B3_t * dx)
 py_t = (B0_t * ay) + (B1_t * by) + (B2_t * cy) + (B3_t * dy)
 */
-function bez_pts (ax,ay, bx,by, cx,cy, dx,dy) { // b and c are control points, a = start, d = end
+function bez_pts (ax,ay, bx,by, cx,cy, dx, dy) { // b and c are control points, a = start, d = end
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   //ctx.fillStyle = "#000000"
-  let t = 0, a = 2 * Math.random()
+  let t = 0, a = 1.6*Math.PI
   for (; t < 1; t += 0.0005) {
     let B0_t = (1-t) * (1-t) * (1-t)
     let B1_t = 3 * t * (1-t) * (1-t)
@@ -13646,7 +13646,7 @@ function bez_pts (ax,ay, bx,by, cx,cy, dx,dy) { // b and c are control points, a
     ctx.beginPath()
     ctx.ellipse(px_t, py_t, 2.5+pet(1), 1, a, 0, 2* Math.PI)
     if (Math.random() > 0.995)
-      a += 0.3
+      a += pet (1)/2
     ctx.closePath()
     ctx.fill()
   }
