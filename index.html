@@ -13611,6 +13611,54 @@ function aletter () {
   LASTCLICK[0] = x + bump
 }
 
+function beztest () {
+  let ax = 50, ay = 50
+  let bx = 450, by = 100
+  let cx = 200, cy = 200
+  let dx = 400, dy = 300
+  bez_pts (ax,ay, bx,by, cx,cy, dx,dy)
+}
+
+/*
+B0_t = (1-t)^3
+B1_t = 3 * t * (1-t)^2
+B2_t = 3 * t^2 * (1-t)
+B3_t = t^3
+Notice how B0_t is 1 when t is 0 (and everything else is zero). Also, B3_t is 1 when t is 1 (and everything else is zero). So the curve starts at (ax, ay), and ends at (dx, dy).
+
+Any intermediate point (px_t, py_t) will be given by the following (vary t from 0 to 1, in small increments inside a loop):
+
+px_t = (B0_t * ax) + (B1_t * bx) + (B2_t * cx) + (B3_t * dx)
+py_t = (B0_t * ay) + (B1_t * by) + (B2_t * cy) + (B3_t * dy)
+*/
+function bez_pts (ax,ay, bx,by, cx,cy, dx,dy) { // b and c are control points, a = start, d = end
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  //ctx.fillStyle = "#000000"
+  let t = 0, a = 2 * Math.random()
+  for (; t < 1; t += 0.0005) {
+    let B0_t = (1-t) * (1-t) * (1-t)
+    let B1_t = 3 * t * (1-t) * (1-t)
+    let B2_t = 3 * t*t * (1-t)
+    let B3_t = t*t*t
+    let px_t = (B0_t * ax) + (B1_t * bx) + (B2_t * cx) + (B3_t * dx)
+    let py_t = (B0_t * ay) + (B1_t * by) + (B2_t * cy) + (B3_t * dy)
+    ctx.beginPath()
+    ctx.ellipse(px_t, py_t, 2.5+pet(1), 1, a, 0, 2* Math.PI)
+    if (Math.random() > 0.995)
+      a += 0.3
+    ctx.closePath()
+    ctx.fill()
+  }
+  /*
+  ctx.lineWidth = 3
+  ctx.fillStyle = "#000000"
+  ctx.beginPath()
+  ctx.moveTo(ax,ay)
+  ctx.bezierCurveTo(bx,by,cx,cy,dx,dy)
+  ctx.stroke()
+  */
+}
 
 function script () {
   let canvas = document.getElementById("myCanvas");
@@ -13623,9 +13671,10 @@ function script () {
   let W = canvas.width, H = canvas.height
   let pad = 4 + Math.floor(Math.random() * 2)
   let linespace = 18 + Math.floor(pet(8))
-  ctx.fillStyle = "#ffffff"
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = document.getElementById("paintcolor").value
+
   ctx.lineJoin = "round"
   ctx.lineWidth = Math.floor(1 + fs/12)
   ctx.imageSmoothingQuality = "high"
@@ -13635,8 +13684,8 @@ function script () {
   let x2 = 0,y2 = 0
   ctx.beginPath()
   while (x < maxX) {
-    ctx.beginPath()
-    ctx.moveTo(x, y)
+    //ctx.beginPath()
+    //ctx.moveTo(x, y)
     cx1 = x+fs*2, cy1 = y -3*fs
     cx2 = x-fs*2, cy2 = y +3*fs
     bump = 3*fs/4 + pet(fs*D/4)
@@ -13646,23 +13695,25 @@ function script () {
     if (Math.random() < 0.23) {
       cy1 -= 4*fs
     }
-    ctx.bezierCurveTo(cx1+pet(D*fs),cy1+pet(D*fs),cx2+pet(D*fs),cy2+pet(D*fs), x+bump, y)
-    ctx.stroke()
-    ctx.closePath()
+    //ctx.bezierCurveTo(cx1+pet(D*fs),cy1+pet(D*fs),cx2+pet(D*fs),cy2+pet(D*fs), x+bump, y)
+    bez_pts (x,y,cx1+pet(D*fs),cy1+pet(D*fs),cx2+pet(D*fs),cy2+pet(D*fs), x+bump, y)
+    //ctx.stroke()
+    //ctx.closePath()
     
     // occasional dot or cross
     if (Math.random() < 0.08) {
       x2 = x + pet(fs/3)
       y2 = y - fs*1.3+pet(fs)
-      ctx.beginPath()
-      ctx.moveTo(x2, y2)
+      //ctx.beginPath()
+      //ctx.moveTo(x2, y2)
       cx1 = x2 + fs/4
       cy1 = y2 - fs/5 +pet(fs/4)
       cx2 = x2 + fs/4 + pet(fs)
       cy2 = y2 - fs/5 + pet(fs/4)
       ctx.bezierCurveTo(cx1,cy1,cx2,cy2, x2+pet(fs/2), y2 += pet(fs/2))
-      ctx.stroke()
-      ctx.closePath()
+      bez_pts (x2,y2,cx1,cy1,cx2,cy2, x2+pet(fs/2), y2 += pet(fs/2))
+      //ctx.stroke()
+      //ctx.closePath()
     }
     if (alt)
       ctx.lineWidth = Math.floor(1 + fs/20) + pet(1)
