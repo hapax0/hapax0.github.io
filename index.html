@@ -6,7 +6,7 @@
   <style>
     div[class='buttons'] {
       margin-top:8px;
-      float: left;filter
+      float: left;
       white-space: nowrap;
     }
     td {
@@ -410,7 +410,7 @@
       <option value="placeTextAt">word</option>
       <option value="placeRectAt">mockup</option>
       <option value="scratchout">scratch out</option>
-      <option value="paintDrip">paint drips</option>
+      <option value="paintDrips">paint drips</option>
 
       <option value="hstripes">stripes</option>
       <option value="monocubes">mono cubes</option>
@@ -22341,6 +22341,16 @@ function smudge (type) {
   ctxoff.clearRect(0,0,canvasoff.width, canvasoff.height)
 }
 
+function paintDrips () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d");
+  let W = canvas.width
+  let H = canvas.height 
+  let i = 0, n = 5 + Math.random() * 5
+  for (; i < n; i++)
+    paintDrip(W*Math.random(), H*Math.random())
+}
+
 function paintDrip (x,y) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d");
@@ -22351,7 +22361,7 @@ function paintDrip (x,y) {
   let ctoff = off.getContext("2d")
   let canvasoff = document.getElementById("offscreen")
   let ctxoff = canvasoff.getContext("2d")
-  ctx.globalAlpha = document.getElementById("opacity").value/100 //* 0.75
+  ctx.globalAlpha = document.getElementById("opacity").value/100
   let smudge_size = 2 + Math.random()*13
   let dx = pet(smudge_size*3), dy = pet(smudge_size*3)
   let smudge_ct = 1 + document.getElementById("number").value/150
@@ -22375,6 +22385,14 @@ function paintDrip (x,y) {
     if (Math.random() > 0.9)
       offdrops(color)
   }
+  // change at end: looks more natural?
+  while (y < maxy+31) {
+    offdrops(color)
+    ctx.drawImage(canvasoff, x, y)
+    if (Math.random() > 0.90)
+      x += dx + pet(maxradius)
+    y += dy + pet(maxradius/2)
+  }
   ctxoff.clearRect(0,0,canvasoff.width, canvasoff.height)
 }
 
@@ -22385,7 +22403,7 @@ function offdrops (color) {
   let cy = ctx.canvas.height/2;
   let x = 0, y = 0
   ctx.clearRect(0,0,ctx.canvas.width, ctx.canvas.height)
-  ctx.globalAlpha = 0.85
+  ctx.globalAlpha = 0.9
   let maxradius = 4 + document.getElementById("featuresize").value/10
   ctx.fillStyle = document.getElementById("paintcolor").value
   if (color)
