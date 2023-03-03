@@ -393,6 +393,7 @@
         <option value="smudgestars">stars</option>
         <option value="rays">rays</option>
         <option value="chips">chips</option>
+        <option value="strokes2">strokes</option>
         <option value="skinnyLines">horizontal3</option>
         <option value="slantedLines">slanted</option>
         <option value="skinnyRings">rings</option>
@@ -13626,7 +13627,7 @@ function script () {
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.strokeStyle = document.getElementById("paintcolor").value
   ctx.lineJoin = "round"
-  ctx.lineWidth = Math.floor(1 + fs/18)
+  ctx.lineWidth = Math.floor(1 + fs/12)
   ctx.imageSmoothingQuality = "high"
   let i = 0, x = LASTCLICK[0], y = LASTCLICK[1]
   let cx1, cy1, cx2, cy2
