@@ -22432,7 +22432,7 @@ function crayonDrip (x,y) {
   ctxoff.clearRect(0,0,canvasoff.width, canvasoff.height)
 }*/
 
-function offcray (color) {
+function offcray (color, fs) {
   let canvas = document.getElementById("offscreen");
   let ctx = canvas.getContext("2d");
   let cx = ctx.canvas.width/2;
@@ -22441,6 +22441,8 @@ function offcray (color) {
   ctx.clearRect(0,0,ctx.canvas.width, ctx.canvas.height)
   ctx.globalAlpha = 0.2
   let maxradius = 4 + document.getElementById("featuresize").value/10
+  if (fs)
+    maxradius = fs
   ctx.fillStyle = document.getElementById("paintcolor").value
   if (color)
     ctx.fillStyle = color
@@ -22455,7 +22457,7 @@ function offcray (color) {
   }
 }
 
-function crayAt (x,y,ctx) {
+function crayAt (x,y,ctx, fs) {
   let off = document.getElementById("offscreen")
   let ctoff = off.getContext("2d")
   let canvasoff = document.getElementById("offscreen")
@@ -22467,12 +22469,12 @@ function crayAt (x,y,ctx) {
   if (!y)
     y = LASTCLICK[1]
   x -= 256, y -= 256
-  if (Math.random() > 0.33)
-    offcray(color)
+  //if (Math.random() > 0.33)
+    offcray(color, fs)
   ctx.drawImage(canvasoff, x, y)
 }
 
-function bez_pts_cray (ax,ay, bx,by, cx,cy, dx, dy, ctx) { 
+function bez_pts_cray (ax,ay, bx,by, cx,cy, dx, dy, ctx, fs) { 
   // b and c are control points, a = start, d = end
   let t = 0, a = 1.6*Math.PI
   for (; t < 1; t += 0.01) {
@@ -22483,7 +22485,7 @@ function bez_pts_cray (ax,ay, bx,by, cx,cy, dx, dy, ctx) {
     let px_t = (B0_t * ax) + (B1_t * bx) + (B2_t * cx) + (B3_t * dx)
     let py_t = (B0_t * ay) + (B1_t * by) + (B2_t * cy) + (B3_t * dy)
     // draw at x,y here or 
-    crayAt(px_t, py_t, ctx)
+    crayAt(px_t, py_t, ctx, fs)
   }
 }
 
@@ -22492,7 +22494,7 @@ function crayonScript () {
   let ctx = canvas.getContext("2d");
   let fs = 7 + document.getElementById("featuresize").value/10
   let D = 1 + document.getElementById("number").value/4000
-  D/= 4
+  D/= 2
   let bump = fs/2.4
   let color = document.getElementById("paintcolor").value
   let alt = document.getElementById("grungy").checked
@@ -22509,21 +22511,25 @@ function crayonScript () {
   let cx1, cy1, cx2, cy2
   let maxX = x+1*fs + Math.random() * 8 * fs
   let x2 = 0,y2 = 0, CT = 0
+
+  fs *= 1
   ctx.beginPath()
   while (x < maxX) {
     CT++
-    cx1 = x+fs*2, cy1 = y -2*fs
-    cx2 = x-fs*2, cy2 = y +2*fs
-    bump = 3*fs/4 + pet(fs*D/4)
+    cx1 = x+fs*1, cy1 = y -3*fs
+    cx2 = x-fs*4, cy2 = y +3*fs
+    bump = 0.8*fs + pet(fs*D/4)
+    /*
     if (Math.random() < 0.07) {
       cy2 += 2*fs
     } else
     if (Math.random() < 0.23) {
       cy1 -= 2*fs
-    }
-    bez_pts_cray (x,y,cx1+pet(D*fs),cy1+pet(D*fs),cx2+pet(D*fs),cy2+pet(D*fs), x+bump, y, ctx)    
+    }*/ 
+    bez_pts_cray (x,y,cx1+pet(D*fs),cy1+pet(D*fs),cx2+pet(D*fs),cy2+pet(D*fs), x+bump, y, ctx)   
+    /* 
     // occasional dot or cross
-    if (Math.random() < 0.08) {
+    if (Math.random() < 0.0) {
       x2 = x + pet(fs/3)
       y2 = y - fs*1.3+pet(fs)
       cx1 = x2 + fs/4
@@ -22531,7 +22537,7 @@ function crayonScript () {
       cx2 = x2 + fs/4 + pet(fs)
       cy2 = y2 - fs/5 + pet(fs/4)
       bez_pts_cray (x2,y2,cx1,cy1,cx2,cy2, x2+pet(fs/2), y2 += pet(fs/2), ctx)
-    }
+    }*/
     if (alt)
       ctx.lineWidth = Math.floor(1 + fs/20) + pet(1)
     x += bump
@@ -23921,6 +23927,54 @@ function diagonal () {
 }
 
 function drawShape (line) {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctx.globalCompositeOperation = document.getElementById("mode").valu2
+  let alt = document.getElementById("grungy").checked
+  ctx.lineWidth = 1 + Math.floor(document.getElementById("featuresize").value/2)
+  fs = 1 + Math.floor(document.getElementById("featuresize").value/2)
+  ctx.lineCap = "butt"
+  ctx.lineJoin = "round"
+  let pm = Math.floor(document.getElementById("number").value/2000)
+  ctx.fillStyle=randomPick(getCurrentPalette())
+  let s = canvas.width/1200
+  let x = 0, y = 0
+  let points = document.getElementById('points').value
+  let smooth = +document.getElementById("smooth").value
+  ctx.strokeStyle = randomPick(getCurrentPalette())
+
+  let k = 0
+  if (points.length > 1) {
+    let pointsP = JSON.parse(points)
+    let i = 0
+    for (; k < pointsP.length; k++) {
+      let pk = pointsP[k]
+      pk = pk.filter(function(_, i) {
+      return ((i + 1) % smooth === 0);
+      })
+      i = 0
+      let j = 0
+      let buff = []
+      for (; i < pk.length; i++) {
+        j = 0
+        for (; j < 2; j++) {
+          pk[i][j] = pk[i][j] * s 
+          buff.push(pk[i][j])
+        }
+        if (buff.length === 8) {
+          bez_pts_cray(buff[0],buff[1],buff[2],buff[3],buff[4],buff[5],buff[6],buff[7], ctx, fs)
+          buffx = []
+          buffx.push(buff[6],buff[7])
+          buff = buffx
+        }
+      }
+    }
+  }
+  LATESTFUNCTION = "drawShape"
+}
+
+function drawShapeOG (line) {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   ctx.globalAlpha = document.getElementById("opacity").value/100
