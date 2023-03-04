@@ -22376,7 +22376,7 @@ function smudge (type) {
   }
   ctxoff.clearRect(0,0,canvasoff.width, canvasoff.height)
 }
-
+/*
 function crayonDrips () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d");
@@ -22430,7 +22430,7 @@ function crayonDrip (x,y) {
     y += dy + pet(maxradius/2)
   }
   ctxoff.clearRect(0,0,canvasoff.width, canvasoff.height)
-}
+}*/
 
 function offcray (color) {
   let canvas = document.getElementById("offscreen");
@@ -22445,22 +22445,17 @@ function offcray (color) {
   if (color)
     ctx.fillStyle = color
   let d =  maxradius/5//14 + Math.random() * 1
-  let count = maxradius/2
+  let count = maxradius/1.5
   for (let j = 0; j < count; j++) {
     ctx.beginPath();
     x = cx + pet(d)*Math.cos(Math.random()*6.28)
     y = cy + pet(d)*Math.sin(Math.random()*6.28)
-    ctx.arc(x, y, randomPick([0.5,0.5,0.5,0.5,0.5,1,1,1]), 0, 2*Math.PI);
+    ctx.arc(x, y, randomPick([0.5,0.5,0.5,0.5,0.5,1,1]), 0, 2*Math.PI);
     ctx.fill();
   }
 }
 
-function crayAt (x,y) {
-  let canvas = document.getElementById("myCanvas")
-  let ctx = canvas.getContext("2d");
-  let W = canvas.width
-  let H = canvas.height
-  let alt = document.getElementById("grungy").checked
+function crayAt (x,y,ctx) {
   let off = document.getElementById("offscreen")
   let ctoff = off.getContext("2d")
   let canvasoff = document.getElementById("offscreen")
@@ -22472,14 +22467,13 @@ function crayAt (x,y) {
   if (!y)
     y = LASTCLICK[1]
   x -= 256, y -= 256
-  offcray(color)
+  if (Math.random() > 0.33)
+    offcray(color)
   ctx.drawImage(canvasoff, x, y)
-  ctxoff.clearRect(0,0,canvasoff.width, canvasoff.height)
 }
 
-function bez_pts_cray (ax,ay, bx,by, cx,cy, dx, dy) { // b and c are control points, a = start, d = end
-  let canvas = document.getElementById("myCanvas");
-  let ctx = canvas.getContext("2d");
+function bez_pts_cray (ax,ay, bx,by, cx,cy, dx, dy, ctx) { 
+  // b and c are control points, a = start, d = end
   let t = 0, a = 1.6*Math.PI
   for (; t < 1; t += 0.01) {
     let B0_t = (1-t) * (1-t) * (1-t)
@@ -22489,7 +22483,7 @@ function bez_pts_cray (ax,ay, bx,by, cx,cy, dx, dy) { // b and c are control poi
     let px_t = (B0_t * ax) + (B1_t * bx) + (B2_t * cx) + (B3_t * dx)
     let py_t = (B0_t * ay) + (B1_t * by) + (B2_t * cy) + (B3_t * dy)
     // draw at x,y here or 
-    crayAt(px_t, py_t)
+    crayAt(px_t, py_t, ctx)
   }
 }
 
@@ -22527,7 +22521,7 @@ function crayonScript () {
     if (Math.random() < 0.23) {
       cy1 -= 2*fs
     }
-    bez_pts_cray (x,y,cx1+pet(D*fs),cy1+pet(D*fs),cx2+pet(D*fs),cy2+pet(D*fs), x+bump, y)    
+    bez_pts_cray (x,y,cx1+pet(D*fs),cy1+pet(D*fs),cx2+pet(D*fs),cy2+pet(D*fs), x+bump, y, ctx)    
     // occasional dot or cross
     if (Math.random() < 0.08) {
       x2 = x + pet(fs/3)
@@ -22536,7 +22530,7 @@ function crayonScript () {
       cy1 = y2 - fs/5 +pet(fs/4)
       cx2 = x2 + fs/4 + pet(fs)
       cy2 = y2 - fs/5 + pet(fs/4)
-      bez_pts_cray (x2,y2,cx1,cy1,cx2,cy2, x2+pet(fs/2), y2 += pet(fs/2))
+      bez_pts_cray (x2,y2,cx1,cy1,cx2,cy2, x2+pet(fs/2), y2 += pet(fs/2), ctx)
     }
     if (alt)
       ctx.lineWidth = Math.floor(1 + fs/20) + pet(1)
