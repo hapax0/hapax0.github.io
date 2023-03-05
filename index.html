@@ -23969,19 +23969,20 @@ function drawShape (line) {
       })
       i = 0
       let j = 0
-      let buff = []
+      //let buff = []
       for (; i < pk.length; i++) {
         j = 0
         for (; j < 2; j++) {
           pk[i][j] = pk[i][j] * s 
-          buff.push(pk[i][j])
+          //buff.push(pk[i][j])
         }
-        if (buff.length === 8) {
+        crayAt(pk[i][0], pk[i][1], ctx,fs)
+       /* if (buff.length === 8) {
           bez_pts_cray(buff[0],buff[1],buff[2],buff[3],buff[4],buff[5],buff[6],buff[7], ctx, fs)
           buffx = []
           buffx.push(buff[6],buff[7])
           buff = buffx
-        }
+        }*/
       }
     }
   }
