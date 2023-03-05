@@ -5188,10 +5188,10 @@ function setFeaturesize (a) {
 
 function paintcolorChange () {
   let a = document.getElementById("paintcolor").value
-  pushFunction('setPaintcolor', "\""+a+"\"")
+  pushFunction('setPaintColor', a)
 }
 
-function setPaintcolor (a) {
+function setPaintColor (a) {
   document.getElementById("paintcolor").value = a
 }
 
@@ -5215,7 +5215,7 @@ function setOpacity (a) {
 
 function modeChange () {
   let a = document.getElementById("mode").value
-  pushFunction('setMode', "\""+a+"\"")
+  pushFunction('setMode', a)
 }
 
 function setMode (a) {
@@ -5224,7 +5224,7 @@ function setMode (a) {
 
 function paletteChange () {
   let a = document.getElementById("palettechoice").value
-  pushFunction('setPalette', "\""+a+"\"")
+  pushFunction('setPalette', a)
 }
 
 function setPalette (a) {
@@ -5240,11 +5240,11 @@ function recordSettings () {
   a = document.getElementById("featuresize").value
   pushFunction('setFeaturesize', a)
   a = document.getElementById("paintcolor").value
-  pushFunction('setPaintcolor', "\""+a+"\"")
+  pushFunction('setPaintColor', a)
   a = document.getElementById("mode").value
-  pushFunction('setMode', "\""+a+"\"")
+  pushFunction('setMode', a)
   a = document.getElementById("palettechoice").value
-  pushFunction('setPalette', "\""+a+"\"")
+  pushFunction('setPalette', a)
 }
 
 let RECORDING = false
@@ -5254,34 +5254,20 @@ let functionStack = []
 function stackToCode () {
   let buff = "function macro () {\n"
   let i = 0
+  let quoteme = ["setPalette", "setMode", "setPaintColor"]
   for (; i < functionStack.length;i++) {
     buff += "  "+functionStack[i][0] +"("
-    if (functionStack[i][1]) 
-      buff += functionStack[i][1]
+    if (functionStack[i][1]) {
+      if (quoteme.includes(functionStack[i][0]))
+        buff += "\""+functionStack[i][1]+"\""
+      else
+        buff += functionStack[i][1]
+    }
     buff += ")\n"
   }
   buff += "}"
   console.log(buff)
   alert(buff)
-}
-
-function macroTest () {
-  setNumber(10000)
-  setOpacity(100)
-  setFeaturesize(25)
-  setPaintcolor("#2e3fdd")
-  setMode("source-over")
-  setPalette("primary")
-  setFeaturesize(203)
-  crayonScript()
-  crayonScript()
-  detail()
-  shaken()
-  contrastImage(1.05)
-  contrastImage(1.05)
-  adjustWarmth(5)
-  adjustWarmth(5)
-  adjustWarmth(5)
 }
 
 function pushFunction (f,args) {
@@ -6120,6 +6106,7 @@ function retro () {
   document.getElementById("number").value = number
   document.getElementById("paintcolor").value = color
   document.getElementById("palettechoice").value = type
+  loadPalette()
 }
 
 function enhanceExposure (n, canvas) {
