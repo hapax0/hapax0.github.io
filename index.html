@@ -3140,6 +3140,7 @@ function shrinkBlur () {
   zoom()
   zoom()
   zoom()
+  pushFunction("shrinkBlur")
 }
 
 function distortion () {
@@ -5187,7 +5188,7 @@ function setFeaturesize (a) {
 
 function paintcolorChange () {
   let a = document.getElementById("paintcolor").value
-  pushFunction('setPaintcolor', a)
+  pushFunction('setPaintcolor', "\""+a+"\"")
 }
 
 function setPaintcolor (a) {
@@ -5214,7 +5215,7 @@ function setOpacity (a) {
 
 function modeChange () {
   let a = document.getElementById("mode").value
-  pushFunction('setMode', a)
+  pushFunction('setMode', "\""+a+"\"")
 }
 
 function setMode (a) {
@@ -5223,7 +5224,7 @@ function setMode (a) {
 
 function paletteChange () {
   let a = document.getElementById("palettechoice").value
-  pushFunction('setPalette', a)
+  pushFunction('setPalette', "\""+a+"\"")
 }
 
 function setPalette (a) {
@@ -5239,16 +5240,49 @@ function recordSettings () {
   a = document.getElementById("featuresize").value
   pushFunction('setFeaturesize', a)
   a = document.getElementById("paintcolor").value
-  pushFunction('setPaintcolor', a)
+  pushFunction('setPaintcolor', "\""+a+"\"")
   a = document.getElementById("mode").value
-  pushFunction('setMode', a)
+  pushFunction('setMode', "\""+a+"\"")
   a = document.getElementById("palettechoice").value
-  pushFunction('setPalette', a)
+  pushFunction('setPalette', "\""+a+"\"")
 }
 
 let RECORDING = false
 let LATESTFUNCTION = ""
 let functionStack = []
+
+function stackToCode () {
+  let buff = "function macro () {\n"
+  let i = 0
+  for (; i < functionStack.length;i++) {
+    buff += "  "+functionStack[i][0] +"("
+    if (functionStack[i][1]) 
+      buff += functionStack[i][1]
+    buff += ")\n"
+  }
+  buff += "}"
+  console.log(buff)
+  alert(buff)
+}
+
+function macroTest () {
+  setNumber(10000)
+  setOpacity(100)
+  setFeaturesize(25)
+  setPaintcolor("#2e3fdd")
+  setMode("source-over")
+  setPalette("primary")
+  setFeaturesize(203)
+  crayonScript()
+  crayonScript()
+  detail()
+  shaken()
+  contrastImage(1.05)
+  contrastImage(1.05)
+  adjustWarmth(5)
+  adjustWarmth(5)
+  adjustWarmth(5)
+}
 
 function pushFunction (f,args) {
   if (!RECORDING)
@@ -6137,6 +6171,7 @@ function contrastImage (contrast, canvas) {  //input range [-100..100]
     }
   }
   ctx.putImageData(imgData, 0, 0)
+  pushFunction("contrastImage", contrast)
 }
 
 function openFileExtract () {
@@ -25790,6 +25825,7 @@ function adjustBrightness (n, canvas) {
     }
   }
   ctx.putImageData(imgData, 0, 0);
+  pushFunction("adjustBrightness", n)
 }
 
 function rotateBrightness (canvas, n) {
@@ -25917,6 +25953,8 @@ function adjustWarmth (n, canvas) {
     }
   }
   ctx.putImageData(imgData, 0, 0);
+  pushFunction("adjustWarmth", n)
+
 }
 
 function saturationScale (sv, canvas) {
@@ -25957,6 +25995,7 @@ function saturationScale (sv, canvas) {
     }
   }
   ctx.putImageData(imageData, 0, 0);
+  pushFunction("saturationScale", sv)
 }
 
 function rgb_lrgb1(v) {
@@ -26182,6 +26221,7 @@ function sharpen2 () {
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = opacity
   ctx.globalAlpha = opacity/100
+  pushFunction("sharpen2", )
 }
 
 function sharpenCanvas () {
