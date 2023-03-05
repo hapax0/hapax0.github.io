@@ -414,6 +414,7 @@
       <option value="scratchout">scratch out</option>
       <option value="rose">rose</option>
       <option value="paintDrips">paint drips</option>
+      <option value="paintDrip">drip at</option>
 
       <option value="hstripes">stripes</option>
       <option value="monocubes">mono cubes</option>
@@ -8444,7 +8445,7 @@ function rose () { // chemotaxis like
   let A = 0.01 + Math.random()/90
   var x = cx //+ radius * Math.cos(angle);
   var y = cy //+ radius * Math.sin(angle);
-  let lw = fs/3, a = 1.6*Math.PI
+  let lw = fs/4, a = 1.6*Math.PI
   for (; n < end; n++) {
     x = x + Math.sin(angle) * 1
     y = y + Math.cos(angle) * 1
