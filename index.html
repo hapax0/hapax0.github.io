@@ -8446,6 +8446,8 @@ function rose () { // chemotaxis like
   var x = cx //+ radius * Math.cos(angle);
   var y = cy //+ radius * Math.sin(angle);
   let lw = fs/4, a = 1.6*Math.PI
+  let increment = 1.001, DIR = true
+  let INC = 0, BEC = end/2
   for (; n < end; n++) {
     x = x + Math.sin(angle) * 1
     y = y + Math.cos(angle) * 1
@@ -8460,6 +8462,12 @@ function rose () { // chemotaxis like
           a += pet (2)
         ctx.closePath()
         ctx.fill()
+        if (Math.random() > 0.98)
+          DIR = !DIR
+        if (DIR)
+          lw *= increment
+        else
+          lw /= increment
       }
     }
     let gs = distance(x,y,cx,cy,fs)
