@@ -5279,7 +5279,10 @@ function stackToCode () {
 function pushFunction (f,args) {
   if (!RECORDING)
     return false
-  functionStack.push([f,args])
+  if (functionStack.length > 6 && f === "setPaintColor" && functionStack[functionStack.length-1][0] === f)
+    functionStack[functionStack.length-1] = [f,args] // replace with final color choice
+  else
+    functionStack.push([f,args])
 }
 
 function togglerecord () {
