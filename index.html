@@ -613,7 +613,7 @@
     <path d="M9.5 12.5a1.5 1.5 0 1 1-2-1.415V2.5a.5.5 0 0 1 1 0v8.585a1.5 1.5 0 0 1 1 1.415z"/>
     <path d="M5.5 2.5a2.5 2.5 0 0 1 5 0v7.55a3.5 3.5 0 1 1-5 0V2.5zM8 1a1.5 1.5 0 0 0-1.5 1.5v7.987l-.167.15a2.5 2.5 0 1 0 3.333 0l-.166-.15V2.5A1.5 1.5 0 0 0 8 1z"/>
   </svg></td><td>
-    <button onclick="adjustWarmth(5)">+</button>&nbsp;&nbsp;<button onclick="adjustWarmth(-5)">-</button>
+    <button onclick="adjustWarmth(5, null, true)">+</button>&nbsp;&nbsp;<button onclick="adjustWarmth(-5, null, true)">-</button>
      </td>
      <td rowspan='4'>
          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" viewBox="0 0 16 16">
@@ -630,7 +630,7 @@
          <input type='color' id='pal3'>
          <input type='color' id='pal4'>
          <input type='color' id='pal5'>
-          <select id="palettechoice" onchange="loadPalette()">
+          <select id="palettechoice" onchange="loadPalette(true)">
             <option value="halfway">ramp 1 to 5</option>
             <option value="ramp">mixed ramp</option>
             <option value="light">light</option>
@@ -687,7 +687,6 @@
     <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
     <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
     </svg></button>
-    
     <button>
     <a id="palettedownloader" onclick="savePaletteAs()" download="image.png" title="save palette as png file">
     
@@ -699,12 +698,6 @@
   <td rowspan="2">
   <div style="display:inline-block;
   vertical-align: baseline;">
-    
-  <!--button id="stop" onclick="stopRecording()"><svg xmlns="http://www.w3.org/2000/svg" id="stopsvg" width="30" height="30" fill="#cccccc" class="white" viewBox="0 0 16 16">
-  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-  <path d="M5 6.5A1.5 1.5 0 0 1 6.5 5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5v-3z"/>
-  </svg></button-->
-
   <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
   <path d="M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
 </svg></div></td>
@@ -713,7 +706,7 @@
     <td style="text-align:right;">feature size</td><td><input type="range" id="featuresize" onchange="featuresizeChange()" min="0" max="500" value="25"></td>
     <td style="text-align:right;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-camera" viewBox="0 0 16 16">
       <path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/>
-    </svg></td><td><button onclick="sharpen2()">+</button>&nbsp;&nbsp;<button onclick="shrinkBlur()">-</button></td>
+    </svg></td><td><button onclick="sharpen2(true)">+</button>&nbsp;&nbsp;<button onclick="shrinkBlur(true)">-</button></td>
     
     </tr>
     <tr><td style="text-align:right;">quantity</td><td><input type="range" id="number" onchange="numberChange()" min="9" max="20000" value="10000">
@@ -721,13 +714,13 @@
     <td style="text-align:right;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-droplet" viewBox="0 0 16 16">
     <path fill-rule="evenodd" d="M7.21.8C7.69.295 8 0 8 0c.109.363.234.708.371 1.038.812 1.946 2.073 3.35 3.197 4.6C12.878 7.096 14 8.345 14 10a6 6 0 0 1-12 0C2 6.668 5.58 2.517 7.21.8zm.413 1.021A31.25 31.25 0 0 0 5.794 3.99c-.726.95-1.436 2.008-1.96 3.07C3.304 8.133 3 9.138 3 10a5 5 0 0 0 10 0c0-1.201-.796-2.157-2.181-3.7l-.03-.032C9.75 5.11 8.5 3.72 7.623 1.82z"/>
     <path fill-rule="evenodd" d="M4.553 7.776c.82-1.641 1.717-2.753 2.093-3.13l.708.708c-.29.29-1.128 1.311-1.907 2.87l-.894-.448z"/>
-  </svg></td><td><button onclick="saturationScale(1.1)">+</button>&nbsp;&nbsp;<button onclick="saturationScale(0.9)">-</button>
+  </svg></td><td><button onclick="saturationScale(1.1,null,true)">+</button>&nbsp;&nbsp;<button onclick="saturationScale(0.9,null,true)">-</button>
     </td>
      
     </tr>
     <tr> <td style="text-align:right;">opacity</td><td><input type="range" onchange='opacityChange()' id="opacity" min="1" max="100" value="100" ></td><td style="text-align:right;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-circle-half" viewBox="0 0 16 16">
     <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
-    </svg></td><td><button onclick="contrastImage(5)">+</button>&nbsp;&nbsp;<button onclick="contrastImage(-5)">-</button></td>
+    </svg></td><td><button onclick="contrastImage(5,null,true)">+</button>&nbsp;&nbsp;<button onclick="contrastImage(-5,null,true)">-</button></td>
     </tr>
     <tr>
       
@@ -766,7 +759,7 @@
     <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
   </svg>
   </td><td>
-    <button onclick="adjustBrightness(5)">+</button>&nbsp;&nbsp;<button onclick="adjustBrightness(-5)">-</button>
+    <button onclick="adjustBrightness(5, null, true)">+</button>&nbsp;&nbsp;<button onclick="adjustBrightness(-5, null, true)">-</button>
   </td>
   <td rowspan='1'>
     &nbsp;&nbsp;&nbsp;<button onclick='drawShape()'><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" class="white" viewBox="0 0 16 16"><path d="M0 6a6 6 0 1 1 12 0A6 6 0 0 1 0 6z"/><path d="M12.93 5h1.57a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-1.57a6.953 6.953 0 0 1-1-.22v1.79A1.5 1.5 0 0 0 5.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 4h-1.79c.097.324.17.658.22 1z"/>
@@ -803,8 +796,6 @@
      <canvas id="off" width='512' height='512' sytle="visibility:hidden;"></canvas>
    </div>
    <br><br>
-  
-
 <script>
 let BLACK = 0
 let LASTCLICK = [512,512]
@@ -817,7 +808,6 @@ window.onload = function () {
   resizeCanvas()
   LASTCLICK[0] = myCanvas.width/2
   LASTCLICK[1] = myCanvas.height/2
-  
   myCanvas.addEventListener('click', function(event) {
     var rect = myCanvas.getBoundingClientRect();
     var x = event.clientX - rect.left;
@@ -1139,10 +1129,11 @@ function restorePalette (p) {
   document.getElementById("pal5").value = p[4]
 }
 
-function loadPalette () {
+function loadPalette (PUSH) {
   let a = [], b = []
   let type = document.getElementById("palettechoice").value
-  paletteChange()
+  if (PUSH)
+    paletteChange(PUSH)
   if (type === "none")
     return
   if (type === "halfway") {
@@ -3137,14 +3128,15 @@ async function drawSome (ctx,can,x,y,W,H) {
   return true
 }
 
-function shrinkBlur () {
+function shrinkBlur (PUSH) {
   zoom_neg()
   zoom_neg()
   zoom_neg()
   zoom()
   zoom()
   zoom()
-  pushFunction("shrinkBlur")
+  if (PUSH)
+    pushFunction("shrinkBlur")
 }
 
 function distortion () {
@@ -5279,7 +5271,7 @@ function stackToCode () {
 function pushFunction (f,args) {
   if (!RECORDING)
     return false
-  if (functionStack.length > 6 && f === "setPaintColor" && functionStack[functionStack.length-1][0] === f)
+  if (functionStack.length > 6 && (f === "setPaintColor" || f === "setOpacity"  || f === "setNumber"  || f === "setFeaturesize")&& functionStack[functionStack.length-1][0] === f)
     functionStack[functionStack.length-1] = [f,args] // replace with final color choice
   else
     functionStack.push([f,args])
@@ -6031,8 +6023,8 @@ function colorFilter () {
 function highContrast () {
   let canvas = document.getElementById("myCanvas")
   greyScale(canvas)
-  contrastImage(40, canvas)
-  adjustBrightness(-30, canvas)
+  contrastImage(40, canvas, false)
+  adjustBrightness(-30, canvas,false)
   if (document.getElementById("grungy").checked) {
     sharpenCanvas()
   }
@@ -6063,8 +6055,8 @@ function retro () {
   document.getElementById("palettechoice").value = "rainbow"
   loadPalette()
   palettetint()
-  contrastImage(-5)
-  adjustBrightness(5)
+  contrastImage(-5,canvas,false)
+  adjustBrightness(5,canvas,false)
   
   yellowedEdges()
   yellowedEdges()
@@ -6136,16 +6128,16 @@ function enhanceExposure (n, canvas) {
   }
   avg /= pixels.length/4
   if (minb > 0 || avg > 127 * 1.2) {
-    adjustBrightness(-10)
+    adjustBrightness(-10,canvas,false)
     contrastImage(10)
   }
   if (maxb < 255 || avg < 0.8 * 127) {
-    adjustBrightness(10)
+    adjustBrightness(10,canvas,false)
     contrastImage(10)
   }
 }
 
-function contrastImage (contrast, canvas) {  //input range [-100..100]
+function contrastImage (contrast, canvas, PUSH) {  //input range [-100..100]
   if (!canvas)
     canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -6167,7 +6159,8 @@ function contrastImage (contrast, canvas) {  //input range [-100..100]
     }
   }
   ctx.putImageData(imgData, 0, 0)
-  pushFunction("contrastImage", contrast)
+  if (PUSH)
+    pushFunction("contrastImage", contrast)
 }
 
 function openFileExtract () {
@@ -25078,7 +25071,7 @@ function edgeDarken () {
   ocanvas.width = canvas.width
   ocanvas.height = canvas.height
   octx.drawImage(canvas,0,0)
-  adjustBrightness(-30, ocanvas)
+  adjustBrightness(-30, ocanvas, false)
   vig(ocanvas)
   ctx.drawImage(ocanvas,0,0)
 }
@@ -25091,7 +25084,7 @@ function edgeLighten () {
   ocanvas.width = canvas.width
   ocanvas.height = canvas.height
   octx.drawImage(canvas,0,0)
-  adjustBrightness(30, ocanvas)
+  adjustBrightness(30, ocanvas, false)
   vig(ocanvas)
   ctx.drawImage(ocanvas,0,0)
 }
@@ -25802,7 +25795,7 @@ function increaseGrain (canvas) {
   ctx.putImageData(imgData, 0, 0);
 }
 
-function adjustBrightness (n, canvas) {
+function adjustBrightness (n, canvas, PUSH) {
   if (!canvas)
     canvas = document.getElementById("myCanvas");
   let lh = rangecheck()
@@ -25821,7 +25814,8 @@ function adjustBrightness (n, canvas) {
     }
   }
   ctx.putImageData(imgData, 0, 0);
-  pushFunction("adjustBrightness", n)
+  if (PUSH)
+    pushFunction("adjustBrightness", n, canvas)
 }
 
 function rotateBrightness (canvas, n) {
@@ -25928,7 +25922,7 @@ function tint (canvas) {
   ctx.globalAlpha = alpha/100
 }
 
-function adjustWarmth (n, canvas) {
+function adjustWarmth (n, canvas, PUSH) {
   if (!canvas)
     canvas = document.getElementById("myCanvas");
   let g = n/2
@@ -25948,12 +25942,12 @@ function adjustWarmth (n, canvas) {
       pixels[i + 2] -= n;
     }
   }
-  ctx.putImageData(imgData, 0, 0);
-  pushFunction("adjustWarmth", n)
-
+  ctx.putImageData(imgData, 0, 0)
+  if (PUSH)
+    pushFunction("adjustWarmth", n)
 }
 
-function saturationScale (sv, canvas) {
+function saturationScale (sv, canvas, PUSH) {
   if (!canvas)
     canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -25990,8 +25984,9 @@ function saturationScale (sv, canvas) {
         dA[i + 2] = saturateddBlue;
     }
   }
-  ctx.putImageData(imageData, 0, 0);
-  pushFunction("saturationScale", sv)
+  ctx.putImageData(imageData, 0, 0)
+  if (PUSH)
+    pushFunction("saturationScale", sv)
 }
 
 function rgb_lrgb1(v) {
@@ -26196,7 +26191,7 @@ function embossCanvas () {
     convolutionMatrix(randomPick(k), 0)
 }
 
-function sharpen2 () {
+function sharpen2 (PUSH) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let mode = document.getElementById("mode").value
@@ -26217,7 +26212,8 @@ function sharpen2 () {
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = opacity
   ctx.globalAlpha = opacity/100
-  pushFunction("sharpen2", )
+  if (PUSH)
+    pushFunction("sharpen2", )
 }
 
 function sharpenCanvas () {
