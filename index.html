@@ -5273,9 +5273,9 @@ function stackToCode () {
 function pushFunction (f,args) {
   if (!RECORDING)
     return false
-  if (functionStack.length > 6 && (f === "setPaintColor" || f === "setOpacity"  || f === "setNumber"  || f === "setFeaturesize")&& functionStack[functionStack.length-1][0] === f)
+  if (functionStack.length > 5 && (f === "setPaintColor" || f === "setOpacity"  || f === "setNumber"  || f === "setFeaturesize")&& functionStack[functionStack.length-1][0] === f) {
     functionStack[functionStack.length-1] = [f,args] // replace with final color choice
-  else
+  } else
     functionStack.push([f,args])
 }
 
