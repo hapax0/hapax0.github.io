@@ -513,6 +513,7 @@
       <option value="form2">form decoration</option>
       <option value="form3">form (nest)</option>
       <option value="detail" selected>detail</option>
+      <option value="pageOfBook">book page</option>
 
       <option value="ctrlchart">ctrl chart</option>
       <option value="stepchart">step chart</option>
@@ -18060,6 +18061,92 @@ function mockparagraphScript () {
     script()
   }
   document.getElementById("opacity").value = alpha
+}
+
+function pageOfBook () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  alpha = document.getElementById("opacity").value
+  let W = canvas.width
+  let H = canvas.height
+  let pad = W/10, PW = W - pad*2
+  let x = pad
+  let y = pad
+  let wrap = randomPick([3,4,5])
+  let N = 3 + Math.floor(Math.random() * 14)
+  let stops = [".", ".", ".",". ",".",". ",".", ".","?", "!"]
+  let stopwords = ["a","adeus","agora","ainda","alem","algo","ali","além","ambas","ambos","ano","anos","antes","ao","aonde","aos","apoio","apos","após","aqui","as","assim","atrás","até","aí","baixo","bem","boa","boas","bom","bons","breve","cada","cedo","cento","cima","cinco","coisa","com","como","cuja","cujas","cujo","cujos","custa","cá","da","dar","das","de","dela","delas","dele","deles","desde","dessa","desse","desta","deste","deve","devem","deverá","dez","dia","diz","dizem","dizer","do","dois","dos","doze","duas","dá","dão","dúvida","e","ela","elas","ele","eles","em","entao","entre","então","era","eram","essa","essas","esse","esses","esta","estar","estará","estas","este","estes","estou","está","estás","estão","eu","falta","fará","favor","faz","fazem","fazer","fazes","fazia","faço","fez","fim","final","foi","fomos","for","fora","foram","forem","forma","fosse","foste","fui","geral","grupo","ha","haja","hajam","havia","hei","hoje","hora","horas","houve","há","hão","ir","irá","isso","ista","iste","isto","já","lado","lhe","lhes","local","logo","longe","lugar","lá","maior","mais","mal","mas","me","meio","menor","menos","meses","mesma","mesmo","meu","meus","mil","minha","muito","máximo","mês","na","nada","nao","nas","nem","nessa","nesse","nesta","neste","no","noite","nome","nos","nossa","nosso","nova","novas","nove","novo","novos","num","numa","numas","nunca","nuns","não","nível","nós","número","o","obra","oito","onde","ontem","onze","os","ou","outra","outro","para","parte","pegar","pela","pelas","pelo","pelos","perto","pode","podem","poder","poderá","podia","pois","ponto","por","posso","pouca","pouco","povo","pôde","põe","põem","quais","qual","que","quem","quer","quero","questão","quáis","quê","relação","sabe","sabem","saber","se","sei","seis","seja","sejam","sem","sendo","ser","serei","seria","será","serão","seríamos","sete","seu","seus","sexta","sexto","sim","sob","sobre","sois","somos","sou","sua","suas","são","sétima","sétimo","só","tal","também","tanta","tanto","tarde","te","tem","temos","tempo","tenha","tenho","tens","tente","ter","terei","teria","terá","terão","teu","teus","teve","tinha","tipo","tive","tiver","toda","todas","todo","todos","treze","três","tu","tua","tuas","tudo","tão","tém","têm","um","uma","umas","uns","usa","usar","vai","vais","valor","veja","vem","vens","ver","vez","vezes","vindo","vinte","você","vocês","vos","vossa","vosso","vários","vão","vêm","vós","zero","à","às","área","é","éramos","és"]
+  let i = 0
+  ctx.fillStyle = document.getElementById("paintcolor").value
+  let fs = 12 + document.getElementById("featuresize").value/25
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle'
+  let w = 0, text = "", s = ""
+  ctx.font = "100 "+(fs)+"pt Georgia"
+  let j = 0
+  for (; j < 40; j++) {
+    text = "", para = ""
+    w = 0, i = 0
+    if (j === 0 || Math.random() > 0.9) {
+      y += fs*1.5
+      para = "     "
+      CAP = true
+    }
+    if (y > H - pad)
+      break
+    while (w < PW*0.77) {
+      s = ""
+      s += para
+      if (Math.random() > 0.5) {
+        if (CAP)
+          s += capitalize(randomWord(true))
+        else
+          s += randomWord(true)
+        CAP = false
+      } else {
+        if (CAP)
+          s += capitalize(randomPick(stopwords))
+        else
+          s += randomPick(stopwords)
+        CAP = false
+      }
+      if (Math.random() > 0.8) {
+        CAP = true
+        s += randomPick(stops)
+      }
+      text += s + " "
+      w = ctx.measureText(" "+text).width
+      i++
+      para = ""
+    }
+    if (PW - w >= 0) {
+      spaceText(text, w, PW, x,y,ctx)
+      y += fs * 2
+    }
+  }
+  // header
+  let maxl = Math.floor(Math.random() * 2)
+  text = capitalize(randomWord(true))
+  i = 0
+  for (; i < maxl; i++)
+    text += " "+capitalize(randomWord(true))
+  ctx.font = "400 "+(fs*1.3)+"pt Georgia"
+  w = ctx.measureText(text).width
+  ctx.fillText(text, W/2-w/2, pad-fs*1.3)
+  ctx.fillText(Math.floor(1*(Math.random() * 200)), pad, pad-fs*1.3)
+  
+  document.getElementById("opacity").value = alpha
+}
+
+function spaceText (t, width, finalwidth,x,y,ctx) {
+  let ta = t.split("")
+  let diff = (finalwidth-width)/ta.length
+  let i = 0
+  //console.log(ta,diff,x,y)
+  for (;i < ta.length; i++) {
+    ctx.fillText(ta[i], x, y)
+    x += ctx.measureText(ta[i]).width + diff
+  }
 }
 
 function divRects () {
