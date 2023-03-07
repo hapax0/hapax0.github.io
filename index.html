@@ -818,7 +818,7 @@ window.onload = function () {
     LASTCLICK.push(x)
     LASTCLICK.push(y)
     syncMarker(true)
-    pushFunction('setLastclick', LASTCLICK)
+    pushFunction('setLastclick', [x,y])
 }, false);
 let marker = document.getElementById("marker")
 marker.addEventListener('click', function(event) {
@@ -870,7 +870,6 @@ function checkAlt (checked) {
 }
 
 function setLastclick (lc) {
-  //console.log(lc)
   LASTCLICK[0] = lc[0]
   LASTCLICK[1] = lc[1]
   syncMarker()
