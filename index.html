@@ -18085,7 +18085,7 @@ function mockparagraphScript () {
 function pageOfBook () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  alpha = document.getElementById("opacity").value
+  ctx.globalAlpha = document.getElementById("opacity").value/100
   let W = canvas.width
   let H = canvas.height
   let pad = W/10, PW = W - pad*2
@@ -18152,9 +18152,12 @@ function pageOfBook () {
   ctx.font = "400 "+(fs*1.3)+"pt Georgia"
   w = ctx.measureText(text).width
   ctx.fillText(text, W/2-w/2, pad-fs*1.3)
-  ctx.fillText(Math.floor(1*(Math.random() * 200)), pad, pad-fs*1.3)
-  
-  document.getElementById("opacity").value = alpha
+  text = Math.floor(1*(Math.random() * 200))
+  x = pad
+  if (Math.random() > 0.5)
+    x = W - pad - ctx.measureText(text).width*1.5
+  console.log(x)
+  ctx.fillText(text, x, pad-fs*1.3)
 }
 
 function spaceText (t, width, finalwidth,x,y,ctx) {
