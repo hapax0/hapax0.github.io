@@ -727,7 +727,7 @@
     <tr>
       
       <td
-  style="text-align:right;">&nbsp;&nbsp;alt:<input type="checkbox" id="grungy" title="alternate behaviour"></td>
+  style="text-align:right;">&nbsp;&nbsp;alt:<input type="checkbox" id="grungy" title="alternate behaviour" onchange="checkChange()"></td>
   <td>mode: <select id="mode" onchange="modeChange()">
       <option value="source-over" selected>source-over</option>
       <option value="source-in">source-in</option>
@@ -818,6 +818,7 @@ window.onload = function () {
     LASTCLICK.push(x)
     LASTCLICK.push(y)
     syncMarker(true)
+    pushFunction('setLastclick', LASTCLICK)
 }, false);
 let marker = document.getElementById("marker")
 marker.addEventListener('click', function(event) {
@@ -844,16 +845,34 @@ marker.addEventListener('click', function(event) {
   selectElement.addEventListener('change', (event) => {
   let ctx = document.getElementById("myCanvas").getContext("2d");
   ctx.globalCompositeOperation = selectElement.value
-  
+
   let filePicker = document.getElementById("uploadimage");
   filePicker.addEventListener("click", function(){this.value = null;}, false);
-  
   
   let filePicker2 = document.getElementById("openextract");
   filePicker2.addEventListener("click", function(){this.value = null;}, false);
   });
   
   rangecheck()
+  syncMarker()
+}
+
+function checkChange () {
+  let a = (document.getElementById("grungy").checked)? true: false;
+  pushFunction("checkAlt", a)
+}
+
+function checkAlt (checked) {
+  var elm = document.getElementById('grungy');
+  if (checked != elm.checked) {
+    elm.click();
+  }
+}
+
+function setLastclick (lc) {
+  //console.log(lc)
+  LASTCLICK[0] = lc[0]
+  LASTCLICK[1] = lc[1]
   syncMarker()
 }
 
