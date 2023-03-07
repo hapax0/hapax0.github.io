@@ -5250,7 +5250,7 @@ let LATESTFUNCTION = ""
 let functionStack = []
 
 function stackToCode () {
-  if (functionStack.length <= 6)
+  if (functionStack.length <= 0)
     return
   let buff = "function macro () {\n"
   let i = 0
@@ -5273,10 +5273,11 @@ function stackToCode () {
 function pushFunction (f,args) {
   if (!RECORDING)
     return false
-  if (functionStack.length > 5 && (f === "setPaintColor" || f === "setOpacity"  || f === "setNumber"  || f === "setFeaturesize")&& functionStack[functionStack.length-1][0] === f) {
+  if (functionStack.length > 0 && (f === "setPaintColor" || f === "setOpacity"  || f === "setNumber"  || f === "setFeaturesize") && functionStack[functionStack.length-1][0] === f) {
     functionStack[functionStack.length-1] = [f,args] // replace with final color choice
   } else
     functionStack.push([f,args])
+  //console.log(functionStack)
 }
 
 function togglerecord () {
@@ -5292,13 +5293,13 @@ function record () {
   document.getElementById("codesvg").style.fill="#707070"
   clearFunctionStack()
   RECORDING = true
-  recordSettings()
+  //recordSettings()
 }
 
 function stopRecording () {
   RECORDING = false
   document.getElementById("recordsvg").style.fill="#000000"
-  if (functionStack.length > 6) {
+  if (functionStack.length > 0) {
     document.getElementById("playsvg").style.fill="#ff0000"
     document.getElementById("codesvg").style.fill="#000000"
 }
@@ -5307,7 +5308,7 @@ function stopRecording () {
 function playFunctions () {
   RECORDING = false
   document.getElementById("recordsvg").style.fill="#000000"
-  if (functionStack.length > 6) {
+  if (functionStack.length > 0) {
     document.getElementById("playsvg").style.fill="#ff0000"
     document.getElementById("codesvg").style.fill="#000000"
   }
@@ -8459,33 +8460,33 @@ function rose () { // chemotaxis like
   ctx.lineCap = "round"
   ctx.strokeStyle = document.getElementById("paintcolor").value
   let color = document.getElementById("paintcolor").value
+  let size = 0.01 + document.getElementById("number").value/20000
   ctx.fillStyle = color
   let radius = 50//250
   let angle = Math.random() * 6.28
   let n = 0, end = 5000
   let shrink = W * 0.37
   let grow = W * 0.05 
-  let turnAt = W/20 + Math.random() * W/40
   let inc = false, dec = false
   let turn = false
   let A = 0.01 + Math.random()/90
-  var x = cx //+ radius * Math.cos(angle);
-  var y = cy //+ radius * Math.sin(angle);
   let lw = fs/4, a = 1.6*Math.PI
+  let turnAt = W*0.33*size //W/20 + Math.random() * W/40
+  let k = lw/7
+  let x = cx //+ Math.random() * turnAt*2
+  let y = cy //+ Math.random() * turnAt*2
   let increment = 1.001, DIR = true
-  let INC = 0, BEC = end/2
+  let INC = 0, BEC = end/2, gs = 0
   for (; n < end; n++) {
     x = x + Math.sin(angle) * 1
     y = y + Math.cos(angle) * 1
     ctx.lineTo(x, y);
-    if (n % 5 === 0) {
+    if (n % 2 === 0) {
       if (alt)
         crayAt (x,y,ctx, fs*5)
       else { 
         ctx.beginPath()
-        ctx.ellipse(x, y, 1.3*lw+pet(lw), lw, a, 0, 2* Math.PI)
-        if (Math.random() > 0.96)
-          a += pet (2)
+        ctx.ellipse(x, y, 1.3*lw+pet(lw/2), lw, a, 0, 2* Math.PI)
         ctx.closePath()
         ctx.fill()
         if (Math.random() > 0.98)
@@ -8495,18 +8496,18 @@ function rose () { // chemotaxis like
         else
           lw /= increment
       }
-    }
-    let gs = distance(x,y,cx,cy,fs)
-    if (gs > turnAt) {
-      turn = true
-    } else
-    if (gs < turnAt) {
-      turn = false
-    }
-    if (turn)
-      angle += A +pet(1)/5
-    else
-      angle += pet(5)/50
+      gs = distance(x,y,cx,cy,fs)
+      if (gs > turnAt+50) {
+        turn = true
+      } else
+      if (gs < turnAt-50) {
+        turn = false
+      }
+      if (turn)
+        angle += A + pet(k/4)/k/2
+      else
+        angle += pet(k/10)
+    } 
   }
 }
 
