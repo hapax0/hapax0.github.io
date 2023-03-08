@@ -24408,7 +24408,7 @@ function placeTextAt (t) {
   W = canvas.width
   ctx.globalAlpha = (document.getElementById("opacity").value)/100
   ctx.fillStyle = document.getElementById("paintcolor").value
-  let fs = 2.6*(4 + document.getElementById("featuresize").value/10)
+  let fs = 2.6*(4 + document.getElementById("featuresize").value/5)
   ctx.textAlign = 'left';
   ctx.textBaseline = 'middle'
   if (text.length < 1)
