@@ -13704,7 +13704,7 @@ function bez_pts (ax,ay, bx,by, cx,cy, dx, dy) { // b and c are control points, 
   let ctx = canvas.getContext("2d");
   let fs = 7 + document.getElementById("featuresize").value/10
   let lw = fs/45
-  let t = 0, a = 1.6*Math.PI
+  let t = 0, a = 1.1*Math.PI + pet(1)/4
   for (; t < 1; t += 0.0005) {
     let B0_t = (1-t) * (1-t) * (1-t)
     let B1_t = 3 * t * (1-t) * (1-t)
@@ -13713,7 +13713,7 @@ function bez_pts (ax,ay, bx,by, cx,cy, dx, dy) { // b and c are control points, 
     let px_t = (B0_t * ax) + (B1_t * bx) + (B2_t * cx) + (B3_t * dx)
     let py_t = (B0_t * ay) + (B1_t * by) + (B2_t * cy) + (B3_t * dy)
     ctx.beginPath()
-    ctx.ellipse(px_t, py_t, 2.5*lw+pet(lw), lw, a, 0, 2* Math.PI)
+    ctx.ellipse(px_t, py_t, 3.0*lw+pet(lw), lw, a, 0, 2* Math.PI)
     if (Math.random() > 0.995)
       a += pet (1)/2
     ctx.closePath()
@@ -13724,7 +13724,7 @@ function bez_pts (ax,ay, bx,by, cx,cy, dx, dy) { // b and c are control points, 
 function script () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  let fs = 7 + document.getElementById("featuresize").value/10
+  let fs = 7 + document.getElementById("featuresize").value/5
   let D = 1 + document.getElementById("number").value/4000
   D/= 4
   let bump = fs/2.4
@@ -13734,8 +13734,8 @@ function script () {
   let pad = 4 + Math.floor(Math.random() * 2)
   let linespace = 18 + Math.floor(pet(8))
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = document.getElementById("paintcolor").value
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = color
+  ctx.fillStyle = color
 
   ctx.lineJoin = "round"
   ctx.lineWidth = Math.floor(1 + fs/12)
@@ -13743,7 +13743,7 @@ function script () {
   let i = 0, x = LASTCLICK[0], y = LASTCLICK[1]
   let cx1, cy1, cx2, cy2
   let maxX = x+1*fs + Math.random() * 8 * fs
-  let x2 = 0,y2 = 0
+  let x2 = 0, y2 = 0
   ctx.beginPath()
   while (x < maxX) {
     cx1 = x+fs*2, cy1 = y -2*fs
@@ -22632,8 +22632,8 @@ function crayAt (x,y,ctx, fs) {
 
 function bez_pts_cray (ax,ay, bx,by, cx,cy, dx, dy, ctx, fs) { 
   // b and c are control points, a = start, d = end
-  let t = 0, a = 1.6*Math.PI
-  for (; t < 1; t += 0.01) {
+  let t = 0, a = 1.3*Math.PI
+  for (; t < 1; t += 0.005) {
     let B0_t = (1-t) * (1-t) * (1-t)
     let B1_t = 3 * t * (1-t) * (1-t)
     let B2_t = 3 * t*t * (1-t)
@@ -22648,7 +22648,7 @@ function bez_pts_cray (ax,ay, bx,by, cx,cy, dx, dy, ctx, fs) {
 function crayonScript () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  let fs = 7 + document.getElementById("featuresize").value/10
+  let fs = 7 + document.getElementById("featuresize").value/5
   let D = 1 + document.getElementById("number").value/4000
   D/= 2
   let bump = fs/2.4
@@ -24118,7 +24118,7 @@ function drawShape (line) {
           pk[i][j] = pk[i][j] * s 
           //buff.push(pk[i][j])
         }
-        crayAt(pk[i][0], pk[i][1], ctx,fs)
+        crayAt(pk[i][0], pk[i][1], ctx,fs*2)
        /* if (buff.length === 8) {
           bez_pts_cray(buff[0],buff[1],buff[2],buff[3],buff[4],buff[5],buff[6],buff[7], ctx, fs)
           buffx = []
