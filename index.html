@@ -10044,30 +10044,27 @@ function automatic () {
 function natural () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  ctx.lineWidth = 1+ document.getElementById("featuresize").value/50
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let colors = shuffle(getCurrentPalette())//['red', 'blue', 'yellow', 'orange', 'purple', "green"])
   let mode = document.getElementById("mode").value
   let alpha = document.getElementById("opacity").value
-  let cx = canvas.width/2, cy = canvas.height/2, x = 0, y = 100
-  let R = canvas.height * 0.1, r = R*2
-  let R2 = R*3
-  R = R2*0.85
+  let x = LASTCLICK[0], y = LASTCLICK[1]
+  let R = 16 + document.getElementById("featuresize").value/2
+  ctx.lineWidth = R/12
+  console.log(ctx.lineWidth)
+  let R2 = R*2
   let alt = document.getElementById("grungy").checked
-  //moons
   let mult = Math.random()
   let i = 0
   let start = Math.PI *1.7
   let inc = Math.PI * 2/360
-  x=cx+Math.random()*21,y=cy+Math.random()*21
   ctx.lineJoin = "round"
   let b = 0, sign = 1
   ctx.strokeStyle = (colors[0])
   ctx.beginPath()
-  let max = 5*360 + Math.random()*120
+  let max = 1.4*360 + Math.random()*120
   if (alt) {
-    max *= 4
-    x = 0
+    ctx.lineWidth = 1
   }
   let a = Math.random() * 2 * Math.PI, ax = start
   let drift = 0.01
@@ -10081,10 +10078,11 @@ function natural () {
     b += sign * 0.3
     if (R+b < 0)
       R = R2
-     if (alt) {
-       x += 0.15
-       y += pet(1)
-     }
+     
+     R2 /= 1.000002
+     R *= 1.00002
+     if (R2 < 0)
+       R2 *= -1
   }
   ctx.stroke()
   document.getElementById("mode").value = mode
@@ -15217,8 +15215,6 @@ function datedue () {
     ctx.globalAlpha = 0.3
     ctx.fillText(text, x+pet(9), y+pet(7))
     ctx.fillText(text, x+pet(7), y+pet(9))
-    
-    //drawBlobAt(ctx,x,y,12)
     ctx.globalAlpha = 0.2
     if (Math.random() > 0.95)
       dotsNear(ctx,x+w/2+pet(20),y-12+pet(11),7+pet(4))
@@ -18086,6 +18082,7 @@ function pageOfBook () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.globalAlpha = document.getElementById("opacity").value/100
+  let alt  = document.getElementById("grungy").checked
   let W = canvas.width
   let H = canvas.height
   let pad = W/10, PW = W - pad*2
@@ -18139,7 +18136,7 @@ function pageOfBook () {
       para = ""
     }
     if (PW - w >= 0) {
-      spaceText(text, w, PW, x,y,ctx)
+      spaceText(text, w, PW, x,y,ctx,fs, alt)
       y += fs * 2
     }
   }
@@ -18152,22 +18149,38 @@ function pageOfBook () {
   ctx.font = "400 "+(fs*1.3)+"pt Georgia"
   w = ctx.measureText(text).width
   ctx.fillText(text, W/2-w/2, pad-fs*1.3)
-  text = Math.floor(1*(Math.random() * 200))
+  if (alt)
+    grit(ctx,text,W/2-w/2, pad-fs*1.3,w,fs)
+
+  text = Math.floor(1*(Math.random() * 200)) // page number
+  w = ctx.measureText(text).width
   x = pad
   if (Math.random() > 0.5)
     x = W - pad - ctx.measureText(text).width*1.5
-  console.log(x)
   ctx.fillText(text, x, pad-fs*1.3)
+  if (alt)
+    grit(ctx,""+text,x,pad-fs*1.3,w,fs)
 }
 
-function spaceText (t, width, finalwidth,x,y,ctx) {
+function spaceText (t, width, finalwidth,x,y,ctx,fs, alt) {
   let ta = t.split("")
   let diff = (finalwidth-width)/ta.length
   let i = 0
-  //console.log(ta,diff,x,y)
   for (;i < ta.length; i++) {
     ctx.fillText(ta[i], x, y)
-    x += ctx.measureText(ta[i]).width + diff
+    w = ctx.measureText(ta[i]).width
+    if (alt)
+      grit(ctx,ta[i],x,y,w,fs)
+    x += w+diff
+  }
+}
+
+function grit (ctx,text,x,y,w,fs) {
+  let j = 0
+  if (text !== " ")
+  for (; j < 4*text.length; j++) {
+    let r = (fs*fs/5)/111 * Math.random()
+    drawBlobAt(ctx, x + Math.random()*w, y-fs/2 + Math.random()*fs, r)
   }
 }
 
@@ -22613,6 +22626,48 @@ function offcray (color, fs) {
   }
 }
 
+function paintbrushAt (x,y,ctx, fs) {
+  let off = document.getElementById("offscreen")
+  let ctoff = off.getContext("2d")
+  let canvasoff = document.getElementById("offscreen")
+  let ctxoff = canvasoff.getContext("2d")
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let color = null
+  if (!x)
+    x = LASTCLICK[0]
+  if (!y)
+    y = LASTCLICK[1]
+  x -= 256, y -= 256
+  if (Math.random() > 0.1)
+    //offpaintbrush(color, fs)
+  ctx.drawImage(canvasoff, x, y)
+}
+
+function offpaintbrush (color, fs) {
+  let canvas = document.getElementById("offscreen");
+  let ctx = canvas.getContext("2d");
+  let cx = ctx.canvas.width/2;
+  let cy = ctx.canvas.height/2;
+  let x = 0, y = 0
+  ctx.clearRect(0,0,ctx.canvas.width, ctx.canvas.height)
+  ctx.globalAlpha = 0.1
+  let maxradius = 4 + document.getElementById("featuresize").value/10
+  if (fs)
+    maxradius = fs 
+  ctx.fillStyle = document.getElementById("paintcolor").value
+  if (color)
+    ctx.fillStyle = color
+  let d =  maxradius*1
+  let count = maxradius*4
+  for (let j = 0; j < count; j++) {
+    ctx.fillStyle = shadeColor(ctx.fillStyle, pet(1))
+    ctx.beginPath();
+    x = cx + pet(d)*Math.cos(Math.random()*6.28)
+    y = cy + pet(d)*Math.sin(Math.random()*6.28)
+    ctx.arc(x, y, randomPick([2,3,4,2,6,6,6,6]), 0, 2*Math.PI);
+    ctx.fill();
+  }
+}
 function crayAt (x,y,ctx, fs) {
   let off = document.getElementById("offscreen")
   let ctoff = off.getContext("2d")
@@ -23638,7 +23693,6 @@ function scratch () { // based on blobs
       points.push([x, y]);
       angle += increase;
     }
-    //let W = canvas.width
     drawPath(points, 0, 0)
   }
 }
@@ -23647,21 +23701,19 @@ function drawBlobAt (ctx, x, y, r) {
   let x0 = x;
   let y0 = y;
   angle = Math.floor(Math.random() * 6.42);
- // centx = Math.random()*ctx.canvas.width+5;
-  //centy = Math.random()*ctx.canvas.height+5
-  let edges = 39 * Math.random() + 9;
-  let rmax = document.getElementById("featuresize").value/50 // max = 500
-  let maxradius = 1 + rmax * Math.random();
+  let edges = 7 * Math.random() + 3;
+  let rmax = r
+  let maxradius = 1 + rmax/1.5 * Math.random();
 
   let r0 = r
   increase = Math.PI * 2/edges*0.98;
   points = [];
   points.push([x,y])
   radius = (Math.random() * maxradius) + maxradius * 0.9;
-  for (let i = 0; i < edges; i++) {
+  for (let i = 0; i < edges-1; i++) {
     radius += pet(maxradius)
-    x = radius * Math.cos(angle)+x;
-    y = radius * Math.sin(angle);
+    x += radius * Math.cos(angle);
+    y += radius * Math.sin(angle);
     points.push([x, y]);
     angle += increase;
   }
@@ -24104,6 +24156,7 @@ function drawShape (line) {
   if (points.length > 1) {
     let pointsP = JSON.parse(points)
     let i = 0
+    offpaintbrush(ctx.fillStyle, fs)
     for (; k < pointsP.length; k++) {
       let pk = pointsP[k]
       pk = pk.filter(function(_, i) {
@@ -24118,13 +24171,18 @@ function drawShape (line) {
           pk[i][j] = pk[i][j] * s 
           //buff.push(pk[i][j])
         }
-        crayAt(pk[i][0], pk[i][1], ctx,fs*2)
+        //crayAt(pk[i][0], pk[i][1], ctx,fs*2)
+        paintbrushAt(pk[i][0], pk[i][1], ctx,fs*2)
+        
        /* if (buff.length === 8) {
           bez_pts_cray(buff[0],buff[1],buff[2],buff[3],buff[4],buff[5],buff[6],buff[7], ctx, fs)
           buffx = []
           buffx.push(buff[6],buff[7])
           buff = buffx
         }*/
+        if (Math.random() > 0.6)
+          offpaintbrush(ctx.fillStyle, fs)
+
       }
     }
   }
@@ -24423,6 +24481,15 @@ function placeTextAt (t) {
   if (x+w > W) {
     LASTCLICK[1] += fs*2
     LASTCLICK[0] = 0
+  }
+  if (document.getElementById("grungy").checked) {
+    // add grit
+    w = ctx.measureText(text).width
+    let i = 0
+    for (; i < 9*text.length; i++) {
+      let r = (fs*fs/5)/111 * Math.random()
+      drawBlobAt(ctx, x + Math.random()*w, y-fs/2 + Math.random()*fs, r)
+    }
   }
 }
 /*
