@@ -8150,18 +8150,30 @@ function twohemispheres () {
   let mult = document.getElementById("featuresize").value/500
   
   let r = 1+ W/2 * 0.98 * mult
+  let sa = Math.PI * 0.5, ea = Math.PI * 1.5
   let x = W/2 - 7 * Math.random(), y = H/2 + pet(9)
-  
+  if (alt && Math.random() > 0.5) {
+    x = 7 * Math.random()
+    sa = Math.PI * 1.5
+    ea = Math.PI * 0.5
+  }
   ctx.fillStyle = colors[0]
   ctx.beginPath()
-  ctx.arc(x,y,r, Math.PI * 0.5, Math.PI * 1.5)
+  ctx.arc(x,y,r, sa, ea)
   ctx.closePath()
   ctx.fill()
+
+  sa = Math.PI * 1.5, ea = Math.PI * 0.5
   x = W/2 + 7 * Math.random()
+  if (alt && Math.random() > 0.5) {
+    x = W - 7 * Math.random()
+    sa = Math.PI * 0.5
+    ea = Math.PI * 1.5
+  }
   y = H/2 + pet(9) 
   ctx.fillStyle = randomPick(colors)
   ctx.beginPath()
-  ctx.arc(x,y,r, Math.PI * 1.5, Math.PI * 0.5)
+  ctx.arc(x,y,r, sa, ea)
   ctx.closePath()
   ctx.fill()
 }
