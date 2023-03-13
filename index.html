@@ -441,7 +441,7 @@
       <option value="circle" >1 circle</option>
       <option value="threeCircles">3 circles</option>
       <option value="twohemispheres">2 hemi</option>
-
+      <option value="cornercurve">diag curve</option>
       <option value="typewriter" >typewriter</option>
       <option value="markwriter">markwriter</option>
       <option value="regMarks" >registration</option>
@@ -8176,6 +8176,35 @@ function twohemispheres () {
   ctx.arc(x,y,r, sa, ea)
   ctx.closePath()
   ctx.fill()
+}
+
+function cornercurve () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let colors = shuffle(getCurrentPalette())
+  let alt = document.getElementById("grungy").checked
+  delta = 11 + document.getElementById("featuresize").value/2
+  let pad = 20, x = pad, y = pad
+  
+  ctx.fillStyle = colors[0]
+  ctx.beginPath()
+  ctx.moveTo(x,y)
+  ctx.lineTo(x,H - pad)
+  ctx.lineTo(W - pad,H - pad)
+  let cpx1 = W - pad, cpy1 = 3*H/4 - pad
+  let cpx2 = 3*W/4, cpy2 = H/2 - pad
+  ctx.bezierCurveTo(cpx1,cpy1, cpx2,cpy2, W/2, H/2)
+  cpx1 = W/4,       cpy1 = H/2 + pad
+  cpx2 = pad,       cpy2 = H/4 + pad
+  ctx.bezierCurveTo(cpx1,cpy1, cpx2,cpy2, pad, pad)
+  ctx.closePath()
+  ctx.fill()
+  ctx.strokeStyle = colors[2]
+  ctx.lineWidth = 8
+  //rc()
+  //rc()
 }
 
 function mnts () {
