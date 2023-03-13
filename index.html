@@ -8187,16 +8187,16 @@ function cornercurve () {
   let alt = document.getElementById("grungy").checked
   delta = 11 + document.getElementById("featuresize").value/2
   let pad = 20, x = pad, y = pad
-  
+  let p = 30
   ctx.fillStyle = colors[0]
   ctx.beginPath()
   ctx.moveTo(x,y)
   ctx.lineTo(x,H - pad)
   ctx.lineTo(W - pad,H - pad)
   let cpx1 = W - pad, cpy1 = 3*H/4 - pad
-  let cpx2 = 3*W/4, cpy2 = H/2
+  let cpx2 = 3*W/4+pet(p), cpy2 = H/2+pet(p)
   ctx.bezierCurveTo(cpx1,cpy1, cpx2,cpy2, W/2, H/2)
-  cpx1 = W/4,       cpy1 = H/2
+  cpx1 = W/4 +pet(p),       cpy1 = H/2+pet(p)
   cpx2 = pad,       cpy2 = H/4 + pad
   ctx.bezierCurveTo(cpx1,cpy1, cpx2,cpy2, pad, pad)
   ctx.closePath()
