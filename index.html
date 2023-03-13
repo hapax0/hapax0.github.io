@@ -8194,9 +8194,9 @@ function cornercurve () {
   ctx.lineTo(x,H - pad)
   ctx.lineTo(W - pad,H - pad)
   let cpx1 = W - pad, cpy1 = 3*H/4 - pad
-  let cpx2 = 3*W/4, cpy2 = H/2 - pad
+  let cpx2 = 3*W/4, cpy2 = H/2
   ctx.bezierCurveTo(cpx1,cpy1, cpx2,cpy2, W/2, H/2)
-  cpx1 = W/4,       cpy1 = H/2 + pad
+  cpx1 = W/4,       cpy1 = H/2
   cpx2 = pad,       cpy2 = H/4 + pad
   ctx.bezierCurveTo(cpx1,cpy1, cpx2,cpy2, pad, pad)
   ctx.closePath()
