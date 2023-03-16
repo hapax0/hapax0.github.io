@@ -6993,7 +6993,6 @@ function chairAt (x,y,W,color) {
   }
 }
 
-
 function cubeAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -7040,6 +7039,95 @@ function cubeAt (x,y,W,color) {
   ctx.lineTo(x,y)
   ctx.closePath()
   ctx.stroke()
+}
+
+function dressers () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width
+  let H = W
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let colors = shuffle(getCurrentPalette())
+  let i = 0, pad = 40,x = pad, y = pad
+  let w = (W-pad)/9
+  let alpha = ctx.globalAlpha
+  for (; i < 9*9; i++) {
+    if (i > 0 && i % 9 === 0) {
+      x = pad
+      y += w
+    }
+    if (i < 40) {
+      squareAt(x,y,w,randomPick(colors))
+      alpha *= 0.95
+      ctx.globalAlpha = alpha
+    } else {
+      dresserAt(x,y,w,randomPick(colors))
+      alpha *= 1.05
+      ctx.globalAlpha = alpha
+    }
+    x += w
+  }
+}
+
+function squareAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W
+ // ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let colors = shuffle(getCurrentPalette())
+  let alt = document.getElementById("grungy").checked
+  ctx.lineWidth = 2 + document.getElementById("featuresize").value/50
+  ctx.strokeStyle = color
+  let d = (W-2*2)/2
+  d *= 1.3
+  let di = d/10
+  let x0 = x
+  ctx.fillStyle = (colors[0])
+  ctx.beginPath()
+  ctx.moveTo(x,y)
+  ctx.lineTo(x+pet(3),y+d)
+  ctx.lineTo(x+d,y+d+pet(3))
+  ctx.lineTo(x+d+pet(3), y)
+  ctx.closePath()
+  ctx.fill()
+  //ctx.stroke()
+}
+
+function dresserAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W
+  //ctx.globalAlpha = +document.getElementById("opacity").value/100
+  //let colors = shuffle(getCurrentPalette())
+  let alt = document.getElementById("grungy").checked
+  ctx.lineWidth = 2 + document.getElementById("featuresize").value/50
+  ctx.strokeStyle = color
+  let d = (W-2*2)/2
+  d *= 1.3
+  let di = d/10
+  let x0 = x
+  ctx.fillStyle = color
+  ctx.beginPath()
+  ctx.moveTo(x,y)
+  ctx.lineTo(x+pet(3),y+d)
+  ctx.lineTo(x+di,y+d+pet(3))
+  ctx.lineTo(x+di+pet(3), y+d-di)
+  ctx.lineTo(x+di*6,y+d-di+pet(3))
+  ctx.lineTo(x+di*6+pet(3),y+d)
+  ctx.lineTo(x+di*7, y+d+pet(3))
+
+  ctx.lineTo(x+di*7, y+d+pet(3))
+  ctx.lineTo(x+di*7, y+d-di+pet(3))
+
+  ctx.lineTo(x+d-di+pet(3),y+8*di)  
+  ctx.lineTo(x+d-di+pet(3),y+8.5*di)
+  ctx.lineTo(x+d+pet(3),y+8.5*di)
+
+  ctx.lineTo(x+d,y+2*di+pet(3))
+  ctx.lineTo(x+d-3*di+pet(3),y-di)
+  ctx.closePath()
+  ctx.fill()
+  //ctx.stroke()
 }
 
 function cube () {
@@ -8188,6 +8276,12 @@ function cornercurve () {
   delta = 11 + document.getElementById("featuresize").value/2
   let pad = 20, x = pad, y = pad
   let p = 30
+  if (alt) {
+    H /= 2 
+    H += pad
+    //x += W
+  }
+  console.log(x,W)
   ctx.fillStyle = colors[0]
   ctx.beginPath()
   ctx.moveTo(x,y)
