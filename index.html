@@ -298,8 +298,9 @@
        <option value="frame">jaggy frame</option>
        <option value="ripFrame">rip frame</option>
        <option value="halfRip" style="color:red">left rip</option>
+       <option value="leftClip" style="color:red">left clip</option>
 
-       <option value="make4to5">pad to 4:5</option>
+       <!--option value="make4to5">pad to 4:5</option-->
        
        <option value="nudgehalfdown" style="color:red">nudge down right</option>
        <option value="nudgeCW" style="color:red">nudge angle</option>
@@ -8266,12 +8267,12 @@ function twohemispheres () {
   ctx.fill()
 }
 
-function cornercurve () {
+function cornercurve () { // ragged (ctx,endX,endY,x,y)
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let W = canvas.width, H = canvas.height
   ctx.globalAlpha = +document.getElementById("opacity").value/100
-  let colors = shuffle(getCurrentPalette())
+  let colors = shuffle(getCurrentPalette(13,true))
   let alt = document.getElementById("grungy").checked
   delta = 11 + document.getElementById("featuresize").value/2
   let pad = 20, x = pad, y = pad
@@ -8281,14 +8282,13 @@ function cornercurve () {
     H += pad
     W /= 2 
     W += pad - 3
-    //x += W
   }
-  console.log(x,W)
   ctx.fillStyle = colors[0]
   ctx.beginPath()
   ctx.moveTo(x,y)
   ctx.lineTo(x,H - pad)
-  ctx.lineTo(W - pad,H - pad)
+  //ragged (ctx,x,H - pad,x,y)
+  ragged (ctx,W - pad,H - pad,x,H - pad)
   let cpx1 = W - pad, cpy1 = 3*H/4 - pad
   let cpx2 = 3*W/4+pet(p), cpy2 = H/2+pet(p)
   ctx.bezierCurveTo(cpx1,cpy1, cpx2,cpy2, W/2, H/2)
@@ -12127,10 +12127,13 @@ function tape () {
   ctx.shadowOffsetY  = 0
 }
 
-function scraps () {
+function scraps (d) {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  let D = 200 + Math.random() * 300//Math.floor(document.getElementById("featuresize").value/10)
+  //let D = 200 + Math.random() * 300//
+  let D = Math.floor(document.getElementById("featuresize").value/1)
+  if (d)
+    D = d
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let colors = shuffle(getCurrentPalette())
   let mode = document.getElementById("mode").value
