@@ -359,9 +359,10 @@
       <option value="tintByCloseness" >extracted tint</option>
       <option value="simplifyColors">simplify colors</option>
       <!-- value="cymk">CYMK</option-->
-      <option value="halfToneMono" selected>HT mono</option>
+      <option value="halfToneMono" >HT mono</option>
       <option value="stipple">stipple</option>
-      <option value="etch">etch</option>
+      <option value="etch" selected>etch</option>
+     
       <option value="hatches">hatches</option>
       <option value="hatchescolor">hatches color</option>
       <option value="nicksmith">nick smith</option>
@@ -3640,12 +3641,11 @@ function etch (color) {
   let h = ch/hdivs
   let i = 0, j = 0, x = 0, y = 0, ct = 1+ Math.floor(Math.random() * 5)
   let angle = Math.PI * 2 * Math.random()
-  let d = h/ct
-  
+  let d = h
   let numsquares = (1+wdivs) * (1+hdivs) * 1.2
   let radius = w/6, linecount = 0
   let r0 = radius
-  let D = 0//radius * 6
+  let D = 0
   let lightness = 0
 
   let points = []
@@ -3664,16 +3664,10 @@ function etch (color) {
   j = 0
   let h2 = 0, w2 = w
   let ORIENT = Math.random()>0.5
-  console.log(ORIENT)
-  let P = d*2
+  let P = h2
   for (;j < points.length; j++) {
-
-    if (Math.random() > 0.5)
-      P = d+d*Math.random()*1.5
-      if (ORIENT)
-        P *= -1
-   // else
-   //   P = -d-d*Math.random()*1.5
+    if (Math.random() > 0.7)
+      P = h+h*Math.random()*1.5
     x = points[j][0]
     y = points[j][1]
     let imgData = ctx.getImageData(x, y, w, h)
@@ -3702,10 +3696,13 @@ function etch (color) {
     if(color)
       radius = h
     if (radius > 0) {
-      offctx.lineWidth = radius
+      offctx.lineWidth = radius*0.8
       offctx.beginPath()
       offctx.moveTo(x,y)
-      offctx.lineTo(x+w2, y+h2+P)
+      if (ORIENT)
+        offctx.lineTo(x+w2, y-(h2+P))
+      else
+        offctx.lineTo(x+w2, y+h2+P)
       offctx.stroke()
     }
   }
