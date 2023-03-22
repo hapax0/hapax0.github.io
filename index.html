@@ -3647,26 +3647,25 @@ function etch (color) {
   let r0 = radius
   let D = 0
   let lightness = 0
-
-  let points = []
+  let points = [], vals = []
   for (;j < numsquares; j++) {
     points[j] = [x, y]
     x += w
     if (x >= (wdivs)*w) {
       linecount++
-      if (linecount % 2 == 1)
+      if (linecount % 2 === 1)
         x = 0
       y += h/2
     }
   }
-  points = shuffle(points)
+  points = shuffle(points) // do this later. before drawing
   let D8 = D/8
   j = 0
   let h2 = 0, w2 = w
   let ORIENT = Math.random()>0.5
   let P = h2
   for (;j < points.length; j++) {
-    if (Math.random() > 0.7)
+    if (Math.random() > 0.8)
       P = h+h*Math.random()*1.5
     x = points[j][0]
     y = points[j][1]
@@ -3695,14 +3694,17 @@ function etch (color) {
     radius = lightness/255 * h
     if(color)
       radius = h
-    if (radius > 0) {
+    if (radius > 0.5) {
       offctx.lineWidth = radius*0.8
       offctx.beginPath()
-      offctx.moveTo(x,y)
       if (ORIENT)
-        offctx.lineTo(x+w2, y-(h2+P))
+        offctx.moveTo(x,y+P)
       else
-        offctx.lineTo(x+w2, y+h2+P)
+        offctx.moveTo(x,y-P)
+      if (ORIENT)
+        offctx.lineTo(x+w2, y-P)
+      else
+        offctx.lineTo(x+w2, y+P)
       offctx.stroke()
     }
   }
