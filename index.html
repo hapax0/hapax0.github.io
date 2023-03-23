@@ -470,6 +470,9 @@
       <option value="crackle">crackle curves</option>
       <option value="cracklelines" >crackle lines</option>
       <option value="origami">origami</option>
+      <option value="dotArray">dot array</option>
+      <option value="pyrm">pyrm</option>
+      
       <option value="neckerline">necker</option>
       <option value="necker">necker (fill)</option>
       <option value="house">house (fill)</option>
@@ -7870,6 +7873,47 @@ function amonocube (x,y,w,h) {
   ctx.shadowBlur = 0
   ctx.shadowOffsetX = 0
   ctx.shadowOffsetY = 0
+}
+
+function dotArray () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  let N = randomPick([5,6,7,4])
+  let alpha = document.getElementById("opacity").value/100
+  //let pad = 19+document.getElementById("featuresize").value/3000 * W
+  let delta = W/N
+  let pad = delta/2, inset = 0
+  let x = 0, y = 0, i = 0, cnt = 0
+  ctx.fillStyle = randomPick(getCurrentPalette())
+  for (; i < N*N; i++) {
+    ctx.beginPath()
+    if (Math.random() < 0.8)
+      ctx.arc(x+pad+pet(3), y+pad+pet(2), 8+pet(2), 0, Math.PI*2)
+    else
+      ctx.arc(x+pad+pet(3), y+pad+pet(2), 8, Math.PI/2, Math.PI*1.5,true)
+    ctx.closePath()
+    if (Math.random() < 0.83 && x+pad < W-10)
+      ctx.fill()
+    if (Math.random() > 0.6 && x+pad < W-10) {
+      ctx.globalAlpha = alpha/2
+      ctx.beginPath()
+      ctx.arc(x+pad+pet(2)+4, y+pad+pet(2), 8+pet(2), 0, Math.PI*2)
+      ctx.closePath()
+      ctx.fill()
+    }
+    ctx.globalAlpha = alpha
+    x += delta
+    cnt++
+    if (cnt > 1 && cnt%N === 0) {
+      if (inset === 0)
+        inset = pad
+      else
+        inset = 0
+      x = inset
+      y += delta
+    }
+  }
 }
 
 function monoballs () {
@@ -16336,6 +16380,58 @@ function neckerline () {
   ctx.lineTo(W-margin, W-w4-margin)
   ctx.lineTo(W-w4-margin, W-margin)
   ctx.stroke()
+}
+
+
+function pyrm () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.lineWidth = 1+ document.getElementById("featuresize").value/50
+  let W = canvas.width, H = canvas.height
+  
+  let margin = W/20
+  let w4 = (W-2*margin)/3//(2+Math.floor(Math.random() * 3))//document.getElementById("rows").value
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.lineCap = 'round'
+  ctx.lineJoin = 'round'
+  let points = []
+  points.push(Math.random() * W/2, Math.random() * H/2)
+  points.push(W/2+Math.random() * W/2, Math.random() * H/2)
+  points.push(W/2+Math.random() * W/2, H/2+Math.random() * H/2)
+  points.push(Math.random() * W/2, H/2+Math.random() * H/2)
+
+  let grunge = document.getElementById("grungy").checked
+  //bottom
+  ctx.beginPath();
+  ctx.moveTo(points[0], points[1])
+  ctx.lineTo(points[2], points[3])
+  ctx.lineTo(points[4], points[5])
+  ctx.lineTo(points[6], points[7])
+  ctx.lineTo(points[0], points[1])
+  ctx.stroke()
+
+  points.push(Math.random() * W, Math.random() * H)
+  ctx.beginPath();
+  ctx.moveTo(points[0], points[1])
+  ctx.lineTo(points[8], points[9])
+  ctx.stroke()
+
+  ctx.beginPath();
+  ctx.moveTo(points[2], points[3])
+  ctx.lineTo(points[8], points[9])
+  ctx.stroke()
+
+  ctx.beginPath();
+  ctx.moveTo(points[4], points[5])
+  ctx.lineTo(points[8], points[9])
+  ctx.stroke()
+
+  ctx.beginPath();
+  ctx.moveTo(points[6], points[7])
+  ctx.lineTo(points[8], points[9])
+  ctx.stroke()
+
 }
 /*
 function elle () {
