@@ -149,24 +149,7 @@
   <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" id="path2" />
   <path d="M 9.9648918,2.9107776 A 0.40719501,0.40719501 0 1 0 9.1864797,2.6713915 L 5.9295257,13.256492 a 0.40719497,0.40719497 0 0 0 0.778412,0.239386 z M 5.3856144,4.9455597 a 0.40711925,0.40711925 0 0 1 0,0.5764808 L 2.8232058,8.0836348 5.3856144,10.645229 A 0.40763355,0.40763355 0 0 1 4.8091336,11.22171 L 1.9592987,8.3718753 a 0.40711925,0.40711925 0 0 1 0,-0.5764809 L 4.8091336,4.9455597 a 0.40711925,0.40711925 0 0 1 0.5764808,0 z m 5.1231886,0 a 0.40711925,0.40711925 0 0 0 0,0.5764808 l 2.562409,2.5615943 -2.562409,2.5615942 a 0.40763362,0.40763362 0 0 0 0.576481,0.576481 l 2.849835,-2.8498347 a 0.40711925,0.40711925 0 0 0 0,-0.5764809 L 11.085284,4.9455597 a 0.40711925,0.40711925 0 0 0 -0.576481,0 z"
   id="path4" style="stroke-width:0.96;stroke-miterlimit:4;stroke-dasharray:none" /></svg></a>
-  <!--a href="javascript:lastNFunctions()" id="last" title="repeat last function">
-  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
-    <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
-    <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
-  </svg></a>
-  <select id="nfunctions" style="width:50px;vertical-align:middle;">
-    <option>1</option>
-    <option >2</option>
-    <option>3</option>
-    <option>4</option>
-    <option>5</option>
-    <option>6</option>
-    <option>7</option>
-    <option>8</option>
-    <option>9</option>
-    <option>10</option>
-    <option>0</option>
-  </select-->
+
   &nbsp;
   <a href="javascript:stack_clearOff()" title="clear offscreen">
     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-clipboard-x" viewBox="0 0 16 16">
@@ -362,7 +345,11 @@
       <option value="halfToneMono" >HT mono</option>
       <option value="stipple">stipple</option>
       <option value="etch" selected>etch</option>
-     
+      <option value="typewriter" >typewriter</option>
+      <option value="markwriter">markwriter</option>
+      <option value="regMarks" >registration</option>
+      <option value="paintByNumbers">mono by numbers</option>
+      <option value="paintByNumbers2">color by numbers</option>
       <option value="hatches">hatches</option>
       <option value="hatchescolor">hatches color</option>
       <option value="nicksmith">nick smith</option>
@@ -422,7 +409,6 @@
       <option value="rose">rose</option>
       <option value="paintDrips">paint drips</option>
       <option value="paintDrip">drip at</option>
-
       <option value="hstripes">stripes</option>
       <option value="monocubes">mono cubes</option>
       <option value="monoballs">mono balls</option>
@@ -444,12 +430,6 @@
       <option value="threeCircles">3 circles</option>
       <option value="twohemispheres">2 hemi</option>
       <option value="cornercurve">diag curve</option>
-      <option value="typewriter" >typewriter</option>
-      <option value="markwriter">markwriter</option>
-      <option value="regMarks" >registration</option>
-      <option value="paintByNumbers">mono by numbers</option>
-      <option value="paintByNumbers2">color by numbers</option>
-      
       <option value="tv">tv</option>
       <option value="hand">hand</option>
       <option value="heart">heart</option>
@@ -463,7 +443,6 @@
       <option value="swingset">swing set</option>
       <option value="glass_line" >glass</option>
       <option value="glass" >glass (fill)</option>
-      <!--option value="room">room</option-->
       <option value="envelope">envelope</option>
       <option value="hairs">hairs</option>
       <option value="mnts" >mnts</option>
@@ -472,27 +451,25 @@
       <option value="origami">origami</option>
       <option value="dotArray">dot array</option>
       <option value="pyrm">pyrm</option>
-      
       <option value="neckerline">necker</option>
       <option value="necker">necker (fill)</option>
       <option value="house">house (fill)</option>
       <option value="monocube">cube (mono)</option>
       <option value="cube">cube (fill)</option>
       <option value="cube2">cube2</option>
+      <option value="natural">loop</option>
+      <option value="phase">phase</option>
+      <option value="shape2">shape</option>
+      <option value="scraps">scraps</option>
+      <option value="tape">tape</option>
+      <!--option value="phases">phases</option>
       <option value="corner">corner</option>
       <option value="facade" >facade</option>
       <option value="core">core</option>
       <option value="eclipse">eclipse</option>
       <option value="constellations" >constellations</option>
       <option value="seasons">seasons</option>
-      <option value="tides">tides</option>
-      <option value="natural">loop</option>
-      <option value="phase">phase</option>
-      <option value="phases">phases</option>
-      <option value="numberShow">numbers</option>
-      <option value="shape2">shape</option>
-      <option value="scraps">scraps</option>
-      <option value="tape">tape</option>
+      <option value="tides">tides</option-->
       <!--option value="strokes">strokes</option>
       <option value="strokes2">strokes2</option>
       <option value="strokesH">strokes horizontal</option>
@@ -520,16 +497,13 @@
       <option value="form3">form (nest)</option>
       <option value="detail" selected>detail</option>
       <option value="pageOfBook">book page</option>
-
       <option value="ctrlchart">ctrl chart</option>
       <option value="stepchart">step chart</option>
       <option value="histograph" >histograph</option>
       <option value="pairedwords">form pairs</option>
-    
       <option value="nested">nested sqrs</option>
       <option value="index">index</option>
       <option value="moleText">clues</option>
-
       <option value="crosswordPad">crossword</option>
       <option value="sketchpad">sketch pad</option>
       <option value="floppyPage">stack of pages</option>
@@ -544,10 +518,10 @@
       <option value="interdepartmental">interdepartmental</option>
       <option value="postcard">postcard</option>
       <option value="indexcard">index card</option>
-      <option value="oiloncanvas">oiloncanvas</option>
+      <!--option value="oiloncanvas">oiloncanvas</option>
       <option value="sold">sold</option>
-      <!--option value="thisSpace">this space</option-->
-      <!--option value="spiralbound">spiral bound</option-->
+      <option value="thisSpace">this space</option>
+      <option value="spiralbound">spiral bound</option-->
       <option value="photoBook">photo book</option>
       <option value="gridLinear">grid paper</option>
       <option value="gridLog">log paper</option>
@@ -8709,20 +8683,16 @@ function rose () { // chemotaxis like
     y = y + Math.cos(angle) * 1
     ctx.lineTo(x, y);
     if (n % 2 === 0) {
-      if (alt)
-        crayAt (x,y,ctx, fs*5)
-      else { 
-        ctx.beginPath()
-        ctx.ellipse(x, y, 1.3*lw+pet(lw/2), lw, a, 0, 2* Math.PI)
-        ctx.closePath()
-        ctx.fill()
-        if (Math.random() > 0.98)
-          DIR = !DIR
-        if (DIR)
-          lw *= increment
-        else
-          lw /= increment
-      }
+      ctx.beginPath()
+      ctx.ellipse(x, y, 1.3*lw+pet(lw/2), lw, a, 0, 2* Math.PI)
+      ctx.closePath()
+      ctx.fill()
+      if (Math.random() > 0.98)
+        DIR = !DIR
+      if (DIR)
+        lw *= increment
+      else
+        lw /= increment
       gs = distance(x,y,cx,cy,fs)
       if (gs > turnAt+50) {
         turn = true
@@ -24443,25 +24413,24 @@ function drawShape (line) {
       })
       i = 0
       let j = 0
-      //let buff = []
+      let buff = []
       for (; i < pk.length; i++) {
         j = 0
         for (; j < 2; j++) {
           pk[i][j] = pk[i][j] * s 
-          //buff.push(pk[i][j])
+          buff.push(pk[i][j])
         }
-        //crayAt(pk[i][0], pk[i][1], ctx,fs*2)
-        paintbrushAt(pk[i][0], pk[i][1], ctx,fs*2)
+        crayAt(pk[i][0], pk[i][1], ctx,fs*2)
+        //paintbrushAt(pk[i][0], pk[i][1], ctx,fs*2)
         
-       /* if (buff.length === 8) {
+       if (buff.length === 8) {
           bez_pts_cray(buff[0],buff[1],buff[2],buff[3],buff[4],buff[5],buff[6],buff[7], ctx, fs)
           buffx = []
           buffx.push(buff[6],buff[7])
           buff = buffx
-        }*/
+        }
         if (Math.random() > 0.6)
           offpaintbrush(ctx.fillStyle, fs)
-
       }
     }
   }
