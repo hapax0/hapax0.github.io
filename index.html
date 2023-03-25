@@ -6973,6 +6973,29 @@ function chairAt (x,y,W,color) {
   }
 }
 
+function stairsArray () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  let N = randomPick([4,5,6,9])
+  console.log(N)
+  let pad = 40
+  let delta = Math.round(W/N) - pad*1
+  let colors = getCurrentPalette()
+  
+  let x = pad/2, y = pad/2, i = 0
+  let cnt = 0
+  for (; i < N*N; i++) {
+    stairsAt (x,y,delta,randomPick (colors))
+    x += delta+pad
+    cnt++
+    if (cnt > 1 && cnt%N === 0) {
+      x = pad/2
+      y += delta+pad
+    }
+  }
+}
+
 function stairs () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -6993,7 +7016,7 @@ function stairsAt (x,y,W,color,n) {
   ctx.lineCap = "butt"
   ctx.lineJoin = "round"
   let x0 = x, y0 = y
-  let N = n || randomPick([4,5,6,7,8,9,11,17,19]), i = 0
+  let N = n || randomPick([2,3,4,5,6,7,8,9,11,17,19]), i = 0
   let sh = H/N
   let xo,yo // offsets
   ctx.beginPath()
