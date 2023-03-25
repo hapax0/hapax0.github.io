@@ -437,6 +437,7 @@
       <option value="thought">thought</option>
       <option value="ivy" >ivy</option>
       <option value="user">user</option>
+      <option value="stairs">stairs</option> 
       <option value="chair">chair</option>
       <option value="chairStorm">chair storm</option>
       <option value="treeStorm">tree storm</option>
@@ -6903,7 +6904,6 @@ function treeAt (x,y,W,color) {
   }
 }
 
-
 function chairAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -6969,6 +6969,75 @@ function chairAt (x,y,W,color) {
     ctx.lineTo(x,y+d/2-div)
     ctx.lineTo(x,y)
     ctx.closePath()
+    ctx.stroke()
+  }
+}
+
+function stairs () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width
+  let color = randomPick(getCurrentPalette())
+  let pad = 40
+  stairsAt (pad,pad,W-pad*2,color)
+}
+
+function stairsAt (x,y,W,color,n) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let alt = document.getElementById("grungy").checked
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  ctx.strokeStyle = color
+  ctx.lineCap = "butt"
+  ctx.lineJoin = "round"
+  let x0 = x, y0 = y
+  let N = n || randomPick([4,5,6,7,8,9,11,17,19]), i = 0
+  let sh = H/N
+  let xo,yo // offsets
+  ctx.beginPath()
+  ctx.moveTo(x,y+sh)
+  ctx.lineTo(x,y+H)
+  ctx.lineTo(x + (W-sh), y+H)
+  xo = sh, yo = 0
+  for (; i < (N-1)*2; i++) {
+    ctx.lineTo(x + (W-xo), y+H-yo)
+    if (i % 2 === 1)
+      xo += sh
+    if (i % 2 === 0)
+      yo += sh
+  }
+  ctx.closePath()
+  ctx.stroke()
+  // offet stairs 
+  y = y0, x = x0
+  ctx.beginPath()
+  ctx.moveTo(x + W, y+H - sh)
+  xo = 0, yo = sh*2, i = 0
+  for (; i < (N-1)*2; i++) {
+    ctx.lineTo(x + (W-xo), y+H-yo)
+    if (i % 2 === 0)
+      xo += sh
+    if (i % 2 === 1)
+      yo += sh
+  }
+  ctx.stroke()
+  // lines between edges
+  i = 0, y += sh
+  let x2 = x+sh, y2 = y-sh
+  for (; i < (N-1)*2 + 1; i++) {
+    ctx.beginPath()
+    ctx.moveTo(x, y)
+    if (i % 2 === 0)
+      x += sh
+    if (i % 2 === 1)
+      y += sh
+    ctx.lineTo(x2, y2)
+    if (i % 2 === 0)
+      x2 += sh
+    if (i % 2 === 1)
+      y2 += sh
     ctx.stroke()
   }
 }
