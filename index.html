@@ -439,10 +439,11 @@
       <option value="user">user</option>
       <option value="stairs">stairs</option> 
       <option value="ladder">ladder</option> 
+      <option value="slide">slide</option> 
       <option value="chair">chair</option>
       <option value="chairStorm">chair storm</option>
       <option value="treeStorm">tree storm</option>
-      <option value="swingset">swing set</option>
+      <option value="swing">swing set</option>
       <option value="glass_line" >glass</option>
       <option value="glass" >glass (fill)</option>
       <option value="envelope">envelope</option>
@@ -6709,7 +6710,6 @@ function swingfill () {
   x += dh
   ctx.lineTo(x,y)
   ctx.stroke()
-
 }
 
 function box () {
@@ -7084,6 +7084,7 @@ function ladderArray () {
     }
   }
 }
+
 function ladder () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -7142,6 +7143,240 @@ function ladderAt (x,y,W,color,n) {
     ctx.beginPath() // top rung
     ctx.moveTo(x,y)
     ctx.lineTo(x + W/3, y)
+    ctx.stroke()
+    y += sh
+  }
+}
+
+function swing () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width
+  let color = randomPick(getCurrentPalette())
+  let pad = 40
+  swingAt (pad,pad,W-pad*2,color)
+}
+
+function swingArray () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  let N = randomPick([4,5,6,9,13])
+  let pad = 40
+  let delta = Math.round(W/N) - pad*1
+  let colors = getCurrentPalette(13,true)
+  let x = pad/2, y = pad/2, i = 0
+  let cnt = 0
+  for (; i < N*N; i++) {
+    swingAt (x,y,delta,randomPick (colors))
+    x += delta+pad
+    cnt++
+    if (cnt > 1 && cnt%N === 0) {
+      x = pad/2
+      y += delta+pad
+    }
+  }
+}
+
+function swingAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W
+  let C = W/2 + (Math.random() - 0.5) * W/4
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let grunge = document.getElementById("grungy").checked
+  ctx.lineWidth = 1+document.getElementById("featuresize").value/50
+  ctx.lineCap = "butt"
+  ctx.strokeStyle = color
+
+  let pad = 0, vpad = 0 
+  let x0 = x, y0 = y
+  //   /\
+  //  /
+  // /\
+  let dh = W/7
+  
+  y += H // lower left A
+  ctx.beginPath()
+  ctx.moveTo(x,y)
+  x += dh
+  y -= H/2
+  ctx.lineTo(x, y)
+  x += dh
+  y += H/2
+  ctx.lineTo(x,y)
+  ctx.stroke()
+  
+//top bar
+  x -= dh
+  y -= H/2
+  ctx.moveTo(x,y)
+  x += 5*dh
+  ctx.lineTo(x, y0)
+  ctx.stroke()
+  
+  // right upper A
+  y = y0
+  ctx.beginPath()
+  x -= 1*dh
+  y += H/2
+  ctx.moveTo(x,y)
+  x += dh
+  y -= H/2
+  ctx.lineTo(x, y)
+  x += dh
+  y += H/2
+  ctx.lineTo(x, y)
+  ctx.stroke()
+  
+  y = y0, x = x0
+  // swings
+  y += H/2 - H/10 
+  x += 2*dh
+  ctx.beginPath()
+  ctx.moveTo(x, y)
+  y += 3.5*H/10
+  ctx.lineTo(x,y)
+  x += dh
+  y -= H/10
+  ctx.lineTo(x,y)
+  y -= 3.5*H/10
+  ctx.lineTo(x,y)
+  ctx.stroke()
+  
+  y = y0
+  // swings
+  y += H/2 - 3*H/10
+  x += dh
+  ctx.beginPath()
+  ctx.moveTo(x, y)
+  y += 3.5*H/10
+  ctx.lineTo(x,y)
+  x += dh
+  y -= H/10
+  ctx.lineTo(x,y)
+  y -= 3.5*H/10
+  ctx.lineTo(x,y)
+  ctx.stroke()
+  
+  x = x0, y = y0
+  // 2 A bars
+  ctx.beginPath()
+  x += dh/2
+  y += 3*H/4
+  ctx.moveTo(x,y)
+  x += dh
+  ctx.lineTo(x,y)
+  ctx.stroke()
+  
+  ctx.beginPath()
+  x += 4*dh
+  y -= H/2
+  ctx.moveTo(x,y)
+  x += dh
+  ctx.lineTo(x,y)
+  ctx.stroke()
+}
+
+function slide () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width
+  let color = randomPick(getCurrentPalette())
+  let pad = 40
+  slideAt (pad,pad,W-pad*2,color)
+} 
+
+function slideArray () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  let N = randomPick([4,5,6,9,13])
+  let pad = 40
+  let delta = Math.round(W/N) - pad*1
+  let colors = getCurrentPalette(13,true)
+  let x = pad/2, y = pad/2, i = 0
+  let cnt = 0
+  for (; i < N*N; i++) {
+    if (i%2 === 0)
+      slideAt (x,y,delta,randomPick (colors))
+    else
+      ladderAt (x,y,delta,randomPick (colors))
+    x += delta+pad
+    cnt++
+    if (cnt > 1 && cnt%N === 0) {
+      x = pad/2
+      y += delta+pad
+    }
+  }
+}
+function slideAt (x,y,W,color,n) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let alt = document.getElementById("grungy").checked
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  ctx.strokeStyle = "#0000ff"
+  //ctx.strokeRect(x,y,W,H)
+  ctx.strokeStyle = color
+  ctx.lineCap = "butt"
+  ctx.lineJoin = "round"
+  let x0 = x, y0 = y
+  let N = n || randomPick([3,4,5,7,9,11]), i = 0
+  let sh = H/N
+  let xo,yo // offsets 
+  ctx.beginPath()
+  ctx.moveTo(x,y+H)
+  ctx.lineTo(x+W/4,y)
+  let cpx1 = x+W/2, cpy1 = y
+  let cpx2 = x+W/2, cpy2 = y + H/3
+  ctx.bezierCurveTo(cpx1,cpy1,cpx2,cpy2,x+W/2,y+H/2)
+  
+  cpx1 = x+W/2, cpy1 = y + H/2
+  cpx2 = x+W/2, cpy2 = y + 3*H/4
+  ctx.bezierCurveTo(cpx1,cpy1,cpx2,cpy2,x+3*W/4,y+4*H/5)
+  ctx.lineTo(x+3*W/4,y+H)
+  ctx.stroke()
+ 
+  // rightmodr slide
+  ctx.beginPath()
+  ctx.moveTo(x+W/2,y)
+ // ctx.lineTo(x+W/4,y)
+  cpx1 = x+3*W/4, cpy1 = y
+  cpx2 = x+3*W/4, cpy2 = y + H/3
+  ctx.bezierCurveTo(cpx1,cpy1,cpx2,cpy2,x+3*W/4,y+H/2)
+  
+  cpx1 = x+3*W/4, cpy1 = y + H/2
+  cpx2 = x+3*W/4, cpy2 = y + 3*H/4
+  ctx.bezierCurveTo(cpx1,cpy1,cpx2,cpy2,x+W,y+4*H/5)
+  ctx.lineTo(x+W,y+H)
+  ctx.stroke()
+  
+  ctx.beginPath() // bottom of slide horz
+  ctx.moveTo(x+3*W/4,y+4*H/5)
+  ctx.lineTo(x+W,y+4*H/5)
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.moveTo(x+W/4,y+H)
+  ctx.lineTo(x+W/2,y)
+  ctx.stroke()
+  
+  // steps: use sh but with offset from top 
+  ctx.beginPath() // top rung
+  ctx.moveTo(x+W/4,y)
+  ctx.lineTo(x + (W/2), y)
+  ctx.stroke()
+
+  i = 0
+  x = x0 , y = y0
+  x = x+W/4, y = y + sh
+  for (; i < N-1; i++) {
+    x -= sh/4
+    ctx.beginPath() // top rung
+    ctx.moveTo(x,y)
+    ctx.lineTo(x + W/4, y)
     ctx.stroke()
     y += sh
   }
