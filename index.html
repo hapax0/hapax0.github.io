@@ -439,6 +439,7 @@
       <option value="user">user</option>
       <option value="stairs">stairs</option> 
       <option value="ladder">ladder</option> 
+      <option value="lamp">lamp</option> 
       <option value="slide">slide</option> 
       <option value="chair">chair</option>
       <option value="chairStorm">chair storm</option>
@@ -6865,6 +6866,7 @@ function treeAt (x,y,W,color) {
   let p = 0
   if (alt)
     p = 11
+  x += W/2
   let x0 = x, y0 = y
   ctx.beginPath()
   ctx.moveTo(x,y)
@@ -6901,7 +6903,6 @@ function treeAt (x,y,W,color) {
       ctx.closePath()
       ctx.stroke()
     }
-
   }
 }
 
@@ -6922,6 +6923,7 @@ function chairAt (x,y,W,color) {
   d *= 1.3
   let da = randomPick([3,5,8,13,24])
   let div = d/da
+  x += W/2
   let x0 = x, y0 = y
   ctx.beginPath()
   ctx.moveTo(x,y+div)
@@ -7310,6 +7312,7 @@ function slideArray () {
     }
   }
 }
+
 function slideAt (x,y,W,color,n) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -7331,7 +7334,7 @@ function slideAt (x,y,W,color,n) {
   ctx.lineTo(x+W/4,y)
   let cpx1 = x+W/2, cpy1 = y
   let cpx2 = x+W/2, cpy2 = y + H/3
-  ctx.bezierCurveTo(cpx1,cpy1,cpx2,cpy2,x+W/2,y+H/2)
+  ctx.bezierCurveTo(cpx1,cpy1,cpx2,cpy2,x+W/2,y+(H-(H/5))/2)
   
   cpx1 = x+W/2, cpy1 = y + H/2
   cpx2 = x+W/2, cpy2 = y + 3*H/4
@@ -7345,7 +7348,7 @@ function slideAt (x,y,W,color,n) {
  // ctx.lineTo(x+W/4,y)
   cpx1 = x+3*W/4, cpy1 = y
   cpx2 = x+3*W/4, cpy2 = y + H/3
-  ctx.bezierCurveTo(cpx1,cpy1,cpx2,cpy2,x+3*W/4,y+H/2)
+  ctx.bezierCurveTo(cpx1,cpy1,cpx2,cpy2,x+3*W/4,y+(H-(H/5))/2)
   
   cpx1 = x+3*W/4, cpy1 = y + H/2
   cpx2 = x+3*W/4, cpy2 = y + 3*H/4
@@ -7382,6 +7385,175 @@ function slideAt (x,y,W,color,n) {
   }
 }
 
+function lamp () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width
+  let color = randomPick(getCurrentPalette())
+  let pad = 40
+  lampAt (pad,pad,W-pad*2,color)
+}
+
+function lampArray () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  let N = randomPick([4,5,6,9,13])
+  let pad = 40
+  let delta = Math.round(W/N) - pad*1
+  let colors = getCurrentPalette(13,true)
+  let x = pad/2, y = pad/2, i = 0
+  let cnt = 0
+  for (; i < N*N; i++) {
+    if (i%2 === 0)
+      lampAt (x,y,delta,randomPick (colors))
+    else
+      lampAt (x,y,delta,randomPick (colors))
+    x += delta+pad
+    cnt++
+    if (cnt > 1 && cnt%N === 0) {
+      x = pad/2
+      y += delta+pad
+    }
+  }
+}
+function lampAt (x,y,W,color,n) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let alt = document.getElementById("grungy").checked
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  ctx.strokeStyle = "#0000ff"
+  //ctx.strokeRect(x,y,W,H)
+  ctx.strokeStyle = color
+  ctx.lineCap = "butt"
+  ctx.lineJoin = "round"
+  let x0 = x, y0 = y
+  let N = n || randomPick([3,4,5,7,9,11]), i = 0
+  let sh = H/N
+  let xo,yo // offsets 
+  // base
+  ctx.beginPath()
+  ctx.ellipse(x+W/2, y+H-H/10, W/5, W/10,0,0,Math.PI*2)
+  ctx.stroke()
+  
+  // wide bottom
+  ctx.beginPath()
+  ctx.ellipse(x+W/2, y+H/2, W/3, W/6, 0 ,0, Math.PI)
+  ctx.ellipse(x+W/2, y+H/10, W/5, W/10, 0, Math.PI, Math.PI *2)
+  ctx.closePath()
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.ellipse(x+W/2, y+H/10, W/5, W/10, 0, 0, Math.PI *2)
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.ellipse(x+W/2, y+H/10, W/20, W/40, 0, 0, Math.PI *2)
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.ellipse(x+W/2, y+H-H/10, W/20, W/40, 0, 0, Math.PI *2)
+  ctx.stroke()
+  // line up from base
+  ctx.beginPath()
+  ctx.moveTo(x+W/2, y+H-H/10)
+  ctx.lineTo(x+W/2, y+H/2 + W/6)
+  ctx.stroke()
+  // spoke straight down
+  ctx.beginPath()
+  ctx.moveTo(x+W/2, y+H/10)
+  ctx.lineTo(x+W/2, y+2*W/10)
+  ctx.stroke()
+  
+  // spoke to left
+  let xc = x+W/2, yc = y + H/10
+  let angle = Math.PI * 1.2
+  ctx.beginPath()
+  ctx.moveTo(xc, yc)
+  xc = W/7.2 * Math.cos(angle)+xc;
+  yc = W/7.2 * Math.sin(angle)+yc;
+  ctx.lineTo(xc,yc)
+  ctx.stroke()
+  // spoke to right
+  xc = x+W/2, yc = y + H/10
+  angle = Math.PI * 1.8
+  ctx.beginPath()
+  ctx.moveTo(xc, yc)
+  xc = W/7.2 * Math.cos(angle)+xc;
+  yc = W/7.2 * Math.sin(angle)+yc;
+  ctx.lineTo(xc,yc)
+  ctx.stroke()
+}
+
+function birdAt (x,y,W,color,n) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let alt = document.getElementById("grungy").checked
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  ctx.strokeStyle = "#0000ff"
+  //ctx.strokeRect(x,y,W,H)
+  ctx.strokeStyle = color
+  ctx.lineCap = "butt"
+  ctx.lineJoin = "round"
+  let x0 = x, y0 = y
+  let N = n || randomPick([3,4,5,7,9,11]), i = 0
+  let sh = H/N
+  let xo,yo // offsets 
+  
+  ctx.beginPath()
+  ctx.moveTo(x+W/4,y+H/8)
+  let cpx1 = x+W/2, cpy1 = y
+  let cpx2 = x+W/2, cpy2 = y + H/3
+  ctx.bezierCurveTo(cpx1,cpy1,cpx2,cpy2,x+W/2,y+(H-(H/5))/2)
+  
+  cpx1 = x+W/2, cpy1 = y + H/2
+  cpx2 = x+W/2, cpy2 = y + 3*H/4
+  ctx.bezierCurveTo(cpx1,cpy1,cpx2,cpy2,x+W,y+4*H/5)
+  ctx.lineTo(x+3*W/4,y+H)
+  ctx.stroke()
+ 
+  // right slide
+  ctx.beginPath()
+  ctx.moveTo(x+W/4,y+H/8)
+  cpx1 = x+3*W/4, cpy1 = y- H/10
+  cpx2 = x+3*W/4, cpy2 = y + H/3 
+  ctx.bezierCurveTo(cpx1,cpy1,cpx2,cpy2,x+3*W/4,y+(H-(H/5))/2)
+  
+  cpx1 = x+3*W/4, cpy1 = y + H/2
+  cpx2 = x+3*W/4, cpy2 = y + 3*H/4
+  ctx.bezierCurveTo(cpx1,cpy1,cpx2,cpy2,x+W,y+4*H/5)
+  ctx.lineTo(x+W,y+H)
+  ctx.stroke()
+}
+
+function everythingArray () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  let N = randomPick([9,11,13])
+  let functions = ["chairAt", "cubeAt", "stairsAt", "treeAt", "slideAt", "ladderAt", "swingAt"]
+  let pad = 40
+  let delta = Math.round(W/N) - pad*1
+  let colors = getCurrentPalette()
+  let x = pad/2, y = pad/2, i = 0
+  let cnt = 0, f
+  for (; i < N*N; i++) {
+    f = randomPick(functions)
+   // console.log(f)
+    window[randomPick(functions)](x,y,delta,randomPick (colors))
+    //stairsAt (x,y,delta,randomPick (colors),i + 2)
+    x += delta+pad
+    cnt++
+    if (cnt > 1 && cnt%N === 0) {
+      x = pad/2
+      y += delta+pad
+    }
+  }
+}
 function cubeAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -7396,6 +7568,7 @@ function cubeAt (x,y,W,color) {
   d *= 1.3
   let da = randomPick([3,5,8,13,24])
   let div = d/da
+  x += W/2
   let x0 = x
   ctx.fillStyle = (colors[0])
   ctx.beginPath()
@@ -8860,7 +9033,6 @@ function onesquare () {
   ctx.shadowOffsetX = 0
   ctx.shadowOffsetY  = 0
 }
-
 
 function foursquares_l () {
   let canvas = document.getElementById("myCanvas")
@@ -10930,7 +11102,7 @@ function hand () {
   ctx.arc(W/2, W*0.65, r, 0, Math.PI)
   ctx.lineTo(W/2 - r, H/2)
   x = W/2-r+xo*2
-  y = H/2
+  y = H/2 
   ctx.arc(x, y, xo*2, Math.PI, Math.PI*2) // thumb
   x += xo*2
   y = H/2 + H/8
@@ -22371,9 +22543,6 @@ function samplec () { // circular samples
     ctx.arc(xo+w/2,yo+h/2,w/2,0,Math.PI*2)
     ctx.closePath()
     ctx.clip()
-    //if (i % 4 == 0)
-    //  ctx.clearRect(0,0,canvas.width, canvas.height)
-    //if (i % 4 == 0)
     ctx.drawImage(ocanvas, x, y, w, h, xo, yo, w, h);
     ctx.restore()
     x += w*2
@@ -22524,10 +22693,6 @@ function detail () {
     ctx.ellipse(x2, y2, r, r, a, Math.PI, Math.PI*2)
     ctx.ellipse(x2, y2, r, r, a, 0, Math.PI)
     ctx.stroke()
-    
-    //ctx.font = "100 "+(r/4)+"pt 'AmericanTypewriter'"
-    //let t = randomPick("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""))
-   // ctx.fillText(t, x2 - r/8,y2+r/8)
     if (alt)
       chairAt(x2,y2-r/2,r,ctx.strokeStyle)
     else
@@ -24886,7 +25051,7 @@ function drawShapeOG (line) {
   LATESTFUNCTION = "drawShape"
 }
 
-function rotatePoint(x, y, centerx, centery, degrees) {
+function rotatePoint (x, y, centerx, centery, degrees) {
   let newx = (x - centerx) * Math.cos(degrees * Math.PI / 180) - (y - centery) * Math.sin(degrees * Math.PI / 180) + centerx;
   let newy = (x - centerx) * Math.sin(degrees * Math.PI / 180) + (y - centery) * Math.cos(degrees * Math.PI / 180) + centery;
   return [newx, newy];
