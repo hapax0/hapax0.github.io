@@ -432,6 +432,8 @@
       <option value="cornercurve">diag curve</option>
       <option value="tv">tv</option>
       <option value="hand">hand</option>
+      <option value="everythingSymb">message</option>
+      
       <option value="heart">heart</option>
       <option value="talk">talk</option>
       <option value="thought">thought</option>
@@ -6750,7 +6752,6 @@ function box () {
   ctx.closePath()
   ctx.fill()
   
-  
   ctx.fillStyle = (colors[1])
   ctx.beginPath()
   x = W/2-d/2, y = pad + d/2
@@ -6860,13 +6861,13 @@ function treeAt (x,y,W,color) {
   ctx.globalAlpha = +document.getElementById("opacity").value/100
   let colors = shuffle(getCurrentPalette())
   let alt = document.getElementById("grungy").checked
-  ctx.lineWidth = 2 + document.getElementById("featuresize").value/50
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
   ctx.strokeStyle = color
   ctx.lineCap = "butt"
   ctx.lineJoin = "round"
   let p = 0
-  if (alt)
-    p = 11
+ // if (alt)
+ //   p = 11
   x += W/2
   let x0 = x, y0 = y
   ctx.beginPath()
@@ -6878,7 +6879,7 @@ function treeAt (x,y,W,color) {
   let i = 1, d = W/6, wt = 1, d0 = d
   for (; i < 6; i++) {
     y += d0
-      d += (1+i) * d0/13
+     
     if (UP) {
       ctx.beginPath()
       ctx.moveTo(x,y+pet(p))
@@ -6904,18 +6905,20 @@ function treeAt (x,y,W,color) {
       ctx.closePath()
       ctx.stroke()
     }
+    d += (1+i) * d0/13
   }
 }
 
 function chairAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
+  W *= 0.9
   y += W/4
   let H = W
   ctx.globalAlpha = +document.getElementById("opacity").value/100
   let colors = shuffle(getCurrentPalette())
   let alt = document.getElementById("grungy").checked
-  ctx.lineWidth = 2 + document.getElementById("featuresize").value/50
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
   let pad = 0 //+ Math.random() *40,
   ctx.strokeStyle = color
   ctx.lineCap = "butt"
@@ -7007,7 +7010,118 @@ function stairs () {
   stairsAt (pad,pad,W-pad*2,color)
 }
 
+function leafAt (x,y,W,color,n) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W
+  let alt = document.getElementById("grungy").checked
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  //ctx.strokeStyle = "#ff0000"
+  //ctx.strokeRect(x,y,W,H)
+  ctx.strokeStyle = color
+  let x0 = x, y0 = y, off = W/10
+  let r = W/4
+  y += H
+  ctx.beginPath()
+  ctx.moveTo(x+W/2, y)
+  ctx.lineTo(x+W/2, y0)
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.moveTo(x+W/2, y) 
+  let cpx1 = x + 4/6*W, cpx2 = x + 5/6*W // right
+  let cpy1 = y0 + 5/6*H, cpy2 = y0 + 4/6*H
+  ctx.bezierCurveTo(cpx1,cpy1,cpx2,cpy2,x+W/2 + 2/6*W, y-H/2)
+  cpx1 = x + W/2+2/6*W, cpx2 = x +W/2
+  cpy1 = y0 + 1/6*H, cpy2 = y0 + 1/6*H
+  ctx.bezierCurveTo(cpx1,cpy1,cpx2,cpy2,x+W/2, y0)
+  ctx.stroke()
+  
+  // left side
+  ctx.beginPath()
+  ctx.moveTo(x+W/2, y) 
+  cpx1 = x + 2/6*W, cpx2 = x + 1/6*W 
+  cpy1 = y0 + 5/6*H, cpy2 = y0 + 4/6*H
+  ctx.bezierCurveTo(cpx1,cpy1,cpx2,cpy2,x+W/2 - 2/6*W, y-H/2)
+  cpx1 = x + W/2-2/6*W, cpx2 = x + W/2
+  cpy1 = y0 + 1/6*H, cpy2 = y0 + 1/6*H
+  ctx.bezierCurveTo(cpx1,cpy1,cpx2,cpy2,x+W/2, y0)
+  ctx.stroke()
+}
+
+
 function stairsAt (x,y,W,color,n) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let alt = document.getElementById("grungy").checked
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  
+  //ctx.strokeStyle = "#ff0000"
+ // ctx.strokeRect(x,y,W,H)
+  ctx.strokeStyle = color
+  ctx.lineCap = "butt"
+  ctx.lineJoin = "round"
+  let x0 = x, y0 = y
+  let N = n || randomPick([3,4,5,6,7,8,9,11,17,19])
+  let sh = H/N, i = 0
+  let xo,yo // offsets
+  ctx.beginPath()
+  ctx.moveTo(x+W,y+sh)
+  ctx.lineTo(x+W,y+H)
+  ctx.lineTo(x+sh,y+H)
+  ctx.stroke()
+  
+  xo = 0, yo = 0
+  for (; i < (N-1)*2; i++) {
+    ctx.lineTo(x +sh + (-xo), y+H-yo)
+    if (i % 2 === 1)
+      xo -= sh
+    if (i % 2 === 0)
+      yo += sh
+  }
+  ctx.closePath()
+  ctx.stroke()
+  
+  // offet stairs 
+  y = y0, x = x0
+  ctx.beginPath()
+  ctx.moveTo(x, y+H - sh)
+  xo = 0, yo = sh*2, i = 0
+  for (; i < (N-1)*2; i++) {
+    ctx.lineTo(x + (-xo), y+H-yo)
+    if (i % 2 === 0)
+      xo -= sh
+    if (i % 2 === 1)
+      yo += sh
+  }
+  ctx.stroke()
+ 
+  // lines between edges
+  i = 0, y = y0+H, x = x0
+  x += sh
+  for (; i < (N); i++) {
+    ctx.beginPath()
+    ctx.moveTo(x, y)
+    ctx.lineTo(x-sh, y-sh)
+      x += sh
+      y -= sh
+    ctx.stroke()
+  }
+  
+  i = 0, y = y0+H-sh, x = x0+sh
+  for (; i < (N-1); i++) {
+    ctx.beginPath()
+    ctx.moveTo(x, y)
+    ctx.lineTo(x-sh, y-sh)
+      x += sh
+      y -= sh
+    ctx.stroke()
+  }
+}
+
+function stairsAtog (x,y,W,color,n) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let H = W
@@ -7018,7 +7132,7 @@ function stairsAt (x,y,W,color,n) {
   ctx.lineCap = "butt"
   ctx.lineJoin = "round"
   let x0 = x, y0 = y
-  let N = n || randomPick([2,3,4,5,6,7,8,9,11,17,19]), i = 0
+  let N = n || randomPick([3,4,5,6,7,8,9,11,17,19]), i = 0
   let sh = H/N
   let xo,yo // offsets
   ctx.beginPath()
@@ -7497,6 +7611,7 @@ function thought () {
   let pad = 40
   thoughtAt (pad,pad,W-pad*2,color)
 }
+
 function thoughtArray () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -7541,26 +7656,112 @@ function thoughtAt (x,y,W,color,n) {
   let i = 0
   for (; i < divs; i++) {
     angle += a
-    x = r * Math.cos(angle)+cx;
+    x = r * Math.cos(angle)+cx
     y = r * Math.sin(angle)+cy
     let cpx1 = x, cpy1 = y
     angle += a
-    x = r * Math.cos(angle)+cx;
+    x = r * Math.cos(angle)+cx
     y = r * Math.sin(angle)+cy
     let cpx2 = x, cpy2 = y
     angle += a
-    x = r/1.3 * Math.cos(angle)+cx;
+    x = r/1.3 * Math.cos(angle)+cx
     y = r/1.3 * Math.sin(angle)+cy
     ctx.bezierCurveTo(cpx1,cpy1,cpx2,cpy2,x,y)
   }
   ctx.stroke()
-1
   x = x0, y = y0
   ctx.beginPath()
   ctx.arc(x+W/20, y+H-H/20, W/24, 0, Math.PI*2)
   ctx.stroke()
   ctx.beginPath()
   ctx.arc(x+W/5, y+H-H/8, W/14, 0, Math.PI*2)
+  ctx.stroke()
+}
+
+function skullArray () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  let N = randomPick([4,5,6,9,13])
+  let pad = 40
+  let delta = Math.round(W/N) - pad*1
+  let colors = getCurrentPalette(13,true)
+  let x = pad/2, y = pad/2, i = 0
+  let cnt = 0
+  for (; i < N*N; i++) {
+    skullAt (x,y,delta,randomPick (colors))
+    x += delta+pad
+    cnt++
+    if (cnt > 1 && cnt%N === 0) {
+      x = pad/2
+      y += delta+pad
+    }
+  }
+}
+
+function skullAt (x,y,W,color,n) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let alt = document.getElementById("grungy").checked
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  //ctx.strokeStyle = "#0000ff"
+  //ctx.strokeRect(x,y,W,H)
+  ctx.strokeStyle = color
+  ctx.lineCap = "butt"
+  ctx.lineJoin = "round"
+  let x0 = x, y0 = y
+  let p = W/30
+  let divs = randomPick([7,9])
+  let r = W/3
+  // top
+  ctx.beginPath()
+  ctx.arc(x+W/2, y+r, r+pet(p), Math.PI *0.8, Math.PI*2.2)
+  
+  // bottom jaw
+  ctx.arc(x+W/2, y+H-r*0.9, r*0.8+pet(p), Math.PI *0.1, Math.PI*0.9)
+  ctx.closePath()
+  ctx.stroke()
+  
+  // mouth
+  ctx.beginPath()
+  ctx.arc(x+W/2, y+H-r*1.36, r*0.8, Math.PI *0.2, Math.PI*0.8)
+  ctx.stroke()
+  
+  // teeth
+  let N = randomPick([8,10,12])
+  let th = H/20
+  let a = (Math.PI * 0.6)/N, angle = Math.PI*0.2
+  let cx = x+W/2, cy = y+H-r*1.36
+  let i = 0
+  for (; i < N+1; i++) {
+    x = r*0.8 * Math.cos(angle)+cx
+    y = r*0.8 * Math.sin(angle)+cy
+    ctx.beginPath()
+    ctx.moveTo(x, y - th)
+    ctx.lineTo(x, y + th)
+    ctx.stroke()
+    angle += a
+  }
+  x = x0, y = y0
+  r = W/11
+  // eyes
+  let r2 = r + pet(p/2)
+  ctx.beginPath()
+  ctx.arc(x+W/2-r*1.5, y+H/2-r/3, r2, 0, Math.PI*2)
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.arc(x+W/2+r*1.5, y+H/2-r/3, r2, 0, Math.PI*2)
+  ctx.stroke()
+  
+  // nose
+  ctx.beginPath()
+  ctx.moveTo(x+W/2, y+H/2)
+  ctx.lineTo(x+W/2+r/2, y +H/2+r*1.5)
+  ctx.lineTo(x+W/2-r/2, y +H/2+r*1.5)
+  ctx.closePath()
   ctx.stroke()
 }
 
@@ -7596,6 +7797,7 @@ function prayerArray () {
     }
   }
 }
+
 function prayerAt (x,y,W,color,n) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -7603,8 +7805,6 @@ function prayerAt (x,y,W,color,n) {
   ctx.globalAlpha = +document.getElementById("opacity").value/100
   let alt = document.getElementById("grungy").checked
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
- // ctx.strokeStyle = "#0000ff"
- // ctx.strokeRect(x,y,W,H)
   ctx.strokeStyle = color
   ctx.lineCap = "butt"
   ctx.lineJoin = "round"
@@ -7724,18 +7924,17 @@ function everythingArray () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let W = canvas.width, H = canvas.height
-  let N = randomPick([9,11,13])
-  let functions = ["chairAt", "cubeAt", "stairsAt", "treeAt", "slideAt", "ladderAt", "swingAt"]
-  let pad = 40
+  let N = randomPick([9,11,13,17])
+  let functions = ["phaseAt", "leafAt", "allAt", "thenAt", "existAt", "tildeAt", "userAt", "heartAt", "glassAt", "prayerAt", "thoughtAt", "skullAt", "lampAt", "chairAt", 
+  "stairsAt", "treeAt", "slideAt", "ladderAt", "swingAt"]
+  let pad = 20
   let delta = Math.round(W/N) - pad*1
   let colors = getCurrentPalette()
   let x = pad/2, y = pad/2, i = 0
   let cnt = 0, f
   for (; i < N*N; i++) {
     f = randomPick(functions)
-   // console.log(f)
     window[randomPick(functions)](x,y,delta,randomPick (colors))
-    //stairsAt (x,y,delta,randomPick (colors),i + 2)
     x += delta+pad
     cnt++
     if (cnt > 1 && cnt%N === 0) {
@@ -7744,6 +7943,221 @@ function everythingArray () {
     }
   }
 }
+
+function everythingSymb () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  let N = randomPick([2,3,4])
+  let functions = shuffle(["phaseAt", "leafAt", "allAt", "thenAt", "existAt", "tildeAt", "userAt", "heartAt", "glassAt", "prayerAt", "thoughtAt", "skullAt", "lampAt", "chairAt", 
+  "stairsAt", "treeAt", "slideAt", "ladderAt", "swingAt"])  
+  let pad = 42
+  let delta = Math.round(W/N) - pad*1
+  let colors = getCurrentPalette()
+  let x = pad, y = pad, i = 0
+  let cnt = 0, f
+  for (; i < N*N; i++) {
+    f = randomPick(functions)
+    window[functions[i]](x,y,delta,randomPick (colors))
+    x += delta+pad/2
+    cnt++
+    if (cnt > 1 && cnt%N === 0) {
+      x = pad/2
+      y += delta+pad/2
+    }
+  }
+}
+
+function existAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W
+  let alt = document.getElementById("grungy").checked
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  ctx.strokeStyle = color
+  let x0 = x, y0 = y, off = W/10
+  let r = W/4
+  ctx.beginPath()
+  ctx.moveTo(x+off, y)
+  ctx.lineTo(x+W-off, y)
+  ctx.lineTo(x+W-off, y+H)
+  ctx.lineTo(x+off, y+H)
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.moveTo(x+W/4, y+H/2)
+  ctx.lineTo(x+W-off, y+H/2)
+  ctx.stroke()
+}
+
+function thenAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W
+  let alt = document.getElementById("grungy").checked
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  ctx.strokeStyle = color
+  let x0 = x, y0 = y, off = W/10
+  let r = W/4
+  ctx.beginPath()
+  ctx.moveTo(x+off, y)
+  ctx.arc(x+W/2-off, y+H/2, W/2, Math.PI * 1.5, Math.PI/2)
+  ctx.lineTo(x+off, y+H)
+  ctx.stroke()
+}
+
+function phaseAt (x,y,W,color) { // phase
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W
+  let alt = document.getElementById("grungy").checked
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  ctx.strokeStyle = color
+  let x0 = x, y0 = y, off = W/10
+  let R2 = W/2
+  let mult = Math.random()
+  x = x + W/2, y = y +H/2
+  ctx.beginPath()
+  ctx.ellipse(x, y, R2, R2, 0, 0, Math.PI*2)
+  ctx.stroke()
+  if (Math.random() > 0.5) {
+    ctx.beginPath()
+    ctx.ellipse(x, y, R2*mult, R2, 0, Math.PI * 1.5, Math.PI/2)
+    ctx.ellipse(x, y, R2, R2, 0, Math.PI/2, Math.PI*1.5, true)
+    ctx.stroke()
+  } else {
+    ctx.beginPath()
+    ctx.ellipse(x, y, R2*mult, R2, 0, Math.PI * 1.5, Math.PI/2, true)
+    ctx.ellipse(x, y, R2, R2, 0, Math.PI/2, Math.PI*1.5)
+    ctx.stroke()
+  }
+}
+
+function tildeAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W
+  let alt = document.getElementById("grungy").checked
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  ctx.strokeStyle = color
+  let x0 = x, y0 = y, off = W/10
+  let r = W/4
+  y += W/2
+  ctx.beginPath()
+  ctx.moveTo(x, y)
+  let cpx1 = x + 1/6*W, cpx2 = x + 2/6*W
+  let cpy1 = y - 1/6*H, cpy2 = y - 1/6*H
+  ctx.bezierCurveTo(cpx1,cpy1,cpx2,cpy2,x+W/2, y)
+  cpx1 = x + 4/6*W, cpx2 = x + 5/6*W
+  cpy1 = y + 1/6*H, cpy2 = y + 1/6*H
+  ctx.bezierCurveTo(cpx1,cpy1,cpx2,cpy2,x+W, y)
+  ctx.stroke()
+}
+
+function allAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W
+  let alt = document.getElementById("grungy").checked
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  ctx.strokeStyle = color
+  let x0 = x, y0 = y, off = W/10
+  let r = W/4
+  ctx.beginPath()
+  ctx.moveTo(x+off, y)
+  ctx.lineTo(x+W/2, y+H)
+  ctx.lineTo(x-off+W, y)
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.moveTo(x+W/4+off/2, y+H/2)
+  ctx.lineTo(x+3*W/4-off/2, y+H/2)
+  ctx.stroke()
+}
+
+function heartAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W
+  let alt = document.getElementById("grungy").checked
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  ctx.strokeStyle = color
+  let x0 = x, y0 = y
+  let r = W/4
+  ctx.beginPath()
+  ctx.moveTo(x+W/2, y+H)
+  cpx = x0
+  cpy = y0+H*0.57
+  ctx.quadraticCurveTo(cpx,cpy,x+0, y+H/3)
+  x += W/4
+  y += H/3
+  ctx.arc(x, y, r, Math.PI, Math.PI*2) // thumb
+  x += r*2
+  ctx.arc(x, y, r, Math.PI, Math.PI*2) // thumb
+  cpx = x0+W
+  cpy = y0+H*0.57
+  ctx.quadraticCurveTo(cpx,cpy,x0+W/2, y0+H)
+  ctx.stroke()
+}
+
+function glassAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W
+  let alt = document.getElementById("grungy").checked
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  ctx.strokeStyle = color
+  let cx = x+W/2, cy = 0
+  let r1 = W/3, r2 = r1/2.3
+  
+  let x0 = x, y0 = y
+  ctx.beginPath()
+  ctx.ellipse(cx, y+r2, r1, r2, 0, 0, 2 * Math.PI)
+  ctx.ellipse(cx, y+H-r2*0.5-ctx.lineWidth*2, r1*0.8, r2*0.8, 0, 0, 2 * Math.PI)
+  ctx.ellipse(cx, y+H-r2*0.5-ctx.lineWidth*2, r1*0.8, r2*0.8, 0, 0, Math.PI)
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.moveTo(cx-r1, y+r2)
+  ctx.lineTo(cx-r1*0.8, y+H-r2/2-ctx.lineWidth*2)
+  ctx.stroke()
+
+  // inner fill
+  r1 *= 0.9
+  r2 *= 0.9
+  
+  ctx.beginPath()
+  ctx.ellipse(cx, y+H/2, r1, r2, 0, 0, 2 * Math.PI)
+  ctx.stroke()
+}
+
+function userAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  let hip = W * 0.8
+  // fill
+  ctx.lineJoin = "round"
+  ctx.strokeStyle = color
+  let cx = x + W/2, cy = y + H/2
+  let r = hip/6
+  //left shoulder
+  ctx.beginPath()
+  ctx.moveTo(x+hip/8, y+H)
+  ctx.ellipse(x+hip/8+r, y+H/2+r, r, r, 0, Math.PI, 1.5 * Math.PI)
+  //left neck
+  ctx.ellipse(x+(hip/8+2*r/2), y+H/2-r, r, r, 0, Math.PI/2, 0, true)
+  ctx.ellipse(x+W/2, y+r + Math.floor(Math.random()*H/20), r, r, 0, Math.PI, Math.PI*2)
+  
+  ctx.ellipse(x+W-(hip/8+2*r/2), y+H/2-r, r, r, 0, Math.PI, Math.PI/2, true) // crown
+  // right shoulder
+  ctx.ellipse(x+W-hip/8-r, y+H/2+r, r, r, 0, Math.PI * 1.5, 0)
+  ctx.lineTo( x+W-hip/8,   y+H)
+  ctx.stroke()
+}
+
 function cubeAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -7751,7 +8165,7 @@ function cubeAt (x,y,W,color) {
   ctx.globalAlpha = +document.getElementById("opacity").value/100
   let colors = shuffle(getCurrentPalette())
   let alt = document.getElementById("grungy").checked
-  ctx.lineWidth = 2 + document.getElementById("featuresize").value/50
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
   let pad = 0 //+ Math.random() *40,
   ctx.strokeStyle = color
   let d = (W-2*pad)/2
@@ -22884,9 +23298,9 @@ function detail () {
     ctx.ellipse(x2, y2, r, r, a, 0, Math.PI)
     ctx.stroke()
     if (alt)
-      chairAt(x2,y2-r/2,r,ctx.strokeStyle)
+      chairAt(x2-r/2,y2-r/2,r,ctx.strokeStyle)
     else
-      cubeAt(x2,y2-r/2,r,ctx.strokeStyle)
+      cubeAt(x2-r/2,y2-r/2,r,ctx.strokeStyle)
   }
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
