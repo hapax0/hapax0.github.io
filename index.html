@@ -7267,6 +7267,62 @@ function ladderAt (x,y,W,color,n) {
   }
 }
 
+function factoryAt (x,y,W,color,n) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let alt = document.getElementById("grungy").checked
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  ctx.strokeStyle = "#0000ff"
+  //ctx.strokeRect(x,y,W,H)
+  ctx.strokeStyle = color
+  ctx.lineCap = "butt"
+  ctx.lineJoin = "round"
+  let x0 = x, y0 = y
+  let r = W/12
+  ctx.beginPath()
+  ctx.moveTo(x, y+3*H/4)
+  ctx.lineTo(x, y+H)
+  ctx.lineTo(x+W, y+H)
+  ctx.lineTo(x+W, y+3*H/4)
+  ctx.lineTo(x, y+3*H/4)
+  ctx.lineTo(x + W/3-r*3.5, y+3*H/4-r*2)
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.moveTo(x+W, y+3*H/4)
+  ctx.lineTo(x+W-r*3.5+3*r, y+3*H/4-r*2)
+  ctx.stroke()
+  
+  ctx.beginPath() // back line left
+  ctx.moveTo(x + W/3 -r/2, y+3*H/4-r*2)
+  ctx.lineTo(x + W/3 +r/2, y+3*H/4-r*2)
+  ctx.stroke()
+  ctx.beginPath() // back line right
+  ctx.moveTo(r*4+x + W/3 -r/2, y+3*H/4-r*2)
+  ctx.lineTo(r*4+x + W/3 +r/2, y+3*H/4-r*2)
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.arc(x + W/3-r*2, y + r, r, 0, Math.PI*2)
+  ctx.arc(x + W/3-r*2, y+3*H/4-r*2, r*1.5, 0, Math.PI)
+  ctx.lineTo(x + W/3-(r*3), y+r)
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.arc(x +2* W/3-r*2, y + r, r, 0, Math.PI*2)
+  ctx.arc(x + 2*W/3-r*2, y+3*H/4-r*2, r*1.5, 0, Math.PI)
+  ctx.lineTo(x +2* W/3-r*3, y+r)
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.arc(x +3* W/3-r*2, y + r, r, 0, Math.PI*2)
+  ctx.arc(x + 3*W/3-r*2, y+3*H/4-r*2, r*1.5, 0, Math.PI)
+  ctx.lineTo(x +3* W/3-r*3, y+r)
+  ctx.stroke()
+}
+
 function swing () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -7927,7 +7983,7 @@ function everythingArray () {
   let ctx = canvas.getContext("2d")
   let W = canvas.width, H = canvas.height
   let N = randomPick([9,11,13,17])
-  let functions = ["dashedAt", "phaseAt", "leafAt", "allAt", "thenAt", "existAt", "tildeAt", "userAt", "heartAt", "glassAt", "prayerAt", "thoughtAt", "skullAt", "lampAt", "chairAt", 
+  let functions = ["factoryAt", "dashedAt", "phaseAt", "leafAt", "allAt", "thenAt", "existAt", "tildeAt", "userAt", "heartAt", "glassAt", "prayerAt", "thoughtAt", "skullAt", "lampAt", "chairAt", 
   "stairsAt", "treeAt", "slideAt", "ladderAt", "swingAt"]
   let pad = 20
   let delta = Math.round(W/N) - pad*1
@@ -7951,7 +8007,7 @@ function everythingSymb () {
   let ctx = canvas.getContext("2d")
   let W = canvas.width, H = canvas.height
   let N = randomPick([2,3,4])
-  let functions = shuffle(["dashedAt", "phaseAt", "leafAt", "allAt", "thenAt", "existAt", "tildeAt", "userAt", "heartAt", "glassAt", "prayerAt", "thoughtAt", "skullAt", "lampAt", "chairAt", 
+  let functions = shuffle(["factoryAt", "dashedAt", "phaseAt", "leafAt", "allAt", "thenAt", "existAt", "tildeAt", "userAt", "heartAt", "glassAt", "prayerAt", "thoughtAt", "skullAt", "lampAt", "chairAt", 
   "stairsAt", "treeAt", "slideAt", "ladderAt", "swingAt"])  
   let pad = 42
   let delta = Math.round(W/N) - pad*1
@@ -7975,7 +8031,7 @@ function testSymbols () {
   let ctx = canvas.getContext("2d")
   let W = canvas.width, H = canvas.height
   let N = randomPick([2,3,4])
-  let functions = shuffle(["dashedAt", "phaseAt", "leafAt", "allAt", "thenAt", "existAt", "tildeAt", "userAt", "heartAt", "glassAt", "prayerAt", "thoughtAt", "skullAt", "lampAt", "chairAt", 
+  let functions = shuffle(["factoryAt", "dashedAt", "phaseAt", "leafAt", "allAt", "thenAt", "existAt", "tildeAt", "userAt", "heartAt", "glassAt", "prayerAt", "thoughtAt", "skullAt", "lampAt", "chairAt", 
   "stairsAt", "treeAt", "slideAt", "ladderAt", "swingAt"])  
   let pad = 42
   let delta = Math.round(W/N) - pad*1
