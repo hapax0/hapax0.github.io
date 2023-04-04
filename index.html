@@ -7304,9 +7304,11 @@ function factoryAt (x,y,W,color,n) {
   ctx.lineTo(r*4+x + W/3 +r/2, y+3*H/4-r*2)
   ctx.stroke()
   
-  ctx.beginPath()
+  //let cpx = x + W/3, cpy = y + H/3
+  ctx.beginPath() // left stack
   ctx.arc(x + W/3-r*2, y + r, r, 0, Math.PI*2)
   ctx.arc(x + W/3-r*2, y+3*H/4-r*2, r*1.5, 0, Math.PI)
+  cpx = x + W/3-r*4, cpy = y + H/3
   ctx.lineTo(x + W/3-(r*3), y+r)
   ctx.stroke()
   
@@ -7320,6 +7322,13 @@ function factoryAt (x,y,W,color,n) {
   ctx.arc(x +3* W/3-r*2, y + r, r, 0, Math.PI*2)
   ctx.arc(x + 3*W/3-r*2, y+3*H/4-r*2, r*1.5, 0, Math.PI)
   ctx.lineTo(x +3* W/3-r*3, y+r)
+  ctx.stroke()
+  
+  // door
+  ctx.beginPath()
+  ctx.moveTo(x+W/2-r, y+H)
+  ctx.arc(x+W/2, y+H-1.5*r, r, Math.PI, Math.PI*2)
+  ctx.lineTo(x+W/2+r, y+H)
   ctx.stroke()
 }
 
@@ -8025,7 +8034,7 @@ function everythingSymb () {
     }
   }
 }
-
+/*
 function testSymbols () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -8052,7 +8061,7 @@ function testSymbols () {
     }
   }
 }
-
+*/
 function existAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
