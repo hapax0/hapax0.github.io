@@ -7325,10 +7325,57 @@ function factoryAt (x,y,W,color,n) {
   ctx.stroke()
   
   // door
+  r *= 0.8
   ctx.beginPath()
   ctx.moveTo(x+W/2-r, y+H)
   ctx.arc(x+W/2, y+H-1.5*r, r, Math.PI, Math.PI*2)
   ctx.lineTo(x+W/2+r, y+H)
+  ctx.stroke()
+}
+
+function birdhouseAt (x,y,W,color,n) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let alt = document.getElementById("grungy").checked
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  ctx.strokeStyle = "#0000ff"
+  //ctx.strokeRect(x,y,W,H)
+  ctx.strokeStyle = color
+  ctx.lineCap = "butt"
+  ctx.lineJoin = "round"
+  let x0 = x, y0 = y
+  let r = W/12
+  ctx.beginPath()
+  ctx.moveTo(x, y+H/2)
+  ctx.lineTo(x, y+H)
+  ctx.lineTo(x+W, y+H)
+  ctx.lineTo(x+W, y+H/2)
+  ctx.lineTo(x+3*W/4, y)
+  ctx.lineTo(x+W/4, y)
+  ctx.lineTo(x, y+H/2)
+  ctx.lineTo(x+W/2, y+H/2)
+  ctx.lineTo(x+W/2, y+H)
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.moveTo(x+W/2, y+H/2)
+  ctx.lineTo(x+3*H/4, y)
+  ctx.stroke()
+
+  ctx.beginPath()
+  ctx.arc(x+3*W/4, y+H/2, r, 0, Math.PI*2)
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.arc(x+3*W/4, y+H/2+r*2, r/3, Math.PI*1.5, Math.PI/2, true)
+  ctx.arc(x+3*W/4+r*2, y+H/2+r*2, r/3, Math.PI/2, Math.PI*1.5)
+  ctx.closePath()
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.arc(x+3*W/4+r*2, y+H/2+r*2, r/3, Math.PI *1.5, Math.PI*0.5)
   ctx.stroke()
 }
 
@@ -7567,6 +7614,15 @@ function slideAt (x,y,W,color,n) {
   }
 }
 
+function abirdhouse () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width
+  let color = randomPick(getCurrentPalette())
+  let pad = 40
+  birdhouseAt (pad,pad,W-pad*2,color)
+}
+
 function lamp () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -7742,6 +7798,249 @@ function thoughtAt (x,y,W,color,n) {
   ctx.stroke()
   ctx.beginPath()
   ctx.arc(x+W/5, y+H-H/8, W/14, 0, Math.PI*2)
+  ctx.stroke()
+}
+
+function flatchairAt (x,y,W,color,n) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let alt = document.getElementById("grungy").checked
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  //ctx.strokeStyle = "#0000ff"
+  //ctx.strokeRect(x,y,W,H)
+  ctx.strokeStyle = color
+  ctx.lineCap = "butt"
+  ctx.lineJoin = "round"
+  let x0 = x, y0 = y
+
+  ctx.beginPath()
+  ctx.moveTo(x,y+2*H/3)
+  ctx.lineTo(x+W/2,y)
+  ctx.lineTo(x+W,y)
+  ctx.lineTo(x+3*W/4,y+H/3)
+  ctx.lineTo(x+W,y+2*H/3)
+  ctx.lineTo(x+3*W/4,y+H)
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.moveTo(x+W/4,y+H)
+  ctx.lineTo(x+W/2,y+2*H/3)
+  ctx.lineTo(x+W/4,y+H/3)
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.moveTo(x+W/2,y+2*H/3)
+  ctx.lineTo(x+W,y+2*H/3)
+  ctx.stroke()
+  
+  // optional?
+  ctx.beginPath()
+  ctx.moveTo(x+W/4,y+H/3)
+  ctx.lineTo(x+3*W/4,y+H/3)
+  ctx.stroke()
+  
+}
+
+
+function pointhouseAt (x,y,W,color,n) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let alt = document.getElementById("grungy").checked
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  ctx.strokeStyle = "#ff0000"
+  //ctx.strokeRect(x,y,W,H)
+  ctx.strokeStyle = color
+  ctx.lineCap = "butt"
+  ctx.lineJoin = "round"
+  let x0 = x, y0 = y
+
+  ctx.beginPath()
+  ctx.moveTo(x, y+W/4)
+  ctx.lineTo(x+2*W/5, y+H/4)
+  ctx.lineTo(x+3*W/5, y)
+  ctx.lineTo(x+4*W/5, y+H/4)
+  ctx.lineTo(x+W, y+H/4)
+  ctx.lineTo(x+W, y+H)
+  ctx.lineTo(x+W/5, y+H)
+  ctx.lineTo(x, y+4*H/5)
+  ctx.closePath()
+  ctx.stroke()
+
+  ctx.beginPath()
+  ctx.moveTo(x+W/5,y+H/4)
+  ctx.lineTo(x+2*W/5,y)
+  ctx.lineTo(x+3*W/5,y)
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.moveTo(x+W/5,y+H)
+  ctx.lineTo(x+W/5,y+H/4)
+  ctx.stroke()
+  // door
+  let dw = W/15
+  ctx.beginPath()
+  ctx.moveTo(x+3*W/5-dw,y+H)
+  ctx.lineTo(x+3*W/5-dw,y+H-dw*4)
+  ctx.lineTo(x+3*W/5+dw,y+H-dw*4)
+  ctx.lineTo(x+3*W/5+dw,y+H)
+  ctx.stroke()
+}
+
+function breadAt (x,y,W,color,n) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let alt = document.getElementById("grungy").checked
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  ctx.strokeStyle = "#ff0000"
+  //ctx.strokeRect(x,y,W,H)
+  ctx.strokeStyle = color
+  ctx.lineCap = "butt"
+  ctx.lineJoin = "round"
+  let x0 = x, y0 = y, r = 2*W/5
+
+  ctx.beginPath()
+  ctx.moveTo(x, y+H)
+  ctx.lineTo(x, y+H/2)
+  ctx.arc(x+2*W/5, y +r, r,Math.PI, Math.PI*2)
+  ctx.lineTo(x+4*W/5, y+H)
+  ctx.lineTo(x, y+H)
+  ctx.closePath()
+  ctx.stroke()
+  //shadow right
+  ctx.beginPath()
+  ctx.moveTo(x+4*W/5, y+H)
+  ctx.lineTo(x+W, y+H)
+  ctx.lineTo(x+W, y+H/2)
+  ctx.arc(x+3*W/5, y +r, r,Math.PI*2, Math.PI*1.5, true)
+  ctx.lineTo(x+2*W/5, y)
+  ctx.stroke()
+  
+  // door
+  let dw = W/15
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/5-dw,y+H)
+  ctx.lineTo(x+2*W/5-dw,y+H-dw*4)
+  ctx.lineTo(x+2*W/5+dw,y+H-dw*4)
+  ctx.lineTo(x+2*W/5+dw,y+H)
+  ctx.stroke()
+}
+
+function cityAt (x,y,W,color,n) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let alt = document.getElementById("grungy").checked
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  ctx.strokeStyle = "#ff0000"
+  ctx.strokeRect(x,y,W,H)
+  ctx.strokeStyle = color
+  ctx.lineCap = "butt"
+  ctx.lineJoin = "round"
+  let x0 = x, y0 = y
+
+  ctx.beginPath()
+  ctx.moveTo(x, y)
+  ctx.lineTo(x+W/2, y+H/4)
+  ctx.lineTo(x+W/4, y+H/2)
+  ctx.lineTo(x+W/2, y+3*H/4-H/8)
+  ctx.lineTo(x+3*H/4, y+H/2-H/8)
+  ctx.stroke()
+
+  ctx.beginPath()
+  ctx.moveTo(x+W/4,y+H/2)
+  ctx.lineTo(x+W/4,y+H)
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.moveTo(x+W/2,y+H/2+H/8)
+  ctx.lineTo(x+W/2,y+H)
+  ctx.lineTo(x+3*W/4, y+3*H/4) 
+  ctx.lineTo(x+W,y+H - H/8) 
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.moveTo(x, y+H/2)
+  ctx.lineTo(x+W/4,y+3*H/4 - H/8) 
+  
+  ctx.stroke()
+  
+
+  // door
+  let dw = W/20
+  ctx.beginPath()
+  ctx.moveTo(x+W/8-dw,y+H/2+dw*0.75)
+  ctx.lineTo(x+W/8-dw,y+H/2-dw*3)
+  ctx.lineTo(x+W/8+dw,y+H/2-dw*2)
+  ctx.lineTo(x+W/8+dw,y+H/2+dw*1.75)
+  ctx.stroke()
+}
+
+function flathouseAt (x,y,W,color,n) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let alt = document.getElementById("grungy").checked
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  //ctx.strokeStyle = "#0000ff"
+  //ctx.strokeRect(x,y,W,H)
+  ctx.strokeStyle = color
+  ctx.lineCap = "butt"
+  ctx.lineJoin = "round"
+  let x0 = x, y0 = y
+
+  ctx.beginPath()
+  ctx.moveTo(x, y+H)
+  ctx.lineTo(x, y+H/2)
+  ctx.lineTo(x+W/3, y+H/4)
+  ctx.lineTo(x+2*W/3, y+H/2)
+  ctx.lineTo(x+2*W/3, y+W)
+  ctx.lineTo(x, y+W)
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.moveTo(x+W/3,y+H/4)
+  ctx.lineTo(x+2*W/3,y)
+  ctx.lineTo(x+W,y+H/4)
+  ctx.lineTo(x+W, y+H)
+  ctx.lineTo(x+2*W/3, y+H)
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/3,y+H/2)
+  ctx.lineTo(x+W,y+H/4)
+  ctx.stroke()
+  
+  // door
+  let dw = W/12
+  ctx.beginPath()
+  ctx.moveTo(x+W/3-dw,y+H)
+  ctx.lineTo(x+W/3-dw,y+H-dw*3)
+  ctx.lineTo(x+W/3+dw,y+H-dw*3)
+  ctx.lineTo(x+W/3+dw,y+H)
+  ctx.stroke()
+  
+  //chimney
+  ctx.beginPath()
+  ctx.moveTo(x+W/3-dw,y+H/4+dw*0.75)
+  ctx.lineTo(x+W/3-dw,y+H/4-dw*2)
+  ctx.moveTo(x+W/3+dw,y+H/4-dw*2)
+  ctx.lineTo(x+W/3+dw,y+H/4-dw*0.75)
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.moveTo(x+W/3-dw, y+H/4-dw*2)
+  ctx.lineTo(x+W/3, y+H/4-dw*3)
+  ctx.lineTo(x+W/3+dw, y+H/4-dw*2)
+  ctx.lineTo(x+W/3, y+H/4-dw*1)
+  ctx.closePath()
   ctx.stroke()
 }
 
@@ -7992,7 +8291,7 @@ function everythingArray () {
   let ctx = canvas.getContext("2d")
   let W = canvas.width, H = canvas.height
   let N = randomPick([9,11,13,17])
-  let functions = ["factoryAt", "dashedAt", "phaseAt", "leafAt", "allAt", "thenAt", "existAt", "tildeAt", "userAt", "heartAt", "glassAt", "prayerAt", "thoughtAt", "skullAt", "lampAt", "chairAt", 
+  let functions = ["pointhouseAt", "flathouseAt", "breadAt", "birdhouseAt", "factoryAt", "dashedAt", "phaseAt", "leafAt", "allAt", "thenAt", "existAt", "tildeAt", "userAt", "heartAt", "glassAt", "prayerAt", "thoughtAt", "skullAt", "lampAt", "chairAt", 
   "stairsAt", "treeAt", "slideAt", "ladderAt", "swingAt"]
   let pad = 20
   let delta = Math.round(W/N) - pad*1
@@ -8015,22 +8314,23 @@ function everythingSymb () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let W = canvas.width, H = canvas.height
-  let N = randomPick([2,3,4])
-  let functions = shuffle(["factoryAt", "dashedAt", "phaseAt", "leafAt", "allAt", "thenAt", "existAt", "tildeAt", "userAt", "heartAt", "glassAt", "prayerAt", "thoughtAt", "skullAt", "lampAt", "chairAt", 
+  let N = randomPick([2,3])
+  let functions = shuffle(["pointhouseAt", "breadAt", "flathouseAt", "flatchairAt", "birdhouseAt", "factoryAt", "dashedAt", "phaseAt", "leafAt", "allAt", "thenAt", "existAt", "tildeAt", "userAt", "heartAt", "glassAt", "prayerAt", "thoughtAt", "skullAt", "lampAt", "chairAt", 
   "stairsAt", "treeAt", "slideAt", "ladderAt", "swingAt"])  
-  let pad = 42
-  let delta = Math.round(W/N) - pad*1
+  let pad = 60
+  padT = 2*pad + (N-1) * pad
+  let delta = Math.round(W/N) - padT/N
   let colors = getCurrentPalette()
-  let x = pad/2, y = pad, i = 0
+  let x = pad, y = pad, i = 0
   let cnt = 0, f
   for (; i < N*N; i++) {
     f = randomPick(functions)
     window[functions[i]](x,y,delta,randomPick (colors))
-    x += delta+pad/2
+    x += delta+pad
     cnt++
     if (cnt > 1 && cnt%N === 0) {
-      x = pad/2
-      y += delta+pad/2
+      x = pad
+      y += delta+pad
     }
   }
 }
