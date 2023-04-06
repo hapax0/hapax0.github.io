@@ -371,6 +371,7 @@
         <option value="canvas1">canvas</option>
         <option value="watercolorPaper">wc paper</option>
         <option value="diss" >distress</option>
+        <option value="wash" >wash</option>
         <option value="increaseGrain">increase grain</option>
         <option value="specksRadial">specks</option>
         <option value="blobs">blobs</option>
@@ -1706,6 +1707,31 @@ function facets (canvas) {
 	  drawPointsN(pointsN[i])//.slice(0,3))
   }
 	return
+}
+
+function wash () {
+  fill()
+  setOpacity(50)
+  checkAlt(true)
+  setFeaturesize(355)
+  crackle()
+  fill()
+  fill()
+  shaken()
+  shaken()
+  shaken()
+  shrinkBlur()
+  rcc()
+  shaken()
+  shaken()
+  rc()
+  embossCanvas()
+  shrinkBlur()
+  setMode("destination-over")
+  fill()
+  fill()
+  fill()
+  setMode("source-over")
 }
 
 function diss () {
@@ -7801,6 +7827,40 @@ function thoughtAt (x,y,W,color,n) {
   ctx.stroke()
 }
 
+function pitAt (x,y,W,color,n) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let alt = document.getElementById("grungy").checked
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  //ctx.strokeStyle = "#0000ff"
+  //ctx.strokeRect(x,y,W,H)
+  ctx.strokeStyle = color
+  ctx.lineCap = "butt"
+  ctx.lineJoin = "round"
+  let x0 = x, y0 = y
+
+  ctx.beginPath()
+  ctx.moveTo(x+W/3,y)
+  ctx.lineTo(x+W,y+H/3)
+  ctx.lineTo(x+2*W/3,y+H)
+  ctx.lineTo(x,y+2*H/3)
+  ctx.lineTo(x+W/3,y)
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.moveTo(x+W/3, y)
+  ctx.lineTo(x+W/3, y+2*H/3)
+  ctx.lineTo(x+2*W/3+3*W/48, y+2*H/3+5*H/24)
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.moveTo(x+W/3, y+2*H/3)
+  ctx.lineTo(x+W/3-W/12, y+2*H/3+3*H/24)
+  ctx.stroke()
+}
+
 function flatchairAt (x,y,W,color,n) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -7840,9 +7900,7 @@ function flatchairAt (x,y,W,color,n) {
   ctx.moveTo(x+W/4,y+H/3)
   ctx.lineTo(x+3*W/4,y+H/3)
   ctx.stroke()
-  
 }
-
 
 function pointhouseAt (x,y,W,color,n) {
   let canvas = document.getElementById("myCanvas")
@@ -7922,7 +7980,7 @@ function breadAt (x,y,W,color,n) {
   ctx.stroke()
   
   // door
-  let dw = W/15
+  let dw = W/17
   ctx.beginPath()
   ctx.moveTo(x+2*W/5-dw,y+H)
   ctx.lineTo(x+2*W/5-dw,y+H-dw*4)
@@ -7971,7 +8029,6 @@ function cityAt (x,y,W,color,n) {
   
   ctx.stroke()
   
-
   // door
   let dw = W/20
   ctx.beginPath()
@@ -7992,7 +8049,7 @@ function flathouseAt (x,y,W,color,n) {
   //ctx.strokeStyle = "#0000ff"
   //ctx.strokeRect(x,y,W,H)
   ctx.strokeStyle = color
-  ctx.lineCap = "butt"
+  ctx.lineCap = "square"
   ctx.lineJoin = "round"
   let x0 = x, y0 = y
 
@@ -8314,7 +8371,7 @@ function everythingSymb () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let W = canvas.width, H = canvas.height
-  let N = randomPick([2,3])
+  let N = randomPick([1,2,3])
   let functions = shuffle(["pointhouseAt", "breadAt", "flathouseAt", "flatchairAt", "birdhouseAt", "factoryAt", "dashedAt", "phaseAt", "leafAt", "allAt", "thenAt", "existAt", "tildeAt", "userAt", "heartAt", "glassAt", "prayerAt", "thoughtAt", "skullAt", "lampAt", "chairAt", 
   "stairsAt", "treeAt", "slideAt", "ladderAt", "swingAt"])  
   let pad = 60
