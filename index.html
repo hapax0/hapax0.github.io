@@ -432,6 +432,7 @@
       <option value="twohemispheres">2 hemi</option>
       <option value="cornercurve">diag curve</option>
       <option value="everythingSymb">message</option>
+      <option value="crazywall">crazy wall</option>
       <option value="tv">tv</option>
       <option value="hand">hand</option>
       <option value="heart">heart</option>
@@ -5239,6 +5240,7 @@ function opacityChange () {
 
 function setOpacity (a) {
   document.getElementById("opacity").value = a
+  document.getElementById("myCanvas").getContext("2d").globalAlpha = a/100
 }
 
 function modeChange () {
@@ -7535,6 +7537,36 @@ function swingAt (x,y,W,color) {
   ctx.stroke()
 }
 
+function jumpropeAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W
+  let C = W/2 + (Math.random() - 0.5) * W/4
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let grunge = document.getElementById("grungy").checked
+  ctx.lineWidth = 1+document.getElementById("featuresize").value/50
+  ctx.lineCap = "butt"
+  ctx.strokeStyle = "#0000FF"
+ // ctx.strokeRect(x,y,W,H)
+  ctx.strokeStyle = color
+  let pad = 0, vpad = 0 
+  let x0 = x, y0 = y, r = W/10
+  ctx.beginPath()
+  ctx.arc(x+r, y+r, r/1.5, 0, Math.PI*2)
+  ctx.arc(x+r, y+2*H/5, r/2, 0, Math.PI)
+  ctx.arc(x+r, y+r, r/1.5, Math.PI, Math.PI*2)
+  ctx.arc(x+r, y+2*H/5, r/2, 0, Math.PI/2)
+  ctx.arc(x+W/5, y+4*W/5, r, Math.PI, 0, true)
+  ctx.arc(x+2*W/5, y+W/5, r, Math.PI, Math.PI*2)
+  ctx.arc(x+3*W/5, y+4*W/5, r, Math.PI, 0, true)
+  ctx.arc(x+4*W/5, y+W/5, r, Math.PI, Math.PI*2)
+  ctx.arc(x+4*W/5+r, y+3*W/5, r/2, Math.PI*1.5, Math.PI*2)
+  ctx.arc(x+W-r, y+H-r, r/1.5, 0, Math.PI*2)
+  ctx.arc(x+W-r, y+H-r, r/1.5, 0, Math.PI)
+  ctx.arc(x+4*W/5+r, y+3*W/5, r/2, Math.PI, Math.PI *1.5)
+  ctx.stroke()
+}
+
 function slide () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -8367,12 +8399,109 @@ function everythingArray () {
   }
 }
 
+function crazywall () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  let colors = ["#f6c2d9","#fff69b","#bcdfc9","#a1c8e9","#e4dae2"]
+  let linecolors = getCurrentPalette()
+  let functions = shuffle(["jumpropeAt", "pointhouseAt", "breadAt", "flathouseAt", "flatchairAt", "birdhouseAt", "factoryAt", "dashedAt", "phaseAt", "leafAt", "allAt", "thenAt", "existAt", "tildeAt", "userAt", "heartAt", "glassAt", "prayerAt", "thoughtAt", "skullAt", "lampAt", "chairAt", 
+  "stairsAt", "treeAt", "slideAt", "ladderAt", "swingAt"])
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctx.shadowBlur = 10
+  ctx.shadowColor = "#444444"
+  ctx.shadowOffsetX = (Math.random()-0.5) * 8
+  ctx.shadowOffsetY  = (Math.random()-0.5) * 8
+  let pad = 24, delta = W/6, x = 0, y = 0, cpx, cpy
+  let cx = W/2-delta/2, cy = H/2-delta/2, R = W/2.9
+  let i = 0, points = []
+  let pinned = [], N = 9
+  let angle = 2*Math.PI * Math.random(), inc = Math.PI*2/N
+  x = cx, y = cy
+  for (; i < N+1; i++) {
+    points.push([x,y])
+    ctx.shadowBlur = 3
+    ctx.shadowOffsetX = 2
+    ctx.shadowOffsetY = 3
+    ctx.fillStyle = randomPick(colors)
+    
+    let spin = pet(8)
+    ctx.beginPath()
+    ctx.moveTo(x-pad+spin,y-pad-spin)
+    ctx.lineTo(x+delta+pad+spin, y-pad+spin)
+    ctx.lineTo(x+delta+pad-spin, y+delta+pad+spin)
+    ctx.lineTo(x-pad-spin, y+delta+pad-spin)
+    ctx.lineTo(x-pad+spin, y+pad-spin)
+    ctx.fill()
+    ctx.shadowBlur = 0
+    ctx.shadowOffsetX = 0
+    ctx.shadowOffsetY = 0
+    f = randomPick(functions)
+    window[functions[i]](x,y,delta,randomPick (linecolors))
+    if (i > 4) {
+      ctx.shadowBlur = 3
+      ctx.shadowOffsetX = 0
+      ctx.shadowOffsetY = 8
+      pinned = connectPoints(points, ctx, delta, pad, pinned)
+    }
+    x = (R+pet(pad*2)) * Math.cos(angle)+cx;
+    y = (R+pet(pad*2)) * Math.sin(angle)+cy;
+    angle += inc
+  }
+}
+
+function connectPoints (points, ctx, delta, pad, pinned) {
+  let cpx = 0, cpy = 0
+  let colors = ["#ee0000", "#c28a5d"]
+  let x = points[points.length - 1][0]
+  let y = points[points.length - 1][1]
+  let i = 0//Math.floor(points.length/3) // don't go too far back to covered post-its
+  for (; i < points.length ; i++) {
+    cpx = Math.min(x+delta/2, points[i][0]+delta/2) + Math.abs(x-points[i][0])/2
+    cpy = Math.min(y, points[i][1]) + Math.abs(y-points[i][1])/1.2
+    if (Math.random() > 0.25) {
+      ctx.strokeStyle = randomPick(colors)
+      ctx.lineWidth = randomPick([1,2,2,3])
+      ctx.beginPath()
+      ctx.moveTo(x+delta/2, y)
+      //ctx.lineTo(points[i][0]+delta/2, points[i][1])
+      ctx.quadraticCurveTo(cpx, cpy, points[i][0]+delta/2, points[i][1])
+      ctx.stroke()
+      // pin
+      if (!pinned.includes(i)) {
+        pinned.push(i)
+      }
+      if (!pinned.includes(points.length-1)) {
+        pinned.push(points.length-1)
+      }
+    }
+  }
+  i = 0
+  for (; i < points.length; i++) {
+    if (pinned.includes(i)) {
+        ctx.fillStyle = randomPick(["#dd0000", "#00aa00", "#0000dd"])
+        ctx.shadowColor = "#555555"
+        ctx.lineWidth = 2
+        let x2 = points[i][0] +delta/2, y2 = points[i][1]-pad/2
+        ctx.beginPath()
+        ctx.arc(x2, y2-2, 12, 0, Math.PI*2)
+        ctx.fill()
+        pinned.push(i)
+      }
+  }
+  ctx.shadowColor = "#444444"
+  ctx.shadowBlur = 0
+  ctx.shadowOffsetX = 0
+  ctx.shadowOffsetY = 0
+  return pinned
+}
+
 function everythingSymb () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let W = canvas.width, H = canvas.height
   let N = randomPick([1,2,3])
-  let functions = shuffle(["pointhouseAt", "breadAt", "flathouseAt", "flatchairAt", "birdhouseAt", "factoryAt", "dashedAt", "phaseAt", "leafAt", "allAt", "thenAt", "existAt", "tildeAt", "userAt", "heartAt", "glassAt", "prayerAt", "thoughtAt", "skullAt", "lampAt", "chairAt", 
+  let functions = shuffle(["jumpropeAt", "pointhouseAt", "breadAt", "flathouseAt", "flatchairAt", "birdhouseAt", "factoryAt", "dashedAt", "phaseAt", "leafAt", "allAt", "thenAt", "existAt", "tildeAt", "userAt", "heartAt", "glassAt", "prayerAt", "thoughtAt", "skullAt", "lampAt", "chairAt", 
   "stairsAt", "treeAt", "slideAt", "ladderAt", "swingAt"])  
   let pad = 60
   padT = 2*pad + (N-1) * pad
@@ -19440,7 +19569,7 @@ function roadmap () {
   k = 0
   for (; k < 19; k++) {
     angle = pet(2)/6//Math.random() * Math.PI * 2
-    placeText(randomPick(placenames), angle)
+    //placeText(randomPick(placenames), angle)
   }
   
   // dots
@@ -19451,7 +19580,10 @@ function roadmap () {
     x = Math.random() * W, y = Math.random() * H
     ctx.moveTo(x, y)
     ctx.arc(x, y, Math.random() * 9 + 3 , 0, Math.PI * 2)
-    ctx.fill();
+    ctx.fill()
+    ctx.fillStyle = "#333333"
+    ctx.fillText(capitalize(randomWord(Math.random() > 0.5)), x + 20, y+6)
+    
   }
   // blue grid lines
   ctx.globalAlpha = document.getElementById("opacity").value / 200
