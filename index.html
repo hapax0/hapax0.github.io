@@ -102,6 +102,7 @@
   <script src="pantone.js"></script>
   <script src="wordlist2.js"></script>
   <script src="ptwords.js"></script>
+  <script src="firstnames.js"></script>
 
   </head>
   <body>
@@ -433,6 +434,7 @@
       <option value="cornercurve">diag curve</option>
       <option value="everythingSymb">message</option>
       <option value="crazywall">crazy wall</option>
+      <option value="socialnetwork">social network</option>
       <option value="tv">tv</option>
       <option value="hand">hand</option>
       <option value="heart">heart</option>
@@ -8399,6 +8401,75 @@ function everythingArray () {
   }
 }
 
+function socialnetwork () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  let colors = ["#f6c2d9","#fff69b","#bcdfc9","#a1c8e9","#e4dae2"]
+  let linecolors = getCurrentPalette()
+  let functions = shuffle(["jumpropeAt", "pointhouseAt", "breadAt", "flathouseAt", "flatchairAt", "birdhouseAt", "factoryAt", "dashedAt", "phaseAt", "leafAt", "allAt", "thenAt", "existAt", "tildeAt", "userAt", "heartAt", "glassAt", "prayerAt", "thoughtAt", "skullAt", "lampAt", "chairAt", 
+  "stairsAt", "treeAt", "slideAt", "ladderAt", "swingAt"])
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctx.shadowBlur = 10
+  ctx.shadowColor = "#444444"
+  ctx.shadowOffsetX = (Math.random()-0.5) * 8
+  ctx.shadowOffsetY  = (Math.random()-0.5) * 8
+  let N = randomPick([9,11,13])
+  let pad = 24, delta = W/(N-3), x = 0, y = 0, cpx, cpy
+  let cx = W/2-delta/2, cy = H/2-delta/2, R = W/2.9
+  let i = 0, points = []
+  let pinned = []
+  let angle = 2*Math.PI * Math.random(), inc = Math.PI*2/N
+  x = delta/3 + pet(pad*2), y = delta/3 + pet(pad*2)
+  x = cx, y = cy
+  for (; i < N+1; i++) {
+    points.push([x,y])
+    ctx.shadowBlur = 3
+    ctx.shadowOffsetX = 2
+    ctx.shadowOffsetY = 3
+    ctx.fillStyle = randomPick(colors)
+    
+    let spin = pet(8)
+    ctx.beginPath()
+    ctx.moveTo(x-pad+spin,y-pad-spin)
+    ctx.lineTo(x+delta+pad+spin, y-pad+spin)
+    ctx.lineTo(x+delta+pad-spin, y+delta+pad+spin)
+    ctx.lineTo(x-pad-spin, y+delta+pad-spin)
+    ctx.lineTo(x-pad+spin, y+pad-spin)
+    ctx.fill()
+    ctx.shadowBlur = 0
+    ctx.shadowOffsetX = 0
+    ctx.shadowOffsetY = 0
+    f = randomPick(functions)
+    //window[functions[i]]
+    userAt(x,y,delta,randomPick (linecolors))
+    /*
+    let name = randomPick(firstnames)
+    ctx.fillStyle = randomPick (linecolors)
+    let face = "Courier"
+    ctx.font = "800 "+(12)+"pt " + face
+    let tw = ctx.measureText(name).width
+    ctx.fillText(name, x+delta/2-tw/2,y+delta)
+    */
+    if (i > 4) {
+      ctx.shadowBlur = 3
+      ctx.shadowOffsetX = 0
+      ctx.shadowOffsetY = 8
+      pinned = connectPoints(points, ctx, delta, pad, pinned)
+    }
+    x = (R+pet(pad*3)) * Math.cos(angle)+cx;
+    y = (R+pet(pad*3)) * Math.sin(angle)+cy;
+    //x += delta*2 + pet(pad*2)
+    //y += pet(pad)
+    if (x > W -delta) {
+      y += delta*1.4 +pet(pad*2)
+      x = delta/3 +pet(pad)
+    }
+    
+    angle += inc
+  }
+}
+
 function crazywall () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -8415,9 +8486,9 @@ function crazywall () {
   let pad = 24, delta = W/6, x = 0, y = 0, cpx, cpy
   let cx = W/2-delta/2, cy = H/2-delta/2, R = W/2.9
   let i = 0, points = []
-  let pinned = [], N = 9
+  let pinned = [], N = 11
   let angle = 2*Math.PI * Math.random(), inc = Math.PI*2/N
-  x = cx, y = cy
+  x = delta/3 +pet(pad*2), y = delta/3 + pet(pad*2)
   for (; i < N+1; i++) {
     points.push([x,y])
     ctx.shadowBlur = 3
@@ -8444,8 +8515,15 @@ function crazywall () {
       ctx.shadowOffsetY = 8
       pinned = connectPoints(points, ctx, delta, pad, pinned)
     }
-    x = (R+pet(pad*2)) * Math.cos(angle)+cx;
-    y = (R+pet(pad*2)) * Math.sin(angle)+cy;
+    //x = (R+pet(pad*3)) * Math.cos(angle)+cx;
+    //y = (R+pet(pad*3)) * Math.sin(angle)+cy;
+    x += delta*2 + pet(pad*2)
+    y += pet(pad)
+    if (x > W -delta) {
+      y += delta*1.4 +pet(pad*2)
+      x = delta/3 +pet(pad)
+    }
+    
     angle += inc
   }
 }
@@ -8456,16 +8534,17 @@ function connectPoints (points, ctx, delta, pad, pinned) {
   let x = points[points.length - 1][0]
   let y = points[points.length - 1][1]
   let i = 0//Math.floor(points.length/3) // don't go too far back to covered post-its
-  for (; i < points.length ; i++) {
+  for (; i < points.length-1 ; i++) {
     cpx = Math.min(x+delta/2, points[i][0]+delta/2) + Math.abs(x-points[i][0])/2
     cpy = Math.min(y, points[i][1]) + Math.abs(y-points[i][1])/1.2
-    if (Math.random() > 0.25) {
+    if (Math.random() > 0.73) {
       ctx.strokeStyle = randomPick(colors)
-      ctx.lineWidth = randomPick([1,2,2,3])
+      ctx.lineWidth = randomPick([2,2,3])
       ctx.beginPath()
       ctx.moveTo(x+delta/2, y)
       //ctx.lineTo(points[i][0]+delta/2, points[i][1])
       ctx.quadraticCurveTo(cpx, cpy, points[i][0]+delta/2, points[i][1])
+      ctx.lineTo(points[i][0]+delta/2+pet(11), 11 + points[i][1]+Math.random()*80)
       ctx.stroke()
       // pin
       if (!pinned.includes(i)) {
@@ -8479,17 +8558,19 @@ function connectPoints (points, ctx, delta, pad, pinned) {
   i = 0
   for (; i < points.length; i++) {
     if (pinned.includes(i)) {
-        ctx.fillStyle = randomPick(["#dd0000", "#00aa00", "#0000dd"])
-        ctx.shadowColor = "#555555"
-        ctx.lineWidth = 2
-        let x2 = points[i][0] +delta/2, y2 = points[i][1]-pad/2
-        ctx.beginPath()
-        ctx.arc(x2, y2-2, 12, 0, Math.PI*2)
-        ctx.fill()
-        pinned.push(i)
-      }
+      ctx.fillStyle = randomPick(["#dd0000", "#00aa00", "#0000dd"])
+      ctx.shadowColor = "#666666"
+      ctx.shadowBlur = 2
+      ctx.shadowOffsetX = 0
+      ctx.shadowOffsetY = 4
+      let x2 = points[i][0] +delta/2, y2 = points[i][1]
+      ctx.beginPath()
+      ctx.arc(x2, y2, delta/19, 0, Math.PI*2)
+      ctx.closePath()
+      ctx.fill()
+      pinned.push(i)
+    }
   }
-  ctx.shadowColor = "#444444"
   ctx.shadowBlur = 0
   ctx.shadowOffsetX = 0
   ctx.shadowOffsetY = 0
