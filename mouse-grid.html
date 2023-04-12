@@ -45,6 +45,7 @@
       <option value="15">15</option>
       <option value="16">16</option>
     </select>
+    &nbsp;<input type="checkbox" id="mode" onclick="killCP()"><label for="mode"> quadratic</label>
     </div>
    
     <canvas id="myCanvas" width="500" height="500"></canvas><br>
@@ -62,6 +63,12 @@
       frameVisible()
     }
     
+    function killCP () {
+      if (i > 0 && document.getElementById("mode").checked) {
+        i = 1
+      }
+    }
+    
     let canvas = document.getElementById('myCanvas')
     let ctx = canvas.getContext('2d')
     ctx.fillStyle = '#ffffff'
@@ -73,7 +80,7 @@
     let gridsize = 5, cellsize = W/gridsize
     let i = 0
     let colors = ['red', 'green', 'blue', 'orange', 'purple', 'yellow']
-    let code = []
+    let code = [], cpx, cpy
     
     function clearAll () {
       code = []
@@ -81,6 +88,7 @@
       ctx.fillStyle = 'white'
       ctx.fillRect(0,0,canvas.width,canvas.height)
       frameVisible()
+      document.getElementById("text1").innerHTML = ""
     }
     
     function closePath () {
@@ -96,21 +104,40 @@
     }
     
     canvas.addEventListener('mousedown', function(evt) {
+      let mode = document.getElementById("mode").checked
+      
       let mousePos = getMousePos(canvas, evt);
       ctx.fillStyle = '#0000ff'
       if (i === 0) {
         code.push("  ctx.beginPath()")
         code.push("  ctx.moveTo(x+"+Math.round(mousePos.x/cellsize)+"*W/"+gridsize+", y+"+Math.round(mousePos.y/cellsize)+"*H/"+gridsize+")")
         ctx.beginPath()
-        //Math.round(mousePos.x/cellsize)*W/gridsize
         ctx.moveTo(Math.round(mousePos.x/cellsize)*W/gridsize, Math.round(mousePos.y/cellsize)*W/gridsize)
         ctx.fillRect(Math.round(mousePos.x/cellsize)*W/gridsize-4, Math.round(mousePos.y/cellsize)*W/gridsize-4, 8, 8)
       } else {
-        code.push("  ctx.lineTo(x+"+Math.round(mousePos.x/cellsize)+"*W/"+gridsize+", y+"+Math.round(mousePos.y/cellsize)+"*H/"+gridsize+")")
-        ctx.lineTo(Math.round(mousePos.x/cellsize)*W/gridsize, Math.round(mousePos.y/cellsize)*W/gridsize)
-        ctx.strokeStyle = "#ff4444"
-        ctx.stroke()
-        ctx.fillRect(Math.round(mousePos.x/cellsize)*W/gridsize-4, Math.round(mousePos.y/cellsize)*W/gridsize-4, 8, 8)
+        if (!mode) {
+          code.push("  ctx.lineTo(x+"+Math.round(mousePos.x/cellsize)+"*W/"+gridsize+", y+"+Math.round(mousePos.y/cellsize)+"*H/"+gridsize+")")
+          ctx.lineTo(Math.round(mousePos.x/cellsize)*W/gridsize, Math.round(mousePos.y/cellsize)*W/gridsize)
+          ctx.strokeStyle = "#ff4444"
+          ctx.stroke()
+          ctx.fillStyle = "black"
+          ctx.fillRect(Math.round(mousePos.x/cellsize)*W/gridsize-4, Math.round(mousePos.y/cellsize)*W/gridsize-4, 8, 8)
+        } else {
+          if (i % 2 === 1) {
+            cpx = Math.round(mousePos.x/cellsize)*W/gridsize
+            cpy = Math.round(mousePos.y/cellsize)*W/gridsize
+            ctx.fillStyle = "#55dd55"
+            ctx.fillRect(Math.round(mousePos.x/cellsize)*W/gridsize-4, Math.round(mousePos.y/cellsize)*W/gridsize-4, 8, 8)
+          } else {
+            code.push("  ctx.quadraticCurveTo(cpx, cpy, x+"+Math.round(mousePos.x/cellsize)+"*W/"+gridsize+", y+"+Math.round(mousePos.y/cellsize)+"*H/"+gridsize+")")
+            ctx.quadraticCurveTo(cpx, cpy, Math.round(mousePos.x/cellsize)*W/gridsize, Math.round(mousePos.y/cellsize)*W/gridsize)
+            ctx.strokeStyle = "#ff4444"
+            ctx.stroke()
+            ctx.fillStyle = "black"
+            ctx.fillRect(Math.round(mousePos.x/cellsize)*W/gridsize-4, Math.round(mousePos.y/cellsize)*W/gridsize-4, 8, 8)
+          }
+        }
+        
       }
       i++
     }, false)
