@@ -8,15 +8,28 @@
     body {
       background-color: #cccccc;
     }
+    canvas {
+      margin: 1%;
+    }
+    textarea {
+      width: 500px;
+      margin-left: 1%;
+    }
+    div[id="buttons"] {
+      width: 500px;
+      margin-left: 1%;
+      margin-top: 1%;
+    }
     </style>
   </head>
   <body>
+    <div id="buttons">
     <button onclick="clearAll()">clear</button>
-  
+    &nbsp;
     <button onclick="closePath()">close path</button>
     &nbsp;
     <button onclick="copy()">copy</button>
-    &nbsp;Grid: <select id="gridsize">
+    &nbsp;grid: <select id="gridsize">
       <option value="3">3</option>
       <option value="4">4</option>
       <option value="5">5</option>
@@ -31,9 +44,9 @@
       <option value="14">14</option>
       <option value="15">15</option>
       <option value="16">16</option>
-     
     </select>
-    <br>
+    </div>
+   
     <canvas id="myCanvas" width="500" height="500"></canvas><br>
     <textarea id="text1" name="text1" rows="7" cols="50" wrap="soft"></textarea>
     <script>
@@ -89,14 +102,15 @@
         code.push("  ctx.beginPath()")
         code.push("  ctx.moveTo(x+"+Math.round(mousePos.x/cellsize)+"*W/"+gridsize+", y+"+Math.round(mousePos.y/cellsize)+"*H/"+gridsize+")")
         ctx.beginPath()
-        ctx.moveTo(mousePos.x, mousePos.y)
-        ctx.fillRect(mousePos.x, mousePos.y, 5, 5)
+        //Math.round(mousePos.x/cellsize)*W/gridsize
+        ctx.moveTo(Math.round(mousePos.x/cellsize)*W/gridsize, Math.round(mousePos.y/cellsize)*W/gridsize)
+        ctx.fillRect(Math.round(mousePos.x/cellsize)*W/gridsize-4, Math.round(mousePos.y/cellsize)*W/gridsize-4, 8, 8)
       } else {
         code.push("  ctx.lineTo(x+"+Math.round(mousePos.x/cellsize)+"*W/"+gridsize+", y+"+Math.round(mousePos.y/cellsize)+"*H/"+gridsize+")")
-        ctx.lineTo(mousePos.x, mousePos.y)
+        ctx.lineTo(Math.round(mousePos.x/cellsize)*W/gridsize, Math.round(mousePos.y/cellsize)*W/gridsize)
         ctx.strokeStyle = "#ff4444"
         ctx.stroke()
-        ctx.fillRect(mousePos.x, mousePos.y, 5, 5)
+        ctx.fillRect(Math.round(mousePos.x/cellsize)*W/gridsize-4, Math.round(mousePos.y/cellsize)*W/gridsize-4, 8, 8)
       }
       i++
     }, false)

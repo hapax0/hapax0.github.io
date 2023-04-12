@@ -762,7 +762,7 @@
       <option value="4">4</option>
     </select>
       &nbsp;<textarea id="points" rows="1" cols="18" placeholder="points here"></textarea>&nbsp;<button onclick='clearPoints()'>x</button>
-      &nbsp;<a href="mouse2.html" target="mouse"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" class="white" style="padding:4px;" viewBox="0 0 18 18">
+      &nbsp;<a href="mouse-grid.html" target="mouse"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" class="white" style="padding:4px;" viewBox="0 0 18 18">
         <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
       </svg></a>
   </td>
@@ -8072,18 +8072,64 @@ function cityAt (x,y,W,color,n) {
   ctx.stroke()
 }
 
+function bird2At (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  ctx.strokeStyle = color
+  ctx.lineCap = "square"
+  let cpx = x, cpy = y
+  ctx.beginPath()
+  ctx.moveTo(x+0*W/13, y+13*H/13)
+  ctx.lineTo(x+3*W/13, y+10*H/13)
+  
+  //ctx.lineTo(x+9*W/13, y+10*H/13)
+  //ctx.lineTo(x+9*W/13, y+5*H/13)
+  cpx = x+9*W/13, cpy = y+9*W/13
+  ctx.quadraticCurveTo(cpx,cpy,x+9*W/13, y+5*H/13)
+  //ctx.lineTo(,)
+  
+  ctx.lineTo(x+11*W/13, y+3*H/13)
+  ctx.lineTo(x+13*W/13, y+2*H/13)
+  ctx.lineTo(x+11*W/13, y+1*H/13)
+  ctx.lineTo(x+11*W/13, y+0*H/13)
+  ctx.lineTo(x+7*W/13, y+0*H/13)
+  ctx.lineTo(x+6*W/13, y+3*H/13)
+  ctx.lineTo(x+0*W/13, y+5*H/13)
+  ctx.lineTo(x+2*W/13, y+8*H/13)
+  ctx.lineTo(x+0*W/13, y+9*H/13)
+  ctx.lineTo(x+0*W/13, y+13*H/13)
+  ctx.stroke()
+  // feet
+  ctx.beginPath()
+  ctx.moveTo(x+7*W/13, y+10*H/13)
+  ctx.lineTo(x+9*W/13, y+12*H/13)
+  ctx.lineTo(x+9*W/13, y+13*H/13)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+9*W/13, y+12*H/13)
+  ctx.lineTo(x+10*W/13, y+12*H/13)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/13, y+10*H/13)
+  ctx.lineTo(x+6*W/13, y+13*H/13)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/13, y+12*H/13)
+  ctx.lineTo(x+5*W/13, y+13*H/13)
+  ctx.stroke()
+}
+
 function flathouseAt (x,y,W,color,n) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let H = W
   ctx.globalAlpha = +document.getElementById("opacity").value/100
-  let alt = document.getElementById("grungy").checked
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
-  //ctx.strokeStyle = "#0000ff"
-  //ctx.strokeRect(x,y,W,H)
   ctx.strokeStyle = color
   ctx.lineCap = "square"
-  ctx.lineJoin = "round"
   let x0 = x, y0 = y
 
   ctx.beginPath()
@@ -8560,7 +8606,7 @@ function crazywall () {
   let W = canvas.width, H = canvas.height
   let colors = ["#f6c2d9","#fff69b","#bcdfc9","#a1c8e9","#e4dae2"]
   let linecolors = getCurrentPalette()
-  let functions = shuffle(["mailboxAt", "jumpropeAt", "pointhouseAt", "breadAt", "flathouseAt", "flatchairAt", "birdhouseAt", "factoryAt", "dashedAt", "phaseAt", "leafAt", "allAt", "thenAt", "existAt", "tildeAt", "userAt", "heartAt", "glassAt", "prayerAt", "thoughtAt", "skullAt", "lampAt", "chairAt", 
+  let functions = shuffle(["bugAt", "mailboxAt", "jumpropeAt", "pointhouseAt", "breadAt", "flathouseAt", "flatchairAt", "birdhouseAt", "factoryAt", "dashedAt", "phaseAt", "leafAt", "allAt", "thenAt", "existAt", "tildeAt", "userAt", "heartAt", "glassAt", "prayerAt", "thoughtAt", "skullAt", "lampAt", "chairAt", 
   "stairsAt", "treeAt", "slideAt", "ladderAt", "swingAt"])
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.shadowBlur = 10
@@ -8667,6 +8713,7 @@ function mailboxAt (x,y,W,color) {
   let H = W
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
   ctx.strokeStyle = color
+  ctx.lineCap = "square"
   ctx.beginPath()
   ctx.moveTo(x+0*W/12, y+12*H/12)
   ctx.lineTo(x+0*W/12, y+7*H/12)
@@ -8726,6 +8773,8 @@ function bugAt (x,y,W,color) {
   let H = W
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
   ctx.strokeStyle = color
+  ctx.lineCap = "square"
+  /*
   if (Math.random() > 0.5) {
     ctx.beginPath()
     ctx.moveTo(x+6*W/12, y+0*H/12)
@@ -8811,86 +8860,168 @@ function bugAt (x,y,W,color) {
     ctx.stroke()
 } else {
   ctx.beginPath()
-  ctx.moveTo(x+0*W/10, y+4*H/10)
-  ctx.lineTo(x+0*W/10, y+3*H/10)
-  ctx.lineTo(x+1*W/10, y+2*H/10)
-  ctx.lineTo(x+2*W/10, y+1*H/10)
-  ctx.lineTo(x+3*W/10, y+0*H/10)
-  ctx.lineTo(x+4*W/10, y+0*H/10)
-  ctx.lineTo(x+4*W/10, y+1*H/10)
+  ctx.moveTo(x+6*W/13, y+1*H/13)
+  ctx.lineTo(x+7*W/13, y+1*H/13)
+  ctx.lineTo(x+7*W/13, y+2*H/13)
+  ctx.lineTo(x+6*W/13, y+2*H/13)
+  ctx.lineTo(x+6*W/13, y+1*H/13)
   ctx.stroke()
   ctx.beginPath()
-  ctx.moveTo(x+5*W/10, y+1*H/10)
-  ctx.lineTo(x+5*W/10, y+0*H/10)
-  ctx.lineTo(x+6*W/10, y+0*H/10)
-  ctx.lineTo(x+9*W/10, y+3*H/10)
-  ctx.lineTo(x+9*W/10, y+4*H/10)
+  ctx.moveTo(x+6*W/13, y+2*H/13)
+  ctx.lineTo(x+5*W/13, y+4*H/13)
+  ctx.lineTo(x+8*W/13, y+4*H/13)
+  ctx.lineTo(x+7*W/13, y+2*H/13)
   ctx.stroke()
   ctx.beginPath()
-  ctx.moveTo(x+4*W/10, y+1*H/10)
-  ctx.lineTo(x+3*W/10, y+2*H/10)
-  ctx.lineTo(x+6*W/10, y+2*H/10)
-  ctx.lineTo(x+5*W/10, y+1*H/10)
-  ctx.lineTo(x+4*W/10, y+1*H/10)
+  ctx.moveTo(x+5*W/13, y+4*H/13)
+  ctx.lineTo(x+4*W/13, y+10*H/13)
+  ctx.lineTo(x+6*W/13, y+13*H/13)
+  ctx.lineTo(x+7*W/13, y+13*H/13)
+  ctx.lineTo(x+9*W/13, y+10*H/13)
+  ctx.lineTo(x+8*W/13, y+4*H/13)
   ctx.stroke()
   ctx.beginPath()
-  ctx.moveTo(x+4*W/10, y+2*H/10)
-  ctx.lineTo(x+4*W/10, y+3*H/10)
-  ctx.lineTo(x+5*W/10, y+3*H/10)
-  ctx.lineTo(x+5*W/10, y+2*H/10)
-  ctx.lineTo(x+4*W/10, y+2*H/10)
+  ctx.moveTo(x+5*W/13, y+4*H/13)
+  ctx.lineTo(x+3*W/13, y+4*H/13)
+  ctx.lineTo(x+2*W/13, y+5*H/13)
+  ctx.lineTo(x+1*W/13, y+5*H/13)
   ctx.stroke()
   ctx.beginPath()
-  ctx.moveTo(x+4*W/10, y+3*H/10)
-  ctx.lineTo(x+3*W/10, y+4*H/10)
-  ctx.lineTo(x+3*W/10, y+9*H/10)
-  ctx.lineTo(x+4*W/10, y+10*H/10)
-  ctx.lineTo(x+5*W/10, y+10*H/10)
-  ctx.lineTo(x+6*W/10, y+9*H/10)
-  ctx.lineTo(x+6*W/10, y+4*H/10)
-  ctx.lineTo(x+5*W/10, y+3*H/10)
+  ctx.moveTo(x+8*W/13, y+4*H/13)
+  ctx.lineTo(x+10*W/13, y+4*H/13)
+  ctx.lineTo(x+11*W/13, y+5*H/13)
+  ctx.lineTo(x+12*W/13, y+5*H/13)
   ctx.stroke()
   ctx.beginPath()
-  ctx.moveTo(x+3*W/10, y+5*H/10)
-  ctx.lineTo(x+2*W/10, y+5*H/10)
-  ctx.lineTo(x+1*W/10, y+4*H/10)
+  ctx.moveTo(x+6*W/13, y+2*H/13)
+  ctx.lineTo(x+4*W/13, y+2*H/13)
+  ctx.lineTo(x+3*W/13, y+1*H/13)
+  ctx.lineTo(x+2*W/13, y+1*H/13)
   ctx.stroke()
   ctx.beginPath()
-  ctx.moveTo(x+6*W/10, y+5*H/10)
-  ctx.lineTo(x+7*W/10, y+5*H/10)
-  ctx.lineTo(x+8*W/10, y+4*H/10)
+  ctx.moveTo(x+7*W/13, y+2*H/13)
+  ctx.lineTo(x+9*W/13, y+2*H/13)
+  ctx.lineTo(x+10*W/13, y+1*H/13)
+  ctx.lineTo(x+11*W/13, y+1*H/13)
   ctx.stroke()
   ctx.beginPath()
-  ctx.moveTo(x+3*W/10, y+6*H/10)
-  ctx.lineTo(x+1*W/10, y+6*H/10)
-  ctx.lineTo(x+0*W/10, y+5*H/10)
-  
+  ctx.moveTo(x+6*W/13, y+1*H/13)
+  ctx.lineTo(x+5*W/13, y+0*H/13)
+  ctx.lineTo(x+1*W/13, y+0*H/13)
   ctx.stroke()
   ctx.beginPath()
-  
-  ctx.lineTo(x+6*W/10, y+6*H/10)
-  ctx.lineTo(x+8*W/10, y+6*H/10)
-  ctx.lineTo(x+9*W/10, y+5*H/10)
+  ctx.moveTo(x+7*W/13, y+1*H/13)
+  ctx.lineTo(x+8*W/13, y+0*H/13)
+  ctx.lineTo(x+12*W/13, y+0*H/13)
   ctx.stroke()
   ctx.beginPath()
-  ctx.moveTo(x+3*W/10, y+7*H/10)
-  ctx.lineTo(x+1*W/10, y+7*H/10)
-  ctx.lineTo(x+0*W/10, y+8*H/10)
+  ctx.moveTo(x+5*W/13, y+3*H/13)
+  ctx.lineTo(x+3*W/13, y+3*H/13)
+  ctx.lineTo(x+2*W/13, y+2*H/13)
+  ctx.lineTo(x+1*W/13, y+3*H/13)
   ctx.stroke()
   ctx.beginPath()
-  ctx.moveTo(x+6*W/10, y+7*H/10)
-  ctx.lineTo(x+8*W/10, y+7*H/10)
-  ctx.lineTo(x+9*W/10, y+8*H/10)
+  ctx.moveTo(x+8*W/13, y+3*H/13)
+  ctx.lineTo(x+10*W/13, y+3*H/13)
+  ctx.lineTo(x+11*W/13, y+2*H/13)
+  ctx.lineTo(x+12*W/13, y+3*H/13)
   ctx.stroke()
   ctx.beginPath()
-  ctx.moveTo(x+3*W/10, y+9*H/10)
-  ctx.lineTo(x+2*W/10, y+10*H/10)
+  ctx.moveTo(x+6*W/13, y+5*H/13)
+  ctx.lineTo(x+6*W/13, y+12*H/13)
   ctx.stroke()
   ctx.beginPath()
-  ctx.moveTo(x+6*W/10, y+9*H/10)
-  ctx.lineTo(x+7*W/10, y+10*H/10)
+  ctx.moveTo(x+7*W/13, y+5*H/13)
+  ctx.lineTo(x+7*W/13, y+12*H/13)
   ctx.stroke()
 }
+
+*/
+// alt bug
+let cpx = 0, cpy = 0
+ctx.beginPath() // head
+  ctx.moveTo(x+5*W/13, y+1*H/13)
+  ctx.lineTo(x+8*W/13, y+1*H/13)
+  ctx.lineTo(x+8*W/13, y+2*H/13)
+  ctx.lineTo(x+5*W/13, y+2*H/13)
+  ctx.lineTo(x+5*W/13, y+1*H/13)
+  ctx.stroke()
+  ctx.beginPath() // left anten
+  ctx.moveTo(x+6*W/13, y+1*H/13)
+ /// ctx.lineTo(x+5*W/13, y+0*H/13)
+ // ctx.lineTo(x+2*W/13, y+0*H/13)
+  cpx = x+5*W/13
+  cpy = y
+ //ctx.lineTo(x+1*W/13, y+1*H/13)
+  ctx.quadraticCurveTo(cpx,cpy,x+1*W/13, y+1*H/13)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+7*W/13, y+1*H/13)
+
+  cpx = x+7*W/13
+  ctx.quadraticCurveTo(cpx, cpy, x+12*W/13, y+1*H/13)
+  ctx.stroke()
+  ctx.beginPath() // thorax
+  ctx.moveTo(x+6*W/13, y+2*H/13)
+  ctx.lineTo(x+6*W/13, y+4*H/13)
+  ctx.lineTo(x+7*W/13, y+4*H/13)
+  ctx.lineTo(x+7*W/13, y+2*H/13)
+  ctx.stroke()
+  ctx.beginPath() // body
+  ctx.moveTo(x+6*W/13, y+4*H/13)
+  ctx.lineTo(x+5*W/13, y+5*H/13)
+  cpx = x+5*H/13
+  cpy = y+12*W/13
+  ctx.quadraticCurveTo(cpx, cpy, x+6*W/13, y+13*H/13)
+  ctx.lineTo(x+7*W/13, y+13*H/13)
+  cpx = x+8*H/13
+  ctx.quadraticCurveTo(cpx, cpy, x+8*W/13, y+5*H/13)
+  ctx.lineTo(x+7*W/13, y+4*H/13)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+7*W/13, y+4*H/13)
+  ctx.lineTo(x+9*W/13, y+3*H/13)
+  ctx.lineTo(x+10*W/13, y+3*H/13)
+  ctx.lineTo(x+11*W/13, y+2*H/13)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/13, y+4*H/13)
+  ctx.lineTo(x+4*W/13, y+3*H/13)
+  ctx.lineTo(x+3*W/13, y+3*H/13)
+  ctx.lineTo(x+2*W/13, y+2*H/13)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+5*W/13, y+5*H/13)
+  ctx.lineTo(x+3*W/13, y+5*H/13)
+  ctx.lineTo(x+2*W/13, y+4*H/13)
+  ctx.lineTo(x+1*W/13, y+4*H/13)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+8*W/13, y+5*H/13)
+  ctx.lineTo(x+10*W/13, y+5*H/13)
+  ctx.lineTo(x+11*W/13, y+4*H/13)
+  ctx.lineTo(x+12*W/13, y+4*H/13)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+5*W/13, y+6*H/13)
+  ctx.lineTo(x+3*W/13, y+6*H/13)
+  ctx.lineTo(x+1*W/13, y+8*H/13)
+  ctx.lineTo(x+1*W/13, y+9*H/13)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+8*W/13, y+6*H/13)
+  ctx.lineTo(x+10*W/13, y+6*H/13)
+  ctx.lineTo(x+12*W/13, y+8*H/13)
+  ctx.lineTo(x+12*W/13, y+9*H/13)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/13, y+1*H/13)
+  ctx.lineTo(x+6*W/13, y+2*H/13)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+7*W/13, y+1*H/13)
+  ctx.lineTo(x+7*W/13, y+2*H/13)
+  ctx.stroke()
 }
 
 function flameAt (x,y,W,color) {
@@ -9032,7 +9163,7 @@ function everythingSymb () {
   let ctx = canvas.getContext("2d")
   let W = canvas.width, H = canvas.height
   let N = randomPick([1,2])
-  let functions = shuffle(["mailboxAt", "rowhousesAt", "jumpropeAt", "pointhouseAt", "breadAt", "flathouseAt", "flatchairAt", "birdhouseAt", "factoryAt", "dashedAt", "phaseAt", "leafAt", "allAt", "thenAt", "existAt", "tildeAt", "userAt", "heartAt", "glassAt", "prayerAt", "thoughtAt", "skullAt", "lampAt", "chairAt", 
+  let functions = shuffle(["bugAt", "mailboxAt", "rowhousesAt", "jumpropeAt", "pointhouseAt", "breadAt", "flathouseAt", "flatchairAt", "birdhouseAt", "factoryAt", "dashedAt", "phaseAt", "leafAt", "allAt", "thenAt", "existAt", "tildeAt", "userAt", "heartAt", "glassAt", "prayerAt", "thoughtAt", "skullAt", "lampAt", "chairAt", 
   "stairsAt", "treeAt", "slideAt", "ladderAt", "swingAt"])  
   let pad = 60
   padT = 2*pad + (N-1) * pad
