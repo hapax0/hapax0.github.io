@@ -121,20 +121,22 @@
           ctx.strokeStyle = "#ff4444"
           ctx.stroke()
           ctx.fillStyle = "black"
-          ctx.fillRect(Math.round(mousePos.x/cellsize)*W/gridsize-4, Math.round(mousePos.y/cellsize)*W/gridsize-4, 8, 8)
+          ctx.fillRect(Math.round(mousePos.x/cellsize)*W/gridsize-5, Math.round(mousePos.y/cellsize)*W/gridsize-5, 10, 10)
         } else {
           if (i % 2 === 1) {
             cpx = Math.round(mousePos.x/cellsize)*W/gridsize
             cpy = Math.round(mousePos.y/cellsize)*W/gridsize
+            code.push("  cpx = x+"+Math.round(mousePos.x/cellsize)+"*W/"+gridsize)
+            code.push("  cpy = y+"+Math.round(mousePos.y/cellsize)+"*H/"+gridsize)
             ctx.fillStyle = "#55dd55"
-            ctx.fillRect(Math.round(mousePos.x/cellsize)*W/gridsize-4, Math.round(mousePos.y/cellsize)*W/gridsize-4, 8, 8)
+            ctx.fillRect(Math.round(mousePos.x/cellsize)*W/gridsize-5, Math.round(mousePos.y/cellsize)*W/gridsize-5, 10, 10)
           } else {
             code.push("  ctx.quadraticCurveTo(cpx, cpy, x+"+Math.round(mousePos.x/cellsize)+"*W/"+gridsize+", y+"+Math.round(mousePos.y/cellsize)+"*H/"+gridsize+")")
             ctx.quadraticCurveTo(cpx, cpy, Math.round(mousePos.x/cellsize)*W/gridsize, Math.round(mousePos.y/cellsize)*W/gridsize)
             ctx.strokeStyle = "#ff4444"
             ctx.stroke()
             ctx.fillStyle = "black"
-            ctx.fillRect(Math.round(mousePos.x/cellsize)*W/gridsize-4, Math.round(mousePos.y/cellsize)*W/gridsize-4, 8, 8)
+            ctx.fillRect(Math.round(mousePos.x/cellsize)*W/gridsize-5, Math.round(mousePos.y/cellsize)*W/gridsize-5, 10, 10)
           }
         }
         
@@ -151,9 +153,18 @@
       navigator.clipboard.writeText(copyText.value)
     }
 
-    function showPoints () {
-      document.getElementById("text1").innerHTML = code.join("\n")
-    }
+function showPoints () {
+  let header = "function ____At (x,y,W,color) {\n\
+  let canvas = document.getElementById(\"myCanvas\")\n\
+  let ctx = canvas.getContext(\"2d\")\n\
+  let H = W, cpx, cpy\n\
+  ctx.lineWidth = 1 + document.getElementById(\"featuresize\").value/50\n\
+  ctx.strokeStyle = color\n\
+  ctx.lineCap = \"square\"\n"
+  document.getElementById("text1").innerHTML = header
+  document.getElementById("text1").innerHTML += code.join("\n")
+  document.getElementById("text1").innerHTML += "\n}"
+}
     
     function getMousePos(canvas, evt) {
       let rect = canvas.getBoundingClientRect()
