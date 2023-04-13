@@ -23,135 +23,136 @@
     </style>
   </head>
   <body>
-    <div id="buttons">
-    <button onclick="clearAll()">clear</button>
-    &nbsp;
-    <button onclick="closePath()">close path</button>
-    &nbsp;
-    <button onclick="copy()">copy</button>
-    &nbsp;grid: <select id="gridsize">
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-      <option value="7">7</option>
-      <option value="8">8</option>
-      <option value="9" selected>9</option>
-      <option value="10">10</option>
-      <option value="11">11</option>
-      <option value="12">12</option>
-      <option value="13">13</option>
-      <option value="14">14</option>
-      <option value="15">15</option>
-      <option value="16">16</option>
-    </select>
-    &nbsp;<input type="checkbox" id="mode" onclick="killCP()"><label for="mode"> quadratic</label>
-    </div>
-   
-    <canvas id="myCanvas" width="500" height="500"></canvas><br>
-    <textarea id="text1" name="text1" rows="7" cols="50" wrap="soft"></textarea>
-    <script>
-    
-    window.onload = function () {
-      document.getElementById("gridsize").addEventListener("change", updateGrid, true)
-      updateGrid()
-    }
-    
-    function updateGrid () {
-      let gs = document.getElementById("gridsize").value
-      gridsize = gs, cellsize = W/gridsize
-      frameVisible()
-    }
-    
-    function killCP () {
-      if (i > 0 && document.getElementById("mode").checked) {
-        i = 1
-      }
-    }
-    
-    let canvas = document.getElementById('myCanvas')
-    let ctx = canvas.getContext('2d')
-    ctx.fillStyle = '#ffffff'
-    ctx.lineWidth = 3
-    ctx.fillRect(0, 0, canvas.width, canvas.height)
-    let message = ''
-    let cps = []
-    let W = canvas.width, H = W
-    let gridsize = 5, cellsize = W/gridsize
-    let i = 0
-    let colors = ['red', 'green', 'blue', 'orange', 'purple', 'yellow']
-    let code = [], cpx, cpy
-    
-    function clearAll () {
-      code = []
-      i = 0
-      ctx.fillStyle = 'white'
-      ctx.fillRect(0,0,canvas.width,canvas.height)
-      frameVisible()
-      document.getElementById("text1").innerHTML = ""
-    }
-    
-    function closePath () {
-      if (i === 0)
-        return
-      code.push("  ctx.stroke()")
-      ctx.closePath()
-      ctx.globalAlpha = 0.2
-      ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)]
-      ctx.fill()
-      ctx.globalAlpha = 1.0
-      i = 0
-    }
-    
-    canvas.addEventListener('mousedown', function(evt) {
-      let mode = document.getElementById("mode").checked
-      
-      let mousePos = getMousePos(canvas, evt);
-      ctx.fillStyle = '#0000ff'
-      if (i === 0) {
-        code.push("  ctx.beginPath()")
-        code.push("  ctx.moveTo(x+"+Math.round(mousePos.x/cellsize)+"*W/"+gridsize+", y+"+Math.round(mousePos.y/cellsize)+"*H/"+gridsize+")")
-        ctx.beginPath()
-        ctx.moveTo(Math.round(mousePos.x/cellsize)*W/gridsize, Math.round(mousePos.y/cellsize)*W/gridsize)
-        ctx.fillRect(Math.round(mousePos.x/cellsize)*W/gridsize-4, Math.round(mousePos.y/cellsize)*W/gridsize-4, 8, 8)
-      } else {
-        if (!mode) {
-          code.push("  ctx.lineTo(x+"+Math.round(mousePos.x/cellsize)+"*W/"+gridsize+", y+"+Math.round(mousePos.y/cellsize)+"*H/"+gridsize+")")
-          ctx.lineTo(Math.round(mousePos.x/cellsize)*W/gridsize, Math.round(mousePos.y/cellsize)*W/gridsize)
-          ctx.strokeStyle = "#ff4444"
-          ctx.stroke()
-          ctx.fillStyle = "black"
-          ctx.fillRect(Math.round(mousePos.x/cellsize)*W/gridsize-5, Math.round(mousePos.y/cellsize)*W/gridsize-5, 10, 10)
-        } else {
-          if (i % 2 === 1) {
-            cpx = Math.round(mousePos.x/cellsize)*W/gridsize
-            cpy = Math.round(mousePos.y/cellsize)*W/gridsize
-            code.push("  cpx = x+"+Math.round(mousePos.x/cellsize)+"*W/"+gridsize)
-            code.push("  cpy = y+"+Math.round(mousePos.y/cellsize)+"*H/"+gridsize)
-            ctx.fillStyle = "#55dd55"
-            ctx.fillRect(Math.round(mousePos.x/cellsize)*W/gridsize-5, Math.round(mousePos.y/cellsize)*W/gridsize-5, 10, 10)
-          } else {
-            code.push("  ctx.quadraticCurveTo(cpx, cpy, x+"+Math.round(mousePos.x/cellsize)+"*W/"+gridsize+", y+"+Math.round(mousePos.y/cellsize)+"*H/"+gridsize+")")
-            ctx.quadraticCurveTo(cpx, cpy, Math.round(mousePos.x/cellsize)*W/gridsize, Math.round(mousePos.y/cellsize)*W/gridsize)
-            ctx.strokeStyle = "#ff4444"
-            ctx.stroke()
-            ctx.fillStyle = "black"
-            ctx.fillRect(Math.round(mousePos.x/cellsize)*W/gridsize-5, Math.round(mousePos.y/cellsize)*W/gridsize-5, 10, 10)
-          }
-        }
-        
-      }
-      i++
-    }, false)
+<div id="buttons">
+<button onclick="clearAll()">clear</button>
+&nbsp;
+<button onclick="closePath()">close path</button>
+&nbsp;
+<button onclick="copy()">copy</button>
+&nbsp;grid: <select id="gridsize">
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+  <option value="9" selected>9</option>
+  <option value="10">10</option>
+  <option value="11">11</option>
+  <option value="12">12</option>
+  <option value="13">13</option>
+  <option value="14">14</option>
+  <option value="15">15</option>
+  <option value="16">16</option>
+</select>
+&nbsp;<input type="checkbox" id="mode" onclick="killCP()"><label for="mode"> quadratic</label>
+</div>
 
-    function copy () {
-      closePath()
-      showPoints()
-      let copyText = document.getElementById("text1")
-      copyText.select()
-      copyText.setSelectionRange(0, 99999) /* For mobile devices */
-      navigator.clipboard.writeText(copyText.value)
+<canvas id="myCanvas" width="500" height="500"></canvas><br>
+<textarea id="text1" name="text1" rows="7" cols="50" wrap="soft"></textarea>
+<script>
+
+window.onload = function () {
+  document.getElementById("gridsize").addEventListener("change", updateGrid, true)
+  updateGrid()
+}
+
+function updateGrid () {
+  let gs = document.getElementById("gridsize").value
+  gridsize = gs, cellsize = W/gridsize
+  frameVisible()
+}
+
+function killCP () {
+  if (i > 0 && document.getElementById("mode").checked) {
+    i = 1
+  }
+}
+
+let canvas = document.getElementById('myCanvas')
+let ctx = canvas.getContext('2d')
+ctx.fillStyle = '#ffffff'
+ctx.lineWidth = 3
+ctx.fillRect(0, 0, canvas.width, canvas.height)
+let message = ''
+let cps = []
+let W = canvas.width, H = W
+let gridsize = 5, cellsize = W/gridsize
+let i = 0
+let colors = ['red', 'green', 'blue', 'orange', 'purple', 'yellow']
+let code = [], cpx, cpy
+
+function clearAll () {
+  code = []
+  i = 0
+  ctx.fillStyle = 'white'
+  ctx.fillRect(0,0,canvas.width,canvas.height)
+  frameVisible()
+  document.getElementById("text1").innerHTML = ""
+}
+
+function closePath () {
+  if (i === 0)
+    return
+  code.push("  ctx.stroke()")
+  ctx.closePath()
+  ctx.globalAlpha = 0.2
+  ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)]
+  ctx.fill()
+  ctx.globalAlpha = 1.0
+  i = 0
+}
+
+canvas.addEventListener('mousedown', function(evt) {
+  let mode = document.getElementById("mode").checked
+  
+  let mousePos = getMousePos(canvas, evt);
+  ctx.fillStyle = '#0000ff'
+  if (i === 0) {
+    code.push("  ctx.beginPath()")
+    code.push("  ctx.moveTo(x+"+Math.round(mousePos.x/cellsize)+"*W/"+gridsize+", y+"+Math.round(mousePos.y/cellsize)+"*H/"+gridsize+")")
+    ctx.beginPath()
+    ctx.moveTo(Math.round(mousePos.x/cellsize)*W/gridsize, Math.round(mousePos.y/cellsize)*W/gridsize)
+    ctx.fillRect(Math.round(mousePos.x/cellsize)*W/gridsize-4, Math.round(mousePos.y/cellsize)*W/gridsize-4, 8, 8)
+  } else {
+    if (!mode) {
+      code.push("  ctx.lineTo(x+"+Math.round(mousePos.x/cellsize)+"*W/"+gridsize+", y+"+Math.round(mousePos.y/cellsize)+"*H/"+gridsize+")")
+      ctx.lineTo(Math.round(mousePos.x/cellsize)*W/gridsize, Math.round(mousePos.y/cellsize)*W/gridsize)
+      ctx.strokeStyle = "#ff4444"
+      ctx.stroke()
+      ctx.fillStyle = "black"
+      ctx.fillRect(Math.round(mousePos.x/cellsize)*W/gridsize-5, Math.round(mousePos.y/cellsize)*W/gridsize-5, 10, 10)
+    } else {
+      if (i % 2 === 1) {
+        cpx = Math.round(mousePos.x/cellsize)*W/gridsize
+        cpy = Math.round(mousePos.y/cellsize)*W/gridsize
+        code.push("  cpx = x+"+Math.round(mousePos.x/cellsize)+"*W/"+gridsize)
+        code.push("  cpy = y+"+Math.round(mousePos.y/cellsize)+"*H/"+gridsize)
+        ctx.fillStyle = "#55dd55"
+        ctx.fillRect(Math.round(mousePos.x/cellsize)*W/gridsize-5, Math.round(mousePos.y/cellsize)*W/gridsize-5, 10, 10)
+      } else {
+        code.push("  ctx.quadraticCurveTo(cpx, cpy, x+"+Math.round(mousePos.x/cellsize)+"*W/"+gridsize+", y+"+Math.round(mousePos.y/cellsize)+"*H/"+gridsize+")")
+        ctx.quadraticCurveTo(cpx, cpy, Math.round(mousePos.x/cellsize)*W/gridsize, Math.round(mousePos.y/cellsize)*W/gridsize)
+        ctx.strokeStyle = "#ff4444"
+        ctx.stroke()
+        ctx.fillStyle = "black"
+        ctx.fillRect(Math.round(mousePos.x/cellsize)*W/gridsize-5, Math.round(mousePos.y/cellsize)*W/gridsize-5, 10, 10)
+      }
     }
+    
+  }
+  i++
+}, false)
+
+function copy () {
+  closePath()
+  showPoints()
+  let copyText = document.getElementById("text1")
+  navigator.clipboard.writeText(copyText.value)
+ // copyText.select()
+ // copyText.setSelectionRange(0, 99999) /* For mobile devices */
+  
+}
 
 function showPoints () {
   let header = "function ____At (x,y,W,color) {\n\
@@ -165,68 +166,68 @@ function showPoints () {
   document.getElementById("text1").innerHTML += code.join("\n")
   document.getElementById("text1").innerHTML += "\n}"
 }
-    
-    function getMousePos(canvas, evt) {
-      let rect = canvas.getBoundingClientRect()
-      return {
-        x: Math.floor(evt.clientX - rect.left),
-        y: Math.floor(evt.clientY - rect.top)
-      };
-    }
 
-    function frameVisible () {
-      let canvas = document.getElementById('myCanvas')
-      let ctx = canvas.getContext('2d')
-      ctx.fillStyle = "#ffffff"
-      ctx.strokeStyle = "#cccccc"
-      ctx.fillRect(0,0,W,H)
-      let i = 0, x = 0, y = 0
-      for (; i < gridsize; i++) {
-        ctx.beginPath()
-        ctx.moveTo(x,y)
-        ctx.lineTo(x+canvas.width, y)
-        ctx.stroke()
-        y += cellsize
-      }
-      i = 0, x = 0, y = 0
-      for (; i < gridsize; i++) {
-        ctx.beginPath()
-        ctx.moveTo(x,y)
-        ctx.lineTo(x, y+canvas.height)
-        ctx.stroke()
-        x += cellsize
-      }
-    }
+function getMousePos(canvas, evt) {
+  let rect = canvas.getBoundingClientRect()
+  return {
+    x: Math.floor(evt.clientX - rect.left),
+    y: Math.floor(evt.clientY - rect.top)
+  };
+}
 
-    function writeMessage (canvas, message) {
-      var ctx = canvas.getContext('2d');
-      ctx.fillStyle = '#ffffff';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-    }
-    
-    function openFile () {
-      let canvas = document.getElementById('myCanvas')
-      let ctx = canvas.getContext('2d')
-      document.getElementById('uploadimage').click();
-    }
-    
-    function resizeCanvas () {
-      let ocanvas = document.createElement('CANVAS')
-      let octx = ocanvas.getContext('2d')
-      let canvas = document.getElementById("myCanvas");
-      let ctx = canvas.getContext("2d")
-      ocanvas.height = canvas.height
-      ocanvas.width = canvas.width
-      octx.drawImage(canvas, 0, 0)
-      let ar = canvas.width/canvas.height
-      if (canvas.width > 800) {
-        let W = canvas.width
-        canvas.width = 800
-        canvas.height = Math.floor(canvas.height * 800/W)
-      }
-      ctx.drawImage(ocanvas,0,0,canvas.width,canvas.height)
-      octx.clearRect(0,0,ocanvas.width,ocanvas.height)
-    }
-    </script>
+function frameVisible () {
+  let canvas = document.getElementById('myCanvas')
+  let ctx = canvas.getContext('2d')
+  ctx.fillStyle = "#ffffff"
+  ctx.strokeStyle = "#cccccc"
+  ctx.fillRect(0,0,W,H)
+  let i = 0, x = 0, y = 0
+  for (; i < gridsize; i++) {
+    ctx.beginPath()
+    ctx.moveTo(x,y)
+    ctx.lineTo(x+canvas.width, y)
+    ctx.stroke()
+    y += cellsize
+  }
+  i = 0, x = 0, y = 0
+  for (; i < gridsize; i++) {
+    ctx.beginPath()
+    ctx.moveTo(x,y)
+    ctx.lineTo(x, y+canvas.height)
+    ctx.stroke()
+    x += cellsize
+  }
+}
+
+function writeMessage (canvas, message) {
+  var ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+
+function openFile () {
+  let canvas = document.getElementById('myCanvas')
+  let ctx = canvas.getContext('2d')
+  document.getElementById('uploadimage').click();
+}
+
+function resizeCanvas () {
+  let ocanvas = document.createElement('CANVAS')
+  let octx = ocanvas.getContext('2d')
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  ocanvas.height = canvas.height
+  ocanvas.width = canvas.width
+  octx.drawImage(canvas, 0, 0)
+  let ar = canvas.width/canvas.height
+  if (canvas.width > 800) {
+    let W = canvas.width
+    canvas.width = 800
+    canvas.height = Math.floor(canvas.height * 800/W)
+  }
+  ctx.drawImage(ocanvas,0,0,canvas.width,canvas.height)
+  octx.clearRect(0,0,ocanvas.width,ocanvas.height)
+}
+</script>
   </body>
 </html>
