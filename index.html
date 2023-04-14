@@ -8773,79 +8773,32 @@ function flameAt (x,y,W,color) {
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
   ctx.strokeStyle = color
   ctx.lineCap = "square"
-  ctx.lineJoin = "bevel"
   ctx.beginPath()
-  ctx.moveTo(x+5*W/10, y+10*H/10)
-  cpx = x+1*W/10
-  cpy = y+9*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+2*W/10, y+6*H/10)
-  cpx = x+5*W/10
-  cpy = y+2*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+5*W/10, y+0*H/10)
-  cpx = x+5*W/10
-  cpy = y+2*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+8*W/10, y+6*H/10)
-  cpx = x+9*W/10
-  cpy = y+9*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+5*W/10, y+10*H/10)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+5*W/10, y+9*H/10)
-  cpx = x+2*W/10
-  cpy = y+8*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+3*W/10, y+6*H/10)
-  cpx = x+5*W/10
-  cpy = y+3*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+5*W/10, y+2*H/10)
-  cpx = x+5*W/10
-  cpy = y+3*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+7*W/10, y+6*H/10)
-  cpx = x+8*W/10
-  cpy = y+8*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+5*W/10, y+9*H/10)
-  ctx.stroke()
-}
-
-function umbrellaAt (x,y,W,color) {
-  let canvas = document.getElementById("myCanvas")
-  let ctx = canvas.getContext("2d")
-  let H = W, cpx, cpy
-  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
-  ctx.strokeStyle = color
-  ctx.lineCap = "square"
-  ctx.beginPath()
-  ctx.moveTo(x+0*W/10, y+5*H/10)
-  cpx = x+1*W/10
-  cpy = y+3*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+2*W/10, y+5*H/10)
-  cpx = x+3*W/10
-  cpy = y+3*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+4*W/10, y+5*H/10)
-  cpx = x+5*W/10
-  cpy = y+3*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+6*W/10, y+5*H/10)
-  cpx = x+7*W/10
-  cpy = y+3*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+8*W/10, y+5*H/10)
-  cpx = x+9*W/10
-  cpy = y+3*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+10*W/10, y+5*H/10)
-  cpx = x+10*W/10
-  cpy = y+0*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+5*W/10, y+0*H/10)
-  cpx = x+0*W/10
-  cpy = y+0*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+0*W/10, y+5*H/10)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+5*W/10, y+4*H/10)
-  ctx.lineTo(x+5*W/10, y+9*H/10)
-  cpx = x+5*W/10
-  cpy = y+10*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+6*W/10, y+10*H/10)
-  cpx = x+7*W/10
-  cpy = y+10*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+7*W/10, y+9*H/10)
+  ctx.moveTo(x+0*W/12, y+8*H/12)
+  cpx = x+0*W/12
+  cpy = y+3*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+3*W/12, y+0*H/12)
+  cpx = x+4*W/12
+  cpy = y+3*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+4*W/12, y+6*H/12)
+  cpx = x+4*W/12
+  cpy = y+3*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+0*H/12)
+  cpx = x+8*W/12
+  cpy = y+3*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+8*W/12, y+6*H/12)
+  cpx = x+8*W/12
+  cpy = y+3*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+9*W/12, y+0*H/12)
+  cpx = x+12*W/12
+  cpy = y+3*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+12*W/12, y+8*H/12)
+  cpx = x+12*W/12
+  cpy = y+12*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+12*H/12)
+  cpx = x+0*W/12
+  cpy = y+12*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+0*W/12, y+8*H/12)
   ctx.stroke()
 }
 
@@ -8967,92 +8920,60 @@ function fishAt (x,y,W,color) {
   ctx.strokeStyle = color
   ctx.lineCap = "square"
   ctx.beginPath()
-  ctx.moveTo(x+10*W/10, y+4*H/10)
+  ctx.moveTo(x+10*W/10, y+6*H/10)
   cpx = x+8*W/10
-  cpy = y+2*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+6*W/10, y+2*H/10)
+  cpy = y+4*H/10
+  ctx.quadraticCurveTo(cpx, cpy, x+6*W/10, y+4*H/10)
   cpx = x+3*W/10
-  cpy = y+2*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+1*W/10, y+4*H/10)
+  cpy = y+4*H/10
+  ctx.quadraticCurveTo(cpx, cpy, x+1*W/10, y+6*H/10)
   cpx = x+3*W/10
-  cpy = y+6*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+6*W/10, y+6*H/10)
+  cpy = y+8*H/10
+  ctx.quadraticCurveTo(cpx, cpy, x+6*W/10, y+8*H/10)
   cpx = x+9*W/10
-  cpy = y+6*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+10*W/10, y+4*H/10)
+  cpy = y+8*H/10
+  ctx.quadraticCurveTo(cpx, cpy, x+10*W/10, y+6*H/10)
   ctx.stroke()
   
   ctx.beginPath()
-  ctx.moveTo(x+0*W/10, y+2*H/10)
+  ctx.moveTo(x+0*W/10, y+4*H/10)
   cpx = x+1*W/10
-  cpy = y+2*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+1*W/10, y+4*H/10)
+  cpy = y+4*H/10
+  ctx.quadraticCurveTo(cpx, cpy, x+1*W/10, y+6*H/10)
   cpx = x+1*W/10
-  cpy = y+6*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+0*W/10, y+6*H/10)
-  ctx.lineTo(x+0*W/10, y+6*H/10)
-  ctx.lineTo(x+0*W/10, y+2*H/10)
+  cpy = y+8*H/10
+  ctx.quadraticCurveTo(cpx, cpy, x+0*W/10, y+8*H/10)
+  ctx.lineTo(x+0*W/10, y+7*H/10)
+  ctx.lineTo(x+0*W/10, y+4*H/10)
   ctx.stroke()
   // eye
   ctx.beginPath()
-  ctx.arc(x+8*W/10, y+4*H/10, W/20, 0, Math.PI*2)
+  ctx.arc(x+8*W/10, y+6*H/10, W/20, 0, Math.PI*2)
   ctx.stroke()
   // upper waves
   ctx.beginPath()
-  ctx.moveTo(x+0*W/10, y+8*H/10)
-  cpx = x+1*W/10
-  cpy = y+10*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+2*W/10, y+8*H/10)
-  cpx = x+3*W/10
-  cpy = y+10*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+4*W/10, y+8*H/10)
-  cpx = x+5*W/10
-  cpy = y+10*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+6*W/10, y+8*H/10)
-  cpx = x+7*W/10
-  cpy = y+10*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+8*W/10, y+8*H/10)
-  cpx = x+9*W/10
-  cpy = y+10*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+10*W/10, y+8*H/10)
+  ctx.moveTo(x+0*W/12, y+0*H/12)
+  cpx = x+1*W/12
+  cpy = y+3*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+2*W/12, y+0*H/12)
+  cpx = x+3*W/12
+  cpy = y+3*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+4*W/12, y+0*H/12)
+  cpx = x+5*W/12
+  cpy = y+3*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+0*H/12)
+  cpx = x+7*W/12
+  cpy = y+3*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+8*W/12, y+0*H/12)
+  cpx = x+9*W/12
+  cpy = y+3*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+10*W/12, y+0*H/12)
+  cpx = x+11*W/12
+  cpy = y+3*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+12*W/12, y+0*H/12)
   ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+0*W/10, y+0*H/10)
-  cpx = x+1*W/10
-  cpy = y+2*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+2*W/10, y+0*H/10)
-  cpx = x+3*W/10
-  cpy = y+2*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+4*W/10, y+0*H/10)
-  cpx = x+5*W/10
-  cpy = y+2*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+6*W/10, y+0*H/10)
-  cpx = x+7*W/10
-  cpy = y+2*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+8*W/10, y+0*H/10)
-  cpx = x+9*W/10
-  cpy = y+2*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+10*W/10, y+0*H/10)
-  ctx.stroke()
-  // lower waves
-  ctx.beginPath()
-  ctx.moveTo(x+0*W/10, y+8*H/10)
-  cpx = x+1*W/10
-  cpy = y+10*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+2*W/10, y+8*H/10)
-  cpx = x+3*W/10
-  cpy = y+10*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+4*W/10, y+8*H/10)
-  cpx = x+5*W/10
-  cpy = y+10*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+6*W/10, y+8*H/10)
-  cpx = x+7*W/10
-  cpy = y+10*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+8*W/10, y+8*H/10)
-  cpx = x+9*W/10
-  cpy = y+10*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+10*W/10, y+8*H/10)
-  ctx.stroke()
+  
+ 
 }
 
 function appleAt (x,y,W,color) {
@@ -9482,7 +9403,11 @@ function everythingSymb () {
   let N = randomPick([2,3,4])
   if (document.getElementById("grungy").checked)
     N = 1
-  let functions = shuffle(["fishAt", "cactusAt", "umbrellaAt", "flameAt", "appleAt", "bridgeAt", "bugAt", "mailboxAt", "rowhousesAt", "jumpropeAt", "pointhouseAt", "breadAt", "flathouseAt", "flatchairAt", "birdhouseAt", "factoryAt", "dashedAt", "phaseAt", "leafAt", "allAt", "thenAt", "existAt", "tildeAt", "userAt", "heartAt", "glassAt", "prayerAt", "thoughtAt", "skullAt", "lampAt", "chairAt", 
+  let functions = shuffle(["fishAt", "cactusAt", "umbrellaAt", "flameAt", 
+  "appleAt", "bridgeAt", "bugAt", "mailboxAt", "rowhousesAt", "jumpropeAt", 
+  "pointhouseAt", "breadAt", "flathouseAt", "flatchairAt", "birdhouseAt", "factoryAt", 
+  "dashedAt", "phaseAt", "leafAt", "allAt", "thenAt", "existAt", "tildeAt", "userAt", 
+  "heartAt", "glassAt", "prayerAt", "thoughtAt", "skullAt", "lampAt", "chairAt", 
   "stairsAt", "treeAt", "slideAt", "ladderAt", "swingAt"])  
   let pad = 60
   padT = 2*pad + (N-1) * pad
@@ -9491,7 +9416,6 @@ function everythingSymb () {
   let x = pad, y = pad, i = 0
   let cnt = 0, f
   for (; i < N*N; i++) {
-    f = randomPick(functions)
     window[functions[i]](x,y,delta,randomPick (colors))
     x += delta+pad
     cnt++
@@ -9507,7 +9431,8 @@ function testSymbols () {
   let ctx = canvas.getContext("2d")
   let W = canvas.width, H = canvas.height
   let N = randomPick([2,3,4])
-  let functions = shuffle(["factoryAt", "dashedAt", "phaseAt", "leafAt", "allAt", "thenAt", "existAt", "tildeAt", "userAt", "heartAt", "glassAt", "prayerAt", "thoughtAt", "skullAt", "lampAt", "chairAt", 
+  let functions = shuffle(["factoryAt", "dashedAt", "phaseAt", "leafAt", "allAt", "thenAt", "existAt", "tildeAt", 
+  "userAt", "heartAt", "glassAt", "prayerAt", "thoughtAt", "skullAt", "lampAt", "chairAt", 
   "stairsAt", "treeAt", "slideAt", "ladderAt", "swingAt"])  
   let pad = 42
   let delta = Math.round(W/N) - pad*1
@@ -9529,6 +9454,56 @@ function testSymbols () {
   }
 }
 */
+
+function umbrellaAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W, cpx, cpy
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  ctx.strokeStyle = color
+  ctx.lineCap = "square"
+  ctx.beginPath()
+  ctx.moveTo(x+0*W/12, y+6*H/12)
+  cpx = x+1*W/12
+  cpy = y+3*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+2*W/12, y+6*H/12)
+  cpx = x+3*W/12
+  cpy = y+3*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+4*W/12, y+6*H/12)
+  cpx = x+5*W/12
+  cpy = y+3*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+6*H/12)
+  cpx = x+7*W/12
+  cpy = y+3*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+8*W/12, y+6*H/12)
+  cpx = x+9*W/12
+  cpy = y+3*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+10*W/12, y+6*H/12)
+  cpx = x+11*W/12
+  cpy = y+3*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+12*W/12, y+6*H/12)
+  cpx = x+12*W/12
+  cpy = y+0*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+0*H/12)
+  cpx = x+0*W/12
+  cpy = y+0*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+0*W/12, y+6*H/12)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/12, y+6*H/12)
+  ctx.lineTo(x+6*W/12, y+11*H/12)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/12, y+11*H/12)
+  cpx = x+6*W/12
+  cpy = y+12*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+7*W/12, y+12*H/12)
+  cpx = x+8*W/12
+  cpy = y+12*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+8*W/12, y+11*H/12)
+  ctx.stroke()
+}
+
 function existAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
