@@ -8810,105 +8810,162 @@ function cactusAt (x,y,W,color) {
   ctx.strokeStyle = color
   ctx.lineCap = "square"
   ctx.beginPath()
-  ctx.moveTo(x+4*W/10, y+10*H/10)
-  cpx = x+4*W/10
-  cpy = y+8*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+2*W/10, y+8*H/10)
-  cpx = x+0*W/10
-  cpy = y+8*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+0*W/10, y+6*H/10)
-  ctx.lineTo(x+0*W/10, y+3*H/10)
-  cpx = x+1*W/10
-  cpy = y+1*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+2*W/10, y+3*H/10)
-  ctx.lineTo(x+2*W/10, y+5*H/10)
-  cpx = x+3*W/10
-  cpy = y+7*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+4*W/10, y+5*H/10)
-  ctx.lineTo(x+4*W/10, y+2*H/10)
-  cpx = x+5*W/10
-  cpy = y+0*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+6*W/10, y+2*H/10)
-  ctx.lineTo(x+6*W/10, y+7*H/10)
-  cpx = x+7*W/10
-  cpy = y+9*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+8*W/10, y+7*H/10)
-  ctx.lineTo(x+8*W/10, y+4*H/10)
-  cpx = x+9*W/10
-  cpy = y+2*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+10*W/10, y+4*H/10)
-  ctx.lineTo(x+10*W/10, y+8*H/10)
-  cpx = x+10*W/10
-  cpy = y+10*H/10
-  ctx.quadraticCurveTo(cpx, cpy, x+8*W/10, y+10*H/10)
-  ctx.lineTo(x+6*W/10, y+10*H/10)
-  ctx.stroke()
+  ctx.moveTo(x+6*W/14, y+14*H/14)
+  cpx = x+6*W/14
+  cpy = y+12*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+4*W/14, y+12*H/14)
+  cpx = x+2*W/14
+  cpy = y+12*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+2*W/14, y+10*H/14)
+  cpx = x+2*W/14
+  cpy = y+4*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+2*W/14, y+3*H/14)
+  cpx = x+3*W/14
+  cpy = y+2*H/14
+  ctx.arc(x+3*W/14, y+3*H/14, W/14, Math.PI, Math.PI*2)
+  //ctx.quadraticCurveTo(cpx, cpy, x+4*W/14, y+3*H/14)
+  cpx = x+4*W/14
+  cpy = y+9*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+4*W/14, y+9*H/14)
+  cpx = x+5*W/14
+  cpy = y+11*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+6*W/14, y+9*H/14)
+  cpx = x+6*W/14
+  cpy = y+1*H/14
+  ctx.arc(x+7*W/14, y+1*H/14, W/14, Math.PI, Math.PI*2)
+  //ctx.quadraticCurveTo(cpx, cpy, x+6*W/14, y+1*H/14)
+  cpx = x+8*W/14
+  cpy = y+1*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+8*W/14, y+1*H/14)
+  cpx = x+8*W/14
+  cpy = y+10*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+8*W/14, y+10*H/14)
+  cpx = x+9*W/14
+  cpy = y+12*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+10*W/14, y+10*H/14)
+  cpx = x+10*W/14
+  cpy = y+4*H/14
   
-  ctx.beginPath()
-  ctx.moveTo(x+4*W/10, y+2*H/10)
-  ctx.lineTo(x+3*W/10, y+1*H/10)
+  ctx.arc(x+11*W/14, y+4*H/14, W/14, Math.PI, Math.PI*2)
+  //ctx.quadraticCurveTo(cpx, cpy, x+10*W/14, y+4*H/14)
+  cpx = x+12*W/14
+  cpy = y+4*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+12*W/14, y+4*H/14)
+  cpx = x+12*W/14
+  cpy = y+10*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+12*W/14, y+10*H/14)
+  cpx = x+12*W/14
+  cpy = y+12*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+10*W/14, y+13*H/14)
+  cpx = x+8*W/14
+  cpy = y+13*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+8*W/14, y+14*H/14)
   ctx.stroke()
   ctx.beginPath()
-  ctx.moveTo(x+6*W/10, y+2*H/10)
-  ctx.lineTo(x+7*W/10, y+1*H/10)
+  ctx.moveTo(x+12*W/14, y+10*H/14)
+  cpx = x+13*W/14
+  cpy = y+11*H/14
   ctx.stroke()
   ctx.beginPath()
-  ctx.moveTo(x+5*W/10, y+1*H/10)
-  ctx.lineTo(x+4*W/10, y+0*H/10)
+  ctx.moveTo(x+12*W/14, y+10*H/14)
+  ctx.lineTo(x+13*W/14, y+11*H/14)
   ctx.stroke()
   ctx.beginPath()
-  ctx.moveTo(x+5*W/10, y+1*H/10)
-  ctx.lineTo(x+6*W/10, y+0*H/10)
+  ctx.moveTo(x+12*W/14, y+10*H/14)
+  ctx.lineTo(x+13*W/14, y+9*H/14)
   ctx.stroke()
   ctx.beginPath()
-  ctx.moveTo(x+2*W/10, y+3*H/10)
-  ctx.lineTo(x+3*W/10, y+2*H/10)
+  ctx.moveTo(x+12*W/14, y+7*H/14)
+  ctx.lineTo(x+13*W/14, y+8*H/14)
   ctx.stroke()
   ctx.beginPath()
-  ctx.moveTo(x+4*W/10, y+4*H/10)
-  ctx.lineTo(x+3*W/10, y+3*H/10)
+  ctx.moveTo(x+12*W/14, y+7*H/14)
+  ctx.lineTo(x+13*W/14, y+6*H/14)
   ctx.stroke()
   ctx.beginPath()
-  ctx.moveTo(x+2*W/10, y+5*H/10)
-  ctx.lineTo(x+3*W/10, y+4*H/10)
+  ctx.moveTo(x+13*W/14, y+5*H/14)
+  ctx.lineTo(x+12*W/14, y+4*H/14)
+  ctx.lineTo(x+13*W/14, y+3*H/14)
   ctx.stroke()
   ctx.beginPath()
-  ctx.moveTo(x+1*W/10, y+2*H/10)
-  ctx.lineTo(x+2*W/10, y+1*H/10)
+  ctx.moveTo(x+10*W/14, y+2*H/14)
+  ctx.lineTo(x+11*W/14, y+3*H/14)
+  ctx.lineTo(x+12*W/14, y+2*H/14)
   ctx.stroke()
   ctx.beginPath()
-  ctx.moveTo(x+1*W/10, y+2*H/10)
-  ctx.lineTo(x+0*W/10, y+1*H/10)
+  ctx.moveTo(x+1*W/14, y+11*H/14)
+  ctx.lineTo(x+2*W/14, y+10*H/14)
+  ctx.lineTo(x+1*W/14, y+9*H/14)
   ctx.stroke()
   ctx.beginPath()
-  ctx.moveTo(x+8*W/10, y+4*H/10)
-  ctx.lineTo(x+7*W/10, y+3*H/10)
+  ctx.moveTo(x+1*W/14, y+8*H/14)
+  ctx.lineTo(x+2*W/14, y+7*H/14)
+  ctx.lineTo(x+1*W/14, y+6*H/14)
   ctx.stroke()
   ctx.beginPath()
-  ctx.moveTo(x+6*W/10, y+5*H/10)
-  ctx.lineTo(x+7*W/10, y+4*H/10)
+  ctx.moveTo(x+1*W/14, y+5*H/14)
+  ctx.lineTo(x+2*W/14, y+4*H/14)
+  ctx.lineTo(x+1*W/14, y+3*H/14)
   ctx.stroke()
   ctx.beginPath()
-  ctx.moveTo(x+8*W/10, y+6*H/10)
-  ctx.lineTo(x+7*W/10, y+5*H/10)
+  ctx.moveTo(x+2*W/14, y+1*H/14)
+  ctx.lineTo(x+3*W/14, y+2*H/14)
+  ctx.lineTo(x+4*W/14, y+1*H/14)
   ctx.stroke()
   ctx.beginPath()
-  ctx.moveTo(x+6*W/10, y+7*H/10)
-  ctx.lineTo(x+7*W/10, y+6*H/10)
+  ctx.moveTo(x+2*W/14, y+13*H/14)
+  ctx.lineTo(x+3*W/14, y+12*H/14)
   ctx.stroke()
   ctx.beginPath()
-  ctx.moveTo(x+9*W/10, y+3*H/10)
-  ctx.lineTo(x+8*W/10, y+2*H/10)
+  ctx.moveTo(x+11*W/14, y+12*H/14)
+  ctx.lineTo(x+12*W/14, y+13*H/14)
   ctx.stroke()
   ctx.beginPath()
-  ctx.moveTo(x+9*W/10, y+3*H/10)
-  ctx.lineTo(x+10*W/10, y+2*H/10)
+  ctx.moveTo(x+4*W/14, y+9*H/14)
+  ctx.lineTo(x+5*W/14, y+8*H/14)
   ctx.stroke()
   ctx.beginPath()
-  ctx.moveTo(x+1*W/10, y+8*H/10)
-  ctx.lineTo(x+0*W/10, y+9*H/10)
-  ctx.lineTo(x+1*W/10, y+8*H/10)
-  ctx.lineTo(x+2*W/10, y+9*H/10)
+  ctx.moveTo(x+8*W/14, y+10*H/14)
+  ctx.lineTo(x+9*W/14, y+9*H/14)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+9*W/14, y+0*H/14)
+  ctx.lineTo(x+8*W/14, y+1*H/14)
+  ctx.lineTo(x+9*W/14, y+2*H/14)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+5*W/14, y+2*H/14)
+  ctx.lineTo(x+6*W/14, y+1*H/14)
+  ctx.lineTo(x+5*W/14, y+0*H/14)
+  ctx.stroke()
+  ctx.beginPath() // split this?
+  ctx.moveTo(x+6*W/14, y+6*H/14)
+  ctx.lineTo(x+5*W/14, y+7*H/14)
+  
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.lineTo(x+4*W/14, y+6*H/14)
+  ctx.lineTo(x+5*W/14, y+5*H/14)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/14, y+3*H/14)
+  ctx.lineTo(x+5*W/14, y+4*H/14)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+10*W/14, y+7*H/14)
+  ctx.lineTo(x+9*W/14, y+8*H/14)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+8*W/14, y+7*H/14)
+  ctx.lineTo(x+9*W/14, y+6*H/14)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+10*W/14, y+4*H/14)
+  ctx.lineTo(x+9*W/14, y+5*H/14)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+8*W/14, y+4*H/14)
+  ctx.lineTo(x+9*W/14, y+3*H/14)
   ctx.stroke()
 }
 
