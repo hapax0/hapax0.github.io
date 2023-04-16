@@ -161,9 +161,9 @@ function showPoints () {
   ctx.lineWidth = 1 + document.getElementById(\"featuresize\").value/50\n\
   ctx.strokeStyle = color\n\
   ctx.lineCap = \"square\"\n"
-  document.getElementById("text1").innerHTML = header
-  document.getElementById("text1").innerHTML += code.join("\n")
-  document.getElementById("text1").innerHTML += "\n}"
+  document.getElementById("text1").value = header
+  document.getElementById("text1").value += code.join("\n")
+  document.getElementById("text1").value += "\n}"
 }
 
 function getMousePos(canvas, evt) {
