@@ -149,7 +149,6 @@ function copy () {
   navigator.clipboard.writeText(copyText.value)
  // copyText.select()
  // copyText.setSelectionRange(0, 99999) /* For mobile devices */
-  
 }
 
 function showPoints () {
@@ -157,13 +156,13 @@ function showPoints () {
   let header = "function ____At (x,y,W,color) {\n\
   let canvas = document.getElementById(\"myCanvas\")\n\
   let ctx = canvas.getContext(\"2d\")\n\
-  let H = W, cpx, cpy\n\
+  let H = W, cpx, cpy, points = []\n\
   ctx.lineWidth = 1 + document.getElementById(\"featuresize\").value/50\n\
   ctx.strokeStyle = color\n\
   ctx.lineCap = \"square\"\n"
   document.getElementById("text1").value = header
   document.getElementById("text1").value += code.join("\n")
-  document.getElementById("text1").value += "\n}"
+  document.getElementById("text1").value += "\n  drawStars(x,y,W,points)\n}  "
 }
 
 function getMousePos(canvas, evt) {
