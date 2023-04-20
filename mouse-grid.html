@@ -36,8 +36,8 @@
   <option value="6">6</option>
   <option value="7">7</option>
   <option value="8">8</option>
-  <option value="9" selected>9</option>
-  <option value="10">10</option>
+  <option value="9">9</option>
+  <option value="10" selected>10</option>
   <option value="11">11</option>
   <option value="12">12</option>
   <option value="13">13</option>
@@ -72,7 +72,7 @@ function killCP () {
 let canvas = document.getElementById('myCanvas')
 let ctx = canvas.getContext('2d')
 ctx.fillStyle = '#ffffff'
-ctx.lineWidth = 3
+ctx.lineWidth = 4
 ctx.fillRect(0, 0, canvas.width, canvas.height)
 let message = ''
 let cps = []
@@ -95,32 +95,34 @@ function closePath () {
   if (i === 0)
     return
   code.push("  ctx.stroke()")
-  ctx.closePath()
-  ctx.globalAlpha = 0.2
-  ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)]
-  ctx.fill()
-  ctx.globalAlpha = 1.0
+  ctx.setLineDash([])
+  ctx.globalAlpha = 1
+  ctx.strokeStyle = "#ff4444"
+  ctx.stroke()
   i = 0
 }
 
 canvas.addEventListener('mousedown', function(evt) {
   let mode = document.getElementById("mode").checked
   let mousePos = getMousePos(canvas, evt);
-  ctx.fillStyle = '#0000ff'
+  
+  ctx.fillStyle = '#000000'
   if (i === 0) {
     code.push("  ctx.beginPath()")
     code.push("  ctx.moveTo(x+"+Math.round(mousePos.x/cellsize)+"*W/"+gridsize+", y+"+Math.round(mousePos.y/cellsize)+"*H/"+gridsize+")")
     code.push("  points.push(x+"+Math.round(mousePos.x/cellsize)+"*W/"+gridsize+", y+"+Math.round(mousePos.y/cellsize)+"*H/"+gridsize+")")
-    
+    ctx.lineWidth = 4
     ctx.beginPath()
     ctx.moveTo(Math.round(mousePos.x/cellsize)*W/gridsize, Math.round(mousePos.y/cellsize)*W/gridsize)
-    ctx.fillRect(Math.round(mousePos.x/cellsize)*W/gridsize-4, Math.round(mousePos.y/cellsize)*W/gridsize-4, 8, 8)
+    ctx.fillRect(Math.round(mousePos.x/cellsize)*W/gridsize-4, Math.round(mousePos.y/cellsize)*W/gridsize-4, 10, 10)
   } else {
     if (!mode) {
       code.push("  ctx.lineTo(x+"+Math.round(mousePos.x/cellsize)+"*W/"+gridsize+", y+"+Math.round(mousePos.y/cellsize)+"*H/"+gridsize+")")
       code.push("  points.push(x+"+Math.round(mousePos.x/cellsize)+"*W/"+gridsize+", y+"+Math.round(mousePos.y/cellsize)+"*H/"+gridsize+")")
       ctx.lineTo(Math.round(mousePos.x/cellsize)*W/gridsize, Math.round(mousePos.y/cellsize)*W/gridsize)
       ctx.strokeStyle = "#ff4444"
+      ctx.lineWidth = 4
+      ctx.setLineDash([4, 4])
       ctx.stroke()
       ctx.fillStyle = "black"
       ctx.fillRect(Math.round(mousePos.x/cellsize)*W/gridsize-5, Math.round(mousePos.y/cellsize)*W/gridsize-5, 10, 10)
@@ -137,6 +139,8 @@ canvas.addEventListener('mousedown', function(evt) {
         code.push("  points.push(x+"+Math.round(mousePos.x/cellsize)+"*W/"+gridsize+", y+"+Math.round(mousePos.y/cellsize)+"*H/"+gridsize+")")
         ctx.quadraticCurveTo(cpx, cpy, Math.round(mousePos.x/cellsize)*W/gridsize, Math.round(mousePos.y/cellsize)*W/gridsize)
         ctx.strokeStyle = "#ff4444"
+        ctx.lineWidth = 4
+        ctx.setLineDash([4, 4])
         ctx.stroke()
         ctx.fillStyle = "black"
         ctx.fillRect(Math.round(mousePos.x/cellsize)*W/gridsize-5, Math.round(mousePos.y/cellsize)*W/gridsize-5, 10, 10)
@@ -156,7 +160,7 @@ function copy () {
 }
 
 function showPoints () {
-  console.log(code)
+  //console.log(code)
   let header = "function ____At (x,y,W,color) {\n\
   let canvas = document.getElementById(\"myCanvas\")\n\
   let ctx = canvas.getContext(\"2d\")\n\
@@ -182,6 +186,8 @@ function frameVisible () {
   let ctx = canvas.getContext('2d')
   ctx.fillStyle = "#ffffff"
   ctx.strokeStyle = "#cccccc"
+  ctx.lineWidth = 3
+  ctx.setLineDash([])
   ctx.fillRect(0,0,W,H)
   let i = 0, x = 0, y = 0
   for (; i < gridsize; i++) {
@@ -199,6 +205,7 @@ function frameVisible () {
     ctx.stroke()
     x += cellsize
   }
+  ctx.lineWidth = 4
 }
 
 function writeMessage (canvas, message) {
