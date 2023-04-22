@@ -434,6 +434,7 @@
       <option value="everythingSymb">message</option>
       <option value="crazywall">crazy wall</option>
       <option value="natal" selected>natal</option>
+      <option value="aconst" selected>constellation</option>
       <option value="socialnetwork">social network</option>
       <option value="everythingArray">symbol array</option>
       <!--option value="tv">tv</option>
@@ -8859,7 +8860,7 @@ function everythingArray () {
   let ctx = canvas.getContext("2d")
   let W = canvas.width, H = canvas.height
   let N = randomPick([7,9,11,13])
-  let functions = shuffle(["spiralAt", "gunAt", "elephantAt", "coreAt", "orbitAt", "lensAt", "pythagAt", "floppyAt", "spiderAt", "shoesAt", "mushroomAt", "catAt", "birbAt", 
+  let functions = shuffle(["firebirdAt", "spiralAt", "gunAt", "elephantAt", "coreAt", "orbitAt", "lensAt", "pythagAt", "floppyAt", "spiderAt", "shoesAt", "mushroomAt", "catAt", "birbAt", 
   "pantsAt", "tvAt", "drAt", "fishAt", "cactusAt", "umbrellaAt", "flameAt", 
   "appleAt", "bridgeAt", "bugAt", "mailboxAt", "rowhousesAt", "jumpropeAt", 
   "pointhouseAt", "breadAt", "flathouseAt", "flatchairAt", "birdhouseAt", "factoryAt", 
@@ -9257,13 +9258,83 @@ function socialnetwork () {
   }
 }
 
+function aconst () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  let colors = ["#f6c2d9","#fff69b","#bcdfc9","#a1c8e9","#e4dae2"]
+  let linecolors = getCurrentPalette()
+  let functions = shuffle(["firebirdAt", "spiralAt", "gunAt", "elephantAt", "coreAt", "orbitAt", "lensAt", "pythagAt", 
+  "floppyAt", "spiderAt", "factoryAt", "shoesAt", "umbrellaAt", "flathouseAt", 
+  "slideAt", "tvAt", "cactusAt", "flatchairAt", "skullAt", 
+  "bugAt", "stairsAt", "birdhouseAt"])
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+ctx.lineWidth = 4
+  let N = 12
+  let pad = 24, delta = W/(N-5), x = 0, y = 0, cpx, cpy
+  let cx = W, cy = H, R = W/2.6
+  let i = 0, points = []
+  let pinned = []
+  let angle = 0, inc = Math.PI*2/N
+  x = delta/3 + pet(pad*2), y = delta/3 + pet(pad*2)
+  x = cx, y = cy
+  checkAlt(true)
+  for (; i < 1; i++) {
+    points.push([x,y])
+    x = W*0.25//(R) * Math.cos(angle)+cx
+    y = H*0.25//(R) * Math.sin(angle)+cy
+    f = functions[i % functions.length]
+    window[f](x,y,W*0.5,randomPick (linecolors))
+    if (x > W -delta) {
+      y += delta*1.4
+      x = delta/3 
+    }
+    angle += inc
+  }
+  checkAlt(false)
+  // draw divisions/houses
+  R = W*2
+  cx = -R/10
+  if (Math.random() > 0.5)
+    cx = W+R/10
+  cy = H+R/2.6
+  ctx.strokeStyle = randomPick(linecolors)
+ // ctx.lineWidth = 6
+  ctx.beginPath()
+  ctx.arc(cx,cy,R,0,Math.PI*2)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.arc(cx,cy,R/2,0,Math.PI*2)
+  ctx.stroke()
+  i = 0, angle = 0 + Math.PI/12
+  let x2, y2
+  for (; i < N; i++) {
+    x = (R) * Math.cos(angle)+cx
+    y = (R) * Math.sin(angle)+cy
+    x2 = (R/2) * Math.cos(angle)+cx
+    y2 = (R/2) * Math.sin(angle)+cy
+    ctx.beginPath()
+    ctx.moveTo(x2,y2)
+    ctx.lineTo(x,y)
+    ctx.stroke()
+    angle += inc
+  }
+  let angles = []
+  let planets = shuffle(["\u2646", "\u2645", "\u2640","\u263F","\u2642", "\u2643", "\u2644", "\u2609", "\u263D"])
+  ctx.font = "48pt serif"
+  ctx.fillStyle = randomPick(linecolors)
+  x = (cx > W)? W - 120: 120;
+  y = H-100
+  ctx.fillText(planets[0],x-18,y+18)
+}
+
 function natal () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let W = canvas.width, H = canvas.height
   let colors = ["#f6c2d9","#fff69b","#bcdfc9","#a1c8e9","#e4dae2"]
   let linecolors = getCurrentPalette()
-  let functions = shuffle(["spiralAt", "gunAt", "elephantAt", "coreAt", "orbitAt", "lensAt", "pythagAt", 
+  let functions = shuffle(["firebirdAt", "spiralAt", "gunAt", "elephantAt", "coreAt", "orbitAt", "lensAt", "pythagAt", 
   "floppyAt", "spiderAt", "factoryAt", "shoesAt", "umbrellaAt", "flathouseAt", 
   "slideAt", "tvAt", "cactusAt", "flatchairAt", "skullAt", 
   "bugAt", "stairsAt", "birdhouseAt"])
@@ -9351,7 +9422,7 @@ function crazywall () {
   let W = canvas.width, H = canvas.height
   let colors = ["#f6c2d9","#fff69b","#bcdfc9","#a1c8e9","#e4dae2"]
   let linecolors = getCurrentPalette()
-  let functions = shuffle(["spiralAt", "gunAt", "elephantAt", "coreAt", "orbitAt", "lensAt", "pythagAt", "floppyAt", "spiderAt", "shoesAt", "mushroomAt", "catAt", "birbAt",
+  let functions = shuffle(["firebirdAt", "spiralAt", "gunAt", "elephantAt", "coreAt", "orbitAt", "lensAt", "pythagAt", "floppyAt", "spiderAt", "shoesAt", "mushroomAt", "catAt", "birbAt",
    "pantsAt", "tvAt", "drAt", "fishAt", "cactusAt", "umbrellaAt", "flameAt",
     "appleAt", "bridgeAt", "bugAt", "mailboxAt", "jumpropeAt", "pointhouseAt", "breadAt", 
     "flathouseAt", "flatchairAt", "birdhouseAt", "factoryAt", "dashedAt", "phaseAt", 
@@ -9455,6 +9526,369 @@ function connectPoints (points, ctx, delta, pad, pinned) {
   return pinned
 }
 
+function firebirdAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W, cpx, cpy, points = []
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  ctx.strokeStyle = color
+  ctx.lineCap = "square"
+  ctx.beginPath()
+  ctx.moveTo(x+7*W/12, y+2*H/12)
+  points.push(x+7*W/12, y+2*H/12)
+  cpx = x+7*W/12
+  cpy = y+1*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+8*W/12, y+1*H/12)
+  points.push(x+8*W/12, y+1*H/12)
+  cpx = x+9*W/12
+  cpy = y+1*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+9*W/12, y+2*H/12)
+  points.push(x+9*W/12, y+2*H/12)
+  cpx = x+11*W/12
+  cpy = y+3*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+12*W/12, y+3*H/12)
+  points.push(x+12*W/12, y+3*H/12)
+  cpx = x+11*W/12
+  cpy = y+3*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+9*W/12, y+3*H/12)
+  points.push(x+9*W/12, y+3*H/12)
+  cpx = x+9*W/12
+  cpy = y+9*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+4*W/12, y+9*H/12)
+  points.push(x+4*W/12, y+9*H/12)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+7*W/12, y+2*H/12)
+  points.push(x+7*W/12, y+2*H/12)
+  cpx = x+7*W/12
+  cpy = y+3*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+5*W/12, y+3*H/12)
+  points.push(x+5*W/12, y+3*H/12)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+5*W/12, y+3*H/12)
+  points.push(x+5*W/12, y+3*H/12)
+  cpx = x+5*W/12
+  cpy = y+0*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+1*W/12, y+0*H/12)
+  points.push(x+1*W/12, y+0*H/12)
+  cpx = x+1*W/12
+  cpy = y+3*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+5*W/12, y+3*H/12)
+  points.push(x+5*W/12, y+3*H/12)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+5*W/12, y+4*H/12)
+  points.push(x+5*W/12, y+4*H/12)
+  cpx = x+5*W/12
+  cpy = y+3*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+3*W/12, y+3*H/12)
+  points.push(x+3*W/12, y+3*H/12)
+  cpx = x+1*W/12
+  cpy = y+3*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+0*W/12, y+4*H/12)
+  points.push(x+0*W/12, y+4*H/12)
+  cpx = x+1*W/12
+  cpy = y+5*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+3*W/12, y+5*H/12)
+  points.push(x+3*W/12, y+5*H/12)
+  cpx = x+5*W/12
+  cpy = y+5*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+5*W/12, y+4*H/12)
+  points.push(x+5*W/12, y+4*H/12)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+5*W/12, y+5*H/12)
+  points.push(x+5*W/12, y+5*H/12)
+  cpx = x+2*W/12
+  cpy = y+5*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+2*W/12, y+7*H/12)
+  points.push(x+2*W/12, y+7*H/12)
+  cpx = x+5*W/12
+  cpy = y+7*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+5*W/12, y+5*H/12)
+  points.push(x+5*W/12, y+5*H/12)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+4*W/12, y+9*H/12)
+  points.push(x+4*W/12, y+9*H/12)
+  cpx = x+4*W/12
+  cpy = y+12*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+0*W/12, y+12*H/12)
+  points.push(x+0*W/12, y+12*H/12)
+  cpx = x+0*W/12
+  cpy = y+9*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+4*W/12, y+9*H/12)
+  points.push(x+4*W/12, y+9*H/12)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+5*W/12, y+7*H/12)
+  points.push(x+5*W/12, y+7*H/12)
+  cpx = x+5*W/12
+  cpy = y+9*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+2*W/12, y+9*H/12)
+  points.push(x+2*W/12, y+9*H/12)
+  cpx = x+2*W/12
+  cpy = y+7*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+5*W/12, y+7*H/12)
+  points.push(x+5*W/12, y+7*H/12)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/12, y+6*H/12)
+  points.push(x+2*W/12, y+6*H/12)
+  cpx = x+0*W/12
+  cpy = y+6*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+0*W/12, y+5*H/12)
+  points.push(x+0*W/12, y+5*H/12)
+  cpx = x+2*W/12
+  cpy = y+5*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+2*W/12, y+6*H/12)
+  points.push(x+2*W/12, y+6*H/12)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+7*W/12, y+8*H/12)
+  points.push(x+7*W/12, y+8*H/12)
+  cpx = x+11*W/12
+  cpy = y+8*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+11*W/12, y+9*H/12)
+  points.push(x+11*W/12, y+9*H/12)
+  cpx = x+11*W/12
+  cpy = y+10*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+10*W/12, y+10*H/12)
+  points.push(x+10*W/12, y+10*H/12)
+  cpx = x+11*W/12
+  cpy = y+9*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+10*W/12, y+9*H/12)
+  points.push(x+10*W/12, y+9*H/12)
+  cpx = x+11*W/12
+  cpy = y+8*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+7*W/12, y+8*H/12)
+  points.push(x+7*W/12, y+8*H/12)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+5*W/12, y+9*H/12)
+  points.push(x+5*W/12, y+9*H/12)
+  cpx = x+9*W/12
+  cpy = y+9*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+9*W/12, y+10*H/12)
+  points.push(x+9*W/12, y+10*H/12)
+  cpx = x+9*W/12
+  cpy = y+11*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+8*W/12, y+11*H/12)
+  points.push(x+8*W/12, y+11*H/12)
+  cpx = x+9*W/12
+  cpy = y+10*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+8*W/12, y+10*H/12)
+  points.push(x+8*W/12, y+10*H/12)
+  cpx = x+9*W/12
+  cpy = y+9*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+5*W/12, y+9*H/12)
+  points.push(x+5*W/12, y+9*H/12)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+5*W/12, y+9*H/12)
+  points.push(x+5*W/12, y+9*H/12)
+  cpx = x+5*W/12
+  cpy = y+11*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+4*W/12, y+11*H/12)
+  points.push(x+4*W/12, y+11*H/12)
+  cpx = x+4*W/12
+  cpy = y+9*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+5*W/12, y+9*H/12)
+  points.push(x+5*W/12, y+9*H/12)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/12, y+7*H/12)
+  points.push(x+2*W/12, y+7*H/12)
+  cpx = x+2*W/12
+  cpy = y+10*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+0*W/12, y+10*H/12)
+  points.push(x+0*W/12, y+10*H/12)
+  cpx = x+0*W/12
+  cpy = y+7*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+2*W/12, y+7*H/12)
+  points.push(x+2*W/12, y+7*H/12)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/12, y+6*H/12)
+  points.push(x+2*W/12, y+6*H/12)
+  cpx = x+0*W/12
+  cpy = y+6*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+0*W/12, y+7*H/12)
+  points.push(x+0*W/12, y+7*H/12)
+  cpx = x+2*W/12
+  cpy = y+7*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+2*W/12, y+6*H/12)
+  points.push(x+2*W/12, y+6*H/12)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/12, y+3*H/12)
+  points.push(x+2*W/12, y+3*H/12)
+  cpx = x+0*W/12
+  cpy = y+2*H/12
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/12, y+3*H/12)
+  points.push(x+2*W/12, y+3*H/12)
+  cpx = x+2*W/12
+  cpy = y+2*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+0*W/12, y+2*H/12)
+  points.push(x+0*W/12, y+2*H/12)
+  cpx = x+0*W/12
+  cpy = y+3*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+2*W/12, y+3*H/12)
+  points.push(x+2*W/12, y+3*H/12)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/12, y+8*H/12)
+  points.push(x+6*W/12, y+8*H/12)
+  cpx = x+5*W/12
+  cpy = y+8*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+5*W/12, y+9*H/12)
+  points.push(x+5*W/12, y+9*H/12)
+  cpx = x+6*W/12
+  cpy = y+9*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+8*H/12)
+  points.push(x+6*W/12, y+8*H/12)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/12, y+4*H/12)
+  points.push(x+6*W/12, y+4*H/12)
+  cpx = x+6*W/12
+  cpy = y+3*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+5*W/12, y+3*H/12)
+  points.push(x+5*W/12, y+3*H/12)
+  cpx = x+5*W/12
+  cpy = y+4*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+4*H/12)
+  points.push(x+6*W/12, y+4*H/12)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+7*W/12, y+2*H/12)
+  points.push(x+7*W/12, y+2*H/12)
+  cpx = x+8*W/12
+  cpy = y+3*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+9*W/12, y+2*H/12)
+  points.push(x+9*W/12, y+2*H/12)
+  cpx = x+8*W/12
+  cpy = y+1*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+7*W/12, y+2*H/12)
+  points.push(x+7*W/12, y+2*H/12)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+1*W/12, y+2*H/12)
+  points.push(x+1*W/12, y+2*H/12)
+  cpx = x+1*W/12
+  cpy = y+0*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+0*W/12, y+0*H/12)
+  points.push(x+0*W/12, y+0*H/12)
+  cpx = x+0*W/12
+  cpy = y+2*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+1*W/12, y+2*H/12)
+  points.push(x+1*W/12, y+2*H/12)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+4*W/12, y+11*H/12)
+  points.push(x+4*W/12, y+11*H/12)
+  cpx = x+3*W/12
+  cpy = y+11*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+3*W/12, y+12*H/12)
+  points.push(x+3*W/12, y+12*H/12)
+  cpx = x+4*W/12
+  cpy = y+12*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+4*W/12, y+11*H/12)
+  points.push(x+4*W/12, y+11*H/12)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+8*W/12, y+1*H/12)
+  points.push(x+8*W/12, y+1*H/12)
+  cpx = x+8*W/12
+  cpy = y+0*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+5*W/12, y+0*H/12)
+  points.push(x+5*W/12, y+0*H/12)
+  cpx = x+5*W/12
+  cpy = y+1*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+8*W/12, y+1*H/12)
+  points.push(x+8*W/12, y+1*H/12)
+  ctx.stroke()
+  // feather mid-lines below
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/12, y+4*H/12)
+  points.push(x+6*W/12, y+4*H/12)
+  ctx.lineTo(x+5*W/12, y+3*H/12)
+  points.push(x+5*W/12, y+3*H/12)
+  ctx.lineTo(x+1*W/12, y+0*H/12)
+  points.push(x+1*W/12, y+0*H/12)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+5*W/12, y+4*H/12)
+  points.push(x+5*W/12, y+4*H/12)
+  ctx.lineTo(x+0*W/12, y+4*H/12)
+  points.push(x+0*W/12, y+4*H/12)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/12, y+3*H/12)
+  points.push(x+2*W/12, y+3*H/12)
+  ctx.lineTo(x+0*W/12, y+2*H/12)
+  points.push(x+0*W/12, y+2*H/12)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+1*W/12, y+2*H/12)
+  points.push(x+1*W/12, y+2*H/12)
+  ctx.lineTo(x+0*W/12, y+0*H/12)
+  points.push(x+0*W/12, y+0*H/12)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+5*W/12, y+5*H/12)
+  points.push(x+5*W/12, y+5*H/12)
+  ctx.lineTo(x+2*W/12, y+7*H/12)
+  points.push(x+2*W/12, y+7*H/12)
+  ctx.lineTo(x+0*W/12, y+10*H/12)
+  points.push(x+0*W/12, y+10*H/12)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/12, y+6*H/12)
+  points.push(x+2*W/12, y+6*H/12)
+  ctx.lineTo(x+0*W/12, y+7*H/12)
+  points.push(x+0*W/12, y+7*H/12)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+0*W/12, y+5*H/12)
+  points.push(x+0*W/12, y+5*H/12)
+  ctx.lineTo(x+2*W/12, y+6*H/12)
+  points.push(x+2*W/12, y+6*H/12)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/12, y+8*H/12)
+  points.push(x+6*W/12, y+8*H/12)
+  ctx.lineTo(x+5*W/12, y+9*H/12)
+  points.push(x+5*W/12, y+9*H/12)
+  ctx.lineTo(x+4*W/12, y+11*H/12)
+  points.push(x+4*W/12, y+11*H/12)
+  ctx.lineTo(x+3*W/12, y+12*H/12)
+  points.push(x+3*W/12, y+12*H/12)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+5*W/12, y+7*H/12)
+  points.push(x+5*W/12, y+7*H/12)
+  ctx.lineTo(x+2*W/12, y+9*H/12)
+  points.push(x+2*W/12, y+9*H/12)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+4*W/12, y+9*H/12)
+  points.push(x+4*W/12, y+9*H/12)
+  ctx.lineTo(x+0*W/12, y+12*H/12)
+  points.push(x+0*W/12, y+12*H/12)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+8*W/12, y+1*H/12)
+  points.push(x+8*W/12, y+1*H/12)
+  ctx.lineTo(x+5*W/12, y+0*H/12)
+  points.push(x+5*W/12, y+0*H/12)
+  ctx.stroke()
+  drawStars(x,y,W,points)
+}  
+
 function face2At (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -9471,7 +9905,7 @@ function face2At (x,y,W,color) {
   points.push(x+9*W/12, y+11*H/12)
   cpx = x+11*W/12
   cpy = y+11*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+11*W/12, y+7*H/12)
+  //ctx.quadraticCurveTo(cpx, cpy, x+11*W/12, y+7*H/12)
   points.push(x+11*W/12, y+7*H/12)
   cpx = x+11*W/12
   cpy = y+2*H/12
@@ -9485,7 +9919,7 @@ function face2At (x,y,W,color) {
   cpy = y+12*H/12
   ctx.quadraticCurveTo(cpx, cpy, x+0*W/12, y+12*H/12)
   points.push(x+0*W/12, y+12*H/12)
-  ctx.stroke()
+  //ctx.stroke()
   
   
   ctx.beginPath()
@@ -11102,7 +11536,7 @@ function everythingSymb () {
   let N = randomPick([2,3,4])
   if (document.getElementById("grungy").checked)
     N = 1
-  let functions = shuffle(["spiralAt", "gunAt", "elephantAt", "coreAt", "orbitAt", "lensAt", "pythagAt", "floppyAt", "spiderAt", "shoesAt", 
+  let functions = shuffle(["firebirdAt", "spiralAt", "gunAt", "elephantAt", "coreAt", "orbitAt", "lensAt", "pythagAt", "floppyAt", "spiderAt", "shoesAt", 
   "mushroomAt", "catAt", "birbAt", "pantsAt", "tvAt", "drAt", "fishAt", "cactusAt", "umbrellaAt", "flameAt", 
   "appleAt", "bridgeAt", "bugAt", "mailboxAt", "rowhousesAt", "jumpropeAt", 
   "pointhouseAt", "breadAt", "flathouseAt", "flatchairAt", "birdhouseAt", "factoryAt", 
