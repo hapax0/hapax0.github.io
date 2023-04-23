@@ -8860,7 +8860,7 @@ function everythingArray () {
   let ctx = canvas.getContext("2d")
   let W = canvas.width, H = canvas.height
   let N = randomPick([7,9,11,13])
-  let functions = shuffle(["firebirdAt", "mothAt",  "spiralAt", "gunAt", "elephantAt", "coreAt", "orbitAt", "lensAt", "pythagAt", "floppyAt", "spiderAt", "shoesAt", "mushroomAt", "catAt", "birbAt", 
+  let functions = shuffle(["refractionAt", "firebirdAt", "mothAt",  "spiralAt", "gunAt", "elephantAt", "coreAt", "orbitAt", "lensAt", "pythagAt", "floppyAt", "spiderAt", "shoesAt", "mushroomAt", "catAt", "birbAt", 
   "pantsAt", "tvAt", "drAt", "fishAt", "cactusAt", "umbrellaAt", "flameAt", 
   "appleAt", "bridgeAt", "bugAt", "mailboxAt", "rowhousesAt", "jumpropeAt", 
   "pointhouseAt", "breadAt", "flathouseAt", "flatchairAt", "birdhouseAt", "factoryAt", 
@@ -9264,7 +9264,7 @@ function aconst () {
   let W = canvas.width, H = canvas.height
   let colors = ["#f6c2d9","#fff69b","#bcdfc9","#a1c8e9","#e4dae2"]
   let linecolors = getCurrentPalette()
-  let functions = shuffle(["firebirdAt", "spiralAt", "gunAt", "elephantAt", "coreAt", 
+  let functions = shuffle(["refractionAt", "firebirdAt", "spiralAt", "gunAt", "elephantAt", "coreAt", 
   "orbitAt", "lensAt", "pythagAt", "user2At", "mothAt", 
   "floppyAt", "spiderAt", "factoryAt", "shoesAt", "umbrellaAt", "flathouseAt", 
   "slideAt", "tvAt", "cactusAt", "flatchairAt", "skullAt", 
@@ -9279,18 +9279,12 @@ function aconst () {
   x = delta/3 + pet(pad*2), y = delta/3 + pet(pad*2)
   x = cx, y = cy
   checkAlt(true)
-  //for (; i < 1; i++) {
-    points.push([x,y])
-    x = W*0.25//(R) * Math.cos(angle)+cx
-    y = H*0.25//(R) * Math.sin(angle)+cy
-    f = functions[i % functions.length]
-    window[f](x,y,W*0.5,randomPick (linecolors))
-    /*if (x > W -delta) {
-      y += delta*1.4
-      x = delta/3 
-    }
-    angle += inc*/
-  //}
+  points.push([x,y])
+  x = W*0.25//(R) * Math.cos(angle)+cx
+  y = H*0.25//(R) * Math.sin(angle)+cy
+  f = functions[i % functions.length]
+  window[f](x,y,W*0.5,randomPick (linecolors))
+
   checkAlt(false)
   // draw divisions/houses
   R = W*2
@@ -9354,7 +9348,7 @@ function natal () {
   let W = canvas.width, H = canvas.height
   let colors = ["#f6c2d9","#fff69b","#bcdfc9","#a1c8e9","#e4dae2"]
   let linecolors = getCurrentPalette()
-  let functions = shuffle(["mothAt", "firebirdAt", "spiralAt", "gunAt", "elephantAt", "coreAt", "orbitAt", "lensAt", "pythagAt", 
+  let functions = shuffle(["refractionAt","mothAt", "firebirdAt", "spiralAt", "gunAt", "elephantAt", "coreAt", "orbitAt", "lensAt", "pythagAt", 
   "floppyAt", "spiderAt", "factoryAt", "shoesAt", "umbrellaAt", "flathouseAt", 
   "slideAt", "tvAt", "cactusAt", "flatchairAt", "skullAt", 
   "bugAt", "stairsAt", "birdhouseAt"])
@@ -9461,7 +9455,7 @@ function crazywall () {
   let W = canvas.width, H = canvas.height
   let colors = ["#f6c2d9","#fff69b","#bcdfc9","#a1c8e9","#e4dae2"]
   let linecolors = getCurrentPalette()
-  let functions = shuffle(["mothAt", "firebirdAt", "spiralAt", "gunAt", "elephantAt", "coreAt", "orbitAt", "lensAt", "pythagAt", "floppyAt", "spiderAt", "shoesAt", "mushroomAt", "catAt", "birbAt",
+  let functions = shuffle(["refractionAt", "mothAt", "firebirdAt", "spiralAt", "gunAt", "elephantAt", "coreAt", "orbitAt", "lensAt", "pythagAt", "floppyAt", "spiderAt", "shoesAt", "mushroomAt", "catAt", "birbAt",
    "pantsAt", "tvAt", "drAt", "fishAt", "cactusAt", "umbrellaAt", "flameAt",
     "appleAt", "bridgeAt", "bugAt", "mailboxAt", "jumpropeAt", "pointhouseAt", "breadAt", 
     "flathouseAt", "flatchairAt", "birdhouseAt", "factoryAt", "dashedAt", "phaseAt", 
@@ -9854,6 +9848,138 @@ function user2At (x,y,W,color) {
     ctx.stroke()
   }
   drawStars(x,y,W,points,0.01)
+}  
+
+function refractionAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W, cpx, cpy, points = []
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  ctx.strokeStyle = color
+  ctx.lineCap = "square"
+  
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/14, y+2*H/14)
+  points.push(x+2*W/14, y+2*H/14)
+  cpx = x+2*W/14
+  cpy = y+1*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+7*W/14, y+1*H/14)
+  points.push(x+7*W/14, y+1*H/14)
+  cpx = x+12*W/14
+  cpy = y+1*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+12*W/14, y+2*H/14)
+  points.push(x+12*W/14, y+2*H/14)
+  cpx = x+12*W/14
+  cpy = y+3*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+7*W/14, y+3*H/14)
+  points.push(x+7*W/14, y+3*H/14)
+  cpx = x+2*W/14
+  cpy = y+3*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+2*W/14, y+2*H/14)
+  points.push(x+2*W/14, y+2*H/14)
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.moveTo(x+4*W/14, y+13*H/14)
+  points.push(x+4*W/14, y+13*H/14)
+  cpx = x+4*W/14
+  cpy = y+12*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+7*W/14, y+12*H/14)
+  points.push(x+7*W/14, y+12*H/14)
+  cpx = x+10*W/14
+  cpy = y+12*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+10*W/14, y+13*H/14)
+  points.push(x+10*W/14, y+13*H/14)
+  cpx = x+10*W/14
+  cpy = y+14*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+7*W/14, y+14*H/14)
+  points.push(x+7*W/14, y+14*H/14)
+  cpx = x+4*W/14
+  cpy = y+14*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+4*W/14, y+13*H/14)
+  points.push(x+4*W/14, y+13*H/14)
+  ctx.lineTo(x+2*W/14, y+2*H/14)
+  points.push(x+2*W/14, y+2*H/14)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+12*W/14, y+2*H/14)
+  points.push(x+12*W/14, y+2*H/14)
+  ctx.lineTo(x+10*W/14, y+13*H/14)
+  points.push(x+10*W/14, y+13*H/14)
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.moveTo(x+3*W/14, y+7*H/14)
+  points.push(x+3*W/14, y+7*H/14)
+  cpx = x+3*W/14
+  cpy = y+6*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+7*W/14, y+6*H/14)
+  points.push(x+7*W/14, y+6*H/14)
+  cpx = x+11*W/14
+  cpy = y+6*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+11*W/14, y+7*H/14)
+  points.push(x+11*W/14, y+7*H/14)
+  cpx = x+11*W/14
+  cpy = y+8*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+7*W/14, y+8*H/14)
+  points.push(x+7*W/14, y+8*H/14)
+  cpx = x+3*W/14
+  cpy = y+8*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+3*W/14, y+7*H/14)
+  points.push(x+3*W/14, y+7*H/14)
+  ctx.stroke()
+
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/14, y+8*H/14)
+  points.push(x+6*W/14, y+8*H/14)
+  ctx.lineTo(x+8*W/14, y+0*H/14)
+  points.push(x+8*W/14, y+0*H/14)
+  ctx.moveTo(x+8*W/14, y+0*H/14)
+  points.push(x+8*W/14, y+0*H/14)
+  cpx = x+9*W/14
+  cpy = y+0*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+9*W/14, y+1*H/14)
+  points.push(x+9*W/14, y+1*H/14)
+  ctx.lineTo(x+7*W/14, y+8*H/14)
+  points.push(x+7*W/14, y+8*H/14)
+  ctx.lineTo(x+6*W/14, y+12*H/14)
+  points.push(x+6*W/14, y+12*H/14)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+7*W/14, y+13*H/14)
+  points.push(x+7*W/14, y+13*H/14)
+  ctx.lineTo(x+8*W/14, y+8*H/14)
+  points.push(x+8*W/14, y+8*H/14)
+  ctx.stroke()
+  
+  //low end of straw
+  ctx.beginPath()
+  ctx.moveTo(x+7*W/14, y+13*H/14)
+  points.push(x+7*W/14, y+13*H/14)
+  cpx = x+7*W/14
+  cpy = y+12*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+6*W/14, y+12*H/14)
+  points.push(x+6*W/14, y+12*H/14)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/14, y+12*H/14)
+  points.push(x+6*W/14, y+12*H/14)
+  cpx = x+6*W/14
+  cpy = y+13*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+7*W/14, y+13*H/14)
+  points.push(x+7*W/14, y+13*H/14)
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.moveTo(x+9*W/14, y+1*H/14)
+  points.push(x+9*W/14, y+1*H/14)
+  cpx = x+8*W/14
+  cpy = y+1*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+8*W/14, y+0*H/14)
+  points.push(x+8*W/14, y+0*H/14)
+  ctx.stroke()
+  
+  drawStars(x,y,W,points)
 }  
 
 function ohoneAt (x,y,W,color) {
@@ -12304,7 +12430,7 @@ function everythingSymb () {
   let N = randomPick([2,3,4])
   if (document.getElementById("grungy").checked)
     N = 1
-  let functions = shuffle(["mothAt", "firebirdAt", "spiralAt", "gunAt", "elephantAt", "coreAt", "orbitAt", "lensAt", "pythagAt", "floppyAt", "spiderAt", "shoesAt", 
+  let functions = shuffle(["refractionAt", "mothAt", "firebirdAt", "spiralAt", "gunAt", "elephantAt", "coreAt", "orbitAt", "lensAt", "pythagAt", "floppyAt", "spiderAt", "shoesAt", 
   "mushroomAt", "catAt", "birbAt", "pantsAt", "tvAt", "drAt", "fishAt", "cactusAt", "umbrellaAt", "flameAt", 
   "appleAt", "bridgeAt", "bugAt", "mailboxAt", "rowhousesAt", "jumpropeAt", 
   "pointhouseAt", "breadAt", "flathouseAt", "flatchairAt", "birdhouseAt", "factoryAt", 

@@ -225,6 +225,10 @@ function frameVisible () {
   ctx.fillRect(0,0,W,H)
   let i = 0, x = 0, y = 0
   for (; i < gridsize; i++) {
+    if (i % 2 === 0)
+      ctx.strokeStyle = "#c0c0c0"
+    else
+      ctx.strokeStyle = "#d8d8d8"
     ctx.beginPath()
     ctx.moveTo(x,y)
     ctx.lineTo(x+canvas.width, y)
@@ -233,6 +237,10 @@ function frameVisible () {
   }
   i = 0, x = 0, y = 0
   for (; i < gridsize; i++) {
+    if (i % 2 === 0)
+      ctx.strokeStyle = "#c0c0c0"
+    else
+      ctx.strokeStyle = "#d8d8d8"
     ctx.beginPath()
     ctx.moveTo(x,y)
     ctx.lineTo(x, y+canvas.height)
