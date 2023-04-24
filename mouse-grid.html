@@ -2,9 +2,6 @@
 <html>
   <head>
     <style>
-    textarea {
-      font-size:12px;
-    }
     body {
       background-color: #cccccc;
     }
@@ -12,8 +9,9 @@
       margin: 1%;
     }
     textarea {
-      width: 500px;
+      width: 360px;
       margin-left: 1%;
+      font-size:12px;
     }
     div[id="buttons"] {
       width: 500px;
@@ -23,35 +21,44 @@
     </style>
   </head>
   <body>
-<div id="buttons">
-<button onclick="clearAll()">clear</button>
-&nbsp;
-<button onclick="closePath()">close path</button>
-&nbsp;
-<button onclick="copy()">copy</button>
-&nbsp;grid: <select id="gridsize" onchange="clearAll()">
-  <option value="3">3</option>
-  <option value="4">4</option>
-  <option value="5">5</option>
-  <option value="6">6</option>
-  <option value="7">7</option>
-  <option value="8">8</option>
-  <option value="9">9</option>
-  <option value="10" selected>10</option>
-  <option value="11">11</option>
-  <option value="12">12</option>
-  <option value="13">13</option>
-  <option value="14">14</option>
-  <option value="15">15</option>
-  <option value="16">16</option>
-</select>
-&nbsp;<input type="checkbox" id="mode" onclick="killCP()"><label for="mode"> quadratic</label>
+<div id="container" >
+  <div id="buttons" style="display: inline-block;">
+  <canvas id="myCanvas" width="500" height="500"></canvas><br>
+  <div id="buttons" style="padding-left:20px;">
+    grid: <select id="gridsize" onchange="clearAll()">
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10" selected>10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+      <option value="13">13</option>
+      <option value="14">14</option>
+      <option value="15">15</option>
+      <option value="16">16</option> 
+      <option value="40">32</option>
+    </select>
+    &nbsp;
+    <button onclick="clearAll()">clear</button>
+    
+    &nbsp;
+    <button onclick="copy()">copy</button>
+    &nbsp;
+    &nbsp;<input type="checkbox" id="mode" onclick="killCP()"><label for="mode"> quadratic</label>
+    &nbsp;
+    <button onclick="closePath()">close path</button>
+    </div>
+  </div>
+  <div id="text" style="display: inline-block;vertical-align: top;padding:20px;">
+  <textarea id="text1" name="text1" rows="24" cols="32" wrap="soft"></textarea>
+  </div>
 </div>
-
-<canvas id="myCanvas" width="500" height="500"></canvas><br>
-<textarea id="text1" name="text1" rows="7" cols="50" wrap="soft"></textarea>
+  
 <script>
-
 window.onload = function () {
   document.getElementById("gridsize").addEventListener("change", updateGrid, true)
   updateGrid()
@@ -201,10 +208,10 @@ function showPoints () {
   let H = W, cpx, cpy, points = []\n\
   ctx.lineWidth = 1 + document.getElementById(\"featuresize\").value/50\n\
   ctx.strokeStyle = color\n\
-  ctx.lineCap = \"square\"\n"
+  ctx.lineCap = \"square\"\n\n"
   document.getElementById("text1").value = header
   document.getElementById("text1").value += code.join("\n")
-  document.getElementById("text1").value += "\n  drawStars(x,y,W,points)\n}  "
+  document.getElementById("text1").value += "\n\n  drawStars(x,y,W,points)\n}  "
 }
 
 function getMousePos(canvas, evt) {
