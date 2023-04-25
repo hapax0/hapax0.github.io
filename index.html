@@ -473,6 +473,8 @@
       <option value="phase">phase</option>
       <option value="shape2">shape</option>
       <option value="scraps">scraps</option>
+      <option value="multiScraps">multi scraps</option>
+      
       <option value="tape">tape</option>
       <!--option value="phases">phases</option>
       <option value="corner">corner</option>
@@ -642,6 +644,7 @@
             <option value="rainbow">rainbow</option>
             <option value="monokai">monokai</option>
             <option value="rust">rust</option>
+            <option value="post-it">post-it</option>
             <option value="yellowed">yellowed</option>
             <option value="nighthawks">nighthawks</option>
             <option value="earring">earring</option>
@@ -672,9 +675,7 @@
           </select>
          <br>
          <canvas id="palettecanvas" width="420" height="42"></canvas><br>
-          
          <button  onclick="makePalette()">Remix</button>&nbsp;<button id="randompalette" onclick="loadPalette()">Load palette</button>&nbsp;<button onclick="extractPalette()">Extract</button>&nbsp;<button  onclick="rampContrast()" title="ramp contrast">/</button>&nbsp;<button  onclick="showHex()" title="show hex values">#</button>&nbsp;<button  onclick="rgbDistance()" title="show distance c1, c2">D</button>
-
     <input type='file' name='img' size='65' id='openextract' style="display:none;">
     <button onclick="openFileExtract()" id="paletteloader" title="extract from file..."><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="white" viewBox="0 0 16 16">
     <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
@@ -1031,8 +1032,9 @@ function canvas1 () {
   ctx.globalCompositeOperation = mode
 }
 
-function wavyPaper () {
-  let canvas = document.getElementById("myCanvas")
+function wavyPaper (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   ctx.shadowBlur = 0
   ctx.shadowOffsetX = 0;
@@ -1318,6 +1320,11 @@ function loadPalette (PUSH) {
   if (type === "stary"){
     a = ['#030407', '#191e21', '#968824', '#aab8b3', '#d8d9be']
     b = ['#c5d3cc', '#bbb24f', '#a2afa1', '#8da7cd', '#978c29', '#778886', '#5a77a2', '#495860', '#395195', '#5d5111', '#2b3d6f', '#2a2619', '#171e28']
+    updateExtraColors(b)
+  } else
+  if (type === "post-it") {
+    a = ["#f6c2d9","#fff69b","#bcdfc9","#a1c8e9","#e4dae2"]
+    b = ["#f6c2d9","#fff69b","#bcdfc9","#a1c8e9","#e4dae2"]
     updateExtraColors(b)
   } else
   if (type === "rust"){
@@ -19028,6 +19035,114 @@ function buns () {
   document.getElementById("opacity").value = alpha
 }
 
+function formDec (canvas) {
+  form1(canvas)
+  rc(canvas)
+  form1(canvas)
+  rc(canvas)
+}
+
+function paperize (canvas) {
+  let ctx = canvas.getContext("2d")
+  ctx.fillStyle = "#ffffff"
+  smudgewatercolor(canvas)
+  //smudgestreaks2(canvas)
+  ctx.fillStyle = "#808080"
+  smudgestreaks2(canvas)
+  //smudgestreaks2(canvas)
+  
+}
+
+function multiScraps () {
+  let canvas = document.getElementById("myCanvas")
+  let W = canvas.width, H = canvas.height
+  let N = 7, i = 0
+  for (; i < N; i++) {
+    LASTCLICK[0] = Math.random() * W
+    LASTCLICK[1] = Math.random() * H
+    tapeText()
+  }
+}
+
+function tapeText () { 
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let oc = document.createElement('canvas')
+  let occtx = oc.getContext("2d");
+  oc.height = canvas.height, oc.width = canvas.width
+  let colors = shuffle(getCurrentPalette())
+  let functions = ["pageOfBook",  "formDec", "form2", /*"datedue", */ "crosswordPad", "gridLinear", "ctrlchart", "moleText", "index"]
+  occtx.fillStyle = randomPick(colors)
+  //occtx.clearRect(0,0,canvas.width,canvas.height)
+  occtx.fillRect(0,0, canvas.width, canvas.height)
+  
+  let f = randomPick(functions)
+  window[f](oc)
+  if (Math.random() > 0.5)
+    rc(oc)
+  let D = 80+Math.floor(document.getElementById("featuresize").value)
+  let DH = D/3
+  // vary length, but not width
+  D -= Math.random()*(D/2)
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let mode = document.getElementById("mode").value
+  let alpha = document.getElementById("opacity").value
+  let alt = document.getElementById("grungy").checked
+  ctx.fillStyle = randomPick(colors)
+  let cx =  LASTCLICK[0]
+  let cy =  LASTCLICK[1]
+  let rotate = (cx < D*1.5 || canvas.width - cx < D*1.5)
+  let angle = Math.PI/19
+  ctx.save()
+  if (rotate)
+    angle += Math.PI/2
+  if (Math.random() > 0.5)
+    angle *= -1
+  ctx.translate(cx,cy)
+  ctx.rotate(angle)
+  ctx.translate(-cx,-cy)
+
+  let xe = cx-D+pet(D*0.8)
+  let ye = cy-DH
+  let y0 = ye, x0 = xe
+  
+  ctx.fillStyle = colors[0]
+  
+  ctx.beginPath()
+  ctx.moveTo(xe,ye)
+  x = xe
+  y = ye
+  xe = cx+D+pet(D*0.8)
+  //ctx.lineTo(xe,ye)
+  ragged(ctx,xe,ye,x,y)
+  x = xe
+  y = ye
+  xe += pet(D*0.8)
+  ye = cy+DH
+  ragged(ctx,xe,ye,x,y)
+  x = xe
+  y = ye
+  xe = cx-D-pet(D*0.8)
+  ctx.lineTo(xe, ye)
+  ragged(ctx,x0,y0,xe,ye)
+  ctx.closePath()
+  if (alt) {
+    ctx.shadowBlur = 3
+    ctx.shadowColor = "#666666"
+    ctx.shadowOffsetX = 3
+    ctx.shadowOffsetY  = 3
+  }
+  ctx.fill()// for shadow
+  
+  ctx.clip()
+  
+  ctx.drawImage(oc,0,0,canvas.width,canvas.height)
+  ctx.restore()
+  ctx.shadowBlur = 0
+  ctx.shadowOffsetX = 0
+  ctx.shadowOffsetY  = 0
+}
+
 function tape () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -19089,7 +19204,7 @@ function tape () {
   ctx.shadowOffsetY  = 0
 }
 
-function multiScraps () {
+function multiScraps_og () {
   let i = 0, d = 50, r = true
 
   for (; i < 11; i++)
@@ -20513,8 +20628,9 @@ function numberShow () {
   ctx.globalAlpha = document.getElementById("opacity").value/100
 }
 
-function crosswordPad () {
-  let canvas = document.getElementById("myCanvas");
+function crosswordPad (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
   let color = document.getElementById("paintcolor").value
@@ -20627,8 +20743,9 @@ function blanksHorV (i,j,filled) {
   return (okV || okH)
 }
 
-function gridLinear () {
-  let canvas = document.getElementById("myCanvas");
+function gridLinear (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/10
   let color = document.getElementById("paintcolor").value
@@ -22291,8 +22408,9 @@ function periodictable () {
   }
 }
 
-function datedue () {
-  let canvas = document.getElementById("myCanvas");
+function datedue (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 2
   let monthIdx = Math.floor(Math.random() * 12)
@@ -22413,8 +22531,9 @@ function datedue () {
   }
 }
 
-function interdepartmental () { // ideal 8 X 10
-  let canvas = document.getElementById("myCanvas");
+function interdepartmental (canvas) { // ideal 8 X 10
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 2 //+ document.getElementById("featuresize").value/4
   let alpha = document.getElementById("opacity").value
@@ -22422,7 +22541,8 @@ function interdepartmental () { // ideal 8 X 10
   let BACK = document.getElementById("grungy").checked
   let small = true, half = true
   document.getElementById("paintcolor").value = "#eaae3a"
-  fill()
+  ctx.fillStyle = "#eaae3a"
+  ctx.fillRect(0,0,canvas.width, canvas.height)
   let face = "helvetica"
   let text = "INTER-DEPARTMENTAL MAIL"
   let size = 40
@@ -22809,7 +22929,7 @@ function moleskine2 (options) { // 3D
     moleDates(d)
   }
   if (options && options === 3) {
-    moleText(d)
+    moleText()
   }
 
   //rcc()
@@ -22879,7 +22999,7 @@ function clues (PT) {
 }
 
 
-function index () {
+function index (canvas) {
   let words = [], i = 0
   for (; i < 200; i++) {
     words.push(randomWord())
@@ -22887,7 +23007,8 @@ function index () {
   let start = Math.floor(Math.random()*(words.length-100))
   let end = start + 100
   let chunk = words.sort().slice(start,end)
-  let canvas = document.getElementById("myCanvas");
+  if (!index)
+      canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let alpha = document.getElementById("opacity").value
   ctx.font = 20+"px monospace"
@@ -23024,8 +23145,9 @@ function filmFrame () {
   ctx.restore()
 }
 
-function moleText (d) {
-  let canvas = document.getElementById("myCanvas");
+function moleText (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let alpha = document.getElementById("opacity").value
   let color = document.getElementById("paintcolor").value
@@ -23034,7 +23156,7 @@ function moleText (d) {
   ctx.strokeStyle = "#ccccdc"
   let thebook//= crossword
   let PT = Math.random() > 0.5
-  let fs = 8 + Math.floor(document.getElementById("featuresize").value/2)
+  let fs = 18 //+ Math.floor(document.getElementById("featuresize").value/2)
   //if (thebook === crossword)
     thebook = clues(PT)
   let text = document.getElementById("points").value
@@ -24561,7 +24683,6 @@ function grid () {
   }
 }
 
-
 function rays () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -25196,8 +25317,9 @@ function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1)
 }
 
-function mockparagraphWords () {
-  let canvas = document.getElementById("myCanvas");
+function mockparagraphWords (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let fs = 2.6*(4 + document.getElementById("featuresize").value/10)
   alpha = document.getElementById("opacity").value
@@ -25242,8 +25364,9 @@ function mockparagraphWords () {
   document.getElementById("opacity").value = alpha
 }
 
-function mockparagraphScript () {
-  let canvas = document.getElementById("myCanvas");
+function mockparagraphScript (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let fs = 2.6*(4 + document.getElementById("featuresize").value/10)
   alpha = document.getElementById("opacity").value
@@ -25267,8 +25390,9 @@ function mockparagraphScript () {
   document.getElementById("opacity").value = alpha
 }
 
-function pageOfBook () {
-  let canvas = document.getElementById("myCanvas");
+function pageOfBook (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let alt  = document.getElementById("grungy").checked
@@ -25283,7 +25407,7 @@ function pageOfBook () {
   let stopwords = ["a","adeus","agora","ainda","alem","algo","ali","além","ambas","ambos","ano","anos","antes","ao","aonde","aos","apoio","apos","após","aqui","as","assim","atrás","até","aí","baixo","bem","boa","boas","bom","bons","breve","cada","cedo","cento","cima","cinco","coisa","com","como","cuja","cujas","cujo","cujos","custa","cá","da","dar","das","de","dela","delas","dele","deles","desde","dessa","desse","desta","deste","deve","devem","deverá","dez","dia","diz","dizem","dizer","do","dois","dos","doze","duas","dá","dão","dúvida","e","ela","elas","ele","eles","em","entao","entre","então","era","eram","essa","essas","esse","esses","esta","estar","estará","estas","este","estes","estou","está","estás","estão","eu","falta","fará","favor","faz","fazem","fazer","fazes","fazia","faço","fez","fim","final","foi","fomos","for","fora","foram","forem","forma","fosse","foste","fui","geral","grupo","ha","haja","hajam","havia","hei","hoje","hora","horas","houve","há","hão","ir","irá","isso","ista","iste","isto","já","lado","lhe","lhes","local","logo","longe","lugar","lá","maior","mais","mal","mas","me","meio","menor","menos","meses","mesma","mesmo","meu","meus","mil","minha","muito","máximo","mês","na","nada","nao","nas","nem","nessa","nesse","nesta","neste","no","noite","nome","nos","nossa","nosso","nova","novas","nove","novo","novos","num","numa","numas","nunca","nuns","não","nível","nós","número","o","obra","oito","onde","ontem","onze","os","ou","outra","outro","para","parte","pegar","pela","pelas","pelo","pelos","perto","pode","podem","poder","poderá","podia","pois","ponto","por","posso","pouca","pouco","povo","pôde","põe","põem","quais","qual","que","quem","quer","quero","questão","quáis","quê","relação","sabe","sabem","saber","se","sei","seis","seja","sejam","sem","sendo","ser","serei","seria","será","serão","seríamos","sete","seu","seus","sexta","sexto","sim","sob","sobre","sois","somos","sou","sua","suas","são","sétima","sétimo","só","tal","também","tanta","tanto","tarde","te","tem","temos","tempo","tenha","tenho","tens","tente","ter","terei","teria","terá","terão","teu","teus","teve","tinha","tipo","tive","tiver","toda","todas","todo","todos","treze","três","tu","tua","tuas","tudo","tão","tém","têm","um","uma","umas","uns","usa","usar","vai","vais","valor","veja","vem","vens","ver","vez","vezes","vindo","vinte","você","vocês","vos","vossa","vosso","vários","vão","vêm","vós","zero","à","às","área","é","éramos","és"]
   let i = 0
   ctx.fillStyle = document.getElementById("paintcolor").value
-  let fs = 12 + document.getElementById("featuresize").value/25
+  let fs = randomPick([12,18,24])//12 + document.getElementById("featuresize").value/25
   ctx.textAlign = 'left';
   ctx.textBaseline = 'middle'
   let w = 0, text = "", s = ""
@@ -25373,8 +25497,9 @@ function grit (ctx,text,x,y,w,fs) {
   }
 }
 
-function divRects () {
-  let canvas = document.getElementById("myCanvas");
+function divRects (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let LW = 1 + Math.floor(document.getElementById("featuresize").value/50)
   let alt = document.getElementById("grungy").checked
@@ -25399,8 +25524,9 @@ function divRects () {
   ctx.globalAlpha = document.getElementById("opacity").value/100
 }
 
-function scale () {
-  let canvas = document.getElementById("myCanvas");
+function scale (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let fs = document.getElementById("featuresize").value
   let LW = 1 + Math.floor(document.getElementById("featuresize").value/50)
@@ -25445,11 +25571,12 @@ function scale () {
   }
 }
 
-function polar () {
-  let canvas = document.getElementById("myCanvas");
+function polar (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let fs = document.getElementById("featuresize").value
-  let LW = 1 + Math.floor(document.getElementById("featuresize").value/50)
+  let LW = 1 + Math.floor(document.getElementById("featuresize").value/100)
   let alt = document.getElementById("grungy").checked
   let inset = 20 + Math.random()*20
   let W = canvas.width
@@ -25702,8 +25829,9 @@ function stepchart () {
   }
 }
 
-function ctrlchart () {
-  let canvas = document.getElementById("myCanvas");
+function ctrlchart (canvas) {
+  if (!canvas)
+      canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let fs = document.getElementById("featuresize").value
   let LW = 1 + Math.floor(document.getElementById("featuresize").value/50)
@@ -25902,11 +26030,12 @@ function form3 () {
   }
 }
 
-function form2 () {
-  let canvas = document.getElementById("myCanvas");
+function form2 (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let fs = document.getElementById("featuresize").value
-  let LW = 1 + Math.floor(document.getElementById("featuresize").value/50)
+  let LW = 1 + Math.floor(document.getElementById("featuresize").value/100)
   let alt = document.getElementById("grungy").checked
   let inset = 20 + Math.random()*20
   let W = canvas.width
@@ -25915,7 +26044,6 @@ function form2 () {
   ctx.strokeStyle = document.getElementById("paintcolor").value
   ctx.fillStyle = document.getElementById("paintcolor").value
   ctx.lineCap = "square"
-  ctx.lineWidth = LW + 1
   let x = 0, y = 0
   ctx.lineWidth = LW
   
@@ -25939,7 +26067,7 @@ function form2 () {
   }
   
   if (Math.random() > 0.5)
-    scale()
+    scale(canvas)
   // date stamp
   if (Math.random() > 0.5) {
     let date = new Date()
@@ -25973,20 +26101,21 @@ function form2 () {
     ctx.strokeRect(x,y,W-(2*inset), H- (2*inset))
   }
   
+  if (Math.random() > 0.2)
+    polar(canvas)
   if (Math.random() > 0.5)
-    polar()
-  if (Math.random() > 0.5)
-    divRects()
+    divRects(canvas)
   document.getElementById("featuresize").value = 24
-  if (Math.random() > 0.5)
-    mockparagraphScript()
-  if (Math.random() > 0.5)
-    mockparagraphWords()
+  //if (Math.random() > 0.5)
+  //  mockparagraphScript(canvas)
+  //if (Math.random() > 0.5)
+   // mockparagraphWords(canvas)
   document.getElementById("featuresize").value = fs
 }
 
-function form1 () {
-  let canvas = document.getElementById("myCanvas");
+function form1 (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let LW = 1 + Math.floor(document.getElementById("featuresize").value/50)
   let alt = document.getElementById("grungy").checked
@@ -28208,10 +28337,11 @@ function stack_flipH () {
   flipH()
 }
 
-function rc () {
+function rc (canvas) {
   let ocanvas = document.getElementById('off')
   let octx = ocanvas.getContext('2d')
-  let canvas = document.getElementById("myCanvas");
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let mode = ctx.globalCompositeOperation
   ctx.globalCompositeOperation = "source-over"
@@ -29634,12 +29764,12 @@ function smudgestars () {
 function smudgestreaks () {
   smudge ('streaks')
 }
-function smudgestreaks2 () {
-  smudge ('streaks2')
+function smudgestreaks2 (canvas) {
+  smudge ('streaks2', canvas)
 }
 
-function smudgewatercolor () {
-  smudge ('watercolor')
+function smudgewatercolor (canvas) {
+  smudge ('watercolor', canvas)
 }
 
 function smudgehorizontal () {
@@ -29650,8 +29780,9 @@ function smudgehorizontal2 () {
   smudge ('horizontal2')
 }
 
-function smudge (type) {
-  let canvas = document.getElementById("myCanvas");
+function smudge (type, canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let W = canvas.width
   let H = canvas.height
