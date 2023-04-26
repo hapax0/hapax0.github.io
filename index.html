@@ -433,8 +433,8 @@
       <option value="cornercurve">diag curve</option>
       <option value="everythingSymb">message</option>
       <option value="crazywall">crazy wall</option>
-      <option value="natal" selected>natal</option>
-      <option value="aconst" selected>constellation</option>
+      <option value="natal" >natal</option>
+      <option value="aconst" >constellation</option>
       <option value="socialnetwork">social network</option>
       <option value="everythingArray">symbol array</option>
       <!--option value="tv">tv</option>
@@ -473,7 +473,7 @@
       <option value="phase">phase</option>
       <option value="shape2">shape</option>
       <option value="scraps">scraps</option>
-      <option value="multiScraps">multi scraps</option>
+      <option value="multiScraps" selected>multi scraps</option>
       
       <option value="tape">tape</option>
       <!--option value="phases">phases</option>
@@ -14146,8 +14146,9 @@ function dflags () {
   }
 }
 
-function hstripes () {
-  let canvas = document.getElementById("myCanvas")
+function hstripes (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let colors = shuffle(getCurrentPalette())
   let W = canvas.width, H = canvas.height
@@ -14157,8 +14158,8 @@ function hstripes () {
   let delta = H/N
   
   let pad = 0, div = 2, mult = 1.4
-  if (document.getElementById("grungy").checked)
-    pad = W/20, mult = 1.9
+  //if (document.getElementById("grungy").checked)
+  //  pad = W/20, mult = 1.9
   
   let x = 0, y = pad/5, i = 0
   for (; i < N/mult; i++) {
@@ -19045,43 +19046,75 @@ function formDec (canvas) {
 function paperize (canvas) {
   let ctx = canvas.getContext("2d")
   ctx.fillStyle = "#ffffff"
-  smudgewatercolor(canvas)
-  //smudgestreaks2(canvas)
-  ctx.fillStyle = "#808080"
+  let fs = document.getElementById("featuresize").value
+  let alt = document.getElementById("grungy").checked
+  checkAlt(false)
+  setFeaturesize (190)
   smudgestreaks2(canvas)
-  //smudgestreaks2(canvas)
+  ctx.fillStyle = "#808080"
+  setFeaturesize (50)
+  smudgestreaks2(canvas)
+  setFeaturesize(fs)
+  checkAlt(alt)
   
+}
+
+function scripto (canvas) {
+  let fs = document.getElementById("featuresize").value
+  LASTCLICK[0] = 24+Math.random() * 10
+  LASTCLICK[1] = 24+Math.random() * 10
+  setFeaturesize (Math.floor(350+Math.random() * 80))
+  let N = 5, i = 0
+  for (; i < N; i++)
+    script(canvas)
+  setFeaturesize (fs)
+}
+
+function typo (canvas) {
+  let fs = document.getElementById("featuresize").value
+  LASTCLICK[0] = 24+Math.random() * 40
+  LASTCLICK[1] = 24+Math.random() * 40
+  setFeaturesize (Math.floor(80+Math.random() * 80))
+  let N = 27, i = 0
+  for (; i < N; i++)
+    placeTextAt(null, canvas)
+  setFeaturesize (fs)
+}
+
+function hstripes_sml (canvas) {
+  let fs = document.getElementById("featuresize").value
+  setFeaturesize (Math.floor(2+Math.random() * 41))
+  hstripes(canvas)
+  setFeaturesize (fs)
 }
 
 function multiScraps () {
   let canvas = document.getElementById("myCanvas")
   let W = canvas.width, H = canvas.height
+  let functions = shuffle(["typo", "scripto", "pageOfBook", "formDec", "form2", "justlines",
+  "hstripes_sml", "crosswordPad", "gridLinear", "moleText", "index"])
   let N = 7, i = 0
   for (; i < N; i++) {
-    LASTCLICK[0] = Math.random() * W
-    LASTCLICK[1] = Math.random() * H
-    tapeText()
+    tapeText(functions[i])
   }
 }
 
-function tapeText () { 
+function tapeText (f) { 
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let oc = document.createElement('canvas')
   let occtx = oc.getContext("2d");
   oc.height = canvas.height, oc.width = canvas.width
   let colors = shuffle(getCurrentPalette())
-  let functions = ["pageOfBook",  "formDec", "form2", /*"datedue", */ "crosswordPad", "gridLinear", "ctrlchart", "moleText", "index"]
   occtx.fillStyle = randomPick(colors)
-  //occtx.clearRect(0,0,canvas.width,canvas.height)
   occtx.fillRect(0,0, canvas.width, canvas.height)
-  
-  let f = randomPick(functions)
   window[f](oc)
+  if (Math.random() < 0.5)
+    paperize(oc)
   if (Math.random() > 0.5)
     rc(oc)
   let D = 80+Math.floor(document.getElementById("featuresize").value)
-  let DH = D/3
+  let DH = D/1.618
   // vary length, but not width
   D -= Math.random()*(D/2)
   ctx.globalAlpha = document.getElementById("opacity").value/100
@@ -19089,11 +19122,13 @@ function tapeText () {
   let alpha = document.getElementById("opacity").value
   let alt = document.getElementById("grungy").checked
   ctx.fillStyle = randomPick(colors)
-  let cx =  LASTCLICK[0]
-  let cy =  LASTCLICK[1]
+  let cx =  Math.random() * oc.width//LASTCLICK[0]
+  let cy =  Math.random() * oc.height//LASTCLICK[1]
   let rotate = (cx < D*1.5 || canvas.width - cx < D*1.5)
   let angle = Math.PI/19
+  
   ctx.save()
+  ctx.fillStyle = colors[0]
   if (rotate)
     angle += Math.PI/2
   if (Math.random() > 0.5)
@@ -19106,15 +19141,12 @@ function tapeText () {
   let ye = cy-DH
   let y0 = ye, x0 = xe
   
-  ctx.fillStyle = colors[0]
-  
   ctx.beginPath()
   ctx.moveTo(xe,ye)
   x = xe
   y = ye
   xe = cx+D+pet(D*0.8)
-  //ctx.lineTo(xe,ye)
-  ragged(ctx,xe,ye,x,y)
+  ragged(ctx,xe,ye,x,y,25)
   x = xe
   y = ye
   xe += pet(D*0.8)
@@ -19123,9 +19155,11 @@ function tapeText () {
   x = xe
   y = ye
   xe = cx-D-pet(D*0.8)
-  ctx.lineTo(xe, ye)
-  ragged(ctx,x0,y0,xe,ye)
-  ctx.closePath()
+  ragged(ctx,xe,ye,x,y)
+  x = xe
+  y = ye
+  ye = cy-D-pet(D*0.8)
+  ragged(ctx,x0,y0,x,y,25)
   if (alt) {
     ctx.shadowBlur = 3
     ctx.shadowColor = "#666666"
@@ -19133,10 +19167,8 @@ function tapeText () {
     ctx.shadowOffsetY  = 3
   }
   ctx.fill()// for shadow
-  
   ctx.clip()
-  
-  ctx.drawImage(oc,0,0,canvas.width,canvas.height)
+  ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
   ctx.restore()
   ctx.shadowBlur = 0
   ctx.shadowOffsetX = 0
@@ -19805,8 +19837,9 @@ function necker () {
   }
 }
 
-function justlines () { // grid paper
-  let canvas = document.getElementById("myCanvas");
+function justlines (canvas) { // grid paper
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let W = canvas.width, H = canvas.height
   let color = document.getElementById("paintcolor").value
@@ -20953,9 +20986,10 @@ Any intermediate point (px_t, py_t) will be given by the following (vary t from 
 px_t = (B0_t * ax) + (B1_t * bx) + (B2_t * cx) + (B3_t * dx)
 py_t = (B0_t * ay) + (B1_t * by) + (B2_t * cy) + (B3_t * dy)
 */
-function bez_pts (ax,ay, bx,by, cx,cy, dx, dy) { // b and c are control points, a = start, d = end
+function bez_pts (ax,ay, bx,by, cx,cy, dx, dy, ctx) { // b and c are control points, a = start, d = end
   let canvas = document.getElementById("myCanvas");
-  let ctx = canvas.getContext("2d");
+  if (!ctx)
+    ctx = canvas.getContext("2d");
   let fs = 7 + document.getElementById("featuresize").value/10
   let lw = fs/45
   let t = 0, a = 1.1*Math.PI + pet(1)/4
@@ -20975,8 +21009,9 @@ function bez_pts (ax,ay, bx,by, cx,cy, dx, dy) { // b and c are control points, 
   }
 }
 
-function script () {
-  let canvas = document.getElementById("myCanvas");
+function script (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let fs = 7 + document.getElementById("featuresize").value/5
   let D = 1 + document.getElementById("number").value/4000
@@ -21009,7 +21044,7 @@ function script () {
     if (Math.random() < 0.23) {
       cy1 -= 2*fs
     }
-    bez_pts (x,y,cx1+pet(D*fs),cy1+pet(D*fs),cx2+pet(D*fs),cy2+pet(D*fs), x+bump, y)    
+    bez_pts (x,y,cx1+pet(D*fs),cy1+pet(D*fs),cx2+pet(D*fs),cy2+pet(D*fs), x+bump, y,ctx)    
     // occasional dot or cross
     if (Math.random() < 0.08) {
       x2 = x + pet(fs/3)
@@ -21018,7 +21053,7 @@ function script () {
       cy1 = y2 - fs/5 +pet(fs/4)
       cx2 = x2 + fs/4 + pet(fs)
       cy2 = y2 - fs/5 + pet(fs/4)
-      bez_pts (x2,y2,cx1,cy1,cx2,cy2, x2+pet(fs/2), y2 += pet(fs/2))
+      bez_pts (x2,y2,cx1,cy1,cx2,cy2, x2+pet(fs/2), y2 += pet(fs/2),ctx)
     }
     if (alt)
       ctx.lineWidth = Math.floor(1 + fs/20) + pet(1)
@@ -29761,8 +29796,8 @@ function smudgestars () {
   smudge ('stars')
 }
 
-function smudgestreaks () {
-  smudge ('streaks')
+function smudgestreaks (canvas) {
+  smudge ('streaks', canvas)
 }
 function smudgestreaks2 (canvas) {
   smudge ('streaks2', canvas)
@@ -31763,11 +31798,12 @@ function placeRectAt () { // word-shaped rect
   ctx.shadowOffsetY = 0
 }
 
-function placeTextAt (t) {
+function placeTextAt (t,canvas) {
   let text = document.getElementById("points").value
   if (t)
     text = t
-  let canvas = document.getElementById("myCanvas");
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   W = canvas.width
   ctx.globalAlpha = (document.getElementById("opacity").value)/100
