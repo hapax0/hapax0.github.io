@@ -5576,90 +5576,11 @@ function ellipse1 (ctx, x, y, rx, ry, rot) {
   ctx.bezierCurveTo(cp3_x, cp3_y, cp4_x, cp4_y, p1_x, p1_y);
 }
 
-function blockish () {
-  let canvas = document.getElementById("myCanvas");
-  let ctx = canvas.getContext("2d")
-  ctx.globalAlpha = document.getElementById("opacity").value/100
-  let color = document.getElementById("paintcolor").value
-  ctx.fillStyle = document.getElementById("paintcolor").value
-  let i = 0, x = Math.random() *canvas.width, y = Math.random() *canvas.height
-  let w = canvas.width/(2+Math.random()*10)
-  let h = w / 2
-  for (; i < 7; i++) {
-    w = canvas.width/(2+Math.random()*10)
-    h = w / 3
-    x = Math.random() *canvas.width - w/2, y = Math.random() *canvas.height - h/2
-    ctx.beginPath()
-    ctx.moveTo(x+pet(120), y+pet(120))
-
-    ctx.lineTo(x+w+pet(120), y+pet(120))
-    ctx.lineTo(x+w+pet(120), y+h+pet(120))
-    ctx.lineTo(x+pet(120), y+h+pet(120))
-
-    ctx.closePath()
-    ctx.fillStyle - petColor(color, 60)
-    ctx.fill()
-  }
-}
-
-function paperish () {
-  let canvas = document.getElementById("myCanvas");
-  let ctx = canvas.getContext("2d")
-  ctx.globalAlpha = document.getElementById("opacity").value/100
-  let a0 = document.getElementById("opacity").value
-  let n0 = document.getElementById("number").value
-  let color0 = document.getElementById("paintcolor").value
-  let mode = ctx.globalCompositeOperation
-  let size0 = document.getElementById("featuresize").value
-  let shapes = ["hrips", "land", "diagonal"]
-  let i = 0
-  let nf = 1
-  let j = 0
-  ctx.save()
- // clearOff()
-  for (; j < 3; j++) {
-    i = 0
-    ctx.globalCompositeOperation = "source-over"
-    for (; i < nf; i++) {
-      document.getElementById("paintcolor").value = petColor(color0, 90)
-      let f = randomPick(shapes)
-      document.getElementById("opacity").value = 30 + Math.random() + 25
-      window[f]()
-      if (Math.random() > 0.5)
-        flipV()
-      if (Math.random() > 0.5)
-        flipH()
-    }
-    functions = ["smudge", "smudge", "smudge"]
-    let args = [ "streaks", "streaks2", "arcs", "arcs2", "stars", "horizontal"]
-    ctx.globalCompositeOperation = "destination-out"
-    i = 0
-    nf = 1
-    for (; i < nf; i++) {
-      //randomPickColor()
-      document.getElementById("paintcolor").value = petColor(color0, 60)
-      let f = randomPick(functions)
-      let a = ''
-      if (f == "smudge")
-        a = randomPick(args)
-      document.getElementById("number").value = 10000 + Math.random() * 10000
-      document.getElementById("featuresize").value = 250 + Math.random() * 200
-      document.getElementById("opacity").value = 50 + Math.random() + 50
-      window[f](a)
-    }
-  }
-  ctx.restore()
-  document.getElementById("opacity").value = a0
-  ctx.globalCompositeOperation = mode
-  document.getElementById("featuresize").value = size0
-  document.getElementById("number").value = n0
-}
-
 function dotted (canvas, source, jaggy, dir) {
   if (!canvas)
     canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
-  let grunge = document.getElementById("grungy").checked
+  let grunge = document.getElementById("grungy").checke
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let ch = canvas.height, cw = canvas.width
   let dir2 = dir + Math.PI/2
@@ -5794,7 +5715,6 @@ function dottedhalo (canvas, source, jaggy, dir) {
   ctx.restore()
   refreshMode()
 }
-
 
 function qBlur () {
   let canvas = document.getElementById("myCanvas")
@@ -19045,18 +18965,19 @@ function formDec (canvas) {
 
 function paperize (canvas) {
   let ctx = canvas.getContext("2d")
-  ctx.fillStyle = "#ffffff"
+  let color = document.getElementById("paintcolor").value
   let fs = document.getElementById("featuresize").value
   let alt = document.getElementById("grungy").checked
   checkAlt(false)
-  setFeaturesize (190)
+  setFeaturesize (Math.floor(75+Math.random()*75))
+  setPaintColor("#ffffff")
   smudgestreaks2(canvas)
-  ctx.fillStyle = "#808080"
-  setFeaturesize (50)
+  setPaintColor("#333333")
+  setFeaturesize (Math.floor(75+Math.random()*75))
   smudgestreaks2(canvas)
   setFeaturesize(fs)
   checkAlt(alt)
-  
+  setPaintColor(color)
 }
 
 function scripto (canvas) {
@@ -19091,8 +19012,9 @@ function hstripes_sml (canvas) {
 function multiScraps () {
   let canvas = document.getElementById("myCanvas")
   let W = canvas.width, H = canvas.height
-  let functions = shuffle(["typo", "scripto", "pageOfBook", "formDec", "form2", "justlines",
-  "hstripes_sml", "crosswordPad", "gridLinear", "moleText", "index"])
+  let functions = shuffle(["typo", "scripto", "pageOfBook", "formDec", 
+  "form2", "gridpaper",
+  "hstripes_sml", "crosswordPad", "gridLog", "moleText", "index"])
   let N = 7, i = 0
   for (; i < N; i++) {
     tapeText(functions[i])
@@ -19114,7 +19036,8 @@ function tapeText (f) {
   if (Math.random() > 0.5)
     rc(oc)
   let D = 80+Math.floor(document.getElementById("featuresize").value)
-  let DH = D/1.618
+  let mults = [0.8, 0.9, 1.1, 1.3, 0.4, 1.7]
+  let DH = D*randomPick(mults)
   // vary length, but not width
   D -= Math.random()*(D/2)
   ctx.globalAlpha = document.getElementById("opacity").value/100
@@ -19161,18 +19084,18 @@ function tapeText (f) {
   ye = cy-D-pet(D*0.8)
   ragged(ctx,x0,y0,x,y,25)
   if (alt) {
-    ctx.shadowBlur = 3
-    ctx.shadowColor = "#666666"
+    ctx.shadowBlur = 3 + Math.random() * 4
+    ctx.shadowColor = "#444444"
     ctx.shadowOffsetX = 3
     ctx.shadowOffsetY  = 3
   }
   ctx.fill()// for shadow
-  ctx.clip()
-  ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
-  ctx.restore()
   ctx.shadowBlur = 0
   ctx.shadowOffsetX = 0
   ctx.shadowOffsetY  = 0
+  ctx.clip()
+  ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
 }
 
 function tape () {
@@ -19908,8 +19831,9 @@ function rr () {
   }
 }
 
-function gridpaper () { // grid paper
-  let canvas = document.getElementById("myCanvas");
+function gridpaper (canvas) { // grid paper
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let W = canvas.width, H = canvas.height
   let color = document.getElementById("paintcolor").value
@@ -19953,7 +19877,6 @@ function gridpaper () { // grid paper
     numbers.push(i+1)
   let h = 2+Math.floor(Math.random() * 33), w = 2+Math.floor(Math.random() * 33)
   let text  = 0
-  
   let cols = ((W - pad*2)/w)
   let lines = ((H - pad*2)/h)
   i = 0
@@ -19961,10 +19884,9 @@ function gridpaper () { // grid paper
   y = pad
   let r = Math.min(cols,lines)/12
   let n = 0
-  
   let face = "Courier"
   ctx.font = "800 "+(r*3)+"pt " + face
-  let numb = Math.random() > 0.5
+  let numb = Math.random() > 0.17
   let width = r*2
   for (; j < h+1; j++) {
     i = 0
@@ -20824,8 +20746,9 @@ function gridLinear (canvas) {
   document.getElementById("paintcolor").value = color
 }
 
-function gridLog () {
-  let canvas = document.getElementById("myCanvas");
+function gridLog (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 //+ document.getElementById("featuresize").value/10
   let color = document.getElementById("paintcolor").value
