@@ -629,13 +629,13 @@
           <select id="palettechoice" onchange="loadPalette(true)">
             <option value="halfway">ramp 1 to 5</option>
             <option value="ramp">mixed ramp</option>
+            <option value="by 30">rotate in place</option>
+            <option value="quadrnd">round</option>
             <option value="light">light</option>
             <option value="dark">dark</option>
             <option value="quad">tetradic 90</option>
-            <option value="quadrnd">tetradic rnd</option>
             <option value="complementary">complementary</option>
             <option value="by 72">pentadic</option>
-            <option value="by 30">anagolous</option>
             <option value="by 60">by 60</option>
             <option value="mono">mono up</option>
             <option value="monodown">mono down</option>
@@ -1161,15 +1161,21 @@ function loadPalette (PUSH) {
   } else
   if (type === "quadrnd") {
     let c1 = document.getElementById("pal1").value
-    let a1 = 20 + Math.random() *50
+    let a1 = 30 + Math.random() *70
     let a2 = (360 - 2*a1)/2
+    a1 = 30 + Math.random() *70
     let c2 = colorAngle(c1,a1)
+    a1 = 30 + Math.random() *70
     let c3 = colorAngle(c2,a2)
+    a1 = 30 + Math.random() *70
     let c4 = colorAngle(c3,a1)
+    a1 = 30 + Math.random() *70
+    let c5 = colorAngle(c4,a1)
     document.getElementById("pal2").value = c2
     document.getElementById("pal3").value = c3
     document.getElementById("pal4").value = c4
-    document.getElementById("pal5").value = "#ffffff"
+    document.getElementById("pal5").value = c5
+    
     updateExtraColors(b)
     return
   } else
@@ -1226,10 +1232,16 @@ function loadPalette (PUSH) {
   } else
   if (type === "by 30") {
     let c1 = document.getElementById("pal1").value
-    let c2 = colorAngle(c1,30)
-    let c3 = colorAngle(c2,30)
-    let c4 = colorAngle(c3,30)
-    let c5 = colorAngle(c4,30)
+    let c2 = document.getElementById("pal2").value
+    let c3 = document.getElementById("pal3").value
+    let c4 = document.getElementById("pal4").value
+    let c5 = document.getElementById("pal5").value
+    c1 = colorAngle(c1,15)
+    c2 = colorAngle(c2,15)
+    c3 = colorAngle(c3,15)
+    c4 = colorAngle(c4,15)
+    c5 = colorAngle(c5,15)
+    document.getElementById("pal1").value = c1
     document.getElementById("pal2").value = c2
     document.getElementById("pal3").value = c3
     document.getElementById("pal4").value = c4
@@ -1238,13 +1250,40 @@ function loadPalette (PUSH) {
     return
   }else
   if (type === "ramp") {
+    // darken lighten
+    let c1 = randomColor()//
+    document.getElementById("pal1").value = c1
+    
+    let a1 = 30 + Math.random() *70
+    let a2 = (360 - 2*a1)/2
+    a1 = 30 + Math.random() *70
+    let c2 = colorAngle(c1,a1)
+    a1 = 30 + Math.random() *70
+    let c3 = colorAngle(c2,a2)
+    a1 = 30 + Math.random() *70
+    let c4 = colorAngle(c3,a1)
+    a1 = 30 + Math.random() *70
+    let c5 = colorAngle(c4,a1)
+    let amt = Math.floor((Math.random() -0.5) * 2 *Math.random()*50)
+    document.getElementById("pal2").value = adjustBrightnessC(c2, amt*3)
+    amt = Math.floor((Math.random() -0.5) * 2 *Math.random()*50)
+    document.getElementById("pal3").value = adjustBrightnessC(c3, amt*3)
+    amt = Math.floor((Math.random() -0.5) * 2 *Math.random()*50)
+    document.getElementById("pal4").value = adjustBrightnessC(c4, amt*3)
+    amt = Math.floor((Math.random() -0.5) * 2 *Math.random()*50)
+    document.getElementById("pal5").value = adjustBrightnessC(c5, amt*3)
+    
+    
+    updateExtraColors(b)
+    return
+    /*
     document.getElementById("pal1").value = randomColorVDark() //darkest
     document.getElementById("pal2").value = randomColorDark()
     document.getElementById("pal3").value = randomColorLight()
     document.getElementById("pal4").value = randomColorLight()
     document.getElementById("pal5").value = randomColorVLight() //lightest
     updateExtraColors(b)
-    return
+    return*/
   } else
   if (type === "light") {
     document.getElementById("pal1").value = randomColorLight() //darkest
