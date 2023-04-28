@@ -629,8 +629,11 @@
           <select id="palettechoice" onchange="loadPalette(true)">
             <option value="halfway">ramp 1 to 5</option>
             <option value="ramp">mixed ramp</option>
-            <option value="by 30">rotate in place</option>
+            <option value="by 30">rotate all</option>
             <option value="quadrnd">round</option>
+            <option value="lighten">lighten</option>
+            <option value="darken">darken</option>
+
             <option value="light">light</option>
             <option value="dark">dark</option>
             <option value="quad">tetradic 90</option>
@@ -1312,8 +1315,28 @@ function loadPalette (PUSH) {
     updateExtraColors(b)
     return
   } else
+  if (type === "lighten") {
+    let n = 0, c, k, amt
+    for (; n < 5; n++) {
+      c = document.getElementById("pal"+(1+n)).value
+      k = Math.floor(brightnessOfColor(c)/10)
+      document.getElementById("pal"+(1+n)).value = adjustBrightnessC(c, k)
+    }
+    updateExtraColors(b)
+    return
+  } else
+  if (type === "darken") {
+    let n = 0, c, k, amt
+    for (; n < 5; n++) {
+      c = document.getElementById("pal"+(1+n)).value
+      k = Math.floor(brightnessOfColor(c)/10)
+      document.getElementById("pal"+(1+n)).value = adjustBrightnessC(c, -k)
+    }
+    updateExtraColors(b)
+    return
+  } else
   if (type === "monodown") {
-    let c = document.getElementById("pal1").value//randomColorVDark(),
+    let c = document.getElementById("pal1").value
     let k = Math.floor(brightnessOfColor(c)/5)
     let amt = -k
     document.getElementById("pal1").value = c
@@ -8826,7 +8849,7 @@ function everythingArray () {
   let ctx = canvas.getContext("2d")
   let W = canvas.width, H = canvas.height
   let N = randomPick([7,9,11,13])
-  let functions = shuffle(["refractionAt", "firebirdAt", "mothAt",  "spiralAt", "gunAt", "elephantAt", "coreAt", "orbitAt", "lensAt", "pythagAt", "floppyAt", "spiderAt", "shoesAt", "mushroomAt", "catAt", "birbAt", 
+  let functions = shuffle(["sardinesAt", "refractionAt", "firebirdAt", "mothAt",  "spiralAt", "gunAt", "elephantAt", "coreAt", "orbitAt", "lensAt", "pythagAt", "floppyAt", "spiderAt", "shoesAt", "mushroomAt", "catAt", "birbAt", 
   "pantsAt", "tvAt", "drAt", "fishAt", "cactusAt", "umbrellaAt", "flameAt", 
   "appleAt", "bridgeAt", "bugAt", "mailboxAt", "rowhousesAt", "jumpropeAt", 
   "pointhouseAt", "breadAt", "flathouseAt", "flatchairAt", "birdhouseAt", "factoryAt", 
@@ -9230,7 +9253,7 @@ function aconst () {
   let W = canvas.width, H = canvas.height
   let colors = ["#f6c2d9","#fff69b","#bcdfc9","#a1c8e9","#e4dae2"]
   let linecolors = getCurrentPalette()
-  let functions = shuffle(["refractionAt", "firebirdAt", "spiralAt", "gunAt", "elephantAt", "coreAt", 
+  let functions = shuffle(["sardinesAt", "refractionAt", "firebirdAt", "spiralAt", "gunAt", "elephantAt", "coreAt", 
   "orbitAt", "lensAt", "pythagAt", "user2At", "mothAt", 
   "floppyAt", "spiderAt", "factoryAt", "shoesAt", "umbrellaAt", "flathouseAt", 
   "slideAt", "tvAt", "cactusAt", "flatchairAt", "skullAt", 
@@ -9314,7 +9337,7 @@ function natal () {
   let W = canvas.width, H = canvas.height
   let colors = ["#f6c2d9","#fff69b","#bcdfc9","#a1c8e9","#e4dae2"]
   let linecolors = getCurrentPalette()
-  let functions = shuffle(["refractionAt","mothAt", "firebirdAt", "spiralAt", "gunAt", "elephantAt", "coreAt", "orbitAt", "lensAt", "pythagAt", 
+  let functions = shuffle(["sardinesAt", "refractionAt","mothAt", "firebirdAt", "spiralAt", "gunAt", "elephantAt", "coreAt", "orbitAt", "lensAt", "pythagAt", 
   "floppyAt", "spiderAt", "factoryAt", "shoesAt", "umbrellaAt", "flathouseAt", 
   "slideAt", "tvAt", "cactusAt", "flatchairAt", "skullAt", 
   "bugAt", "stairsAt", "birdhouseAt"])
@@ -9421,7 +9444,7 @@ function crazywall () {
   let W = canvas.width, H = canvas.height
   let colors = ["#f6c2d9","#fff69b","#bcdfc9","#a1c8e9","#e4dae2"]
   let linecolors = getCurrentPalette()
-  let functions = shuffle(["refractionAt", "mothAt", "firebirdAt", "spiralAt", "gunAt", "elephantAt", "coreAt", "orbitAt", "lensAt", "pythagAt", "floppyAt", "spiderAt", "shoesAt", "mushroomAt", "catAt", "birbAt",
+  let functions = shuffle(["sardinesAt", "refractionAt", "mothAt", "firebirdAt", "spiralAt", "gunAt", "elephantAt", "coreAt", "orbitAt", "lensAt", "pythagAt", "floppyAt", "spiderAt", "shoesAt", "mushroomAt", "catAt", "birbAt",
    "pantsAt", "tvAt", "drAt", "fishAt", "cactusAt", "umbrellaAt", "flameAt",
     "appleAt", "bridgeAt", "bugAt", "mailboxAt", "jumpropeAt", "pointhouseAt", "breadAt", 
     "flathouseAt", "flatchairAt", "birdhouseAt", "factoryAt", "dashedAt", "phaseAt", 
@@ -13213,7 +13236,7 @@ function everythingSymb () {
   let N = randomPick([2,3,4])
   if (document.getElementById("grungy").checked)
     N = 1
-  let functions = shuffle(["refractionAt", "mothAt", "firebirdAt", "spiralAt", "gunAt", "elephantAt", "coreAt", "orbitAt", "lensAt", "pythagAt", "floppyAt", "spiderAt", "shoesAt", 
+  let functions = shuffle(["sardinesAt", "refractionAt", "mothAt", "firebirdAt", "spiralAt", "gunAt", "elephantAt", "coreAt", "orbitAt", "lensAt", "pythagAt", "floppyAt", "spiderAt", "shoesAt", 
   "mushroomAt", "catAt", "birbAt", "pantsAt", "tvAt", "drAt", "fishAt", "cactusAt", "umbrellaAt", "flameAt", 
   "appleAt", "bridgeAt", "bugAt", "mailboxAt", "rowhousesAt", "jumpropeAt", 
   "pointhouseAt", "breadAt", "flathouseAt", "flatchairAt", "birdhouseAt", "factoryAt", 
@@ -19066,7 +19089,7 @@ function tapeText (f) {
   let oc = document.createElement('canvas')
   let occtx = oc.getContext("2d");
   oc.height = canvas.height, oc.width = canvas.width
-  let colors = shuffle(getCurrentPalette())
+  let colors = shuffle(getCurrentPalette(true,13))
   occtx.fillStyle = randomPick(colors)
   occtx.fillRect(0,0, canvas.width, canvas.height)
   window[f](oc)
