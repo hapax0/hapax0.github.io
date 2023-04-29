@@ -218,10 +218,11 @@ function showPoints () {
   let H = W, cpx, cpy, points = []\n\
   ctx.lineWidth = 1 + document.getElementById(\"featuresize\").value/50\n\
   ctx.strokeStyle = color\n\
-  ctx.lineCap = \"square\"\n\n"
+  ctx.lineCap = \"square\"\n\
+  ctx.lineJoin = \"bevel\"\n\n"
   document.getElementById("text1").value = header
   document.getElementById("text1").value += code.join("\n")
-  document.getElementById("text1").value += "\n\n  drawStars(x,y,W,points)\n}  "
+  document.getElementById("text1").value += "\n\n  ctx.setLineDash([])\n\n  drawStars(x,y,W,points)\n}  "
 }
 
 function getMousePos(canvas, evt) {
