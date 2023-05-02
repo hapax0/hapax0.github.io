@@ -66,7 +66,6 @@
   <div id="text" style="display: inline-block;vertical-align: top;padding:20px;">
   <textarea id="text1" name="text1" rows="24" cols="32" wrap="soft"></textarea>
   <br>
-  &nbsp;<input type="checkbox" id="points" onclick="updatePush()"><label for="points"> push 'points'</label>
 
   </div>
 </div>
@@ -76,10 +75,7 @@ window.onload = function () {
   document.getElementById("gridsize").addEventListener("change", updateGrid, true)
   updateGrid()
 }
-let PUSH = document.getElementById("points").checked
-function updatePush () {
-  PUSH = document.getElementById("points").checked
-}
+
 function updateGrid () {
   let gs = document.getElementById("gridsize").value
   gridsize = gs, cellsize = W/gridsize
@@ -118,7 +114,11 @@ function clearAll () {
 function closePath () {
   if (i === 0)
     return
-  code.push("  ctx.fillStyle = randomPick(colors)\n  ctx.fill()")
+  //code.push("  ctx.fillStyle = randomPick(colors)\n")
+  
+  code.push("  ctx.clip()")
+  code.push("  ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)")
+  code.push("  ctx.restore()")
   //code.push("  ctx.stroke()")
   ctx.setLineDash([])
   ctx.globalAlpha = 1
@@ -142,10 +142,10 @@ canvas.addEventListener('mousedown', function(evt) {
   
   ctx.fillStyle = '#000000'
   if (i === 0) {
+    code.push("  fillOC(oc, occtx)")
+    code.push("  ctx.save()")
     code.push("  ctx.beginPath()")
     code.push("  ctx.moveTo(x+"+Math.round(mousePos.x/cellsize)+"*W/"+gridsize+", y+"+Math.round(mousePos.y/cellsize)+"*H/"+gridsize+")")
-    if (PUSH)
-      code.push("  points.push(x+"+Math.round(mousePos.x/cellsize)+"*W/"+gridsize+", y+"+Math.round(mousePos.y/cellsize)+"*H/"+gridsize+")")
     ctx.lineWidth = 4
     ctx.beginPath()
     lastx = Math.round(mousePos.x/cellsize)*W/gridsize
@@ -155,8 +155,6 @@ canvas.addEventListener('mousedown', function(evt) {
   } else {
     if (!mode) {
       code.push("  ctx.lineTo(x+"+Math.round(mousePos.x/cellsize)+"*W/"+gridsize+", y+"+Math.round(mousePos.y/cellsize)+"*H/"+gridsize+")")
-      if (PUSH)
-      code.push("  points.push(x+"+Math.round(mousePos.x/cellsize)+"*W/"+gridsize+", y+"+Math.round(mousePos.y/cellsize)+"*H/"+gridsize+")")
       ctx.lineTo(Math.round(mousePos.x/cellsize)*W/gridsize, Math.round(mousePos.y/cellsize)*W/gridsize)
       lastx = Math.round(mousePos.x/cellsize)*W/gridsize
       lasty = Math.round(mousePos.y/cellsize)*W/gridsize
@@ -193,8 +191,6 @@ canvas.addEventListener('mousedown', function(evt) {
         //ctx.fillRect(Math.round(mousePos.x/cellsize)*W/gridsize-5, Math.round(mousePos.y/cellsize)*W/gridsize-5, 10, 10)
       } else {
         code.push("  ctx.quadraticCurveTo(cpx, cpy, x+"+Math.round(mousePos.x/cellsize)+"*W/"+gridsize+", y+"+Math.round(mousePos.y/cellsize)+"*H/"+gridsize+")")
-        if (PUSH)
-          code.push("  points.push(x+"+Math.round(mousePos.x/cellsize)+"*W/"+gridsize+", y+"+Math.round(mousePos.y/cellsize)+"*H/"+gridsize+")")
         ctx.quadraticCurveTo(cpx, cpy, Math.round(mousePos.x/cellsize)*W/gridsize, Math.round(mousePos.y/cellsize)*W/gridsize)
         ctx.strokeStyle = "#ff4444"
         ctx.lineWidth = 4
@@ -224,15 +220,18 @@ function showPoints () {
   let header = "function ____At (x,y,W,color) {\n\
   let canvas = document.getElementById(\"myCanvas\")\n\
   let ctx = canvas.getContext(\"2d\")\n\
-  let H = W, cpx, cpy, points = []\n\
+  let oc = document.createElement('canvas')\n\
+  let occtx = oc.getContext(\"2d\")\n\
+  oc.height = canvas.height, oc.width = canvas.width\n\
   let colors = shuffle(getCurrentPalette(true,13))\n\
+  let H = W, cpx, cpy, points = []\n\
   ctx.lineWidth = 1 + document.getElementById(\"featuresize\").value/50\n\
   ctx.strokeStyle = color\n\
   ctx.lineCap = \"square\"\n\
   ctx.lineJoin = \"bevel\"\n\n"
   document.getElementById("text1").value = header
   document.getElementById("text1").value += code.join("\n")
-  document.getElementById("text1").value += "\n\n  ctx.setLineDash([])\n  drawStars(x,y,W,points)\n}  "
+  document.getElementById("text1").value += "\n}  "
 }
 
 function getMousePos(canvas, evt) {
