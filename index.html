@@ -8849,13 +8849,13 @@ function everythingArray () {
   let ctx = canvas.getContext("2d")
   let W = canvas.width, H = canvas.height
   let N = randomPick([7,9,11,13])
-  let functions = shuffle(["gunAt", "skullAt", "prayerAt"])/*(["origamiAt", "airplaneAt", "envelopeAt", "sardinesAt", "refractionAt", "firebirdAt", "mothAt",  "spiralAt", "gunAt", "elephantAt", "coreAt", "orbitAt", "lensAt", "pythagAt", "floppyAt", "spiderAt", "shoesAt", "mushroomAt", "catAt", "birbAt", 
+  let functions = shuffle(["gunAt", "skullAt", "prayerAt", "origamiAt", "airplaneAt", "envelopeAt", "sardinesAt", "refractionAt", "firebirdAt", "mothAt",  "spiralAt", "gunAt", "elephantAt", "coreAt", "orbitAt", "lensAt", "pythagAt", "floppyAt", "spiderAt", "shoesAt", "mushroomAt", "catAt", "birbAt", 
   "pantsAt", "tvAt", "drAt", "fishAt", "cactusAt", "umbrellaAt", "flameAt", 
   "appleAt", "bridgeAt", "bugAt", "mailboxAt", "rowhousesAt", "jumpropeAt", 
   "pointhouseAt", "breadAt", "flathouseAt", "flatchairAt", "birdhouseAt", "factoryAt", 
   "dashedAt", "phaseAt", "leafAt", "allAt", "thenAt", "existAt", "tildeAt", "userAt", 
   "heartAt", "glassAt", "prayerAt", "thoughtAt", "skullAt", "lampAt", "chairAt", 
-  "stairsAt", "treeAt", "slideAt", "ladderAt", "swingAt"])  */
+  "stairsAt", "treeAt", "slideAt", "ladderAt", "swingAt"])  
   let pad = 50
   let delta = Math.round(W/N) - pad*1
   let colors = getCurrentPalette()
@@ -16325,6 +16325,230 @@ function dashedAt (x,y,W,color) { // phase
   ctx.setLineDash([])
 }
 
+function core3At (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let oc = document.createElement('canvas')
+  let occtx = oc.getContext("2d")
+  oc.height = canvas.height, oc.width = canvas.width
+  let colors = shuffle(getCurrentPalette(true,13))
+  let H = W, cpx, cpy, points = []
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  ctx.strokeStyle = color
+  ctx.lineCap = "square"
+  ctx.lineJoin = "bevel"
+
+  fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+0*W/12, y+6*H/12)
+  ctx.lineTo(x+12*W/12, y+6*H/12)
+  ctx.lineTo(x+12*W/12, y+0*H/12)
+  ctx.lineTo(x+0*W/12, y+0*H/12)
+  ctx.lineTo(x+0*W/12, y+6*H/12)
+  ctx.clip()
+  ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+0*W/12, y+6*H/12)
+  ctx.lineTo(x+0*W/12, y+12*H/12)
+  ctx.lineTo(x+12*W/12, y+12*H/12)
+  ctx.lineTo(x+12*W/12, y+6*H/12)
+  ctx.lineTo(x+0*W/12, y+6*H/12)
+  ctx.clip()
+  ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+4*W/12, y+6*H/12)
+  cpx = x+4*W/12
+  cpy = y+4*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+4*H/12)
+  ctx.lineTo(x+6*W/12, y+8*H/12)
+  cpx = x+4*W/12
+  cpy = y+8*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+4*W/12, y+6*H/12)
+  ctx.clip()
+  ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/12, y+4*H/12)
+  cpx = x+8*W/12
+  cpy = y+4*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+8*W/12, y+6*H/12)
+  cpx = x+8*W/12
+  cpy = y+8*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+8*H/12)
+  ctx.lineTo(x+6*W/12, y+4*H/12)
+  cpx = x+2*W/12
+  cpy = y+6*H/12
+  ctx.clip()
+  ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/12, y+6*H/12)
+  cpx = x+2*W/12
+  cpy = y+2*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+2*H/12)
+  ctx.lineTo(x+6*W/12, y+4*H/12)
+  cpx = x+4*W/12
+  cpy = y+4*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+4*W/12, y+6*H/12)
+  ctx.lineTo(x+2*W/12, y+6*H/12)
+  ctx.clip()
+  ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/12, y+8*H/12)
+  cpx = x+6*W/12
+  cpy = y+10*H/12
+  ctx.clip()
+  ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/12, y+10*H/12)
+  cpx = x+10*W/12
+  cpy = y+10*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+10*W/12, y+6*H/12)
+  ctx.lineTo(x+8*W/12, y+6*H/12)
+  cpx = x+8*W/12
+  cpy = y+8*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+8*H/12)
+  ctx.lineTo(x+6*W/12, y+10*H/12)
+  ctx.clip()
+  ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/12, y+6*H/12)
+  cpx = x+2*W/12
+  cpy = y+10*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+10*H/12)
+  ctx.lineTo(x+6*W/12, y+12*H/12)
+  cpx = x+0*W/12
+  cpy = y+12*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+0*W/12, y+6*H/12)
+  ctx.lineTo(x+2*W/12, y+6*H/12)
+  ctx.clip()
+  ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+12*W/12, y+6*H/12)
+  cpx = x+12*W/12
+  cpy = y+0*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+0*H/12)
+  ctx.lineTo(x+6*W/12, y+2*H/12)
+  cpx = x+10*W/12
+  cpy = y+2*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+10*W/12, y+6*H/12)
+  ctx.lineTo(x+12*W/12, y+6*H/12)
+  ctx.clip()
+  ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+}  
+
+function core2At (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let oc = document.createElement('canvas')
+  let occtx = oc.getContext("2d")
+  oc.height = canvas.height, oc.width = canvas.width
+  let colors = shuffle(getCurrentPalette(true,13))
+  let H = W, cpx, cpy, points = []
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  ctx.strokeStyle = color
+  ctx.lineCap = "square"
+  ctx.lineJoin = "bevel"
+
+  fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+0*W/12, y+0*H/12)
+  ctx.lineTo(x+12*W/12, y+0*H/12)
+  ctx.lineTo(x+12*W/12, y+12*H/12)
+  ctx.lineTo(x+0*W/12, y+12*H/12)
+  ctx.lineTo(x+0*W/12, y+1*H/12)
+  ctx.lineTo(x+0*W/12, y+0*H/12)
+  ctx.clip()
+  ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+1*W/12, y+6*H/12)
+  cpx = x+1*W/12
+  cpy = y+1*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+1*H/12)
+  ctx.lineTo(x+6*W/12, y+3*H/12)
+  cpx = x+3*W/12
+  cpy = y+3*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+3*W/12, y+6*H/12)
+  cpx = x+3*W/12
+  cpy = y+9*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+9*H/12)
+  ctx.lineTo(x+6*W/12, y+11*H/12)
+  cpx = x+1*W/12
+  cpy = y+11*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+1*W/12, y+6*H/12)
+  ctx.clip()
+  ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/12, y+1*H/12)
+  cpx = x+11*W/12
+  cpy = y+1*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+11*W/12, y+6*H/12)
+  cpx = x+11*W/12
+  cpy = y+11*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+11*H/12)
+  ctx.lineTo(x+6*W/12, y+9*H/12)
+  cpx = x+9*W/12
+  cpy = y+9*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+9*W/12, y+6*H/12)
+  cpx = x+9*W/12
+  cpy = y+3*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+3*H/12)
+  ctx.lineTo(x+6*W/12, y+1*H/12)
+  ctx.clip()
+  ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+3*W/12, y+6*H/12)
+  cpx = x+3*W/12
+  cpy = y+3*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+3*H/12)
+  cpx = x+9*W/12
+  cpy = y+3*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+9*W/12, y+6*H/12)
+  cpx = x+9*W/12
+  cpy = y+9*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+9*H/12)
+  cpx = x+3*W/12
+  cpy = y+9*H/12
+  ctx.quadraticCurveTo(cpx, cpy, x+3*W/12, y+6*H/12)
+  ctx.clip()
+  ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+}  
+
 function gunAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -21823,7 +22047,7 @@ function multiScraps () {
   let canvas = document.getElementById("myCanvas")
   let W = canvas.width, H = canvas.height
   let functions = shuffle(["typo", "scripto", "pageOfBook", "formDec", 
-  "form2", "gridpaper",
+  "form2", "gridpaper", "snow", 
   "hstripes_sml", "crosswordPad", "gridLog", "moleText", "index"])
   let N = 7, i = 0
   for (; i < N; i++) {
@@ -21835,7 +22059,7 @@ function fillOC (oc, occtx) { // ...with a paper pattern
   let colors = shuffle(getCurrentPalette(true,13))
   occtx.fillStyle = randomPick(colors)
   occtx.fillRect(0,0, oc.width, oc.height)
-  let f = randomPick(["typo",/* "scripto",*/ "pageOfBook", "formDec", 
+  let f = randomPick(["typo", "pageOfBook", "formDec", 
   "form2", "gridpaper",
   "hstripes_sml", "crosswordPad", "gridLog", "moleText", "index"])
   window[f](oc)
@@ -21845,80 +22069,6 @@ function fillOC (oc, occtx) { // ...with a paper pattern
     rc(oc)
   if (Math.random() > 0.5)
     rotateRandom(oc)
-}
-
-function drawClipped () {
-  let canvas = document.getElementById("myCanvas")
-  let ctx = canvas.getContext("2d")
-  let oc = document.createElement('canvas')
-  let occtx = oc.getContext("2d")
-  oc.height = canvas.height, oc.width = canvas.width
-  let colors = shuffle(getCurrentPalette(true,13))
-  
-  ctx.globalAlpha = document.getElementById("opacity").value/100
-  let mode = document.getElementById("mode").value
-  let alpha = document.getElementById("opacity").value
-  ctx.fillStyle = randomPick(colors)
-  fillOC(oc, occtx)
-  ctx.save()
-  let x = 40, y = 40, W = 500, H=W, cpx, cpy
-  // draw shape here
-  ctx.beginPath()
-  ctx.moveTo(x+4*W/12, y+3*H/12)
-  cpx = x+3*W/12
-  cpy = y+3*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+1*W/12, y+4*H/12)
-  cpx = x+3*W/12
-  cpy = y+5*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+4*W/12, y+5*H/12)
-  ctx.lineTo(x+9*W/12, y+5*H/12)
-  cpx = x+10*W/12
-  cpy = y+4*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+11*W/12, y+5*H/12)
-  cpx = x+12*W/12
-  cpy = y+5*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+11*W/12, y+4*H/12)
-  cpx = x+12*W/12
-  cpy = y+3*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+11*W/12, y+3*H/12)
-  cpx = x+10*W/12
-  cpy = y+4*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+9*W/12, y+3*H/12)
-  ctx.lineTo(x+4*W/12, y+3*H/12)
- 
-  ctx.clip()
-  ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
-  ctx.restore()
-  
-  fillOC(oc, occtx)
-  ctx.save()
-  
-  // cannedat
-  ctx.beginPath()
-  ctx.moveTo(x+4*W/12, y+9*H/12)
-  cpx = x+3*W/12
-  cpy = y+9*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+1*W/12, y+10*H/12)
-  cpx = x+3*W/12
-  cpy = y+11*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+4*W/12, y+11*H/12)
-  ctx.lineTo(x+9*W/12, y+11*H/12)
-  cpx = x+10*W/12
-  cpy = y+10*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+11*W/12, y+11*H/12)
-  cpx = x+12*W/12
-  cpy = y+11*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+11*W/12, y+10*H/12)
-  cpx = x+12*W/12
-  cpy = y+9*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+11*W/12, y+9*H/12)
-  cpx = x+10*W/12
-  cpy = y+10*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+9*W/12, y+9*H/12)
-  ctx.lineTo(x+4*W/12, y+9*H/12)
-  ctx.clip()
-  ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
-  ctx.restore()
 }
 
 function tape () {
@@ -30904,7 +31054,6 @@ function afold (pad) {
   ctx.fillStyle = randomGradientRect(canvas, colors[1], x1, y1, x2, y2)// - Math.random() * canvas.width/3)
   ctx.fillRect(pad,canvas.height/2 - 140, canvas.width-pad*2, 140)
   
-  
   y1 = canvas.height/2, y2 = canvas.height/2+13+Math.random()*11
   ctx.fillStyle = randomGradientRect(canvas, "#202020", x1, y1, x2, y2)// - Math.random() * canvas.width/3)
   ctx.fillRect(pad,canvas.height/2, canvas.width-pad*2, 40+Math.random() *15)
@@ -30937,8 +31086,9 @@ function dfold () {
   ctx.globalAlpha = alpha/100
 }
 
-function snow () {
-  let canvas = document.getElementById("myCanvas");
+function snow (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let H = canvas.height;
   let W = canvas.width;
@@ -31006,7 +31156,7 @@ function rotateRandom (canvas) {
   ctx.globalAlpha = (document.getElementById("opacity").value)/100
   let alpha = document.getElementById("opacity").value
   ctx.fillStyle = document.getElementById("paintcolor").value
-  let angle = (Math.random()-0.5) * 33
+  let angle = (Math.random()-0.5) * 17
   angle *= Math.PI/180
   let x = w/2
   let y = h/2
