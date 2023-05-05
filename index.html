@@ -680,16 +680,22 @@
          <canvas id="palettecanvas" width="420" height="42"></canvas><br>
          <button  onclick="makePalette()">Remix</button>&nbsp;<button id="randompalette" onclick="loadPalette()">Load palette</button>&nbsp;<button onclick="extractPalette()">Extract</button>&nbsp;<button  onclick="rampContrast()" title="ramp contrast">/</button>&nbsp;<button  onclick="showHex()" title="show hex values">#</button>&nbsp;<button  onclick="rgbDistance()" title="show distance c1, c2">D</button>
     <input type='file' name='img' size='65' id='openextract' style="display:none;">
-    <button onclick="openFileExtract()" id="paletteloader" title="extract from file..."><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="white" viewBox="0 0 16 16">
+    <button><a onclick="openFileExtract()" id="paletteloader" title="extract from file..."><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="white" viewBox="0 0 16 16">
     <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
     <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
-    </svg></button>
+    </svg></a></button>
     <button>
     <a id="palettedownloader" onclick="savePaletteAs()" download="image.png" title="save palette as png file">
     
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="white" viewBox="0 0 16 16">
     <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
     <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+  </svg></a></button>
+  <button>
+    <a onclick="random13Palette()"  title="random palette">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="white" viewBox="0 0 16 16">
+    <path d="M13 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h10zM3 0a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V3a3 3 0 0 0-3-3H3z"/>
+    <path d="M5.5 4a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm8 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-8 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm4-4a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
   </svg></a></button>
   </div></td>
   <td rowspan="2">
@@ -1507,6 +1513,24 @@ function rampContrast () { // dark to light
   document.getElementById("pal4").value = shadeColor(document.getElementById("pal4").value, 5)
   document.getElementById("pal5").value = shadeColor(document.getElementById("pal5").value, 10)
   //updateExtraColors(b)
+}
+
+function random13Palette () {
+  let alpha = document.getElementById("opacity").value
+  swapWithOff()
+  let c = randomColorMedium()
+  document.getElementById("paintcolor").value = c
+  setOpacity(100)
+  fill()
+  setPalette("ramp")
+  setOpacity(70)
+  necker()
+  rc()
+  setOpacity(30)
+  necker()
+  extractPalette()
+  swapWithOff()
+  setOpacity(alpha)
 }
 
 function clearPoints () {
@@ -11955,6 +11979,232 @@ function cigsAt (x,y,W,color) {
   ctx.setLineDash([])
   drawStars(x,y,W,points)
 }  
+
+function ragtestAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let oc = document.createElement('canvas')
+  let occtx = oc.getContext("2d")
+  oc.height = canvas.height, oc.width = canvas.width
+  let colors = shuffle(getCurrentPalette(true,13))
+  let H = W, cpx, cpy, points = []
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  ctx.strokeStyle = color
+  ctx.lineCap = "square"
+  ctx.lineJoin = "bevel"
+
+  fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+3*W/10, y+8*H/10)
+  ragged(ctx, x+8*W/10, y+8*H/10, 3*W/10, 8*W/10)
+  ragged(ctx, x+8*W/10, y+1*H/10, 8*W/10, 8*W/10)
+  ctx.lineTo(x+3*W/10, y+1*H/10)
+  ctx.lineTo(x+3*W/10, y+8*H/10)
+  ctx.clip()
+  ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+}  
+
+function bowlAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let oc = document.createElement('canvas')
+  let occtx = oc.getContext("2d")
+  oc.height = canvas.height, oc.width = canvas.width
+  let colors = shuffle(getCurrentPalette(true,13))
+  let H = W, cpx, cpy, points = []
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  ctx.strokeStyle = color
+  ctx.lineCap = "square"
+  ctx.lineJoin = "bevel"
+
+  fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+0*W/14, y+0*H/14)
+  ragged(ctx, x+0*W/14, y+14*H/14, 0*W/14, 0*W/14)
+  ragged(ctx, x+14*W/14, y+14*H/14, 0*W/14, 14*W/14)
+  ragged(ctx, x+14*W/14, y+0*H/14, 14*W/14, 14*W/14)
+  ragged(ctx, x+0*W/14, y+0*H/14, 14*W/14, 0*W/14)
+  ctx.fill()
+  ctx.clip()
+  ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+1*W/14, y+0*H/14)
+  cpx = x+1*W/14
+  cpy = y+11*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+14*W/14, y+11*H/14)
+  ctx.fill()
+  ctx.clip()
+  ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+7*W/14, y+8*H/14)
+  cpx = x+4*W/14
+  cpy = y+8*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+3*W/14, y+5*H/14)
+  cpx = x+3*W/14
+  cpy = y+2*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+4*W/14, y+2*H/14)
+  cpx = x+8*W/14
+  cpy = y+2*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+8*W/14, y+4*H/14)
+  cpx = x+7*W/14
+  cpy = y+6*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+8*W/14, y+7*H/14)
+  cpx = x+8*W/14
+  cpy = y+8*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+7*W/14, y+8*H/14)
+  ctx.fill()
+  ctx.clip()
+  ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+9*W/14, y+9*H/14)
+  cpx = x+9*W/14
+  cpy = y+10*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+10*W/14, y+10*H/14)
+  cpx = x+13*W/14
+  cpy = y+10*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+13*W/14, y+6*H/14)
+  cpx = x+13*W/14
+  cpy = y+4*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+12*W/14, y+3*H/14)
+  cpx = x+11*W/14
+  cpy = y+2*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+10*W/14, y+2*H/14)
+  cpx = x+9*W/14
+  cpy = y+2*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+9*W/14, y+4*H/14)
+  cpx = x+10*W/14
+  cpy = y+5*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+10*W/14, y+7*H/14)
+  cpx = x+9*W/14
+  cpy = y+8*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+9*W/14, y+9*H/14)
+  ctx.fill()
+  ctx.clip()
+  ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+0*W/14, y+0*H/14)
+  cpx = x+0*W/14
+  cpy = y+12*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+14*W/14, y+12*H/14)
+  cpx = x+14*W/14
+  cpy = y+14*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+1*W/14, y+14*H/14)
+  cpx = x+0*W/14
+  cpy = y+13*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+0*W/14, y+0*H/14)
+  ctx.fill()
+  ctx.clip()
+  ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+3*W/14, y+3*H/14)
+  cpx = x+3*W/14
+  cpy = y+1*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+7*W/14, y+1*H/14)
+  cpx = x+8*W/14
+  cpy = y+2*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+8*W/14, y+4*H/14)
+  cpx = x+3*W/14
+  cpy = y+2*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+4*W/14, y+2*H/14)
+  cpx = x+3*W/14
+  cpy = y+2*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+3*W/14, y+3*H/14)
+  ctx.fill()
+  ctx.clip()
+  ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+9*W/14, y+4*H/14)
+  cpx = x+10*W/14
+  cpy = y+3*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+11*W/14, y+4*H/14)
+  cpx = x+12*W/14
+  cpy = y+9*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+11*W/14, y+9*H/14)
+  cpx = x+10*W/14
+  cpy = y+9*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+10*W/14, y+8*H/14)
+  ragged(ctx, x+10*W/14, y+7*H/14, 10*W/14, 8*W/14)
+  ctx.fill()
+  ctx.clip()
+  ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+10*W/14, y+2*H/14)
+  ragged(ctx, x+10*W/14, y+1*H/14, 10*W/14, 2*W/14)
+  ragged(ctx, x+10*W/14, y+0*H/14, 10*W/14, 1*W/14)
+  ragged(ctx, x+13*W/14, y+0*H/14, 10*W/14, 0*W/14)
+  cpx = x+13*W/14
+  cpy = y+2*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+12*W/14, y+3*H/14)
+  cpx = x+11*W/14
+  cpy = y+2*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+10*W/14, y+2*H/14)
+  ctx.fill()
+  ctx.clip()
+  ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+5*W/14, y+10*H/14)
+  cpx = x+5*W/14
+  cpy = y+13*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+10*W/14, y+13*H/14)
+  cpx = x+11*W/14
+  cpy = y+13*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+12*W/14, y+12*H/14)
+  ctx.fill()
+  ctx.clip()
+  ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+1*W/14, y+6*H/14)
+  cpx = x+1*W/14
+  cpy = y+10*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+2*W/14, y+12*H/14)
+  cpx = x+3*W/14
+  cpy = y+13*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+4*W/14, y+13*H/14)
+  cpx = x+5*W/14
+  cpy = y+13*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+6*W/14, y+12*H/14)
+  cpx = x+5*W/14
+  cpy = y+12*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+5*W/14, y+10*H/14)
+  cpx = x+0*W/14
+  cpy = y+6*H/14
+  ctx.quadraticCurveTo(cpx, cpy, x+1*W/14, y+6*H/14)
+  ctx.fill()
+  ctx.clip()
+  ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+}  
+
 function homeAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -11983,12 +12233,17 @@ function homeAt (x,y,W,color) {
   ctx.save()
   ctx.beginPath()
   ctx.moveTo(x+6*W/16, y+9*H/16)
-  ctx.lineTo(x+14*W/16, y+9*H/16)
-  ctx.lineTo(x+14*W/16, y+14*H/16)
-  ctx.lineTo(x+6*W/16, y+14*H/16)
+  ragged(ctx, x+14*W/16, y+9*H/16, x+6*W/16, y+9*H/16)
+  ragged(ctx, x+14*W/16, y+14*H/16, x+14*W/16, y+9*H/16)
+  ragged(ctx, x+6*W/16, y+14*H/16, x+14*W/16, y+14*H/16)
+  //ctx.lineTo(x+14*W/16, y+9*H/16)
+  //ctx.lineTo(x+14*W/16, y+14*H/16)
+  //ctx.lineTo(x+6*W/16, y+14*H/16)
+
   ctx.clip()
   ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
   ctx.restore()
+
   fillOC(oc, occtx)
   ctx.save()
   ctx.beginPath()
@@ -22136,7 +22391,7 @@ function fillOC (oc, occtx) { // ...with a paper pattern
   let colors = shuffle(getCurrentPalette(true,13))
   occtx.fillStyle = randomPick(colors)
   occtx.fillRect(0,0, oc.width, oc.height)
-  let f = randomPick(["typo", "scripto", "pageOfBook", "formDec", 
+  let f = randomPick(["typo", "stepchart", /*"scripto",*/ "pageOfBook", "formDec", 
   "form2", "gridpaper",
   "hstripes_sml", "crosswordPad", "gridLog", "moleText", "index"])
   window[f](oc)
@@ -22144,6 +22399,9 @@ function fillOC (oc, occtx) { // ...with a paper pattern
     paperize(oc)
   if (Math.random() > 0.5)
     rc(oc)
+  else
+  if (Math.random() > 0.5)
+    rcc(oc)
   if (Math.random() > 0.5)
     rotateRandom(oc)
 }
@@ -22695,7 +22953,7 @@ function orbits () {
 function necker () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  ctx.clearRect(0,0,canvas.width,canvas.height)
+  //ctx.clearRect(0,0,canvas.width,canvas.height)
   ctx.lineWidth = 1 + Math.floor(document.getElementById("featuresize").value/50)
   let W = canvas.width
   let margin = W/20
@@ -22896,7 +23154,7 @@ function gridpaper (canvas) { // grid paper
   let alpha = ctx.globalAlpha
   ctx.strokeStyle = randomPick(getCurrentPalette())
   ctx.lineWidth = randomPick([1,2,3,4,5])
-  ctx.clearRect(0,0,W,H)
+ // ctx.clearRect(0,0,W,H)
   ctx.fillStyle = color
   ctx.shadowColor = "#403030"
   ctx.shadowBlur = 9 + Math.random() * 5
@@ -22915,7 +23173,7 @@ function gridpaper (canvas) { // grid paper
   y = W-pad
   ragged(ctx,pad,pad+pet(3),x,y)
   ctx.closePath()
-  ctx.fill()
+ // ctx.fill()
   ctx.shadowBlur = 0
   ctx.shadowOffsetY = 0
   ctx.shadowOffsetX = 0
@@ -26029,7 +26287,7 @@ function index (canvas) {
   let nums = []
   ctx.fillText("Index", 80*scale, 70)
   ctx.font = 14+"px monospace"
-  i = 0, x = 100*scale, y = 120*scale
+  i = 0, x = 80*scale, y = 120*scale
   while (y < canvas.height-80  && chunk[i] !== undefined) {
     nums = pagenumbers()
     ctx.fillText(chunk[i]+" "+dotpad(chunk[i].length+nums.length)+nums, x, y)
@@ -26042,7 +26300,21 @@ function index (canvas) {
     i++
   }
   puff = 0
-  x += canvas.width/2-30*scale,  y = 120*scale
+  x += canvas.width/3-24*scale,  y = 120*scale
+  while (y < canvas.height-80 && chunk[i] !== undefined) {
+    nums = pagenumbers()
+    ctx.fillText(chunk[i]+" "+dotpad(chunk[i].length+nums.length)+nums, x, y)
+    y += linespace
+    let nl = nextLetter(chunk,i)
+    if (nl) {
+      ctx.fillText(nl, x-11, y)
+      y += linespace
+    }
+    i++
+  }
+  
+  puff = 0
+  x += canvas.width/3-24*scale,  y = 120*scale
   while (y < canvas.height-80 && chunk[i] !== undefined) {
     nums = pagenumbers()
     ctx.fillText(chunk[i]+" "+dotpad(chunk[i].length+nums.length)+nums, x, y)
@@ -26068,8 +26340,8 @@ function nextLetter (chunk, i) {
 
 function dotpad(n) {
   result = "", g = 0
-  if (n < 44) {
-    g = 44-n
+  if (n < 24) {
+    g = 24-n
     while (result.length < g)
       result += "."
   }
@@ -26837,7 +27109,7 @@ function house () {
   let w8 = w4*3
   let xf = W-w8
   let yf = W -(2*margin) - w8 - w8/2
-  ctx.clearRect(0,0,W,W)
+ //ctx.clearRect(0,0,W,W)
   if (Math.random() > 0.6) {
     // upper right face
     ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
@@ -28741,12 +29013,13 @@ function histograph () {
   ctx.setTransform(1, 0, 0, 1, 0, 0);
 }
 
-function stepchart () {
-  let canvas = document.getElementById("myCanvas");
+function stepchart (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let fs = document.getElementById("featuresize").value
   let LW = 1 + Math.floor(document.getElementById("featuresize").value/50)
-  let alt = document.getElementById("grungy").checked
+  let alt = true//document.getElementById("grungy").checked
   let inset = 50 + Math.random()*20
   let W = canvas.width
   let H = canvas.height
@@ -28819,7 +29092,7 @@ function stepchart () {
     ctx.stroke()
   }
   
-  if (document.getElementById("grungy").checked) {
+  if (true) {
     let face = 'Helvetica'
     ctx.font = "500 "+randomPick([21,20,24])+"pt " + face
     w = ctx.measureText("Table 1").width
@@ -31402,10 +31675,11 @@ function rc (canvas) {
   syncMarker()
 }
 
-function rcc () {
+function rcc (canvas) {
   let ocanvas = document.getElementById('off')
   let octx = ocanvas.getContext('2d')
-  let canvas = document.getElementById("myCanvas");
+  if (!canvas)
+    canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let mode = ctx.globalCompositeOperation
   ctx.globalCompositeOperation = "source-over"

@@ -66,6 +66,7 @@
   <div id="text" style="display: inline-block;vertical-align: top;padding:20px;">
   <textarea id="text1" name="text1" rows="24" cols="32" wrap="soft"></textarea>
   <br>
+  &nbsp;<input type="checkbox" id="ragged" checked><label for="ragged"> ragged lines</label>
 
   </div>
 </div>
@@ -114,8 +115,7 @@ function clearAll () {
 function closePath () {
   if (i === 0)
     return
-  //code.push("  ctx.fillStyle = randomPick(colors)\n")
-  
+  code.push("  ctx.fill()")
   code.push("  ctx.clip()")
   code.push("  ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)")
   code.push("  ctx.restore()")
@@ -127,7 +127,7 @@ function closePath () {
   i = 0
 }
 
-let lastx, lasty
+let lastx, lasty, lx, ly
 let oc = document.createElement('canvas')
 oc.height = canvas.height, oc.width = canvas.width
 let offctx = oc.getContext('2d')
@@ -150,14 +150,21 @@ canvas.addEventListener('mousedown', function(evt) {
     ctx.beginPath()
     lastx = Math.round(mousePos.x/cellsize)*W/gridsize
     lasty = Math.round(mousePos.y/cellsize)*W/gridsize
+    lx = Math.round(mousePos.x/cellsize)+"*W/"+gridsize
+    ly = Math.round(mousePos.y/cellsize)+"*W/"+gridsize
     ctx.moveTo(Math.round(mousePos.x/cellsize)*W/gridsize, Math.round(mousePos.y/cellsize)*W/gridsize)
     ctx.fillRect(Math.round(mousePos.x/cellsize)*W/gridsize-4, Math.round(mousePos.y/cellsize)*W/gridsize-4, 10, 10)
   } else {
     if (!mode) {
-      code.push("  ctx.lineTo(x+"+Math.round(mousePos.x/cellsize)+"*W/"+gridsize+", y+"+Math.round(mousePos.y/cellsize)+"*H/"+gridsize+")")
+      if (document.getElementById("ragged").checked)
+        code.push("  ragged(ctx, x+"+Math.round(mousePos.x/cellsize)+"*W/"+gridsize+", y+"+Math.round(mousePos.y/cellsize)+"*H/"+gridsize+", "+lx+", "+ly+")")
+      else
+        code.push("  ctx.lineTo(x+"+Math.round(mousePos.x/cellsize)+"*W/"+gridsize+", y+"+Math.round(mousePos.y/cellsize)+"*H/"+gridsize+")")
       ctx.lineTo(Math.round(mousePos.x/cellsize)*W/gridsize, Math.round(mousePos.y/cellsize)*W/gridsize)
       lastx = Math.round(mousePos.x/cellsize)*W/gridsize
       lasty = Math.round(mousePos.y/cellsize)*W/gridsize
+      lx = Math.round(mousePos.x/cellsize)+"*W/"+gridsize
+      ly = Math.round(mousePos.y/cellsize)+"*W/"+gridsize
       ctx.strokeStyle = "#ff4444"
       ctx.lineWidth = 4
       ctx.setLineDash([4, 4])
@@ -199,6 +206,8 @@ canvas.addEventListener('mousedown', function(evt) {
         ctx.fillStyle = "black"
         lastx = Math.round(mousePos.x/cellsize)*W/gridsize
         lasty = Math.round(mousePos.y/cellsize)*W/gridsize
+        lx = Math.round(mousePos.x/cellsize)+"*W/"+gridsize
+        ly = Math.round(mousePos.y/cellsize)+"*W/"+gridsize
         ctx.fillRect(Math.round(mousePos.x/cellsize)*W/gridsize-5, Math.round(mousePos.y/cellsize)*W/gridsize-5, 10, 10)
       }
     }
@@ -211,8 +220,6 @@ function copy () {
   showPoints()
   let copyText = document.getElementById("text1")
   navigator.clipboard.writeText(copyText.value)
- // copyText.select()
- // copyText.setSelectionRange(0, 99999) /* For mobile devices */
 }
 
 function showPoints () {
