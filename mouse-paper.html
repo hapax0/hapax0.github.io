@@ -115,11 +115,11 @@ function clearAll () {
 function closePath () {
   if (i === 0)
     return
-  code.push("  ctx.fill()")
+  code.push("  if (FILL) {\n    ctx.fillStyle = randomPick(colors)\n    ctx.fill()\n  }")
   code.push("  ctx.clip()")
-  code.push("  ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)")
+  code.push("  if (PATTERN)\n    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)")
   code.push("  ctx.restore()")
-  //code.push("  ctx.stroke()")
+  code.push("  if (STROKE) {\n    ctx.strokeStyle = randomPick(colors)\n    ctx.stroke()\n  }")
   ctx.setLineDash([])
   ctx.globalAlpha = 1
   ctx.strokeStyle = "#ff4444"
@@ -232,6 +232,7 @@ function showPoints () {
   oc.height = canvas.height, oc.width = canvas.width\n\
   let colors = shuffle(getCurrentPalette(true,13))\n\
   let H = W, cpx, cpy, points = []\n\
+  let STROKE = false, FILL = true, PATTERN = true\n\
   ctx.lineWidth = 1 + document.getElementById(\"featuresize\").value/50\n\
   ctx.strokeStyle = color\n\
   ctx.lineCap = \"square\"\n\
