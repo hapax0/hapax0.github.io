@@ -19946,13 +19946,15 @@ function paperize (canvas) {
   let color = document.getElementById("paintcolor").value
   let fs = document.getElementById("featuresize").value
   let alt = document.getElementById("grungy").checked
+  let functions = ["smudgestreaks2", "smudgearcs", "smudgestars", "smudgehorizontal2"]
   checkAlt(false)
   setFeaturesize (Math.floor(75+Math.random()*75))
   setPaintColor("#ffffff")
   smudgestreaks2(canvas)
+  window[randomPick(functions)](canvas)
   setPaintColor("#333333")
   setFeaturesize (Math.floor(75+Math.random()*75))
-  smudgestreaks2(canvas)
+  window[randomPick(functions)](canvas)
   setFeaturesize(fs)
   checkAlt(alt)
   setPaintColor(color)
@@ -20083,16 +20085,16 @@ function fillOC (oc, occtx) { // ...with a paper pattern
   let f = randomPick(["typo", "stepchart", /*"scripto",*/ "pageOfBook", "formDec", 
   "form2", "gridpaper",
   "hstripes_sml", "crosswordPad", "gridLog", "moleText", "index"])
-  window[f](oc)
-  if (Math.random() < 0.5)
+ // window[f](oc)
+  //if (Math.random() < 0.5)
     paperize(oc)
   if (Math.random() > 0.5)
     rc(oc)
   else
   if (Math.random() > 0.5)
     rcc(oc)
-  if (Math.random() > 0.5)
-    rotateRandom(oc)
+  //if (Math.random() > 0.5)
+  //  rotateRandom(oc)
 }
 
 function tape () {
@@ -21700,7 +21702,7 @@ function gridLinear (canvas) {
     canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/10
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette(true, 13))
   let alt = document.getElementById("grungy").checked
   let W = canvas.width, H = canvas.height
   let pad = 24 + Math.floor(Math.random() * 44)
@@ -21748,7 +21750,7 @@ function gridLog (canvas) {
     canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 //+ document.getElementById("featuresize").value/10
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette(true, 13))
   let alt = document.getElementById("grungy").checked
   let W = canvas.width, H = canvas.height
   let pad = 24 + Math.floor(Math.random() * 36)
@@ -23752,7 +23754,7 @@ function wavyPaperRounded (x, y, w, h, r) {
 }
 
 
-function roundedRectP (){//(x, y, w, h, r, ctx, BF) {
+function roundedRectP () {//(x, y, w, h, r, ctx, BF) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   
@@ -23928,7 +23930,7 @@ function randomClue (PT) {
 function clues (PT) {
   let result = "HORIZONTAL\n"
   let num = 1, cnt = 0
-  while (cnt < 22) {
+  while (cnt < 24) {
     result += "\n"
     if (num < 10)
       result += " "
@@ -30742,16 +30744,16 @@ function hrips () {
   //ctx.restore()
 }
 
-function smudgearcs2 () {
-  smudge ('arcs2')
+function smudgearcs2 (canvas) {
+  smudge ('arcs2', canvas)
 }
 
-function smudgearcs () {
-  smudge ('arcs')
+function smudgearcs (canvas) {
+  smudge ('arcs', canvas)
 }
 
-function smudgestars () {
-  smudge ('stars')
+function smudgestars (canvas) {
+  smudge ('stars', canvas)
 }
 
 function smudgestreaks (canvas) {
@@ -30765,12 +30767,12 @@ function smudgewatercolor (canvas) {
   smudge ('watercolor', canvas)
 }
 
-function smudgehorizontal () {
-  smudge ('horizontal')
+function smudgehorizontal (canvas) {
+  smudge ('horizontal', canvas)
 }
 
-function smudgehorizontal2 () {
-  smudge ('horizontal2')
+function smudgehorizontal2 (canvas) {
+  smudge ('horizontal2', canvas)
 }
 
 function smudge (type, canvas) {
