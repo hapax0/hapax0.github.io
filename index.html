@@ -525,6 +525,7 @@
       <option value="dividedPad">divided pad</option>
       <option value="gridLinear" >grid paper</option>
       <option value="griddiag"selected>grid diag</option>
+      <option value="griddots">grid dots</option>
       <option value="gridLog">log paper</option>
       <option value="gridpaper">grid</option>
       <option value="musicpaper">music</option>
@@ -21715,6 +21716,48 @@ function blanksHorV (i,j,filled) {
   if (filled[i+"-"+(j+1)] === undefined || filled[i+"-"+(j+1)] === "B")
       okV = false
   return (okV || okH)
+}
+
+
+function griddots () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let colors = shuffle(getCurrentPalette(true,13))
+  let W = canvas.width
+  let H = W
+  let mod = randomPick([2,3,4])
+  ctx.lineWidth = 2 
+  let divs = 12 + Math.floor(document.getElementById("featuresize").value/8)
+  let pad = 0
+  if (document.getElementById("grungy").checked)
+    pad = divs * 2
+  ctx.fillStyle = randomPick(colors)
+  r = 1.5
+  let i = 0, x = pad, y = pad
+  let avail = (W-2*pad)
+  let N = Math.floor(avail/divs)+2
+  let linespace = Math.floor(avail/N)
+  if (pad === 0)
+    N += 6
+  let maxx = pad+(N+1)*linespace
+  for (; i < (N+20)*(N+10); i++) {
+    if (y > H - pad)
+      break
+    ctx.beginPath()
+    if (i % mod === 0)
+      r = 3
+    else
+      r = 1
+    ctx.arc(x,y,r,0,Math.PI*2)
+    ctx.fill()
+    x += linespace
+    if (x > W-pad) {
+      x = pad
+      y += linespace
+    }
+    if (y > H - pad)
+      break
+  }
 }
 
 function griddiag () {
