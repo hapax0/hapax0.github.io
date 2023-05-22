@@ -509,7 +509,7 @@
       <option value="form1">form</option>
       <option value="form2">form decoration</option>
       <option value="form3">form (nest)</option>
-      <option value="detail" selected>detail</option>
+      <option value="detail">detail</option>
       <option value="pageOfBook">book page</option>
       <option value="ctrlchart">ctrl chart</option>
       <option value="stepchart">step chart</option>
@@ -522,8 +522,12 @@
       <option value="sketchpad">sketch pad</option>
       <option value="floppyPage">stack of pages</option>
       <option value="linedPad">lined pad</option>
-      <option value="musicpaper">music</option>
       <option value="dividedPad">divided pad</option>
+      <option value="gridLinear" selected>grid paper</option>
+      <option value="griddiag">grid diag</option>
+      <option value="gridLog">log paper</option>
+      <option value="gridpaper">grid</option>
+      <option value="musicpaper">music</option>
       <option value="checklist">checklist</option>
       <option value="survey">survey</option>
       <option value="requirements">requirements pad</option>
@@ -537,9 +541,7 @@
       <option value="thisSpace">this space</option>
       <option value="spiralbound">spiral bound</option-->
       <option value="photoBook">photo book</option>
-      <option value="gridLinear">grid paper</option>
-      <option value="gridLog">log paper</option>
-      <option value="gridpaper">grid</option>
+      
       <option value="justlines">martin</option>
       
       <!--option value="periodictable">periodic table</option>
@@ -629,6 +631,7 @@
           <select id="palettechoice" onchange="loadPalette(true)">
             <option value="halfway">ramp 1 to 5</option>
             <option value="ramp">mixed ramp</option>
+            <option value="pairs">pairs</option>
             <option value="by 30">rotate all</option>
             <option value="quadrnd">round</option>
             <option value="lighten">lighten</option>
@@ -1213,6 +1216,22 @@ function loadPalette (PUSH) {
     updateExtraColors(b)
     return
   }else
+  
+  if (type === "pairs") {
+    //document.getElementById("pal1").value = randomColorLight()
+    let c1 = document.getElementById("pal1").value
+    let c2 = adjustBrightnessC(c1, -66)
+    let c3 = colorAngle(c2,randomPick([60, 90, 180, 270])+Math.random() *20)
+    let c4 = adjustBrightnessC(c3, -66)
+    let c5 = randomColor()
+    document.getElementById("pal2").value = c2
+    document.getElementById("pal3").value = c3
+    document.getElementById("pal4").value = c4
+    document.getElementById("pal5").value = c5
+    updateExtraColors(b)
+    return
+  } else
+  
   if (type === "by 60") {
     let c1 = document.getElementById("pal1").value
     let c2 = colorAngle(c1,60)
@@ -1274,6 +1293,7 @@ function loadPalette (PUSH) {
     a1 = 30 + Math.random() *70
     let c5 = colorAngle(c4,a1)
     let amt = Math.floor((Math.random() -0.5) * 2 *Math.random()*50)
+    console.log(amt)
     document.getElementById("pal2").value = adjustBrightnessC(c2, amt*3)
     amt = Math.floor((Math.random() -0.5) * 2 *Math.random()*50)
     document.getElementById("pal3").value = adjustBrightnessC(c3, amt*3)
@@ -3771,7 +3791,7 @@ function etch (color) {
     x = points[j][0]
     y = points[j][1]
     let imgData = ctx.getImageData(x, y, w, h)
-    let threshold = 127 - document.getElementById("opacity").value * 1.27
+   // let threshold = 127 - document.getElementById("opacity").value * 1.27
     let pixels = imgData.data
     let i = 0, lightness = 0, r = 0, g = 0, b = 0
     for (; i < pixels.length; i += 4) {
@@ -21697,6 +21717,72 @@ function blanksHorV (i,j,filled) {
   return (okV || okH)
 }
 
+function griddiag () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let colors = shuffle(getCurrentPalette(true,13))
+  let W = canvas.width
+  let H = W
+  ctx.lineWidth = 2 
+  let divs = 12 + Math.floor(document.getElementById("featuresize").value/8)
+  let pad = 0
+  if (document.getElementById("grungy").checked)
+    pad = divs * 2
+  ctx.strokeStyle = randomPick(colors)
+  ctx.lineCap = "square"
+  //ctx.lineJoin = "meter"
+  let i = 0, x = 0, y = 0
+  let avail = (W-2*pad)
+  let N = Math.floor(avail/divs)+2
+  let linespace = Math.floor(avail/N)
+  if (pad === 0)
+    N += 6
+  let maxx = pad+(N+1)*linespace
+  for (; i < N+2; i++) {
+    ctx.beginPath()
+    ctx.moveTo(x+pad,y+pad)
+    ctx.lineTo(maxx, y+pad)
+    if (i % 2 === 0)
+      ctx.lineWidth = 3
+    else
+      ctx.lineWidth = 1
+    ctx.stroke()
+    y += linespace
+  }
+  i = 0, y = 0, x = 0
+  for (; i < N+2; i++) {
+    ctx.beginPath()
+    ctx.moveTo(x+pad,y+pad)
+    ctx.lineTo(x+pad, maxx)
+    if (i % 2 === 0)
+      ctx.lineWidth = 3
+    else
+      ctx.lineWidth = 1
+    ctx.stroke()
+    x += linespace
+  }
+  // diags
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(pad,pad)
+  ctx.lineTo(maxx,pad)
+  ctx.lineTo(maxx,maxx)
+  ctx.lineTo(pad,maxx)
+  ctx.lineTo(pad,pad)
+  ctx.closePath()
+  ctx.clip()
+  ctx.lineWidth = 1
+  i = 0, y = 0, x = 0
+  for (; i < N*2+4; i++) {
+    ctx.beginPath()
+    ctx.moveTo(x+pad,y+pad)
+    ctx.lineTo(x+pad+(i*linespace), pad)
+    ctx.stroke()
+    y += linespace
+  }
+  ctx.restore()
+}
+
 function gridLinear (canvas) {
   if (!canvas)
     canvas = document.getElementById("myCanvas");
@@ -21741,7 +21827,8 @@ function gridLinear (canvas) {
     if (i % 10 === 0)
       ctx.lineWidth = 3
       else
-      ctx.lineWidth = 1  }
+      ctx.lineWidth = 1  
+  }
   document.getElementById("paintcolor").value = color
 }
 
