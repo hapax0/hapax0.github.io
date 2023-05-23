@@ -526,6 +526,7 @@
       <option value="gridLinear" >grid paper</option>
       <option value="griddiag"selected>grid diag</option>
       <option value="griddots">grid dots</option>
+      <option value="griddiagd">diagonal</option>
       <option value="gridLog">log paper</option>
       <option value="gridpaper">grid</option>
       <option value="musicpaper">music</option>
@@ -21740,14 +21741,21 @@ function griddots () {
   if (pad === 0)
     N += 6
   let maxx = pad+(N+1)*linespace
+  // center drawing if padded
+  let diff = Math.abs((W-maxx))
+  if (pad > 0) {
+    pad = (pad+diff)/2
+    maxx = W - pad
+  }
   for (; i < (N+20)*(N+10); i++) {
     if (y > H - pad)
       break
     ctx.beginPath()
-    if (i % mod === 0)
+    if (Math.random() > .5) //(i % mod === 0)
       r = 3
     else
       r = 1
+    r = randomPick([1,3,5,7])
     ctx.arc(x,y,r,0,Math.PI*2)
     ctx.fill()
     x += linespace
@@ -21758,6 +21766,56 @@ function griddots () {
     if (y > H - pad)
       break
   }
+}
+
+function griddiagd () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let colors = shuffle(getCurrentPalette(true,13))
+  let W = canvas.width
+  let H = W
+  ctx.lineWidth = 2 
+  let divs = 12 + Math.floor(document.getElementById("featuresize").value/8)
+  let pad = 0
+  if (document.getElementById("grungy").checked)
+    pad = divs * 2
+  ctx.strokeStyle = randomPick(colors)
+  ctx.lineCap = "square"
+  //ctx.lineJoin = "meter"
+  let i = 0, x = 0, y = 0
+  let avail = (W-2*pad)
+  let N = Math.floor(avail/divs)+2
+  let linespace = Math.floor(avail/N)
+  if (pad === 0)
+    N += 6
+  let maxx = pad+(N+1)*linespace
+  // center drawing if padded
+  let diff = Math.abs((W-maxx))
+  if (pad > 0) {
+    pad = (pad+diff)/2
+    maxx = W - pad
+  }
+  // diags
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(pad,pad)
+  ctx.lineTo(maxx,pad)
+  ctx.lineTo(maxx,maxx)
+  ctx.lineTo(pad,maxx)
+  ctx.lineTo(pad,pad)
+  ctx.stroke()
+  ctx.closePath()
+  ctx.clip()
+  ctx.lineWidth = 1
+  i = 0, y = 0, x = 0
+  for (; i < N*2+4; i++) {
+    ctx.beginPath()
+    ctx.moveTo(x+pad,y+pad)
+    ctx.lineTo(x+pad+(i*linespace), pad)
+    ctx.stroke()
+    y += linespace
+  }
+  ctx.restore()
 }
 
 function griddiag () {
@@ -21781,6 +21839,11 @@ function griddiag () {
   if (pad === 0)
     N += 6
   let maxx = pad+(N+1)*linespace
+  let diff = Math.abs((W-maxx))
+  if (pad > 0) {
+    pad = (pad+diff)/2
+    maxx = W - pad
+  }
   for (; i < N+2; i++) {
     ctx.beginPath()
     ctx.moveTo(x+pad,y+pad)
