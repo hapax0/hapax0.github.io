@@ -1,3 +1,125 @@
+function fishheadAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let oc = document.createElement('canvas')
+  let occtx = oc.getContext("2d")
+  oc.height = canvas.height, oc.width = canvas.width
+  let colors = shuffle(getCurrentPalette(true,13))
+  let H = W, cpx, cpy, points = []
+  let STROKE = true, FILL = false, PATTERN = false
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/5
+  ctx.strokeStyle = randomPick(colors)
+  ctx.strokeStyle = color
+  ctx.lineCap = "square"
+  ctx.lineJoin = "meter"
+
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+4*W/20, y+18*H/20)
+  cpx = x+4*W/20
+  cpy = y+8*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+10*W/20, y+2*H/20)
+  cpx = x+10*W/20
+  cpy = y+2*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+11*W/20, y+4*H/20)
+  cpx = x+11*W/20
+  cpy = y+5*H/20
+  if (FILL) {
+    ctx.fillStyle = randomPick(colors)
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+11*W/20, y+4*H/20)
+  ctx.lineTo(x+11*W/20, y+2*H/20)
+  cpx = x+16*W/20
+  cpy = y+8*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+16*W/20, y+18*H/20)
+  if (FILL) {
+    ctx.fillStyle = randomPick(colors)
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+8*W/20, y+9*H/20)
+  cpx = x+8*W/20
+  cpy = y+8*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+9*W/20, y+8*H/20)
+  cpx = x+10*W/20
+  cpy = y+8*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+10*W/20, y+9*H/20)
+  cpx = x+10*W/20
+  cpy = y+10*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+9*W/20, y+10*H/20)
+  cpx = x+8*W/20
+  cpy = y+10*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+8*W/20, y+9*H/20)
+  if (FILL) {
+    ctx.fillStyle = randomPick(colors)
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+7*W/20, y+9*H/20)
+  cpx = x+7*W/20
+  cpy = y+7*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+9*W/20, y+7*H/20)
+  cpx = x+11*W/20
+  cpy = y+7*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+11*W/20, y+9*H/20)
+  cpx = x+11*W/20
+  cpy = y+11*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+9*W/20, y+11*H/20)
+  cpx = x+7*W/20
+  cpy = y+11*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+7*W/20, y+9*H/20)
+  if (FILL) {
+    ctx.fillStyle = randomPick(colors)
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+}  
+
+
 function house4At (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")

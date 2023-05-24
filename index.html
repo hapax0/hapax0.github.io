@@ -1139,13 +1139,13 @@ function getCurrentPalette (ALL,N) {
   let n = document.getElementById("numcolors").value
   if (N) n = n
   if (ALL && extendedPalette.length > 0)
-    return extendedPalette
+    return extendedPalette.slice(0,10)
   else
     return ([document.getElementById("pal1").value,
-    document.getElementById("pal2").value,
-    document.getElementById("pal3").value,
-    document.getElementById("pal4").value,
-    document.getElementById("pal5").value].slice(0,n))
+  document.getElementById("pal2").value,
+  document.getElementById("pal3").value,
+  document.getElementById("pal4").value,
+  document.getElementById("pal5").value].slice(0,n))
 }
 
 function restorePalette (p) {
@@ -1189,7 +1189,6 @@ function loadPalette (PUSH) {
     document.getElementById("pal3").value = c3
     document.getElementById("pal4").value = c4
     document.getElementById("pal5").value = c5
-    
     updateExtraColors(b)
     return
   } else
