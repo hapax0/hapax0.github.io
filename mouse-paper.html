@@ -38,11 +38,11 @@
       <option value="8">8</option>
       <option value="9">9</option>
       <option value="10" >10</option>
-      <option value="12"selected>12</option>
+      <option value="12">12</option>
       <option value="14">14</option>
       <option value="16">16</option> 
       <option value="18">18</option> 
-      <option value="20">20</option> 
+      <option value="20" selected>20</option> 
       <option value="24">24</option> 
       <option value="32">32</option>
     </select>
@@ -237,9 +237,10 @@ function showPoints () {
   oc.height = canvas.height, oc.width = canvas.width\n\
   let colors = shuffle(getCurrentPalette(true,13))\n\
   let H = W, cpx, cpy, points = []\n\
-  let STROKE = true, FILL = false, PATTERN = false\n\
+  let STROKE = false, FILL = true, PATTERN = false\n\
   ctx.lineWidth = 1 + document.getElementById(\"featuresize\").value/5\n\
   ctx.strokeStyle = randomPick(colors)\n\
+  ctx.fillStyle = randomPick(colors)\n\
   ctx.strokeStyle = color\n\
   ctx.lineCap = \"square\"\n\
   ctx.lineJoin = \"meter\"\n\n"
