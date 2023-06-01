@@ -1,3 +1,291 @@
+function pw2At (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let oc = document.createElement('canvas')
+  let occtx = oc.getContext("2d")
+  oc.height = canvas.height, oc.width = canvas.width
+  let colors = shuffle(getCurrentPalette(true,13))
+  let H = W, cpx, cpy, points = []
+  let STROKE = false, FILL = true, PATTERN = false
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/5
+  ctx.strokeStyle = randomPick(colors)
+  ctx.fillStyle = randomPick(colors)
+  ctx.strokeStyle = color
+  ctx.lineCap = "square"
+  ctx.lineJoin = "meter"
+
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+8*W/20, y+6*H/20)
+  ctx.lineTo(x+12*W/20, y+3*H/20)
+  ctx.lineTo(x+16*W/20, y+8*H/20)
+  ctx.lineTo(x+16*W/20, y+17*H/20)
+  ctx.lineTo(x+4*W/20, y+16*H/20)
+  ctx.lineTo(x+8*W/20, y+6*H/20)
+  if (FILL) {
+    ctx.fillStyle = randomPick(colors)
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+12*W/20, y+3*H/20)
+  ctx.lineTo(x+3*W/20, y+0*H/20)
+  ctx.lineTo(x+0*W/20, y+0*H/20)
+  ctx.lineTo(x+0*W/20, y+16*H/20)
+  ctx.lineTo(x+8*W/20, y+6*H/20)
+  if (FILL) {
+    ctx.fillStyle = randomPick(colors)
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+8*W/20, y+6*H/20)
+  ctx.lineTo(x+0*W/20, y+16*H/20)
+  ctx.lineTo(x+0*W/20, y+20*H/20)
+  ctx.lineTo(x+15*W/20, y+20*H/20)
+  ctx.lineTo(x+4*W/20, y+16*H/20)
+  if (FILL) {
+    ctx.fillStyle = randomPick(colors)
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+4*W/20, y+16*H/20)
+  ctx.lineTo(x+15*W/20, y+20*H/20)
+  ctx.lineTo(x+20*W/20, y+20*H/20)
+  ctx.lineTo(x+20*W/20, y+7*H/20)
+  ctx.lineTo(x+16*W/20, y+17*H/20)
+  if (FILL) {
+    ctx.fillStyle = randomPick(colors)
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+16*W/20, y+8*H/20)
+  ctx.lineTo(x+16*W/20, y+17*H/20)
+  ctx.lineTo(x+20*W/20, y+0*H/20)
+  ctx.lineTo(x+12*W/20, y+3*H/20)
+  ctx.lineTo(x+16*W/20, y+8*H/20)
+  if (FILL) {
+    ctx.fillStyle = randomPick(colors)
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+3*W/20, y+0*H/20)
+  ctx.lineTo(x+12*W/20, y+3*H/20)
+  ctx.lineTo(x+20*W/20, y+0*H/20)
+  if (FILL) {
+    ctx.fillStyle = randomPick(colors)
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+4*W/20, y+16*H/20)
+  ctx.lineTo(x+15*W/20, y+20*H/20)
+  ctx.lineTo(x+20*W/20, y+20*H/20)
+  ctx.lineTo(x+20*W/20, y+0*H/20)
+  ctx.lineTo(x+16*W/20, y+17*H/20)
+  if (FILL) {
+    ctx.fillStyle = randomPick(colors)
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+}  
+
+
+function pwAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let oc = document.createElement('canvas')
+  let occtx = oc.getContext("2d")
+  oc.height = canvas.height, oc.width = canvas.width
+  let colors = shuffle(getCurrentPalette(true,13))
+  let H = W, cpx, cpy, points = []
+  let STROKE = false, FILL = true, PATTERN = false
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/5
+  ctx.strokeStyle = randomPick(colors)
+  ctx.fillStyle = randomPick(colors)
+  ctx.strokeStyle = color
+  ctx.lineCap = "square"
+  ctx.lineJoin = "meter"
+
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+3*W/20, y+6*H/20)
+  ctx.lineTo(x+3*W/20, y+18*H/20)
+  ctx.lineTo(x+14*W/20, y+18*H/20)
+  ctx.lineTo(x+14*W/20, y+9*H/20)
+  ctx.lineTo(x+3*W/20, y+6*H/20)
+  if (FILL) {
+    ctx.fillStyle = randomPick(colors)
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+14*W/20, y+9*H/20)
+  ctx.lineTo(x+9*W/20, y+0*H/20)
+  ctx.lineTo(x+0*W/20, y+0*H/20)
+  ctx.lineTo(x+0*W/20, y+15*H/20)
+  ctx.lineTo(x+3*W/20, y+6*H/20)
+  if (FILL) {
+    ctx.fillStyle = randomPick(colors)
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+3*W/20, y+6*H/20)
+  ctx.lineTo(x+0*W/20, y+15*H/20)
+  ctx.lineTo(x+0*W/20, y+20*H/20)
+  ctx.lineTo(x+8*W/20, y+20*H/20)
+  ctx.lineTo(x+3*W/20, y+18*H/20)
+  if (FILL) {
+    ctx.fillStyle = randomPick(colors)
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+3*W/20, y+18*H/20)
+  ctx.lineTo(x+8*W/20, y+20*H/20)
+  ctx.lineTo(x+20*W/20, y+20*H/20)
+  ctx.lineTo(x+20*W/20, y+8*H/20)
+  ctx.lineTo(x+14*W/20, y+18*H/20)
+  if (FILL) {
+    ctx.fillStyle = randomPick(colors)
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+14*W/20, y+18*H/20)
+  ctx.lineTo(x+20*W/20, y+8*H/20)
+  ctx.lineTo(x+20*W/20, y+0*H/20)
+  ctx.lineTo(x+9*W/20, y+0*H/20)
+  ctx.lineTo(x+14*W/20, y+9*H/20)
+  if (FILL) {
+    ctx.fillStyle = randomPick(colors)
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+}  
+
 function porch3At (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")

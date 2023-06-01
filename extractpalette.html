@@ -249,7 +249,7 @@ function colorSamplePalette () {
   let bad = testColors(clrs)
   clrs = clrs.filter(x => !bad.includes(x));
   //resort clrs by interesting
-  clrs.sort(function(a, b) { return interesting(b) - interesting(a);});
+ // clrs.sort(function(a, b) { return interesting(b) - interesting(a);});
   let colors2 = []
   i = 0, j = 0
   for (; i < clrs.length; i++) {
