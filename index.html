@@ -632,7 +632,7 @@
          <input type='color' id='pal5'>
           <select id="palettechoice" onchange="loadPalette(true)">
             <option value="halfway">ramp 1 to 5</option>
-            <option value="ramp">mixed ramp</option>
+            <option value="rampR">mixed ramp</option>
             <option value="pairs">pairs</option>
             <option value="by 30">rotate all</option>
             <option value="quadrnd">round</option>
@@ -1278,6 +1278,38 @@ function loadPalette (PUSH) {
     updateExtraColors(b)
     return
   }else
+  
+  if (type === "rampR") {
+    // darken lighten
+    let c1 = randomColorDark()//
+    document.getElementById("pal1").value = c1
+    
+    let a1 = randomPick([30,45,60])
+    let c2 = colorAngle(c1,a1)
+    let c3 = colorAngle(c1,360-a1)
+    let c4 = colorAngle(c1,a1+180)
+    let c5 = colorAngle(c4,a1+90)
+    let amt = Math.floor((5+Math.random()*50))
+  
+    document.getElementById("pal2").value = c2
+    document.getElementById("pal3").value = c3
+    document.getElementById("pal4").value = c4
+    document.getElementById("pal5").value = c5
+    b = [
+      c1,adjustBrightnessC(c1, amt),adjustBrightnessC(c1, amt*3),
+      c2,adjustBrightnessC(c2, amt),adjustBrightnessC(c2, amt*3),
+      c3,adjustBrightnessC(c3, amt),adjustBrightnessC(c3, amt*3),
+      c4
+    ]
+    
+  
+
+    updateExtraColors(b)
+    return
+
+  } else
+  
+  
   if (type === "ramp") {
     // darken lighten
     let c1 = randomColor()//
@@ -1294,7 +1326,7 @@ function loadPalette (PUSH) {
     a1 = 30 + Math.random() *70
     let c5 = colorAngle(c4,a1)
     let amt = Math.floor((Math.random() -0.5) * 2 *Math.random()*50)
-    console.log(amt)
+  
     document.getElementById("pal2").value = adjustBrightnessC(c2, amt*3)
     amt = Math.floor((Math.random() -0.5) * 2 *Math.random()*50)
     document.getElementById("pal3").value = adjustBrightnessC(c3, amt*3)
@@ -1302,6 +1334,7 @@ function loadPalette (PUSH) {
     document.getElementById("pal4").value = adjustBrightnessC(c4, amt*3)
     amt = Math.floor((Math.random() -0.5) * 2 *Math.random()*50)
     document.getElementById("pal5").value = adjustBrightnessC(c5, amt*3)
+    
     
     
     updateExtraColors(b)
@@ -1543,7 +1576,7 @@ function random13Palette () {
   document.getElementById("paintcolor").value = c
   setOpacity(100)
   fill()
-  setPalette("ramp")
+  setPalette("rampR")
   setOpacity(70)
   necker()
   rc()
@@ -2798,7 +2831,7 @@ function colorSamplePalette (canvas, SIMPLIFY) {
         sample.push(c)
     }
   }
-  
+
   i = 0
   let m = 0, ct = 0
   for (; i < sample.length; i++) {
@@ -2835,9 +2868,10 @@ function colorSamplePalette (canvas, SIMPLIFY) {
     clrs.push(averageColor(bins[i], true))
   }
   let bad = testColors(clrs)
+  //console.log(bad)
   clrs = clrs.filter(x => !bad.includes(x));
-  //resort clrs by interesting
-  clrs.sort(function(a, b) { return interesting(b) - interesting(a);});
+  //resort clrs by interesting: gets rid of black, white and grays
+  //clrs.sort(function(a, b) { return interesting(b) - interesting(a);});
   let colors2 = []
   i = 0, j = 0
   for (; i < clrs.length; i++) {
@@ -2847,8 +2881,6 @@ function colorSamplePalette (canvas, SIMPLIFY) {
     B = ('0'+(rgb[2]).toString(16)).slice(-2);
     colors2.push('#'+R+G+B)
   }
-  
-  
   // replace - simplify
   if (SIMPLIFY) {
     let c
@@ -3093,7 +3125,41 @@ async function palettetint (canvas) {
     document.getElementById("upper").value = highs[i]
     tint()
   }
+  document.getElementById("lower").value = 100
+  document.getElementById("upper").value = 100
+  rangecheck()
+  document.getElementById("paintcolor").value = saved
+  ctx.globalAlpha = alpha
+  return true
+}
+
+async function palettetint_2ramps (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let alt = document.getElementById("grungy").checked
+  let alpha = document.getElementById("opacity").value
+  let colors = []
+  colors.push(document.getElementById("pal1").value)
+  colors.push(document.getElementById("pal2").value)
+  colors.push(document.getElementById("pal3").value)
+  colors.push(document.getElementById("pal4").value)
+  colors.push(document.getElementById("pal5").value)
+  let saved = document.getElementById("paintcolor").value
+
+  let level = 20
+  let lows = [100, 83.33, 66.67, 50, 16.67]
+  let highs = [100, 83.33, 66.67, 50, 16.67].reverse()
   
+  if (!alt) {
+    lows = [100, 80, 60, 40, 20]
+    highs = [100, 80, 60, 40, 20].reverse()
+  }
+  let i = 0
+  document.getElementById("paintcolor").value = colors[0]
+  tintlow()
+  document.getElementById("paintcolor").value = colors[4]
+  tinthigh()
   document.getElementById("lower").value = 100
   document.getElementById("upper").value = 100
   rangecheck()
@@ -29489,6 +29555,7 @@ async function fill (canvas, fs) {
   ctx.fillStyle = document.getElementById("paintcolor").value
   if (fs)
     ctx.fillStyle = fs
+  ctx.imageSmoothingQuality = 'high'
   await ctx.fillRect(0,0,canvas.width, canvas.height)
   return true
 }
@@ -34587,7 +34654,89 @@ function tint (canvas) {
     ct++
   }
   offctx.putImageData(imgData, 0, 0);
-  ctx.globalCompositeOperation = "color"
+  //ctx.globalCompositeOperation = "color"
+ // ctx.clearRect(0,0,canvas.width,canvas.height)
+ // ctx.globalAlpha = 1
+  ctx.drawImage(offcanvas,0,0)
+  ctx.globalCompositeOperation = mode
+  ctx.globalAlpha = alpha/100
+}
+
+function tintlow (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas")
+  let offcanvas = document.createElement('CANVAS')
+  offcanvas.width = canvas.width
+  offcanvas.height = canvas.height
+  let offctx = offcanvas.getContext("2d");
+  offctx.willReadFrequently = true
+  let color = document.getElementById("paintcolor").value
+  let alpha = document.getElementById("opacity").value
+  let r = hexToR(color)
+  let g = hexToG(color)
+  let b = hexToB(color)
+  let ctx = canvas.getContext("2d");
+  ctx.willReadFrequently = true
+  let mode = ctx.globalCompositeOperation
+  let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
+  let pixels = imgData.data;
+  let i = 0
+  let brightness = 0, ct = 0
+  let lh = rangecheck()
+  let lowest = lh[0], highest = lh[1]
+  i = 0
+  for (; i < pixels.length; i += 4) {
+    brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3)
+    let L = (-brightness + 1)/3
+    pixels[i] =     Math.min(pixels[i] * 0.7 + r * L, 255);
+    pixels[i + 1] = Math.min(pixels[i+1] * 0.7 + g * L, 255);
+    pixels[i + 2] = Math.min(pixels[i+2] * 0.7 + b * L, 255);
+    ct++
+  }
+  offctx.putImageData(imgData, 0, 0);
+  //ctx.globalCompositeOperation = "color"
+ // ctx.clearRect(0,0,canvas.width,canvas.height)
+ // ctx.globalAlpha = 1
+  ctx.drawImage(offcanvas,0,0)
+  ctx.globalCompositeOperation = mode
+  ctx.globalAlpha = alpha/100
+}
+
+function tinthigh (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas")
+  let offcanvas = document.createElement('CANVAS')
+  offcanvas.width = canvas.width
+  offcanvas.height = canvas.height
+  let offctx = offcanvas.getContext("2d");
+  offctx.willReadFrequently = true
+  let color = document.getElementById("paintcolor").value
+  let alpha = document.getElementById("opacity").value
+  let r = hexToR(color)
+  let g = hexToG(color)
+  let b = hexToB(color)
+  let ctx = canvas.getContext("2d");
+  ctx.willReadFrequently = true
+  let mode = ctx.globalCompositeOperation
+  let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
+  let pixels = imgData.data;
+  let i = 0
+  let brightness = 0, ct = 0
+  let lh = rangecheck()
+  let lowest = lh[0], highest = lh[1]
+  i = 0
+  for (; i < pixels.length; i += 4) {
+    brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3)
+    let L = (brightness)/3
+    pixels[i] =     Math.min(pixels[i] * 0.7 + r * L, 255);
+    pixels[i + 1] = Math.min(pixels[i+1] * 0.7 + g * L, 255);
+    pixels[i + 2] = Math.min(pixels[i+2] * 0.7 + b * L, 255);
+    ct++
+  }
+  offctx.putImageData(imgData, 0, 0);
+  //ctx.globalCompositeOperation = "color"
+ // ctx.clearRect(0,0,canvas.width,canvas.height)
+//  ctx.globalAlpha = 1
   ctx.drawImage(offcanvas,0,0)
   ctx.globalCompositeOperation = mode
   ctx.globalAlpha = alpha/100
