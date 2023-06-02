@@ -632,7 +632,9 @@
          <input type='color' id='pal5'>
           <select id="palettechoice" onchange="loadPalette(true)">
             <option value="halfway">ramp 1 to 5</option>
-            <option value="rampR">mixed ramp</option>
+            <option value="5311">5,3,1,1</option>
+            <option value="541">5,4,1</option>
+            <option value="4411">4,4,1,1</option>
             <option value="pairs">pairs</option>
             <option value="by 30">rotate all</option>
             <option value="quadrnd">round</option>
@@ -657,21 +659,6 @@
             <option value="nighthawks">nighthawks</option>
             <option value="earring">earring</option>
             <option value="avocado">avocado</option>
-            <option value="planet">planet</option>
-            <option value="cherry">cherry</option>
-            <option value="cloud">cloud</option>
-            <option value="dark forest">dark forest</option>
-            <option value="mod1">mod1</option>
-            <option value="retro1">retro1</option>
-            <option value="retro2">retro2</option>
-            <option value="a1">a1</option>
-            <option value="a2">a2</option>
-            <option value="a3">a3</option>
-            <option value="a4">a4</option>
-            <option value="a5">a5</option>
-            <option value="a6">a6</option>
-            <option value="a7">a7</option>
-            <option value="a8">a8</option>
             <option value="none">none</option>
           </select>
           <select id="numcolors" style="width:50px;" title='use N colors'>
@@ -1279,37 +1266,72 @@ function loadPalette (PUSH) {
     return
   }else
   
-  if (type === "rampR") {
-    // darken lighten
-    let c1 = randomColorDark()//
+  if (type === "4411") {
+    // 4411
+    let c1 = randomColorDark()
     document.getElementById("pal1").value = c1
-    
-    let a1 = randomPick([30,45,60])
-    let c2 = colorAngle(c1,a1)
-    let c3 = colorAngle(c1,360-a1)
-    let c4 = colorAngle(c1,a1+180)
-    let c5 = colorAngle(c4,a1+90)
+    let c2 = randomColorDark()
+    let c3 = randomColor()
+    let c4 = randomColorLight()
     let amt = Math.floor((5+Math.random()*50))
-  
-    document.getElementById("pal2").value = c2
-    document.getElementById("pal3").value = c3
-    document.getElementById("pal4").value = c4
-    document.getElementById("pal5").value = c5
+    document.getElementById("pal2").value = adjustBrightnessC(c1, amt*3)
+    document.getElementById("pal3").value = c2
+    document.getElementById("pal4").value = c3
+    document.getElementById("pal5").value = c4
+    
     b = [
-      c1,adjustBrightnessC(c1, amt),adjustBrightnessC(c1, amt*3),
-      c2,adjustBrightnessC(c2, amt),adjustBrightnessC(c2, amt*3),
-      c3,adjustBrightnessC(c3, amt),adjustBrightnessC(c3, amt*3),
+      c1,adjustBrightnessC(c1, amt),adjustBrightnessC(c1, amt*2),adjustBrightnessC(c1, amt*3),
+      c2,adjustBrightnessC(c2, amt),adjustBrightnessC(c2, amt*2),adjustBrightnessC(c2, amt*3),
+      c3,
       c4
     ]
-    
-  
-
     updateExtraColors(b)
     return
-
+  } else
+  if (type === "5311") {
+    // 5311
+    let c1 = randomColorDark()
+    document.getElementById("pal1").value = c1
+    let c2 = randomColorDark()
+    let c3 = randomColor()
+    let c4 = randomColorLight()
+    let amt = Math.floor((5+Math.random()*50))
+    document.getElementById("pal2").value = adjustBrightnessC(c1, amt*3)
+    document.getElementById("pal3").value = c2
+    document.getElementById("pal4").value = c3
+    document.getElementById("pal5").value = c4
+    b = [
+      c1,adjustBrightnessC(c1, amt),adjustBrightnessC(c1, amt*2),
+         adjustBrightnessC(c1, amt*3),adjustBrightnessC(c1, amt*4),
+      c2,adjustBrightnessC(c2, amt),adjustBrightnessC(c2, amt*3),
+      c3,
+      c4
+    ]
+    updateExtraColors(b)
+    return
   } else
   
-  
+  if (type === "541") {
+    // 541
+    let c1 = randomColorDark()
+    document.getElementById("pal1").value = c1
+    let c2 = randomColorDark()
+    let c3 = randomColor()
+    let c4 = randomColorLight()
+    let amt = Math.floor((5+Math.random()*50))
+    document.getElementById("pal2").value = adjustBrightnessC(c1, amt*3)
+    document.getElementById("pal3").value = c2
+    document.getElementById("pal4").value = adjustBrightnessC(c2, amt*3)
+    document.getElementById("pal5").value = c3
+    b = [
+      c1,adjustBrightnessC(c1, amt),adjustBrightnessC(c1, amt*2),
+         adjustBrightnessC(c1, amt*3),adjustBrightnessC(c1, amt*4),
+      c2,adjustBrightnessC(c2, amt),adjustBrightnessC(c2, amt*2),adjustBrightnessC(c2, amt*3),
+      c3,
+    ]
+    updateExtraColors(b)
+    return
+  } else
   if (type === "ramp") {
     // darken lighten
     let c1 = randomColor()//
@@ -1382,6 +1404,12 @@ function loadPalette (PUSH) {
       k = Math.floor(brightnessOfColor(c)/10)
       document.getElementById("pal"+(1+n)).value = adjustBrightnessC(c, k)
     }
+    n = 0
+    b = getCurrentPalette(true)
+    for (; n < b.length; n++) {
+      k = Math.floor(brightnessOfColor(b[n])/10)
+      b[n] = adjustBrightnessC(b[n], k)
+    }
     updateExtraColors(b)
     return
   } else
@@ -1391,6 +1419,12 @@ function loadPalette (PUSH) {
       c = document.getElementById("pal"+(1+n)).value
       k = Math.floor(brightnessOfColor(c)/10)
       document.getElementById("pal"+(1+n)).value = adjustBrightnessC(c, -k)
+    }
+    n = 0
+    b= getCurrentPalette(true)
+    for (; n < b.length; n++) {
+      k = Math.floor(brightnessOfColor(b[n])/10)
+      b[n] = adjustBrightnessC(b[n], -k)
     }
     updateExtraColors(b)
     return
@@ -1570,21 +1604,11 @@ function rampContrast () { // dark to light
 }
 
 function random13Palette () {
-  let alpha = document.getElementById("opacity").value
-  swapWithOff()
-  let c = randomColorMedium()
-  document.getElementById("paintcolor").value = c
-  setOpacity(100)
-  fill()
-  setPalette("rampR")
-  setOpacity(70)
-  necker()
-  rc()
-  setOpacity(30)
-  necker()
-  extractPalette()
-  swapWithOff()
-  setOpacity(alpha)
+  
+  //setPalette("5311")
+  setPalette("4411")
+  
+  
 }
 
 function clearPoints () {
