@@ -1,11 +1,3129 @@
-function rthAt (x,y,W,color) {
+function ppAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let oc = document.createElement('canvas')
   let occtx = oc.getContext("2d")
   oc.height = canvas.height, oc.width = canvas.width
   let colors = shuffle(getCurrentPalette(true,13))
-  let H = W, cpx, cpy, points = []
+  let H = W, cpx, cpy, points = [], n = 0
+  let STROKE = false, FILL = true, PATTERN = false
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/5
+  ctx.strokeStyle = randomPick(colors)
+  ctx.fillStyle = randomPick(colors)
+  ctx.strokeStyle = color
+  ctx.lineCap = "square"
+  ctx.lineJoin = "meter"
+
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+1*W/20, y+4*H/20)
+  ctx.lineTo(x+3*W/20, y+2*H/20)
+  ctx.lineTo(x+7*W/20, y+2*H/20)
+  ctx.lineTo(x+9*W/20, y+3*H/20)
+  ctx.lineTo(x+9*W/20, y+4*H/20)
+  ctx.lineTo(x+7*W/20, y+2*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+9*W/20, y+4*H/20)
+  ctx.lineTo(x+7*W/20, y+6*H/20)
+  ctx.lineTo(x+3*W/20, y+6*H/20)
+  ctx.lineTo(x+1*W/20, y+4*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+5*W/20, y+9*H/20)
+  ctx.lineTo(x+5*W/20, y+19*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+3*W/20, y+6*H/20)
+  ctx.lineTo(x+3*W/20, y+15*H/20)
+  ctx.lineTo(x+7*W/20, y+15*H/20)
+  ctx.lineTo(x+7*W/20, y+6*H/20)
+  ctx.lineTo(x+9*W/20, y+4*H/20)
+  ctx.lineTo(x+9*W/20, y+12*H/20)
+  ctx.lineTo(x+7*W/20, y+15*H/20)
+  ctx.lineTo(x+3*W/20, y+15*H/20)
+  ctx.lineTo(x+1*W/20, y+12*H/20)
+  ctx.lineTo(x+1*W/20, y+4*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+1*W/20, y+12*H/20)
+  ctx.lineTo(x+5*W/20, y+19*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+1*W/20, y+12*H/20)
+  ctx.lineTo(x+3*W/20, y+14*H/20)
+  ctx.lineTo(x+7*W/20, y+14*H/20)
+  ctx.lineTo(x+9*W/20, y+12*H/20)
+  ctx.lineTo(x+9*W/20, y+12*H/20)
+  ctx.lineTo(x+5*W/20, y+19*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+3*W/20, y+1*H/20)
+  ctx.lineTo(x+7*W/20, y+1*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+11*W/20, y+4*H/20)
+  ctx.lineTo(x+11*W/20, y+3*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+19*W/20, y+3*H/20)
+  ctx.lineTo(x+17*W/20, y+1*H/20)
+  ctx.lineTo(x+13*W/20, y+1*H/20)
+  ctx.lineTo(x+11*W/20, y+3*H/20)
+  ctx.lineTo(x+13*W/20, y+5*H/20)
+  ctx.lineTo(x+17*W/20, y+5*H/20)
+  ctx.lineTo(x+19*W/20, y+3*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+13*W/20, y+3*H/20)
+  cpx = x+13*W/20
+  cpy = y+2*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+15*W/20, y+2*H/20)
+  cpx = x+17*W/20
+  cpy = y+2*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+17*W/20, y+3*H/20)
+  cpx = x+17*W/20
+  cpy = y+4*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+15*W/20, y+4*H/20)
+  cpx = x+13*W/20
+  cpy = y+4*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+13*W/20, y+3*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+11*W/20, y+3*H/20)
+  ctx.lineTo(x+11*W/20, y+12*H/20)
+  ctx.lineTo(x+15*W/20, y+19*H/20)
+  ctx.lineTo(x+19*W/20, y+12*H/20)
+  ctx.lineTo(x+17*W/20, y+14*H/20)
+  ctx.lineTo(x+13*W/20, y+14*H/20)
+  ctx.lineTo(x+11*W/20, y+12*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+13*W/20, y+14*H/20)
+  ctx.lineTo(x+13*W/20, y+5*H/20)
+  ctx.lineTo(x+17*W/20, y+5*H/20)
+  ctx.lineTo(x+17*W/20, y+14*H/20)
+  ctx.lineTo(x+19*W/20, y+11*H/20)
+  ctx.lineTo(x+19*W/20, y+12*H/20)
+  ctx.lineTo(x+19*W/20, y+3*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+3*W/20, y+2*H/20)
+  ctx.lineTo(x+3*W/20, y+6*H/20)
+  ctx.lineTo(x+7*W/20, y+6*H/20)
+  ctx.lineTo(x+7*W/20, y+2*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+3*W/20, y+14*H/20)
+  ctx.lineTo(x+3*W/20, y+6*H/20)
+  ctx.lineTo(x+7*W/20, y+6*H/20)
+  ctx.lineTo(x+7*W/20, y+14*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+1*W/20, y+4*H/20)
+  ctx.lineTo(x+3*W/20, y+6*H/20)
+  ctx.lineTo(x+7*W/20, y+6*H/20)
+  ctx.lineTo(x+9*W/20, y+4*H/20)
+  ctx.lineTo(x+7*W/20, y+2*H/20)
+  ctx.lineTo(x+3*W/20, y+2*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+3*W/20, y+4*H/20)
+  cpx = x+3*W/20
+  cpy = y+3*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+5*W/20, y+3*H/20)
+  cpx = x+7*W/20
+  cpy = y+3*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+7*W/20, y+4*H/20)
+  cpx = x+7*W/20
+  cpy = y+5*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+5*W/20, y+5*H/20)
+  cpx = x+3*W/20
+  cpy = y+5*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+3*W/20, y+4*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+11*W/20, y+3*H/20)
+  ctx.lineTo(x+11*W/20, y+12*H/20)
+  ctx.lineTo(x+13*W/20, y+14*H/20)
+  ctx.lineTo(x+13*W/20, y+5*H/20)
+  ctx.lineTo(x+11*W/20, y+3*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+17*W/20, y+14*H/20)
+  ctx.lineTo(x+19*W/20, y+12*H/20)
+  ctx.lineTo(x+19*W/20, y+3*H/20)
+  ctx.lineTo(x+17*W/20, y+5*H/20)
+  ctx.lineTo(x+17*W/20, y+14*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+13*W/20, y+5*H/20)
+  ctx.lineTo(x+17*W/20, y+5*H/20)
+  ctx.lineTo(x+17*W/20, y+14*H/20)
+  ctx.lineTo(x+13*W/20, y+14*H/20)
+  ctx.lineTo(x+13*W/20, y+5*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+1*W/20, y+3*H/20)
+  ctx.lineTo(x+3*W/20, y+1*H/20)
+  ctx.lineTo(x+7*W/20, y+1*H/20)
+  ctx.lineTo(x+9*W/20, y+3*H/20)
+  ctx.lineTo(x+7*W/20, y+5*H/20)
+  ctx.lineTo(x+3*W/20, y+5*H/20)
+  ctx.lineTo(x+1*W/20, y+3*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+3*W/20, y+3*H/20)
+  cpx = x+3*W/20
+  cpy = y+2*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+5*W/20, y+2*H/20)
+  cpx = x+7*W/20
+  cpy = y+2*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+7*W/20, y+3*H/20)
+  cpx = x+7*W/20
+  cpy = y+4*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+5*W/20, y+4*H/20)
+  cpx = x+3*W/20
+  cpy = y+4*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+3*W/20, y+3*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+9*W/20, y+3*H/20)
+  ctx.lineTo(x+9*W/20, y+12*H/20)
+  ctx.lineTo(x+7*W/20, y+14*H/20)
+  ctx.lineTo(x+7*W/20, y+5*H/20)
+  ctx.lineTo(x+9*W/20, y+3*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+3*W/20, y+5*H/20)
+  ctx.lineTo(x+7*W/20, y+5*H/20)
+  ctx.lineTo(x+3*W/20, y+14*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+3*W/20, y+5*H/20)
+  ctx.lineTo(x+7*W/20, y+5*H/20)
+  ctx.lineTo(x+7*W/20, y+14*H/20)
+  ctx.lineTo(x+3*W/20, y+14*H/20)
+  ctx.lineTo(x+3*W/20, y+5*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+3*W/20, y+14*H/20)
+  ctx.lineTo(x+1*W/20, y+12*H/20)
+  ctx.lineTo(x+1*W/20, y+3*H/20)
+  ctx.lineTo(x+3*W/20, y+5*H/20)
+  ctx.lineTo(x+3*W/20, y+14*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+}  
+
+
+function p82At (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let oc = document.createElement('canvas')
+  let occtx = oc.getContext("2d")
+  oc.height = canvas.height, oc.width = canvas.width
+  let colors = shuffle(getCurrentPalette(true,13))
+  let H = W, cpx, cpy, points = [], n = 0
+  let STROKE = false, FILL = true, PATTERN = false
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/5
+  ctx.strokeStyle = randomPick(colors)
+  ctx.fillStyle = randomPick(colors)
+  ctx.strokeStyle = color
+  ctx.lineCap = "square"
+  ctx.lineJoin = "meter"
+
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/20, y+3*H/20)
+  ctx.lineTo(x+2*W/20, y+17*H/20)
+  ctx.lineTo(x+3*W/20, y+19*H/20)
+  ctx.lineTo(x+4*W/20, y+17*H/20)
+  ctx.lineTo(x+4*W/20, y+3*H/20)
+  ctx.lineTo(x+2*W/20, y+3*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+4*W/20, y+17*H/20)
+  ctx.lineTo(x+5*W/20, y+19*H/20)
+  ctx.lineTo(x+6*W/20, y+17*H/20)
+  ctx.lineTo(x+6*W/20, y+5*H/20)
+  ctx.lineTo(x+4*W/20, y+5*H/20)
+  ctx.lineTo(x+4*W/20, y+17*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+17*W/20, y+19*H/20)
+  ctx.lineTo(x+18*W/20, y+17*H/20)
+  ctx.lineTo(x+18*W/20, y+14*H/20)
+  ctx.lineTo(x+16*W/20, y+14*H/20)
+  ctx.lineTo(x+16*W/20, y+17*H/20)
+  ctx.lineTo(x+17*W/20, y+19*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+7*W/20, y+2*H/20)
+  ctx.lineTo(x+6*W/20, y+4*H/20)
+  ctx.lineTo(x+6*W/20, y+16*H/20)
+  ctx.lineTo(x+8*W/20, y+16*H/20)
+  ctx.lineTo(x+8*W/20, y+4*H/20)
+  ctx.lineTo(x+7*W/20, y+2*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+8*W/20, y+17*H/20)
+  ctx.lineTo(x+9*W/20, y+19*H/20)
+  ctx.lineTo(x+10*W/20, y+17*H/20)
+  ctx.lineTo(x+10*W/20, y+5*H/20)
+  ctx.lineTo(x+8*W/20, y+5*H/20)
+  ctx.lineTo(x+8*W/20, y+17*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+10*W/20, y+4*H/20)
+  ctx.lineTo(x+12*W/20, y+4*H/20)
+  ctx.lineTo(x+12*W/20, y+17*H/20)
+  ctx.lineTo(x+11*W/20, y+19*H/20)
+  ctx.lineTo(x+10*W/20, y+17*H/20)
+  ctx.lineTo(x+10*W/20, y+4*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+12*W/20, y+3*H/20)
+  ctx.lineTo(x+14*W/20, y+3*H/20)
+  ctx.lineTo(x+14*W/20, y+15*H/20)
+  ctx.lineTo(x+13*W/20, y+17*H/20)
+  ctx.lineTo(x+12*W/20, y+15*H/20)
+  ctx.lineTo(x+12*W/20, y+3*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+14*W/20, y+17*H/20)
+  ctx.lineTo(x+16*W/20, y+17*H/20)
+  ctx.lineTo(x+16*W/20, y+4*H/20)
+  ctx.lineTo(x+15*W/20, y+2*H/20)
+  ctx.lineTo(x+14*W/20, y+4*H/20)
+  ctx.lineTo(x+14*W/20, y+17*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/20, y+17*H/20)
+  cpx = x+3*W/20
+  cpy = y+18*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+4*W/20, y+17*H/20)
+  ctx.lineTo(x+3*W/20, y+19*H/20)
+  ctx.lineTo(x+2*W/20, y+17*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+4*W/20, y+17*H/20)
+  cpx = x+5*W/20
+  cpy = y+18*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+6*W/20, y+17*H/20)
+  ctx.lineTo(x+5*W/20, y+19*H/20)
+  ctx.lineTo(x+4*W/20, y+17*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+8*W/20, y+17*H/20)
+  cpx = x+9*W/20
+  cpy = y+18*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+10*W/20, y+17*H/20)
+  ctx.lineTo(x+9*W/20, y+19*H/20)
+  ctx.lineTo(x+8*W/20, y+17*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+10*W/20, y+17*H/20)
+  cpx = x+11*W/20
+  cpy = y+18*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+12*W/20, y+17*H/20)
+  ctx.lineTo(x+11*W/20, y+19*H/20)
+  ctx.lineTo(x+10*W/20, y+17*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/20, y+4*H/20)
+  cpx = x+7*W/20
+  cpy = y+3*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+8*W/20, y+4*H/20)
+  ctx.lineTo(x+7*W/20, y+2*H/20)
+  ctx.lineTo(x+6*W/20, y+4*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+12*W/20, y+15*H/20)
+  cpx = x+13*W/20
+  cpy = y+16*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+14*W/20, y+15*H/20)
+  ctx.lineTo(x+13*W/20, y+17*H/20)
+  ctx.lineTo(x+12*W/20, y+15*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+16*W/20, y+17*H/20)
+  cpx = x+17*W/20
+  cpy = y+18*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+18*W/20, y+17*H/20)
+  ctx.lineTo(x+17*W/20, y+19*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+14*W/20, y+4*H/20)
+  cpx = x+15*W/20
+  cpy = y+3*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+16*W/20, y+4*H/20)
+  ctx.lineTo(x+15*W/20, y+2*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+16*W/20, y+14*H/20)
+  cpx = x+17*W/20
+  cpy = y+13*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+18*W/20, y+14*H/20)
+  cpx = x+17*W/20
+  cpy = y+15*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+16*W/20, y+14*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+14*W/20, y+17*H/20)
+  cpx = x+15*W/20
+  cpy = y+16*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+16*W/20, y+17*H/20)
+  cpx = x+15*W/20
+  cpy = y+18*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+14*W/20, y+17*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/20, y+16*H/20)
+  cpx = x+7*W/20
+  cpy = y+15*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+8*W/20, y+16*H/20)
+  cpx = x+7*W/20
+  cpy = y+17*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+6*W/20, y+16*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/20, y+3*H/20)
+  cpx = x+3*W/20
+  cpy = y+4*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+4*W/20, y+3*H/20)
+  cpx = x+3*W/20
+  cpy = y+2*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+2*W/20, y+3*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+4*W/20, y+5*H/20)
+  cpx = x+5*W/20
+  cpy = y+6*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+6*W/20, y+5*H/20)
+  cpx = x+5*W/20
+  cpy = y+4*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+4*W/20, y+5*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+8*W/20, y+5*H/20)
+  cpx = x+9*W/20
+  cpy = y+6*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+10*W/20, y+5*H/20)
+  cpx = x+9*W/20
+  cpy = y+4*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+8*W/20, y+5*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+10*W/20, y+4*H/20)
+  cpx = x+11*W/20
+  cpy = y+5*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+12*W/20, y+4*H/20)
+  cpx = x+11*W/20
+  cpy = y+3*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+10*W/20, y+4*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+12*W/20, y+3*H/20)
+  cpx = x+13*W/20
+  cpy = y+4*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+14*W/20, y+3*H/20)
+  cpx = x+13*W/20
+  cpy = y+2*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+12*W/20, y+3*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+}  
+
+function p8At (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let oc = document.createElement('canvas')
+  let occtx = oc.getContext("2d")
+  oc.height = canvas.height, oc.width = canvas.width
+  let colors = shuffle(getCurrentPalette(true,13))
+  let H = W, cpx, cpy, points = [], n = 0
+  let STROKE = false, FILL = true, PATTERN = false
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/5
+  ctx.strokeStyle = randomPick(colors)
+  ctx.fillStyle = randomPick(colors)
+  ctx.strokeStyle = color
+  ctx.lineCap = "square"
+  ctx.lineJoin = "meter"
+
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/20, y+3*H/20)
+  ctx.lineTo(x+2*W/20, y+17*H/20)
+  ctx.lineTo(x+3*W/20, y+19*H/20)
+  ctx.lineTo(x+4*W/20, y+17*H/20)
+  ctx.lineTo(x+4*W/20, y+3*H/20)
+  ctx.lineTo(x+2*W/20, y+3*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+4*W/20, y+17*H/20)
+  ctx.lineTo(x+5*W/20, y+19*H/20)
+  ctx.lineTo(x+6*W/20, y+17*H/20)
+  ctx.lineTo(x+6*W/20, y+5*H/20)
+  ctx.lineTo(x+4*W/20, y+5*H/20)
+  ctx.lineTo(x+4*W/20, y+17*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+17*W/20, y+19*H/20)
+  ctx.lineTo(x+18*W/20, y+17*H/20)
+  ctx.lineTo(x+18*W/20, y+14*H/20)
+  ctx.lineTo(x+16*W/20, y+14*H/20)
+  ctx.lineTo(x+16*W/20, y+17*H/20)
+  ctx.lineTo(x+17*W/20, y+19*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+7*W/20, y+2*H/20)
+  ctx.lineTo(x+6*W/20, y+4*H/20)
+  ctx.lineTo(x+6*W/20, y+16*H/20)
+  ctx.lineTo(x+8*W/20, y+16*H/20)
+  ctx.lineTo(x+8*W/20, y+4*H/20)
+  ctx.lineTo(x+7*W/20, y+2*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+8*W/20, y+17*H/20)
+  ctx.lineTo(x+9*W/20, y+19*H/20)
+  ctx.lineTo(x+10*W/20, y+17*H/20)
+  ctx.lineTo(x+10*W/20, y+5*H/20)
+  ctx.lineTo(x+8*W/20, y+5*H/20)
+  ctx.lineTo(x+8*W/20, y+17*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+10*W/20, y+4*H/20)
+  ctx.lineTo(x+12*W/20, y+4*H/20)
+  ctx.lineTo(x+12*W/20, y+17*H/20)
+  ctx.lineTo(x+11*W/20, y+19*H/20)
+  ctx.lineTo(x+10*W/20, y+17*H/20)
+  ctx.lineTo(x+10*W/20, y+4*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+12*W/20, y+3*H/20)
+  ctx.lineTo(x+14*W/20, y+3*H/20)
+  ctx.lineTo(x+14*W/20, y+15*H/20)
+  ctx.lineTo(x+13*W/20, y+17*H/20)
+  ctx.lineTo(x+12*W/20, y+15*H/20)
+  ctx.lineTo(x+12*W/20, y+3*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+14*W/20, y+17*H/20)
+  ctx.lineTo(x+16*W/20, y+17*H/20)
+  ctx.lineTo(x+16*W/20, y+4*H/20)
+  ctx.lineTo(x+15*W/20, y+2*H/20)
+  ctx.lineTo(x+14*W/20, y+4*H/20)
+  ctx.lineTo(x+14*W/20, y+17*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/20, y+17*H/20)
+  cpx = x+3*W/20
+  cpy = y+18*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+4*W/20, y+17*H/20)
+  ctx.lineTo(x+3*W/20, y+19*H/20)
+  ctx.lineTo(x+2*W/20, y+17*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+4*W/20, y+17*H/20)
+  cpx = x+5*W/20
+  cpy = y+18*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+6*W/20, y+17*H/20)
+  ctx.lineTo(x+5*W/20, y+19*H/20)
+  ctx.lineTo(x+4*W/20, y+17*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+8*W/20, y+17*H/20)
+  cpx = x+9*W/20
+  cpy = y+18*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+10*W/20, y+17*H/20)
+  ctx.lineTo(x+9*W/20, y+19*H/20)
+  ctx.lineTo(x+8*W/20, y+17*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+10*W/20, y+17*H/20)
+  cpx = x+11*W/20
+  cpy = y+18*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+12*W/20, y+17*H/20)
+  ctx.lineTo(x+11*W/20, y+19*H/20)
+  ctx.lineTo(x+10*W/20, y+17*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/20, y+4*H/20)
+  cpx = x+7*W/20
+  cpy = y+3*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+8*W/20, y+4*H/20)
+  ctx.lineTo(x+7*W/20, y+2*H/20)
+  ctx.lineTo(x+6*W/20, y+4*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+12*W/20, y+15*H/20)
+  cpx = x+13*W/20
+  cpy = y+16*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+14*W/20, y+15*H/20)
+  ctx.lineTo(x+13*W/20, y+17*H/20)
+  ctx.lineTo(x+12*W/20, y+15*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+16*W/20, y+17*H/20)
+  cpx = x+17*W/20
+  cpy = y+18*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+18*W/20, y+17*H/20)
+  ctx.lineTo(x+17*W/20, y+19*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+14*W/20, y+4*H/20)
+  cpx = x+15*W/20
+  cpy = y+3*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+16*W/20, y+4*H/20)
+  ctx.lineTo(x+15*W/20, y+2*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+}  
+
+function wp2At (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let oc = document.createElement('canvas')
+  let occtx = oc.getContext("2d")
+  oc.height = canvas.height, oc.width = canvas.width
+  let colors = shuffle(getCurrentPalette(true,13))
+  let H = W, cpx, cpy, points = [], n = 0
+  let STROKE = false, FILL = true, PATTERN = false
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/5
+  ctx.strokeStyle = randomPick(colors)
+  ctx.fillStyle = randomPick(colors)
+  ctx.strokeStyle = color
+  ctx.lineCap = "square"
+  ctx.lineJoin = "meter"
+
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+5*W/20, y+18*H/20)
+  ctx.lineTo(x+1*W/20, y+13*H/20)
+  ctx.lineTo(x+9*W/20, y+13*H/20)
+  ctx.lineTo(x+5*W/20, y+18*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+9*W/20, y+13*H/20)
+  ctx.lineTo(x+8*W/20, y+2*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+9*W/20, y+13*H/20)
+  ctx.lineTo(x+9*W/20, y+2*H/20)
+  ctx.lineTo(x+1*W/20, y+2*H/20)
+  ctx.lineTo(x+1*W/20, y+13*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+3*W/20, y+2*H/20)
+  ctx.lineTo(x+3*W/20, y+13*H/20)
+  ctx.lineTo(x+1*W/20, y+13*H/20)
+  ctx.lineTo(x+1*W/20, y+2*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+7*W/20, y+13*H/20)
+  ctx.lineTo(x+7*W/20, y+2*H/20)
+  ctx.lineTo(x+9*W/20, y+2*H/20)
+  ctx.lineTo(x+9*W/20, y+13*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+11*W/20, y+18*H/20)
+  ctx.lineTo(x+19*W/20, y+18*H/20)
+  ctx.lineTo(x+18*W/20, y+7*H/20)
+  ctx.lineTo(x+11*W/20, y+7*H/20)
+  ctx.lineTo(x+11*W/20, y+18*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+19*W/20, y+7*H/20)
+  ctx.lineTo(x+19*W/20, y+18*H/20)
+  ctx.lineTo(x+17*W/20, y+18*H/20)
+  ctx.lineTo(x+17*W/20, y+7*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+11*W/20, y+18*H/20)
+  ctx.lineTo(x+13*W/20, y+18*H/20)
+  ctx.lineTo(x+13*W/20, y+7*H/20)
+  ctx.lineTo(x+11*W/20, y+7*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+11*W/20, y+7*H/20)
+  ctx.lineTo(x+11*W/20, y+5*H/20)
+  ctx.lineTo(x+19*W/20, y+5*H/20)
+  ctx.lineTo(x+19*W/20, y+7*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+11*W/20, y+5*H/20)
+  cpx = x+11*W/20
+  cpy = y+2*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+13*W/20, y+2*H/20)
+  ctx.lineTo(x+17*W/20, y+2*H/20)
+  cpx = x+19*W/20
+  cpy = y+2*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+19*W/20, y+5*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+}  
+
+function wpAt (x,y,W,color) { // wrap pencil
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let oc = document.createElement('canvas')
+  let occtx = oc.getContext("2d")
+  oc.height = canvas.height, oc.width = canvas.width
+  let colors = shuffle(getCurrentPalette(true,13))
+  let H = W, cpx, cpy, points = [], n = 0
+  let STROKE = false, FILL = true, PATTERN = false
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/5
+  ctx.strokeStyle = randomPick(colors)
+  ctx.fillStyle = randomPick(colors)
+  ctx.strokeStyle = color
+  ctx.lineCap = "square"
+  ctx.lineJoin = "meter"
+
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/20, y+18*H/20)
+  ctx.lineTo(x+2*W/20, y+7*H/20)
+  ctx.lineTo(x+6*W/20, y+2*H/20)
+  ctx.lineTo(x+10*W/20, y+7*H/20)
+  ctx.lineTo(x+10*W/20, y+18*H/20)
+  ctx.lineTo(x+2*W/20, y+18*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+12*W/20, y+2*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+11*W/20, y+2*H/20)
+  ctx.lineTo(x+11*W/20, y+18*H/20)
+  ctx.lineTo(x+19*W/20, y+18*H/20)
+  ctx.lineTo(x+19*W/20, y+2*H/20)
+  ctx.lineTo(x+11*W/20, y+2*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+11*W/20, y+7*H/20)
+  ctx.lineTo(x+19*W/20, y+7*H/20)
+  ctx.lineTo(x+19*W/20, y+2*H/20)
+  ctx.lineTo(x+11*W/20, y+2*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+13*W/20, y+7*H/20)
+  ctx.lineTo(x+13*W/20, y+18*H/20)
+  ctx.lineTo(x+11*W/20, y+18*H/20)
+  ctx.lineTo(x+11*W/20, y+7*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+13*W/20, y+7*H/20)
+  ctx.lineTo(x+15*W/20, y+7*H/20)
+  ctx.lineTo(x+15*W/20, y+18*H/20)
+  ctx.lineTo(x+13*W/20, y+18*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+15*W/20, y+18*H/20)
+  ctx.lineTo(x+17*W/20, y+18*H/20)
+  ctx.lineTo(x+17*W/20, y+7*H/20)
+  ctx.lineTo(x+15*W/20, y+7*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/20, y+7*H/20)
+  ctx.lineTo(x+4*W/20, y+7*H/20)
+  ctx.lineTo(x+4*W/20, y+18*H/20)
+  ctx.lineTo(x+2*W/20, y+18*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+4*W/20, y+7*H/20)
+  ctx.lineTo(x+6*W/20, y+7*H/20)
+  ctx.lineTo(x+6*W/20, y+18*H/20)
+  ctx.lineTo(x+4*W/20, y+18*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/20, y+7*H/20)
+  ctx.lineTo(x+8*W/20, y+7*H/20)
+  ctx.lineTo(x+8*W/20, y+18*H/20)
+  ctx.lineTo(x+6*W/20, y+18*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/20, y+7*H/20)
+  ctx.lineTo(x+10*W/20, y+7*H/20)
+  ctx.lineTo(x+6*W/20, y+2*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+}  
+
+
+function pbAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let oc = document.createElement('canvas')
+  let occtx = oc.getContext("2d")
+  oc.height = canvas.height, oc.width = canvas.width
+  let colors = shuffle(getCurrentPalette(true,13))
+  let H = W, cpx, cpy, points = [], n = 0
+  let STROKE = false, FILL = true, PATTERN = false
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/5
+  ctx.strokeStyle = randomPick(colors)
+  ctx.fillStyle = randomPick(colors)
+  ctx.strokeStyle = color
+  ctx.lineCap = "square"
+  ctx.lineJoin = "meter"
+
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+4*W/20, y+12*H/20)
+  ctx.lineTo(x+10*W/20, y+12*H/20)
+  ctx.lineTo(x+10*W/20, y+3*H/20)
+  ctx.lineTo(x+4*W/20, y+3*H/20)
+  ctx.lineTo(x+4*W/20, y+12*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+10*W/20, y+12*H/20)
+  ctx.lineTo(x+16*W/20, y+12*H/20)
+  ctx.lineTo(x+16*W/20, y+3*H/20)
+  ctx.lineTo(x+10*W/20, y+3*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+10*W/20, y+3*H/20)
+  cpx = x+12*W/20
+  cpy = y+2*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+15*W/20, y+3*H/20)
+  ctx.lineTo(x+15*W/20, y+12*H/20)
+  cpx = x+12*W/20
+  cpy = y+11*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+10*W/20, y+12*H/20)
+  cpx = x+7*W/20
+  cpy = y+11*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+3*W/20, y+12*H/20)
+  ctx.lineTo(x+3*W/20, y+4*H/20)
+  ctx.lineTo(x+7*W/20, y+3*H/20)
+  ctx.lineTo(x+10*W/20, y+3*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+4*W/20, y+14*H/20)
+  ctx.lineTo(x+12*W/20, y+14*H/20)
+  ctx.lineTo(x+16*W/20, y+16*H/20)
+  ctx.lineTo(x+12*W/20, y+18*H/20)
+  ctx.lineTo(x+4*W/20, y+18*H/20)
+  ctx.lineTo(x+4*W/20, y+14*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+4*W/20, y+14*H/20)
+  ctx.lineTo(x+2*W/20, y+14*H/20)
+  ctx.lineTo(x+2*W/20, y+18*H/20)
+  ctx.lineTo(x+4*W/20, y+18*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+4*W/20, y+17*H/20)
+  ctx.lineTo(x+12*W/20, y+17*H/20)
+  ctx.lineTo(x+12*W/20, y+18*H/20)
+  ctx.lineTo(x+4*W/20, y+18*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+4*W/20, y+16*H/20)
+  ctx.lineTo(x+12*W/20, y+16*H/20)
+  ctx.lineTo(x+12*W/20, y+17*H/20)
+  ctx.lineTo(x+4*W/20, y+17*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+4*W/20, y+15*H/20)
+  ctx.lineTo(x+12*W/20, y+15*H/20)
+  ctx.lineTo(x+12*W/20, y+16*H/20)
+  ctx.lineTo(x+4*W/20, y+16*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+12*W/20, y+14*H/20)
+  ctx.lineTo(x+12*W/20, y+18*H/20)
+  ctx.lineTo(x+16*W/20, y+16*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+10*W/20, y+12*H/20)
+  cpx = x+7*W/20
+  cpy = y+11*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+3*W/20, y+12*H/20)
+  ctx.lineTo(x+3*W/20, y+4*H/20)
+  cpx = x+7*W/20
+  cpy = y+2*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+10*W/20, y+3*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+}  
+
+function p4At (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let oc = document.createElement('canvas')
+  let occtx = oc.getContext("2d")
+  oc.height = canvas.height, oc.width = canvas.width
+  let colors = shuffle(getCurrentPalette(true,13))
+  let H = W, cpx, cpy, points = [], n = 0
+  let STROKE = false, FILL = true, PATTERN = false
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/5
+  ctx.strokeStyle = randomPick(colors)
+  ctx.fillStyle = randomPick(colors)
+  ctx.strokeStyle = color
+  ctx.lineCap = "square"
+  ctx.lineJoin = "meter"
+
+  
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+0*W/32, y+0*H/32)
+  ctx.lineTo(x+32*W/32, y+0*H/32)
+  ctx.lineTo(x+32*W/32, y+31*H/32)
+  ctx.lineTo(x+32*W/32, y+32*H/32)
+  ctx.lineTo(x+0*W/32, y+32*H/32)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/32, y+28*H/32)
+  ctx.lineTo(x+6*W/32, y+26*H/32)
+  ctx.lineTo(x+6*W/32, y+30*H/32)
+  ctx.lineTo(x+2*W/32, y+28*H/32)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+30*W/32, y+22*H/32)
+  ctx.lineTo(x+26*W/32, y+23*H/32)
+  ctx.lineTo(x+26*W/32, y+20*H/32)
+  ctx.lineTo(x+30*W/32, y+22*H/32)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+26*W/32, y+20*H/32)
+  ctx.lineTo(x+26*W/32, y+24*H/32)
+  ctx.lineTo(x+30*W/32, y+22*H/32)
+  ctx.lineTo(x+26*W/32, y+20*H/32)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/32, y+26*H/32)
+  ctx.lineTo(x+22*W/32, y+26*H/32)
+  ctx.lineTo(x+22*W/32, y+30*H/32)
+  ctx.lineTo(x+6*W/32, y+30*H/32)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+26*W/32, y+24*H/32)
+  ctx.lineTo(x+10*W/32, y+23*H/32)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+26*W/32, y+24*H/32)
+  ctx.lineTo(x+10*W/32, y+24*H/32)
+  ctx.lineTo(x+10*W/32, y+20*H/32)
+  ctx.lineTo(x+26*W/32, y+20*H/32)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/32, y+26*H/32)
+  ctx.lineTo(x+6*W/32, y+28*H/32)
+  ctx.lineTo(x+22*W/32, y+28*H/32)
+  ctx.lineTo(x+22*W/32, y+26*H/32)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+10*W/32, y+20*H/32)
+  ctx.lineTo(x+10*W/32, y+22*H/32)
+  ctx.lineTo(x+26*W/32, y+22*H/32)
+  ctx.lineTo(x+26*W/32, y+20*H/32)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/32, y+14*H/32)
+  ctx.lineTo(x+2*W/32, y+16*H/32)
+  ctx.lineTo(x+6*W/32, y+18*H/32)
+  ctx.lineTo(x+6*W/32, y+14*H/32)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/32, y+18*H/32)
+  ctx.lineTo(x+22*W/32, y+18*H/32)
+  ctx.lineTo(x+22*W/32, y+14*H/32)
+  ctx.lineTo(x+6*W/32, y+14*H/32)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/32, y+14*H/32)
+  ctx.lineTo(x+6*W/32, y+16*H/32)
+  ctx.lineTo(x+22*W/32, y+16*H/32)
+  ctx.lineTo(x+22*W/32, y+14*H/32)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+22*W/32, y+30*H/32)
+  ctx.lineTo(x+24*W/32, y+30*H/32)
+  ctx.lineTo(x+24*W/32, y+26*H/32)
+  ctx.lineTo(x+22*W/32, y+26*H/32)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+10*W/32, y+20*H/32)
+  ctx.lineTo(x+8*W/32, y+20*H/32)
+  ctx.lineTo(x+8*W/32, y+23*H/32)
+  ctx.lineTo(x+8*W/32, y+24*H/32)
+  ctx.lineTo(x+10*W/32, y+24*H/32)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+22*W/32, y+18*H/32)
+  ctx.lineTo(x+24*W/32, y+18*H/32)
+  ctx.lineTo(x+24*W/32, y+14*H/32)
+  ctx.lineTo(x+22*W/32, y+14*H/32)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+24*W/32, y+30*H/32)
+  cpx = x+26*W/32
+  cpy = y+30*H/32
+  ctx.quadraticCurveTo(cpx, cpy, x+26*W/32, y+28*H/32)
+  cpx = x+26*W/32
+  cpy = y+26*H/32
+  ctx.quadraticCurveTo(cpx, cpy, x+24*W/32, y+26*H/32)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+8*W/32, y+24*H/32)
+  cpx = x+6*W/32
+  cpy = y+24*H/32
+  ctx.quadraticCurveTo(cpx, cpy, x+6*W/32, y+22*H/32)
+  cpx = x+6*W/32
+  cpy = y+20*H/32
+  ctx.quadraticCurveTo(cpx, cpy, x+8*W/32, y+20*H/32)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+24*W/32, y+18*H/32)
+  cpx = x+26*W/32
+  cpy = y+18*H/32
+  ctx.quadraticCurveTo(cpx, cpy, x+26*W/32, y+16*H/32)
+  cpx = x+26*W/32
+  cpy = y+14*H/32
+  ctx.quadraticCurveTo(cpx, cpy, x+24*W/32, y+14*H/32)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+26*W/32, y+12*H/32)
+  ctx.lineTo(x+30*W/32, y+10*H/32)
+  ctx.lineTo(x+26*W/32, y+8*H/32)
+  ctx.lineTo(x+26*W/32, y+12*H/32)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+26*W/32, y+12*H/32)
+  ctx.lineTo(x+10*W/32, y+12*H/32)
+  ctx.lineTo(x+10*W/32, y+10*H/32)
+  ctx.lineTo(x+26*W/32, y+10*H/32)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+26*W/32, y+8*H/32)
+  ctx.lineTo(x+10*W/32, y+8*H/32)
+  ctx.lineTo(x+10*W/32, y+10*H/32)
+  ctx.lineTo(x+26*W/32, y+10*H/32)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/32, y+4*H/32)
+  ctx.lineTo(x+6*W/32, y+2*H/32)
+  ctx.lineTo(x+6*W/32, y+6*H/32)
+  ctx.lineTo(x+2*W/32, y+4*H/32)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/32, y+4*H/32)
+  ctx.lineTo(x+22*W/32, y+4*H/32)
+  ctx.lineTo(x+22*W/32, y+6*H/32)
+  ctx.lineTo(x+6*W/32, y+6*H/32)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/32, y+2*H/32)
+  ctx.lineTo(x+22*W/32, y+2*H/32)
+  ctx.lineTo(x+22*W/32, y+4*H/32)
+  ctx.lineTo(x+6*W/32, y+4*H/32)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+22*W/32, y+2*H/32)
+  ctx.lineTo(x+24*W/32, y+2*H/32)
+  ctx.lineTo(x+24*W/32, y+6*H/32)
+  ctx.lineTo(x+22*W/32, y+6*H/32)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+10*W/32, y+8*H/32)
+  ctx.lineTo(x+8*W/32, y+8*H/32)
+  ctx.lineTo(x+8*W/32, y+12*H/32)
+  ctx.lineTo(x+10*W/32, y+12*H/32)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+24*W/32, y+6*H/32)
+  cpx = x+26*W/32
+  cpy = y+6*H/32
+  ctx.quadraticCurveTo(cpx, cpy, x+26*W/32, y+4*H/32)
+  cpx = x+26*W/32
+  cpy = y+2*H/32
+  ctx.quadraticCurveTo(cpx, cpy, x+24*W/32, y+2*H/32)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+8*W/32, y+12*H/32)
+  cpx = x+6*W/32
+  cpy = y+12*H/32
+  ctx.quadraticCurveTo(cpx, cpy, x+6*W/32, y+10*H/32)
+  cpx = x+6*W/32
+  cpy = y+8*H/32
+  ctx.quadraticCurveTo(cpx, cpy, x+8*W/32, y+8*H/32)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  
+}  
+
+
+function sheets2At (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let oc = document.createElement('canvas')
+  let occtx = oc.getContext("2d")
+  oc.height = canvas.height, oc.width = canvas.width
+  let colors = shuffle(getCurrentPalette(true,13))
+  let H = W, cpx, cpy, points = [], n = 0
+  let STROKE = false, FILL = true, PATTERN = false
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/5
+  ctx.strokeStyle = randomPick(colors)
+  ctx.fillStyle = randomPick(colors)
+  ctx.strokeStyle = color
+  ctx.lineCap = "square"
+  ctx.lineJoin = "meter"
+  if (PATTERN)
+  fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+0*W/32, y+0*H/32)
+  ctx.lineTo(x+32*W/32, y+0*H/32)
+  ctx.lineTo(x+32*W/32, y+32*H/32)
+  ctx.lineTo(x+0*W/32, y+32*H/32)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+  n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+28*W/32, y+24*H/32)
+  ctx.lineTo(x+15*W/32, y+24*H/32)
+  ctx.lineTo(x+15*W/32, y+4*H/32)
+  ctx.lineTo(x+28*W/32, y+4*H/32)
+  ctx.lineTo(x+28*W/32, y+24*H/32)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+14*W/32, y+23*H/32)
+  ctx.lineTo(x+27*W/32, y+23*H/32)
+  ctx.lineTo(x+27*W/32, y+3*H/32)
+  ctx.lineTo(x+14*W/32, y+3*H/32)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+13*W/32, y+22*H/32)
+  ctx.lineTo(x+26*W/32, y+22*H/32)
+  ctx.lineTo(x+26*W/32, y+2*H/32)
+  ctx.lineTo(x+13*W/32, y+2*H/32)
+  ctx.lineTo(x+13*W/32, y+22*H/32)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+13*W/32, y+22*H/32)
+  cpx = x+8*W/32
+  cpy = y+20*H/32
+  ctx.quadraticCurveTo(cpx, cpy, x+2*W/32, y+23*H/32)
+  ctx.lineTo(x+2*W/32, y+3*H/32)
+  cpx = x+8*W/32
+  cpy = y+0*H/32
+  ctx.quadraticCurveTo(cpx, cpy, x+13*W/32, y+2*H/32)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/32, y+28*H/32)
+  ctx.lineTo(x+6*W/32, y+26*H/32)
+  ctx.lineTo(x+6*W/32, y+30*H/32)
+  ctx.lineTo(x+2*W/32, y+28*H/32)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/32, y+26*H/32)
+  ctx.lineTo(x+24*W/32, y+26*H/32)
+  ctx.lineTo(x+24*W/32, y+28*H/32)
+  ctx.lineTo(x+6*W/32, y+28*H/32)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/32, y+28*H/32)
+  ctx.lineTo(x+6*W/32, y+30*H/32)
+  ctx.lineTo(x+24*W/32, y+30*H/32)
+  ctx.lineTo(x+24*W/32, y+28*H/32)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+24*W/32, y+30*H/32)
+  ctx.lineTo(x+26*W/32, y+30*H/32)
+  cpx = x+28*W/32
+  cpy = y+30*H/32
+  ctx.quadraticCurveTo(cpx, cpy, x+28*W/32, y+28*H/32)
+  cpx = x+28*W/32
+  cpy = y+26*H/32
+  ctx.quadraticCurveTo(cpx, cpy, x+26*W/32, y+26*H/32)
+  ctx.lineTo(x+24*W/32, y+26*H/32)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  
+}  
+
+function sheetsAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let oc = document.createElement('canvas')
+  let occtx = oc.getContext("2d")
+  oc.height = canvas.height, oc.width = canvas.width
+  let colors = shuffle(getCurrentPalette(true,13))
+  let H = W, cpx, cpy, points = [], n = 0
   let STROKE = false, FILL = true, PATTERN = false
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/5
   ctx.strokeStyle = randomPick(colors)
@@ -23,7 +3141,8 @@ function rthAt (x,y,W,color) {
   ctx.lineTo(x+20*W/20, y+20*H/20)
   ctx.lineTo(x+0*W/20, y+20*H/20)
   if (FILL) {
-    ctx.fillStyle = randomPick(colors)
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
     ctx.fill()
   }
   ctx.clip()
@@ -38,13 +3157,1249 @@ function rthAt (x,y,W,color) {
     fillOC(oc, occtx)
   ctx.save()
   ctx.beginPath()
-  ctx.moveTo(x+1*W/20, y+1*H/20)
-  ragged(ctx, x+1*W/20, y+7*H/20, 1*W/20, 1*W/20)
-  ragged(ctx, x+19*W/20, y+7*H/20, 1*W/20, 7*W/20)
-  ragged(ctx, x+19*W/20, y+1*H/20, 19*W/20, 7*W/20)
-  ragged(ctx, x+1*W/20, y+1*H/20, 19*W/20, 1*W/20)
+  ctx.moveTo(x+2*W/20, y+14*H/20)
+  cpx = x+7*W/20
+  cpy = y+16*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+13*W/20, y+14*H/20)
+  ctx.lineTo(x+13*W/20, y+2*H/20)
+  cpx = x+7*W/20
+  cpy = y+4*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+2*W/20, y+2*H/20)
+  ctx.lineTo(x+2*W/20, y+14*H/20)
   if (FILL) {
-    ctx.fillStyle = randomPick(colors)
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/20, y+2*H/20)
+  cpx = x+3*W/20
+  cpy = y+13*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+5*W/20, y+16*H/20)
+  cpx = x+10*W/20
+  cpy = y+18*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+15*W/20, y+15*H/20)
+  cpx = x+13*W/20
+  cpy = y+12*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+13*W/20, y+2*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/20, y+2*H/20)
+  cpx = x+3*W/20
+  cpy = y+13*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+5*W/20, y+16*H/20)
+  cpx = x+10*W/20
+  cpy = y+18*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+15*W/20, y+15*H/20)
+  cpx = x+13*W/20
+  cpy = y+12*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+13*W/20, y+2*H/20)
+  cpx = x+7*W/20
+  cpy = y+4*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+2*W/20, y+2*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/20, y+2*H/20)
+  cpx = x+6*W/20
+  cpy = y+10*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+15*W/20, y+11*H/20)
+  cpx = x+19*W/20
+  cpy = y+8*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+19*W/20, y+1*H/20)
+  cpx = x+14*W/20
+  cpy = y+7*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+13*W/20, y+2*H/20)
+  cpx = x+7*W/20
+  cpy = y+4*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+2*W/20, y+2*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+}  
+
+function writeAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let oc = document.createElement('canvas')
+  let occtx = oc.getContext("2d")
+  oc.height = canvas.height, oc.width = canvas.width
+  let colors = shuffle(getCurrentPalette(true,13))
+  let H = W, cpx, cpy, points = [], n = 0
+  let STROKE = false, FILL = true, PATTERN = false
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/5
+  ctx.strokeStyle = randomPick(colors)
+  ctx.fillStyle = randomPick(colors)
+  ctx.strokeStyle = color
+  ctx.lineCap = "square"
+  ctx.lineJoin = "meter"
+  if (PATTERN)
+  fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+0*W/20, y+0*H/20)
+  ctx.lineTo(x+20*W/20, y+0*H/20)
+  ctx.lineTo(x+20*W/20, y+20*H/20)
+  ctx.lineTo(x+0*W/20, y+20*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+  n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/20, y+17*H/20)
+  cpx = x+7*W/20
+  cpy = y+15*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+9*W/20, y+17*H/20)
+  ctx.lineTo(x+9*W/20, y+4*H/20)
+  cpx = x+7*W/20
+  cpy = y+3*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+2*W/20, y+4*H/20)
+  ctx.lineTo(x+2*W/20, y+17*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+9*W/20, y+17*H/20)
+  ctx.lineTo(x+15*W/20, y+17*H/20)
+  ctx.lineTo(x+15*W/20, y+4*H/20)
+  ctx.lineTo(x+9*W/20, y+4*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+18*W/20, y+18*H/20)
+  ctx.lineTo(x+19*W/20, y+15*H/20)
+  ctx.lineTo(x+17*W/20, y+15*H/20)
+  ctx.lineTo(x+18*W/20, y+18*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+17*W/20, y+15*H/20)
+  ctx.lineTo(x+17*W/20, y+4*H/20)
+  ctx.lineTo(x+19*W/20, y+4*H/20)
+  ctx.lineTo(x+19*W/20, y+15*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+17*W/20, y+4*H/20)
+  cpx = x+17*W/20
+  cpy = y+3*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+18*W/20, y+3*H/20)
+  cpx = x+19*W/20
+  cpy = y+3*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+19*W/20, y+4*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+18*W/20, y+4*H/20)
+  ctx.lineTo(x+18*W/20, y+15*H/20)
+  ctx.lineTo(x+19*W/20, y+15*H/20)
+  ctx.lineTo(x+19*W/20, y+4*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+9*W/20, y+17*H/20)
+  ctx.lineTo(x+10*W/20, y+18*H/20)
+  ctx.lineTo(x+16*W/20, y+18*H/20)
+  ctx.lineTo(x+15*W/20, y+17*H/20)
+  ctx.lineTo(x+9*W/20, y+17*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+16*W/20, y+18*H/20)
+  ctx.lineTo(x+16*W/20, y+5*H/20)
+  ctx.lineTo(x+15*W/20, y+4*H/20)
+  ctx.lineTo(x+15*W/20, y+17*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  
+}  
+
+function slAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let oc = document.createElement('canvas')
+  let occtx = oc.getContext("2d")
+  oc.height = canvas.height, oc.width = canvas.width
+  let colors = shuffle(getCurrentPalette(true,13))
+  let H = W, cpx, cpy, points = [], n = 0
+  let STROKE = false, FILL = true, PATTERN = false
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/5
+  ctx.strokeStyle = randomPick(colors)
+  ctx.fillStyle = randomPick(colors)
+  ctx.strokeStyle = color
+  ctx.lineCap = "square"
+  ctx.lineJoin = "meter"
+
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+0*W/20, y+0*H/20)
+  ctx.lineTo(x+20*W/20, y+0*H/20)
+  ctx.lineTo(x+20*W/20, y+20*H/20)
+  ctx.lineTo(x+0*W/20, y+20*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+8*W/20, y+18*H/20)
+  cpx = x+16*W/20
+  cpy = y+18*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+17*W/20, y+10*H/20)
+  cpx = x+17*W/20
+  cpy = y+8*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+16*W/20, y+7*H/20)
+  cpx = x+14*W/20
+  cpy = y+7*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+14*W/20, y+9*H/20)
+  cpx = x+13*W/20
+  cpy = y+14*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+8*W/20, y+15*H/20)
+  cpx = x+6*W/20
+  cpy = y+15*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+4*W/20, y+16*H/20)
+  cpx = x+3*W/20
+  cpy = y+16*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+2*W/20, y+15*H/20)
+  ctx.lineTo(x+2*W/20, y+17*H/20)
+  ctx.lineTo(x+4*W/20, y+18*H/20)
+  cpx = x+6*W/20
+  cpy = y+19*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+8*W/20, y+18*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+8*W/20, y+15*H/20)
+  cpx = x+11*W/20
+  cpy = y+11*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+10*W/20, y+7*H/20)
+  cpx = x+6*W/20
+  cpy = y+5*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+3*W/20, y+6*H/20)
+  cpx = x+2*W/20
+  cpy = y+8*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+1*W/20, y+10*H/20)
+  cpx = x+1*W/20
+  cpy = y+11*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+2*W/20, y+13*H/20)
+  cpx = x+4*W/20
+  cpy = y+14*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+6*W/20, y+15*H/20)
+  ctx.lineTo(x+8*W/20, y+15*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+4*W/20, y+18*H/20)
+  ctx.lineTo(x+15*W/20, y+19*H/20)
+  ctx.lineTo(x+16*W/20, y+14*H/20)
+  ctx.lineTo(x+17*W/20, y+11*H/20)
+  ctx.lineTo(x+20*W/20, y+12*H/20)
+  ctx.lineTo(x+20*W/20, y+20*H/20)
+  ctx.lineTo(x+4*W/20, y+20*H/20)
+  ctx.lineTo(x+4*W/20, y+18*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+4*W/20, y+18*H/20)
+  ctx.lineTo(x+16*W/20, y+19*H/20)
+  ctx.lineTo(x+17*W/20, y+10*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+4*W/20, y+18*H/20)
+  cpx = x+16*W/20
+  cpy = y+19*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+17*W/20, y+10*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+8*W/20, y+15*H/20)
+  cpx = x+12*W/20
+  cpy = y+9*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+8*W/20, y+5*H/20)
+  cpx = x+4*W/20
+  cpy = y+5*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+1*W/20, y+8*H/20)
+  cpx = x+1*W/20
+  cpy = y+11*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+3*W/20, y+14*H/20)
+  cpx = x+6*W/20
+  cpy = y+14*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+7*W/20, y+15*H/20)
+  cpx = x+8*W/20
+  cpy = y+15*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+8*W/20, y+15*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+4*W/20, y+18*H/20)
+  cpx = x+17*W/20
+  cpy = y+19*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+17*W/20, y+10*H/20)
+  cpx = x+16*W/20
+  cpy = y+10*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+15*W/20, y+13*H/20)
+  cpx = x+13*W/20
+  cpy = y+15*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+8*W/20, y+17*H/20)
+  cpx = x+5*W/20
+  cpy = y+17*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+4*W/20, y+18*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+5*W/20, y+11*H/20)
+  cpx = x+7*W/20
+  cpy = y+10*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+7*W/20, y+7*H/20)
+  cpx = x+8*W/20
+  cpy = y+6*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+10*W/20, y+8*H/20)
+  cpx = x+9*W/20
+  cpy = y+12*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+7*W/20, y+13*H/20)
+  cpx = x+5*W/20
+  cpy = y+13*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+5*W/20, y+11*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+8*W/20, y+15*H/20)
+  cpx = x+11*W/20
+  cpy = y+11*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+10*W/20, y+5*H/20)
+  cpx = x+10*W/20
+  cpy = y+2*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+12*W/20, y+2*H/20)
+  cpx = x+13*W/20
+  cpy = y+2*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+13*W/20, y+6*H/20)
+  cpx = x+13*W/20
+  cpy = y+10*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+8*W/20, y+15*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+8*W/20, y+15*H/20)
+  cpx = x+14*W/20
+  cpy = y+10*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+14*W/20, y+7*H/20)
+  cpx = x+14*W/20
+  cpy = y+3*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+12*W/20, y+2*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/20, y+7*H/20)
+  cpx = x+2*W/20
+  cpy = y+2*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+4*W/20, y+1*H/20)
+  cpx = x+6*W/20
+  cpy = y+1*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+6*W/20, y+4*H/20)
+  cpx = x+5*W/20
+  cpy = y+5*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+3*W/20, y+6*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+4*W/20, y+1*H/20)
+  cpx = x+5*W/20
+  cpy = y+1*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+5*W/20, y+4*H/20)
+  cpx = x+4*W/20
+  cpy = y+5*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+3*W/20, y+6*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/20, y+7*H/20)
+  cpx = x+7*W/20
+  cpy = y+5*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+8*W/20, y+5*H/20)
+  cpx = x+9*W/20
+  cpy = y+3*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+8*W/20, y+1*H/20)
+  cpx = x+6*W/20
+  cpy = y+1*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+6*W/20, y+4*H/20)
+  cpx = x+5*W/20
+  cpy = y+5*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+3*W/20, y+6*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+9*W/20, y+6*H/20)
+  cpx = x+10*W/20
+  cpy = y+3*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+10*W/20, y+1*H/20)
+  cpx = x+9*W/20
+  cpy = y+1*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+8*W/20, y+1*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+13*W/20, y+2*H/20)
+  cpx = x+14*W/20
+  cpy = y+7*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+16*W/20, y+5*H/20)
+  cpx = x+17*W/20
+  cpy = y+5*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+18*W/20, y+8*H/20)
+  cpx = x+19*W/20
+  cpy = y+10*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+20*W/20, y+10*H/20)
+  ctx.lineTo(x+20*W/20, y+0*H/20)
+  ctx.lineTo(x+13*W/20, y+0*H/20)
+  ctx.lineTo(x+13*W/20, y+2*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+0*W/20, y+7*H/20)
+  cpx = x+1*W/20
+  cpy = y+7*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+2*W/20, y+5*H/20)
+  cpx = x+1*W/20
+  cpy = y+3*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+2*W/20, y+2*H/20)
+  cpx = x+3*W/20
+  cpy = y+1*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+6*W/20, y+0*H/20)
+  ctx.lineTo(x+0*W/20, y+0*H/20)
+  ctx.lineTo(x+0*W/20, y+7*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+16*W/20, y+1*H/20)
+  cpx = x+15*W/20
+  cpy = y+3*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+17*W/20, y+4*H/20)
+  cpx = x+18*W/20
+  cpy = y+5*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+19*W/20, y+3*H/20)
+  cpx = x+18*W/20
+  cpy = y+2*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+17*W/20, y+2*H/20)
+  cpx = x+17*W/20
+  cpy = y+1*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+16*W/20, y+1*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+8*W/20, y+8*H/20)
+  cpx = x+8*W/20
+  cpy = y+10*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+9*W/20, y+9*H/20)
+  cpx = x+9*W/20
+  cpy = y+8*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+8*W/20, y+8*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/20, y+17*H/20)
+  cpx = x+1*W/20
+  cpy = y+18*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+1*W/20, y+20*H/20)
+  ctx.lineTo(x+4*W/20, y+20*H/20)
+  ctx.lineTo(x+4*W/20, y+18*H/20)
+  ctx.lineTo(x+2*W/20, y+17*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+0*W/20, y+16*H/20)
+  ctx.lineTo(x+2*W/20, y+13*H/20)
+  ctx.lineTo(x+0*W/20, y+12*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+}  
+
+function caAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let oc = document.createElement('canvas')
+  let occtx = oc.getContext("2d")
+  oc.height = canvas.height, oc.width = canvas.width
+  let colors = shuffle(getCurrentPalette(true,13))
+  let H = W, cpx, cpy, points = [], n = 0
+  let STROKE = false, FILL = true, PATTERN = false
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/5
+  ctx.strokeStyle = randomPick(colors)
+  ctx.fillStyle = randomPick(colors)
+  ctx.strokeStyle = color
+  ctx.lineCap = "square"
+  ctx.lineJoin = "meter"
+
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/20, y+2*H/20)
+  ctx.lineTo(x+18*W/20, y+2*H/20)
+  ctx.lineTo(x+18*W/20, y+18*H/20)
+  ctx.lineTo(x+2*W/20, y+2*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/20, y+2*H/20)
+  ctx.lineTo(x+1*W/20, y+4*H/20)
+  ctx.lineTo(x+4*W/20, y+4*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+4*W/20, y+4*H/20)
+  ctx.lineTo(x+1*W/20, y+7*H/20)
+  ctx.lineTo(x+6*W/20, y+6*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/20, y+6*H/20)
+  ctx.lineTo(x+2*W/20, y+10*H/20)
+  ctx.lineTo(x+8*W/20, y+8*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/20, y+10*H/20)
+  ctx.lineTo(x+6*W/20, y+14*H/20)
+  ctx.lineTo(x+8*W/20, y+8*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+8*W/20, y+8*H/20)
+  ctx.lineTo(x+8*W/20, y+14*H/20)
+  ctx.lineTo(x+14*W/20, y+14*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+14*W/20, y+14*H/20)
+  ctx.lineTo(x+14*W/20, y+18*H/20)
+  ctx.lineTo(x+18*W/20, y+18*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+14*W/20, y+14*H/20)
+  ctx.lineTo(x+12*W/20, y+15*H/20)
+  ctx.lineTo(x+14*W/20, y+16*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+14*W/20, y+16*H/20)
+  ctx.lineTo(x+12*W/20, y+17*H/20)
+  ctx.lineTo(x+14*W/20, y+18*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+8*W/20, y+14*H/20)
+  ctx.lineTo(x+9*W/20, y+18*H/20)
+  ctx.lineTo(x+10*W/20, y+14*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+10*W/20, y+14*H/20)
+  ctx.lineTo(x+11*W/20, y+16*H/20)
+  ctx.lineTo(x+12*W/20, y+14*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+4*W/20, y+12*H/20)
+  ctx.lineTo(x+2*W/20, y+16*H/20)
+  ctx.lineTo(x+6*W/20, y+14*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/20, y+10*H/20)
+  ctx.lineTo(x+1*W/20, y+14*H/20)
+  ctx.lineTo(x+4*W/20, y+12*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/20, y+16*H/20)
+  ctx.lineTo(x+6*W/20, y+16*H/20)
+  ctx.lineTo(x+6*W/20, y+14*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/20, y+16*H/20)
+  ctx.lineTo(x+8*W/20, y+14*H/20)
+  ctx.lineTo(x+6*W/20, y+14*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/20, y+14*H/20)
+  ctx.lineTo(x+8*W/20, y+8*H/20)
+  ctx.lineTo(x+8*W/20, y+14*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
     ctx.fill()
   }
   ctx.clip()
@@ -60,12 +4415,11 @@ function rthAt (x,y,W,color) {
   ctx.save()
   ctx.beginPath()
   ctx.moveTo(x+1*W/20, y+7*H/20)
-  ragged(ctx, x+1*W/20, y+10*H/20, 1*W/20, 7*W/20)
-  ragged(ctx, x+19*W/20, y+10*H/20, 1*W/20, 10*W/20)
-  ragged(ctx, x+19*W/20, y+7*H/20, 19*W/20, 10*W/20)
-  ragged(ctx, x+1*W/20, y+7*H/20, 19*W/20, 7*W/20)
+  ctx.lineTo(x+1*W/20, y+5*H/20)
+  ctx.lineTo(x+4*W/20, y+4*H/20)
   if (FILL) {
-    ctx.fillStyle = randomPick(colors)
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
     ctx.fill()
   }
   ctx.clip()
@@ -80,13 +4434,1386 @@ function rthAt (x,y,W,color) {
     fillOC(oc, occtx)
   ctx.save()
   ctx.beginPath()
-  ctx.moveTo(x+1*W/20, y+10*H/20)
-  ragged(ctx, x+1*W/20, y+19*H/20, 1*W/20, 10*W/20)
-  ragged(ctx, x+19*W/20, y+19*H/20, 1*W/20, 19*W/20)
-  ragged(ctx, x+19*W/20, y+10*H/20, 19*W/20, 19*W/20)
-  ragged(ctx, x+1*W/20, y+10*H/20, 19*W/20, 10*W/20)
+  ctx.moveTo(x+2*W/20, y+9*H/20)
+  ctx.lineTo(x+2*W/20, y+8*H/20)
+  ctx.lineTo(x+6*W/20, y+6*H/20)
+  ctx.lineTo(x+2*W/20, y+10*H/20)
+  ctx.lineTo(x+2*W/20, y+9*H/20)
   if (FILL) {
-    ctx.fillStyle = randomPick(colors)
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+10*W/20, y+10*H/20)
+  ctx.lineTo(x+10*W/20, y+2*H/20)
+  ctx.lineTo(x+2*W/20, y+2*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+10*W/20, y+10*H/20)
+  ctx.lineTo(x+18*W/20, y+2*H/20)
+  ctx.lineTo(x+10*W/20, y+2*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+8*W/20, y+14*H/20)
+  ctx.lineTo(x+6*W/20, y+18*H/20)
+  ctx.lineTo(x+9*W/20, y+18*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+4*W/20, y+16*H/20)
+  ctx.lineTo(x+5*W/20, y+18*H/20)
+  ctx.lineTo(x+6*W/20, y+16*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/20, y+16*H/20)
+  ctx.lineTo(x+3*W/20, y+18*H/20)
+  ctx.lineTo(x+4*W/20, y+16*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+10*W/20, y+16*H/20)
+  ctx.lineTo(x+11*W/20, y+17*H/20)
+  ctx.lineTo(x+9*W/20, y+18*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+14*W/20, y+18*H/20)
+  ctx.lineTo(x+12*W/20, y+19*H/20)
+  ctx.lineTo(x+12*W/20, y+18*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/20, y+8*H/20)
+  ctx.lineTo(x+1*W/20, y+9*H/20)
+  ctx.lineTo(x+2*W/20, y+9*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+15*W/20, y+18*H/20)
+  ctx.lineTo(x+16*W/20, y+19*H/20)
+  ctx.lineTo(x+16*W/20, y+18*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+16*W/20, y+18*H/20)
+  ctx.lineTo(x+17*W/20, y+19*H/20)
+  ctx.lineTo(x+17*W/20, y+18*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+17*W/20, y+18*H/20)
+  ctx.lineTo(x+18*W/20, y+19*H/20)
+  ctx.lineTo(x+18*W/20, y+18*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+7*W/20, y+18*H/20)
+  ctx.lineTo(x+6*W/20, y+19*H/20)
+  ctx.lineTo(x+6*W/20, y+18*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+8*W/20, y+18*H/20)
+  ctx.lineTo(x+7*W/20, y+19*H/20)
+  ctx.lineTo(x+7*W/20, y+18*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+9*W/20, y+18*H/20)
+  ctx.lineTo(x+8*W/20, y+19*H/20)
+  ctx.lineTo(x+9*W/20, y+19*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+8*W/20, y+12*H/20)
+  ctx.lineTo(x+7*W/20, y+13*H/20)
+  ctx.lineTo(x+8*W/20, y+13*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+7*W/20, y+14*H/20)
+  ctx.lineTo(x+8*W/20, y+13*H/20)
+  ctx.lineTo(x+8*W/20, y+14*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+1*W/20, y+14*H/20)
+  ctx.lineTo(x+1*W/20, y+15*H/20)
+  ctx.lineTo(x+2*W/20, y+15*H/20)
+  ctx.lineTo(x+1*W/20, y+14*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/20, y+16*H/20)
+  ctx.lineTo(x+1*W/20, y+17*H/20)
+  ctx.lineTo(x+2*W/20, y+17*H/20)
+  ctx.lineTo(x+2*W/20, y+16*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/20, y+17*H/20)
+  ctx.lineTo(x+2*W/20, y+18*H/20)
+  ctx.lineTo(x+1*W/20, y+18*H/20)
+  ctx.lineTo(x+2*W/20, y+17*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+5*W/20, y+18*H/20)
+  ctx.lineTo(x+4*W/20, y+19*H/20)
+  ctx.lineTo(x+5*W/20, y+19*H/20)
+  ctx.lineTo(x+5*W/20, y+18*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+3*W/20, y+18*H/20)
+  ctx.lineTo(x+3*W/20, y+19*H/20)
+  ctx.lineTo(x+2*W/20, y+19*H/20)
+  ctx.lineTo(x+3*W/20, y+18*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/20, y+2*H/20)
+  ctx.lineTo(x+1*W/20, y+2*H/20)
+  ctx.lineTo(x+1*W/20, y+1*H/20)
+  ctx.lineTo(x+2*W/20, y+2*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+}  
+
+function zoomAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let oc = document.createElement('canvas')
+  let occtx = oc.getContext("2d")
+  oc.height = canvas.height, oc.width = canvas.width
+  let colors = shuffle(getCurrentPalette(true,13))
+  let H = W, cpx, cpy, points = [], n = 0
+  let STROKE = false, FILL = true, PATTERN = false
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/5
+  ctx.strokeStyle = randomPick(colors)
+  ctx.fillStyle = randomPick(colors)
+  ctx.strokeStyle = color
+  ctx.lineCap = "square"
+  ctx.lineJoin = "meter"
+
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+10*W/20, y+12*H/20)
+  ctx.lineTo(x+14*W/20, y+10*H/20)
+  ctx.lineTo(x+10*W/20, y+10*H/20)
+  ctx.lineTo(x+10*W/20, y+6*H/20)
+  ctx.lineTo(x+7*W/20, y+10*H/20)
+  ctx.lineTo(x+3*W/20, y+10*H/20)
+  ctx.lineTo(x+7*W/20, y+12*H/20)
+  ctx.lineTo(x+6*W/20, y+16*H/20)
+  ctx.lineTo(x+10*W/20, y+12*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+10*W/20, y+12*H/20)
+  ctx.lineTo(x+13*W/20, y+16*H/20)
+  ctx.lineTo(x+14*W/20, y+10*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/20, y+16*H/20)
+  ctx.lineTo(x+13*W/20, y+16*H/20)
+  ctx.lineTo(x+10*W/20, y+12*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+3*W/20, y+10*H/20)
+  ctx.lineTo(x+6*W/20, y+16*H/20)
+  ctx.lineTo(x+7*W/20, y+12*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/20, y+16*H/20)
+  ctx.lineTo(x+10*W/20, y+19*H/20)
+  ctx.lineTo(x+13*W/20, y+16*H/20)
+  ctx.lineTo(x+6*W/20, y+16*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+13*W/20, y+16*H/20)
+  ctx.lineTo(x+19*W/20, y+16*H/20)
+  ctx.lineTo(x+14*W/20, y+10*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+10*W/20, y+10*H/20)
+  ctx.lineTo(x+16*W/20, y+6*H/20)
+  ctx.lineTo(x+14*W/20, y+10*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+10*W/20, y+10*H/20)
+  ctx.lineTo(x+16*W/20, y+6*H/20)
+  ctx.lineTo(x+10*W/20, y+6*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+16*W/20, y+6*H/20)
+  ctx.lineTo(x+12*W/20, y+2*H/20)
+  ctx.lineTo(x+10*W/20, y+5*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+10*W/20, y+6*H/20)
+  ctx.lineTo(x+12*W/20, y+2*H/20)
+  ctx.lineTo(x+16*W/20, y+6*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+10*W/20, y+6*H/20)
+  ctx.lineTo(x+7*W/20, y+1*H/20)
+  ctx.lineTo(x+12*W/20, y+2*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+7*W/20, y+10*H/20)
+  ctx.lineTo(x+5*W/20, y+3*H/20)
+  ctx.lineTo(x+10*W/20, y+6*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+3*W/20, y+10*H/20)
+  ctx.lineTo(x+1*W/20, y+13*H/20)
+  ctx.lineTo(x+5*W/20, y+14*H/20)
+  cpx = x+5*W/20
+  cpy = y+14*H/20
+  ctx.lineTo(x+5*W/20, y+14*H/20)
+  ctx.lineTo(x+6*W/20, y+16*H/20)
+  ctx.lineTo(x+2*W/20, y+18*H/20)
+  ctx.lineTo(x+5*W/20, y+14*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+13*W/20, y+16*H/20)
+  ctx.lineTo(x+14*W/20, y+19*H/20)
+  ctx.lineTo(x+16*W/20, y+16*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+16*W/20, y+16*H/20)
+  ctx.lineTo(x+17*W/20, y+19*H/20)
+  ctx.lineTo(x+19*W/20, y+16*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+3*W/20, y+10*H/20)
+  ctx.lineTo(x+1*W/20, y+6*H/20)
+  ctx.lineTo(x+7*W/20, y+10*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+14*W/20, y+10*H/20)
+  ctx.lineTo(x+19*W/20, y+9*H/20)
+  ctx.lineTo(x+19*W/20, y+16*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+16*W/20, y+6*H/20)
+  ctx.lineTo(x+18*W/20, y+4*H/20)
+  ctx.lineTo(x+14*W/20, y+4*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+14*W/20, y+4*H/20)
+  ctx.lineTo(x+16*W/20, y+1*H/20)
+  ctx.lineTo(x+18*W/20, y+4*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+16*W/20, y+6*H/20)
+  ctx.lineTo(x+18*W/20, y+6*H/20)
+  ctx.lineTo(x+18*W/20, y+4*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+7*W/20, y+10*H/20)
+  ctx.lineTo(x+2*W/20, y+3*H/20)
+  ctx.lineTo(x+5*W/20, y+3*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+7*W/20, y+1*H/20)
+  ctx.lineTo(x+4*W/20, y+1*H/20)
+  ctx.lineTo(x+10*W/20, y+6*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+14*W/20, y+10*H/20)
+  ctx.lineTo(x+18*W/20, y+6*H/20)
+  ctx.lineTo(x+19*W/20, y+9*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/20, y+16*H/20)
+  ctx.lineTo(x+6*W/20, y+19*H/20)
+  ctx.lineTo(x+10*W/20, y+19*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+5*W/20, y+14*H/20)
+  ctx.lineTo(x+2*W/20, y+15*H/20)
+  ctx.lineTo(x+2*W/20, y+18*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+14*W/20, y+4*H/20)
+  ctx.lineTo(x+14*W/20, y+1*H/20)
+  ctx.lineTo(x+12*W/20, y+2*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n += randomPick([1,2])
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+}  
+
+function obAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let oc = document.createElement('canvas')
+  let occtx = oc.getContext("2d")
+  oc.height = canvas.height, oc.width = canvas.width
+  let colors = shuffle(getCurrentPalette(true,13))
+  let H = W, cpx, cpy, points = [], n = 0
+  let STROKE = false, FILL = true, PATTERN = false
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/5
+  ctx.strokeStyle = randomPick(colors)
+  ctx.fillStyle = randomPick(colors)
+  ctx.strokeStyle = color
+  ctx.lineCap = "square"
+  ctx.lineJoin = "meter"
+
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+10*W/20, y+18*H/20)
+  ctx.lineTo(x+10*W/20, y+2*H/20)
+  cpx = x+12*W/20
+  cpy = y+1*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+18*W/20, y+2*H/20)
+  ctx.lineTo(x+18*W/20, y+18*H/20)
+  cpx = x+12*W/20
+  cpy = y+17*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+10*W/20, y+18*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n++
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+12*W/20, y+6*H/20)
+  cpx = x+12*W/20
+  cpy = y+4*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+14*W/20, y+4*H/20)
+  cpx = x+16*W/20
+  cpy = y+4*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+16*W/20, y+6*H/20)
+  cpx = x+16*W/20
+  cpy = y+8*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+14*W/20, y+8*H/20)
+  cpx = x+12*W/20
+  cpy = y+8*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+12*W/20, y+6*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n++
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+12*W/20, y+11*H/20)
+  ctx.lineTo(x+16*W/20, y+11*H/20)
+  ctx.lineTo(x+14*W/20, y+14*H/20)
+  ctx.lineTo(x+12*W/20, y+11*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n++
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+10*W/20, y+18*H/20)
+  ctx.lineTo(x+10*W/20, y+2*H/20)
+  cpx = x+8*W/20
+  cpy = y+1*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+2*W/20, y+2*H/20)
+  ctx.lineTo(x+2*W/20, y+18*H/20)
+  cpx = x+8*W/20
+  cpy = y+17*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+10*W/20, y+18*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n++
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+4*W/20, y+15*H/20)
+  ctx.lineTo(x+4*W/20, y+10*H/20)
+  ctx.lineTo(x+9*W/20, y+10*H/20)
+  ctx.lineTo(x+9*W/20, y+15*H/20)
+  ctx.lineTo(x+4*W/20, y+15*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n++
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+4*W/20, y+8*H/20)
+  cpx = x+4*W/20
+  cpy = y+6*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+5*W/20, y+6*H/20)
+  cpx = x+6*W/20
+  cpy = y+6*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+6*W/20, y+4*H/20)
+  cpx = x+6*W/20
+  cpy = y+3*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+7*W/20, y+3*H/20)
+  cpx = x+8*W/20
+  cpy = y+3*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+8*W/20, y+4*H/20)
+  cpx = x+8*W/20
+  cpy = y+6*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+9*W/20, y+6*H/20)
+  cpx = x+10*W/20
+  cpy = y+6*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+10*W/20, y+8*H/20)
+  ctx.lineTo(x+4*W/20, y+8*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n++
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+11*W/20, y+11*H/20)
+  ctx.lineTo(x+14*W/20, y+15*H/20)
+  ctx.lineTo(x+17*W/20, y+11*H/20)
+  ctx.lineTo(x+11*W/20, y+11*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n++
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+11*W/20, y+6*H/20)
+  cpx = x+11*W/20
+  cpy = y+3*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+14*W/20, y+3*H/20)
+  cpx = x+17*W/20
+  cpy = y+3*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+17*W/20, y+6*H/20)
+  cpx = x+17*W/20
+  cpy = y+9*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+14*W/20, y+9*H/20)
+  cpx = x+11*W/20
+  cpy = y+9*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+11*W/20, y+6*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n++
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+10*W/20, y+18*H/20)
+  ctx.lineTo(x+10*W/20, y+2*H/20)
+  cpx = x+8*W/20
+  cpy = y+1*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+2*W/20, y+2*H/20)
+  ctx.lineTo(x+2*W/20, y+18*H/20)
+  cpx = x+8*W/20
+  cpy = y+17*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+10*W/20, y+18*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n++
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+3*W/20, y+10*H/20)
+  ctx.lineTo(x+3*W/20, y+15*H/20)
+  ctx.lineTo(x+8*W/20, y+15*H/20)
+  ctx.lineTo(x+8*W/20, y+10*H/20)
+  ctx.lineTo(x+3*W/20, y+10*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n++
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+3*W/20, y+8*H/20)
+  cpx = x+3*W/20
+  cpy = y+6*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+4*W/20, y+6*H/20)
+  cpx = x+5*W/20
+  cpy = y+6*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+5*W/20, y+5*H/20)
+  cpx = x+5*W/20
+  cpy = y+3*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+6*W/20, y+3*H/20)
+  cpx = x+7*W/20
+  cpy = y+3*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+7*W/20, y+5*H/20)
+  cpx = x+7*W/20
+  cpy = y+6*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+8*W/20, y+6*H/20)
+  cpx = x+9*W/20
+  cpy = y+6*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+9*W/20, y+8*H/20)
+  ctx.lineTo(x+3*W/20, y+8*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n++
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+10*W/20, y+18*H/20)
+  cpx = x+8*W/20
+  cpy = y+17*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+2*W/20, y+18*H/20)
+  ctx.lineTo(x+2*W/20, y+2*H/20)
+  cpx = x+8*W/20
+  cpy = y+1*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+10*W/20, y+2*H/20)
+  ctx.lineTo(x+10*W/20, y+0*H/20)
+  ctx.lineTo(x+0*W/20, y+0*H/20)
+  ctx.lineTo(x+0*W/20, y+20*H/20)
+  ctx.lineTo(x+10*W/20, y+20*H/20)
+  ctx.lineTo(x+10*W/20, y+18*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n++
+    ctx.fill()
+  }
+  ctx.clip()
+  if (PATTERN)
+    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  if (STROKE) {
+  /*  ctx.strokeStyle = randomPick(colors)*/
+    ctx.stroke()
+  }
+  if (PATTERN)
+    fillOC(oc, occtx)
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x+10*W/20, y+18*H/20)
+  cpx = x+12*W/20
+  cpy = y+17*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+18*W/20, y+18*H/20)
+  ctx.lineTo(x+18*W/20, y+2*H/20)
+  cpx = x+12*W/20
+  cpy = y+1*H/20
+  ctx.quadraticCurveTo(cpx, cpy, x+10*W/20, y+2*H/20)
+  ctx.lineTo(x+10*W/20, y+0*H/20)
+  ctx.lineTo(x+20*W/20, y+0*H/20)
+  ctx.lineTo(x+20*W/20, y+20*H/20)
+  ctx.lineTo(x+10*W/20, y+20*H/20)
+  if (FILL) {
+    ctx.fillStyle = colors[n%colors.length]
+n++
     ctx.fill()
   }
   ctx.clip()

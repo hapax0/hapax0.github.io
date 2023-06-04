@@ -71,10 +71,12 @@
   <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
 </svg></a>
 <br>
-<canvas id="palettecanvas" width="400" height="40"></canvas><br>
+<canvas id="palettecanvas" width="420" height="80"></canvas><br>
+Hex values<br>
 <input type="text" id="colorlist"><br>
+Closest Pantone values<br>
 <input type="text" id="pantonelist"><br>
-<canvas id="myCanvas" width="400" height="500" style="border:1px solid #000000;"></canvas>
+<canvas id="myCanvas" width="420" height="500" style="border:1px solid #000000;"></canvas>
 
 </div>
 <script>
@@ -161,10 +163,12 @@ function extractPalette () {
     return
   let colors = colorSamplePalette()
   colors.sort((a, b) => bright(b) - bright(a));
-  if (colors.length > 10)
-    document.getElementById("palettecanvas").height = 80
+  
+  console.log(colors.length)
+  if (colors.length > 14)
+    document.getElementById("palettecanvas").height = 180
   else
-    document.getElementById("palettecanvas").height = 40
+    document.getElementById("palettecanvas").height = 120
   if (colors.length >= 1) {
     document.getElementById("colorlist").value = colors
     let i = 0, x = 0, y = 0
@@ -173,13 +177,14 @@ function extractPalette () {
     ctx.fillStyle = "#cccccc"
     ctx.fillRect(0,0,canvas.width, canvas.height)
     for (; i < colors.length; i++) {
-      ctx.fillStyle = colors[i]
-      ctx.fillRect(x,y,40,40)
-      x += 40
-      if (i > 0 && i % 10 === 0) {
-        y += 40
+      if (i > 0 && i % 8 === 0) {
+        y += 60
         x = 0
       }
+      ctx.fillStyle = colors[i]
+      ctx.fillRect(x,y,60,60)
+      x += 60
+      
     }
     let pan = ""
     i = 0
@@ -279,8 +284,6 @@ function testColors (colors) {
       d2 = dist3d(cr1, cr2)
       if (d2 < 40)
         bad.push(cr2)
-      //console.log(cr1,"|",cr2)
-      //console.log(d," | ",d2)
     }
   }
   return bad
@@ -352,8 +355,8 @@ function resizeCanvas () {
   let ar = canvas.width/canvas.height
   if (canvas.width > 500) {
     let W = canvas.width
-    canvas.width = 400
-    canvas.height = Math.floor(canvas.height * 400/W)
+    canvas.width = 420
+    canvas.height = Math.floor(canvas.height * 420/W)
   }
   ctx.drawImage(ocanvas,0,0,canvas.width,canvas.height)
   octx.clearRect(0,0,ocanvas.width,ocanvas.height)

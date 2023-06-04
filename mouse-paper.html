@@ -136,7 +136,7 @@ function getIndex () {
 function closePath () {
   if (i === 0)
     return
-  code.push("  if (FILL) {\n    ctx.fillStyle = randomPick(colors)\n    ctx.fill()\n  }")
+  code.push("  if (FILL) {\n    ctx.fillStyle = colors[n%colors.length]\nn += randomPick([1,2])\n    ctx.fill()\n  }")
   code.push("  ctx.clip()")
   code.push("  if (PATTERN)\n    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)")
   code.push("  ctx.restore()")
@@ -253,7 +253,7 @@ function showPoints () {
   let occtx = oc.getContext(\"2d\")\n\
   oc.height = canvas.height, oc.width = canvas.width\n\
   let colors = shuffle(getCurrentPalette(true,13))\n\
-  let H = W, cpx, cpy, points = []\n\
+  let H = W, cpx, cpy, points = [], n = 0\n\
   let STROKE = false, FILL = true, PATTERN = false\n\
   ctx.lineWidth = 1 + document.getElementById(\"featuresize\").value/5\n\
   ctx.strokeStyle = randomPick(colors)\n\

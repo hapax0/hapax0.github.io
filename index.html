@@ -632,21 +632,18 @@
          <input type='color' id='pal5'>
           <select id="palettechoice" onchange="loadPalette(true)">
             <option value="halfway">ramp 1 to 5</option>
+            <option value="10">10</option>
+
             <option value="5311">5,3,1,1</option>
             <option value="541">5,4,1</option>
+            <option value="721">7,2,1</option>
             <option value="4411">4,4,1,1</option>
-            <option value="pairs">pairs</option>
-            <option value="by 30">rotate all</option>
-            <option value="quadrnd">round</option>
+            <option value="3331">3,3,3,1</option>
+            <option value="22222">2,2,2,2,2</option>
             <option value="lighten">lighten</option>
             <option value="darken">darken</option>
-
             <option value="light">light</option>
             <option value="dark">dark</option>
-            <option value="quad">tetradic 90</option>
-            <option value="complementary">complementary</option>
-            <option value="by 72">pentadic</option>
-            <option value="by 60">by 60</option>
             <option value="mono">mono up</option>
             <option value="monodown">mono down</option>
             <option value="primary" selected>primary</option>
@@ -658,7 +655,6 @@
             <option value="yellowed">yellowed</option>
             <option value="nighthawks">nighthawks</option>
             <option value="earring">earring</option>
-            <option value="avocado">avocado</option>
             <option value="none">none</option>
           </select>
           <select id="numcolors" style="width:50px;" title='use N colors'>
@@ -684,7 +680,7 @@
     <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
   </svg></a></button>
   <button>
-    <a onclick="random13Palette()"  title="random palette">
+    <a onclick="setRandPalette()"  title="random palette">
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="white" viewBox="0 0 16 16">
     <path d="M13 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h10zM3 0a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V3a3 3 0 0 0-3-3H3z"/>
     <path d="M5.5 4a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm8 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-8 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm4-4a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
@@ -1074,6 +1070,8 @@ function wavyPaper (canvas) {
   enhanceExposure()
 }
 
+
+  
 function adjustBrightnessC (col, amt) {
   if (col[0] == "#") {
       col = col.slice(1);
@@ -1120,6 +1118,7 @@ function brightnessOfColor(color) {
   sum += hexToB(color)
   return sum/3
 }
+
 let extendedPalette = []
 
 function getCurrentPalette (ALL,N) {
@@ -1157,65 +1156,18 @@ function loadPalette (PUSH) {
     document.getElementById("pal3").value = c3
     document.getElementById("pal2").value = halfway(c1,c3)
     document.getElementById("pal4").value = halfway(c3,c5)
-    updateExtraColors(b)
-    return
-  } else
-  if (type === "quadrnd") {
-    let c1 = document.getElementById("pal1").value
-    let a1 = 30 + Math.random() *70
-    let a2 = (360 - 2*a1)/2
-    a1 = 30 + Math.random() *70
-    let c2 = colorAngle(c1,a1)
-    a1 = 30 + Math.random() *70
-    let c3 = colorAngle(c2,a2)
-    a1 = 30 + Math.random() *70
-    let c4 = colorAngle(c3,a1)
-    a1 = 30 + Math.random() *70
-    let c5 = colorAngle(c4,a1)
-    document.getElementById("pal2").value = c2
-    document.getElementById("pal3").value = c3
-    document.getElementById("pal4").value = c4
-    document.getElementById("pal5").value = c5
-    updateExtraColors(b)
-    return
-  } else
-  if (type === "quad") {
-    let c1 = document.getElementById("pal1").value
-    let c2 = colorAngle(c1,90)
-    let c3 = colorAngle(c2,90)
-    let c4 = colorAngle(c3,90)
-    document.getElementById("pal2").value = c2
-    document.getElementById("pal3").value = c3
-    document.getElementById("pal4").value = c4
-    document.getElementById("pal5").value = "#ffffff"
-    updateExtraColors(b)
-    return
-  } else
-  if (type === "complementary") {
-    let c1 = document.getElementById("pal1").value
-    let c2 = colorAngle(c1,180)
-    let c3 = colorAngle(c2,-45)
-    let c4 = colorAngle(c2,45)
-    let c5 = colorAngle(c1,45)
-    document.getElementById("pal2").value = c2
-    document.getElementById("pal3").value = c3
-    document.getElementById("pal4").value = c4
-    document.getElementById("pal5").value = c5
-    updateExtraColors(b)
-    return
-  }else
-  
-  if (type === "pairs") {
-    //document.getElementById("pal1").value = randomColorLight()
-    let c1 = document.getElementById("pal1").value
-    let c2 = adjustBrightnessC(c1, -66)
-    let c3 = colorAngle(c2,randomPick([60, 90, 180, 270])+Math.random() *20)
-    let c4 = adjustBrightnessC(c3, -66)
-    let c5 = randomColor()
-    document.getElementById("pal2").value = c2
-    document.getElementById("pal3").value = c3
-    document.getElementById("pal4").value = c4
-    document.getElementById("pal5").value = c5
+    
+    b = [
+    c1,
+    halfway(c1,halfway(c1,c3)),
+    halfway(c1,c3),
+    halfway(halfway(c1,c3), c3),
+    c3,
+    halfway(c3,halfway(c3,c5)),
+    halfway(c3,c5),
+    halfway(halfway(c3,c5), c5),
+    c5
+    ]
     updateExtraColors(b)
     return
   } else
@@ -1233,41 +1185,54 @@ function loadPalette (PUSH) {
     updateExtraColors(b)
     return
   } else
-  if (type === "by 72") {
-    let c1 = document.getElementById("pal1").value
-    let c2 = colorAngle(c1,72)
-    let c3 = colorAngle(c2,72)
-    let c4 = colorAngle(c3,72)
-    let c5 = colorAngle(c4,72)
-    document.getElementById("pal2").value = c2
-    document.getElementById("pal3").value = c3
-    document.getElementById("pal4").value = c4
-    document.getElementById("pal5").value = c5
+ 
+  if (type === "3331") {
+    let c1 = randomColorDark()
+    document.getElementById("pal1").value = c1
+    let c2 = randomColorDark()
+    let c3 = randomColor()
+    let c4 = randomColor()
+    let amt = Math.floor((5+Math.random()*50))
+    document.getElementById("pal2").value = adjustBrightnessC(c1, amt*3)
+    document.getElementById("pal3").value = c2
+    document.getElementById("pal4").value = c3
+    document.getElementById("pal5").value = c4
+    
+    b = [
+      c1,adjustBrightnessC(c1, amt*2),adjustBrightnessC(c1, amt*3),
+      c2,adjustBrightnessC(c2, amt*2),adjustBrightnessC(c2, amt*3),
+      c3,adjustBrightnessC(c3, amt*2),adjustBrightnessC(c3, amt*3),
+      c4
+    ]
     updateExtraColors(b)
     return
   } else
-  if (type === "by 30") {
-    let c1 = document.getElementById("pal1").value
-    let c2 = document.getElementById("pal2").value
-    let c3 = document.getElementById("pal3").value
-    let c4 = document.getElementById("pal4").value
-    let c5 = document.getElementById("pal5").value
-    c1 = colorAngle(c1,15)
-    c2 = colorAngle(c2,15)
-    c3 = colorAngle(c3,15)
-    c4 = colorAngle(c4,15)
-    c5 = colorAngle(c5,15)
+  
+  if (type === "22222") {
+    let c1 = randomColorDark()
     document.getElementById("pal1").value = c1
+    let c2 = randomColorDark()
+    let c3 = randomColorDark()
+    let c4 = randomColor()
+    let c5 = randomColor()
+    let amt = Math.floor((5+Math.random()*60))
     document.getElementById("pal2").value = c2
     document.getElementById("pal3").value = c3
     document.getElementById("pal4").value = c4
     document.getElementById("pal5").value = c5
+    
+    b = [
+      c1,adjustBrightnessC(c1, amt*3),
+      c2,adjustBrightnessC(c2, amt*3),
+      c3,adjustBrightnessC(c3, amt*3),
+      c4,adjustBrightnessC(c4, amt*3),
+      c5,adjustBrightnessC(c5, amt*3),
+    ]
     updateExtraColors(b)
     return
-  }else
+  } else
   
   if (type === "4411") {
-    // 4411
     let c1 = randomColorDark()
     document.getElementById("pal1").value = c1
     let c2 = randomColorDark()
@@ -1289,7 +1254,6 @@ function loadPalette (PUSH) {
     return
   } else
   if (type === "5311") {
-    // 5311
     let c1 = randomColorDark()
     document.getElementById("pal1").value = c1
     let c2 = randomColorDark()
@@ -1311,8 +1275,47 @@ function loadPalette (PUSH) {
     return
   } else
   
+  if (type === "10") {
+    let c1 = randomColorDark()
+    document.getElementById("pal1").value = c1
+    let amt = Math.floor((5+Math.random()*20))
+    document.getElementById("pal2").value = adjustBrightnessC(c1, amt*4)
+    document.getElementById("pal3").value = adjustBrightnessC(c1, amt*6)
+    document.getElementById("pal4").value = adjustBrightnessC(c1, amt*8)
+    document.getElementById("pal5").value = adjustBrightnessC(c1, amt*10)
+    b = [
+      c1,adjustBrightnessC(c1, amt),adjustBrightnessC(c1, amt*2),
+         adjustBrightnessC(c1, amt*3),adjustBrightnessC(c1, amt*4),
+         adjustBrightnessC(c1, amt*5),adjustBrightnessC(c1, amt*6),
+         adjustBrightnessC(c1, amt*7),adjustBrightnessC(c1, amt*8),
+         adjustBrightnessC(c1, amt*9),adjustBrightnessC(c1, amt*10)
+    ]
+    updateExtraColors(b)
+    return
+  } else
+  
+  if (type === "721") {
+    let c1 = randomColorDark()
+    document.getElementById("pal1").value = c1
+    let c2 = randomColorDark()
+    let c3 = randomColor()
+    let c4 = randomColorLight()
+    let amt = Math.floor((5+Math.random()*33))
+    document.getElementById("pal2").value = adjustBrightnessC(c1, amt*3)
+    document.getElementById("pal3").value = c2
+    document.getElementById("pal4").value = adjustBrightnessC(c2, amt*3)
+    document.getElementById("pal5").value = c3
+    b = [
+      c1,adjustBrightnessC(c1, amt),adjustBrightnessC(c1, amt*2),
+         adjustBrightnessC(c1, amt*3),adjustBrightnessC(c1, amt*4),
+         adjustBrightnessC(c1, amt*5),adjustBrightnessC(c1, amt*6),
+      c2,adjustBrightnessC(c2, amt*3),
+      c3,
+    ]
+    updateExtraColors(b)
+    return
+  } else
   if (type === "541") {
-    // 541
     let c1 = randomColorDark()
     document.getElementById("pal1").value = c1
     let c2 = randomColorDark()
@@ -1356,26 +1359,15 @@ function loadPalette (PUSH) {
     document.getElementById("pal4").value = adjustBrightnessC(c4, amt*3)
     amt = Math.floor((Math.random() -0.5) * 2 *Math.random()*50)
     document.getElementById("pal5").value = adjustBrightnessC(c5, amt*3)
-    
-    
-    
     updateExtraColors(b)
     return
-    /*
-    document.getElementById("pal1").value = randomColorVDark() //darkest
-    document.getElementById("pal2").value = randomColorDark()
-    document.getElementById("pal3").value = randomColorLight()
-    document.getElementById("pal4").value = randomColorLight()
-    document.getElementById("pal5").value = randomColorVLight() //lightest
-    updateExtraColors(b)
-    return*/
   } else
   if (type === "light") {
-    document.getElementById("pal1").value = randomColorLight() //darkest
+    document.getElementById("pal1").value = randomColorLight() 
     document.getElementById("pal2").value = randomColorLight()
     document.getElementById("pal3").value = randomColorLight()
     document.getElementById("pal4").value = randomColorVLight()
-    document.getElementById("pal5").value = randomColorVLight() //lightest
+    document.getElementById("pal5").value = randomColorVLight() 
     updateExtraColors(b)
     return
   } else
@@ -1421,7 +1413,7 @@ function loadPalette (PUSH) {
       document.getElementById("pal"+(1+n)).value = adjustBrightnessC(c, -k)
     }
     n = 0
-    b= getCurrentPalette(true)
+    b = getCurrentPalette(true)
     for (; n < b.length; n++) {
       k = Math.floor(brightnessOfColor(b[n])/10)
       b[n] = adjustBrightnessC(b[n], -k)
@@ -1433,18 +1425,6 @@ function loadPalette (PUSH) {
     let c = document.getElementById("pal1").value
     let k = Math.floor(brightnessOfColor(c)/5)
     let amt = -k
-    document.getElementById("pal1").value = c
-    document.getElementById("pal2").value = adjustBrightnessC(c, amt)
-    document.getElementById("pal3").value = adjustBrightnessC(c, amt*2)
-    document.getElementById("pal4").value = adjustBrightnessC(c, amt*3)
-    document.getElementById("pal5").value = adjustBrightnessC(c, amt*4)
-    updateExtraColors(b)
-    return
-  } else
-  if (type === "mono") {
-    let c = document.getElementById("pal1").value//randomColorVDark(),
-    let k = Math.floor((255-brightnessOfColor(c))/5)
-    let amt = k
     document.getElementById("pal1").value = c
     document.getElementById("pal2").value = adjustBrightnessC(c, amt)
     document.getElementById("pal3").value = adjustBrightnessC(c, amt*2)
@@ -1473,11 +1453,7 @@ function loadPalette (PUSH) {
     updateExtraColors(b)
     return
   } else
-  if (type === "stary"){
-    a = ['#030407', '#191e21', '#968824', '#aab8b3', '#d8d9be']
-    b = ['#c5d3cc', '#bbb24f', '#a2afa1', '#8da7cd', '#978c29', '#778886', '#5a77a2', '#495860', '#395195', '#5d5111', '#2b3d6f', '#2a2619', '#171e28']
-    updateExtraColors(b)
-  } else
+
   if (type === "post-it") {
     a = ["#f6c2d9","#fff69b","#bcdfc9","#a1c8e9","#e4dae2"]
     b = ["#f6c2d9","#fff69b","#bcdfc9","#a1c8e9","#e4dae2"]
@@ -1503,38 +1479,7 @@ function loadPalette (PUSH) {
     b = ['#f2c28b', '#f2a351', '#c29f69', '#7e9480', '#bd7b45', '#da631c', '#7b684a', '#526c6b', '#bc4e19', '#c83302', '#404335', '#152019', '#020904']
     updateExtraColors(b)
   } else
-  if (type === "mod1") {
-    a = ["#ffffff", "#7cf4fd", "#f5e8a8", "#292929", "#BC0000"].reverse()
-    updateExtraColors(a)
-  } else
-  if (type === "avocado") {
-    a = ["#ddd48f", "#cda989", "#6b8c21", "#4a7337", "#704010"].reverse()
-    updateExtraColors(a)
-  } else
-  if (type === "planet") {
-    a = ["#fdde55", "#6f8348", "#c94549", "#7a4945", "#1b4d3f"].reverse()
-    updateExtraColors(a)
-  } else
-  if (type === "cherry") {
-    a = ["#fff3d0", "#fa7e1e", "#d62976", "#4d1b7b", "#141d26"].reverse()
-    updateExtraColors(a)
-  } else
-  if (type === "cloud") {
-    a = ["#e3dec8", "#f2c665", "#99beb7", "#ef7546", "#ca3c4a"].reverse()
-    updateExtraColors(a)
-  } else
-  if (type === "dark forest") {
-    a = ["#556911", "#6a5c18", "#714b1e", "#296115", "#6e4024"]
-    updateExtraColors(a)
-  } else
-  if (type === "retro1") {
-    a = ["#f29b41", "#3d85c6", "#f64668", "#a6473f", "#274e13"].reverse()
-    updateExtraColors(a)
-  } else
-  if (type === "retro2") {
-    a = ["#f4c432", "#70a396", "#54877a", "#a32545", "#384054"].reverse()
-    updateExtraColors(a)
-  } else
+
   if (type === "primary") {
     a = ['#ff0000', '#0000ff', '#ffff00', '#008000', '#ffa500', '#800080']
     updateExtraColors(a)
@@ -1603,12 +1548,8 @@ function rampContrast () { // dark to light
   //updateExtraColors(b)
 }
 
-function random13Palette () {
-  
-  //setPalette("5311")
-  setPalette("4411")
-  
-  
+function setRandPalette () {
+  setPalette(randomPick(["4411", "541", "721", "3331", "5311"]))
 }
 
 function clearPoints () {
@@ -2594,6 +2535,13 @@ function extractPalette (canvas) {
   if (isCanvasBlank(canvas))
     return
   let colors = colorSamplePalette(canvas)
+  colors = colors.sort(function(a, b) {// sort by hue
+    let rgb = hextorgb(a)
+    let hsva = rgbtohsv(rgb[0], rgb[1], rgb[2])
+    rgb = hextorgb(b)
+    let hsvb = rgbtohsv(rgb[0], rgb[1], rgb[2])
+      return hsva[0] - hsvb[0];
+  });
   if (colors.length >= 1) {
     let i = 0, x = 0, y = 0
     let canvas = document.getElementById("palettecanvas")
