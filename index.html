@@ -623,16 +623,14 @@
   value="100" onchange="rangecheck()"> <span class='sample' id='highsample' style="background-color:#fff;">&nbsp;</span> <span id="upperrange">100</span> %<br>
        <div
   style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
-         <!--input type='color' id='pal1'>
-         <input type='color' id='pal2'>
-         <input type='color' id='pal3'>
-         <input type='color' id='pal4'>
-         <input type='color' id='pal5'-->
-          
-         <canvas id="palettecanvas" width="420" height="84"></canvas><br>
+         <canvas id="palettecanvas" width="480" height="96"></canvas><br>
          <select id="palettechoice" onchange="loadPalette(true)">
-          <option value="halfway">ramp 1 to 5</option>
+          <option value="halfway">rand ramp</option>
           <option value="10">10</option>
+          <option value="16">16</option>
+          <option value="1011">10,1,1</option>
+          <option value="9411">9,4,1,1</option>
+          <option value="933">9,3,3</option>
 
           <option value="5311">5,3,1,1</option>
           <option value="541">5,4,1</option>
@@ -640,9 +638,7 @@
           <option value="4411">4,4,1,1</option>
           <option value="3331">3,3,3,1</option>
           <option value="22222">2,2,2,2,2</option>
-          <option value="lighten">lighten</option>
-          <option value="darken">darken</option>
-
+         
           <option value="primary" selected>primary</option>
           <option value="cmy">cmy</option>
           <option value="rainbow">rainbow</option>
@@ -654,13 +650,13 @@
           <option value="earring">earring</option>
           <option value="none">none</option>
         </select>
-        <select id="numcolors" style="width:50px;" title='use N colors'>
+        <!--select id="numcolors" style="width:50px;" title='use N colors'>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
           <option value="4">4</option>
           <option value="5" selected>5</option>
-        </select>
+        </select-->
        <button id="randompalette" onclick="loadPalette()">Load palette</button>&nbsp;<button onclick="extractPalette()">Extract</button>&nbsp;<button  onclick="showHex()" title="show hex values">#</button>
         
     <input type='file' name='img' size='65' id='openextract' style="display:none;">
@@ -692,6 +688,18 @@
   <a onclick="sortByHue()"  title="sort by hue">
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="white" viewBox="0 0 16 16">
     <path d="M3.5 12.5a.5.5 0 0 1-1 0V3.707L1.354 4.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.498.498 0 0 1 .7.006l2 2a.5.5 0 1 1-.707.708L3.5 3.707V12.5zm3.5-9a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zM7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z"/>
+  </svg></a></button>
+  
+  <button>
+    <a onclick="lightenPalette()"  title="lighten">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="white" viewBox="0 0 16 16">
+        <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+      </svg></a></button>
+  
+  <button>
+    <a onclick="darkenPalette()"  title="darken">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="white" viewBox="0 0 16 16">
+    <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm.5-9.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 11a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm5-5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm-11 0a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9.743-4.036a.5.5 0 1 1-.707-.707.5.5 0 0 1 .707.707zm-7.779 7.779a.5.5 0 1 1-.707-.707.5.5 0 0 1 .707.707zm7.072 0a.5.5 0 1 1 .707-.707.5.5 0 0 1-.707.707zM3.757 4.464a.5.5 0 1 1 .707-.707.5.5 0 0 1-.707.707z"/>
   </svg></a></button>
   
   </div></td>
@@ -1130,23 +1138,28 @@ function brightnessOfColor(color) {
 
 let extendedPalette = []
 
-function getCurrentPalette (ALL,N) {
-  let n = document.getElementById("numcolors").value
-  if (N) n = n
-  if (ALL && extendedPalette.length > 0)
-    return extendedPalette.slice(0,20)
-  else
-    return extendedPalette.slice(0,20)
+function getCurrentPalette () {
+  return extendedPalette.slice(0,18)
 }
 
-function restorePalette (p) {
-  /*
-  document.getElementById("pal1").value = p[0]
-  document.getElementById("pal2").value = p[1]
-  document.getElementById("pal3").value = p[2]
-  document.getElementById("pal4").value = p[3]
-  document.getElementById("pal5").value = p[4]*/ablob
+function lightenPalette () {
+  let n = 0, c, k, amt
+  let b = getCurrentPalette(true)
+  for (; n < b.length; n++) {
+    k = Math.floor(brightnessOfColor(b[n])/10)
+    b[n] = adjustBrightnessC(b[n], k)
+  }
+  updateExtraColors(b)
 }
+  function darkenPalette () {
+    let n = 0, c, k, amt
+    let b = getCurrentPalette(true)
+    for (; n < b.length; n++) {
+      k = Math.floor(brightnessOfColor(b[n])/10)
+      b[n] = adjustBrightnessC(b[n], -k)
+    }
+    updateExtraColors(b)
+  } 
 
 function loadPalette (PUSH) {
   let a = [], b = []
@@ -1157,8 +1170,8 @@ function loadPalette (PUSH) {
     return
   if (type === "halfway") {
     let clrs = getCurrentPalette()
-    let c1 = clrs[0]
-    let c5 = clrs[4]
+    let c1 = randomColor()
+    let c5 = randomColor()
     c3 = halfway(c1,c5)
     b = [
     c1,
@@ -1174,8 +1187,6 @@ function loadPalette (PUSH) {
     updateExtraColors(b)
     return
   } else
-
- 
   if (type === "3331") {
     let c1 = randomColorDark()
     let c2 = randomColorDark()
@@ -1255,7 +1266,67 @@ function loadPalette (PUSH) {
     updateExtraColors(b)
     return
   } else
-  
+  if (type === "16") {
+    let c1 = randomColorVDark()
+    let amt = Math.floor((5+Math.random()*15))
+    let i = 0
+    b = []
+    for (; i < 16; i++) {
+      b.push(adjustBrightnessC(c1, amt*i))
+    }
+    updateExtraColors(b)
+    return
+  } else
+  if (type === "1011") {
+    let c1 = randomColorVDark()
+    let c2 = randomColorDark()
+    let c3 = randomColor()
+    let c4 = randomColorLight()
+    let amt = Math.floor((5+Math.random()*33))
+    b = [
+      c1,adjustBrightnessC(c1, amt),adjustBrightnessC(c1, amt*2),
+         adjustBrightnessC(c1, amt*3),adjustBrightnessC(c1, amt*4),
+         adjustBrightnessC(c1, amt*5),adjustBrightnessC(c1, amt*6),
+         adjustBrightnessC(c1, amt*7),adjustBrightnessC(c1, amt*8),
+         adjustBrightnessC(c1, amt*9),
+        c3,c4
+    ]
+    updateExtraColors(b)
+    return
+  } else
+  if (type === "9411") {
+    let c1 = randomColorVDark()
+    let c2 = randomColorDark()
+    let c3 = randomColor()
+    let c4 = randomColorLight()
+    let amt = Math.floor((5+Math.random()*20))
+    b = [
+      c1,adjustBrightnessC(c1, amt),adjustBrightnessC(c1, amt*2),
+         adjustBrightnessC(c1, amt*3),adjustBrightnessC(c1, amt*4),
+         adjustBrightnessC(c1, amt*5),adjustBrightnessC(c1, amt*6),
+         adjustBrightnessC(c1, amt*7),adjustBrightnessC(c1, amt*8),
+      c2,adjustBrightnessC(c2, amt*3),adjustBrightnessC(c2, amt*5),adjustBrightnessC(c2, amt*7),
+      c3,randomColor()
+    ]
+    updateExtraColors(b)
+    return
+  } else
+  if (type === "933") {
+    let c1 = randomColorVDark()
+    let c2 = randomColorDark()
+    let c3 = randomColor()
+    let amt = Math.floor((5+Math.random()*20))
+    b = [
+      c1,adjustBrightnessC(c1, amt),adjustBrightnessC(c1, amt*2),
+         adjustBrightnessC(c1, amt*3),adjustBrightnessC(c1, amt*4),
+         adjustBrightnessC(c1, amt*5),adjustBrightnessC(c1, amt*6),
+         adjustBrightnessC(c1, amt*7),adjustBrightnessC(c1, amt*8),
+      c2,adjustBrightnessC(c2, amt*5),adjustBrightnessC(c2, amt*7),
+      c3,adjustBrightnessC(c3, amt*3),adjustBrightnessC(c3, amt*5),
+    ]
+    updateExtraColors(b)
+    return
+  } else
   if (type === "721") {
     let c1 = randomColorDark()
     let c2 = randomColorDark()
@@ -1287,34 +1358,10 @@ function loadPalette (PUSH) {
     updateExtraColors(b)
     return
   } else
-  if (type === "lighten") {
-    let n = 0, c, k, amt
-    n = 0
-    b = getCurrentPalette(true)
-    for (; n < b.length; n++) {
-      k = Math.floor(brightnessOfColor(b[n])/10)
-      b[n] = adjustBrightnessC(b[n], k)
-    }
-    updateExtraColors(b)
-    return
-  } else
-  if (type === "darken") {
-    let n = 0, c, k, amt
- 
-    n = 0
-    b = getCurrentPalette(true)
-    for (; n < b.length; n++) {
-      k = Math.floor(brightnessOfColor(b[n])/10)
-      b[n] = adjustBrightnessC(b[n], -k)
-    }
-    updateExtraColors(b)
-    return
-  } else
-
   if (type === "cmy") {
     b = ["#00ffff","#ffff00","#ff00ff","#000000","#ffffff"]
     updateExtraColors(b)
-    document.getElementById("numcolors").value = 4
+    //document.getElementById("numcolors").value = 4
     return
   } else
   if (type === "rainbow") {
@@ -1414,17 +1461,8 @@ function loadPalette (PUSH) {
  // document.getElementById("pal5").value = a[4]
 }
 
-function rampContrast () { // dark to light
-  document.getElementById("pal1").value = shadeColor(document.getElementById("pal1").value, -10)
-  document.getElementById("pal2").value = shadeColor(document.getElementById("pal2").value, -5)
-  //document.getElementById("pal3").value = // no change
-  document.getElementById("pal4").value = shadeColor(document.getElementById("pal4").value, 5)
-  document.getElementById("pal5").value = shadeColor(document.getElementById("pal5").value, 10)
-  //updateExtraColors(b)
-}
-
 function setRandPalette () {
-  setPalette(randomPick(["4411", "541", "721", "3331", "5311"]))
+  setPalette(randomPick(["1011", "9411", "933", "4411", "541", "721", "3331", "5311"]))
 }
 
 function clearPoints () {
@@ -2368,12 +2406,12 @@ function updateExtraColors (colors) {
   for (; i < colors.length; i++) {
     if (i === 10) {
       x = 0
-      y += 42
+      y += 48
     }
     extendedPalette.push(colors[i])
     ctx.fillStyle = colors[i]
-    ctx.fillRect(x,y,42,42)
-    x += 42
+    ctx.fillRect(x,y,48,48)
+    x += 48
   }
 }
 
@@ -2460,11 +2498,11 @@ function extractPalette (canvas) {
     for (; i < colors.length; i++) {
       if (i === 10) {
         x = 0
-        y += 42
+        y += 48
       }
       ctx.fillStyle = colors[i]
-      ctx.fillRect(x,y,42,42)
-      x += 42
+      ctx.fillRect(x,y,48,48)
+      x += 48
     }
     document.getElementById("palettechoice").value = "none"
   }
@@ -6102,7 +6140,7 @@ function retro () {
       smudgestars()
     ctx.restore()
   }
-  restorePalette(pal)
+  //restorePalette(pal)
   ctx.globalAlpha = alpha/100
   document.getElementById("opacity").value = alpha
   document.getElementById("featuresize").value = feature_size
@@ -6110,6 +6148,11 @@ function retro () {
   document.getElementById("paintcolor").value = color
   document.getElementById("palettechoice").value = type
   loadPalette()
+}
+
+
+function resturePalette (pal) {
+  updateExtraColors(pal)
 }
 
 function enhanceExposure (n, canvas) {
