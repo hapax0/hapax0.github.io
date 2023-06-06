@@ -162,9 +162,16 @@ function extractPalette () {
   if (isCanvasBlank(document.getElementById("myCanvas")))
     return
   let colors = colorSamplePalette()
-  colors.sort((a, b) => bright(b) - bright(a));
   
-  console.log(colors.length)
+  colors.sort((a, b) => bright(b) - bright(a));
+  colors = colors.sort(function(a, b) {// sort by hue
+    let rgb = hextorgb(a)
+    let hsva = rgbtohsv(rgb[0], rgb[1], rgb[2])
+    rgb = hextorgb(b)
+    let hsvb = rgbtohsv(rgb[0], rgb[1], rgb[2])
+      return hsva[0] - hsvb[0];
+  });
+  
   if (colors.length > 14)
     document.getElementById("palettecanvas").height = 180
   else
@@ -184,7 +191,6 @@ function extractPalette () {
       ctx.fillStyle = colors[i]
       ctx.fillRect(x,y,60,60)
       x += 60
-      
     }
     let pan = ""
     i = 0
@@ -265,6 +271,68 @@ function colorSamplePalette () {
     colors2.push('#'+R+G+B)
   }
   return colors2
+}
+
+function colorAngle (c, angle) {
+  let rgb = hextorgb(c)
+  let hsv = rgbtohsv(rgb[0], rgb[1], rgb[2])
+  hsv[0] = (hsv[0]+angle) % 360
+  rgb = hsvtorgb(hsv[0], hsv[1], hsv[2])
+  return rgbtohex(rgb[0], rgb[1], rgb[2])
+  
+}
+
+function hextorgb (c)  {
+  return ([hexToR(c), hexToG(c), hexToB(c)])
+}
+
+
+function rgbtohex (r, g, b) {
+  function c(v) {
+    let hex = v.toString(16);
+    return hex.length === 1 ? "0" + hex : hex;
+  }
+  return "#" + c(r) + c(g) + c(b);
+}
+
+// input: r,g,b in [0,1], out: h in [0,360) and s,v in [0,1]
+function rgbtohsv (r,g,b) {
+  let v=Math.max(r,g,b), c=v-Math.min(r,g,b);
+  let h= c && ((v==r) ? (g-b)/c : ((v==g) ? 2+(b-r)/c : 4+(r-g)/c));
+  return [60*(h<0?h+6:h), v&&c/v, v];
+}
+
+
+/**
+ * Converts an HSV color value to RGB. Conversion formula
+ * adapted from http://en.wikipedia.org/wiki/HSV_color_space.
+ * Assumes h, s, and v are contained in the set [0, 1] and
+ * returns r, g, and b in the set [0, 255].
+ *
+ * @param   Number  h       The hue
+ * @param   Number  s       The saturation
+ * @param   Number  v       The value
+ * @return  Array           The RGB representation
+ */
+function hsvtorgb(h, s, v) {
+  var r, g, b;
+  h /= 360
+  v /= 255
+  var i = Math.floor(h * 6);
+  var f = h * 6 - i;
+  var p = v * (1 - s);
+  var q = v * (1 - f * s);
+  var t = v * (1 - (1 - f) * s);
+
+  switch (i % 6) {
+    case 0: r = v, g = t, b = p; break;
+    case 1: r = q, g = v, b = p; break;
+    case 2: r = p, g = v, b = t; break;
+    case 3: r = p, g = q, b = v; break;
+    case 4: r = t, g = p, b = v; break;
+    case 5: r = v, g = p, b = q; break;
+  }
+  return [ Math.round(r * 255), Math.round(g * 255), Math.round(b * 255) ];
 }
 
 function testColors (colors) {
