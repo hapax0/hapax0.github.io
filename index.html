@@ -473,7 +473,8 @@
       <option value="phase">phase</option>
       <option value="shape2">shape</option>
       <option value="scraps">scraps</option>
-      <option value="multiScraps" selected>multi scraps</option>
+      <option value="multiScraps">multi scraps</option>
+      <option value="latestAt" selected>last drawing</option>
       
       <option value="tape">tape</option>
       <!--option value="phases">phases</option>
@@ -625,7 +626,8 @@
   style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
          <canvas id="palettecanvas" width="480" height="96"></canvas><br>
          <select id="palettechoice" onchange="loadPalette(true)">
-          <option value="halfway">rand ramp</option>
+          <option value="halfway">color ramp</option>
+          <option value="halfway2">2 color ramps</option>
           <option value="10">10</option>
           <option value="16">16</option>
           <option value="1011">10,1,1</option>
@@ -858,7 +860,7 @@ marker.addEventListener('click', function(event) {
   let filePicker2 = document.getElementById("openextract");
   filePicker2.addEventListener("click", function(){this.value = null;}, false);
   });
-  
+  setRandPalette()
   rangecheck()
   syncMarker()
 }
@@ -1172,7 +1174,7 @@ function loadPalette (PUSH) {
     let clrs = getCurrentPalette()
     let c1 = randomColor()
     let c5 = randomColor()
-    c3 = halfway(c1,c5)
+    let c3 = halfway(c1,c5)
     b = [
     c1,
     halfway(c1,halfway(c1,c3)),
@@ -1187,6 +1189,37 @@ function loadPalette (PUSH) {
     updateExtraColors(b)
     return
   } else
+  
+  if (type === "halfway2") {
+    let clrs = getCurrentPalette()
+    let c1 = randomColor()
+    let c5 = randomColor()
+    let c3 = halfway(c1,c5)
+    b = [
+    c1,
+    halfway(c1,halfway(c1,c3)),
+    halfway(c1,c3),
+    halfway(halfway(c1,c3), c3),
+    c3,
+    halfway(c3,halfway(c3,c5)),
+    halfway(c3,c5),
+    halfway(halfway(c3,c5), c5),
+    c5
+    ]
+    let c6 = randomColor() // push last
+    let c56 = halfway(c5,c6)
+    let c556 = halfway(c5, c56)
+    let c65 = halfway(c56, c6)
+    let c665 = halfway(c65, c6)
+    b.push(c556)
+    b.push(c56)
+    b.push(c665)
+    b.push(c6)
+    
+    updateExtraColors(b)
+    return
+  } else
+  
   if (type === "3331") {
     let c1 = randomColorDark()
     let c2 = randomColorDark()
@@ -1462,7 +1495,7 @@ function loadPalette (PUSH) {
 }
 
 function setRandPalette () {
-  setPalette(randomPick(["1011", "9411", "933", "4411", "541", "721", "3331", "5311"]))
+  setPalette(randomPick(["halfway", "halfway2", "1011", "9411", "933", "4411", "541", "721", "3331", "5311"]))
 }
 
 function clearPoints () {
@@ -1738,7 +1771,7 @@ function facets (canvas) {
 	return
 }
 
-function wash () {
+function wash_og () {
   let fs = document.getElementById("featuresize").value
   fill()
   setOpacity(50)
@@ -1761,6 +1794,36 @@ function wash () {
   fill()
   fill()
   fill()
+  setMode("source-over")
+  setOpacity(100)
+  checkAlt(false)
+  document.getElementById("featuresize").value = fs
+}
+
+function wash () {
+  let fs = document.getElementById("featuresize").value
+  fill()
+  setOpacity(50)
+  checkAlt(true)
+  setFeaturesize(255)
+  crackle()
+  crackle()
+  fill()
+  fill()
+  shaken()
+  shaken()
+  //shaken()
+  shrinkBlur()
+  rcc()
+  shaken()
+  shaken()
+  rc()
+  embossCanvas()
+  shrinkBlur()
+  setMode("destination-over")
+  fill()
+  fill()
+ //fill()
   setMode("source-over")
   setOpacity(100)
   checkAlt(false)
@@ -2703,7 +2766,8 @@ function showHex () {
     pan += closestColor(colors[i])+"\n"
   }
   // show code for palette
-  let code = "\nif (type === '<name>') {\n  a = [\""+colors.slice(0,5).join('", "')+"\"]\n  b = [\""+colors.join('", "')+"\"]\n  updateExtraColors(b)\n}"
+  let code = "\nif (type === '<name>') {\n  b = [\""+colors.join('", "')+"\"]\n  updateExtraColors(b)\n}"
+  console.log(code)
   alert(hex+"\n\nClosest Pantone matches\n"+pan)
 }
 
@@ -19988,6 +20052,10 @@ function typo (canvas) {
   setFeaturesize (fs)
 }
 
+function latestAt () {
+  ____At(0,0,1080)
+ }
+ 
 function hstripes_sml (canvas) {
   let fs = document.getElementById("featuresize").value
   setFeaturesize (Math.floor(2+Math.random() * 41))

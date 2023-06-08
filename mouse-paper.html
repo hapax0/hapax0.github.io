@@ -69,23 +69,13 @@
   <textarea id="text1" name="text1" rows="24" cols="32" wrap="soft"></textarea>
   <br>
   &nbsp;<input type="checkbox" id="ragged"><label for="ragged"> ragged lines</label>
-  &nbsp;color index <select id="index">
-    <option value="-1">any</option>
-    <option value="0">0</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-    <option value="6">6</option>
-    <option value="7">7</option>
-    <option value="8">8</option>
-    <option value="9">9</option>
-  </select>
+  &nbsp;Item count <span id="lastitem">0</span>
   </div>
 </div>
   
 <script>
+let ITEM = 0
+  
 window.onload = function () {
   document.getElementById("uploadimage").addEventListener("change", drawFile, true)
   document.getElementById("gridsize").addEventListener("change", updateGrid, true)
@@ -119,6 +109,7 @@ let code = [], cpx, cpy
 
 function clearAll () {
   code = []
+  ITEM = 0
   i = 0
   ctx.fillStyle = 'white'
   ctx.globalAlpha = 1.0
@@ -126,6 +117,11 @@ function clearAll () {
   offctx.clearRect(0,0,canvas.width,canvas.height)
   frameVisible()
   document.getElementById("text1").innerHTML = ""
+  updateItem()
+}
+
+function updateItem () {
+  document.getElementById("lastitem").innerHTML = ITEM
 }
 
 function getIndex () {
@@ -135,8 +131,8 @@ function getIndex () {
 
 function closePath () {
   if (i === 0)
-    return
-  code.push("  if (FILL) {\n    ctx.fillStyle = colors[n%colors.length]\nn += randomPick([1,2])\n    ctx.fill()\n  }")
+    return  
+  code.push("  if (FILL) {\n    ctx.fillStyle = colors[n%colors.length]\n  n += randomPick([1,2])\n    ctx.fill()\n  }")
   code.push("  ctx.clip()")
   code.push("  if (PATTERN)\n    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)")
   code.push("  ctx.restore()")
@@ -145,6 +141,7 @@ function closePath () {
   ctx.globalAlpha = 1
   ctx.strokeStyle = "#ff4444"
   ctx.stroke()
+  updateItem()
   i = 0
 }
 
@@ -163,6 +160,8 @@ canvas.addEventListener('mousedown', function(evt) {
   
   ctx.fillStyle = '#000000'
   if (i === 0) {
+    ITEM++
+    code.push("  //"+ITEM)
     code.push("  if (PATTERN)")
     code.push("    fillOC(oc, occtx)")
     code.push("  ctx.save()")
