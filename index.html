@@ -372,6 +372,8 @@
         <option value="watercolorPaper">wc paper</option>
         <option value="diss" >distress</option>
         <option value="wash" >wash</option>
+        <option value="wash2" >wash2</option>
+        <option value="wash3" >wash3</option>
         <option value="increaseGrain">increase grain</option>
         <option value="specksRadial">specks</option>
         <option value="blobs">blobs</option>
@@ -659,7 +661,7 @@
           <option value="4">4</option>
           <option value="5" selected>5</option>
         </select-->
-       <button id="randompalette" onclick="loadPalette()">Load palette</button>&nbsp;<button onclick="extractPalette()">Extract</button>&nbsp;<button  onclick="showHex()" title="show hex values">#</button>
+       <button id="randompalette" onclick="loadPalette()">Load palette</button>&nbsp;<button onclick="extractPalette()">Extract</button>
         
     <input type='file' name='img' size='65' id='openextract' style="display:none;">
     <button><a onclick="openFileExtract()" id="paletteloader" title="extract from file..."><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="white" viewBox="0 0 16 16">
@@ -704,6 +706,7 @@
     <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm.5-9.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 11a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm5-5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm-11 0a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9.743-4.036a.5.5 0 1 1-.707-.707.5.5 0 0 1 .707.707zm-7.779 7.779a.5.5 0 1 1-.707-.707.5.5 0 0 1 .707.707zm7.072 0a.5.5 0 1 1 .707-.707.5.5 0 0 1-.707.707zM3.757 4.464a.5.5 0 1 1 .707-.707.5.5 0 0 1-.707.707z"/>
   </svg></a></button>
   
+  <button  onclick="showHex()" title="show hex values">#</button>
   </div></td>
   <td rowspan="2">
   <div style="display:inline-block;
@@ -1798,6 +1801,37 @@ function wash_og () {
   setOpacity(100)
   checkAlt(false)
   document.getElementById("featuresize").value = fs
+}
+
+function wash3 () {
+  setFeaturesize(42)
+  setPaintColor("#292929")
+  fill()
+  setPaintColor("#757575")
+  smudgestars()
+  smudgestars()
+  smudgestars()
+  smudgestars()
+  setPaintColor("#a3a3a3")
+  smudgestars()
+  smudgestars()
+}
+
+function wash2 () {
+  setPaintColor("#505350")
+  fill()
+  setPaintColor("#9c9c9c")
+  blobs()
+  blobs()
+  blobs()
+  blobs()
+  blobs()
+  blobs()
+  impasto()
+  motionblur()
+  motionblur()
+  motionblur()
+  motionblur()
 }
 
 function wash () {
@@ -3396,8 +3430,9 @@ function fisheye (srcpixels, w, h) {
   return dstpixels;
 }
 
-function wrap () {
-  let canvas = document.getElementById("myCanvas")
+function wrap (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let canvasoff = document.createElement("CANVAS")
   let ctxoff = canvasoff.getContext("2d")
@@ -20156,17 +20191,20 @@ function fillOC (oc, occtx) { // ...with a paper pattern
   let colors = shuffle(getCurrentPalette(true,13))
   occtx.fillStyle = randomPick(colors)
   occtx.fillRect(0,0, oc.width, oc.height)
-  let f = randomPick(["typo", "stepchart", /*"scripto",*/ "pageOfBook", "formDec", 
-  "form2", "gridpaper",
-  "hstripes_sml", "crosswordPad", "gridLog", "moleText", "index"])
- // window[f](oc)
+  let f = randomPick([ "stepchart", /*"scripto",*/ /*"pageOfBook", */"formDec", 
+  "form2", "gridpaper", "griddiag", "griddiagd",
+  "gridLog"])//, "moleText", "index"])
+  window[f](oc)
   //if (Math.random() < 0.5)
-    paperize(oc)
+    //paperize(oc)
   if (Math.random() > 0.5)
     rc(oc)
   else
   if (Math.random() > 0.5)
     rcc(oc)
+  
+  if (Math.random() > 0.5)
+    wrap(oc)
   //if (Math.random() > 0.5)
   //  rotateRandom(oc)
 }
@@ -21820,8 +21858,9 @@ function griddots () {
   }
 }
 
-function griddiagd () {
-  let canvas = document.getElementById("myCanvas")
+function griddiagd (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let colors = shuffle(getCurrentPalette(true,13))
   let W = canvas.width
@@ -21870,8 +21909,9 @@ function griddiagd () {
   ctx.restore()
 }
 
-function griddiag () {
-  let canvas = document.getElementById("myCanvas")
+function griddiag (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let colors = shuffle(getCurrentPalette(true,13))
   let W = canvas.width
@@ -30788,6 +30828,26 @@ function randomGradientLeft(canvas, col1) {
   if (col1 === undefined)
     col1 = randomColor();
   let col2 = "rgba("+hexToR(col1)+", "+hexToG(col1)+", "+hexToB(col1)+", 0.0)";// transparent
+  my_gradient.addColorStop(0,col1);
+  my_gradient.addColorStop(1,col2);
+  return my_gradient;
+}
+
+function randomGradientPal (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas")
+  let x1 = 0, y1 = 0, x2 = 0, y2 = 0;
+  let centx = Math.random() * canvas.width;
+  let centy = Math.random() * canvas.height;
+  let radius = canvas.width/2;
+  let angle = Math.random()*6.27;
+  x1 = radius * Math.cos(angle)+centx;
+  y1 = radius * Math.sin(angle)+centy;
+  x2 = radius * Math.cos(angle+3.14)+centx;
+  y2 = radius * Math.sin(angle+3.14)+centy;
+  let my_gradient = canvas.getContext('2d').createLinearGradient(x1, y1, x2, y2);
+  let col1 = randomPick(getCurrentPalette());
+  let col2 = randomPick(getCurrentPalette());
   my_gradient.addColorStop(0,col1);
   my_gradient.addColorStop(1,col2);
   return my_gradient;
