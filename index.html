@@ -267,6 +267,7 @@
        <option value="zoomImage">zoom in</option>
        <option value="makeSquare">pad to square</option>
        <option value="cropSquare">crop to square</option>
+       <option value="resizeTo1080">crop to 1080</option>
        <option value="leftCut" style="color:red">left cut</option>
        <!--option value="leftClip" style="color:red">left clip</option-->
        <option value="nudgeRight" style="color:red">nudge horizontal</option>
@@ -632,6 +633,7 @@
           <option value="halfway2">2 color ramps</option>
           <option value="10">10</option>
           <option value="16">16</option>
+          <option value="101">10,1</option>
           <option value="1011">10,1,1</option>
           <option value="9411">9,4,1,1</option>
           <option value="933">9,3,3</option>
@@ -1313,6 +1315,23 @@ function loadPalette (PUSH) {
     updateExtraColors(b)
     return
   } else
+  if (type === "101") {
+    let c1 = randomColorVDark()
+    let c2 = randomColorDark()
+    let c3 = randomColor()
+    let c4 = randomColorLight()
+    let amt = Math.floor((5+Math.random()*33))
+    b = [
+      c1,adjustBrightnessC(c1, amt),adjustBrightnessC(c1, amt*2),
+         adjustBrightnessC(c1, amt*3),adjustBrightnessC(c1, amt*4),
+         adjustBrightnessC(c1, amt*5),adjustBrightnessC(c1, amt*6),
+         adjustBrightnessC(c1, amt*7),adjustBrightnessC(c1, amt*8),
+         adjustBrightnessC(c1, amt*9),
+        c3
+    ]
+    updateExtraColors(b)
+    return
+  } else
   if (type === "1011") {
     let c1 = randomColorVDark()
     let c2 = randomColorDark()
@@ -1498,7 +1517,7 @@ function loadPalette (PUSH) {
 }
 
 function setRandPalette () {
-  setPalette(randomPick(["halfway", "halfway2", "1011", "9411", "933", "4411", "541", "721", "3331", "5311"]))
+  setPalette(randomPick(["halfway", "halfway2", "101", "1011", "9411", "933", "4411", "541", "721", "3331", "5311"]))
 }
 
 function clearPoints () {
@@ -1839,7 +1858,7 @@ function wash () {
   fill()
   setOpacity(50)
   checkAlt(true)
-  setFeaturesize(255)
+  //setFeaturesize(255)
   crackle()
   crackle()
   fill()
@@ -1861,7 +1880,7 @@ function wash () {
   setMode("source-over")
   setOpacity(100)
   checkAlt(false)
-  document.getElementById("featuresize").value = fs
+ // document.getElementById("featuresize").value = fs
 }
 
 function diss () {
@@ -6366,13 +6385,18 @@ function drawFile () {
   let url = window.URL || window.webkitURL
   let src = url.createObjectURL(f);
   IMG.src = src;
+  let imgwidth = 0, imgheight = 0
   ctx.globalAlpha = 1.0
   let mode = ctx.globalCompositeOperation
   ctx.globalCompositeOperation = "source-over"
   IMG.onload = function() {
+    imgheight = this.height
+    imgwidth = this.width
     canvas.height = this.height
     canvas.width = this.width
     if (SHRINK) {
+      // fit to current canvas size w/o changing aspect ratio
+      
       canvas.height = Math.round(canvas.height/1.2)
       canvas.width = Math.round(canvas.width/1.2)
     }
@@ -6392,6 +6416,32 @@ function drawFile () {
   ctx.globalCompositeOperation = mode
 }
 
+function resizeTo1080 () { // &clip if needed zoom_neg
+  let ocanvas = document.createElement('CANVAS')
+  let octx = ocanvas.getContext('2d')
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let CH = canvas.height, CW = canvas.width
+  let ratio = 1
+  ocanvas.height = canvas.height
+  ocanvas.width = canvas.width
+  octx.drawImage(canvas, 0, 0)
+  let ar = canvas.width/canvas.height
+  if (canvas.width > 1080 && CH > CW) {
+    canvas.width = 1080
+    canvas.height = Math.floor(canvas.height * 1080/CW)
+    syncBackground(canvas)
+  } else
+  if (canvas.width > 1080 && CW > CH) {
+    canvas.height = 1080
+    canvas.width = Math.floor(canvas.width * 1080/CH)
+    syncBackground(canvas)
+  }
+  ctx.drawImage(ocanvas,0,0,canvas.width,canvas.height)
+  octx.clearRect(0,0,ocanvas.width,ocanvas.height)
+  cropSquare(true) // from top
+  syncMarker()
+}
 
 function stack_clearOff () {
   clearOff()
@@ -28884,15 +28934,15 @@ function make4to5 (all) {
 }
 
 
-function cropSquare (all) {
+function cropSquare (top) {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let mode = ctx.globalCompositeOperation
   let alpha = document.getElementById("opacity").value
   W = canvas.width
   H = canvas.height
-  if (W == H)
-    return
+  //if (W == H)
+  //  return
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let canvasoff = document.getElementById("off")
   let ctxoff = canvasoff.getContext("2d")
@@ -28902,10 +28952,14 @@ function cropSquare (all) {
   let pad = 0, x = 0, y = 0
   if (H > W) {
     y -= (H-W)/2
+    if (top)
+      y = 0
     canvas.height -= (H-W)
   } else
   if (W > H) {
     x -= (W-H)/2
+    if (top)
+      x = 0
     canvas.width -= (W-H)
   }
   syncBackground(canvas)

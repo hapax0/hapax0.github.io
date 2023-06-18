@@ -46,6 +46,7 @@
       <option value="23" selected>23</option> 
       <option value="24">24</option> 
       <option value="32">32</option>
+      <option value="80">80</option>
     </select>
     &nbsp;<input type='file' name='img' size='65' id='uploadimage' style="display:none;">
   <button onclick="openFile()" id="imgloader" title="open image file...">open...</button>
@@ -70,7 +71,8 @@
   <textarea id="text1" name="text1" rows="24" cols="32" wrap="soft"></textarea>
   <br>
   &nbsp;<input type="checkbox" id="ragged"><label for="ragged"> ragged lines</label>
-  &nbsp;Item count <span id="lastitem">0</span>
+  &nbsp;Item count <span id="lastitem">0</span><br>
+  &nbsp;<input type="checkbox" id="gradient"><label for="gradient"> gradient fills</label>
   </div>
 </div>
   
@@ -133,8 +135,10 @@ function getIndex () {
 function closePath () {
   if (i === 0)
     return  
-  code.push("  if (FILL) {\n    ctx.fillStyle = randomGradientPal()\n  n += randomPick([1,2])\n    ctx.fill()\n  }")
-  //code.push("  if (FILL) {\n    ctx.fillStyle = colors[n%colors.length]\n  n += randomPick([1,2])\n    ctx.fill()\n  }")
+  if (document.getElementById("gradient").checked)
+    code.push("  if (FILL) {\n    ctx.fillStyle = randomGradientPal()\n  n += randomPick([1,2])\n    ctx.fill()\n  }")
+  else
+    code.push("  if (FILL) {\n    ctx.fillStyle = colors[n%colors.length]\n  n += randomPick([1,2])\n    ctx.fill()\n  }")
   code.push("  ctx.clip()")
   code.push("  if (PATTERN)\n    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)")
   code.push("  ctx.restore()")
@@ -283,6 +287,9 @@ function frameVisible () {
   ctx.lineWidth = 3
   ctx.setLineDash([])
   ctx.fillRect(0,0,W,H)
+  
+  if (document.getElementById("gridsize").value  >= 80)
+    return
   let i = 0, x = 0, y = 0
   for (; i < gridsize; i++) {
     if (i % 2 === 0)
