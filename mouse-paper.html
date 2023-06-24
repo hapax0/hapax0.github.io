@@ -142,7 +142,7 @@ function closePath () {
   code.push("  ctx.clip()")
   code.push("  if (PATTERN)\n    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)")
   code.push("  ctx.restore()")
-  code.push("  if (STROKE) {\n  /*  ctx.strokeStyle = randomPick(colors)*/\n    ctx.stroke()\n  }")
+  code.push("  if (STROKE) {\n  ctx.lineWidth = randomPick([1,2,3,6])\n/*  ctx.strokeStyle = randomPick(colors)*/\n    ctx.stroke()\n  }")
   ctx.setLineDash([])
   ctx.globalAlpha = 1
   ctx.strokeStyle = "#ff4444"
@@ -263,7 +263,7 @@ function showPoints () {
   ctx.lineWidth = 1 + document.getElementById(\"featuresize\").value/5\n\
   ctx.strokeStyle = randomPick(colors)\n\
   ctx.fillStyle = randomPick(colors)\n\
-  ctx.strokeStyle = color\n\
+  ctx.strokeStyle = 'black'\n\
   ctx.lineCap = \"square\"\n\
   ctx.lineJoin = \"meter\"\n\n"
   document.getElementById("text1").value = header

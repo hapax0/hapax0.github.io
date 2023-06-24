@@ -645,7 +645,11 @@
           <option value="3331">3,3,3,1</option>
           <option value="22222">2,2,2,2,2</option>
          
-          <option value="primary" selected>primary</option>
+          <option value="primary" >primary</option>
+          <option value="vivid" selected>vivid</option>
+          <option value="afklint">af klint</option>
+          <option value="afklint2">af klint(2)</option>
+          <option value="gertrudeabercrombie">abercrombie</option>
           <option value="cmy">cmy</option>
           <option value="rainbow">rainbow</option>
           <option value="monokai">monokai</option>
@@ -1349,6 +1353,25 @@ function loadPalette (PUSH) {
     updateExtraColors(b)
     return
   } else
+  
+  if (type === 'gertrudeabercrombie') {
+    b = ["#905a4f", "#918b7c", "#b4ab93", "#1a1915", "#383933", "#525850", "#4f6f66", "#1b515c"]
+    updateExtraColors(b)
+  } else
+  if (type === 'vivid') {
+    b = ["#fcfcfc", "#ec7d09", "#fbe90e", "#cedea5", "#49603a", "#7ad650", "#059440", "#0a9bdf", "#144263", "#074d98", "#7c43a3", "#e00665", "#730f36", "#040102", "#e10613", "#ffb9ba", "#c41c1d"]
+    updateExtraColors(b)
+  } else
+    
+  if (type === 'afklint') {
+    b = ["#be4a3c", "#4c4948", "#c76a47", "#ddc1b1", "#c2a491", "#d68d4a", "#e9ded2", "#24211d", "#d1a947", "#383631", "#e2b84c", "#828d63", "#657b64", "#4e6355", "#a9bac8", "#93a4b6", "#baa4ab", "#a89397"]
+    updateExtraColors(b)
+  } else
+  
+  if (type === 'afklint2') {
+    b = ["#ca8d8d", "#ac7978", "#c36731", "#cc7a49", "#eadccf", "#e2ba92", "#d47e21", "#ddae2e", "#e9c45f", "#fefefd", "#6e6e45", "#899ab9", "#6a88ce", "#afb6cb", "#1e1f32", "#38373b", "#bd6469", "#964347"]
+    updateExtraColors(b)
+  }
   if (type === "9411") {
     let c1 = randomColorVDark()
     let c2 = randomColorDark()
@@ -6427,14 +6450,18 @@ function resizeTo1080 () { // &clip if needed zoom_neg
   ocanvas.width = canvas.width
   octx.drawImage(canvas, 0, 0)
   let ar = canvas.width/canvas.height
-  if (canvas.width > 1080 && CH > CW) {
+  if (/*canvas.width > 1080 &&*/ CH > CW) {
     canvas.width = 1080
     canvas.height = Math.floor(canvas.height * 1080/CW)
     syncBackground(canvas)
   } else
-  if (canvas.width > 1080 && CW > CH) {
+  if (/*canvas.width > 1080 &&*/ CW > CH) {
     canvas.height = 1080
     canvas.width = Math.floor(canvas.width * 1080/CH)
+    syncBackground(canvas)
+  } else {
+    canvas.height = 1080
+    canvas.width = 1080
     syncBackground(canvas)
   }
   ctx.drawImage(ocanvas,0,0,canvas.width,canvas.height)
@@ -28229,7 +28256,7 @@ function brightnessOf (ctx,x,y,d) {
   else
     return "#000000"
 }
-/*
+
 function tile (type) {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -28568,7 +28595,7 @@ function triangle (x, y, w, i) {
   ctx.closePath()
   ctx.fill()
 }
-*/
+
 
 
 function albers () {
