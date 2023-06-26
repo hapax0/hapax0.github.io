@@ -25,7 +25,6 @@ let code = [], cpx, cpy
 function clearAll () {
   let canvas = document.getElementById('myDCanvas')
   W = canvas.width, H = W
-  
   let ctx = canvas.getContext('2d')
   code = []
   ITEM = 0
@@ -70,6 +69,7 @@ function closePath () {
   ctx.stroke()
   updateItem()
   INDEX = 0
+  showPoints()
 }
 
 function initOC () {
@@ -80,16 +80,13 @@ function initOC () {
   ocd.height = canvas.height, ocd.width = canvas.width
   let gs = document.getElementById("gridsize").value
   GRIDSIZE = gs, CELLSIZE = canvas.width/GRIDSIZE
-  
   offdctx = ocd.getContext('2d')
-  
   offdctx.strokeStyle = "#55dd55"
   offdctx.fillStyle = "#55dd55"
   offdctx.lineWidth = 4
   offdctx.setLineDash([4, 4])
   canvas.addEventListener('mousedown', function(evt) {
     CELLSIZE = canvas.width/GRIDSIZE
-    console.log(GRIDSIZE, CELLSIZE)
     let mode = document.getElementById("qmode").checked
     let mousePos = getMousePos(canvas, evt);
     ctx.fillStyle = '#000000'
@@ -180,7 +177,7 @@ function copyCode () {
 }
 
 function showPoints () {
-  //console.log(code)
+  if (ITEM < 1) return
   let header = "let x = 0, y = 0, W = 1080\n\
   let canvas = document.getElementById(\"myCanvas\")\n\
   let ctx = canvas.getContext(\"2d\")\n\
@@ -198,7 +195,6 @@ function showPoints () {
   ctx.lineJoin = \"meter\"\n\n"
   document.getElementById("text1").value = header
   document.getElementById("text1").value += code.join("\n")
-  //document.getElementById("text1").value += "\n}  "
 }
 
 function getMousePos(canvas, evt) {
@@ -247,7 +243,6 @@ function frameVisible () {
     x += CELLSIZE
   }
   ctx.lineWidth = 4
-
 }
 
 function writeMessage (canvas, message) {
@@ -274,11 +269,8 @@ function drawFile () {
   ctx.globalAlpha = 1
   ctx.globalCompositeOperation = "source-over"
   IMG.onload = function () {
-    //canvas.height = this.height
-    //canvas.width = this.width
     ctx.globalAlpha = 0.5
     ctx.drawImage(IMG, 0, 0, canvas.width, canvas.height);
-   // resizeCanvas()
     url.revokeObjectURL(src);
     src  += timestamp
   }
