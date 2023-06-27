@@ -3,79 +3,16 @@ let ocd = null
 let offdctx = null
 let CELLSIZE = 0
 let GRIDSIZE = 1
-
-function updateGrid () {
-  let gs = document.getElementById("gridsize").value
-  GRIDSIZE = gs, CELLSIZE = W/GRIDSIZE
-  frameVisible()
-}
-
-function killCP () {
-  if (INDEX > 0 && document.getElementById("qmode").checked) {
-    INDEX = 1
-  }
-}
-
-let message = ''
-let cps = []
-let W = 0, H = W
+let lastpoints = []
+let ITEMS = []
 let INDEX = 0
 let code = [], cpx, cpy
-
-function clearAll () {
-  let canvas = document.getElementById('myDCanvas')
-  W = canvas.width, H = W
-  let ctx = canvas.getContext('2d')
-  code = []
-  ITEM = 0
-  INDEX = 0
-  ctx.fillStyle = 'white'
-  ctx.globalAlpha = 1.0
-  ctx.fillRect(0,0,canvas.width,canvas.height)
-  offdctx.clearRect(0,0,canvas.width,canvas.height)
-  frameVisible()
-  document.getElementById("text1").innerHTML = ""
-  updateItem()
-  ctx.fillStyle = '#ffffff'
-  ctx.lineWidth = 4
-}
-
-function updateItem () {
-  document.getElementById("lastitem").innerHTML = ITEM
-}
-
-function getIndex () {
-  let v = +document.getElementById("index").value
-  return(v)
-}
-
-function closePath () {
-  let canvas = document.getElementById('myDCanvas')
-  let ctx = canvas.getContext('2d')
-  W = canvas.width, H = W
-  if (INDEX === 0)
-    return  
-  if (document.getElementById("gradient").checked)
-    code.push("  if (FILL) {\n    ctx.fillStyle = randomGradientPal()\n  n += randomPick([1,2])\n    ctx.fill()\n  }")
-  else
-    code.push("  if (FILL) {\n    ctx.fillStyle = colors[n%colors.length]\n  n += randomPick([1,2])\n    ctx.fill()\n  }")
-  code.push("  ctx.clip()")
-  code.push("  if (PATTERN)\n    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)")
-  code.push("  ctx.restore()")
-  code.push("  if (STROKE) {\n  ctx.lineWidth = randomPick([1,2,3,6])\n/*  ctx.strokeStyle = randomPick(colors)*/\n    ctx.stroke()\n  }")
-  ctx.setLineDash([])
-  ctx.globalAlpha = 1
-  ctx.strokeStyle = "#ff4444"
-  ctx.stroke()
-  updateItem()
-  INDEX = 0
-  showPoints()
-}
 
 function initOC () {
   let canvas = document.getElementById('myDCanvas')
   let ctx = canvas.getContext('2d')
   let lastx, lasty, lx, ly
+  lastpoints = []
   let ocd = document.createElement('canvas')
   ocd.height = canvas.height, ocd.width = canvas.width
   let gs = document.getElementById("gridsize").value
@@ -91,6 +28,7 @@ function initOC () {
     let mousePos = getMousePos(canvas, evt);
     ctx.fillStyle = '#000000'
     if (INDEX === 0) {
+      //lastpoints = []
       ITEM++
       code.push("  //"+ITEM)
       code.push("  if (PATTERN)")
@@ -111,7 +49,7 @@ function initOC () {
       // if (document.getElementById("ragged").checked)
       //   code.push("  ragged(ctx, x+"+Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE+", y+"+Math.round(mousePos.y/CELLSIZE)+"*H/"+GRIDSIZE+", "+lx+", "+ly+")")
       // else
-          code.push("  ctx.lineTo(x+"+Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE+", y+"+Math.round(mousePos.y/CELLSIZE)+"*H/"+GRIDSIZE+")")
+        code.push("  ctx.lineTo(x+"+Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE+", y+"+Math.round(mousePos.y/CELLSIZE)+"*H/"+GRIDSIZE+")")
         ctx.lineTo(Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE, Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE)
         lastx = Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE
         lasty = Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE
@@ -130,7 +68,6 @@ function initOC () {
           code.push("  cpx = x+"+Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE)
           code.push("  cpy = y+"+Math.round(mousePos.y/CELLSIZE)+"*H/"+GRIDSIZE)
           ctx.fillStyle = "#55dd55"
-          
           offdctx.strokeStyle = "#ffffff"
           offdctx.setLineDash([])
           offdctx.beginPath()
@@ -143,11 +80,9 @@ function initOC () {
           offdctx.lineTo(cpx,cpy)
           offdctx.stroke()
           offdctx.fillRect(Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE-5, Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE-5, 10, 10)
-
           ctx.drawImage(ocd,0,0,canvas.width,canvas.height)
           ctx.setLineDash([4, 4])
           ctx.strokeStyle = "#ff4444"
-          //ctx.fillRect(Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE-5, Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE-5, 10, 10)
         } else {
           code.push("  ctx.quadraticCurveTo(cpx, cpy, x+"+Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE+", y+"+Math.round(mousePos.y/CELLSIZE)+"*H/"+GRIDSIZE+")")
           ctx.quadraticCurveTo(cpx, cpy, Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE, Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE)
@@ -164,9 +99,91 @@ function initOC () {
         }
       }
     }
+    lastpoints.push(lastx,lasty)
     INDEX++
   }, false)
 
+}
+
+function clearAll () {
+  let canvas = document.getElementById('myDCanvas')
+  W = canvas.width, H = W
+  let ctx = canvas.getContext('2d')
+  code = []
+  ITEM = 0
+  INDEX = 0
+  ctx.fillStyle = 'white'
+  ctx.globalAlpha = 1.0
+  ctx.fillRect(0,0,canvas.width,canvas.height)
+  offdctx.clearRect(0,0,canvas.width,canvas.height)
+  frameVisible()
+  document.getElementById("text1").value = ""
+  updateItem()
+  ctx.fillStyle = '#ffffff'
+  ctx.lineWidth = 4
+  ITEM = 0
+}
+
+function updateItem () {
+  document.getElementById("lastitem").innerHTML = ITEM
+}
+
+function getIndex () {
+  let v = +document.getElementById("index").value
+  return(v)
+}
+
+function closePath (KILL) {
+  let canvas = document.getElementById('myDCanvas')
+  let ctx = canvas.getContext('2d')
+  //W = canvas.width, H = W
+  if (INDEX === 0)
+    return  
+    
+  ITEMS.push(lastpoints)
+  lastpoints = []
+  if (document.getElementById("gradient").checked)
+    code.push("  if (FILL) {\n    ctx.fillStyle = randomGradientPal()\n  n += randomPick([1,2])\n    ctx.fill()\n  }")
+  else
+    code.push("  if (FILL) {\n    ctx.fillStyle = colors[n%colors.length]\n  n += randomPick([1,2])\n    ctx.fill()\n  }")
+  code.push("  ctx.clip()")
+  code.push("  if (PATTERN)\n    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)")
+  code.push("  ctx.restore()")
+  code.push("  if (STROKE) {\n  ctx.lineWidth = randomPick([1,2,3,6])\n/*  ctx.strokeStyle = randomPick(colors)*/\n    ctx.stroke()\n  }")
+  ctx.setLineDash([])
+  ctx.globalAlpha = 1
+  ctx.strokeStyle = "#ff4444"
+  ctx.stroke()
+  updateItem()
+  INDEX = 0
+  showPoints()
+}
+
+function undoLast () {
+  closePath()
+  if (ITEM < 1) return
+  let index = code.indexOf("  //"+ITEM)
+  code = code.slice(0, index)
+  ITEM -= 1
+  copyCode()
+  updateItem()
+  let last = ITEMS.pop()
+  crossoutItem(last)
+}
+
+function crossoutItem (item) {
+  let canvas = document.getElementById('myDCanvas')
+  let ctx = canvas.getContext('2d')
+  let ocd = document.createElement('canvas')
+  let offdctxctx = canvas.getContext('2d')
+  offdctx.fillStyle = "#ffd000"
+  ctx.fillStyle = "#ffd000"
+  let i = 0
+  for (; i < item.length; i+=2) {
+    offdctx.fillRect(Math.round(item[i]), Math.round(item[i+1])-6, 12, 12)
+    ctx.drawImage(ocd,0,0,canvas.width,canvas.height)
+    ctx.fillRect(Math.round(item[i])-6, Math.round(item[i+1])-6, 12, 12)
+  }
 }
 
 function copyCode () {
@@ -177,8 +194,11 @@ function copyCode () {
 }
 
 function showPoints () {
-  if (ITEM < 1) return
-  let header = "let x = 0, y = 0, W = 1080\n\
+  if (ITEM <= 0) {
+    document.getElementById("text1").value = ""
+    return
+  }
+  let header = "  let x = 0, y = 0, W = 1080\n\
   let canvas = document.getElementById(\"myCanvas\")\n\
   let ctx = canvas.getContext(\"2d\")\n\
   let oc = document.createElement('canvas')\n\
@@ -245,19 +265,13 @@ function frameVisible () {
   ctx.lineWidth = 4
 }
 
-function writeMessage (canvas, message) {
-  let ctx = canvas.getContext('2d')
-  ctx.fillStyle = '#ffffff';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-}
-
-function openFile () {
+function openFileD () {
   let canvas = document.getElementById('myDCanvas')
   let ctx = canvas.getContext('2d')
   document.getElementById('uploadimage').click();
 }
 
-function drawFile () {
+function drawFileD () {
   let canvas = document.getElementById('myDCanvas')
   let ctx = canvas.getContext('2d')
   let IMG = new Image()
@@ -277,29 +291,31 @@ function drawFile () {
   document.getElementById("uploadimage").value = ""
 }
 
-function resizeCanvas () {
-  let ocanvas = document.createElement('CANVAS')
-  let octx = ocanvas.getContext('2d')
-  let canvas = document.getElementById("myDCanvas");
-  let ctx = canvas.getContext("2d")
-  ocanvas.height = canvas.height
-  ocanvas.width = canvas.width
-  octx.drawImage(canvas, 0, 0)
-  let ar = canvas.width/canvas.height
-  if (canvas.width > 800) {
-    let W = canvas.width
-    canvas.width = 800
-    canvas.height = Math.floor(canvas.height * 800/W)
-  }
-  ctx.drawImage(ocanvas,0,0,canvas.width,canvas.height)
-  octx.clearRect(0,0,ocanvas.width,ocanvas.height)
-}
-
 // saveAs stuff
-
-function saveAs () {
-  document.getElementById("downloader").download = "image.png";
-  document.getElementById("downloader").href = document.getElementById("myDCanvas").toDataURL("image/png").replace(/^data:image\/[^;]/, 'data:application/octet-stream');
+function downloadCode() {
+  let filename = "drawing_code.js"
+  let text  = document.getElementById("text1").value
+  let pom = document.createElement('a');
+  pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+  pom.setAttribute('download', filename);
+  if (document.createEvent) {
+      var event = document.createEvent('MouseEvents');
+      event.initEvent('click', true, true);
+      pom.dispatchEvent(event);
+  }
+  else {
+      pom.click();
+  }
 }
 
+function updateGrid () {
+  let gs = document.getElementById("gridsize").value
+  GRIDSIZE = gs, CELLSIZE = W/GRIDSIZE
+  frameVisible()
+}
 
+function killCP () {
+  if (INDEX > 0 && document.getElementById("qmode").checked) {
+    INDEX = 1
+  }
+}

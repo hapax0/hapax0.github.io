@@ -127,7 +127,7 @@
       <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
     </svg></span>
   &nbsp;
-  <a href="#" id="downloader" onclick="saveAs()" download="image.png" title="save as png file"
+  <a href="javascript:saveAs()" id="downloader" download="image.png" title="save as png file"
   ><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-download" viewBox="0 0 16 16">
     <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
     <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
@@ -462,8 +462,8 @@
       <option value="ladder">ladder</option> 
       <option value="lamp">lamp</option> 
       <option value="prayer">prayer</option> 
-      <option value="slide">slide</option> 
-      <option value="chair">chair</option-->
+      <option value="slide">slide</option--> 
+      <option value="chair" selected>chair</option>
       <option value="chairStorm">chair storm</option>
       <option value="treeStorm">tree storm</option>
       <option value="swing">swing set</option>
@@ -488,8 +488,6 @@
       <option value="shape2">shape</option>
       <option value="scraps">scraps</option>
       <option value="multiScraps">multi scraps</option>
-      <option value="latestAt" selected>last drawing</option>
-      
       <option value="tape">tape</option>
       <!--option value="phases">phases</option>
       <option value="corner">corner</option>
@@ -818,7 +816,7 @@
   <button onclick="toggleGridBox()" style="float:right;">x</button>
    <canvas id="myDCanvas" sytle="border:1px solid #000000;" width="500" height="500"></canvas>
    <br>
-   <br>grid: <select id="gridsize" onchange="clearAll()">
+   <br>grid: <select id="gridsize" style="width:48px;" onchange="clearAll()">
     <option value="4">4</option>
     <option value="5">5</option>
     <option value="6">6</option>
@@ -838,28 +836,41 @@
   </select>
   &nbsp;
     
-   
-    &nbsp;<input type="checkbox" id="qmode" onclick="killCP()"><label for="qmode"> quadratic</label>
     &nbsp;<input type="checkbox" id="gradient" checked><label for="gradient"> gradient fills</label>
+    &nbsp;<input type="checkbox" id="qmode" onclick="killCP()"><label for="qmode"> quadratic</label>
     &nbsp;<button onclick="closePath()">close path</button>
     &nbsp;
     <button onclick="drawD()">draw</button>
     <br>
     <br>
     &nbsp;<button onclick="clearAll()">clear</button>    
-    &nbsp;Item count <span id="lastitem">0</span><br>
-
+    &nbsp;Item count <span id="lastitem">0</span>
+    
+    &nbsp;
+    <a href="javascript:undoLast()" id="undolast" title="undo last item">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="white" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
+      <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
+    </svg>
+    </svg></a>
+    
+    &nbsp;
+    <a href="javascript:downloadCode()" id="downloaderc" title="save drawing code"
+    ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="white" viewBox="0 0 16 16">
+      <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+      <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+    </svg></a>
     &nbsp;
     <br>
-    <textarea id="text1" rows="4" cols="68" wrap="soft" style="width:480px;"></textarea>
+    <textarea id="text1" rows="4" cols="68" wrap="soft"  style="display:none;"></textarea>
   </div>
   
     <br>
-    <div sytle="display:none;">
+    <div style="display:none;">
       <canvas id="offscreend" width='512' height='512' hidden></canvas>
     </div>
      <div sytle="display:none;">
-      <canvas id="off" width='512' height='512' sytle="visibility:hidden;"></canvas>
+      <canvas id="off" width='512' height='512' style="visibility:hidden;"></canvas>
     </div>
     <br>
 <script>
