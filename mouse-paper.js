@@ -159,11 +159,10 @@ function closePath (KILL) {
   showPoints()
 }
 
-
-
 function undoLast () {
   closePath()
-  if (ITEM < 1) return
+  if (ITEM < 1) 
+    return
   let index = code.indexOf("  //"+ITEM)
   code = code.slice(0, index)
   ITEM -= 1
