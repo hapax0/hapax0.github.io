@@ -159,6 +159,8 @@ function closePath (KILL) {
   showPoints()
 }
 
+
+
 function undoLast () {
   closePath()
   if (ITEM < 1) return
