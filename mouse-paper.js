@@ -177,14 +177,18 @@ function crossoutItem (item) {
   let ctx = canvas.getContext('2d')
   let ocd = document.createElement('canvas')
   let offdctxctx = canvas.getContext('2d')
+  let ofill = offdctx.fillStyle
+  let cfill = ctx.fillStyle
   offdctx.fillStyle = "#ffd000"
   ctx.fillStyle = "#ffd000"
   let i = 0
   for (; i < item.length; i+=2) {
-    offdctx.fillRect(Math.round(item[i]), Math.round(item[i+1])-6, 12, 12)
+    offdctx.fillRect(Math.round(item[i])-6, Math.round(item[i+1])-6, 12, 12)
     ctx.drawImage(ocd,0,0,canvas.width,canvas.height)
     ctx.fillRect(Math.round(item[i])-6, Math.round(item[i+1])-6, 12, 12)
   }
+  offdctx.fillStyle = ofill
+  ctx.fillStyle = cfill
 }
 
 function copyCode () {
