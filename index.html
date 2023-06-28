@@ -422,6 +422,7 @@
       <!--option value="placeRectAt">mockup</option-->
       <option value="scratchout">scratch out</option>
       <option value="rose">rose</option>
+      <option value="natural">loop</option>
       <option value="paintDrips">paint drips</option>
       <option value="paintDrip">drip at</option>
       <option value="hstripes">stripes</option>
@@ -483,7 +484,6 @@
       <option value="monocube">cube (mono)</option>
       <option value="cube">cube (fill)</option>
       <option value="cube2">cube2</option>
-      <option value="natural">loop</option>
       <option value="phase">phase</option>
       <option value="shape2">shape</option>
       <option value="scraps">scraps</option>
@@ -16779,14 +16779,14 @@ function rose () { // chemotaxis like
  // let C = W/2 + (Math.random() - 0.5) * W/4
   ctx.globalAlpha = +document.getElementById("opacity").value/100
   let alt = document.getElementById("grungy").checked
-  ctx.lineWidth = 2+document.getElementById("featuresize").value/20
-  let fs = ctx.lineWidth * 10
+  ctx.lineWidth = 1+document.getElementById("featuresize").value/400
+  let fs = ctx.lineWidth * 4
   ctx.lineCap = "round"
-  ctx.strokeStyle = document.getElementById("paintcolor").value
-  let color = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette())
+  let color = randomPick(getCurrentPalette())
   let size = 0.01 + document.getElementById("number").value/20000
   ctx.fillStyle = color
-  let radius = 50//250
+  let radius = 50// tie to quantity
   let angle = Math.random() * 6.28
   let n = 0, end = 5000
   let shrink = W * 0.37
@@ -18335,17 +18335,17 @@ function automatic () {
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
 }
-
+ 
 function natural () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  let colors = shuffle(getCurrentPalette())//['red', 'blue', 'yellow', 'orange', 'purple', "green"])
+  let colors = shuffle(getCurrentPalette())
   let mode = document.getElementById("mode").value
   let alpha = document.getElementById("opacity").value
   let x = LASTCLICK[0], y = LASTCLICK[1]
-  let R = 16 + document.getElementById("featuresize").value/2
-  ctx.lineWidth = R/12
+  let R = 11 + document.getElementById("featuresize").value/2
+  ctx.lineWidth = 1 + R/34
   let R2 = R*2
   let alt = document.getElementById("grungy").checked
   let mult = Math.random()
@@ -18356,7 +18356,9 @@ function natural () {
   let b = 0, sign = 1
   ctx.strokeStyle = (colors[0])
   ctx.beginPath()
-  let max = 1.4*360 + Math.random()*120
+  let max = 2.4*360 + Math.random()*120
+ // max = R*10
+  console.log(max, R)
   if (alt) {
     ctx.lineWidth = 1
   }
@@ -18372,8 +18374,8 @@ function natural () {
     b += sign * 0.3
     if (R+b < 0)
       R = R2
-     R2 /= 1.000002
-     R *= 1.00002
+     R2 /= 1.00002
+     R *= 1.0002
      if (R2 < 0)
        R2 *= -1
   }
@@ -22248,7 +22250,7 @@ function scratchout () {
   ctx.fillStyle = "#ffffff"//color
   //let colors = ["#ed6060", "#6060ba", "#6060ed", "#ed6060", "#000000"]
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette())
   ctx.lineJoin = "round"
   ctx.lineWidth = Math.floor(1 + fs/20)
   ctx.imageSmoothingQuality = "high"
@@ -22260,7 +22262,6 @@ function scratchout () {
     
   let cx1, cy1, cx2, cy2
   ctx.beginPath()
- // x = x + maxX/2
   ctx.moveTo(x, y)
   let d = 20, N = 3*Math.random()*8
   for (; i < 5; i++) {

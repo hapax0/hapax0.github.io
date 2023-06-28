@@ -28,7 +28,6 @@ function initOC () {
     let mousePos = getMousePos(canvas, evt);
     ctx.fillStyle = '#000000'
     if (INDEX === 0) {
-      //lastpoints = []
       ITEM++
       code.push("  //"+ITEM)
       code.push("  if (PATTERN)")
@@ -133,13 +132,12 @@ function getIndex () {
   return(v)
 }
 
-function closePath (KILL) {
+function closePath () {
   let canvas = document.getElementById('myDCanvas')
   let ctx = canvas.getContext('2d')
   //W = canvas.width, H = W
   if (INDEX === 0)
     return  
-    
   ITEMS.push(lastpoints)
   lastpoints = []
   if (document.getElementById("gradient").checked)
