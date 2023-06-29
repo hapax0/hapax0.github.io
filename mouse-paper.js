@@ -7,7 +7,7 @@ let lastpoints = []
 let ITEMS = []
 let INDEX = 0
 let code = [], cpx, cpy
-
+  
 function initOC () {
   let canvas = document.getElementById('myDCanvas')
   let ctx = canvas.getContext('2d')
@@ -223,8 +223,8 @@ function showPoints () {
 function getMousePos(canvas, evt) {
   let rect = canvas.getBoundingClientRect()
   return {
-    x: Math.floor(evt.clientX - rect.left),
-    y: Math.floor(evt.clientY - rect.top)
+    x: Math.round(evt.clientX - rect.left),
+    y: Math.round(evt.clientY - rect.top)
   };
 }
 
