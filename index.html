@@ -150,7 +150,7 @@
   <span class="cp_wrapper">
   <input type="color" id="paintcolor" onchange="paintcolorChange()" class="square" style="margin-bottom:6px;" value="#ffffff">
   </span>
- 
+  &nbsp;
   <!--a href="javascript:randomPickColor()" title='random color'>
   <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-palette" viewBox="0 0 16 16">
     <path d="M8 5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm4 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM5.5 7a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm.5 6a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
@@ -2655,6 +2655,7 @@ function updateExtraColors (colors) {
     ctx.fillRect(x,y,48,48)
     x += 48
   }
+  document.getElementById("paintcolor").value = extendedPalette[0]
 }
 
 function getPaletteFromPickers() {
@@ -2735,7 +2736,7 @@ function extractPalette (canvas) {
     let canvas = document.getElementById("palettecanvas")
     let ctx = canvas.getContext("2d");
     ctx.globalAlpha = 1.0
-    ctx.fillStyle = "#a0a0a0"
+    /*ctx.fillStyle = "#a0a0a0"
     ctx.clearRect(0,0,canvas.width, canvas.height)
     for (; i < colors.length; i++) {
       if (i === 10) {
@@ -2745,9 +2746,10 @@ function extractPalette (canvas) {
       ctx.fillStyle = colors[i]
       ctx.fillRect(x,y,48,48)
       x += 48
-    }
+    }*/
     document.getElementById("palettechoice").value = "none"
   }
+  updateExtraColors(colors)
   return (colors)
 }
 
@@ -5553,8 +5555,10 @@ function setFeaturesize (a) {
 }
 
 function paintcolorChange () {
-  let a = randomPick(getCurrentPalette()) // was paintcolor
-  pushFunction('setPaintColor', a)
+  let p = getCurrentPalette()
+  p[0] = document.getElementById("paintcolor").value
+  updateExtraColors(p)
+  pushFunction('setPaintColor')
 }
 
 function setPaintColor (a) {
