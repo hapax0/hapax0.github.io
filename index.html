@@ -9,6 +9,19 @@
       float: left;
       white-space: nowrap;
     }
+    input[class='square'] {
+      padding: 0;
+      width: 150%;
+      height: 150%;
+      margin: -25%;
+    }
+    .cp_wrapper {
+      overflow: hidden;
+      width: 36px;
+      height: 36px;
+      border-radius: 0%;
+      display:inline-block;
+    }
     div[id='gridbox'] {
       display:none;
       position:absolute;
@@ -133,14 +146,17 @@
     <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
   </svg></a>
   &nbsp;
-  <input type="color" id="paintcolor" onchange="paintcolorChange()" style="margin-bottom:6px;">
-  &nbsp;
-  <a href="javascript:randomPickColor()" title='random color'>
+  
+  <span class="cp_wrapper">
+  <input type="color" id="paintcolor" onchange="paintcolorChange()" class="square" style="margin-bottom:6px;" value="#ffffff">
+  </span>
+ 
+  <!--a href="javascript:randomPickColor()" title='random color'>
   <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-palette" viewBox="0 0 16 16">
     <path d="M8 5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm4 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM5.5 7a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm.5 6a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
     <path d="M16 8c0 3.15-1.866 2.585-3.567 2.07C11.42 9.763 10.465 9.473 10 10c-.603.683-.475 1.819-.351 2.92C9.826 14.495 9.996 16 8 16a8 8 0 1 1 8-8zm-8 7c.611 0 .654-.171.655-.176.078-.146.124-.464.07-1.119-.014-.168-.037-.37-.061-.591-.052-.464-.112-1.005-.118-1.462-.01-.707.083-1.61.704-2.314.369-.417.845-.578 1.272-.618.404-.038.812.026 1.16.104.343.077.702.186 1.025.284l.028.008c.346.105.658.199.953.266.653.148.904.083.991.024C14.717 9.38 15 9.161 15 8a7 7 0 1 0-7 7z"/>
-  </svg></a>
-  &nbsp;
+  </svg></a-->
+  
   <a href="javascript:stack_fill()" title="fill"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-bucket" viewBox="0 0 16 16">
     <path d="M2.522 5H2a.5.5 0 0 0-.494.574l1.372 9.149A1.5 1.5 0 0 0 4.36 16h7.278a1.5 1.5 0 0 0 1.483-1.277l1.373-9.149A.5.5 0 0 0 14 5h-.522A5.5 5.5 0 0 0 2.522 5zm1.005 0a4.5 4.5 0 0 1 8.945 0H3.527zm9.892 1-1.286 8.574a.5.5 0 0 1-.494.426H4.36a.5.5 0 0 1-.494-.426L2.58 6h10.838z"/>
   </svg></a>
@@ -665,6 +681,7 @@
           <option value="yellowed">yellowed</option>
           <option value="nighthawks">nighthawks</option>
           <option value="earring">earring</option>
+          <option value="uno">uno</option>
           <option value="none">none</option>
         </select>
         <!--select id="numcolors" style="width:50px;" title='use N colors'>
@@ -792,7 +809,7 @@
     <path d="M0 1.5A1.5 1.5 0 0 1 1.5 0h13A1.5 1.5 0 0 1 16 1.5v13a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 14.5v-13zM1.5 1a.5.5 0 0 0-.5.5V5h4V1H1.5zM5 6H1v4h4V6zm1 4h4V6H6v4zm-1 1H1v3.5a.5.5 0 0 0 .5.5H5v-4zm1 0v4h4v-4H6zm5 0v4h3.5a.5.5 0 0 0 .5-.5V11h-4zm0-1h4V6h-4v4zm0-5h4V1.5a.5.5 0 0 0-.5-.5H11v4zm-1 0V1H6v4h4z"/>
     </svg></a>
   
-    &nbsp;<a href="javascript:drawD()"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" class="white" style="padding:4px;" viewBox="0 0 18 18">
+    &nbsp;<a href="javascript:stack_drawD()"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" class="white" style="padding:4px;" viewBox="0 0 18 18">
     <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
   </svg></a>
   </td>
@@ -930,7 +947,7 @@ marker.addEventListener('click', function(event) {
   
   let result = document.getElementById("background")
   result.style.backgroundColor = "#fff";
-  document.getElementById("paintcolor").value = randomColor()
+  randomPick(getCurrentPalette()) // was paintcolor = randomColor()
   loadPalette()
   const selectElement = document.getElementById("mode");
   selectElement.addEventListener('change', (event) => {
@@ -1028,19 +1045,16 @@ function watercolorPaperD (x,y,w,h) {
   let d = 1+Math.floor(fs/100)
   let alpha = document.getElementById("opacity").value
   let n = document.getElementById("number").value
-  let c = document.getElementById("paintcolor").value
+  let c = randomPick(getCurrentPalette()) // was paintcolor
   document.getElementById("featuresize").value = 350
   document.getElementById("opacity").value = 90
   document.getElementById("number").value = 6000
-  document.getElementById("paintcolor").value = "#cccccc"
-  smudgestreaks2()
-  smudgestreaks2()
-  document.getElementById("paintcolor").value = "#ffffff"
-  smudgestreaks2()
+  smudgestreaks2(canvas, "#cccccc")
+  smudgestreaks2(canvas, "#cccccc")
+  smudgestreaks2(canvas, "#ffffff")
   document.getElementById("number").value = n
   document.getElementById("featuresize").value = fs
   document.getElementById("opacity").value = alpha
-  document.getElementById("paintcolor").value = c
   embossCanvas()
   zoomImage(false, d)
   //shrinkBlur()
@@ -1069,19 +1083,19 @@ function watercolorPaper () {
   let d = 1+Math.floor(fs/100)
   let alpha = document.getElementById("opacity").value
   let n = document.getElementById("number").value
-  let c = document.getElementById("paintcolor").value
+  let c = randomPick(getCurrentPalette()) // was paintcolor
   document.getElementById("featuresize").value = 350
   document.getElementById("opacity").value = 90
   document.getElementById("number").value = 6000
-  document.getElementById("paintcolor").value = "#cccccc"
-  smudgestreaks2()
-  smudgestreaks2()
-  document.getElementById("paintcolor").value = "#ffffff"
-  smudgestreaks2()
+  randomPick(getCurrentPalette()) // was paintcolor = "#cccccc"
+  smudgestreaks2(canvas, "#cccccc")
+  smudgestreaks2(canvas, "#cccccc")
+  randomPick(getCurrentPalette()) // was paintcolor = "#ffffff"
+  smudgestreaks2(canvas, "#ffffff")
   document.getElementById("number").value = n
   document.getElementById("featuresize").value = fs
   document.getElementById("opacity").value = alpha
-  document.getElementById("paintcolor").value = c
+  randomPick(getCurrentPalette()) // was paintcolor = c
   embossCanvas()
   zoomImage(false, d)
   //shrinkBlur()
@@ -1092,7 +1106,6 @@ function watercolorPaper () {
   ctx.fillRect(0,0,canvas.width,canvas.height)
   ctx.globalCompositeOperation = mode
 }
-
 
 function canvas1 () {
   let canvas = document.getElementById("myCanvas")
@@ -1107,24 +1120,27 @@ function canvas1 () {
   let d = 5+Math.floor(fs/20)
   let alpha = document.getElementById("opacity").value
   let n = document.getElementById("number").value
-  let c = document.getElementById("paintcolor").value
+ // let c = randomPick(getCurrentPalette()) // was paintcolor
   //document.getElementById("featuresize").value = 250
   document.getElementById("opacity").value = 90
   document.getElementById("number").value = 6000
-  document.getElementById("paintcolor").value = "#cccccc"
-  smudgehorizontal()
+  //randomPick(getCurrentPalette()) // was paintcolor = "#cccccc"
+  ctx.strokeStyle = "#cccccc"
+  smudgehorizontal(canvas, "#cccccc")
   rc()
-  smudgehorizontal2()
+  smudgehorizontal2(canvas, "#cccccc")
   rc()
-  document.getElementById("paintcolor").value = "#ffffff"
-  smudgehorizontal()
+  ctx.strokeStyle = "#ffffff"
+
+  //randomPick(getCurrentPalette()) // was paintcolor = "#ffffff"
+  smudgehorizontal(canvas, "#ffffff")
   rc()
-  smudgehorizontal2()
+  smudgehorizontal2(canvas, "#ffffff")
   rc()
   document.getElementById("number").value = n
   document.getElementById("featuresize").value = fs
   document.getElementById("opacity").value = alpha
-  document.getElementById("paintcolor").value = c
+ // randomPick(getCurrentPalette()) // was paintcolor = c
   embossCanvas()
   //shrinkBlur()
   let mode = ctx.globalCompositeOperation
@@ -1148,16 +1164,19 @@ function wavyPaper (canvas) {
   let d = 5+Math.floor(fs/20)
   let alpha = document.getElementById("opacity").value
   let n = document.getElementById("number").value
-  let c = document.getElementById("paintcolor").value
+  let c = randomPick(getCurrentPalette()) // was paintcolor
   let functions = ["fog", "smudge", "smudgewatercolor"]
   document.getElementById("featuresize").value = 500
   document.getElementById("opacity").value = 30
   document.getElementById("number").value = 6000
-  document.getElementById("paintcolor").value = "#aaaaaa"
   let i = 0, f
   for (; i < 3; i++) {
     f = randomPick(functions)
-    window[f]("")
+    if (f === "smudge")
+      window[f]("", canvas, "#aaaaaa")
+    else
+      window[f](canvas, "#aaaaaa")
+
   }
   document.getElementById("opacity").value = 10
   document.getElementById("featuresize").value = 150
@@ -1171,11 +1190,8 @@ function wavyPaper (canvas) {
   embossCanvas()
   zoomImage(false, d)
   shrinkBlur()
-  document.getElementById("paintcolor").value = c
   enhanceExposure()
 }
-
-
   
 function adjustBrightnessC (col, amt) {
   if (col[0] == "#") {
@@ -1382,6 +1398,16 @@ function loadPalette (PUSH) {
          adjustBrightnessC(c1, amt*7),adjustBrightnessC(c1, amt*8),
          adjustBrightnessC(c1, amt*9)
     ]
+    updateExtraColors(b)
+    return
+  } else
+  
+  if (type === "uno") {
+    let pal = getCurrentPalette()
+    if (pal.length > 1)
+      b = [pal[0]]
+    else
+      b = [randomColor()]
     updateExtraColors(b)
     return
   } else
@@ -1989,7 +2015,7 @@ function diss () {
   let val = document.getElementById("opacity").value
   let num = document.getElementById("number").value
   let size = document.getElementById("featuresize").value
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let mode = ctx.globalCompositeOperation
   functions = ["smudge", "smudge", "smudge", "rays", /*"specksRadial"*/]
   let args = ["", "streaks", "streaks2", "arcs", "arcs2", "stars", "horizontal"]
@@ -2017,7 +2043,7 @@ function diss () {
   document.getElementById("opacity").value = val
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.globalCompositeOperation = "destination-over"
-  document.getElementById("paintcolor").value = color
+  randomPick(getCurrentPalette()) // was paintcolor = color
   fillA()
   //restore values
   ctx.globalCompositeOperation = mode
@@ -2025,7 +2051,7 @@ function diss () {
   document.getElementById("opacity").value = val
   document.getElementById("number").value = num
   document.getElementById("featuresize").value = size
-  document.getElementById("paintcolor").value = color
+  randomPick(getCurrentPalette()) // was paintcolor = color
   ctx.globalAlpha = document.getElementById("opacity").value/100
 }
 
@@ -2115,7 +2141,7 @@ function landscape () {
   let val = document.getElementById("opacity").value
   let num = document.getElementById("number").value
   let size = document.getElementById("featuresize").value
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let mode = ctx.globalCompositeOperation
   functions = ["smudge", "smudge", "smudge", "rays", "blobs", "hrips", "fog", "tatter", "specksRadial"]
   let args = ["", "streaks", "arcs", "stars", "horizontal", "streaks2"]
@@ -2181,7 +2207,7 @@ function landscape () {
   document.getElementById("opacity").value = val
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.globalCompositeOperation = "color"
-  document.getElementById("paintcolor").value = color
+  randomPick(getCurrentPalette()) // was paintcolor = color
   fill()
   //restore values
   ctx.globalCompositeOperation = mode
@@ -2189,7 +2215,7 @@ function landscape () {
   document.getElementById("opacity").value = val
   document.getElementById("number").value = num
   document.getElementById("featuresize").value = size
-  document.getElementById("paintcolor").value = color
+  randomPick(getCurrentPalette()) // was paintcolor = color
   ctx.globalAlpha = document.getElementById("opacity").value/100
 }
 
@@ -2199,7 +2225,7 @@ function landscape2 () {
   let val = document.getElementById("opacity").value
   let num = document.getElementById("number").value
   let size = document.getElementById("featuresize").value
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let mode = ctx.globalCompositeOperation
   functions = ["smudge", "smudge", "smudge", "rays", "blobs", "birds", "hrips", "fog", "specksRadial"]
   let args = ["", "streaks", "arcs", "stars", "horizontal"]
@@ -2256,7 +2282,7 @@ function landscape2 () {
   document.getElementById("opacity").value = val
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.globalCompositeOperation = "color"
-  document.getElementById("paintcolor").value = color
+  randomPick(getCurrentPalette()) // was paintcolor = color
   fill()
   //restore values
   ctx.globalCompositeOperation = mode
@@ -2264,7 +2290,7 @@ function landscape2 () {
   document.getElementById("opacity").value = val
   document.getElementById("number").value = num
   document.getElementById("featuresize").value = size
-  document.getElementById("paintcolor").value = color
+  randomPick(getCurrentPalette()) // was paintcolor = color
   ctx.globalAlpha = document.getElementById("opacity").value/100
 }
 
@@ -2274,26 +2300,26 @@ function blobFill (fs) {
   let val = document.getElementById("opacity").value
   let num = document.getElementById("number").value
   let size = document.getElementById("featuresize").value
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let mode = ctx.globalCompositeOperation
   document.getElementById("number").value = 800
   document.getElementById("featuresize").value = 500
   document.getElementById("opacity").value = 100//15 + Math.random() + 75
-  document.getElementById("paintcolor").value = randomColorVLight()
+  randomPick(getCurrentPalette()) // was paintcolor = randomColorVLight()
   fill()
   ctx.fillStyle = randomColorVLight()
   ctx.fillRect(canvas.width/2, 0, canvas.width, canvas.height)
   let i = 0
   for (; i < 2; i++) {
     randomPickColor() // randomLight
-    document.getElementById("paintcolor").value = randomColorLight()
+    randomPick(getCurrentPalette()) // was paintcolor = randomColorLight()
     blobs()
   }
   // restore
   document.getElementById("number").value = num
   document.getElementById("featuresize").value = size
   document.getElementById("opacity").value = val
-  document.getElementById("paintcolor").value = color
+  randomPick(getCurrentPalette()) // was paintcolor = color
 }
 
 function landscape3 () {
@@ -2302,7 +2328,7 @@ function landscape3 () {
   let val = document.getElementById("opacity").value
   let num = document.getElementById("number").value
   let size = document.getElementById("featuresize").value
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let grunge = document.getElementById("grungy").checked
   let mode = ctx.globalCompositeOperation
   functions = ["smudge", "smudge", "smudge", "rays", "blobs", "hrips", "fog", "specksRadial"]
@@ -2367,7 +2393,7 @@ function landscape3 () {
   document.getElementById("opacity").value = val
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.globalCompositeOperation = "color"
-  document.getElementById("paintcolor").value = color
+  randomPick(getCurrentPalette()) // was paintcolor = color
   fill()
   //restore values
   ctx.globalCompositeOperation = mode
@@ -2375,7 +2401,7 @@ function landscape3 () {
   document.getElementById("opacity").value = val
   document.getElementById("number").value = num
   document.getElementById("featuresize").value = size
-  document.getElementById("paintcolor").value = color
+  randomPick(getCurrentPalette()) // was paintcolor = color
   ctx.globalAlpha = document.getElementById("opacity").value/100
 }
 
@@ -2414,7 +2440,7 @@ function randomTexture () {
   let val = document.getElementById("opacity").value
   let num = document.getElementById("number").value
   let size = document.getElementById("featuresize").value
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let alpha = document.getElementById("opacity").value
   let alt = document.getElementById("grungy").checked
 
@@ -2471,7 +2497,7 @@ function randomTexture () {
   document.getElementById("opacity").value = val
   document.getElementById("number").value = num
   document.getElementById("featuresize").value = size
-  document.getElementById("paintcolor").value = color
+  randomPick(getCurrentPalette()) // was paintcolor = color
   ctx.globalCompositeOperation = mode
   ctx.globalAlpha = alpha/100
   refreshMode()
@@ -2483,7 +2509,7 @@ function randomTexture2 () {
   let val = document.getElementById("opacity").value
   let num = document.getElementById("number").value
   let size = document.getElementById("featuresize").value
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let alpha = document.getElementById("opacity").value
   let alt = document.getElementById("grungy").checked
   let mode = ctx.globalCompositeOperation
@@ -2516,7 +2542,7 @@ function randomTexture2 () {
   document.getElementById("opacity").value = val
   document.getElementById("number").value = num
   document.getElementById("featuresize").value = size
-  document.getElementById("paintcolor").value = color
+  randomPick(getCurrentPalette()) // was paintcolor = color
   ctx.globalCompositeOperation = mode
   ctx.globalAlpha = alpha/100
   refreshMode()
@@ -3237,7 +3263,7 @@ async function palettetint (canvas) {
   colors.push(document.getElementById("pal3").value)
   colors.push(document.getElementById("pal4").value)
   colors.push(document.getElementById("pal5").value)*/
-  let saved = document.getElementById("paintcolor").value
+  let saved = randomPick(getCurrentPalette()) // was paintcolor
 
   let level = 20
   let lows = [100, 83.33, 66.67, 50, 16.67]
@@ -3249,7 +3275,7 @@ async function palettetint (canvas) {
   }
   let i = 0
   for (; i < colors.length; i++) {
-    document.getElementById("paintcolor").value = colors[i]
+    randomPick(getCurrentPalette()) // was paintcolor = colors[i]
     document.getElementById("lower").value = lows[i]
     document.getElementById("upper").value = highs[i]
     tint()
@@ -3257,7 +3283,7 @@ async function palettetint (canvas) {
   document.getElementById("lower").value = 100
   document.getElementById("upper").value = 100
   rangecheck()
-  document.getElementById("paintcolor").value = saved
+  randomPick(getCurrentPalette()) // was paintcolor = saved
   ctx.globalAlpha = alpha
   return true
 }
@@ -3274,7 +3300,7 @@ async function palettetint_2ramps (canvas) {
   colors.push(document.getElementById("pal3").value)
   colors.push(document.getElementById("pal4").value)
   colors.push(document.getElementById("pal5").value)
-  let saved = document.getElementById("paintcolor").value
+  let saved = randomPick(getCurrentPalette()) // was paintcolor
 
   let level = 20
   let lows = [100, 83.33, 66.67, 50, 16.67]
@@ -3285,14 +3311,14 @@ async function palettetint_2ramps (canvas) {
     highs = [100, 80, 60, 40, 20].reverse()
   }
   let i = 0
-  document.getElementById("paintcolor").value = colors[0]
+  randomPick(getCurrentPalette()) // was paintcolor = colors[0]
   tintlow()
-  document.getElementById("paintcolor").value = colors[4]
+  randomPick(getCurrentPalette()) // was paintcolor = colors[4]
   tinthigh()
   document.getElementById("lower").value = 100
   document.getElementById("upper").value = 100
   rangecheck()
-  document.getElementById("paintcolor").value = saved
+  randomPick(getCurrentPalette()) // was paintcolor = saved
   ctx.globalAlpha = alpha
   return true
 }
@@ -3421,9 +3447,9 @@ function fourbyfour () {
   let offctx = off.getContext("2d")
   offctx.drawImage(canvas,0,0,W/2,H/2)
   //offctx.globalCompositeOperation = "overlay"
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let warhol = document.getElementById("grungy").checked
-  document.getElementById("paintcolor").value = randomColor()
+  randomPick(getCurrentPalette()) // was paintcolor = randomColor()
   let D = (Math.floor(33+Math.random() * 255) % 256)
   let colors = []
   colors.push(randomColor())
@@ -3437,7 +3463,7 @@ function fourbyfour () {
   .then(
     posterize2(off,ctx,W/2,H/2,W/2,H/2)
     )
-  document.getElementById("paintcolor").value = color
+  randomPick(getCurrentPalette()) // was paintcolor = color
   return true
 }
 
@@ -3450,9 +3476,9 @@ function fourbyfourplain () {
   let offctx = off.getContext("2d")
   offctx.drawImage(canvas,0,0,W/2,H/2)
   //offctx.globalCompositeOperation = "overlay"
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let warhol = document.getElementById("grungy").checked
-  document.getElementById("paintcolor").value = randomColor()
+  randomPick(getCurrentPalette()) // was paintcolor = randomColor()
   let D = (Math.floor(33+Math.random() * 255) % 256)
   let colors = []
   colors.push(randomColor())
@@ -3466,7 +3492,7 @@ function fourbyfourplain () {
   .then(
     drawSome(ctx,off,W/2,H/2,W/2,H/2)
     )
-  document.getElementById("paintcolor").value = color
+  randomPick(getCurrentPalette()) // was paintcolor = color
   return true
 }
 
@@ -3514,7 +3540,7 @@ function distortion () {
     }
   }
   if (alt) {
-    ctx.fillStyle = document.getElementById("paintcolor").value
+    ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
     ctx.fillRect(0,0,sizew, sizeh)
   }
   ctx.putImageData(imgData, 0, 0);
@@ -3738,7 +3764,7 @@ function ripSide () {
   ctx.lineTo(0, y)
   ctx.closePath()
   ctx.clip()
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   if (grunge)
     ctx.clearRect(0,0,W,H)
   else
@@ -3763,7 +3789,7 @@ function findBrightSpots (FLARE) {
   off.height = canvas.height
   let offctx = off.getContext("2d")
   offctx.drawImage(canvas,0,0)
-  offctx.fillStyle = document.getElementById("paintcolor").value
+  offctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   let grunge = document.getElementById("grungy").checked
   let cw = canvas.width
   let ch = canvas.height
@@ -3830,7 +3856,7 @@ function sampleImageDataR () { // darkness
   off.width = canvas.width
   off.height = canvas.height
   let offctx = off.getContext("2d")
-  offctx.fillStyle = document.getElementById("paintcolor").value
+  offctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   let grunge = document.getElementById("grungy").checked
   // set above as in rectify
   let W = 0.5 + Math.floor(document.getElementById("featuresize").value/2)
@@ -3889,7 +3915,7 @@ function sampleImageData () { // darkness
   off.width = canvas.width
   off.height = canvas.height
   let offctx = off.getContext("2d")
-  offctx.fillStyle = document.getElementById("paintcolor").value
+  offctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   let grunge = document.getElementById("grungy").checked
   // set above as in rectify
   let W = 0.5 + Math.floor(document.getElementById("featuresize").value/2)
@@ -3947,7 +3973,7 @@ function etch (color) {
   off.width = canvas.width
   off.height = canvas.height
   let offctx = off.getContext("2d")
-  offctx.strokeStyle = document.getElementById("paintcolor").value
+  offctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   offctx.lineCap = "square"
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let grunge = document.getElementById("grungy").checked
@@ -4045,7 +4071,7 @@ function hatches (color) {
   off.width = canvas.width
   off.height = canvas.height
   let offctx = off.getContext("2d")
-  offctx.strokeStyle = document.getElementById("paintcolor").value
+  offctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let grunge = document.getElementById("grungy").checked
   // set above as in rectify
@@ -4156,7 +4182,7 @@ function stipple () {
   off.width = canvas.width
   off.height = canvas.height
   let offctx = off.getContext("2d")
-  offctx.fillStyle = document.getElementById("paintcolor").value
+  offctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let grunge = document.getElementById("grungy").checked
   // set above as in rectify
@@ -4240,7 +4266,7 @@ function mosaic () { // 4 sided
   off.width = canvas.width
   off.height = canvas.height
   let offctx = off.getContext("2d")
-  offctx.fillStyle = document.getElementById("paintcolor").value
+  offctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   let grunge = document.getElementById("grungy").checked
   ctx.globalAlpha = document.getElementById("opacity").value/100
   // set above as in rectify
@@ -4326,7 +4352,7 @@ function pointillism2 () { // multi sided
   off.width = canvas.width
   off.height = canvas.height
   let offctx = off.getContext("2d")
-  offctx.fillStyle = document.getElementById("paintcolor").value
+  offctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   let grunge = document.getElementById("grungy").checked
   ctx.globalAlpha = document.getElementById("opacity").value/100
   // set above as in rectify
@@ -4417,7 +4443,7 @@ function pointillismE () {
   off.width = canvas.width
   off.height = canvas.height
   let offctx = off.getContext("2d")
-  offctx.fillStyle = document.getElementById("paintcolor").value
+  offctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   let grunge = document.getElementById("grungy").checked
   ctx.globalAlpha = document.getElementById("opacity").value/100
   // set above as in rectify
@@ -4488,7 +4514,7 @@ function pointillism () {
   off.width = canvas.width
   off.height = canvas.height
   let offctx = off.getContext("2d")
-  offctx.fillStyle = document.getElementById("paintcolor").value
+  offctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   let grunge = document.getElementById("grungy").checked
   ctx.globalAlpha = document.getElementById("opacity").value/100
   // set above as in rectify
@@ -4712,7 +4738,7 @@ function nearest () {
   off.width = canvas.width
   off.height = canvas.height
   let offctx = off.getContext("2d")
-  offctx.fillStyle = document.getElementById("paintcolor").value
+  offctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   let grunge = document.getElementById("grungy").checked
   ctx.globalAlpha = document.getElementById("opacity").value/100
   // set above as in rectify
@@ -4863,7 +4889,7 @@ function bricks () { //lego
   off.width = canvas.width
   off.height = canvas.height
   let offctx = off.getContext("2d")
-  offctx.fillStyle = "#000000"//document.getElementById("paintcolor").value
+  offctx.fillStyle = "#000000"//randomPick(getCurrentPalette()) // was paintcolor
   let grunge = document.getElementById("grungy").checked
   // set above as in rectify
   let W = 4 + Math.floor(document.getElementById("featuresize").value/5)
@@ -4949,7 +4975,7 @@ function nicksmith () {
   off.width = canvas.width
   off.height = canvas.height
   let offctx = off.getContext("2d")
-  offctx.fillStyle = "#000000"//document.getElementById("paintcolor").value
+  offctx.fillStyle = "#000000"//randomPick(getCurrentPalette()) // was paintcolor
   let grunge = document.getElementById("grungy").checked
   // set above as in rectify
   let W = 4 + Math.floor(document.getElementById("featuresize").value/5)
@@ -5008,7 +5034,7 @@ function nicksmithWords () {
   off.width = canvas.width
   off.height = canvas.height
   let offctx = off.getContext("2d")
-  offctx.fillStyle = "#000000"//document.getElementById("paintcolor").value
+  offctx.fillStyle = "#000000"//randomPick(getCurrentPalette()) // was paintcolor
   let grunge = document.getElementById("grungy").checked
   // set above as in rectify
   let W = 2 + Math.floor(document.getElementById("featuresize").value/10)
@@ -5081,7 +5107,7 @@ function namedcolorWords () {
   off.width = canvas.width
   off.height = canvas.height
   let offctx = off.getContext("2d")
-  offctx.fillStyle = "#000000"//document.getElementById("paintcolor").value
+  offctx.fillStyle = "#000000"//randomPick(getCurrentPalette()) // was paintcolor
   let grunge = document.getElementById("grungy").checked
   // set above as in rectify
   let W = 2 + Math.floor(document.getElementById("featuresize").value/10)
@@ -5153,7 +5179,7 @@ function sampleImageDataColor () {
   off.width = canvas.width
   off.height = canvas.height
   let offctx = off.getContext("2d")
-  offctx.fillStyle = document.getElementById("paintcolor").value
+  offctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   let grunge = document.getElementById("grungy").checked
   // set above as in rectify
   let W = 2 + Math.floor(document.getElementById("featuresize").value/2)
@@ -5337,8 +5363,8 @@ function sampleImageDataColor2 () {
   off.width = canvas.width
   off.height = canvas.height
   let offctx = off.getContext("2d")
-  offctx.fillStyle = document.getElementById("paintcolor").value
-  let targetcolor = document.getElementById("paintcolor").value
+  offctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  let targetcolor = randomPick(getCurrentPalette()) // was paintcolor
   let tr = hexToR(targetcolor)
   let tg = hexToG(targetcolor)
   let tb = hexToB(targetcolor)
@@ -5425,14 +5451,14 @@ function filterGrays () {
 function filterGrays2 () {
   let ctx = document.getElementById("myCanvas").getContext("2d")
   let op = document.getElementById("opacity").value
-  let oc = document.getElementById("paintcolor").value
+  let oc = randomPick(getCurrentPalette()) // was paintcolor
  // document.getElementById("opacity").value = 50
-  document.getElementById("paintcolor").value = "#000000"
+  randomPick(getCurrentPalette()) // was paintcolor = "#000000"
   colorFilterOut()
  // document.getElementById("opacity").value = 50
-  document.getElementById("paintcolor").value = "#7f7f7f"
+  randomPick(getCurrentPalette()) // was paintcolor = "#7f7f7f"
   colorFilterOut()
-  document.getElementById("paintcolor").value = "#ffffff"
+  randomPick(getCurrentPalette()) // was paintcolor = "#ffffff"
   colorFilterOut()
   document.getElementById("opacity").value = op
   let mode = ctx.globalCompositeOperation
@@ -5441,7 +5467,7 @@ function filterGrays2 () {
     fill()
   ctx.globalCompositeOperation = mode
   refreshMode()
-  document.getElementById("paintcolor").value = oc
+  randomPick(getCurrentPalette()) // was paintcolor = oc
 }
 
 function alphaBlack (t) {
@@ -5527,12 +5553,12 @@ function setFeaturesize (a) {
 }
 
 function paintcolorChange () {
-  let a = document.getElementById("paintcolor").value
+  let a = randomPick(getCurrentPalette()) // was paintcolor
   pushFunction('setPaintColor', a)
 }
 
 function setPaintColor (a) {
-  document.getElementById("paintcolor").value = a
+  randomPick(getCurrentPalette()) // was paintcolor = a
 }
 
 function numberChange () {
@@ -5582,7 +5608,7 @@ function recordSettings () {
   pushFunction('setOpacity', a)
   a = document.getElementById("featuresize").value
   pushFunction('setFeaturesize', a)
-  a = document.getElementById("paintcolor").value
+  a = randomPick(getCurrentPalette()) // was paintcolor
   pushFunction('setPaintColor', a)
   a = document.getElementById("mode").value
   pushFunction('setMode', a)
@@ -5738,10 +5764,10 @@ function multileak () {
   off.width = canvas.width, off.height = canvas.height
   let offctx = off.getContext("2d")
   let alpha = document.getElementById("opacity").value
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let colors = getCurrentPalette()
   let alt = document.getElementById("grungy").checked
-  offctx.fillStyle = document.getElementById("paintcolor").value//randomGradient(canvas, randomColorMedium())
+  offctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor//randomGradient(canvas, randomColorMedium())
   let cw = canvas.width, ch  = canvas.height
   let y = 0//ch/5
   
@@ -6119,7 +6145,7 @@ function colorFilterOut () { // filter unselected color
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height)
-  let target = document.getElementById("paintcolor").value
+  let target = randomPick(getCurrentPalette()) // was paintcolor
   let threshold = Math.round(+document.getElementById("opacity").value * 4.42)
   threshold = 443 - threshold
   let grunge = document.getElementById("grungy").checked
@@ -6160,7 +6186,7 @@ function colorFilterOff () {
   off2ctx.globalAlpha = 0.8
   // red
   let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height)
-  let target = "#ff5555"//document.getElementById("paintcolor").value
+  let target = "#ff5555"//randomPick(getCurrentPalette()) // was paintcolor
   let threshold = document.getElementById("opacity").value
   let tclose = threshold * 0.95
   let r = hexToR(target)
@@ -6190,7 +6216,7 @@ function colorFilterOff () {
   
   // blue
   imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height)
-  target = "#5555ff"//document.getElementById("paintcolor").value
+  target = "#5555ff"//randomPick(getCurrentPalette()) // was paintcolor
   threshold = document.getElementById("opacity").value
   tclose = threshold * 0.95
   r = hexToR(target)
@@ -6219,7 +6245,7 @@ function colorFilterOff () {
   
   // green
   imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height)
-  target = "#55ff55"//document.getElementById("paintcolor").value
+  target = "#55ff55"//randomPick(getCurrentPalette()) // was paintcolor
   threshold = document.getElementById("opacity").value
   tclose = threshold * 0.95
   r = hexToR(target)
@@ -6255,7 +6281,7 @@ function colorFilter () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height)
-  let target = document.getElementById("paintcolor").value
+  let target = randomPick(getCurrentPalette()) // was paintcolor
   let threshold = +document.getElementById("opacity").value * 4.42
   let grunge = document.getElementById("grungy").checked
   let r = hexToR(target)
@@ -6301,7 +6327,7 @@ function retro () {
   let alpha = document.getElementById("opacity").value
   let feature_size = document.getElementById("featuresize").value
   let number = document.getElementById("number").value
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let alt = document.getElementById("grungy").checked
   let pal = getCurrentPalette(true)
   let ga = ctx.globalAlpha
@@ -6327,12 +6353,12 @@ function retro () {
     ctx.restore()
   }
   if (Math.random() > 0.3 && alt) {
-    document.getElementById("paintcolor").value = randomPick(["#d4f595", "#80dfff", "#ffee80", "#ff80aa", "#45de45"])
+    randomPick(getCurrentPalette()) // was paintcolor = randomPick(["#d4f595", "#80dfff", "#ffee80", "#ff80aa", "#45de45"])
     document.getElementById("opacity").value = 25 + Math.random() * 10
     haze()
   }
   if (Math.random() > 0.3 && alt) {
-    document.getElementById("paintcolor").value = randomPick(["#7f7e60", "#707060", "#507070", "#505070"])
+    randomPick(getCurrentPalette()) // was paintcolor = randomPick(["#7f7e60", "#707060", "#507070", "#505070"])
     document.getElementById("opacity").value = 30
     document.getElementById("number").value = 6000
     document.getElementById("featuresize").value = 300
@@ -6345,7 +6371,7 @@ function retro () {
   if (Math.random() > 0.3 && alt) {
     ctx.save()
     clipIrregular()
-    document.getElementById("paintcolor").value = "#ffffff"
+    randomPick(getCurrentPalette()) // was paintcolor = "#ffffff"
     document.getElementById("opacity").value = 70 + Math.random() * 20
     document.getElementById("number").value = 3000 + Math.random() * 3000
     document.getElementById("featuresize").value = 400
@@ -6365,7 +6391,7 @@ function retro () {
   document.getElementById("opacity").value = alpha
   document.getElementById("featuresize").value = feature_size
   document.getElementById("number").value = number
-  document.getElementById("paintcolor").value = color
+  randomPick(getCurrentPalette()) // was paintcolor = color
   document.getElementById("palettechoice").value = type
   loadPalette()
 }
@@ -6639,16 +6665,16 @@ document.getElementById("uploadimage").addEventListener("change", drawFile, true
 document.getElementById("openextract").addEventListener("change", extractFile, true)
 
 function pushColor (c) {
-  document.getElementById("paintcolor").value = c
+  randomPick(getCurrentPalette()) // was paintcolor = c
 }
 
 function randomPickColor() {
-  document.getElementById("paintcolor").value = randomColor()
+  randomPick(getCurrentPalette()) // was paintcolor = randomColor()
 }
 
 function updateColor () {
   let uc = document.getElementById("usercolor").value
-  document.getElementById("paintcolor").value = uc
+  randomPick(getCurrentPalette()) // was paintcolor = uc
 }
 
 function randn_bm (min, max, skew) {
@@ -15870,7 +15896,7 @@ function monoblobs () {
   let W = canvas.width, H = canvas.height
   let N = randomPick([2,3,4])
   let pad = document.getElementById("featuresize").value/10000 * W
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   let delta = W/N
   let x = 0, y = 0, i = 0, cnt = 0
   for (; i < N*N; i++) {
@@ -16701,7 +16727,7 @@ function spiral () {
   let grunge = document.getElementById("grungy").checked
   ctx.lineWidth = 2+document.getElementById("featuresize").value/20
   ctx.lineCap = "round"
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   let radius = 250, r0 = W/2.3 +Math.random() * 250, angle = Math.random() * 6.28
   let n = 0, end = 2400
   let shrink = 100 + Math.random() * 300
@@ -16735,7 +16761,7 @@ function spiral2 () {
   let grunge = document.getElementById("grungy").checked
   ctx.lineWidth = 2+document.getElementById("featuresize").value/20
   ctx.lineCap = "round"
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   let radius = 250, r0 = W/4 +Math.random() * 250, angle = Math.random() * 6.28
   let n = 0, end = 3000
   let shrink = W * 0.37
@@ -16775,7 +16801,6 @@ function rose () { // chemotaxis like
   let H = canvas.height
   let cx = LASTCLICK[0]
   let cy = LASTCLICK[1]
- // let C = W/2 + (Math.random() - 0.5) * W/4
   ctx.globalAlpha = +document.getElementById("opacity").value/100
   let alt = document.getElementById("grungy").checked
   ctx.lineWidth = 1+document.getElementById("featuresize").value/400
@@ -16783,9 +16808,9 @@ function rose () { // chemotaxis like
   ctx.lineCap = "round"
   ctx.strokeStyle = randomPick(getCurrentPalette())
   let color = randomPick(getCurrentPalette())
-  let size = 0.01 + document.getElementById("number").value/20000
+  let size = 0.0001 + document.getElementById("number").value/50000
+  console.log(size)
   ctx.fillStyle = color
-  let radius = 50// tie to quantity
   let angle = Math.random() * 6.28
   let n = 0, end = 5000
   let shrink = W * 0.37
@@ -16794,10 +16819,10 @@ function rose () { // chemotaxis like
   let turn = false
   let A = 0.01 + Math.random()/90
   let lw = fs/4, a = 1.6*Math.PI
-  let turnAt = W*0.33*size //W/20 + Math.random() * W/40
+  let turnAt = W*0.33*size 
   let k = lw/7
-  let x = cx //+ Math.random() * turnAt*2
-  let y = cy //+ Math.random() * turnAt*2
+  let x = cx 
+  let y = cy 
   let increment = 1.001, DIR = true
   let INC = 0, BEC = end/2, gs = 0
   for (; n < end; n++) {
@@ -16825,7 +16850,7 @@ function rose () { // chemotaxis like
       if (turn)
         angle += A + pet(k/4)/k/2
       else
-        angle += pet(k/10)
+        angle += pet(k)
     } 
   }
 }
@@ -16842,7 +16867,7 @@ function spiral4 () {
   let grunge = document.getElementById("grungy").checked
   ctx.lineWidth = 2+document.getElementById("featuresize").value/20
   ctx.lineCap = "round"
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   let radius = W/4 + Math.random() * W/10
   let angle = Math.random() * 6.28
   let n = 0, end = 17000
@@ -16982,7 +17007,7 @@ function chair () {
   }
   
   ctx.lineCap = "round"
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   
   let flip = Math.random() > 0.5
   if (flip) {
@@ -17097,7 +17122,7 @@ function person () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   ctx.lineWidth = 0.5+document.getElementById("featuresize").value/10
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   let W = canvas.width
   let margin = W/8
   margin = 50 + (W-2*margin)/(2+Math.floor(Math.random() * 10))//document.getElementById("rows").value
@@ -17195,7 +17220,7 @@ function lamp () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   ctx.lineWidth = 0.5+document.getElementById("featuresize").value/10
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   let W = canvas.width
   let margin = W/8
   margin = 50 + (W-2*margin)/(2+Math.floor(Math.random() * 10))//document.getElementById("rows").value
@@ -17322,7 +17347,7 @@ function birdhouse () {
   }
   
   ctx.lineCap = "round"
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   
   let flip = Math.random() > 0.5
   
@@ -17845,7 +17870,7 @@ function star () {
   ctx.fill()
   if (document.getElementById("grungy").checked) {
     document.getElementById("caption").value = randomPick(placenames_stars)
-    document.getElementById("paintcolor").value = colors[0]
+    randomPick(getCurrentPalette()) // was paintcolor = colors[0]
     caption()
   }
 }
@@ -17861,7 +17886,7 @@ function makePalette () {
   let colors = getCurrentPalette()
   if (ctx.globalAlpha == 1)
     alert("Set opacity to < 1.0 for remix.")
-  let mixcolor = document.getElementById("paintcolor").value
+  let mixcolor = randomPick(getCurrentPalette()) // was paintcolor
   if (!alt) {
     ctx.fillStyle = mixcolor // mix with paintcolor
     ctx.fillRect(0,0,W,H)
@@ -17898,7 +17923,7 @@ function waves () {
   ctx.lineWidth = 1 + Math.floor(document.getElementById("featuresize").value/10)
   inc = ctx.lineWidth * 2
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let pad = 0
   let x = pad, y = -20//pad
   ctx.strokeStyle = color
@@ -19126,7 +19151,7 @@ function network () {
   let alpha = document.getElementById("opacity").value
   let colors = getCurrentPalette()
   if (document.getElementById("grungy").checked)
-    colors = [document.getElementById("paintcolor").value]
+    colors = [randomPick(getCurrentPalette())] // was paintcolor]
   colors = shuffle(colors)
   ctx.strokeStyle = colors[0]
   let i = 0, numpoints = randomPick([6,7,8])
@@ -20206,7 +20231,7 @@ function formDec (canvas) {
 
 function paperize (canvas) {
   let ctx = canvas.getContext("2d")
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let fs = document.getElementById("featuresize").value
   let alt = document.getElementById("grungy").checked
   let functions = ["smudgestreaks2", "smudgearcs", "smudgestars", "smudgehorizontal2"]
@@ -21034,7 +21059,7 @@ function justlines (canvas) { // grid paper
     canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let W = canvas.width, H = canvas.height
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let alt = document.getElementById("grungy").checked
   let space = 6 + Math.floor(document.getElementById("featuresize").value/10)
   let pad = 24 + Math.random()*90
@@ -21105,7 +21130,7 @@ function gridpaper (canvas) { // grid paper
     canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let W = canvas.width, H = canvas.height
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let alt = document.getElementById("grungy").checked
   let space = 6 + Math.floor(document.getElementById("featuresize").value/10)
   let pad = 32
@@ -21237,7 +21262,7 @@ function halfToneMono () {
   let FH = true
   let off = Math.random() > 0.5
   let loopmax = W/offset*2
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   ctxOC.fillStyle  = color
   
   let j = 0, B = 0, C = 0
@@ -21335,7 +21360,7 @@ function cuttingboard () { // white grid on teal
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let W = canvas.width, H = canvas.height
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let space = 6 + Math.floor(document.getElementById("featuresize").value/10)
   let mod = randomPick([4,5,6])
   ctx.globalAlpha = document.getElementById("opacity").value/100
@@ -21382,16 +21407,16 @@ function cuttingboard () { // white grid on teal
   ctx.stroke()
   let alpha = document.getElementById("opacity").value
   let fs = document.getElementById("featuresize").value
-  document.getElementById("paintcolor").value = "#ddffff"
+  randomPick(getCurrentPalette()) // was paintcolor = "#ddffff"
   document.getElementById("opacity").value = 17
   haze()
-  document.getElementById("paintcolor").value = "#ddffff"
+  randomPick(getCurrentPalette()) // was paintcolor = "#ddffff"
   document.getElementById("featuresize").value = 170
   document.getElementById("opacity").value = 70
   rays()
-  document.getElementById("paintcolor").value = "#006060"
+  randomPick(getCurrentPalette()) // was paintcolor = "#006060"
   rays()
-  document.getElementById("paintcolor").value = color
+  randomPick(getCurrentPalette()) // was paintcolor = color
   document.getElementById("opacity").value = alpha
   document.getElementById("featuresize").value = fs
 }
@@ -21400,7 +21425,7 @@ function gridpaper_og () { // grid paper
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let W = canvas.width, H = canvas.height
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let alt = document.getElementById("grungy").checked
   let space = 6 + Math.floor(document.getElementById("featuresize").value/10)
   let pad = 8
@@ -21478,7 +21503,7 @@ function dividedPad () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let alt = document.getElementById("grungy").checked
   let pad = 2
   let H = canvas.height, W = canvas.width
@@ -21561,7 +21586,7 @@ function thisSpace () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let alt = document.getElementById("grungy").checked
   ctx.globalAlpha = document.getElementById("opacity").value/100
 
@@ -21646,7 +21671,7 @@ function survey () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let alt = document.getElementById("grungy").checked
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let H = canvas.height, W = canvas.width
@@ -21690,7 +21715,7 @@ function checklist () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let alt = document.getElementById("grungy").checked
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let H = canvas.height, W = canvas.width
@@ -21729,7 +21754,7 @@ function requirements () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let alt = document.getElementById("grungy").checked
   ctx.globalAlpha = document.getElementById("opacity").value/100
 
@@ -21857,7 +21882,7 @@ function crosswordPad (canvas) {
     canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let alt = document.getElementById("grungy").checked
   let W = canvas.width, H = canvas.height
   let pad = 24 + Math.floor(Math.random() * 44)
@@ -21935,7 +21960,7 @@ function crosswordPad (canvas) {
       if (y > linespace*MULT)
         y = pad
   }
-  document.getElementById("paintcolor").value = color
+  randomPick(getCurrentPalette()) // was paintcolor = color
 }
 
 function isolatedBlank (i,j,filled) {
@@ -22185,7 +22210,7 @@ function gridLinear (canvas) {
       else
       ctx.lineWidth = 1  
   }
-  document.getElementById("paintcolor").value = color
+  randomPick(getCurrentPalette()) // was paintcolor = color
 }
 
 function gridLog (canvas) {
@@ -22232,7 +22257,7 @@ function gridLog (canvas) {
     if (i % 10 === 0)
       linespace = LS
   }
-  document.getElementById("paintcolor").value = color
+  randomPick(getCurrentPalette()) // was paintcolor = color
 }
 
 
@@ -22242,7 +22267,7 @@ function scratchout () {
   let fs = 7 + document.getElementById("featuresize").value/10
   let D = 1 + document.getElementById("number").value/5000
   let bump = fs/2
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let alt = document.getElementById("grungy").checked
   let W = canvas.width, H = canvas.height
   let pad = 4 + Math.floor(Math.random() * 2)
@@ -22284,7 +22309,7 @@ function aletter () {
   let fs = 48//7 + document.getElementById("featuresize").value/10
   let D = 1 + document.getElementById("number").value/4000
   let bump = fs/2
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let alt = document.getElementById("grungy").checked
   let W = canvas.width, H = canvas.height
   let pad = 4 + Math.floor(Math.random() * 2)
@@ -22462,7 +22487,7 @@ function musicpaper () {
      // ctx.fillStyle = color
     }
   }
-  //document.getElementById("paintcolor").value = color
+  //randomPick(getCurrentPalette()) // was paintcolor = color
 }
 
 function lyrics (y, d) {
@@ -22470,7 +22495,7 @@ function lyrics (y, d) {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   //let d = 3 + document.getElementById("featuresize").value/10
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let alt = document.getElementById("grungy").checked
   let W = canvas.width, H = canvas.height
   let pad = 4 + Math.floor(Math.random() * 2)
@@ -22532,7 +22557,7 @@ function music (y, d) {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   //let d = 3 + document.getElementById("featuresize").value/10
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let alt = document.getElementById("grungy").checked
   let W = canvas.width, H = canvas.height
   let pad = 4 + Math.floor(Math.random() * 2)
@@ -22559,7 +22584,7 @@ function music (y, d) {
       x += d*3
     i++
   }
-  //document.getElementById("paintcolor").value = color
+  //randomPick(getCurrentPalette()) // was paintcolor = color
 }
 
 
@@ -22568,7 +22593,7 @@ function linedPad () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let alt = document.getElementById("grungy").checked
   let W = canvas.width, H = canvas.height
   let pad = 4 + Math.floor(Math.random() * 2)
@@ -22613,14 +22638,14 @@ function linedPad () {
     ctx.stroke()
     x += 5
   }
-  document.getElementById("paintcolor").value = color
+  randomPick(getCurrentPalette()) // was paintcolor = color
 }
 
 function postcard () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let alt = document.getElementById("grungy").checked
   let W = canvas.width, H = canvas.height
   let pad = 24, hpad = 7 * pad
@@ -22701,7 +22726,7 @@ function postcard () {
   ctx.shadowBlur = 0
   ctx.shadowOffsetY = 0
   ctx.shadowOffsetX = 0
-  document.getElementById("paintcolor").value = color
+  randomPick(getCurrentPalette()) // was paintcolor = color
 }
 
 function sold () {
@@ -22726,7 +22751,7 @@ function oiloncanvas () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let alt = document.getElementById("grungy").checked
   let W = canvas.width, H = canvas.height
   let hpad = 20 + Math.random()*6, pad = 7 * hpad + pet(33)
@@ -22830,7 +22855,7 @@ function indexcard () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let alt = document.getElementById("grungy").checked
   let W = canvas.width, H = canvas.height
   let pad = 24, hpad = 7 * pad
@@ -22860,7 +22885,7 @@ function indexcard () {
     y += 36
     ctx.strokeStyle =  "#2020cc"
   }
-  document.getElementById("paintcolor").value = color
+  randomPick(getCurrentPalette()) // was paintcolor = color
 }
 
 function photoBook () {
@@ -22868,7 +22893,7 @@ function photoBook () {
   let ctx = canvas.getContext("2d");
   const H = canvas.height, W = canvas.width
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let alpha = document.getElementById("opacity").value
   let mode = ctx.globalCompositeOperation
   let small = true, half = true
@@ -22898,7 +22923,7 @@ function perforations () {
   let ctx = canvas.getContext("2d");
   const H = canvas.height, W = canvas.width
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let alpha = document.getElementById("opacity").value
   let mode = ctx.globalCompositeOperation
   let small = true, half = true
@@ -22975,7 +23000,7 @@ function sketchpad () {
   let ctx = canvas.getContext("2d");
   const H = canvas.height, W = canvas.width
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let alpha = document.getElementById("opacity").value/100//
   let mode = ctx.globalCompositeOperation
   let small = true, half = true
@@ -23102,7 +23127,7 @@ function sketchpage () {
   let ctx = canvas.getContext("2d");
   const H = canvas.height, W = canvas.width
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let alpha = document.getElementById("opacity").value
   let mode = ctx.globalCompositeOperation
   let small = true, half = true
@@ -23187,7 +23212,7 @@ function singlePage () {
   let ctx = canvas.getContext("2d");
   const H = canvas.height, W = canvas.width
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let alpha = document.getElementById("opacity").value
   ctx.globalAlpha = alpha/100
   let mode = ctx.globalCompositeOperation
@@ -23290,7 +23315,7 @@ function floppyPage () { // half
   let ctx = canvas.getContext("2d");
   const H = canvas.height, W = canvas.width
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let alpha = document.getElementById("opacity").value
   ctx.globalAlpha = alpha/100
   let mode = ctx.globalCompositeOperation
@@ -23383,7 +23408,7 @@ function spiralbound () { //
   let ctx = canvas.getContext("2d");
   const H = canvas.height, W = canvas.width
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let alpha = document.getElementById("opacity").value
   let mode = ctx.globalCompositeOperation
   let small = true, half = true
@@ -23611,7 +23636,7 @@ function messagepad () { // while you were ouy
   ctx.clearRect(0,0,W,H)
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.lineWidth = 5
-  ctx.fillStyle = document.getElementById("paintcolor").value//"#ffc0cb"
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor//"#ffc0cb"
   //ctx.fillRect(0,0,W,H)
   ctx.strokeStyle = "#000000"
   let pad = 40
@@ -23627,7 +23652,7 @@ function messagepad () { // while you were ouy
   ctx.fillStyle = "#505050"
   ctx.fillRect(W-pad-218, pad*1.4-8, 204, 53)
   ctx.globalAlpha *= 2
-  //ctx.fillStyle = document.getElementById("paintcolor").value
+  //ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
  // ctx.fillRect(W-pad-60, pad+16, 40, 40) // check box
   ctx.strokeRect(W-pad-60, pad+16, 40, 40) // check box
   let text = "Urgent"
@@ -23937,10 +23962,10 @@ function interdepartmental (canvas) { // ideal 8 X 10
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 2 //+ document.getElementById("featuresize").value/4
   let alpha = document.getElementById("opacity").value
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let BACK = document.getElementById("grungy").checked
   let small = true, half = true
-  document.getElementById("paintcolor").value = "#eaae3a"
+  randomPick(getCurrentPalette()) // was paintcolor = "#eaae3a"
   ctx.fillStyle = "#eaae3a"
   ctx.fillRect(0,0,canvas.width, canvas.height)
   let face = "helvetica"
@@ -24154,7 +24179,7 @@ function interdepartmental (canvas) { // ideal 8 X 10
   ctx.shadowOffsetX = 0
   ctx.shadowOffsetY = 0
   document.getElementById("opacity").value = alpha
-  document.getElementById("paintcolor").value = color
+  randomPick(getCurrentPalette()) // was paintcolor = color
 }
 
 function roundedRectFrame (x, y, w, h, r, ctx) {
@@ -24257,10 +24282,10 @@ function moleskine2 (options) { // 3D
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
   let alpha = document.getElementById("opacity").value
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let small = true, half = true, scale = canvas.height/1080
   let W = canvas.width, H = canvas.height
-  document.getElementById("paintcolor").value = "#fdffee"
+  randomPick(getCurrentPalette()) // was paintcolor = "#fdffee"
   ctx.clearRect(0,0,W,H)
   ctx.shadowColor = '#404040';
   let j = 0, x = 20, y = 20, d = 0, BF = true, PAPER = false
@@ -24340,7 +24365,7 @@ function moleskine2 (options) { // 3D
   //rc()
   stiches(20)
   document.getElementById("opacity").value = alpha
-  document.getElementById("paintcolor").value = color
+  randomPick(getCurrentPalette()) // was paintcolor = color
 }
 
 function randomClue (PT) {
@@ -24498,7 +24523,7 @@ function filmFrame () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let alpha = document.getElementById("opacity").value
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let W = canvas.width, H = canvas.height
   let scale = W/1080
   ctx.strokeStyle = "#201010"
@@ -24565,7 +24590,7 @@ function moleText (canvas) {
     canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let alpha = document.getElementById("opacity").value
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let small = true, half = true
   let scale = canvas.height/1080
   ctx.strokeStyle = "#ccccdc"
@@ -24613,7 +24638,7 @@ function moleDates (d) {
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
   let alpha = document.getElementById("opacity").value
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let small = true, half = true
   let scale = canvas.height/1080
   ctx.strokeStyle = "#ccccdc"
@@ -24625,7 +24650,7 @@ function moleDates (d) {
   let days = ["DOMINGO", "SEGUNDA-FEIRA", "TERÇA-FEIRA", "QUARTA-FEIRA", "QUINTA-FEIRA", "SEXTA-FEIRA", "SÁBADO"]
   let week = "semana "
   ctx.font = 12*scale+"px serif"
-  ctx.fillStyle = document.getElementById("paintcolor").value = "#666666"
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor = "#666666"
   let voff = randomPick([1,2,-1,-2])
   let lasty = 0
   let linespace = Math.floor((canvas.height - 220*scale)/22)
@@ -24686,7 +24711,7 @@ function moleDates (d) {
   ctx.fillText(week+today.getWeek(), canvas.width - 108-d*scale, lasty-5+voff)// FR: "la semaine"
   
   ctx.font = size+"px serif"
-  ctx.fillStyle = document.getElementById("paintcolor").value = "#666666"
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor = "#666666"
   x = 78*scale, y = 70*scale
   ctx.fillText(days[today.getDay()], x, y)
   ctx.font = 14*scale+"px serif"
@@ -24723,7 +24748,7 @@ function nested (color, lw) {
   if (lw)
     ctx.lineWidth = lw
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   if (color)
     ctx.strokeStyle = color
   ctx.lineCap = 'square'
@@ -24777,7 +24802,7 @@ function neckerline () {
   let margin = W/20
   let w4 = (W-2*margin)/3//(2+Math.floor(Math.random() * 3))//document.getElementById("rows").value
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   ctx.lineCap = 'round'
   ctx.lineJoin = 'round'
 
@@ -24841,7 +24866,7 @@ function pyrm () {
   let margin = W/20
   let w4 = (W-2*margin)/3//(2+Math.floor(Math.random() * 3))//document.getElementById("rows").value
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   ctx.lineCap = 'round'
   ctx.lineJoin = 'round'
   let points = []
@@ -24897,7 +24922,7 @@ function elle () {
   let colors = shuffle(['#ff0000', '#00ff00', '#FFFF00', '#FFA500', '#800080', "#0000ff"])
   let grunge = false//document.getElementById("grungy").checked
   
-  ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+  ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette())) // was paintcolor)
 
   ctx.beginPath();
   ctx.moveTo(0+margin, W-w4-margin) // square in lower left
@@ -24961,7 +24986,7 @@ function flower () {
   let xf = w4 //* 1.0
   let r = W
   let inc = W/2
-  ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+  ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
   let i = 0, x = 0, y = 0
 
   if (Math.random() > 0.5) {
@@ -25059,7 +25084,7 @@ function folded () {
   let p4 = [w4+ margin, W-margin]
   
   
-  ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+  ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
   ctx.beginPath();
   ctx.moveTo(p1[0], p1[1]) // \
   ctx.lineTo(p2[0], p2[1])
@@ -25073,7 +25098,7 @@ function folded () {
   let maxloop = 7 + +(2+Math.floor(Math.random() * 10))//
   let i = 0
   for (;i < maxloop; i++) {
-    ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
     ctx.beginPath();
     ctx.moveTo(p4[0], p4[1]) // /
     ctx.lineTo(p3[0], p3[1])
@@ -25089,7 +25114,7 @@ function folded () {
     p3[0] += xf
     p4[0] += xf
     
-    ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
     ctx.beginPath();
     ctx.moveTo(p1[0], p1[1])
     ctx.lineTo(p2[0], p2[1])
@@ -25122,7 +25147,7 @@ function pyramid () {
   
   if (Math.random() > 0.5) {
    // left
-    ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
     ctx.beginPath();
     ctx.moveTo(p1[0], p1[1]) // bottom left
     ctx.lineTo(p2[0], p2[1]) // up
@@ -25132,7 +25157,7 @@ function pyramid () {
       ctx.fillStyle = colors[0]
     ctx.fill()
     // right
-    ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
     ctx.beginPath();
     ctx.moveTo(p2[0], p2[1])
     ctx.lineTo(p3[0], p3[1]) // up
@@ -25143,7 +25168,7 @@ function pyramid () {
     ctx.fill()
     
     
-    ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
     ctx.beginPath();
     ctx.moveTo(p2[0], p2[1]) // bottom left
     ctx.lineTo(p3[0], p3[1]) // up
@@ -25154,7 +25179,7 @@ function pyramid () {
     ctx.fill()
     
     // top
-    ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
     ctx.beginPath();
     ctx.moveTo(p1[0], p1[1]) // bottom left
     ctx.lineTo(p2[0], p2[1]) //peak
@@ -25164,7 +25189,7 @@ function pyramid () {
       ctx.fillStyle = colors[3]
     ctx.fill()
    
-    ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
     ctx.beginPath();
     ctx.moveTo(p1[0], p1[1]) // bottom left
     ctx.lineTo(p4[0], p4[1]) // up
@@ -25177,7 +25202,7 @@ function pyramid () {
     
  } else {
    
-    ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
     ctx.beginPath();
     ctx.moveTo(p1[0], p1[1]) // bottom left
     ctx.lineTo(p4[0], p4[1]) // up
@@ -25188,7 +25213,7 @@ function pyramid () {
       ctx.fillStyle = colors[5]
     ctx.fill()
     
-    ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
     ctx.beginPath();
     ctx.moveTo(p2[0], p2[1]) // bottom left
     ctx.lineTo(p3[0], p3[1]) // up
@@ -25199,7 +25224,7 @@ function pyramid () {
     ctx.fill()
     
     // top
-    ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
     ctx.beginPath();
     ctx.moveTo(p1[0], p1[1]) // bottom left
     ctx.lineTo(p2[0], p2[1]) //peak
@@ -25209,7 +25234,7 @@ function pyramid () {
       ctx.fillStyle = colors[3]
     ctx.fill()
    
-    ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
     ctx.beginPath();
     ctx.moveTo(p1[0], p1[1]) // bottom left
     ctx.lineTo(p2[0], p2[1]) // up
@@ -25219,7 +25244,7 @@ function pyramid () {
       ctx.fillStyle = colors[0]
     ctx.fill()
     // right
-    ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
     ctx.beginPath();
     ctx.moveTo(p2[0], p2[1])
     ctx.lineTo(p3[0], p3[1]) // up
@@ -25246,7 +25271,7 @@ function house () {
  //ctx.clearRect(0,0,W,W)
   if (Math.random() > 0.6) {
     // upper right face
-    ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette())) // was paintcolor)
     ctx.beginPath();
     ctx.moveTo(xf-margin,     W-margin-yf) // bottom left
     ctx.lineTo(xf-margin,     W-w8-margin-yf) // up
@@ -25259,7 +25284,7 @@ function house () {
     ctx.fill()
     
     // floor
-    ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette())) // was paintcolor
     ctx.beginPath();
     ctx.moveTo(margin, W-margin) // bottom left
     ctx.lineTo(margin+w8, W-margin)
@@ -25271,7 +25296,7 @@ function house () {
     ctx.fill()
     
     // left wall
-    ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette())) // was paintcolor)
     ctx.beginPath();
     ctx.moveTo(margin, W-margin) // bottom left
     ctx.lineTo(margin, W-w8-margin) // uroof left
@@ -25283,7 +25308,7 @@ function house () {
     ctx.fill()
     
    // left roof
-    ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette())) // was paintcolor
     ctx.beginPath();
     ctx.moveTo(margin, W-w8-margin) // uroof left
     ctx.lineTo(margin+w8/2, W-margin-w8 - w8/2) //peak
@@ -25295,7 +25320,7 @@ function house () {
     ctx.fill()
 
     // right roof
-    ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette())) // was paintcolor
     ctx.beginPath();
     ctx.moveTo(margin+w8/2, W-margin-w8 - w8/2) //peak
     ctx.lineTo(w8+margin, W-w8-margin) // roof right
@@ -25307,7 +25332,7 @@ function house () {
     ctx.fill()
     
     // right wall
-    ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette())) // was paintcolor)
     ctx.beginPath();
     ctx.moveTo(w8+margin, W-w8-margin) // roof right
     ctx.lineTo(margin+w8, W-margin) // bottom right
@@ -25319,7 +25344,7 @@ function house () {
     ctx.fill()
     
     // lower left face
-    ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette())) // was paintcolor)
     ctx.beginPath();
     ctx.moveTo(margin, W-margin) // bottom left
     ctx.lineTo(margin, W-w8-margin) // uroof left
@@ -25332,7 +25357,7 @@ function house () {
     ctx.fill()
   } else {
     // right roof
-    ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette())) // was paintcolor)
     ctx.beginPath();
     ctx.moveTo(margin+w8/2, W-margin-w8 - w8/2) //peak
     ctx.lineTo(w8+margin, W-w8-margin) // roof right
@@ -25344,7 +25369,7 @@ function house () {
     ctx.fill()
     
     // right wall
-    ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette())) // was paintcolor)
     ctx.beginPath();
     ctx.moveTo(w8+margin, W-w8-margin) // roof right
     ctx.lineTo(margin+w8, W-margin) // bottom right
@@ -25356,7 +25381,7 @@ function house () {
     ctx.fill()
     
     // lower left face
-    ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette())) // was paintcolor)
     ctx.beginPath();
     ctx.moveTo(margin, W-margin) // bottom left
     ctx.lineTo(margin, W-w8-margin) // uroof left
@@ -25369,7 +25394,7 @@ function house () {
     ctx.fill()
     
     // upper right face
-    ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette())) // was paintcolor)
     ctx.beginPath();
     ctx.moveTo(xf-margin,     W-margin-yf) // bottom left
     ctx.lineTo(xf-margin,     W-w8-margin-yf) // up
@@ -25382,7 +25407,7 @@ function house () {
     ctx.fill()
     
     // floor
-    ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette())) // was paintcolor)
     ctx.beginPath();
     ctx.moveTo(margin, W-margin) // bottom left
     ctx.lineTo(margin+w8, W-margin)
@@ -25394,7 +25419,7 @@ function house () {
     ctx.fill()
     
     // left wall
-    ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette())) // was paintcolor)
     ctx.beginPath();
     ctx.moveTo(margin, W-margin) // bottom left
     ctx.lineTo(margin, W-w8-margin) // uroof left
@@ -25406,7 +25431,7 @@ function house () {
     ctx.fill()
     
    // left roof
-    ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette())) // was paintcolor)
     ctx.beginPath();
     ctx.moveTo(margin, W-w8-margin) // uroof left
     ctx.lineTo(margin+w8/2, W-margin-w8 - w8/2) //peak
@@ -25596,7 +25621,7 @@ function strokes () {
   let x = 0, y = 0, angle = 4.7;
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   ctx.save()
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let maxalpha = ctx.globalAlpha
@@ -25681,8 +25706,8 @@ function strokes2 () {
   let x = 0, y = 0, angle = 4.7;
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  ctx.strokeStyle = document.getElementById("paintcolor").value
-  let color = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   ctx.save()
   ctx.globalAlpha = document.getElementById("opacity").value/200
   let maxalpha = ctx.globalAlpha
@@ -25770,8 +25795,8 @@ function strokesH () {
   let x = 0, y = 0, angle = 4.7;
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  ctx.strokeStyle = document.getElementById("paintcolor").value
-  let color = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   ctx.save()
   ctx.globalAlpha = document.getElementById("opacity").value/200
   let maxalpha = ctx.globalAlpha
@@ -25846,7 +25871,7 @@ function birds () {
   let ctx = canvas.getContext("2d");
   let centerx = ctx.canvas.width / 2;
   let centery = ctx.canvas.height / 2;
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let birdradius = 3 + document.getElementById("featuresize").value/20
   let br = birdradius
@@ -25969,7 +25994,7 @@ function rothko () {
   let rows = 3
   let margin = 16 + Math.random() * rows * 9
   let gap = margin/4
-  let oc = ctx.fillStyle = document.getElementById("paintcolor").value
+  let oc = ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   let op = document.getElementById("opacity").value
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let grunge = document.getElementById("grungy").checked
@@ -26040,10 +26065,10 @@ function rothko () {
   f = randomPick(functions)
   window[f](canvas)
   document.getElementById("opacity").value = 20 + pet(10)
-  document.getElementById("paintcolor").value =  "#000000"
+  randomPick(getCurrentPalette()) // was paintcolor =  "#000000"
   haze()
   document.getElementById("opacity").value = op
-  document.getElementById("paintcolor").value = oc
+  randomPick(getCurrentPalette()) // was paintcolor = oc
   refreshMode()
 }
 
@@ -26066,7 +26091,7 @@ function grid () {
   let ctx = canvas.getContext("2d");
   let w = canvas.width, h = canvas.height
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   ctx.lineWidth = Math.floor(1 +  document.getElementById("featuresize").value/20)
   let spacing = Math.floor(1 + (document.getElementById("number").value/200))
   let ratio = 1
@@ -26107,7 +26132,7 @@ function rays () {
   let H = canvas.height
   ctx.globalAlpha = document.getElementById("opacity").value/200
   //clip()
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   ctx.lineWidth = 0.25
   let x = Math.random() * W, y = Math.random() * H
   let w = 2 +Math.random()*14
@@ -26135,7 +26160,7 @@ function curveAcross () {
   let ctx = canvas.getContext("2d");
   let D =  (5 + Math.floor(document.getElementById("featuresize").value/80))
   let grunge = document.getElementById("grungy").checked
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   ctx.lineWidth = 12
   ctx.lineCap = "round"
   let W = canvas.width
@@ -26586,8 +26611,8 @@ function walk () {
   let H = canvas.height
   ctx.globalAlpha = document.getElementById("opacity").value/100
  // clip()
- ctx.fillStyle = document.getElementById("paintcolor").value
- ctx.strokeStyle = document.getElementById("paintcolor").value
+ ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+ ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   let x = 2, y = 100
   let p = 1+D*1
   let i = 0
@@ -26632,7 +26657,7 @@ function frame () {
   let H = canvas.height
   ctx.globalAlpha = document.getElementById("opacity").value/100
  // clip()
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   let x = -1, y = -1
   let w = 6 +Math.random()*14
   let p = 6+D*1.2
@@ -26694,7 +26719,7 @@ function roundedFrame (n) {
   off.width = W
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.save()
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   let radius = 36
   //if (grunge)
   //  radius *= 2
@@ -26821,7 +26846,7 @@ function pageOfBook (canvas) {
   let stops = [".", ".", ".",". ",".",". ",".", ".","?", "!"]
   let stopwords = ["a","adeus","agora","ainda","alem","algo","ali","além","ambas","ambos","ano","anos","antes","ao","aonde","aos","apoio","apos","após","aqui","as","assim","atrás","até","aí","baixo","bem","boa","boas","bom","bons","breve","cada","cedo","cento","cima","cinco","coisa","com","como","cuja","cujas","cujo","cujos","custa","cá","da","dar","das","de","dela","delas","dele","deles","desde","dessa","desse","desta","deste","deve","devem","deverá","dez","dia","diz","dizem","dizer","do","dois","dos","doze","duas","dá","dão","dúvida","e","ela","elas","ele","eles","em","entao","entre","então","era","eram","essa","essas","esse","esses","esta","estar","estará","estas","este","estes","estou","está","estás","estão","eu","falta","fará","favor","faz","fazem","fazer","fazes","fazia","faço","fez","fim","final","foi","fomos","for","fora","foram","forem","forma","fosse","foste","fui","geral","grupo","ha","haja","hajam","havia","hei","hoje","hora","horas","houve","há","hão","ir","irá","isso","ista","iste","isto","já","lado","lhe","lhes","local","logo","longe","lugar","lá","maior","mais","mal","mas","me","meio","menor","menos","meses","mesma","mesmo","meu","meus","mil","minha","muito","máximo","mês","na","nada","nao","nas","nem","nessa","nesse","nesta","neste","no","noite","nome","nos","nossa","nosso","nova","novas","nove","novo","novos","num","numa","numas","nunca","nuns","não","nível","nós","número","o","obra","oito","onde","ontem","onze","os","ou","outra","outro","para","parte","pegar","pela","pelas","pelo","pelos","perto","pode","podem","poder","poderá","podia","pois","ponto","por","posso","pouca","pouco","povo","pôde","põe","põem","quais","qual","que","quem","quer","quero","questão","quáis","quê","relação","sabe","sabem","saber","se","sei","seis","seja","sejam","sem","sendo","ser","serei","seria","será","serão","seríamos","sete","seu","seus","sexta","sexto","sim","sob","sobre","sois","somos","sou","sua","suas","são","sétima","sétimo","só","tal","também","tanta","tanto","tarde","te","tem","temos","tempo","tenha","tenho","tens","tente","ter","terei","teria","terá","terão","teu","teus","teve","tinha","tipo","tive","tiver","toda","todas","todo","todos","treze","três","tu","tua","tuas","tudo","tão","tém","têm","um","uma","umas","uns","usa","usar","vai","vais","valor","veja","vem","vens","ver","vez","vezes","vindo","vinte","você","vocês","vos","vossa","vosso","vários","vão","vêm","vós","zero","à","às","área","é","éramos","és"]
   let i = 0
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   let fs = randomPick([12,18,24])//12 + document.getElementById("featuresize").value/25
   ctx.textAlign = 'left';
   ctx.textBaseline = 'middle'
@@ -26922,7 +26947,7 @@ function divRects (canvas) {
   let W = canvas.width
   let H = canvas.height
   ctx.globalAlpha = document.getElementById("opacity").value/200
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   ctx.lineWidth = LW + 1
   let x = inset, y = inset
   let div = 6+ Math.floor(Math.random()*20)
@@ -26950,8 +26975,8 @@ function scale (canvas) {
   let W = canvas.width
   let H = canvas.height
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = document.getElementById("paintcolor").value
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   ctx.lineCap = "square"
   ctx.lineWidth = LW
   let x = 3*inset + pet(inset), x0 = x
@@ -26997,8 +27022,8 @@ function polar (canvas) {
   let W = canvas.width
   let H = canvas.height
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = document.getElementById("paintcolor").value
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   ctx.lineCap = "square"
   ctx.lineWidth = LW
   let x = (Math.random() > 0.5)? 0: W;
@@ -27049,8 +27074,8 @@ function pairedwords () {
   let LW = 1 + Math.floor(document.getElementById("featuresize").value/50)
   ctx.lineWidth = LW
   ctx.lineCap = "square"
-  ctx.strokeStyle = document.getElementById("paintcolor").value
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   let pairs =
   {"dir":"ls",
   "\\r":"\\n",
@@ -27117,8 +27142,8 @@ function histograph () {
   let W = canvas.width
   let H = canvas.height
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = document.getElementById("paintcolor").value
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   ctx.lineCap = "square"
   ctx.lineWidth = LW + 3
   let x = inset+12, y = H/2
@@ -27158,8 +27183,8 @@ function stepchart (canvas) {
   let W = canvas.width
   let H = canvas.height
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = document.getElementById("paintcolor").value
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   ctx.lineCap = "butt"
   ctx.lineWidth = LW + 1
   let x = inset, y = H/2
@@ -27256,8 +27281,8 @@ function ctrlchart (canvas) {
   let W = canvas.width
   let H = canvas.height
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = document.getElementById("paintcolor").value
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   ctx.lineCap = "square"
   ctx.lineWidth = LW + 1
   let x = inset, y = H/2
@@ -27307,7 +27332,7 @@ function ctrlchart (canvas) {
   ctx.closePath()
   ctx.stroke()
   
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   y = H/2 + pet(H/8)
   let w = W/40, i = 0
   while (x < W-inset-w) {
@@ -27457,8 +27482,8 @@ function form2 (canvas) {
   let W = canvas.width
   let H = canvas.height
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = document.getElementById("paintcolor").value
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   ctx.lineCap = "square"
   let x = 0, y = 0
   ctx.lineWidth = LW
@@ -27539,7 +27564,7 @@ function form1 (canvas) {
   let W = canvas.width
   let H = canvas.height
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   ctx.lineWidth = LW + 1
   let x = 0, y = 0
   ctx.strokeRect(inset,inset,W-inset*2, H-inset*2)
@@ -27630,7 +27655,7 @@ function lineFrame () {
   let W = canvas.width
   let H = canvas.height
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   ctx.lineWidth = LW
   let x = 0, y = 0
   ctx.beginPath();
@@ -27655,7 +27680,7 @@ function framePolaroid (rect) {
   let W = canvas.width
   let H = canvas.height
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   let x = -1, y = -1
   let w = 6 + Math.random()*14
   let wobble = 6
@@ -27731,7 +27756,7 @@ function frameCircle () {
   let cx = W/2, cy = H/2
   let rx = cx - (cx * r), ry = cy - (cy * r)
   ctx.globalAlpha = 1
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   ctx.clearRect(0,0,W,H)
   ctx.save()
   ctx.beginPath()
@@ -27831,9 +27856,9 @@ function sides () {
   let x = 0, y = 0
   let x2 = w
   let y2 = canvas.height
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   if (document.getElementById("grungy").checked)
-    ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette())) // was paintcolor)
   ctx.globalAlpha = document.getElementById("opacity").value/100
   
   ctx.beginPath()
@@ -27853,9 +27878,9 @@ function sides2 () {
   let x = canvas.width * Math.random() - w, y = 0
   let x2 = x + w
   let y2 = canvas.height
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   if (document.getElementById("grungy").checked)
-    ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette())) // was paintcolor)
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.beginPath()
   ctx.moveTo(x, y)
@@ -27874,9 +27899,9 @@ function square (x, y, w) {
   let len = 10 + 2 * Math.floor(document.getElementById("featuresize").value)
   cx -= len/2
   cy -= len/2
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   if (document.getElementById("grungy").checked)
-    ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette())) // was paintcolor)
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.beginPath()
   ctx.moveTo(cx, cy)
@@ -27892,7 +27917,7 @@ function bwash (x, y, w) {
   let ctx = canvas.getContext("2d");
   ctx.save()
   if (Math.random() > 0.01) {
-    ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette())) // was paintcolor)
     ctx.beginPath()
     ctx.moveTo(x,y)
     ctx.lineTo(x+w, y)
@@ -28018,7 +28043,7 @@ function ascript () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let fs = 100// + document.getElementById("featuresize").value/10
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let alt = document.getElementById("grungy").checked
   let W = canvas.width, H = canvas.height
   let pad = 4 + Math.floor(Math.random() * 2)
@@ -28079,7 +28104,7 @@ function markwriter () {
   const PI = Math.PI
   let sa = Math.PI*Math.random(), ea = sa + Math.PI*Math.random()*2//, cw = true
   ctx.lineWidth = 1
-  ctxOC.strokeStyle = document.getElementById("paintcolor").value
+  ctxOC.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   let i = 0, j = 0, N1 = N, v = 0
   x = 0, y = 0
   while (y < H) {
@@ -28129,7 +28154,7 @@ function typewriter () {
   let chars = ["s","s","s","s","e","e","e","e","e","e","e","e","e","e","r","r","r","r","r","i","a","t","i","a","t","i","a","t","n","n","n","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q"
     ,"r","s","t","u","v","w","x","y","z"]
   let x = 0, y = 0
-  ctxOC.fillStyle = document.getElementById("paintcolor").value
+  ctxOC.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   let i = 0, j = 0, N1 = N, v = 0
   x = 0, y = 0
   while (y < H) {
@@ -28358,10 +28383,10 @@ function tile (type) {
   }
   let numshapes = sides*sides
   let i = 0, x = 0, y = 0
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   if (type != "W")
     ctx.fillRect(0, 0, w, w)
-  ctx.fillStyle = randomColor()//randomGradient(canvas, document.getElementById("paintcolor").value)
+  ctx.fillStyle = randomColor()//randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
   let grunge = document.getElementById("grungy").checked
   let rc = randomColor()
   let pattern = [0,1,2,3,4,5,6,7,8,9,10,11]
@@ -28730,7 +28755,7 @@ function albers () {
   top += t*2
   ctx.fillStyle = randomColor()
   if (grunge)
-    ctx.fillStyle = document.getElementById("paintcolor").value
+    ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   ctx.beginPath();
   ctx.moveTo(f3, f3+top)
   ctx.lineTo(W-f3, f3+top)
@@ -28750,7 +28775,7 @@ function concentriccirc() {
   let grunge = document.getElementById("grungy").checked
   ctx.globalAlpha = document.getElementById("opacity").value/100
   clip()
-  ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+  ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
   if (grunge)
     ctx.fillStyle = randomColor()
   ctx.fillRect(0,0,canvas.width,canvas.height)
@@ -28760,7 +28785,7 @@ function concentriccirc() {
   ctx.fill()
 
   r -= f1
-  ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+  ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
   if (grunge)
     ctx.fillStyle = randomColor()
   ctx.beginPath();
@@ -28769,7 +28794,7 @@ function concentriccirc() {
   ctx.fill()
 
   r -= f1
-  ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+  ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
   if (grunge)
     ctx.fillStyle = randomColor()
   ctx.beginPath();
@@ -28778,7 +28803,7 @@ function concentriccirc() {
   ctx.fill()
 
   r -= f1
-  ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+  ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
   if (grunge)
     ctx.fillStyle = randomColor()
   ctx.beginPath();
@@ -28809,7 +28834,7 @@ function concentricrect () {
   let grunge = document.getElementById("grungy").checked
 
   clip()
-  ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+  ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
   if (grunge)
     ctx.fillStyle = randomColor()
   ctx.beginPath();
@@ -28820,7 +28845,7 @@ function concentricrect () {
   ctx.closePath()
   ctx.fill()
 
-  ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+  ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
   if (grunge)
     ctx.fillStyle = randomColor()
   ctx.beginPath();
@@ -28831,7 +28856,7 @@ function concentricrect () {
   ctx.closePath()
   ctx.fill()
 
-  ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+  ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
   if (grunge)
     ctx.fillStyle = randomColor()
   ctx.beginPath();
@@ -28842,7 +28867,7 @@ function concentricrect () {
   ctx.closePath()
   ctx.fill()
 
-  ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+  ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
   if (grunge)
     ctx.fillStyle = randomColor()
   ctx.beginPath();
@@ -28864,7 +28889,7 @@ function chipAt (x,y,big) {
   let r = 0.5 + Math.random()*0.2
   if (big)
     r += Math.random() * 1
-  //ctx.fillStyle = "#ffffff"//document.getElementById("paintcolor").value
+  //ctx.fillStyle = "#ffffff"//randomPick(getCurrentPalette()) // was paintcolor
   for (var t = 0; t < 1; t++) {
     let radius = r + pet(r/2)
     let r0 = radius
@@ -28901,8 +28926,8 @@ function chips () {
   let cy = ctx.canvas.height/2;
   let maxdist = Math.pow(Math.pow(cx, 2) + Math.pow(cy, 2), 0.5) +200
   let r = 2 + document.getElementById("featuresize").value/10
-  ctx.fillStyle = document.getElementById("paintcolor").value
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   for (var t = 0; t < 5; t++) {
     let radius = r + pet(r/2)
     let r0 = radius
@@ -28947,7 +28972,7 @@ function chaze () {
   let r = x * (multiplier + Math.random()/2)
   let r1 = r/5
   let rg = ctx.createRadialGradient(x, y, r, x1, y1, r1)
-  let col1 = document.getElementById("paintcolor").value
+  let col1 = randomPick(getCurrentPalette()) // was paintcolor
   let col2 = "rgba("+hexToR(col1)+", "+hexToG(col1)+", "+hexToB(col1)+", 0.0)";// transparent
   rg.addColorStop(0.01, col1);
   rg.addColorStop(document.getElementById("opacity").value/100, col2);
@@ -28985,7 +29010,7 @@ function hazeRect (x1, y1, x2, y2) {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.fillStyle = randomGradientRect(canvas, document.getElementById("paintcolor").value, x1, y1, x2, y2, true)
+  ctx.fillStyle = randomGradientRect(canvas, randomPick(getCurrentPalette())) // was paintcolor, x1, y1, x2, y2, true)
   let sx = (x1<x2)? x1:x2
   let lx = (x1>x2)? x1:x2
   
@@ -29000,7 +29025,7 @@ function haze () {
   let ctx = canvas.getContext("2d")
   ctx.globalAlpha = document.getElementById("opacity").value/100
   //clip()
-  ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+  ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette())) // was paintcolor)
   ctx.fillRect(0,0,canvas.width, canvas.height)
   //ctx.restore()
 }
@@ -29585,7 +29610,7 @@ function snow (canvas) {
   let SIZE = 0.5+document.getElementById("featuresize").value/50
   let alpha = document.getElementById("opacity").value
   let i = 0, x, y, scale = 1, dx=1, dy=1
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   ctx.lineCap = "round"
   let maxAlpha = alpha/100
   dx = 2+Math.random()*4, dy = 2+Math.random()*4
@@ -29621,7 +29646,7 @@ function nudgeCWorCCW (cc, canvas) {
   let w = canvas.width;
   ctx.globalAlpha = (document.getElementById("opacity").value)/100
   let alpha = document.getElementById("opacity").value
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   let angle = +document.getElementById("rednumber").value
   angle *= Math.PI/180
   if (cc)
@@ -29644,7 +29669,7 @@ function rotateRandom (canvas) {
   let w = canvas.width;
   ctx.globalAlpha = (document.getElementById("opacity").value)/100
   let alpha = document.getElementById("opacity").value
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   let angle = (Math.random()-0.5) * 11
   angle *= Math.PI/180
   let x = w/2
@@ -29724,7 +29749,7 @@ async function fillA (canvas, fs) {
   let ctx = canvas.getContext("2d")
   
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   if (fs)
     ctx.fillStyle = fs
   await ctx.fillRect(0,0,canvas.width, canvas.height)
@@ -29741,7 +29766,7 @@ async function fill (canvas, fs) {
     ctx.globalCompositeOperation = sel
   }
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   if (fs)
     ctx.fillStyle = fs
   ctx.imageSmoothingQuality = 'high'
@@ -29753,7 +29778,7 @@ function hazeo () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+  ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette())) // was paintcolor)
   let G = document.getElementById("grungy").checked
   if ((G && Math.random() > 0.7) || !G)
     ctx.fillRect(0,0,canvas.width, canvas.height)
@@ -30206,7 +30231,7 @@ function dots () {
   let grunge = document.getElementById("grungy").checked
   ctx.globalAlpha = 1.0
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   let ch = canvas.height
   let h = 2 + Math.floor(document.getElementById("featuresize").value/4)
   let w = h
@@ -30332,7 +30357,7 @@ function dashes (canvas) {
   }
   ctx.lineCap = "round"
   ctx.lineWidth = r
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   let count = canvas.height/h * canvas.width/w * 4.3
   let newline = Math.floor(canvas.width/w) + 2
   let counter = 0
@@ -30545,7 +30570,7 @@ function dropFrameRagged () {
   zoomImage(true, true)
   copyToOff()
   ctx.save()
-  ctx.fillStyle = document.getElementById("paintcolor").value//"#ffffff"
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor//"#ffffff"
   ctx.shadowColor = "#606060"
   ctx.shadowBlur = 29 + Math.random() * 5
   ctx.shadowOffsetY = 19+ Math.random() * 3
@@ -30564,7 +30589,7 @@ function dropFrameRagged () {
   endY = pady
   ragged (ctx, endX, endY, x, y) //top left
   ctx.closePath()
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   ctx.fill()
   
   pasteFromOff()
@@ -30597,8 +30622,8 @@ function detail () {
   //let div = 1 + Math.random() * 4
   let a = Math.random() * 2 * Math.PI
   ctx.lineJoin = "round"
-  ctx.strokeStyle = document.getElementById("paintcolor").value
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   let i = 0
   for (; i < 1 ;i++) {
     a = Math.random() * 2 * Math.PI
@@ -30634,7 +30659,7 @@ function label () {
   let ctx = canvas.getContext("2d")
   let W = canvas.width, H = canvas.height
   let x = Math.random() * W, y = Math.random() *H
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   ctx.lineWidth = 1 +document.getElementById("featuresize").value/50
   ctx.strokeStyle = color
   let w = W / 40, lw = W/9
@@ -31155,7 +31180,7 @@ function hrips () {
   ctx.globalAlpha = document.getElementById("opacity").value/100
   //ctx.save()
   //clip()
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   let yincrement = 4;
   let numshapes = 1
   for (let t = 0; t < numshapes; t++) {
@@ -31202,47 +31227,47 @@ function hrips () {
         direction *= -1;
       }
     }
-    ctx.fillStyle = document.getElementById("paintcolor").value
+    ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
     if (document.getElementById("grungy").checked)
-      ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+      ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette())) // was paintcolor)
     ctx.closePath();
     ctx.fill();
   }
   //ctx.restore()
 }
 
-function smudgearcs2 (canvas) {
-  smudge ('arcs2', canvas)
+function smudgearcs2 (canvas, color) {
+  smudge ('arcs2', canvas, color)
 }
 
-function smudgearcs (canvas) {
-  smudge ('arcs', canvas)
+function smudgearcs (canvas, color) {
+  smudge ('arcs', canvas, color)
 }
 
-function smudgestars (canvas) {
-  smudge ('stars', canvas)
+function smudgestars (canvas, color) {
+  smudge ('stars', canvas, color)
 }
 
-function smudgestreaks (canvas) {
-  smudge ('streaks', canvas)
+function smudgestreaks (canvas, color) {
+  smudge ('streaks', canvas, color)
 }
-function smudgestreaks2 (canvas) {
-  smudge ('streaks2', canvas)
-}
-
-function smudgewatercolor (canvas) {
-  smudge ('watercolor', canvas)
+function smudgestreaks2 (canvas, color) {
+  smudge ('streaks2', canvas, color)
 }
 
-function smudgehorizontal (canvas) {
-  smudge ('horizontal', canvas)
+function smudgewatercolor (canvas, color) {
+  smudge ('watercolor', canvas, color)
 }
 
-function smudgehorizontal2 (canvas) {
-  smudge ('horizontal2', canvas)
+function smudgehorizontal (canvas, color) {
+  smudge ('horizontal', canvas, color)
 }
 
-function smudge (type, canvas) {
+function smudgehorizontal2 (canvas, color) {
+  smudge ('horizontal2', canvas, color)
+}
+
+function smudge (type, canvas, color) {
   if (!canvas)
     canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -31266,30 +31291,30 @@ function smudge (type, canvas) {
     smudge_ct /= 2
   for (; n < smudge_ct; n++) {
     if (type === "streaks")
-      offstreaks()
+      offstreaks(color)
     else
     if (type === "streaks2")
-      offmix()
+      offmix(color)
     else
     if (type === "horizontal")
-      offhorizontal()
+      offhorizontal(color)
     else
     if (type === "horizontal2")
-      offhorizontal2()
+      offhorizontal2(color)
     else
     if (type === "arcs")
-      offarcs()
+      offarcs(color)
     else
     if (type === "arcs2")
-      offarcs2()
+      offarcs2(color)
     else
     if (type === "stars")
-      offstars()
+      offstars(color)
     else
     if (type === "watercolor")
-      offwatercolor()
+      offwatercolor(color)
     else
-      offspecks()
+      offspecks(color)
     x = Math.random()*canvas.width - 256 // 256 == half the width of the offseceen canvas
     y = Math.random()*canvas.height - 256
     dx = pet(13), dy = pet(13)
@@ -31314,61 +31339,6 @@ function smudge (type, canvas) {
   }
   ctxoff.clearRect(0,0,canvasoff.width, canvasoff.height)
 }
-/*
-function crayonDrips () {
-  let canvas = document.getElementById("myCanvas")
-  let ctx = canvas.getContext("2d");
-  let W = canvas.width
-  let H = canvas.height 
-  let i = 0, n = 5 + Math.random() * 5
-  for (; i < n; i++)
-    crayonDrip(W*Math.random(), H*Math.random())
-}
-
-function crayonDrip (x,y) {
-  let canvas = document.getElementById("myCanvas")
-  let ctx = canvas.getContext("2d");
-  let W = canvas.width
-  let H = canvas.height
-  let alt = document.getElementById("grungy").checked
-  let off = document.getElementById("offscreen")
-  let ctoff = off.getContext("2d")
-  let canvasoff = document.getElementById("offscreen")
-  let ctxoff = canvasoff.getContext("2d")
-  ctx.globalAlpha = document.getElementById("opacity").value/100
-  let smudge_size = 2 + Math.random()*13
-  let dx = pet(smudge_size*3), dy = pet(smudge_size*3)
-  let smudge_ct = 1 + document.getElementById("number").value/150
-  let maxradius = 4 + document.getElementById("featuresize").value/10
-  let color = null
-  if (!x)
-    x = LASTCLICK[0]
-  if (!y)
-    y = LASTCLICK[1]
-  if (!alt)
-    color = colorOf (ctx,x,y,4)
-  x -= 256, y -= 256
-  offcray(color)
-  dx = pet(1), dy = 3+pet(2)
-  let maxy = y + (H - y) * Math.random() + 51
-  while (y < maxy) {
-    ctx.drawImage(canvasoff, x, y)
-    if (Math.random() > 0.90)
-      x += dx + pet(maxradius)
-    y += dy + pet(maxradius/2)
-    if (Math.random() > 0.1)
-      offcray(color)
-  }
-  // change at end: looks more natural?
-  while (y < maxy+31) {
-    offcray(color)
-    ctx.drawImage(canvasoff, x, y)
-    if (Math.random() > 0.90)
-      x += dx + pet(maxradius)
-    y += dy + pet(maxradius/2)
-  }
-  ctxoff.clearRect(0,0,canvasoff.width, canvasoff.height)
-}*/
 
 function offcray (color, fs) {
   let canvas = document.getElementById("offscreen");
@@ -31381,7 +31351,7 @@ function offcray (color, fs) {
   let maxradius = 4 + document.getElementById("featuresize").value/10
   if (fs)
     maxradius = fs
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   if (color)
     ctx.fillStyle = color
   let d =  maxradius/5//14 + Math.random() * 1
@@ -31423,7 +31393,7 @@ function offpaintbrush (color, fs) {
   let maxradius = 4 + document.getElementById("featuresize").value/10
   if (fs)
     maxradius = fs 
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   if (color)
     ctx.fillStyle = color
   let d =  maxradius*1
@@ -31476,14 +31446,14 @@ function crayonScript () {
   let D = 1 + document.getElementById("number").value/4000
   D/= 2
   let bump = fs/2.4
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let alt = document.getElementById("grungy").checked
   let W = canvas.width, H = canvas.height
   let pad = 4 + Math.floor(Math.random() * 2)
   let linespace = 18 + Math.floor(pet(8))
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = document.getElementById("paintcolor").value
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   ctx.lineJoin = "round"
   ctx.lineWidth = Math.floor(1 + fs/12)
   ctx.imageSmoothingQuality = "high"
@@ -31594,7 +31564,7 @@ function offdrops (color) {
   ctx.clearRect(0,0,ctx.canvas.width, ctx.canvas.height)
   ctx.globalAlpha = 0.9
   let maxradius = 4 + document.getElementById("featuresize").value/10
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   if (color)
     ctx.fillStyle = color
   let d =  1 + Math.random() * 1
@@ -31608,8 +31578,9 @@ function offdrops (color) {
   }
 }
 
-function fog () {
-  let canvas = document.getElementById("myCanvas");
+function fog (canvas, color) {
+  if (!canvas) 
+    canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let W = canvas.width
   let H = canvas.height
@@ -31625,7 +31596,10 @@ function fog () {
  // if (grunge)
     //colors.push(randomColor())
  // else
-    colors.push(document.getElementById("paintcolor").value)
+ if (color)
+    ctx.fillStyle = color
+  else
+    colors.push(randomPick(getCurrentPalette())) // was paintcolor)
   //clip()
   let smudge_ct = 1 + document.getElementById("number").value/100
   let area = canvas.width * canvas.height
@@ -31659,7 +31633,7 @@ function offwatercolor (colors) {
   let d = 14 + Math.random() * maxradius
   d *= 5
   let count = 10
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   for (let j = 0; j < count; j++) {
     ctx.beginPath();
     x = cx + pet(d)
@@ -31696,7 +31670,7 @@ function offbrush (colors) {
   }
 }
 
-function offstars () {
+function offstars (color) {
   let canvas = document.getElementById("offscreen");
   let ctx = canvas.getContext("2d");
   let cx = ctx.canvas.width/2;
@@ -31706,7 +31680,10 @@ function offstars () {
   ctx.clearRect(0,0,ctx.canvas.width, ctx.canvas.height)
   ctx.globalAlpha = 0.1
   let maxWidth = 0.15 + document.getElementById("featuresize").value/500
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  if (color)
+  ctx.strokeStyle = color
+  else
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   if (document.getElementById("grungy").checked)
     maxWidth *= 2
   ctx.globalAlpha = 0.1
@@ -31727,7 +31704,7 @@ function offstars () {
   }
 }
 
-function offmix () {
+function offmix (color) {
   let canvas = document.getElementById("offscreen");
   let ctx = canvas.getContext("2d");
   let cx = ctx.canvas.width/2;
@@ -31737,7 +31714,10 @@ function offmix () {
   ctx.clearRect(0,0,ctx.canvas.width, ctx.canvas.height)
   ctx.globalAlpha = 0.1
   let maxWidth = 0.15 + document.getElementById("featuresize").value/300
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  if (color)
+  ctx.strokeStyle = color
+  else
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   if (document.getElementById("grungy").checked)
     maxWidth *= 2
   ctx.globalAlpha = 0.1
@@ -31759,7 +31739,7 @@ function offmix () {
   }
 }
 
-function offhorizontal () {
+function offhorizontal (color) {
   let  canvas = document.getElementById("offscreen");
   let ctx = canvas.getContext("2d");
   let cx = ctx.canvas.width/2;
@@ -31769,7 +31749,10 @@ function offhorizontal () {
   ctx.clearRect(0,0,canvas.width,canvas.height)
   ctx.globalAlpha = 0.1
   let maxWidth = 0.15 + document.getElementById("featuresize").value/500
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  if (color)
+  ctx.strokeStyle = color
+  else
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   let grunge = document.getElementById("grungy").checked
   if (grunge)
     maxWidth *= 2
@@ -31787,7 +31770,7 @@ function offhorizontal () {
   }
 }
 
-function offhorizontal2 () {
+function offhorizontal2 (color) {
   let  canvas = document.getElementById("offscreen");
   let ctx = canvas.getContext("2d");
   let cx = ctx.canvas.width/2;
@@ -31797,7 +31780,10 @@ function offhorizontal2 () {
   ctx.clearRect(0,0,canvas.width,canvas.height)
   ctx.globalAlpha = 0.1
   let maxWidth = 0.35 + document.getElementById("featuresize").value/500
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  if (color)
+  ctx.strokeStyle = color
+  else
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   let grunge = document.getElementById("grungy").checked
   if (grunge)
     maxWidth *= 2
@@ -31815,7 +31801,7 @@ function offhorizontal2 () {
   }
 }
 
-function offstreaks () {
+function offstreaks (color) {
   let canvas = document.getElementById("offscreen");
   let ctx = canvas.getContext("2d");
   let cx = ctx.canvas.width/2;
@@ -31827,7 +31813,10 @@ function offstreaks () {
   let maxWidth = 0.15 + document.getElementById("featuresize").value /500
   if (document.getElementById("grungy").checked)
     maxWidth *= 2
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+    if (color)
+  ctx.strokeStyle = color
+  else
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   //ctx.lineWidth = 0.1
   let count = 7
   for (let j = 0; j < count; j++) {
@@ -31839,7 +31828,7 @@ function offstreaks () {
   }
 }
 
-function offarcs2 () {
+function offarcs2 (color) {
   let  canvas = document.getElementById("offscreen");
   let ctx = canvas.getContext("2d");
   let cx = ctx.canvas.width/2;
@@ -31849,7 +31838,10 @@ function offarcs2 () {
   ctx.clearRect(0,0,ctx.canvas.width, ctx.canvas.height)
   ctx.globalAlpha = 0.25
   let maxWidth = 3 + document.getElementById("featuresize").value/500
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  if (color)
+  ctx.strokeStyle = color
+  else
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   let maxradius = 57 + document.getElementById("featuresize").value /2
   if (document.getElementById("grungy").checked)
     maxradius *= 2
@@ -31867,7 +31859,7 @@ function offarcs2 () {
   }
 }
 
-function offarcs () {
+function offarcs (color) {
   let  canvas = document.getElementById("offscreen");
   let ctx = canvas.getContext("2d");
   let cx = ctx.canvas.width/2;
@@ -31877,7 +31869,10 @@ function offarcs () {
   ctx.clearRect(0,0,ctx.canvas.width, ctx.canvas.height)
   ctx.globalAlpha = 0.15
   let maxWidth = 0.15 + document.getElementById("featuresize").value /500
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  if (color)
+  ctx.strokeStyle = color
+  else
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   ctx.lineWidth = 0.1
   let maxradius = 17 + document.getElementById("featuresize").value /2
   if (document.getElementById("grungy").checked)
@@ -31896,7 +31891,7 @@ function offarcs () {
   }
 }
 
-function offspecks2 () {
+function offspecks2 (color) {
   let canvas = document.getElementById("offscreen");
   let ctx = canvas.getContext("2d");
   let cx = ctx.canvas.width/2;
@@ -31913,12 +31908,16 @@ function offspecks2 () {
     x = cx + pet(d)*Math.cos(Math.random()*6.28)
     y = cy +pet(d)*Math.sin(Math.random()*6.28)
     ctx.arc(x, y, Math.random()*maxradius, 0, 2*Math.PI);
-    ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+    
+    if (color)
+    ctx.fillStyle = color
+    else
+    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette())) // was paintcolor)
     ctx.fill();
   }
 }
 
-function offspecks () {
+function offspecks (color) {
   let canvas = document.getElementById("offscreen");
   let ctx = canvas.getContext("2d");
   let cx = ctx.canvas.width/2;
@@ -31927,7 +31926,10 @@ function offspecks () {
   ctx.clearRect(0,0,ctx.canvas.width, ctx.canvas.height)
   ctx.globalAlpha = 0.0025
   let maxradius = 2 + document.getElementById("featuresize").value /10
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  if (color)
+    ctx.fillStyle = color
+  else
+    ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   let d = 51 + Math.random() * 41
   let count = 5
   for (let j = 0; j < 17; j++) {
@@ -31939,7 +31941,7 @@ function offspecks () {
   }
 }
 
-function specksRadial () {
+function specksRadial (color) {
   let canvas = document.getElementById("myCanvas");
   let dist = "rect"//document.getElementById("distro").value
   let cx = canvas.width/2, cy = canvas.height/2
@@ -31960,7 +31962,10 @@ function specksRadial () {
   ctx.globalAlpha = opacity
   let alpha0 = ctx.globalAlpha
  // let maxY = canvas.height/2
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  if (color)
+    ctx.fillStyle = color
+  else
+    ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   if (dist != "gaussian")
     ;//clip()
   for (let j = 0; j < num; j++) {
@@ -31994,8 +31999,8 @@ function caption () {
   let text = document.getElementById("caption").value
   let size = document.getElementById("featuresize").value
   ctx.globalAlpha = (document.getElementById("opacity").value)/100
-  ctx.fillStyle = document.getElementById("paintcolor").value
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   ctx.font = size+"pt " + face
   let x = canvas.width/2, y = canvas.height/2+size/2
   w = ctx.measureText(text).width
@@ -32016,8 +32021,8 @@ function character () {
   let x_inc = 16, y_inc = 16
   ctx.globalAlpha = (document.getElementById("opacity").value)/100
   let alpha0 = ctx.globalAlpha
-  ctx.fillStyle = document.getElementById("paintcolor").value
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   let text = "+"//document.getElementById("atext").value
   let radius = document.getElementById("featuresize").value/6.25
   let rad0 = radius
@@ -32064,7 +32069,7 @@ function straightLines (cross) { // vertical lines
   let x_inc = 20, y_inc = 20
   ctx.globalAlpha = (document.getElementById("opacity").value) /100
   alpha0 = ctx.globalAlpha
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   ctx.lineWidth = document.getElementById("featuresize").value/(5*6.25)
   linewidth0 = ctx.lineWidth
   let radius = document.getElementById("featuresize").value/12.5
@@ -32111,7 +32116,7 @@ function slantedLines (cross) {
   let ctx = canvas.getContext('2d');
   ctx.globalAlpha = (document.getElementById("opacity").value)/100
   alpha0 = ctx.globalAlpha
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   ctx.lineWidth = 1+document.getElementById("featuresize").value/10
   linewidth0 = ctx.lineWidth
   let inc = ctx.lineWidth * 3
@@ -32149,7 +32154,7 @@ function linearSpiral () { // make like skinny Rings
   ctx.lineCap = 'round'
   ctx.lineJoin = 'round'
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   ctx.beginPath();
   let x = LASTCLICK[0], y = LASTCLICK[1], a = ab, b = ab
   ctx.moveTo(x, y);
@@ -32171,7 +32176,7 @@ function skinnyRings () {
   let x = -50, y = -50;
   let x_inc = 20, y_inc = 20
   ctx.globalAlpha = (document.getElementById("opacity").value) /100
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   ctx.lineWidth = 1 + Math.floor(document.getElementById("featuresize").value/10)
   let inc = 3 * ctx.lineWidth
   ctx.lineCap = 'round'
@@ -32201,7 +32206,7 @@ function vanishingpoint () { // vertical lines
   let vpy = canvas.height * Math.random()
   ctx.globalAlpha = (document.getElementById("opacity").value) /100
   alpha0 = ctx.globalAlpha
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   ctx.lineWidth = 5
   ctx.lineCap = 'round'
   ctx.lineJoin = 'round'
@@ -32239,7 +32244,7 @@ function skinnyLines () { // vertical lines
   let x_inc = 20, y_inc = 20
   ctx.globalAlpha = (document.getElementById("opacity").value) /100
   alpha0 = ctx.globalAlpha
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   ctx.lineWidth = 5//1
   ctx.lineCap = 'round'
   ctx.lineJoin = 'round'
@@ -32271,7 +32276,7 @@ function bezRandom () {
   ctx.lineCap = 'round'
   ctx.lineJoin = 'round'
   ctx.globalAlpha = (document.getElementById("opacity").value)/100
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
   let x = 0, y = 0, x0, y0;
   let edges = 8 + 4 * Math.floor(document.getElementById("number").value/1000)
@@ -32332,7 +32337,7 @@ function blobOutline () {
   let cx = centx, cy = centy
   ctx.globalAlpha = (document.getElementById("opacity").value)/100
   let alpha0 = ctx.globalAlpha
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
   x = 0;
   y = 0;
@@ -32375,7 +32380,7 @@ function blobs () {
   ctx.globalAlpha = (document.getElementById("opacity").value)/200
   let alpha0 = ctx.globalAlpha
   let numshapes = 25
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   numshapes = 1 + document.getElementById("number").value/10
   numshapes *= shapemultiplier
   let radius = 1
@@ -32438,7 +32443,7 @@ function scratch () { // based on blobs
   let area = canvas.width * canvas.height
   let shapemultiplier = area/(1024*1024)
   numshapes *= shapemultiplier
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   let radius = 1
   for (let t = 0; t < numshapes; t++) {
     x = 0;
@@ -32871,7 +32876,7 @@ function diagonal () {
   let centerx = ctx.canvas.width / 2;
   let centery = ctx.canvas.height / 2;
   ctx.globalAlpha = (document.getElementById("opacity").value)/100
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   let baseline = h * 4/5
   let x =-10
   let y = Math.random() * h/3
@@ -33014,7 +33019,7 @@ function placeSquareAt () {
   let h = canvas.height;
   let w = canvas.width;
   ctx.globalAlpha = (document.getElementById("opacity").value)/100
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   let x = LASTCLICK[0]
   let y = LASTCLICK[1]
   let r = 18// + +document.getElementById("textsize").value
@@ -33108,8 +33113,8 @@ function placeBokehAt () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   ctx.globalAlpha = (document.getElementById("opacity").value)/100
-  ctx.fillStyle = document.getElementById("paintcolor").value
-  ctx.strokeStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   
   let x = LASTCLICK[0]
   let y = LASTCLICK[1]
@@ -33117,11 +33122,11 @@ function placeBokehAt () {
   r /= 2
   r += pet(r/3)
   
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let a = 0.4 + Math.random() * 0.3
   let grd = ctx.createRadialGradient(x+pet(r*1.2), y+pet(r*1.2), 0, x+pet(r*1.2), y+pet(r*1.1), r*1.5);
   grd.addColorStop(0, "rgba("+hexToR(color)+", "+hexToG(color)+", "+hexToB(color)+", "+a+")");
-  grd.addColorStop(1, document.getElementById("paintcolor").value);
+  grd.addColorStop(1, randomPick(getCurrentPalette())) // was paintcolor);
   
   ctx.fillStyle = grd
   ctx.beginPath()
@@ -33156,7 +33161,7 @@ function placeDotAt () {
   let h = canvas.height;
   let w = canvas.width;
   ctx.globalAlpha = (document.getElementById("opacity").value)/100
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   let x = LASTCLICK[0]
   let y = LASTCLICK[1]
   let r = 1 + +document.getElementById("textsize").value
@@ -33193,7 +33198,7 @@ function placeRectAt () { // word-shaped rect
   let ctx = canvas.getContext("2d")
   W = canvas.width
   ctx.globalAlpha = (document.getElementById("opacity").value)/100
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   let fs = 2.6*(4 + document.getElementById("featuresize").value/10)
   ctx.textAlign = 'left';
   ctx.textBaseline = 'middle'
@@ -33234,7 +33239,7 @@ function placeTextAt (t,canvas) {
   let ctx = canvas.getContext("2d")
   W = canvas.width
   ctx.globalAlpha = (document.getElementById("opacity").value)/100
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   let fs = 2.6*(4 + document.getElementById("featuresize").value/5)
   ctx.textAlign = 'left';
   ctx.textBaseline = 'middle'
@@ -33275,7 +33280,7 @@ function stem (x,y,r, m) {
 function branching () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   ctx.globalAlpha = (document.getElementById("opacity").value)/100
   let h = canvas.height;
   let w = canvas.width;
@@ -33316,8 +33321,8 @@ function land () {
   let centerx = ctx.canvas.width / 2;
   let centery = ctx.canvas.height / 2;
   ctx.globalAlpha = (document.getElementById("opacity").value)/100
-  //document.getElementById("paintcolor").value = randomColor()
-  ctx.fillStyle = document.getElementById("paintcolor").value
+  //randomPick(getCurrentPalette()) // was paintcolor = randomColor()
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   let baseline = h - h/7 * Math.random() - 10
   let x =-10
   let y = baseline - h/3 * Math.random() - 30
@@ -33365,9 +33370,9 @@ function shape2 () {// right side only
   let numshapes = 1
   let ia = 0
   ctx.save()
-  ctx.fillStyle = document.getElementById("paintcolor").value;
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor;
   if (grunge)
-    ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette())) // was paintcolor)
   for (var t = 0; t < numshapes; t++) {
     let radius = 10
     x = 0;
@@ -33428,9 +33433,9 @@ function shape () {// right side only
   let grunge = document.getElementById("grungy").checked
   let numshapes = 1;//Math.random() * max_shapes() + 2;
   let ia = 0
-  ctx.fillStyle = document.getElementById("paintcolor").value;
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor;
   if (grunge)
-    ctx.fillStyle = randomGradient(canvas, document.getElementById("paintcolor").value)
+    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette())) // was paintcolor)
   for (var t = 0; t < numshapes; t++) {
     let radius = 10
     x = 0;
@@ -34345,7 +34350,7 @@ function edgeSmear (small) {
   ocanvas.height += 50
   octx.clearRect(0,0,ocanvas.width,ocanvas.height)
   
-  octx.fillStyle = randomGradient(ocanvas, document.getElementById("paintcolor").value)
+  octx.fillStyle = randomGradient(ocanvas, randomPick(getCurrentPalette())) // was paintcolor)
   octx.globalAlpha = 1//(document.getElementById("opacity").value)/100
   let c = ocanvas.height * 0.5
   let x = 1//canvas.width/100 * Math.random()
@@ -34360,7 +34365,7 @@ function edgeSmear (small) {
     r /= 2
   }
   for (; i < numshapes; i++) {
-    octx.fillStyle = randomGradient(ocanvas, document.getElementById("paintcolor").value)
+    octx.fillStyle = randomGradient(ocanvas, randomPick(getCurrentPalette())) // was paintcolor)
     octx.globalAlpha = Math.random()
     let xo = x+pet(p)
     drawBlobAt (octx, xo/2, y, r+pet(2))
@@ -34392,7 +34397,7 @@ function smeardownOff () {
   ocanvas.height += 50
   octx.clearRect(0,0,ocanvas.width,ocanvas.height)
   let c = ocanvas.height * 0.5
-  octx.fillStyle = randomGradient(ocanvas, document.getElementById("paintcolor").value)
+  octx.fillStyle = randomGradient(ocanvas, randomPick(getCurrentPalette())) // was paintcolor)
   octx.globalAlpha = (document.getElementById("opacity").value)/100
   let x = canvas.width * Math.random()
   let y = 4
@@ -34402,7 +34407,7 @@ function smeardownOff () {
   if (document.getElementById("grungy").checked)
     p *= 3
   for (; i < numshapes; i++) {
-    octx.fillStyle = randomGradient(ocanvas, document.getElementById("paintcolor").value)
+    octx.fillStyle = randomGradient(ocanvas, randomPick(getCurrentPalette())) // was paintcolor)
     octx.globalAlpha = Math.random()
     drawBlobAt (octx, x+pet(p), y+pet(p), r+pet(17))
   }
@@ -34498,6 +34503,12 @@ function resizeCanvas () {
   //syncMarker()
   //displayRatio()
   showTip ("WxH: "+canvas.width+" x "+canvas.height, "marker")
+}
+
+
+function stack_drawD () {
+  drawD()
+  pushFunction('drawD', 0)
 }
 
 function stack_fill () {
@@ -34641,7 +34652,7 @@ function tintSky (canvas) {
   offcanvas.height = canvas.height
   let offctx = offcanvas.getContext("2d");
   let touch = LASTCLICK[1], x = 0, y = 0, w = canvas.width*4
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let r = hexToR(color)
   let g = hexToG(color)
   let b = hexToB(color)
@@ -34837,7 +34848,7 @@ function tint (canvas) {
   offcanvas.height = canvas.height
   let offctx = offcanvas.getContext("2d");
   offctx.willReadFrequently = true
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let alpha = document.getElementById("opacity").value
   let r = hexToR(color)
   let g = hexToG(color)
@@ -34878,7 +34889,7 @@ function tintlow (canvas) {
   offcanvas.height = canvas.height
   let offctx = offcanvas.getContext("2d");
   offctx.willReadFrequently = true
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let alpha = document.getElementById("opacity").value
   let r = hexToR(color)
   let g = hexToG(color)
@@ -34918,7 +34929,7 @@ function tinthigh (canvas) {
   offcanvas.height = canvas.height
   let offctx = offcanvas.getContext("2d");
   offctx.willReadFrequently = true
-  let color = document.getElementById("paintcolor").value
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let alpha = document.getElementById("opacity").value
   let r = hexToR(color)
   let g = hexToG(color)
@@ -35069,7 +35080,7 @@ function greyScaleSpot (x,y,w,h) {
 }
 
 function lum () {
-  let c = document.getElementById("paintcolor").value
+  let c = randomPick(getCurrentPalette()) // was paintcolor
   let r = hexToR(c) / 255
   let g = hexToG(c) / 255
   let b = hexToB(c) / 255
