@@ -135,19 +135,25 @@ function getIndex () {
 function closePath () {
   let canvas = document.getElementById('myDCanvas')
   let ctx = canvas.getContext('2d')
-  //W = canvas.width, H = W
+  let FILL = false, STROKE = false
+  let LW = 1+document.getElementById('featuresize').value/20
+  let fs = document.getElementById("fillstroke").value
+  if (fs === "fill") 
+    FILL = true
+  else
+    STROKE = true
   if (INDEX === 0)
     return  
   ITEMS.push(lastpoints)
   lastpoints = []
   if (document.getElementById("gradient").checked)
-    code.push("  if (FILL) {\n    ctx.fillStyle = randomGradientPal()\n  n += randomPick([1,2])\n    ctx.fill()\n  }")
+    code.push("  if ("+FILL+") {\n    ctx.fillStyle = randomGradientPal()\n  n += randomPick([1,2])\n    ctx.fill()\n  }")
   else
-    code.push("  if (FILL) {\n    ctx.fillStyle = colors[n%colors.length]\n  n += randomPick([1,2])\n    ctx.fill()\n  }")
+    code.push("  if ("+FILL+") {\n    ctx.fillStyle = colors[n%colors.length]\n  n += randomPick([1,2])\n    ctx.fill()\n  }")
   code.push("  ctx.clip()")
   code.push("  if (PATTERN)\n    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)")
   code.push("  ctx.restore()")
-  code.push("  if (STROKE) {\n  ctx.lineWidth = randomPick([1,2,3,6])\n/*  ctx.strokeStyle = randomPick(colors)*/\n    ctx.stroke()\n  }")
+  code.push("  if ("+STROKE+") {\n  ctx.lineWidth = "+LW+"\n  ctx.strokeStyle = randomPick(colors)\n    ctx.stroke()\n  }")
   ctx.setLineDash([])
   ctx.globalAlpha = 1
   ctx.strokeStyle = "#ff4444"
@@ -201,6 +207,12 @@ function showPoints () {
     document.getElementById("text1").value = ""
     return
   }
+  let FILL = false, STROKE = false
+  let fs = document.getElementById("fillstroke").value
+  if (fs === "fill") 
+    FILL = true
+  else
+    STROKE = true
   let header = "  let x = 0, y = 0, W = 1080\n\
   let canvas = document.getElementById(\"myCanvas\")\n\
   let ctx = canvas.getContext(\"2d\")\n\
@@ -209,7 +221,7 @@ function showPoints () {
   oc.height = canvas.height, oc.width = canvas.width\n\
   let colors = shuffle(getCurrentPalette(true,13))\n\
   let H = W, cpx, cpy, points = [], n = 0\n\
-  let STROKE = false, FILL = true, PATTERN = false\n\
+  let STROKE = "+STROKE+", FILL = "+FILL+", PATTERN = false\n\
   ctx.lineWidth = 1 + document.getElementById(\"featuresize\").value/5\n\
   ctx.strokeStyle = randomPick(colors)\n\
   ctx.fillStyle = randomPick(colors)\n\
