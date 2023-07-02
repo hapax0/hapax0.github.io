@@ -673,6 +673,8 @@
           <option value="afklint">af klint</option>
           <option value="afklint2">af klint(2)</option>
           <option value="gertrudeabercrombie">abercrombie</option>
+          <option value="dali">dali</option>
+          
           <option value="cmy">cmy</option>
           <option value="rainbow">rainbow</option>
           <option value="monokai">monokai</option>
@@ -1456,7 +1458,10 @@ function loadPalette (PUSH) {
     updateExtraColors(b)
     return
   } else
-  
+  if (type === 'dali) {
+    b = ["#9d4305", "#271100", "#a95912", "#5b3a08", "#2f2513", "#674c18", "#c0a651", "#f4d673", "#837648", "#d8d18b", "#dce5c6", "#9bb7a0", "#65826e"]
+    updateExtraColors(b)
+  } else
   if (type === 'gertrudeabercrombie') {
     b = ["#905a4f", "#918b7c", "#b4ab93", "#1a1915", "#383933", "#525850", "#4f6f66", "#1b515c"]
     updateExtraColors(b)
@@ -31182,8 +31187,6 @@ function hrips () {
   let centery = canvas.height / 2;
   let thickness = document.getElementById("featuresize").value
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  //ctx.save()
-  //clip()
   ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   let yincrement = 4;
   let numshapes = 1
@@ -31237,7 +31240,6 @@ function hrips () {
     ctx.closePath();
     ctx.fill();
   }
-  //ctx.restore()
 }
 
 function smudgearcs2 (canvas, color) {
@@ -31583,6 +31585,7 @@ function offdrops (color) {
 }
 
 function fog (canvas, color) {
+  
   if (!canvas) 
     canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -31596,15 +31599,11 @@ function fog (canvas, color) {
   ctx.globalAlpha = document.getElementById("opacity").value/100 //* 0.75
   let smudge_size = 51 + Math.random()* 100
   let colors = []
- // let grunge = document.getElementById("grungy").checked
- // if (grunge)
-    //colors.push(randomColor())
- // else
+
  if (color)
-    ctx.fillStyle = color
+    colors.push(color)
   else
     colors.push(randomPick(getCurrentPalette())) // was paintcolor)
-  //clip()
   let smudge_ct = 1 + document.getElementById("number").value/100
   let area = canvas.width * canvas.height
   let shapemultiplier = area/(1024*1024)
@@ -31625,7 +31624,7 @@ function fog (canvas, color) {
   ctx.restore()
 }
 
-function offwatercolor (colors) {
+function offwatercolor (color) {
   let canvas = document.getElementById("offscreen");
   let ctx = canvas.getContext("2d");
   let cx = ctx.canvas.width/2;
@@ -31637,7 +31636,10 @@ function offwatercolor (colors) {
   let d = 14 + Math.random() * maxradius
   d *= 5
   let count = 10
-  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  if (color)
+    ctx.fillStyle = color
+  else
+    ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   for (let j = 0; j < count; j++) {
     ctx.beginPath();
     x = cx + pet(d)
@@ -31922,6 +31924,7 @@ function offspecks2 (color) {
 }
 
 function offspecks (color) {
+ // console.log("offspecks", color )
   let canvas = document.getElementById("offscreen");
   let ctx = canvas.getContext("2d");
   let cx = ctx.canvas.width/2;
