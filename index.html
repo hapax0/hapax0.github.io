@@ -1993,33 +1993,26 @@ function wash2 () {
 }
 
 function wash () {
-  let fs = document.getElementById("featuresize").value
   fill()
-  setOpacity(50)
+  setOpacity(75)
   checkAlt(true)
-  //setFeaturesize(255)
   crackle()
   crackle()
   fill()
-  fill()
   shaken()
   shaken()
-  //shaken()
   shrinkBlur()
   rcc()
   shaken()
   shaken()
   rc()
   embossCanvas()
-  shrinkBlur()
+  //shrinkBlur()
   setMode("destination-over")
-  fill()
-  fill()
- //fill()
-  setMode("source-over")
   setOpacity(100)
+  fill()
+  setMode("source-over")
   checkAlt(false)
- // document.getElementById("featuresize").value = fs
 }
 
 function diss () {
