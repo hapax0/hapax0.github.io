@@ -227,7 +227,8 @@ function showPoints () {
   ctx.fillStyle = randomPick(colors)\n\
   ctx.strokeStyle = 'black'\n\
   ctx.lineCap = \"square\"\n\
-  ctx.lineJoin = \"meter\"\n\n"
+  ctx.lineJoin = \"meter\"\n\
+  makeHighRes(canvas)\n\n"
   document.getElementById("text1").value = header
   document.getElementById("text1").value += code.join("\n")
 }
