@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -482,11 +483,11 @@
       <option value="thought">thought</option>
       <option value="ivy" >ivy</option>
       <option value="user">user</option>
-      <option value="stairs">stairs</option> 
-      <option value="ladder">ladder</option> 
-      <option value="lamp">lamp</option> 
-      <option value="prayer">prayer</option> 
-      <option value="slide">slide</option--> 
+      <option value="stairs">stairs</option>
+      <option value="ladder">ladder</option>
+      <option value="lamp">lamp</option>
+      <option value="prayer">prayer</option>
+      <option value="slide">slide</option-->
       <option value="chair" >chair</option>
       <option value="chairStorm">chair storm</option>
       <option value="treeStorm">tree storm</option>
@@ -673,7 +674,7 @@
           <option value="541">5,4,1</option>
           <option value="721">7,2,1</option>
           <option value="4411">4,4,1,1</option>
-          <option value="3331">3,3,3,1</option>         
+          <option value="3331">3,3,3,1</option>
           <option value="primary" >primary</option>
           <option value="vivid">vivid</option>
           <option value="afklint">af klint</option>
@@ -820,7 +821,7 @@
   <canvas id="marker" width='512' height='6' style="border:1px solid #000000;" title="touch canvas: red mark shows location of clip or rip"></canvas>
   <div id="background" style="width:1024px;height:1024px;float:left;position:relative;">
   
-  <canvas id="myCanvas" width="1080" height="1080" style="border:1px solid #000000;width:1080px;height:1080px">
+  <canvas id="myCanvas" width="1080" height="1080" style="border:1px solid #000000;">
   </canvas><canvas id="OC" width="1080" height="1080" style="border:1px solid #000000;display:none;"></canvas>
   </div>
   <div>
@@ -841,10 +842,10 @@
     <option value="10" >10</option>
     <option value="12">12</option>
     <option value="14">14</option>
-    <option value="16">16</option> 
-    <option value="18">18</option> 
-    <option value="20">20</option> 
-    <option value="24" selected>24</option> 
+    <option value="16">16</option>
+    <option value="18">18</option>
+    <option value="20">20</option>
+    <option value="24" selected>24</option>
     <option value="32">32</option>
     <option value="80">80</option>
   </select>
@@ -862,7 +863,7 @@
     <button onclick="drawD()">draw</button>
     <br>
     <br>
-    &nbsp;<button onclick="clearAll()">clear</button>    
+    &nbsp;<button onclick="clearAll()">clear</button>
     &nbsp;Item count <span id="lastitem">0</span>
     
     &nbsp;
@@ -910,10 +911,99 @@ function toggleGridBox () {
 }
 
 function drawD () {
+  let c = document.getElementById("myCanvas")
+  var ctx = c.getContext('2d');
+  
+  makeHighRes(c)
   copyCode()
   let txt = document.getElementById("text1").value
   //console.log(txt)
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctx.globalCompositeOperation = document.getElementById("mode").value
   eval(txt)
+  // set for lower res at next opportunity
+  setNormalRes(document.getElementById("myCanvas"))
+}
+
+function setNormalRes (c) {
+ // copyToOff()
+  var ctx = c.getContext('2d');
+  let ocanvas = document.getElementById('off')
+  let octx = ocanvas.getContext('2d')
+  let mode = ctx.globalCompositeOperation
+  ctx.globalCompositeOperation = "source-over"
+  let a = ctx.globalAlpha
+  ctx.globalAlpha = 1.0
+  ocanvas.height = c.height
+  ocanvas.width = c.width
+  octx.drawImage(c, 0, 0)
+  c.width = 1080, c.height = 1080/*
+  // console.log(c.width)
+  //if (c.width >= 2160) return
+  // finally query the various pixel ratios
+  var devicePixelRatio = window.devicePixelRatio || 1;
+  var backingStoreRatio = ctx.webkitBackingStorePixelRatio ||
+      ctx.mozBackingStorePixelRatio ||
+      ctx.msBackingStorePixelRatio ||
+      ctx.oBackingStorePixelRatio ||
+      ctx.backingStorePixelRatio || 1;
+  var ratio = 1//devicePixelRatio / backingStoreRatio;
+  //console.log(devicePixelRatio)
+  // upscale canvas if the two ratios don't match
+  if (true) {
+      var oldWidth = c.width;
+      var oldHeight = c.height;
+      c.width = Math.round(oldWidth * ratio);
+      c.height = Math.round(oldHeight * ratio);
+      c.style.width = oldWidth + 'px';
+      c.style.height = oldHeight + 'px';
+      // now scale the context to counter
+      // the fact that we've manually scaled
+      // our canvas element
+      ctx.scale(ratio, ratio);
+  }*/
+  //syncBackground(c)
+  ctx.drawImage(ocanvas,0,0,c.width,c.height)
+}
+
+function makeHighRes (c) {
+  var ctx = c.getContext('2d');
+  // console.log(c.width)
+  if (c.width >= 2160) return
+  
+  let ocanvas = document.getElementById('off')
+  let octx = ocanvas.getContext('2d')
+  let mode = ctx.globalCompositeOperation
+  ctx.globalCompositeOperation = "source-over"
+  let a = ctx.globalAlpha
+  ctx.globalAlpha = 1.0
+  ocanvas.height = c.height
+  ocanvas.width = c.width
+  octx.drawImage(c, 0, 0)
+  // finally query the various pixel ratios
+  var devicePixelRatio = window.devicePixelRatio || 1;
+  var backingStoreRatio = ctx.webkitBackingStorePixelRatio ||
+      ctx.mozBackingStorePixelRatio ||
+      ctx.msBackingStorePixelRatio ||
+      ctx.oBackingStorePixelRatio ||
+      ctx.backingStorePixelRatio || 1;
+  var ratio = 2//devicePixelRatio / backingStoreRatio;
+  //console.log(devicePixelRatio)
+  // upscale canvas if the two ratios don't match
+  if (devicePixelRatio !== backingStoreRatio) {
+      var oldWidth = c.width;
+      var oldHeight = c.height;
+      c.width = Math.round(oldWidth * ratio);
+      c.height = Math.round(oldHeight * ratio);
+     // c.style.width = oldWidth + 'px';
+     // c.style.height = oldHeight + 'px';
+      // now scale the context to counter
+      // the fact that we've manually scaled
+      // our canvas element
+      ctx.scale(ratio, ratio);
+  }
+  //console.log(c.width)
+  ctx.drawImage(ocanvas,0,0,c.width/2,c.height/2)
 }
 
 window.onload = function () {
@@ -973,10 +1063,10 @@ marker.addEventListener('click', function(event) {
   rangecheck()
   syncMarker()
   
-  initOC() 
+  initOC()
   frameVisible()
   
-  makeHighRes(myCanvas)
+  //makeHighRes(myCanvas)
 }
 
 function checkChange () {
@@ -1017,34 +1107,7 @@ function showTip (msg, item) {
   }, 3000);
 }
 
-function makeHighRes (c) {
-    var ctx = c.getContext('2d');
-   // console.log(c.width)
-    if (c.width >= 2160) return
-    // finally query the various pixel ratios
-    var devicePixelRatio = window.devicePixelRatio || 1;
-    var backingStoreRatio = ctx.webkitBackingStorePixelRatio ||
-        ctx.mozBackingStorePixelRatio ||
-        ctx.msBackingStorePixelRatio ||
-        ctx.oBackingStorePixelRatio ||
-        ctx.backingStorePixelRatio || 1;
-    var ratio = 2//devicePixelRatio / backingStoreRatio;
-    //console.log(devicePixelRatio)
-    // upscale canvas if the two ratios don't match
-    if (devicePixelRatio !== backingStoreRatio) {
-        var oldWidth = c.width;
-        var oldHeight = c.height;
-        c.width = Math.round(oldWidth * ratio);
-        c.height = Math.round(oldHeight * ratio);
-        c.style.width = oldWidth + 'px';
-        c.style.height = oldHeight + 'px';
-        // now scale the context to counter
-        // the fact that we've manually scaled
-        // our canvas element
-        ctx.scale(ratio, ratio);
-    }
-    //console.log(c.width)
-}
+
 
 
 function jaggytest () {
@@ -1409,7 +1472,7 @@ function lightenPalette () {
       b[n] = adjustBrightnessC(b[n], -k)
     }
     updateExtraColors(b)
-  } 
+  }
 
 function loadPalette (PUSH) {
   let a = [], b = []
@@ -1743,7 +1806,7 @@ function loadPalette (PUSH) {
 }
 
 function setRandPalette () {
-  setPalette(randomPick(["halfway", "halfway2", "101", "1011", "9411", "933", "4411", "541", "721", "3331", "5311"]))
+  setPalette(randomPick(["halfway", "101", "1011", "9411", "933", "4411", "541", "721", "3331", "5311"]))
 }
 
 function clearPoints () {
@@ -2793,7 +2856,7 @@ let BRIGHT = true
 function sortByBrightness (colors) {
   if (!colors)
     colors = getCurrentPalette(true)
-  if (BRIGHT) 
+  if (BRIGHT)
     colors = colors.sort((a, b) => bright(b) - bright(a));
   else
     colors = colors.sort((a, b) => bright(a) - bright(b));
@@ -7635,7 +7698,7 @@ function leafAt (x,y,W,color,n) {
   ctx.stroke()
   
   ctx.beginPath()
-  ctx.moveTo(x+W/2, y) 
+  ctx.moveTo(x+W/2, y)
   let cpx1 = x + 4/6*W, cpx2 = x + 5/6*W // right
   let cpy1 = y0 + 5/6*H, cpy2 = y0 + 4/6*H
   ctx.bezierCurveTo(cpx1,cpy1,cpx2,cpy2,x+W/2 + 2/6*W, y-H/2)
@@ -7646,8 +7709,8 @@ function leafAt (x,y,W,color,n) {
   
   // left side
   ctx.beginPath()
-  ctx.moveTo(x+W/2, y) 
-  cpx1 = x + 2/6*W, cpx2 = x + 1/6*W 
+  ctx.moveTo(x+W/2, y)
+  cpx1 = x + 2/6*W, cpx2 = x + 1/6*W
   cpy1 = y0 + 5/6*H, cpy2 = y0 + 4/6*H
   ctx.bezierCurveTo(cpx1,cpy1,cpx2,cpy2,x+W/2 - 2/6*W, y-H/2)
   cpx1 = x + W/2-2/6*W, cpx2 = x + W/2
@@ -7692,7 +7755,7 @@ points.push(x +sh + (-xo), y+H-yo)
   ctx.closePath()
   ctx.stroke()
   
-  // offet stairs 
+  // offet stairs
   y = y0, x = x0
   ctx.beginPath()
   ctx.moveTo(x, y+H - sh)
@@ -7763,7 +7826,7 @@ function stairsAtog (x,y,W,color,n) {
   }
   ctx.closePath()
   ctx.stroke()
-  // offet stairs 
+  // offet stairs
   y = y0, x = x0
   ctx.beginPath()
   ctx.moveTo(x + W, y+H - sh)
@@ -7823,7 +7886,7 @@ function ladder () {
   let color = randomPick(getCurrentPalette())
   let pad = 40
   ladderAt (pad,pad,W-pad*2,color)
-} 
+}
 
 function ladderAt (x,y,W,color,n) {
   let canvas = document.getElementById("myCanvas")
@@ -7840,7 +7903,7 @@ function ladderAt (x,y,W,color,n) {
   let x0 = x, y0 = y
   let N = n || randomPick([3,4,5,7,9,11]), i = 0
   let sh = H/N
-  let xo,yo // offsets 
+  let xo,yo // offsets
   ctx.beginPath()
   ctx.moveTo(x,y+H)
   ctx.lineTo(x+W/3,y)
@@ -7852,7 +7915,7 @@ function ladderAt (x,y,W,color,n) {
   ctx.lineTo(x+2*W/3,y)
   ctx.lineTo(x + (W), y+H)
   ctx.stroke()
-  // steps: use sh but with offset from top 
+  // steps: use sh but with offset from top
   ctx.beginPath() // top rung
   ctx.moveTo(x+W/3,y)
   ctx.lineTo(x + (2*W/3), y)
@@ -8180,7 +8243,7 @@ points.push(x+3*W/12, y+12*H/12)
 points.push(x+2*W/12, y+12*H/12)
   ctx.stroke()
   drawStars(x,y,W,points, 0.5)
-}  
+}
 
 function swingAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
@@ -8193,7 +8256,7 @@ function swingAt (x,y,W,color) {
   ctx.lineCap = "butt"
   ctx.strokeStyle = color
 
-  let pad = 0, vpad = 0 
+  let pad = 0, vpad = 0
   let x0 = x, y0 = y
   //   /\
   //  /
@@ -8235,7 +8298,7 @@ function swingAt (x,y,W,color) {
   
   y = y0, x = x0
   // swings
-  y += H/2 - H/10 
+  y += H/2 - H/10
   x += 2*dh
   ctx.beginPath()
   ctx.moveTo(x, y)
@@ -8294,7 +8357,7 @@ function jumpropeAt (x,y,W,color) {
   ctx.strokeStyle = "#0000FF"
  // ctx.strokeRect(x,y,W,H)
   ctx.strokeStyle = color
-  let pad = 0, vpad = 0 
+  let pad = 0, vpad = 0
   let x0 = x, y0 = y, r = W/10, points = []
   ctx.beginPath()
   ctx.arc(x+r, y+r, r/1.5, 0, Math.PI*2)
@@ -8319,7 +8382,7 @@ function slide () {
   let color = randomPick(getCurrentPalette())
   let pad = 40
   slideAt (pad,pad,W-pad*2,color)
-} 
+}
 
 function slideArray () {
   let canvas = document.getElementById("myCanvas")
@@ -8360,7 +8423,7 @@ function slideAt (x,y,W,color,n) {
   let x0 = x, y0 = y
   let N = n || randomPick([3,4,5,7,9,11]), i = 0
   let sh = H/N
-  let xo,yo // offsets 
+  let xo,yo // offsets
   let points = []
   ctx.beginPath()
   ctx.moveTo(x,y+H)
@@ -8407,7 +8470,7 @@ points.push(x+W/4,y+H)
 points.push(x+W/2,y)
   ctx.stroke()
   
-  // steps: use sh but with offset from top 
+  // steps: use sh but with offset from top
   ctx.beginPath() // top rung
   ctx.moveTo(x+W/4,y)
 points.push(x+W/4,y)
@@ -8489,7 +8552,7 @@ function lampAt (x,y,W,color,n) {
   let x0 = x, y0 = y
   let N = n || randomPick([3,4,5,7,9,11]), i = 0
   let sh = H/N
-  let xo,yo // offsets 
+  let xo,yo // offsets
   // base
   ctx.beginPath()
   ctx.ellipse(x+W/2, y+H-H/10, W/5, W/10,0,0,Math.PI*2)
@@ -8792,13 +8855,13 @@ function cityAt (x,y,W,color,n) {
   ctx.beginPath()
   ctx.moveTo(x+W/2,y+H/2+H/8)
   ctx.lineTo(x+W/2,y+H)
-  ctx.lineTo(x+3*W/4, y+3*H/4) 
-  ctx.lineTo(x+W,y+H - H/8) 
+  ctx.lineTo(x+3*W/4, y+3*H/4)
+  ctx.lineTo(x+W,y+H - H/8)
   ctx.stroke()
   
   ctx.beginPath()
   ctx.moveTo(x, y+H/2)
-  ctx.lineTo(x+W/4,y+3*H/4 - H/8) 
+  ctx.lineTo(x+W/4,y+3*H/4 - H/8)
   
   ctx.stroke()
   
@@ -8996,7 +9059,7 @@ function rowhousesAt (x,y,W,color,n) {
   ctx.beginPath() // middle wall
   ctx.moveTo(x+W-4*W/8, y+H/4)
   ctx.lineTo(x+W-4*W/8, y+3*H/4+2*H/4/3)
-  ctx.stroke() 
+  ctx.stroke()
 
   
   // door right
@@ -9150,7 +9213,7 @@ function prayerAt (x,y,W,color,n) {
   let divs = randomPick([7,9,11])
   let cx = x + W/2 + W/20, cy = y + H/2 - H/18
   
-  // hand 
+  // hand
   let r = H*0.25, xo = r/10
   ctx.beginPath()
   ctx.arc(x+W/2, y+W-r, r, 0, Math.PI)
@@ -9230,7 +9293,7 @@ function birdAt (x,y,W,color,n) {
   let x0 = x, y0 = y
   let N = n || randomPick([3,4,5,7,9,11]), i = 0
   let sh = H/N
-  let xo,yo // offsets 
+  let xo,yo // offsets
   
   ctx.beginPath()
   ctx.moveTo(x+W/4,y+H/8)
@@ -9248,7 +9311,7 @@ function birdAt (x,y,W,color,n) {
   ctx.beginPath()
   ctx.moveTo(x+W/4,y+H/8)
   cpx1 = x+3*W/4, cpy1 = y- H/10
-  cpx2 = x+3*W/4, cpy2 = y + H/3 
+  cpx2 = x+3*W/4, cpy2 = y + H/3
   ctx.bezierCurveTo(cpx1,cpy1,cpx2,cpy2,x+3*W/4,y+(H-(H/5))/2)
   
   cpx1 = x+3*W/4, cpy1 = y + H/2
@@ -9263,13 +9326,13 @@ function everythingArray () {
   let ctx = canvas.getContext("2d")
   let W = canvas.width, H = canvas.height
   let N = randomPick([7,9,11,13])
-  let functions = shuffle(["gunAt", "skullAt", "prayerAt", "origamiAt", "airplaneAt", "envelopeAt", "sardinesAt", "refractionAt", "firebirdAt", "mothAt",  "spiralAt", "gunAt", "elephantAt", "coreAt", "orbitAt", "lensAt", "pythagAt", "floppyAt", "spiderAt", "shoesAt", "mushroomAt", "catAt", "birbAt", 
-  "pantsAt", "tvAt", "drAt", "fishAt", "cactusAt", "umbrellaAt", "flameAt", 
-  "appleAt", "bridgeAt", "bugAt", "mailboxAt", "rowhousesAt", "jumpropeAt", 
-  "pointhouseAt", "breadAt", "flathouseAt", "flatchairAt", "birdhouseAt", "factoryAt", 
-  "dashedAt", "phaseAt", "leafAt", "allAt", "thenAt", "existAt", "tildeAt", "userAt", 
-  "heartAt", "glassAt", "prayerAt", "thoughtAt", "skullAt", "lampAt", "chairAt", 
-  "stairsAt", "treeAt", "slideAt", "ladderAt", "swingAt"])  
+  let functions = shuffle(["gunAt", "skullAt", "prayerAt", "origamiAt", "airplaneAt", "envelopeAt", "sardinesAt", "refractionAt", "firebirdAt", "mothAt",  "spiralAt", "gunAt", "elephantAt", "coreAt", "orbitAt", "lensAt", "pythagAt", "floppyAt", "spiderAt", "shoesAt", "mushroomAt", "catAt", "birbAt",
+  "pantsAt", "tvAt", "drAt", "fishAt", "cactusAt", "umbrellaAt", "flameAt",
+  "appleAt", "bridgeAt", "bugAt", "mailboxAt", "rowhousesAt", "jumpropeAt",
+  "pointhouseAt", "breadAt", "flathouseAt", "flatchairAt", "birdhouseAt", "factoryAt",
+  "dashedAt", "phaseAt", "leafAt", "allAt", "thenAt", "existAt", "tildeAt", "userAt",
+  "heartAt", "glassAt", "prayerAt", "thoughtAt", "skullAt", "lampAt", "chairAt",
+  "stairsAt", "treeAt", "slideAt", "ladderAt", "swingAt"])
   let pad = 50
   let delta = Math.round(W/N) - pad*1
   let colors = getCurrentPalette()
@@ -9365,7 +9428,7 @@ function airplaneAt (x,y,W,color) {
   ctx.stroke()
   
   drawStars(x,y,W,points)
-}  
+}
 
 function envelopeAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
@@ -9402,7 +9465,7 @@ function envelopeAt (x,y,W,color) {
   ctx.stroke()
 
   drawStars(x,y,W,points)
-}  
+}
 
 function pythagAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
@@ -9448,7 +9511,7 @@ function pythagAt (x,y,W,color) {
   points.push(x+3*W/10, y+6*H/10)
   ctx.stroke()
   drawStars(x,y,W,points,0.1)
-}  
+}
 
 function headAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
@@ -9722,7 +9785,7 @@ function headAt (x,y,W,color) {
   points.push(x+6*W/13, y+6*H/13)
   ctx.stroke()
   drawStars(x,y,W,points)
-}  
+}
 
 function socialnetwork () {
   let canvas = document.getElementById("myCanvas")
@@ -9784,10 +9847,10 @@ function aconst () {
   let W = canvas.width, H = canvas.height
   let colors = ["#f6c2d9","#fff69b","#bcdfc9","#a1c8e9","#e4dae2"]
   let linecolors = getCurrentPalette()
-  let functions = shuffle(["origamiAt", "airplaneAt", "envelopeAt", "sardinesAt", "refractionAt", "firebirdAt", "spiralAt", "gunAt", "elephantAt", "coreAt", 
-  "orbitAt", "lensAt", "pythagAt", "user2At", "mothAt", 
-  "floppyAt", "spiderAt", "factoryAt", "shoesAt", "umbrellaAt", "flathouseAt", 
-  "slideAt", "tvAt", "cactusAt", "flatchairAt", "skullAt", 
+  let functions = shuffle(["origamiAt", "airplaneAt", "envelopeAt", "sardinesAt", "refractionAt", "firebirdAt", "spiralAt", "gunAt", "elephantAt", "coreAt",
+  "orbitAt", "lensAt", "pythagAt", "user2At", "mothAt",
+  "floppyAt", "spiderAt", "factoryAt", "shoesAt", "umbrellaAt", "flathouseAt",
+  "slideAt", "tvAt", "cactusAt", "flatchairAt", "skullAt",
   "bugAt", "stairsAt", "birdhouseAt"])
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let N = 12
@@ -9868,9 +9931,9 @@ function natal () {
   let W = canvas.width, H = canvas.height
   let colors = ["#f6c2d9","#fff69b","#bcdfc9","#a1c8e9","#e4dae2"]
   let linecolors = getCurrentPalette()
-  let functions = shuffle(["origamiAt", "airplaneAt", "envelopeAt", "sardinesAt", "refractionAt","mothAt", "firebirdAt", "spiralAt", "gunAt", "elephantAt", "coreAt", "orbitAt", "lensAt", "pythagAt", 
-  "floppyAt", "spiderAt", "factoryAt", "shoesAt", "umbrellaAt", "flathouseAt", 
-  "slideAt", "tvAt", "cactusAt", "flatchairAt", "skullAt", 
+  let functions = shuffle(["origamiAt", "airplaneAt", "envelopeAt", "sardinesAt", "refractionAt","mothAt", "firebirdAt", "spiralAt", "gunAt", "elephantAt", "coreAt", "orbitAt", "lensAt", "pythagAt",
+  "floppyAt", "spiderAt", "factoryAt", "shoesAt", "umbrellaAt", "flathouseAt",
+  "slideAt", "tvAt", "cactusAt", "flatchairAt", "skullAt",
   "bugAt", "stairsAt", "birdhouseAt"])
   ctx.globalAlpha = document.getElementById("opacity").value/100
 
@@ -9891,7 +9954,7 @@ function natal () {
     window[f](x,y,delta,randomPick (linecolors))
     if (x > W -delta) {
       y += delta*1.4
-      x = delta/3 
+      x = delta/3
     }
     angle += inc
   }
@@ -9977,9 +10040,9 @@ function crazywall () {
   let linecolors = getCurrentPalette()
   let functions = shuffle(["origamiAt", "airplaneAt", "envelopeAt", "sardinesAt", "refractionAt", "mothAt", "firebirdAt", "spiralAt", "gunAt", "elephantAt", "coreAt", "orbitAt", "lensAt", "pythagAt", "floppyAt", "spiderAt", "shoesAt", "mushroomAt", "catAt", "birbAt",
    "pantsAt", "tvAt", "drAt", "fishAt", "cactusAt", "umbrellaAt", "flameAt",
-    "appleAt", "bridgeAt", "bugAt", "mailboxAt", "jumpropeAt", "pointhouseAt", "breadAt", 
-    "flathouseAt", "flatchairAt", "birdhouseAt", "factoryAt", "dashedAt", "phaseAt", 
-    "leafAt", "allAt", "thenAt", "existAt", "tildeAt", "userAt", "heartAt", "glassAt", "prayerAt", "thoughtAt", "skullAt", "lampAt", "chairAt", 
+    "appleAt", "bridgeAt", "bugAt", "mailboxAt", "jumpropeAt", "pointhouseAt", "breadAt",
+    "flathouseAt", "flatchairAt", "birdhouseAt", "factoryAt", "dashedAt", "phaseAt",
+    "leafAt", "allAt", "thenAt", "existAt", "tildeAt", "userAt", "heartAt", "glassAt", "prayerAt", "thoughtAt", "skullAt", "lampAt", "chairAt",
   "stairsAt", "treeAt", "slideAt", "ladderAt", "swingAt"])
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.shadowBlur = 10
@@ -10244,7 +10307,7 @@ function user2At (x,y,W,color) {
   points.push(x+3*W/12, y+2*H/12)
   ctx.lineTo(x+9*W/12, y+2*H/12)
   if (Math.random() > 0.8) {
-    points.push(x+9*W/12, y+2*H/12) 
+    points.push(x+9*W/12, y+2*H/12)
     ctx.stroke()
   }
   ctx.beginPath() // beard
@@ -10260,7 +10323,7 @@ function user2At (x,y,W,color) {
   points.push(x+8*W/12, y+4*H/12)
   ctx.lineTo(x+4*W/12, y+4*H/12)
   if (Math.random() > 0.8) {
-    points.push(x+4*W/12, y+4*H/12) 
+    points.push(x+4*W/12, y+4*H/12)
     ctx.stroke()
   }
   
@@ -10290,7 +10353,7 @@ function user2At (x,y,W,color) {
   cpy = y+6*H/12
   ctx.quadraticCurveTo(cpx, cpy, x+7*W/12, y+5*H/12)
   if (Math.random() > 0.8) {
-    points.push(x+7*W/12, y+5*H/12) 
+    points.push(x+7*W/12, y+5*H/12)
     ctx.stroke()
   }
 
@@ -10368,7 +10431,7 @@ function user2At (x,y,W,color) {
     ctx.stroke()
   }
   drawStars(x,y,W,points,0.01)
-}  
+}
 
 function origamiAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
@@ -10438,7 +10501,7 @@ function origamiAt (x,y,W,color) {
   ctx.lineTo(x+8.5*W/10, y+5.5*H/10)
   ctx.stroke()
   drawStars(x,y,W,points)
-}  
+}
 
 function pocket2At (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
@@ -10529,7 +10592,7 @@ function pocket2At (x,y,W,color) {
   ctx.stroke()
   
   drawStars(x,y,W,points)
-}  
+}
 
 function foldedAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
@@ -10601,7 +10664,7 @@ function foldedAt (x,y,W,color) {
   ctx.setLineDash([])
   ctx.shadowBlur = 0
   drawStars(x,y,W,points)
-}  
+}
 
 function foldedbackAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
@@ -10693,7 +10756,7 @@ function foldedbackAt (x,y,W,color) {
   ctx.setLineDash([])
   ctx.shadowBlur = 0
   drawStars(x,y,W,points)
-}  
+}
 
 function foldedback2At (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
@@ -10774,7 +10837,7 @@ function foldedback2At (x,y,W,color) {
   ctx.setLineDash([])
   ctx.shadowBlur = 0
   drawStars(x,y,W,points)
-}  
+}
 
 function updownAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
@@ -10918,7 +10981,7 @@ function updownAt (x,y,W,color) {
 
   ctx.setLineDash([])
   drawStars(x,y,W,points)
-}  
+}
 
 
 function refractionAt (x,y,W,color) {
@@ -11051,7 +11114,7 @@ function refractionAt (x,y,W,color) {
   ctx.stroke()
   
   drawStars(x,y,W,points)
-}  
+}
 
 function sardinesAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
@@ -11337,7 +11400,7 @@ function refractfishAt (x,y,W,color) {
   ctx.stroke()
   
   drawStars(x,y,W,points)
-}  
+}
 
 function fiss3At (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
@@ -11514,7 +11577,7 @@ function fiss3At (x,y,W,color) {
   points.push(x+12*W/12, y+4*H/12)
   ctx.stroke()
   drawStars(x,y,W,points)
-}  
+}
 
 function fiss2At (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
@@ -11685,7 +11748,7 @@ function fiss2At (x,y,W,color) {
   ctx.stroke()
  
   drawStars(x,y,W,points)
-}  
+}
 
 function fissAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
@@ -11868,7 +11931,7 @@ function fissAt (x,y,W,color) {
   ctx.stroke()
   
   drawStars(x,y,W,points,0.2)
-}  
+}
 
 function ohoneAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
@@ -11948,7 +12011,7 @@ function ohoneAt (x,y,W,color) {
   points.push(x+9*W/14, y+2*H/14)
   ctx.stroke()
   drawStars(x,y,W,points)
-}  
+}
 
 function mothAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
@@ -12096,7 +12159,7 @@ function mothAt (x,y,W,color) {
   points.push(x+3*W/12, y+0*H/12)
   ctx.stroke()
   drawStars(x,y,W,points)
-}  
+}
 
 function vineAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
@@ -12306,7 +12369,7 @@ function vineAt (x,y,W,color) {
   points.push(x+8*W/10, y+5*H/10)
   ctx.stroke()
   drawStars(x,y,W,points)
-}  
+}
 
 function firebirdAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
@@ -12669,7 +12732,7 @@ function firebirdAt (x,y,W,color) {
   points.push(x+5*W/12, y+0*H/12)
   ctx.stroke()
   drawStars(x,y,W,points)
-}  
+}
 
 function face2At (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
@@ -12827,7 +12890,7 @@ function face2At (x,y,W,color) {
   points.push(x+9*W/12, y+11*H/12)
   ctx.stroke()
   drawStars(x,y,W,points)
-}  
+}
 
 function floppyAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
@@ -12939,7 +13002,7 @@ points.push(x+4*W/16, y+4*H/16)
   ctx.quadraticCurveTo(cpx, cpy, x+5*W/16, y+5*H/16)
   ctx.stroke()
   drawStars(x,y,W,points)
-}  
+}
 
 function pantsAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
@@ -13045,7 +13108,7 @@ function spiralAt (x,y,W,color) {
   points.push(x+12*W/12, y+3*H/12)
   ctx.stroke()
   drawStars(x,y,W,points)
-}  
+}
 
 function mushroomAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
@@ -13388,7 +13451,7 @@ function elephantAt (x,y,W,color) {
   points.push(x+8*W/12, y+8*H/12)
   ctx.stroke()
   drawStars(x,y,W,points)
-} 
+}
 
 function cactusAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
@@ -13901,7 +13964,7 @@ function lensAt (x,y,W,color) {
  
   ctx.stroke()
   drawStars(x,y,W,points)
-}  
+}
 
 function orbitAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
@@ -13984,7 +14047,7 @@ function orbitAt (x,y,W,color) {
   points.push(x+5*W/10, y+8*H/10)
   ctx.stroke()
   drawStars(x,y,W,points)
-}  
+}
 
 function coreAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
@@ -14072,7 +14135,7 @@ function coreAt (x,y,W,color) {
   points.push(x+5*W/10, y+0*H/10)
   ctx.stroke()
   drawStars(x,y,W,points,0.1)
-}  
+}
 
 function tvAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
@@ -14318,13 +14381,13 @@ function everythingSymb () {
   let N = randomPick([2,3,4])
   if (document.getElementById("grungy").checked)
     N = 1
-  let functions = shuffle(["origamiAt", "airplaneAt", "envelopeAt", "sardinesAt", "refractionAt", "mothAt", "firebirdAt", "spiralAt", "gunAt", "elephantAt", "coreAt", "orbitAt", "lensAt", "pythagAt", "floppyAt", "spiderAt", "shoesAt", 
-  "mushroomAt", "catAt", "birbAt", "pantsAt", "tvAt", "drAt", "fishAt", "cactusAt", "umbrellaAt", "flameAt", 
-  "appleAt", "bridgeAt", "bugAt", "mailboxAt", "rowhousesAt", "jumpropeAt", 
-  "pointhouseAt", "breadAt", "flathouseAt", "flatchairAt", "birdhouseAt", "factoryAt", 
-  "dashedAt", "phaseAt", "leafAt", "allAt", "thenAt", "existAt", "tildeAt", "userAt", 
-  "heartAt", "glassAt", "prayerAt", "thoughtAt", "skullAt", "lampAt", "chairAt", 
-  "stairsAt", "treeAt", "slideAt", "ladderAt", "swingAt"])  
+  let functions = shuffle(["origamiAt", "airplaneAt", "envelopeAt", "sardinesAt", "refractionAt", "mothAt", "firebirdAt", "spiralAt", "gunAt", "elephantAt", "coreAt", "orbitAt", "lensAt", "pythagAt", "floppyAt", "spiderAt", "shoesAt",
+  "mushroomAt", "catAt", "birbAt", "pantsAt", "tvAt", "drAt", "fishAt", "cactusAt", "umbrellaAt", "flameAt",
+  "appleAt", "bridgeAt", "bugAt", "mailboxAt", "rowhousesAt", "jumpropeAt",
+  "pointhouseAt", "breadAt", "flathouseAt", "flatchairAt", "birdhouseAt", "factoryAt",
+  "dashedAt", "phaseAt", "leafAt", "allAt", "thenAt", "existAt", "tildeAt", "userAt",
+  "heartAt", "glassAt", "prayerAt", "thoughtAt", "skullAt", "lampAt", "chairAt",
+  "stairsAt", "treeAt", "slideAt", "ladderAt", "swingAt"])
   let pad = 60
   padT = 2*pad + (N-1) * pad
   let delta = Math.round(W/N) - padT/N
@@ -14793,7 +14856,7 @@ function core3At (x,y,W,color) {
   ctx.clip()
   ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
   ctx.restore()
-}  
+}
 
 function core2At (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
@@ -14881,7 +14944,7 @@ function core2At (x,y,W,color) {
   ctx.clip()
   ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
   ctx.restore()
-}  
+}
 
 function gunAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
@@ -14975,7 +15038,7 @@ function gunAt (x,y,W,color) {
   points.push(x+4*W/12, y+5*H/12)
   ctx.stroke()
   drawStars(x,y,W,points)
-}  
+}
 
 function telephoneAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
@@ -15354,7 +15417,7 @@ function dresserAt (x,y,W,color) {
   ctx.lineTo(x+di*7, y+d+pet(3))
   ctx.lineTo(x+di*7, y+d-di+pet(3))
 
-  ctx.lineTo(x+d-di+pet(3),y+8*di)  
+  ctx.lineTo(x+d-di+pet(3),y+8*di)
   ctx.lineTo(x+d-di+pet(3),y+8.5*di)
   ctx.lineTo(x+d+pet(3),y+8.5*di)
 
@@ -16107,7 +16170,7 @@ function dotArray () {
   let W = canvas.width, H = canvas.height
   let N = randomPick([5,6,7,4,11])
   let alpha = document.getElementById("opacity").value/100
-  let r = 4+document.getElementById("featuresize").value/20 
+  let r = 4+document.getElementById("featuresize").value/20
   let delta = W/N
   let pad = delta/2, inset = 0
   let x = 0, y = 0, i = 0, cnt = 0
@@ -16532,7 +16595,7 @@ function twohemispheres () {
     sa = Math.PI * 0.5
     ea = Math.PI * 1.5
   }
-  y = H/2 + pet(9) 
+  y = H/2 + pet(9)
   ctx.fillStyle = randomPick(colors)
   ctx.beginPath()
   ctx.arc(x,y,r, sa, ea)
@@ -16551,9 +16614,9 @@ function cornercurve () { // ragged (ctx,endX,endY,x,y)
   let pad = 20, x = pad, y = pad
   let p = 30
   if (alt) {
-    H /= 2 
+    H /= 2
     H += pad
-    W /= 2 
+    W /= 2
     W += pad - 3
   }
   ctx.fillStyle = colors[0]
@@ -16917,15 +16980,15 @@ function rose () { // chemotaxis like
   let angle = Math.random() * 6.28
   let n = 0, end = 5000
   let shrink = W * 0.37
-  let grow = W * 0.05 
+  let grow = W * 0.05
   let inc = false, dec = false
   let turn = false
   let A = 0.01 + Math.random()/90
   let lw = fs/4, a = 1.6*Math.PI
-  let turnAt = W*0.33*size 
+  let turnAt = W*0.33*size
   let k = lw/7
-  let x = cx 
-  let y = cy 
+  let x = cx
+  let y = cy
   let increment = 1.001, DIR = true
   let INC = 0, BEC = end/2, gs = 0
   for (; n < end; n++) {
@@ -16954,7 +17017,7 @@ function rose () { // chemotaxis like
         angle += A + pet(k/4)/k/2
       else
         angle += pet(k)
-    } 
+    }
   }
 }
 
@@ -18765,7 +18828,7 @@ function hand () {
   ctx.arc(W/2, W*0.65, r, 0, Math.PI)
   ctx.lineTo(W/2 - r, H/2)
   x = W/2-r+xo*2
-  y = H/2 
+  y = H/2
   ctx.arc(x, y, xo*2, Math.PI, Math.PI*2) // thumb
   x += xo*2
   y = H/2 + H/8
@@ -20384,8 +20447,8 @@ function hstripes_sml (canvas) {
 function multiScraps () {
   let canvas = document.getElementById("myCanvas")
   let W = canvas.width, H = canvas.height
-  let functions = shuffle(["typo", "scripto", "pageOfBook", "formDec", 
-  "form2", "gridpaper", "snow", 
+  let functions = shuffle(["typo", "scripto", "pageOfBook", "formDec",
+  "form2", "gridpaper", "snow",
   "hstripes_sml", "crosswordPad", "gridLog", "moleText", "index"])
   let N = 7, i = 0
   for (; i < N; i++) {
@@ -20393,7 +20456,7 @@ function multiScraps () {
   }
 }
 
-function tapeText (f) { 
+function tapeText (f) {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let oc = document.createElement('canvas')
@@ -20474,7 +20537,7 @@ function fillOC (oc, occtx) { // ...with a paper pattern
   let colors = shuffle(getCurrentPalette(true,13))
   occtx.fillStyle = randomPick(colors)
   occtx.fillRect(0,0, oc.width, oc.height)
-  let f = randomPick([ "stepchart", /*"scripto",*/ /*"pageOfBook", */"formDec", 
+  let f = randomPick([ "stepchart", /*"scripto",*/ /*"pageOfBook", */"formDec",
   "form2", "gridpaper", "griddiag", "griddiagd",
   "gridLog"])//, "moleText", "index"])
   window[f](oc)
@@ -22100,7 +22163,7 @@ function griddots () {
   let W = canvas.width
   let H = W
   let mod = randomPick([2,3,4])
-  ctx.lineWidth = 2 
+  ctx.lineWidth = 2
   let divs = 12 + Math.floor(document.getElementById("featuresize").value/8)
   let pad = 0
   if (document.getElementById("grungy").checked)
@@ -22148,7 +22211,7 @@ function griddiagd (canvas) {
   let colors = shuffle(getCurrentPalette(true,13))
   let W = canvas.width
   let H = W
-  ctx.lineWidth = 2 
+  ctx.lineWidth = 2
   let divs = 12 + Math.floor(document.getElementById("featuresize").value/8)
   let pad = 0
   if (document.getElementById("grungy").checked)
@@ -22199,7 +22262,7 @@ function griddiag (canvas) {
   let colors = shuffle(getCurrentPalette(true,13))
   let W = canvas.width
   let H = W
-  ctx.lineWidth = 2 
+  ctx.lineWidth = 2
   let divs = 12 + Math.floor(document.getElementById("featuresize").value/8)
   let pad = 0
   if (document.getElementById("grungy").checked)
@@ -22308,7 +22371,7 @@ function gridLinear (canvas) {
     if (i % 10 === 0)
       ctx.lineWidth = 3
       else
-      ctx.lineWidth = 1  
+      ctx.lineWidth = 1
   }
   randomPick(getCurrentPalette()) // was paintcolor = color
 }
@@ -22534,7 +22597,7 @@ function script (canvas) {
     if (Math.random() < 0.23 && alt) {
       cy1 -= 2*fs
     }
-    bez_pts (x,y,cx1+pet(D*fs),cy1+pet(D*fs),cx2+pet(D*fs),cy2+pet(D*fs), x+bump, y,ctx)    
+    bez_pts (x,y,cx1+pet(D*fs),cy1+pet(D*fs),cx2+pet(D*fs),cy2+pet(D*fs), x+bump, y,ctx)
     // occasional dot or cross
     if (Math.random() < 0.08) {
       x2 = x + pet(fs/3)
@@ -31508,7 +31571,7 @@ function offpaintbrush (color, fs) {
   ctx.globalAlpha = 0.1
   let maxradius = 4 + document.getElementById("featuresize").value/10
   if (fs)
-    maxradius = fs 
+    maxradius = fs
   ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
   if (color)
     ctx.fillStyle = color
@@ -31540,7 +31603,7 @@ function crayAt (x,y,ctx, fs) {
   ctx.drawImage(canvasoff, x, y)
 }
 
-function bez_pts_cray (ax,ay, bx,by, cx,cy, dx, dy, ctx, fs) { 
+function bez_pts_cray (ax,ay, bx,by, cx,cy, dx, dy, ctx, fs) {
   // b and c are control points, a = start, d = end
   let t = 0, a = 1.3*Math.PI
   for (; t < 1; t += 0.005) {
@@ -31550,7 +31613,7 @@ function bez_pts_cray (ax,ay, bx,by, cx,cy, dx, dy, ctx, fs) {
     let B3_t = t*t*t
     let px_t = (B0_t * ax) + (B1_t * bx) + (B2_t * cx) + (B3_t * dx)
     let py_t = (B0_t * ay) + (B1_t * by) + (B2_t * cy) + (B3_t * dy)
-    // draw at x,y here or 
+    // draw at x,y here or
     crayAt(px_t, py_t, ctx, fs)
   }
 }
@@ -31591,9 +31654,9 @@ function crayonScript () {
     } else
     if (Math.random() < 0.23) {
       cy1 -= 2*fs
-    }*/ 
-    bez_pts_cray (x,y,cx1+pet(D*fs),cy1+pet(D*fs),cx2+pet(D*fs),cy2+pet(D*fs), x+bump, y, ctx)   
-    /* 
+    }*/
+    bez_pts_cray (x,y,cx1+pet(D*fs),cy1+pet(D*fs),cx2+pet(D*fs),cy2+pet(D*fs), x+bump, y, ctx)
+    /*
     // occasional dot or cross
     if (Math.random() < 0.0) {
       x2 = x + pet(fs/3)
@@ -31620,7 +31683,7 @@ function paintDrips () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d");
   let W = canvas.width
-  let H = canvas.height 
+  let H = canvas.height
   let i = 0, n = 5 + Math.random() * 5
   for (; i < n; i++)
     paintDrip(W*Math.random(), H*Math.random())
@@ -31696,7 +31759,7 @@ function offdrops (color) {
 
 function fog (canvas, color) {
   
-  if (!canvas) 
+  if (!canvas)
     canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let W = canvas.width
@@ -33059,7 +33122,7 @@ function drawShape (line) {
       for (; i < pk.length; i++) {
         j = 0
         for (; j < 2; j++) {
-          pk[i][j] = pk[i][j] * s 
+          pk[i][j] = pk[i][j] * s
           buff.push(pk[i][j])
         }
         crayAt(pk[i][0], pk[i][1], ctx,fs*2)
