@@ -676,12 +676,14 @@
           <option value="4411">4,4,1,1</option>
           <option value="3331">3,3,3,1</option>
           <option value="primary" >primary</option>
+          <option value="bnw">b & w</option>
+          <option value="cmy">cmy</option>
           <option value="vivid">vivid</option>
           <option value="afklint">af klint</option>
           <option value="afklint2">af klint(2)</option>
           <option value="gertrudeabercrombie">abercrombie</option>
           <option value="dali">dali</option>
-          <option value="cmy">cmy</option>
+          
           <option value="rainbow">rainbow</option>
           <option value="monokai">monokai</option>
           <option value="rust">rust</option>
@@ -913,7 +915,22 @@ function toggleGridBox () {
 function drawD () {
   let c = document.getElementById("myCanvas")
   var ctx = c.getContext('2d');
-  
+ // let ocanvas = document.createElement('CANVAS')
+  //let octx = ocanvas.getContext('2d')
+  //ocanvas.width = canvas.width * 2
+  copyCode()
+  let txt = document.getElementById("text1").value
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctx.globalCompositeOperation = document.getElementById("mode").value
+  eval(txt)
+ 
+}
+/*
+function drawD_og () {
+  let c = document.getElementById("myCanvas")
+  var ctx = c.getContext('2d');
+  let ocanvas = document.getElementById('off')
+  let octx = ocanvas.getContext('2d')
   makeHighRes(c)
   copyCode()
   let txt = document.getElementById("text1").value
@@ -926,7 +943,6 @@ function drawD () {
 }
 
 function setNormalRes (c) {
- // copyToOff()
   var ctx = c.getContext('2d');
   let ocanvas = document.getElementById('off')
   let octx = ocanvas.getContext('2d')
@@ -936,41 +952,16 @@ function setNormalRes (c) {
   ctx.globalAlpha = 1.0
   ocanvas.height = c.height
   ocanvas.width = c.width
+  //octx.imageSmoothingEnabled =false
   octx.drawImage(c, 0, 0)
-  c.width = 1080, c.height = 1080/*
-  // console.log(c.width)
-  //if (c.width >= 2160) return
-  // finally query the various pixel ratios
-  var devicePixelRatio = window.devicePixelRatio || 1;
-  var backingStoreRatio = ctx.webkitBackingStorePixelRatio ||
-      ctx.mozBackingStorePixelRatio ||
-      ctx.msBackingStorePixelRatio ||
-      ctx.oBackingStorePixelRatio ||
-      ctx.backingStorePixelRatio || 1;
-  var ratio = 1//devicePixelRatio / backingStoreRatio;
-  //console.log(devicePixelRatio)
-  // upscale canvas if the two ratios don't match
-  if (true) {
-      var oldWidth = c.width;
-      var oldHeight = c.height;
-      c.width = Math.round(oldWidth * ratio);
-      c.height = Math.round(oldHeight * ratio);
-      c.style.width = oldWidth + 'px';
-      c.style.height = oldHeight + 'px';
-      // now scale the context to counter
-      // the fact that we've manually scaled
-      // our canvas element
-      ctx.scale(ratio, ratio);
-  }*/
-  //syncBackground(c)
+  c.width = 1080, c.height = 1080
+ // ctx.imageSmoothingEnabled =false
   ctx.drawImage(ocanvas,0,0,c.width,c.height)
 }
 
 function makeHighRes (c) {
   var ctx = c.getContext('2d');
-  // console.log(c.width)
   if (c.width >= 2160) return
-  
   let ocanvas = document.getElementById('off')
   let octx = ocanvas.getContext('2d')
   let mode = ctx.globalCompositeOperation
@@ -979,18 +970,10 @@ function makeHighRes (c) {
   ctx.globalAlpha = 1.0
   ocanvas.height = c.height
   ocanvas.width = c.width
+  //octx.imageSmoothingEnabled =false
   octx.drawImage(c, 0, 0)
-  // finally query the various pixel ratios
-  var devicePixelRatio = window.devicePixelRatio || 1;
-  var backingStoreRatio = ctx.webkitBackingStorePixelRatio ||
-      ctx.mozBackingStorePixelRatio ||
-      ctx.msBackingStorePixelRatio ||
-      ctx.oBackingStorePixelRatio ||
-      ctx.backingStorePixelRatio || 1;
   var ratio = 2//devicePixelRatio / backingStoreRatio;
-  //console.log(devicePixelRatio)
-  // upscale canvas if the two ratios don't match
-  if (devicePixelRatio !== backingStoreRatio) {
+  if (true) {
       var oldWidth = c.width;
       var oldHeight = c.height;
       c.width = Math.round(oldWidth * ratio);
@@ -1002,9 +985,9 @@ function makeHighRes (c) {
       // our canvas element
       ctx.scale(ratio, ratio);
   }
-  //console.log(c.width)
+  //ctx.imageSmoothingEnabled =false
   ctx.drawImage(ocanvas,0,0,c.width/2,c.height/2)
-}
+}*/
 
 window.onload = function () {
   let myCanvas = document.getElementById("myCanvas")
@@ -1615,6 +1598,10 @@ function loadPalette (PUSH) {
     ]
     updateExtraColors(b)
     return
+  } else
+  if (type === 'bnw') {
+    b = ["#000000", "#ffffff"]
+    updateExtraColors(b)
   } else
   if (type === 'dali') {
     b = ["#9d4305", "#271100", "#a95912", "#5b3a08", "#2f2513", "#674c18", "#c0a651", "#f4d673", "#837648", "#d8d18b", "#dce5c6", "#9bb7a0", "#65826e"]

@@ -11,12 +11,10 @@ let code = [], cpx, cpy
 function initOC () {
   let canvas = document.getElementById('myDCanvas')
   let ctx = canvas.getContext('2d')
-  
   let lastx, lasty, lx, ly
   lastpoints = []
-  
   let ocd = document.createElement('canvas')
-  ocd.height = canvas.height, ocd.width = canvas.width
+  ocd.height = canvas.height*2, ocd.width = canvas.width*2
   let gs = document.getElementById("gridsize").value
   GRIDSIZE = gs, CELLSIZE = canvas.width/GRIDSIZE
   offdctx = ocd.getContext('2d')
@@ -32,11 +30,11 @@ function initOC () {
     if (INDEX === 0) {
       ITEM++
       code.push("  //"+ITEM)
-      /*code.push("  if (PATTERN)")
+      code.push("  if (PATTERN)")
       code.push("    fillOC(oc, occtx)")
-      code.push("  ctx.save()")*/
-      code.push("  resctx.beginPath()")
-      code.push("  resctx.moveTo(x+"+Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE+", y+"+Math.round(mousePos.y/CELLSIZE)+"*H/"+GRIDSIZE+")")
+      code.push("  ctx.save()")
+      code.push("  ctx.beginPath()")
+      code.push("  ctx.moveTo(x+"+Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE+", y+"+Math.round(mousePos.y/CELLSIZE)+"*H/"+GRIDSIZE+")")
       ctx.lineWidth = 4
       ctx.beginPath()
       lastx = Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE
@@ -50,7 +48,7 @@ function initOC () {
       // if (document.getElementById("ragged").checked)
       //   code.push("  ragged(ctx, x+"+Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE+", y+"+Math.round(mousePos.y/CELLSIZE)+"*H/"+GRIDSIZE+", "+lx+", "+ly+")")
       // else
-        code.push("  resctx.lineTo(x+"+Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE+", y+"+Math.round(mousePos.y/CELLSIZE)+"*H/"+GRIDSIZE+")")
+        code.push("  ctx.lineTo(x+"+Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE+", y+"+Math.round(mousePos.y/CELLSIZE)+"*H/"+GRIDSIZE+")")
         ctx.lineTo(Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE, Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE)
         lastx = Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE
         lasty = Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE
@@ -85,7 +83,7 @@ function initOC () {
           ctx.setLineDash([4, 4])
           ctx.strokeStyle = "#ff4444"
         } else {
-          code.push("  resctx.quadraticCurveTo(cpx, cpy, x+"+Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE+", y+"+Math.round(mousePos.y/CELLSIZE)+"*H/"+GRIDSIZE+")")
+          code.push("  ctx.quadraticCurveTo(cpx, cpy, x+"+Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE+", y+"+Math.round(mousePos.y/CELLSIZE)+"*H/"+GRIDSIZE+")")
           ctx.quadraticCurveTo(cpx, cpy, Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE, Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE)
           ctx.strokeStyle = "#ff4444"
           ctx.lineWidth = 4
@@ -149,16 +147,13 @@ function closePath () {
   ITEMS.push(lastpoints)
   lastpoints = []
   if (document.getElementById("gradient").checked)
-    code.push("  if ("+FILL+") {\n    resctx.fillStyle = randomGradientPal()\n  n += randomPick([1,2])\n    resctx.fill()\n}")
+    code.push("  if ("+FILL+") {\n    ctx.fillStyle = randomGradientPal()\n  n += randomPick([1,2])\n    ctx.fill()\n  }")
   else
-    code.push("  if ("+FILL+") {\n    resctx.fillStyle = colors[n%colors.length]\n  n += randomPick([1,2])\n    resctx.fill()\n}")
-  //code.push("  ctx.clip()")
-  //code.push("  if (PATTERN)\n    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)")
-  //code.push("  ctx.restore()")
-  code.push("  if ("+STROKE+") {\n  resctx.lineWidth = "+LW+"\n  resctx.strokeStyle = randomPick(colors)\n    resctx.stroke()\n  }")
-  
-  code.push("  ctx.drawImage(res,0,0,res.width,res.height,0,0,res.width,res.height)")
-  
+    code.push("  if ("+FILL+") {\n    ctx.fillStyle = colors[n%colors.length]\n  n += randomPick([1,2])\n    ctx.fill()\n  }")
+  code.push("  ctx.clip()")
+  code.push("  if (PATTERN)\n    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)")
+  code.push("  ctx.restore()")
+  code.push("  if ("+STROKE+") {\n  ctx.lineWidth = "+LW+"\n  ctx.strokeStyle = randomPick(colors)\n    ctx.stroke()\n  }")
   ctx.setLineDash([])
   ctx.globalAlpha = 1
   ctx.strokeStyle = "#ff4444"
@@ -168,47 +163,6 @@ function closePath () {
   showPoints()
 }
 
-
-function debugS () {
-  let x = 0, y = 0, W = 1080
-  let canvas = document.getElementById("myCanvas")
-  let ctx = canvas.getContext("2d")
-  let res = document.createElement('canvas')
-  res.height = canvas.height*2, res.width = canvas.width*2
-  console.log(res.width)
-  let resctx = res.getContext('2d')
-  let oc = document.createElement('canvas')
-  let occtx = oc.getContext("2d")
-  oc.height = canvas.height, oc.width = canvas.width
-  let colors = shuffle(getCurrentPalette(true,13))
-  let H = W, cpx, cpy, points = [], n = 0
-  let STROKE = false, FILL = true, PATTERN = false
-  resctx.lineWidth = 1 + document.getElementById("featuresize").value/5
-  resctx.strokeStyle = randomPick(colors)
-  resctx.fillStyle = randomPick(colors)
-  resctx.strokeStyle = 'black'
-  resctx.lineCap = "square"
-  resctx.lineJoin = "meter"
-
-  //1
-  resctx.beginPath()
-  resctx.moveTo(x+12*W/24, y+4*H/24)
-  resctx.lineTo(x+12*W/24, y+14*H/24)
-  resctx.lineTo(x+24*W/24, y+14*H/24)
-  resctx.lineTo(x+24*W/24, y+3*H/24)
-  if (true) {
-    resctx.fillStyle = randomGradientPal()
-  n += randomPick([1,2])
-    resctx.fill()
-  console.log(res.width, canvas.width)
-  ctx.drawImage(res,0,0,res.width,res.height,0,0,res.width,res.height)}
-  if (false) {
-  resctx.lineWidth = 2.25
-  resctx.strokeStyle = randomPick(colors)
-    resctx.stroke()
-  }
-  
-}
 function undoLast () {
   closePath()
   if (ITEM < 1) 
@@ -262,21 +216,18 @@ function showPoints () {
   let header = "  let x = 0, y = 0, W = 1080\n\
   let canvas = document.getElementById(\"myCanvas\")\n\
   let ctx = canvas.getContext(\"2d\")\n\
-  let res = document.createElement('canvas')\n\
-  res.height = canvas.height*2, res.width = canvas.width*2\n\
-  let resctx = res.getContext('2d')\n\
   let oc = document.createElement('canvas')\n\
   let occtx = oc.getContext(\"2d\")\n\
   oc.height = canvas.height, oc.width = canvas.width\n\
   let colors = shuffle(getCurrentPalette(true,13))\n\
   let H = W, cpx, cpy, points = [], n = 0\n\
   let STROKE = "+STROKE+", FILL = "+FILL+", PATTERN = false\n\
-  resctx.lineWidth = 1 + document.getElementById(\"featuresize\").value/5\n\
-  resctx.strokeStyle = randomPick(colors)\n\
-  resctx.fillStyle = randomPick(colors)\n\
-  resctx.strokeStyle = 'black'\n\
-  resctx.lineCap = \"square\"\n\
-  resctx.lineJoin = \"meter\"\n\n"
+  ctx.lineWidth = 1 + document.getElementById(\"featuresize\").value/5\n\
+  ctx.strokeStyle = randomPick(colors)\n\
+  ctx.fillStyle = randomPick(colors)\n\
+  ctx.strokeStyle = 'black'\n\
+  ctx.lineCap = \"square\"\n\
+  ctx.lineJoin = \"meter\"\n\n"
   document.getElementById("text1").value = header
   document.getElementById("text1").value += code.join("\n")
 }
