@@ -156,8 +156,10 @@ function closePath () {
   //code.push("  if (PATTERN)\n    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)")
   //code.push("  ctx.restore()")
   code.push("  if ("+STROKE+") {\n  resctx.lineWidth = "+LW+"\n  resctx.strokeStyle = randomPick(colors)\n    resctx.stroke()\n  }")
-  
-  code.push("  ctx.drawImage(res,0,0,res.width,res.height,0,0,res.width,res.height)")
+  code.push("  ctx.imageSmoothingEnabled = true")
+  code.push("  ctx.imageSmoothingQuality = 'high'")
+  //code.push("console.log(res.width, canvas.width)")
+  code.push("  ctx.drawImage(res,0,0,res.width,res.height,0,0,canvas.width,canvas.height)")
   
   ctx.setLineDash([])
   ctx.globalAlpha = 1
@@ -168,47 +170,47 @@ function closePath () {
   showPoints()
 }
 
-
-function debugS () {
-  let x = 0, y = 0, W = 1080
-  let canvas = document.getElementById("myCanvas")
-  let ctx = canvas.getContext("2d")
-  let res = document.createElement('canvas')
-  res.height = canvas.height*2, res.width = canvas.width*2
-  console.log(res.width)
-  let resctx = res.getContext('2d')
-  let oc = document.createElement('canvas')
-  let occtx = oc.getContext("2d")
-  oc.height = canvas.height, oc.width = canvas.width
-  let colors = shuffle(getCurrentPalette(true,13))
-  let H = W, cpx, cpy, points = [], n = 0
-  let STROKE = false, FILL = true, PATTERN = false
-  resctx.lineWidth = 1 + document.getElementById("featuresize").value/5
-  resctx.strokeStyle = randomPick(colors)
-  resctx.fillStyle = randomPick(colors)
-  resctx.strokeStyle = 'black'
-  resctx.lineCap = "square"
-  resctx.lineJoin = "meter"
-
-  //1
-  resctx.beginPath()
-  resctx.moveTo(x+12*W/24, y+4*H/24)
-  resctx.lineTo(x+12*W/24, y+14*H/24)
-  resctx.lineTo(x+24*W/24, y+14*H/24)
-  resctx.lineTo(x+24*W/24, y+3*H/24)
-  if (true) {
-    resctx.fillStyle = randomGradientPal()
-  n += randomPick([1,2])
-    resctx.fill()
-  console.log(res.width, canvas.width)
-  ctx.drawImage(res,0,0,res.width,res.height,0,0,res.width,res.height)}
-  if (false) {
-  resctx.lineWidth = 2.25
-  resctx.strokeStyle = randomPick(colors)
-    resctx.stroke()
+function showPoints () {
+  if (ITEM <= 0) {
+    document.getElementById("text1").value = ""
+    return
   }
-  
+  let FILL = false, STROKE = false
+  let fs = document.getElementById("fillstroke").value
+  if (fs === "fill") 
+    FILL = true
+  else
+    STROKE = true
+  let header = "  let x = 0, y = 0, W = 1080*2\n\
+  let canvas = document.getElementById(\"myCanvas\")\n\
+  let ctx = canvas.getContext(\"2d\")\n\
+  let res = document.createElement('canvas')\n\
+  res.height = canvas.height*2, res.width = canvas.width*2\n\
+  let resctx = res.getContext('2d')\n\
+  let oc = document.createElement('canvas')\n\
+  let occtx = oc.getContext(\"2d\")\n\
+  oc.height = canvas.height, oc.width = canvas.width\n\
+  let colors = shuffle(getCurrentPalette(true,13))\n\
+  let H = W, cpx, cpy, points = [], n = 0\n\
+  let STROKE = "+STROKE+", FILL = "+FILL+", PATTERN = false\n\
+  resctx.lineWidth = 1 + document.getElementById(\"featuresize\").value/5\n\
+  resctx.strokeStyle = randomPick(colors)\n\
+  resctx.fillStyle = randomPick(colors)\n\
+  resctx.strokeStyle = 'black'\n\
+  resctx.lineCap = \"square\"\n\
+  resctx.lineJoin = \"meter\"\n\n"
+  document.getElementById("text1").value = header
+  document.getElementById("text1").value += code.join("\n")
 }
+
+function getMousePos(canvas, evt) {
+  let rect = canvas.getBoundingClientRect()
+  return {
+    x: Math.round(evt.clientX - rect.left),
+    y: Math.round(evt.clientY - rect.top)
+  };
+}
+
 function undoLast () {
   closePath()
   if (ITEM < 1) 
@@ -246,47 +248,6 @@ function copyCode () {
   showPoints()
   let copyText = document.getElementById("text1")
   navigator.clipboard.writeText(copyText.value)
-}
-
-function showPoints () {
-  if (ITEM <= 0) {
-    document.getElementById("text1").value = ""
-    return
-  }
-  let FILL = false, STROKE = false
-  let fs = document.getElementById("fillstroke").value
-  if (fs === "fill") 
-    FILL = true
-  else
-    STROKE = true
-  let header = "  let x = 0, y = 0, W = 1080\n\
-  let canvas = document.getElementById(\"myCanvas\")\n\
-  let ctx = canvas.getContext(\"2d\")\n\
-  let res = document.createElement('canvas')\n\
-  res.height = canvas.height*2, res.width = canvas.width*2\n\
-  let resctx = res.getContext('2d')\n\
-  let oc = document.createElement('canvas')\n\
-  let occtx = oc.getContext(\"2d\")\n\
-  oc.height = canvas.height, oc.width = canvas.width\n\
-  let colors = shuffle(getCurrentPalette(true,13))\n\
-  let H = W, cpx, cpy, points = [], n = 0\n\
-  let STROKE = "+STROKE+", FILL = "+FILL+", PATTERN = false\n\
-  resctx.lineWidth = 1 + document.getElementById(\"featuresize\").value/5\n\
-  resctx.strokeStyle = randomPick(colors)\n\
-  resctx.fillStyle = randomPick(colors)\n\
-  resctx.strokeStyle = 'black'\n\
-  resctx.lineCap = \"square\"\n\
-  resctx.lineJoin = \"meter\"\n\n"
-  document.getElementById("text1").value = header
-  document.getElementById("text1").value += code.join("\n")
-}
-
-function getMousePos(canvas, evt) {
-  let rect = canvas.getBoundingClientRect()
-  return {
-    x: Math.round(evt.clientX - rect.left),
-    y: Math.round(evt.clientY - rect.top)
-  };
 }
 
 function frameVisible () {
