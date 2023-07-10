@@ -683,6 +683,7 @@
           <option value="afklint2">af klint(2)</option>
           <option value="gertrudeabercrombie">abercrombie</option>
           <option value="dali">dali</option>
+          <option value="klimt">klimt</option>
           
           <option value="rainbow">rainbow</option>
           <option value="monokai">monokai</option>
@@ -915,79 +916,12 @@ function toggleGridBox () {
 function drawD () {
   let c = document.getElementById("myCanvas")
   var ctx = c.getContext('2d');
- // let ocanvas = document.createElement('CANVAS')
-  //let octx = ocanvas.getContext('2d')
-  //ocanvas.width = canvas.width * 2
   copyCode()
   let txt = document.getElementById("text1").value
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.globalCompositeOperation = document.getElementById("mode").value
   eval(txt)
- 
 }
-/*
-function drawD_og () {
-  let c = document.getElementById("myCanvas")
-  var ctx = c.getContext('2d');
-  let ocanvas = document.getElementById('off')
-  let octx = ocanvas.getContext('2d')
-  makeHighRes(c)
-  copyCode()
-  let txt = document.getElementById("text1").value
-  //console.log(txt)
-  ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.globalCompositeOperation = document.getElementById("mode").value
-  eval(txt)
-  // set for lower res at next opportunity
-  setNormalRes(document.getElementById("myCanvas"))
-}
-
-function setNormalRes (c) {
-  var ctx = c.getContext('2d');
-  let ocanvas = document.getElementById('off')
-  let octx = ocanvas.getContext('2d')
-  let mode = ctx.globalCompositeOperation
-  ctx.globalCompositeOperation = "source-over"
-  let a = ctx.globalAlpha
-  ctx.globalAlpha = 1.0
-  ocanvas.height = c.height
-  ocanvas.width = c.width
-  //octx.imageSmoothingEnabled =false
-  octx.drawImage(c, 0, 0)
-  c.width = 1080, c.height = 1080
- // ctx.imageSmoothingEnabled =false
-  ctx.drawImage(ocanvas,0,0,c.width,c.height)
-}
-
-function makeHighRes (c) {
-  var ctx = c.getContext('2d');
-  if (c.width >= 2160) return
-  let ocanvas = document.getElementById('off')
-  let octx = ocanvas.getContext('2d')
-  let mode = ctx.globalCompositeOperation
-  ctx.globalCompositeOperation = "source-over"
-  let a = ctx.globalAlpha
-  ctx.globalAlpha = 1.0
-  ocanvas.height = c.height
-  ocanvas.width = c.width
-  //octx.imageSmoothingEnabled =false
-  octx.drawImage(c, 0, 0)
-  var ratio = 2//devicePixelRatio / backingStoreRatio;
-  if (true) {
-      var oldWidth = c.width;
-      var oldHeight = c.height;
-      c.width = Math.round(oldWidth * ratio);
-      c.height = Math.round(oldHeight * ratio);
-     // c.style.width = oldWidth + 'px';
-     // c.style.height = oldHeight + 'px';
-      // now scale the context to counter
-      // the fact that we've manually scaled
-      // our canvas element
-      ctx.scale(ratio, ratio);
-  }
-  //ctx.imageSmoothingEnabled =false
-  ctx.drawImage(ocanvas,0,0,c.width/2,c.height/2)
-}*/
 
 window.onload = function () {
   let myCanvas = document.getElementById("myCanvas")
@@ -1601,6 +1535,10 @@ function loadPalette (PUSH) {
   } else
   if (type === 'bnw') {
     b = ["#000000", "#ffffff"]
+    updateExtraColors(b)
+  } else
+  if (type === 'klimt') {
+    b = ["#010101", "#b74212", "#c5652b", "#c79308", "#30270d", "#998137", "#675721", "#d4b23c", "#bfb784", "#f1e050", "#e9e088", "#efedd3", "#faf77a", "#8fa83d", "#839168", "#538142", "#2c6123", "#35484f"]
     updateExtraColors(b)
   } else
   if (type === 'dali') {
@@ -27322,6 +27260,54 @@ function histograph () {
   ctx.setTransform(1, 0, 0, 1, 0, 0);
 }
 
+function trendchart (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let fs = document.getElementById("featuresize").value
+  let LW = 1 + Math.floor(document.getElementById("featuresize").value/10)
+  let alt = true//document.getElementById("grungy").checked
+  let inset = 50 + Math.random()*20
+  let W = canvas.width
+  let H = canvas.height
+  let a = ctx.globalAlpha = document.getElementById("opacity").value/100
+  let colors = getCurrentPalette()
+  ctx.strokeStyle = randomPick(colors) 
+  ctx.fillStyle = randomPick(colors) 
+  ctx.lineCap = "butt"
+  ctx.lineWidth = LW + 1
+  let x = inset, y = H/2
+  let n = 16
+  ctx.lineWidth = LW
+  y = H/2 + pet(H/8)
+  let w = W/randomPick([13,17,19,23,29]), y0 = y, i = 0, d = 0, gap = 8
+  ctx.beginPath()
+  ctx.moveTo(inset, inset)
+  ctx.lineTo(inset, H-inset)
+  ctx.lineTo(W-inset, H-inset)
+  ctx.stroke()
+  
+  let cpx = inset*2 + Math.random() * (W-inset*4), cpy = inset*2 + Math.random() * (H-inset*4)
+  ctx.strokeStyle = randomPick(colors)
+  ctx.beginPath()
+  ctx.moveTo(inset+LW*2, inset + Math.random() * (H-2*inset))
+  //ctx.lineTo(W-inset-LW*2, inset + Math.random() * (H-2*inset))
+  ctx.quadraticCurveTo(cpx, cpy, W-inset-LW*2, inset + Math.random() * (H-2*inset)) 
+  ctx.stroke()
+ 
+  ctx.globalAlpha = 0.7
+  n = 11 + Math.random()*5
+  let r = 29 + Math.random()*17
+  for (; i < n; i++) {
+    ctx.fillStyle = randomPick(colors)
+    ctx.beginPath()
+    ctx.arc(inset+r + Math.random() * (W-3*inset), inset+r + Math.random() * (H-3*inset), r, 0, Math.PI*2)
+    ctx.closePath()
+    ctx.fill()
+  }
+  ctx.globalAlpha = a
+}
+
 function stepchart (canvas) {
   if (!canvas)
     canvas = document.getElementById("myCanvas");
@@ -29696,22 +29682,29 @@ function stiches (pad) {
   ctx.globalAlpha = alpha/100
 }
 
-function afoldAt (pad) {
-  if (!pad)
-    pad = 0
+function afoldAt () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let alpha = document.getElementById("opacity").value
   let colors = (["#000000", "#ffffff"])
   let x1 = canvas.width/2, y1 = 0, x2 = canvas.width/2, y2 = canvas.height/2
-  ctx.fillStyle = randomGradientRect(canvas, colors[0], x1, y1, x2, y2 - Math.random() * canvas.width/3)
   ctx.globalAlpha = 0.2
 
-  console.log(LASTCLICK[1])
   y1 = LASTCLICK[1], y2 = LASTCLICK[1]+80
-  ctx.fillStyle = randomGradientRect(canvas, colors[1], x1, y1, x2, y2)// - Math.random() * canvas.width/3)
-  ctx.fillRect(pad,LASTCLICK[1], canvas.width-pad*2, LASTCLICK[1]+240)
+  ctx.fillStyle = randomGradientRect(canvas, colors[1], x1, y1, x2, y2)
+  ctx.fillRect(0,LASTCLICK[1], canvas.width, LASTCLICK[1]+240)
   
+  y1 = LASTCLICK[1], y2 = LASTCLICK[1]+80
+  y1=LASTCLICK[1]-80, y2=LASTCLICK[1]
+  
+  let my_gradient = ctx.createLinearGradient(x1, y1, x2, y2)
+  let col2 = "#000000"
+  col2 = "rgba("+hexToR(col2)+", "+hexToG(col2)+", "+hexToB(col2)+", 0.0)";// transparent
+  my_gradient.addColorStop(0,col2);
+  my_gradient.addColorStop(1,colors[0]);
+  
+  ctx.fillStyle = my_gradient
+  ctx.fillRect(0,LASTCLICK[1]-240, canvas.width, 240)
   ctx.globalAlpha = alpha/100
 }
   
@@ -33398,7 +33391,7 @@ function placeRectAt () { // word-shaped rect
 }
 
 function placeTextAt (t,canvas) {
-  let text = document.getElementById("points").value
+  let text = randomWord()//document.getElementById("points").value
   if (t)
     text = t
   if (!canvas)

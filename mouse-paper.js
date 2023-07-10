@@ -138,7 +138,7 @@ function closePath () {
   let canvas = document.getElementById('myDCanvas')
   let ctx = canvas.getContext('2d')
   let FILL = false, STROKE = false
-  let LW = 1+document.getElementById('featuresize').value/20
+  let LW = 1+document.getElementById('featuresize').value/4
   let fs = document.getElementById("fillstroke").value
   if (fs === "fill") 
     FILL = true
@@ -197,7 +197,7 @@ function showPoints () {
   resctx.strokeStyle = randomPick(colors)\n\
   resctx.fillStyle = randomPick(colors)\n\
   resctx.strokeStyle = 'black'\n\
-  resctx.lineCap = \"square\"\n\
+  resctx.lineCap = \"bevel\"\n\
   resctx.lineJoin = \"meter\"\n\n"
   document.getElementById("text1").value = header
   document.getElementById("text1").value += code.join("\n")
