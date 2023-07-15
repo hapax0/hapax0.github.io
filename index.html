@@ -253,6 +253,12 @@
     <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
   </svg></a>
   &nbsp;
+  <a href="javascript:stack_clearCanvas()" title="clear canvas">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="red" class="bi bi-x-circle" viewBox="0 0 16 16">
+    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+  </svg></a>
+  &nbsp;
   <a href="javascript:greyScale()" title="convert to greyscale">
   <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="grey" class="bi bi-palette-fill" viewBox="0 0 16 16">
     <path d="M12.433 10.07C14.133 10.585 16 11.15 16 8a8 8 0 1 0-8 8c1.996 0 1.826-1.504 1.649-3.08-.124-1.101-.252-2.237.351-2.92.465-.527 1.42-.237 2.433.07zM8 5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm4.5 3a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zM5 6.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm.5 6.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
@@ -268,12 +274,7 @@
     <path   sodipodi:nodetypes="ssscs"   inkscape:connector-curvature="0"   id="path871"   d="m 8.1290313,9.3898868 c -0.063417,5.8169592 -0.2799378,5.7847662 -0.2799378,5.7847662 3.3819755,0.102062 5.4431455,-2.564096 5.4431455,-5.6400996 0,-3.0760053 -2.446648,-4.4826064 -5.1632077,-8.465928 0.035818,5.479183 0.035433,5.0709575 0,8.3212614 z"   style="fill:none;fill-opacity:0.99041533;stroke:#000000;stroke-width:0.40277886;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.99680511" />
   </svg></a>
   
-  &nbsp;
-  <a href="javascript:stack_clearCanvas()" title="clear canvas">
-    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="red" class="bi bi-x-circle" viewBox="0 0 16 16">
-    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-  </svg></a>
+  
   <!--a href="info.html" title="info">
   <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-info-circle" viewBox="0 0 16 16">
     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -676,7 +677,7 @@
           <option value="4411">4,4,1,1</option>
           <option value="3331">3,3,3,1</option>
           <option value="primary" >primary</option>
-          <option value="bnw">b & w</option>
+          <option value="bnw" selected>b & w</option>
           <option value="cmy">cmy</option>
           <option value="vivid">vivid</option>
           <option value="afklint">af klint</option>
@@ -701,8 +702,16 @@
           <option value="4">4</option>
           <option value="5" selected>5</option>
         </select-->
-       <button id="randompalette" onclick="loadPalette()">Load palette</button>&nbsp;<button onclick="extractPalette()">Extract</button>
-        
+       <button id="randompalette" onclick="loadPalette()">Load palette</button>
+       
+       &nbsp;<button><a onclick="extractPalette()" title="extract palette"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="white" viewBox="0 0 16 16">
+        <path d="M13.354.646a1.207 1.207 0 0 0-1.708 0L8.5 3.793l-.646-.647a.5.5 0 1 0-.708.708L8.293 5l-7.147 7.146A.5.5 0 0 0 1 12.5v1.793l-.854.853a.5.5 0 1 0 .708.707L1.707 15H3.5a.5.5 0 0 0 .354-.146L11 7.707l1.146 1.147a.5.5 0 0 0 .708-.708l-.647-.646 3.147-3.146a1.207 1.207 0 0 0 0-1.708l-2-2zM2 12.707l7-7L10.293 7l-7 7H2v-1.293z" id="path2" />
+         </svg></a></button>
+        &nbsp;<button><a onclick="extractPaletteSharp()" title="extract palette: sharp"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="white" viewBox="0 0 16 16">
+          <path d="M13.354.646a1.207 1.207 0 0 0-1.708 0L8.5 3.793l-.646-.647a.5.5 0 1 0-.708.708L8.293 5l-7.147 7.146A.5.5 0 0 0 1 12.5v1.793l-.854.853a.5.5 0 1 0 .708.707L1.707 15H3.5a.5.5 0 0 0 .354-.146L11 7.707l1.146 1.147a.5.5 0 0 0 .708-.708l-.647-.646 3.147-3.146a1.207 1.207 0 0 0 0-1.708l-2-2zM2 12.707l7-7L10.293 7l-7 7H2v-1.293z" id="path2" />
+            <rect style="fill:#000000;fill-rule:evenodd;stroke:#000000;stroke-opacity:1;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none" id="rect12" width="2.4738395" height="2.4738395" x="0.75162864" y="3.6068811" />
+            <rect style="fill:#f9f9f9;fill-rule:evenodd;stroke:#000000;stroke-opacity:1;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none" id="rect12-7" width="2.4738395" height="2.4738395" x="3.2254682" y="3.6068816" />
+          </svg></a></button>
     <input type='file' name='img' size='65' id='openextract' style="display:none;">
     <button><a onclick="openFileExtract()" id="paletteloader" title="extract from file..."><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="white" viewBox="0 0 16 16">
     <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
@@ -2807,8 +2816,44 @@ function extractPalette (canvas) {
     canvas = document.getElementById("myCanvas")
   if (isCanvasBlank(canvas))
     return
-  let colors = colorSamplePalette(canvas)
-  //colors.sort((a, b) => bright(b) - bright(a));
+  let colors = colorSamplePalette(canvas, false, false)
+  colors = colors.sort(function(a, b) {// sort by hue
+    let rgb = hextorgb(a)
+    let hsva = rgbtohsv(rgb[0], rgb[1], rgb[2])
+    rgb = hextorgb(b)
+    let hsvb = rgbtohsv(rgb[0], rgb[1], rgb[2])
+      return hsva[0] - hsvb[0];
+  });/**/
+  
+  colors.sort(function(a, b) { return interesting(b) - interesting(a);});
+  if (colors.length >= 1) {
+    let i = 0, x = 0, y = 0
+    let canvas = document.getElementById("palettecanvas")
+    let ctx = canvas.getContext("2d");
+    ctx.globalAlpha = 1.0
+    /*ctx.fillStyle = "#a0a0a0"
+    ctx.clearRect(0,0,canvas.width, canvas.height)
+    for (; i < colors.length; i++) {
+      if (i === 10) {
+        x = 0
+        y += 48
+      }
+      ctx.fillStyle = colors[i]
+      ctx.fillRect(x,y,48,48)
+      x += 48
+    }*/
+    document.getElementById("palettechoice").value = "none"
+  }
+  updateExtraColors(colors)
+  return (colors)
+}
+
+function extractPaletteSharp (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas")
+  if (isCanvasBlank(canvas))
+    return
+  let colors = colorSamplePalette(canvas, false, true)
   colors = colors.sort(function(a, b) {// sort by hue
     let rgb = hextorgb(a)
     let hsva = rgbtohsv(rgb[0], rgb[1], rgb[2])
@@ -3040,15 +3085,30 @@ function showHex () {
 }
 
 function simplifyColors () {
-  return colorSamplePalette (document.getElementById("myCanvas"), true)
+  return colorSamplePalette (document.getElementById("myCanvas"), true, false)
 }
 
-function colorSamplePalette (canvas, SIMPLIFY) {
+function cstest () {
+
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d");
+  let off = document.createElement('CANVAS')
+  off.height = canvas.height
+  off.width = canvas.width
+  offctx = off.getContext("2d")
+  offctx.globalAlpha = 1
+  offctx.globalCompositeOperation = "source-over"
+  // testing
+  offctx.fillStyle = "#ffffff"
+  offctx.fillRect(0,0,off.width,off.height)
+  ctx.drawImage(off,0,0, canvas.width, canvas.height)
+  console.log(objToString(offctx))
+}
+
+function colorSamplePalette (canvas, SIMPLIFY, SHARP) {
   if (!canvas)
     canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d");
-  let off = document.createElement('CANVAS')
-  let offctx = off.getContext("2d");
   let W = canvas.width, H = canvas.height
   let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
   if (document.getElementById("grungy").checked)
@@ -3061,6 +3121,9 @@ function colorSamplePalette (canvas, SIMPLIFY) {
   let r = 6e-11*pixels.length + 0.995
   if (r > 0.998)
     r = 0.998
+  let x = 0, y = 0
+  let cnt = 0
+  let M = SHARP
   for (; i < pixels.length; i += 4) {
     if (Math.random() > r) {
       let n = i
@@ -3068,11 +3131,28 @@ function colorSamplePalette (canvas, SIMPLIFY) {
       c.push(pixels[n])
       c.push(pixels[n+1])
       c.push(pixels[n+2])
-      if (pixels[n+3] > 0) // don't push transparent pixels
+      
+      // filter px with few matching neighbors
+      let x = i % W , y = Math.floor(i/W), matches = 0
+      let col = x-4, row = y-4
+      if (M)
+        for (; col < x+8; col += 4) {
+          row = y-4
+          for (; row < y+8; row += 4) {
+            matches += (pixels[n] === pixels[(row*W)+col%H] && pixels[n+1] === pixels[(row*W)+col%H+1] && pixels[n+2] === pixels[(row*W)+col%H+2])? 1: 0;
+          }
+          if (col >= x+12)
+            col = x-4
+        }
+      if (!M) {
+        matches = 9
+      }
+      if (pixels[n+3] > 0 && matches > 3) { // don't push transparent pixels
         sample.push(c)
+      }
     }
   }
-
+  console.log(M)
   i = 0
   let m = 0, ct = 0
   for (; i < sample.length; i++) {
@@ -3133,8 +3213,21 @@ function colorSamplePalette (canvas, SIMPLIFY) {
     }
     ctx.putImageData(imgData, 0, 0);
   }
+  // testing
+  //ctx.drawImage(off, 0,0,W,H)
   extendedPalette = colors2
   return colors2
+}
+
+function indexToxy (i, W, H) {
+  let x = i % W
+  let y = Math.floor(i/W)
+  console.log(x,y)
+}
+
+function xyToindex (x, y, W, H) {
+  let i = x%H + y*W
+  console.log(i)
 }
 
 function tintByCloseness () {
