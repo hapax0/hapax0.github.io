@@ -685,7 +685,7 @@
           <option value="gertrudeabercrombie">abercrombie</option>
           <option value="dali">dali</option>
           <option value="klimt">klimt</option>
-          
+          <option value="lundeberg">lundeberg</option>          
           <option value="rainbow">rainbow</option>
           <option value="monokai">monokai</option>
           <option value="rust">rust</option>
@@ -1553,6 +1553,10 @@ function loadPalette (PUSH) {
   } else
   if (type === 'bnw') {
     b = ["#000000", "#ffffff"]
+    updateExtraColors(b)
+  } else
+  if (type === 'lundeberg') {
+    b = ["#584545", "#ce4b2d", "#723425", "#3a2a22", "#b49573", "#7c5b32", "#cb974a", "#8e6f3c", "#f3e19a", "#8c9a7b", "#94ab8f", "#677f7a", "#b6d6d6", "#409698", "#7786ad"]
     updateExtraColors(b)
   } else
   if (type === 'klimt') {
