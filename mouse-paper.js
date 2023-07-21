@@ -291,16 +291,14 @@ function frameVisible () {
 }
 
 function openFileD () {
-  let canvas = document.getElementById('myDCanvas')
-  let ctx = canvas.getContext('2d')
-  document.getElementById('uploadimage').click();
+  document.getElementById('uploadimage2').click();
 }
 
 function drawFileD () {
   let canvas = document.getElementById('myDCanvas')
   let ctx = canvas.getContext('2d')
   let IMG = new Image()
-  let f = document.getElementById("uploadimage").files[0]
+  let f = document.getElementById("uploadimage2").files[0]
   let url = window.URL || window.webkitURL
   let src = url.createObjectURL(f)
   let timestamp = new Date().getTime()
@@ -308,16 +306,19 @@ function drawFileD () {
   ctx.globalAlpha = 1
   ctx.globalCompositeOperation = "source-over"
   IMG.onload = function () {
+    //canvas.height = this.height
+    //canvas.width = this.width
     ctx.globalAlpha = 0.5
     ctx.drawImage(IMG, 0, 0, canvas.width, canvas.height);
+   // resizeCanvas()
     url.revokeObjectURL(src);
     src  += timestamp
   }
-  document.getElementById("uploadimage").value = ""
+  document.getElementById("uploadimage2").value = ""
 }
 
 // saveAs stuff
-function downloadCode() {
+function downloadCode () {
   let filename = "drawing_code.js"
   let text  = document.getElementById("text1").value
   let pom = document.createElement('a');
