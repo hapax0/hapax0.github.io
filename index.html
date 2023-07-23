@@ -17036,7 +17036,6 @@ function rose () { // chemotaxis like
   ctx.strokeStyle = randomPick(getCurrentPalette())
   let color = randomPick(getCurrentPalette())
   let size = 0.0001 + document.getElementById("number").value/50000
-  console.log(size)
   ctx.fillStyle = color
   let angle = Math.random() * 6.28
   let n = 0, end = 5000
@@ -18595,9 +18594,9 @@ function natural () {
   let mode = document.getElementById("mode").value
   let alpha = document.getElementById("opacity").value
   let x = LASTCLICK[0], y = LASTCLICK[1]
-  let R = 11 + document.getElementById("featuresize").value/2
-  ctx.lineWidth = 1 + R/34
-  let R2 = R*2
+  let R = 17 + document.getElementById("featuresize").value/2
+  ctx.lineWidth = 1 + R/45
+  let R2 = R*1.5
   let alt = document.getElementById("grungy").checked
   let mult = Math.random()
   let i = 0
@@ -18608,8 +18607,8 @@ function natural () {
   ctx.strokeStyle = (colors[0])
   ctx.beginPath()
   let max = 2.4*360 + Math.random()*120
+  max += 120
  // max = R*10
-  console.log(max, R)
   if (alt) {
     ctx.lineWidth = 1
   }
@@ -18617,18 +18616,21 @@ function natural () {
   let drift = 0.01
   let dir = true
   for (; i < max; i++) {
-    ctx.ellipse(x, y, R2, R+b, a, start, start-inc, dir)
+    if (R < 0) R *= -1 +2
+    if (R+b < 0) b *= -1
+    ctx.ellipse(x, y, R2+b/2, R+b, a, start, start-inc, dir)
     ax = inc
     start -= inc
-    if (Math.random() > 0.98)
-      sign *= -1
-    b += sign * 0.3
+    if (Math.random() > 0.99)
+      ;//sign *= -1
+    b += sign * 0.05
     if (R+b < 0)
       R = R2
-     R2 /= 1.00002
-     R *= 1.0002
-     if (R2 < 0)
-       R2 *= -1
+     //R2 /= 1.00002
+     //R *= 1.00002
+     R2 += (Math.random()-0.4) 
+     R += (Math.random()-0.5) 
+
   }
   ctx.stroke()
   document.getElementById("mode").value = mode
@@ -22528,9 +22530,10 @@ function scratchout () {
 }
 
 function aletter () {
+  let x = LASTCLICK[0], y = LASTCLICK[1]
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  let fs = 48//7 + document.getElementById("featuresize").value/10
+  let fs = 7 + document.getElementById("featuresize").value/10
   let D = 1 + document.getElementById("number").value/4000
   let bump = fs/2
   let color = randomPick(getCurrentPalette()) // was paintcolor
@@ -22539,16 +22542,17 @@ function aletter () {
   let pad = 4 + Math.floor(Math.random() * 2)
   let linespace = 18 + Math.floor(pet(8))
   ctx.fillStyle = "#ffffff"//color
-  ctx.fillRect(0,0,W,H)
+  //ctx.fillRect(0,0,W,H)
   //let colors = ["#ed6060", "#6060ba", "#6060ed", "#ed6060", "#000000"]
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = "#000000"
+  ctx.strokeStyle = color
   ctx.lineJoin = "round"
   ctx.lineWidth = Math.floor(1 + fs/20)
   ctx.imageSmoothingQuality = "high"
-  let i = 0, x = 200, y = 200, rot = 1
+  let i = 0, rot = 1
   let cx1, cy1, cx2, cy2
   let maxX = x+1*fs + Math.random() * 8 * fs
+  
   ctx.beginPath()
   while (i < 2) {
     ctx.beginPath()
@@ -29909,7 +29913,7 @@ function snow (canvas) {
   let N = document.getElementById("number").value/10
   let SIZE = 0.5+document.getElementById("featuresize").value/50
   let alpha = document.getElementById("opacity").value
-  let i = 0, x, y, scale = 1, dx=1, dy=1
+  let i = 0,scale = 1, dx=1, dy=1
   ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
   ctx.lineCap = "round"
   let maxAlpha = alpha/100
@@ -30928,7 +30932,7 @@ function detail () {
   for (; i < 1 ;i++) {
     a = Math.random() * 2 * Math.PI
     r = canvas.width/9 * 0.8 + pet(80)
-    r2 = r * 0.1+ pet(10)
+    r2 = r * 0.25
 
     cx =  LASTCLICK[0], cy =  LASTCLICK[1]
     if (cy < canvas.height/2)
@@ -30944,11 +30948,15 @@ function detail () {
     ctx.ellipse(x, y, r2, r2, a,  0, 2 * Math.PI)
     ctx.ellipse(x2, y2, r, r, a, Math.PI, Math.PI*2)
     ctx.ellipse(x2, y2, r, r, a, 0, Math.PI)
+   
     ctx.stroke()
+    LASTCLICK[0] = x2, LASTCLICK[1] = y2
+    aletter ()
+    
     if (alt)
-      chairAt(x2-r/2,y2-r/2,r,ctx.strokeStyle)
+      ;//chairAt(x2-r/2,y2-r/2,r,ctx.strokeStyle)
     else
-      cubeAt(x2-r/2,y2-r/2,r,ctx.strokeStyle)
+      ;//cubeAt(x2-r/2,y2-r/2,r,ctx.strokeStyle)
   }
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
@@ -30963,7 +30971,7 @@ function label () {
   ctx.lineWidth = 1 +document.getElementById("featuresize").value/50
   ctx.strokeStyle = color
   let w = W / 40, lw = W/9
-  let text = document.getElementById("points").value
+  let text = randomWord()//document.getElementById("points").value
   if (text.length < 1)
     text = randomWord()
   x = LASTCLICK[0], dx =(W-lw-x)*Math.random()-w*1.2
