@@ -905,7 +905,7 @@
     </svg></a>
     &nbsp;
     <br>
-    <textarea id="text1" rows="4" cols="68" wrap="soft"  style="display:none;"></textarea>
+    <textarea id="text1" rows="4" cols="68" wrap="soft"  style="display:block;"></textarea>
   </div>
   
     <br>
@@ -2119,7 +2119,7 @@ function wash3 () {
 
 function wash () {
   fill()
-  setOpacity(75)
+  //setOpacity(75)
   checkAlt(true)
   crackle()
   crackle()
@@ -2134,7 +2134,7 @@ function wash () {
   embossCanvas()
   //shrinkBlur()
   setMode("destination-over")
-  setOpacity(100)
+  //setOpacity(100)
   fill()
   setMode("source-over")
   checkAlt(false)
@@ -10099,11 +10099,15 @@ function crazywall () {
   let W = canvas.width, H = canvas.height
   let colors = ["#f6c2d9","#fff69b","#bcdfc9","#a1c8e9","#e4dae2"]
   let linecolors = getCurrentPalette()
-  let functions = shuffle(["origamiAt", "airplaneAt", "envelopeAt", "sardinesAt", "refractionAt", "mothAt", "firebirdAt", "spiralAt", "gunAt", "elephantAt", "coreAt", "orbitAt", "lensAt", "pythagAt", "floppyAt", "spiderAt", "shoesAt", "mushroomAt", "catAt", "birbAt",
+  let functions = shuffle(["origamiAt", "airplaneAt", "envelopeAt", "sardinesAt", "refractionAt", 
+  "mothAt", "firebirdAt", "spiralAt", "gunAt", 
+  "elephantAt", "coreAt", "orbitAt", "lensAt", "pythagAt", "floppyAt", "spiderAt", "shoesAt", 
+  "mushroomAt", "catAt", "birbAt",
    "pantsAt", "tvAt", "drAt", "fishAt", "cactusAt", "umbrellaAt", "flameAt",
     "appleAt", "bridgeAt", "bugAt", "mailboxAt", "jumpropeAt", "pointhouseAt", "breadAt",
     "flathouseAt", "flatchairAt", "birdhouseAt", "factoryAt", "dashedAt", "phaseAt",
-    "leafAt", "allAt", "thenAt", "existAt", "tildeAt", "userAt", "heartAt", "glassAt", "prayerAt", "thoughtAt", "skullAt", "lampAt", "chairAt",
+    "leafAt", "allAt", "thenAt", "existAt", "tildeAt", "userAt", "heartAt", "glassAt", "prayerAt", 
+    "thoughtAt", "skullAt", "lampAt", "chairAt",
   "stairsAt", "treeAt", "slideAt", "ladderAt", "swingAt"])
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.shadowBlur = 10
@@ -14442,8 +14446,11 @@ function everythingSymb () {
   let N = randomPick([2,3,4])
   if (document.getElementById("grungy").checked)
     N = 1
-  let functions = shuffle(["origamiAt", "airplaneAt", "envelopeAt", "sardinesAt", "refractionAt", "mothAt", "firebirdAt", "spiralAt", "gunAt", "elephantAt", "coreAt", "orbitAt", "lensAt", "pythagAt", "floppyAt", "spiderAt", "shoesAt",
-  "mushroomAt", "catAt", "birbAt", "pantsAt", "tvAt", "drAt", "fishAt", "cactusAt", "umbrellaAt", "flameAt",
+  let functions = shuffle(["origamiAt", "airplaneAt", "envelopeAt", "sardinesAt", 
+  "refractionAt", "mothAt", "firebirdAt", "spiralAt", "gunAt", "elephantAt", "coreAt", 
+  "orbitAt", "lensAt", "pythagAt", "floppyAt", "spiderAt", "shoesAt",
+  "mushroomAt", "catAt", "birbAt", "pantsAt", "tvAt", "drAt", "fishAt", "cactusAt", 
+  "umbrellaAt", "flameAt",
   "appleAt", "bridgeAt", "bugAt", "mailboxAt", "rowhousesAt", "jumpropeAt",
   "pointhouseAt", "breadAt", "flathouseAt", "flatchairAt", "birdhouseAt", "factoryAt",
   "dashedAt", "phaseAt", "leafAt", "allAt", "thenAt", "existAt", "tildeAt", "userAt",
@@ -15274,7 +15281,7 @@ function heartAt (x,y,W,color) {
   let H = W
   let alt = document.getElementById("grungy").checked
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
-  ctx.strokeStyle = color
+  ctx.strokeStyle = randomPick(getCurrentPalette())
   let x0 = x, y0 = y
   let r = W/4
   ctx.beginPath()
@@ -18723,28 +18730,23 @@ function thought_og () {
 function talk () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  ctx.lineWidth = 1+ document.getElementById("featuresize").value/50
+  let x = LASTCLICK[0], y = LASTCLICK[1]
+  let W = 90 + document.getElementById("featuresize").value/2
+  x += W/6, y += W/6
+  ctx.lineWidth = 1 + W/30
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  let colors = shuffle(getCurrentPalette())//['red', 'blue', 'yellow', 'orange', 'purple', "green"])
+  let colors = shuffle(getCurrentPalette())
   let mode = document.getElementById("mode").value
   let alpha = document.getElementById("opacity").value
-  let cx = canvas.width/2, cy = canvas.height/2, x = 0, y = 0
-  let a = Math.random() * 2 * Math.PI
-  let H = canvas.height, W = canvas.width
-  let pad = 80, cpx = 0, cpy = 0
   ctx.strokeStyle = (colors[0])
   ctx.lineCap = "round"
   ctx.lineJoin = "round"
   ctx.fillStyle = (colors[0])
-  x = W - pad - ctx.lineWidth*1.5, y = H-pad
   let r = W/3, xo = r
   ctx.beginPath()
-  x = W/2
-  y = H/2-pad
-  ctx.arc(x, y, r, Math.PI/2 + Math.PI/5, Math.PI/2 +Math.PI/10) // thumb
-  ctx.lineTo(W/5, H-pad*2)
+  ctx.arc(x, y, r, Math.PI/3, Math.PI/5)//+Math.PI/10) 
+  ctx.lineTo(x+W/40+r, y+H/50+r)
   ctx.closePath()
-
   if (document.getElementById("grungy").checked) {
     ctx.fill()
   } else
@@ -18753,39 +18755,31 @@ function talk () {
   document.getElementById("opacity").value = alpha
 }
 
-
 function heart () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  ctx.lineWidth = 1+ document.getElementById("featuresize").value/50
+  let x = LASTCLICK[0], y = LASTCLICK[1]
+  let W = 90 + document.getElementById("featuresize").value/2, H = W
+  ctx.lineWidth = 1 + W/30
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  let colors = shuffle(getCurrentPalette())//['red', 'blue', 'yellow', 'orange', 'purple', "green"])
+  let colors = shuffle(getCurrentPalette())
   let mode = document.getElementById("mode").value
   let alpha = document.getElementById("opacity").value
-  let cx = canvas.width/2, cy = canvas.height/2, x = 0, y = 0
-  let a = Math.random() * 2 * Math.PI
-  let H = canvas.height, W = canvas.width
-  let pad = 80, cpx = 0, cpy = 0
   ctx.strokeStyle = (colors[0])
   ctx.lineCap = "round"
   ctx.lineJoin = "round"
   ctx.fillStyle = (colors[0])
   ctx.beginPath()
-  x = W - pad - ctx.lineWidth*1.5, y = H-pad
-  let r = W/4-pad, xo = r
+  
+  let r = W/6, xo = r
   ctx.beginPath()
-  ctx.moveTo(W/2, H-pad*2)
-  cpx = pad*2
-  cpy = H*.57
-  ctx.quadraticCurveTo(cpx,cpy,pad*2, H/3)
-  x = W/4+pad
-  y = H/3
-  ctx.arc(x, y, r, Math.PI, Math.PI*2) // thumb
-  x += r*2
-  ctx.arc(x, y, r, Math.PI, Math.PI*2) // thumb
-  cpx = W - pad*2
-  cpy = H*.57
-  ctx.quadraticCurveTo(cpx,cpy,W/2, H-pad*2)
+  ctx.arc(x, y, r, Math.PI, Math.PI*2) 
+  ctx.arc(x+r*2, y, r, Math.PI, Math.PI*2) 
+  cpx = x+r*3
+  cpy = y+H*0.33
+  ctx.quadraticCurveTo(cpx,cpy,x+r, y+H*0.6)
+  cpx = x-r
+  ctx.quadraticCurveTo(cpx,cpy,x-r, y)
   
   if (document.getElementById("grungy").checked) {
     ctx.closePath()

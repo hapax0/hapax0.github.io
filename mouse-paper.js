@@ -198,7 +198,7 @@ function showPoints () {
   resctx.fillStyle = randomPick(colors)\n\
   resctx.strokeStyle = 'black'\n\
   resctx.lineCap = \"round\"\n\
-  resctx.lineJoin = \"meter\"\n\n"
+  resctx.lineJoin = \"miter\"\n\n"
   document.getElementById("text1").value = header
   document.getElementById("text1").value += code.join("\n")
 }
