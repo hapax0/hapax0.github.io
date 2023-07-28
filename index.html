@@ -686,6 +686,7 @@
           <option value="kahlo">kahlo</option>          
           <option value="lundeberg">lundeberg</option>          
           <option value="beckmann">beckmann</option>          
+          <option value="matisse">matisse</option>          
           <option value="girlinmirror">girl in mirror</option>          
           <option value="rainbow">rainbow</option>
           <option value="monokai">monokai</option>
@@ -1490,8 +1491,13 @@ function loadPalette (PUSH) {
     return
   } else
   
+  if (type === 'matisse') {
+    b = ["#9b140d", "#d43813", "#963a24", "#a56f42", "#debb93", "#4c4333", "#f6eedf", "#c3aa71", "#b59a48", "#88a577", "#7c847d", "#696a6a", "#172228", "#23425a", "#2e5585", "#467ccd", "#9ba3b1", "#7e96c6"]
+    updateExtraColors(b)
+  } else
+  
   if (type === 'beckmann') {
-    b = ["#783129", "#7b564a", "#d1623a", "#de946d", "#ecbe99", "#9b7d5f", "#bea284", "#c1b863", "#e7e5cb", "#ded96b", "#7b8a73", "#212420", "#b2c8ba", "#288974", "#374f52", "#0e2951", "#274a8b", "#7f5a99"]
+    b = ["#571c09", "#b17e65", "#b03c03", "#785038", "#b7a79c", "#965f2d", "#60440c", "#dfd4ad", "#e0c86b", "#c7ae44", "#ac9638", "#54a496", "#257164", "#3c4141", "#171c1d", "#4678a3", "#2564a6", "#325a86"]
     updateExtraColors(b)
   } else
   
