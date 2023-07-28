@@ -1002,7 +1002,9 @@ marker.addEventListener('click', function(event) {
   let filePicker2 = document.getElementById("openextract");
   filePicker2.addEventListener("click", function(){this.value = null;}, false);
   });
-  setRandPalette()
+  
+  setPalette(randomPick(["earring", "afklint2", "primary", "nighthawks", "kahlo", "girlinmirror", "gertrudeabercrombie", "beckmann", "matisse","afklint", "lundeberg", "vivid", "klimt", "dali"]))
+  //setRandPalette()
   rangecheck()
   syncMarker()
   
@@ -1490,7 +1492,7 @@ function loadPalette (PUSH) {
     updateExtraColors(b)
     return
   } else
-  
+
   if (type === 'matisse') {
     b = ["#9b140d", "#d43813", "#963a24", "#a56f42", "#debb93", "#4c4333", "#f6eedf", "#c3aa71", "#b59a48", "#88a577", "#7c847d", "#696a6a", "#172228", "#23425a", "#2e5585", "#467ccd", "#9ba3b1", "#7e96c6"]
     updateExtraColors(b)
@@ -1771,16 +1773,31 @@ function loadPalette (PUSH) {
     a = ["#bac1b8","#58a4b0","#0c7c59","#2b303a","#d64933"]
     updateExtraColors(a)
   }
-  
- // document.getElementById("pal1").value = a[0]
- // document.getElementById("pal2").value = a[1]
- // document.getElementById("pal3").value = a[2]
- // document.getElementById("pal4").value = a[3]
- // document.getElementById("pal5").value = a[4]
+
 }
 
-function setRandPalette () {
-  setPalette(randomPick(["halfway", "101", "1011", "9411", "933", "541", "721", "5311"]))
+function setRandPalette () { // 60:30:10
+ // setPalette(randomPick(["halfway", "101", "1011", "9411", "933", "541", "721", "5311"]))
+  let pal = randomPick(["earring", "afklint2", "primary", "nighthawks", "kahlo", "girlinmirror", "gertrudeabercrombie", "beckmann", "matisse","afklint", "lundeberg", "vivid", "klimt", "dali"])
+  pal = document.getElementById("palettechoice").value
+  if (pal === "none")
+    return
+  setPalette(pal)
+  let clrs = shuffle(getCurrentPalette())
+  let i = 0
+  let colors = [] // darken
+  let amt = -Math.floor((5+Math.random()*33))
+  for (; i < 6; i++) {
+    colors.push(adjustBrightnessC(clrs[0], amt*i/2))
+    amt *= -1
+  }
+  amt *= -1
+  for(; i < 9; i++) {
+    colors.push(adjustBrightnessC(clrs[1], amt*(i-6)))
+    amt *= -1
+  }
+  colors.push(clrs[2])
+  updateExtraColors(colors)
 }
 
 function clearPoints () {
