@@ -685,6 +685,8 @@
           <option value="klimt">klimt</option>
           <option value="kahlo">kahlo</option>          
           <option value="lundeberg">lundeberg</option>          
+          <option value="beckmann">beckmann</option>          
+          <option value="girlinmirror">girl in mirror</option>          
           <option value="rainbow">rainbow</option>
           <option value="monokai">monokai</option>
           <option value="rust">rust</option>
@@ -1488,6 +1490,16 @@ function loadPalette (PUSH) {
     return
   } else
   
+  if (type === 'beckmann') {
+    b = ["#783129", "#7b564a", "#d1623a", "#de946d", "#ecbe99", "#9b7d5f", "#bea284", "#c1b863", "#e7e5cb", "#ded96b", "#7b8a73", "#212420", "#b2c8ba", "#288974", "#374f52", "#0e2951", "#274a8b", "#7f5a99"]
+    updateExtraColors(b)
+  } else
+  
+  if (type === 'girlinmirror') {
+    b = ["#1a1919", "#a65232", "#ce7425", "#93867a", "#333231", "#eeebe0", "#c2b870", "#ddcf68", "#769e77", "#60706b", "#7d89a1", "#374075", "#bd99ad", "#c7bebf"]
+    updateExtraColors(b)
+  } else
+
   if (type === "10") {
     let c1 = randomColorDark()
     let amt = Math.floor((5+Math.random()*20))
@@ -2083,19 +2095,15 @@ function wash3_og () {
 
 function wash2 () {
   fill()
-  //setFeaturesize(229)
-  shape2()
-  flipH()
-  flipH()
-  flipH()
-  shape2()
-  cracklelines()
-  cracklelines()
-  shaken()
-  shaken()
-  rcc()
-  shaken()
-  shaken()
+  strokes2()
+  strokes2()
+  strokes2()
+  strokes2()
+  strokes2()
+  motionblur()
+  motionblur()
+  motionblur()
+
 }
 
 function wash3 () {
@@ -2119,8 +2127,6 @@ function wash3 () {
 
 function wash () {
   fill()
-  //setOpacity(75)
-  checkAlt(true)
   crackle()
   crackle()
   fill()
@@ -2137,7 +2143,6 @@ function wash () {
   //setOpacity(100)
   fill()
   setMode("source-over")
-  checkAlt(false)
 }
 
 function diss () {
