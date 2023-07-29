@@ -667,13 +667,13 @@
           <option value="halfway">color ramp</option>
           <option value="10">10</option>
           <option value="16">16</option>
-          <option value="101">10,1</option>
+          <!--option value="101">10,1</option>
           <option value="1011">10,1,1</option>
           <option value="9411">9,4,1,1</option>
           <option value="933">9,3,3</option>
           <option value="5311">5,3,1,1</option>
           <option value="541">5,4,1</option>
-          <option value="721">7,2,1</option>
+          <option value="721">7,2,1</option-->
           <option value="primary" >primary</option>
           <option value="bnw" selected>b & w</option>
           <option value="cmy">cmy</option>
@@ -1003,15 +1003,24 @@ marker.addEventListener('click', function(event) {
   filePicker2.addEventListener("click", function(){this.value = null;}, false);
   });
   
-  setPalette(randomPick(["earring", "afklint2", "primary", "nighthawks", "kahlo", "girlinmirror", "gertrudeabercrombie", "beckmann", "matisse","afklint", "lundeberg", "vivid", "klimt", "dali"]))
-  //setRandPalette()
+  setPalette(randomPick(listPalettes()))
   rangecheck()
   syncMarker()
   
   initOC()
   frameVisible()
-  
   //makeHighRes(myCanvas)
+}
+
+
+function listPalettes () {
+  let x = document.getElementById("palettechoice")
+  let options = []
+  let i = 0
+  for ( ; i < x.length; i++) {
+    options.push(x.options[i].value)
+  }
+  return (options)
 }
 
 function checkChange () {
@@ -1773,19 +1782,17 @@ function loadPalette (PUSH) {
     a = ["#bac1b8","#58a4b0","#0c7c59","#2b303a","#d64933"]
     updateExtraColors(a)
   }
-
 }
 
 function setRandPalette () { // 60:30:10
- // setPalette(randomPick(["halfway", "101", "1011", "9411", "933", "541", "721", "5311"]))
-  let pal = randomPick(["earring", "afklint2", "primary", "nighthawks", "kahlo", "girlinmirror", "gertrudeabercrombie", "beckmann", "matisse","afklint", "lundeberg", "vivid", "klimt", "dali"])
+  let pal = randomPick(listPalettes())
   pal = document.getElementById("palettechoice").value
-  if (pal === "none")
+  if (pal === "none" || pal === "uno")
     return
   setPalette(pal)
   let clrs = shuffle(getCurrentPalette())
   let i = 0
-  let colors = [] // darken
+  let colors = [] 
   let amt = -Math.floor((5+Math.random()*33))
   for (; i < 6; i++) {
     colors.push(adjustBrightnessC(clrs[0], amt*i/2))
