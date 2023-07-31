@@ -11,10 +11,13 @@
       white-space: nowrap;
     }
     input[class='square'] {
-      padding: 0;
-      width: 150%;
-      height: 150%;
-      margin: -25%;
+      padding: 0px;
+      width: 48px;
+      height: 48px;
+      margin: 0;
+      border: none;
+      border-width:0px;
+      border-spacing:0px;
     }
     .cp_wrapper {
       overflow: hidden;
@@ -92,12 +95,21 @@
     input[type='color'] {
       display:inline-block;
       vertical-align: baseline;
+      padding: 0px;
+      width: 48px;
+      height: 50px;
+      margin: 0;
+      border: none;
+      border-width:0px;
+      border-spacing:0px;
+      
     }
     canvas[id='palettecanvas'] {
       margin:2px;
       border-style: solid;
       border-color: black;
       border-width: 1px;
+      
     }
     div[id=tip] {
       position:absolute;
@@ -148,15 +160,7 @@
   </svg></a>
   &nbsp;
   
-  <span class="cp_wrapper">
-  <input type="color" id="paintcolor" onchange="paintcolorChange()" class="square" style="margin-bottom:6px;" value="#ffffff">
-  </span>
-  &nbsp;
-  <!--a href="javascript:randomPickColor()" title='random color'>
-  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-palette" viewBox="0 0 16 16">
-    <path d="M8 5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm4 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM5.5 7a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm.5 6a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-    <path d="M16 8c0 3.15-1.866 2.585-3.567 2.07C11.42 9.763 10.465 9.473 10 10c-.603.683-.475 1.819-.351 2.92C9.826 14.495 9.996 16 8 16a8 8 0 1 1 8-8zm-8 7c.611 0 .654-.171.655-.176.078-.146.124-.464.07-1.119-.014-.168-.037-.37-.061-.591-.052-.464-.112-1.005-.118-1.462-.01-.707.083-1.61.704-2.314.369-.417.845-.578 1.272-.618.404-.038.812.026 1.16.104.343.077.702.186 1.025.284l.028.008c.346.105.658.199.953.266.653.148.904.083.991.024C14.717 9.38 15 9.161 15 8a7 7 0 1 0-7 7z"/>
-  </svg></a-->
+ 
   
   <a href="javascript:stack_fill()" title="fill"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-bucket" viewBox="0 0 16 16">
     <path d="M2.522 5H2a.5.5 0 0 0-.494.574l1.372 9.149A1.5 1.5 0 0 0 4.36 16h7.278a1.5 1.5 0 0 0 1.483-1.277l1.373-9.149A.5.5 0 0 0 14 5h-.522A5.5 5.5 0 0 0 2.522 5zm1.005 0a4.5 4.5 0 0 1 8.945 0H3.527zm9.892 1-1.286 8.574a.5.5 0 0 1-.494.426H4.36a.5.5 0 0 1-.494-.426L2.58 6h10.838z"/>
@@ -660,9 +664,10 @@
   value="100" onchange="rangecheck()"> <span class='sample' id='lowsample' style="background-color:#000;">&nbsp;</span> <span id="lowerrange">0</span> %
        &nbsp;|&nbsp;  upper: <input type="range" id="upper" style="width:5em;" min='0' max='100'
   value="100" onchange="rangecheck()"> <span class='sample' id='highsample' style="background-color:#fff;">&nbsp;</span> <span id="upperrange">100</span> %<br>
-       <div
-  style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
+       <div style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
+        <div id='paletteholder' style="display: flex;flex-wrap: wrap;width:480px;height:96px;column-gap: 0;">
          <canvas id="palettecanvas" width="480" height="96"></canvas><br>
+        </div>
          <select id="palettechoice" onchange="loadPalette(true)">
           <option value="uno">uno</option>
           <option value="halfway">color ramp</option>
@@ -1065,7 +1070,29 @@ function showTip (msg, item) {
 }
 
 
-
+function pattest ( ) {
+  let container = document.getElementById("palettecanvas")
+  if (container)
+    container.remove()
+  container = document.getElementById("paletteholder")
+  let colors = getCurrentPalette()
+  let i = 0
+  for (; i < 40; i++) {
+    let el = document.getElementById("p"+i)
+    if (el)
+    el.remove()
+  }
+  i = 0
+  for (; i < colors.length; i++) {
+    let p1 = document.createElement('INPUT')
+    p1.setAttribute("type", "color")
+    p1.setAttribute("class", "square")
+    p1.setAttribute("id", "p"+i)
+    p1.value = colors[i]
+    p1.setAttribute('onChange', 'paintcolorChange('+i+')')
+    container.appendChild(p1)
+  }
+}
 
 function jaggytest () {
   let x = 0, y = 0, W = 1080
@@ -2824,10 +2851,10 @@ function testHW () {// number to divide height by, to match width's divisor
 function updateExtraColors (colors) {
   extendedPalette = []
   let i = 0, x = 0, y = 0
-  let canvas = document.getElementById("palettecanvas")
-  let ctx = canvas.getContext("2d");
-  ctx.fillStyle = "#a0a0a0"
-  ctx.clearRect(0,0,canvas.width, canvas.height)
+  //let canvas = document.getElementById("palettecanvas")
+  //let ctx = canvas.getContext("2d");
+  //ctx.fillStyle = "#a0a0a0"
+  //ctx.clearRect(0,0,canvas.width, canvas.height)
   if (colors === null || colors.length < 1)
     return
   for (; i < colors.length; i++) {
@@ -2836,11 +2863,12 @@ function updateExtraColors (colors) {
       y += 48
     }
     extendedPalette.push(colors[i])
-    ctx.fillStyle = colors[i]
-    ctx.fillRect(x,y,48,48)
+    //ctx.fillStyle = colors[i]
+    //ctx.fillRect(x,y,48,48)
     x += 48
   }
-  document.getElementById("paintcolor").value = extendedPalette[0]
+  pattest()
+  //document.getElementById("paintcolor").value = extendedPalette[0]
 }
 
 function getPaletteFromPickers() {
@@ -2925,20 +2953,10 @@ function extractPalette (canvas) {
   colors.sort(function(a, b) { return interesting(b) - interesting(a);});
   if (colors.length >= 1) {
     let i = 0, x = 0, y = 0
-    let canvas = document.getElementById("palettecanvas")
-    let ctx = canvas.getContext("2d");
+  //  let canvas = document.getElementById("palettecanvas")
+  //  let ctx = canvas.getContext("2d");
     ctx.globalAlpha = 1.0
-    /*ctx.fillStyle = "#a0a0a0"
-    ctx.clearRect(0,0,canvas.width, canvas.height)
-    for (; i < colors.length; i++) {
-      if (i === 10) {
-        x = 0
-        y += 48
-      }
-      ctx.fillStyle = colors[i]
-      ctx.fillRect(x,y,48,48)
-      x += 48
-    }*/
+   
     document.getElementById("palettechoice").value = "none"
   }
   updateExtraColors(colors)
@@ -2962,8 +2980,8 @@ function extractPaletteSharp (canvas) {
   colors.sort(function(a, b) { return interesting(b) - interesting(a);});
   if (colors.length >= 1) {
     let i = 0, x = 0, y = 0
-    let canvas = document.getElementById("palettecanvas")
-    let ctx = canvas.getContext("2d");
+   // let canvas = document.getElementById("palettecanvas")
+   // let ctx = canvas.getContext("2d");
     ctx.globalAlpha = 1.0
     /*ctx.fillStyle = "#a0a0a0"
     ctx.clearRect(0,0,canvas.width, canvas.height)
@@ -3862,18 +3880,21 @@ function wrap (canvas) {
   let ctx = canvas.getContext("2d")
   let canvasoff = document.createElement("CANVAS")
   let ctxoff = canvasoff.getContext("2d")
-  ctx.globalAlpha = document.getElementById("opacity").value/100
-
+  let a = document.getElementById("opacity").value/100
+  ctx.globalAlpha = 1.0
   let W = canvas.width, H = canvas.height
   canvasoff.width = W, canvasoff.height = H
   
   ctxoff.drawImage(canvas,  0,0)
   let D = Math.floor(pet(W/2))
+  if (document.getElementById("grungy").checked)
+    D = 0
   let half = W/2 + D
   ctx.clearRect(0,0,W,H)
   
   ctx.drawImage(canvasoff,  half,0,W,H, 0,0,W,H)
   ctx.drawImage(canvasoff,  0,0,W,H,  half-D*2,0,W,H)
+  ctx.globalAlpha = a
 }
 
 function mirror () {
@@ -5831,9 +5852,9 @@ function setFeaturesize (a) {
   document.getElementById("featuresize").value = a
 }
 
-function paintcolorChange () {
+function paintcolorChange (i) {
   let p = getCurrentPalette()
-  p[0] = document.getElementById("paintcolor").value
+  p[i] = document.getElementById("p"+i).value
   updateExtraColors(p)
   pushFunction('setPaintColor')
 }
