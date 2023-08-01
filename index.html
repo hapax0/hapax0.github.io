@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -10,6 +9,7 @@
       float: left;
       white-space: nowrap;
     }
+    /*
     input[class='square'] {
       padding: 0px;
       width: 48px;
@@ -19,6 +19,32 @@
       border-width:0px;
       border-spacing:0px;
     }
+    input[type='color'] {
+      display:inline-block;
+      vertical-align: baseline;
+      padding: 0px;
+      width: 48px;
+      height: 50px;
+      margin: 0;
+      border: none;
+      border-width:0px;
+      border-spacing:0px;
+    }*/
+    
+    input[type="color"] {
+       -webkit-appearance: none;
+      border: none;
+      padding: 0px;
+      width: 50px;
+      height: 50px;
+    }
+    input[type="color"]::-webkit-color-swatch-wrapper {
+      padding: 0;
+    }
+    input[type="color"]::-webkit-color-swatch {
+      border: none;
+    }
+    
     .cp_wrapper {
       overflow: hidden;
       width: 36px;
@@ -92,18 +118,7 @@
       width:32px;
       text-align:right;
     }
-    input[type='color'] {
-      display:inline-block;
-      vertical-align: baseline;
-      padding: 0px;
-      width: 48px;
-      height: 50px;
-      margin: 0;
-      border: none;
-      border-width:0px;
-      border-spacing:0px;
-      
-    }
+    
     canvas[id='palettecanvas'] {
       margin:2px;
       border-style: solid;
@@ -665,9 +680,9 @@
        &nbsp;|&nbsp;  upper: <input type="range" id="upper" style="width:5em;" min='0' max='100'
   value="100" onchange="rangecheck()"> <span class='sample' id='highsample' style="background-color:#fff;">&nbsp;</span> <span id="upperrange">100</span> %<br>
        <div style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
-        <div id='paletteholder' style="display: flex;flex-wrap: wrap;width:480px;height:96px;column-gap: 0;">
-         <canvas id="palettecanvas" width="480" height="96"></canvas><br>
-        </div>
+        <div id='paletteholder' style="display: flex;flex-wrap: wrap;width:510px;height:100px;column-gap: 0;">
+         <!--canvas id="palettecanvas" width="480" height="96"></canvas><br-->
+        </div><br>
          <select id="palettechoice" onchange="loadPalette(true)">
           <option value="uno">uno</option>
           <option value="halfway">color ramp</option>
