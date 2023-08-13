@@ -138,7 +138,7 @@ function closePath () {
   let canvas = document.getElementById('myDCanvas')
   let ctx = canvas.getContext('2d')
   let FILL = false, STROKE = false
-  let LW = 1+document.getElementById('featuresize').value/4
+  let LW = document.getElementById('lwg').value/2
   let fs = document.getElementById("fillstroke").value
   if (fs === "fill") 
     FILL = true
@@ -159,7 +159,7 @@ function closePath () {
   code.push("  ctx.imageSmoothingEnabled = true")
   code.push("  ctx.imageSmoothingQuality = 'high'")
   //code.push("console.log(res.width, canvas.width)")
-  code.push("  ctx.drawImage(res,0,0,res.width,res.height,0,0,canvas.width,canvas.height)")
+  code.push("  ctx.drawImage(res,0,0,res.width,res.height,0,0,canvas.width/4,canvas.height/4)")
   
   ctx.setLineDash([])
   ctx.globalAlpha = 1
@@ -193,12 +193,11 @@ function showPoints () {
   let colors = shuffle(getCurrentPalette(true,13))\n\
   let H = W, cpx, cpy, points = [], n = 0\n\
   let STROKE = "+STROKE+", FILL = "+FILL+", PATTERN = false\n\
-  resctx.lineWidth = 1 + document.getElementById(\"featuresize\").value/5\n\
   resctx.strokeStyle = randomPick(colors)\n\
   resctx.fillStyle = randomPick(colors)\n\
-  resctx.strokeStyle = 'black'\n\n"
+  resctx.strokeStyle = 'black'\n\n\
   //resctx.lineCap = \"round\"\n\
-  //resctx.lineJoin = \"miter\"\n\n"
+  resctx.lineJoin = \"round\"\n\n"
   document.getElementById("text1").value = header
   document.getElementById("text1").value += code.join("\n")
 }

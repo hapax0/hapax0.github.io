@@ -441,7 +441,6 @@
     <select id="drawingfunctions" >
       
       <option value="script">script</option>
-      <option value="crayonScript">script (crayon)</option>
       <option value="placeTextAt">word</option>
       <!--option value="placeRectAt">mockup</option-->
       <option value="scratchout">scratch out</option>
@@ -452,10 +451,6 @@
       <option value="paintDrip">drip at</option>
       <option value="crackle">crackle curves</option>
       <option value="cracklelines" >crackle lines</option>
-      <option value="hstripes">stripes</option>
-      <option value="monocubes">mono cubes</option>
-      <option value="monoballs">mono balls</option>
-      <option value="monoblobs">line polys</option>
       <option value="halfTone">half-tone</option>
       <option value="kites">kites</option>
       <option value="flags">flags</option>
@@ -464,42 +459,18 @@
       <option value="weave">weave</option>
       <option value="weave2">weave2</option>
       <option value="pinwheels">pinwheels</option>
-      <option value="fourXfour">fourXfour</option>
-      <!--option value="origami4by4">4x4</option-->
-      <option value="onesquare">1 square</option>
-      <option value="twosquares">2 squares</option>
-      <option value="foursquares">4 squares</option>
-      <option value="circle" >1 circle</option>
-      <option value="threeCircles">3 circles</option>
-      <option value="twohemispheres">2 hemi</option>
-      <option value="cornercurve">diag curve</option>
       <option value="everythingSymb">message</option>
       <option value="crazywall">crazy wall</option>
       <option value="natal" >natal</option>
       <option value="aconst" >constellation</option>
       <option value="socialnetwork">social network</option>
       <option value="everythingArray">symbol array</option>
-      <!--option value="tv">tv</option>
-      <option value="hand">hand</option>
-      <option value="heart">heart</option>
-      <option value="talk">talk</option>
-      <option value="thought">thought</option>
-      <option value="ivy" >ivy</option>
-      <option value="user">user</option>
-      <option value="stairs">stairs</option>
-      <option value="ladder">ladder</option>
-      <option value="lamp">lamp</option>
-      <option value="prayer">prayer</option>
-      <option value="slide">slide</option-->
       <option value="chair" >chair</option>
       <option value="chairStorm">chair storm</option>
-      <option value="treeStorm">tree storm</option>
       <option value="swing">swing set</option>
       <option value="glass_line" >glass</option>
       <option value="glass" >glass (fill)</option>
       <option value="envelope">envelope</option>
-      <option value="hairs">hairs</option>
-      <option value="mnts" >mnts</option>
       
       <option value="origami">origami</option>
       <option value="dotArray">dot array</option>
@@ -515,24 +486,6 @@
       <option value="scraps">scraps</option>
       <option value="multiScraps">multi scraps</option>
       <option value="tape">tape</option>
-      <!--option value="phases">phases</option>
-      <option value="corner">corner</option>
-      <option value="facade" >facade</option>
-      <option value="core">core</option>
-      <option value="eclipse">eclipse</option>
-      <option value="constellations" >constellations</option>
-      <option value="seasons">seasons</option>
-      <option value="tides">tides</option-->
-      <!--option value="strokes">strokes</option>
-      <option value="strokes2">strokes2</option>
-      <option value="strokesH">strokes horizontal</option>
-      <option value="scratch">scratch</option>
-      <option value="randomTexture" >random texture</option>
-      <option value="randomTexture2">random texture2</option>
-      <option value="landscape3">landscape</option-->
-      <!--option value="coloringbook">coloring book</option-->
-      <!--option value="edgeSmear">streak left</option>
-      <option value="smeardownOff">vertical streaks</option-->
     </select>
     &nbsp;<button onclick="testImage('paperfunctions')" title="fade, darken, blur, gray"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" class="white" viewBox="0 0 16 16">
       <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
@@ -620,7 +573,7 @@
       <option value="duplicate">duplicate</option>
       <option value="fourbyfourplain">4x4</option>
       <option value="fourbyfour">warhol</option>
-      <option value="reverse">reversible</option>
+      <!--option value="reverse">reversible</option>
       <option value="pasta">pasta</option>
       <option value="blasco">blasco</option>
       <option value="shred">shred</option>
@@ -632,7 +585,7 @@
       <option value="dots">dots</option>
       <option value="dashes">dashes</option>
       <option value="holes">holes</option>
-      <option value="holes2">holes2</option>
+      <option value="holes2">holes2</option-->
       </select>
    </div>
    
@@ -686,6 +639,7 @@
           <option value="afklint2">af klint(2)</option>
           <option value="gertrudeabercrombie">abercrombie</option>
           <option value="dali">dali</option>
+          <option value="ettoretripodi">ettore tripodi</option>          
           <option value="klimt">klimt</option>
           <option value="kahlo">kahlo</option>          
           <option value="lundeberg">lundeberg</option>          
@@ -712,7 +666,12 @@
           <option value="4">4</option>
           <option value="5" selected>5</option>
         </select-->
-       <button id="randompalette" onclick="loadPalette()">Load palette</button>
+       <button><a onclick="loadPalette()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="white" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+          <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+        </svg></a>
+      </button>
        
        &nbsp;<button><a onclick="extractPalette()" title="extract palette"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="white" viewBox="0 0 16 16">
         <path d="M13.354.646a1.207 1.207 0 0 0-1.708 0L8.5 3.793l-.646-.647a.5.5 0 1 0-.708.708L8.293 5l-7.147 7.146A.5.5 0 0 0 1 12.5v1.793l-.854.853a.5.5 0 1 0 .708.707L1.707 15H3.5a.5.5 0 0 0 .354-.146L11 7.707l1.146 1.147a.5.5 0 0 0 .708-.708l-.647-.646 3.147-3.146a1.207 1.207 0 0 0 0-1.708l-2-2zM2 12.707l7-7L10.293 7l-7 7H2v-1.293z" id="path2" />
@@ -786,7 +745,14 @@
     <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm.5-9.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 11a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm5-5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm-11 0a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9.743-4.036a.5.5 0 1 1-.707-.707.5.5 0 0 1 .707.707zm-7.779 7.779a.5.5 0 1 1-.707-.707.5.5 0 0 1 .707.707zm7.072 0a.5.5 0 1 1 .707-.707.5.5 0 0 1-.707.707zM3.757 4.464a.5.5 0 1 1 .707-.707.5.5 0 0 1-.707.707z"/>
   </svg></a></button>
   
-  <button  onclick="showHex()" title="show hex values">#</button>
+  <button><a onclick="colormatrix()" title="show color matrix">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="white" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M0 0h1v15h15v1H0V0Zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07Z"/>
+  </svg></a></button>
+  <button><a  onclick="showHex()" title="show hex values">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="white" viewBox="0 0 16 16">
+      <path d="M8.39 12.648a1.32 1.32 0 0 0-.015.18c0 .305.21.508.5.508.266 0 .492-.172.555-.477l.554-2.703h1.204c.421 0 .617-.234.617-.547 0-.312-.188-.53-.617-.53h-.985l.516-2.524h1.265c.43 0 .618-.227.618-.547 0-.313-.188-.524-.618-.524h-1.046l.476-2.304a1.06 1.06 0 0 0 .016-.164.51.51 0 0 0-.516-.516.54.54 0 0 0-.539.43l-.523 2.554H7.617l.477-2.304c.008-.04.015-.118.015-.164a.512.512 0 0 0-.523-.516.539.539 0 0 0-.531.43L6.53 5.484H5.414c-.43 0-.617.22-.617.532 0 .312.187.539.617.539h.906l-.515 2.523H4.609c-.421 0-.609.219-.609.531 0 .313.188.547.61.547h.976l-.516 2.492c-.008.04-.015.125-.015.18 0 .305.21.508.5.508.265 0 .492-.172.554-.477l.555-2.703h2.242l-.515 2.492zm-1-6.109h2.266l-.515 2.563H6.859l.532-2.563z"/>
+    </svg></a></button>
   </div></td>
   <td rowspan="2">
   <div style="display:inline-block;
@@ -929,6 +895,19 @@
       <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
     </svg></a>
     &nbsp; <label id="linewidth"></label>
+    <select id="lwg">
+      <option value="2">1</option>
+      <option value="4">2</option>
+      <option value="6">3</option>
+      <option value="8">4</option>
+      <option value="10">5</option>
+      <option value="20">10</option>
+      <option value="40">20</option>
+      <option value="60">30</option>
+      <option value="100">50</option>
+      <option value="125">75</option>
+      <option value="200">100</option>
+    </select>
     <br>
     <textarea id="text1" rows="4" cols="68" wrap="soft"  style="display:none;"></textarea>
   </div>
@@ -948,9 +927,9 @@ let OCISCLEAR = true
 let SHOWBOX = false
 
 function toggleGridBox () {
-  let el = document.getElementById("linewidth")
-  el.innerHTML = "linewidth: " + (1+document.getElementById('featuresize').value/10)
-  el = document.getElementById("gridbox")
+ // let el = document.getElementById("linewidth")
+ // el.innerHTML = "linewidth: " + (1+document.getElementById('featuresize').value/10)
+  let el = document.getElementById("gridbox")
   if (SHOWBOX) {
     el.style.display = "none"
     SHOWBOX = false
@@ -1656,6 +1635,10 @@ function loadPalette (PUSH) {
   } else
   if (type === 'klimt') {
     b = ["#010101", "#b74212", "#c5652b", "#c79308", "#30270d", "#998137", "#675721", "#d4b23c", "#bfb784", "#f1e050", "#e9e088", "#efedd3", "#faf77a", "#8fa83d", "#839168", "#538142", "#2c6123", "#35484f"]
+    updateExtraColors(b)
+  } else
+  if (type === 'ettoretripodi') {
+    b = ["#8c8381", "#ece8e7", "#a99a92", "#d2bcaa", "#dfcdbb", "#c7a782", "#ebdecd", "#f2cb98", "#07aeeb", "#5bbde5", "#79cdf0", "#0299dc", "#a8d6ed", "#cce0ee", "#c6cad1", "#aaa9b0", "#bbb6ba", "#625d5f"]
     updateExtraColors(b)
   } else
   if (type === 'dali') {
@@ -2909,6 +2892,7 @@ function sortByBrightness (colors) {
     colors = colors.sort((a, b) => bright(a) - bright(b));
   BRIGHT = !BRIGHT
   updateExtraColors(colors)
+  return colors
 }
 
 function sortByHue (colors) {
@@ -3192,7 +3176,6 @@ function simplifyColors () {
 }
 
 function cstest () {
-
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d");
   let off = document.createElement('CANVAS')
@@ -3206,6 +3189,56 @@ function cstest () {
   offctx.fillRect(0,0,off.width,off.height)
   ctx.drawImage(off,0,0, canvas.width, canvas.height)
   console.log(objToString(offctx))
+}
+
+function colormatrix () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d");
+  let W = canvas.width, H = canvas.height
+  let i = 0, j = 0
+  let colors = getCurrentPalette()
+  let w = 50, fs = 14, space = 50, x = space, y = 2
+  
+  ctx.lineWidth = 1
+  ctx.strokeStyle = "#bbbbbb"
+  ctx.fillStyle = "#ffffff"
+  ctx.fillRect (0,0,W,H)
+  for (; i < colors.length; i++) {
+    ctx.fillStyle = colors[i]
+    ctx.fillRect (x, y, w, w)
+    ctx.beginPath()
+    ctx.moveTo(x, 2)
+    ctx.lineTo(x, (1+colors.length)*(space+2))
+    ctx.stroke()
+    x += w+2
+  }
+  i = 0
+  x = 2, y = space
+  for (; i < colors.length; i++) {
+    ctx.fillStyle = colors[i]
+    ctx.fillRect (x, y, w, w)
+    ctx.beginPath()
+    ctx.moveTo(2, y)
+    ctx.lineTo((1+colors.length)*(space+2), y)
+    ctx.stroke()
+    y += w+2
+  }
+  i = 0, j = 0, x = space/2, y = space
+  let text = ""
+  ctx.fillStyle = "#000000"
+  ctx.font = "bold 10pt sans"
+  for (; i < colors.length; i++) {
+    j = 0
+    for (; j < colors.length; j++) {
+      x += space+2
+      text = Math.floor(dist3d([hexToR(colors[i]), hexToG(colors[i]), hexToB(colors[i])], 
+                               [hexToR(colors[j]), hexToG(colors[j]), hexToB(colors[j])]))
+      if (j >= i)
+        ctx.fillText(text, x-18, y+space/2)
+    }
+    x = space/2
+    y += space + 2
+  }
 }
 
 function colorSamplePalette (canvas, SIMPLIFY, SHARP) {
@@ -3227,14 +3260,15 @@ function colorSamplePalette (canvas, SIMPLIFY, SHARP) {
   let x = 0, y = 0
   let cnt = 0
   let M = SHARP
+  r = 0.995
   for (; i < pixels.length; i += 4) {
     if (Math.random() > r) {
+      cnt++
       let n = i
       let c = []
       c.push(pixels[n])
       c.push(pixels[n+1])
       c.push(pixels[n+2])
-      
       // filter px with few matching neighbors
       let x = i % W , y = Math.floor(i/W), matches = 0
       let col = x-4, row = y-4
@@ -3255,7 +3289,6 @@ function colorSamplePalette (canvas, SIMPLIFY, SHARP) {
       }
     }
   }
-  console.log(M)
   i = 0
   let m = 0, ct = 0
   for (; i < sample.length; i++) {
@@ -3266,6 +3299,7 @@ function colorSamplePalette (canvas, SIMPLIFY, SHARP) {
     }
   }
   let threshold = m/ct/2.2
+  console.log(Math.round(threshold), "---T")
   let bins = [], bc = 0
   i = 0
   for (;i < sample.length; i++) {
@@ -3469,21 +3503,7 @@ function dist3d (p1, p2) {
  //https://www.compuphase.com/cmetric.htm
 }
 
-/**
- * Compare color difference in RGB
- * @param {Array} rgb1 First RGB color in array
- * @param {Array} rgb2 Second RGB color in array
- */
-function dist3deltaE (rgb1, rgb2) {
-  const [ r1, g1, b1 ] = rgb1,
-        [ r2, g2, b2 ] = rgb2,
-        drp2 = Math.pow(r1 - r2, 2),
-        dgp2 = Math.pow(g1 - g2, 2),
-        dbp2 = Math.pow(b1 - b2, 2),
-        t = (r1 + r2) / 2
-  return Math.sqrt(2 * drp2 + 4 * dgp2 + 3 * dbp2 + t * (drp2 - dbp2) / 256)
- // return sqrt((((512+rmean)*r*r)>>8) + 4*g*g + (((767-rmean)*b*b)>>8));
-}
+
 
 /**
  * calculate the perceptual distance between colors in CIELAB
@@ -3542,12 +3562,20 @@ async function palettetint (canvas) {
   let alpha = document.getElementById("opacity").value
   let colors = []
   colors = getCurrentPalette()
-  /*
-  colors.push(document.getElementById("pal1").value)
-  colors.push(document.getElementById("pal2").value)
-  colors.push(document.getElementById("pal3").value)
-  colors.push(document.getElementById("pal4").value)
-  colors.push(document.getElementById("pal5").value)*/
+  if (colors.length < 5)
+    return
+  BRIGHT = false
+  colors = sortByBrightness(colors)
+  let levels = []
+  levels.push(colors[0])
+  let mid = Math.floor(colors.length/2)
+  let plusminus = Math.floor(colors.length/4)
+  levels.push(colors[mid-plusminus])
+  levels.push(colors[mid])
+  levels.push(colors[mid+plusminus])
+  levels.push(colors[colors.length-1])
+  
+
   let saved = randomPick(getCurrentPalette()) // was paintcolor
 
   let level = 20
@@ -3559,16 +3587,15 @@ async function palettetint (canvas) {
     highs = [100, 80, 60, 40, 20].reverse()
   }
   let i = 0
-  for (; i < colors.length; i++) {
-    randomPick(getCurrentPalette()) // was paintcolor = colors[i]
+  for (; i < levels.length; i++) {
+    // was paintcolor = colors[i]
     document.getElementById("lower").value = lows[i]
     document.getElementById("upper").value = highs[i]
-    tint()
+    tint(levels[i])
   }
   document.getElementById("lower").value = 100
   document.getElementById("upper").value = 100
   rangecheck()
-  randomPick(getCurrentPalette()) // was paintcolor = saved
   ctx.globalAlpha = alpha
   return true
 }
@@ -3873,15 +3900,15 @@ function wrap (canvas) {
   let W = canvas.width, H = canvas.height
   canvasoff.width = W, canvasoff.height = H
   
-  ctxoff.drawImage(canvas,  0,0)
+  ctxoff.drawImage(canvas,0,0)
   let D = Math.floor(pet(W/2))
   if (document.getElementById("grungy").checked)
     D = 0
-  let half = W/2 + D
+  let half = W/8// + D
   ctx.clearRect(0,0,W,H)
   
-  ctx.drawImage(canvasoff,  half,0,W,H, 0,0,W,H)
-  ctx.drawImage(canvasoff,  0,0,W,H,  half-D*2,0,W,H)
+  ctx.drawImage(canvasoff,  W-half,0,W,H, 0,0,W,H)
+  ctx.drawImage(canvasoff,  0,0,W,H, half,0,W,H)
   ctx.globalAlpha = a
 }
 
@@ -19368,46 +19395,6 @@ function tides () {
   }
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
-}
-
-function aura () {
-  let canvas = document.getElementById("myCanvas");
-  let ctx = canvas.getContext("2d");
-  let alpha = document.getElementById("opacity").value
-  let mode = document.getElementById("mode").value
-  let size = 1+document.getElementById("featuresize").value/50
-  let offset = size//canvas.width/200
-  if (Math.random() > 0.5)
-    offset *= -1
-  offset *= size
-  document.getElementById("rednumber").value = offset
-  clearOff()
-  copyToOff()
-  
-  if (document.getElementById("grungy").checked)
-    motionblur()
-  else {
-    nudgeRight()
-    if (Math.random() > 0.5)
-      offset *= -1
-    document.getElementById("rednumber").value = offset
-    nudgeDown()
-  }
-  swapWithOff()
-  swapWithOff()
-  document.getElementById("mode").value = "difference"
-  pasteFromOff()
-  document.getElementById("mode").value = "source-over"
-  tint()
-  tint()
-  tint()
-  tint()
-  alphaBlack(15)
-  swapWithOff()
-  document.getElementById("mode").value = "color"
-  pasteFromOff()
-  document.getElementById("opacity").value = alpha
-  document.getElementById("mode").value = mode
 }
 
 function nudgehalfdown () {
@@ -35234,15 +35221,14 @@ async function rotateColors (canvas, D) {
   return true
 }
 
-function tint (canvas) {
-  if (!canvas)
-    canvas = document.getElementById("myCanvas")
+function tint (color) {
+  let canvas = document.getElementById("myCanvas")
   let offcanvas = document.createElement('CANVAS')
   offcanvas.width = canvas.width
   offcanvas.height = canvas.height
   let offctx = offcanvas.getContext("2d");
   offctx.willReadFrequently = true
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+ // let color = randomPick(getCurrentPalette()) // was paintcolor
   let alpha = document.getElementById("opacity").value
   let r = hexToR(color)
   let g = hexToG(color)
@@ -35267,9 +35253,6 @@ function tint (canvas) {
     ct++
   }
   offctx.putImageData(imgData, 0, 0);
-  //ctx.globalCompositeOperation = "color"
- // ctx.clearRect(0,0,canvas.width,canvas.height)
- // ctx.globalAlpha = 1
   ctx.drawImage(offcanvas,0,0)
   ctx.globalCompositeOperation = mode
   ctx.globalAlpha = alpha/100
