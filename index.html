@@ -1554,7 +1554,7 @@ function loadPalette (PUSH) {
   updateExtraColors(b)
 } else
   if (type === "10") {
-    let c1 = randomColorDark()
+    let c1 = document.getElementById("p0").value
     let amt = Math.floor((5+Math.random()*20))
     b = [
       c1,adjustBrightnessC(c1, amt),adjustBrightnessC(c1, amt*2),
@@ -1577,7 +1577,7 @@ function loadPalette (PUSH) {
     return
   } else
   if (type === "16") {
-    let c1 = randomColorVDark()
+    let c1 = document.getElementById("p0").value
     let amt = Math.floor((5+Math.random()*15))
     let i = 0
     b = []

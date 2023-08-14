@@ -35,8 +35,11 @@ function initOC () {
       /*code.push("  if (PATTERN)")
       code.push("    fillOC(oc, occtx)")
       code.push("  ctx.save()")*/
+      code.push("  P = 0")
+      code.push("  if(document.getElementById('grungy').checked)")
+      code.push("    P = 37")
       code.push("  resctx.beginPath()")
-      code.push("  resctx.moveTo(x+"+Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE+", y+"+Math.round(mousePos.y/CELLSIZE)+"*H/"+GRIDSIZE+")")
+      code.push("  resctx.moveTo(x+"+Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE+"+pet(P)"+", y+"+Math.round(mousePos.y/CELLSIZE)+"*H/"+GRIDSIZE+"+pet(P)"+")")
       ctx.lineWidth = 4
       ctx.beginPath()
       lastx = Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE
@@ -50,7 +53,7 @@ function initOC () {
       // if (document.getElementById("ragged").checked)
       //   code.push("  ragged(ctx, x+"+Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE+", y+"+Math.round(mousePos.y/CELLSIZE)+"*H/"+GRIDSIZE+", "+lx+", "+ly+")")
       // else
-        code.push("  resctx.lineTo(x+"+Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE+", y+"+Math.round(mousePos.y/CELLSIZE)+"*H/"+GRIDSIZE+")")
+        code.push("  resctx.lineTo(x+"+Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE+"+pet(P)"+", y+"+Math.round(mousePos.y/CELLSIZE)+"*H/"+GRIDSIZE+"+pet(P)"+")")
         ctx.lineTo(Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE, Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE)
         lastx = Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE
         lasty = Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE
@@ -66,8 +69,8 @@ function initOC () {
         if (INDEX % 2 === 1) { // control point
           cpx = Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE
           cpy = Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE
-          code.push("  cpx = x+"+Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE)
-          code.push("  cpy = y+"+Math.round(mousePos.y/CELLSIZE)+"*H/"+GRIDSIZE)
+          code.push("  cpx = x+"+Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE+"+pet(P)")
+          code.push("  cpy = y+"+Math.round(mousePos.y/CELLSIZE)+"*H/"+GRIDSIZE+"+pet(P)")
           ctx.fillStyle = "#55dd55"
           offdctx.strokeStyle = "#ffffff"
           offdctx.setLineDash([])
@@ -85,7 +88,7 @@ function initOC () {
           ctx.setLineDash([4, 4])
           ctx.strokeStyle = "#ff4444"
         } else {
-          code.push("  resctx.quadraticCurveTo(cpx, cpy, x+"+Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE+", y+"+Math.round(mousePos.y/CELLSIZE)+"*H/"+GRIDSIZE+")")
+          code.push("  resctx.quadraticCurveTo(cpx+pet(P), cpy+pet(P), x+"+Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE+", y+"+Math.round(mousePos.y/CELLSIZE)+"*H/"+GRIDSIZE+")")
           ctx.quadraticCurveTo(cpx, cpy, Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE, Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE)
           ctx.strokeStyle = "#ff4444"
           ctx.lineWidth = 4
@@ -138,7 +141,7 @@ function closePath () {
   let canvas = document.getElementById('myDCanvas')
   let ctx = canvas.getContext('2d')
   let FILL = false, STROKE = false
-  let LW = document.getElementById('lwg').value/2
+  let LW = document.getElementById('lwg').value*2
   let fs = document.getElementById("fillstroke").value
   if (fs === "fill") 
     FILL = true
@@ -159,7 +162,7 @@ function closePath () {
   code.push("  ctx.imageSmoothingEnabled = true")
   code.push("  ctx.imageSmoothingQuality = 'high'")
   //code.push("console.log(res.width, canvas.width)")
-  code.push("  ctx.drawImage(res,0,0,res.width,res.height,0,0,canvas.width/4,canvas.height/4)")
+  code.push("  ctx.drawImage(res,0,0,res.width,res.height,0,0,canvas.width/1,canvas.height/1)")
   
   ctx.setLineDash([])
   ctx.globalAlpha = 1
@@ -193,6 +196,7 @@ function showPoints () {
   let colors = shuffle(getCurrentPalette(true,13))\n\
   let H = W, cpx, cpy, points = [], n = 0\n\
   let STROKE = "+STROKE+", FILL = "+FILL+", PATTERN = false\n\
+  let P = 0\n\
   resctx.strokeStyle = randomPick(colors)\n\
   resctx.fillStyle = randomPick(colors)\n\
   resctx.strokeStyle = 'black'\n\n\
