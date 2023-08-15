@@ -639,7 +639,8 @@
           <option value="afklint2">af klint(2)</option>
           <option value="gertrudeabercrombie">abercrombie</option>
           <option value="dali">dali</option>
-          <option value="ettoretripodi">ettore tripodi</option>          
+          <option value="ettoretripodi">ettore tripodi</option> 
+          <option value="ettoretripodi2">ettore tripodi2</option>          
           <option value="klimt">klimt</option>
           <option value="kahlo">kahlo</option>          
           <option value="lundeberg">lundeberg</option>          
@@ -866,7 +867,7 @@
     &nbsp;<input type="checkbox" id="qmode" onclick="killCP()"><label for="qmode"> quadratic</label>
     &nbsp;<select id="fillstroke" style="width:50px;" >
       <option value="fill">fill</option>
-      <option value="stroke">stroke</option>
+      <option value="stroke" selected>stroke</option>
      
     </select>
     &nbsp;<button onclick="closePath()">close path</button>
@@ -898,15 +899,15 @@
     <select id="lwg">
       <option value="2">1</option>
       <option value="4">2</option>
-      <option value="6">3</option>
+      <option value="6" selected>3</option>
       <option value="8">4</option>
       <option value="10">5</option>
+      <option value="14">7</option>
       <option value="20">10</option>
       <option value="40">20</option>
       <option value="60">30</option>
       <option value="100">50</option>
-      <option value="125">75</option>
-      <option value="200">100</option>
+
     </select>
     <br>
     <textarea id="text1" rows="4" cols="68" wrap="soft"  style="display:none;"></textarea>
@@ -1639,6 +1640,10 @@ function loadPalette (PUSH) {
   } else
   if (type === 'ettoretripodi') {
     b = ["#8c8381", "#ece8e7", "#a99a92", "#d2bcaa", "#dfcdbb", "#c7a782", "#ebdecd", "#f2cb98", "#07aeeb", "#5bbde5", "#79cdf0", "#0299dc", "#a8d6ed", "#cce0ee", "#c6cad1", "#aaa9b0", "#bbb6ba", "#625d5f"]
+    updateExtraColors(b)
+  } else
+  if (type === 'ettoretripodi2') {
+    b = ["#6e3c1f", "#795632", "#a97a45", "#4c3d29", "#bf975b", "#24211c", "#928366", "#7c6c4b", "#b3a991", "#5d5846", "#cbc9c1", "#cadbea", "#949aa3"]
     updateExtraColors(b)
   } else
   if (type === 'dali') {
@@ -3299,7 +3304,6 @@ function colorSamplePalette (canvas, SIMPLIFY, SHARP) {
     }
   }
   let threshold = m/ct/2.2
-  console.log(Math.round(threshold), "---T")
   let bins = [], bc = 0
   i = 0
   for (;i < sample.length; i++) {

@@ -24,7 +24,7 @@ function initOC () {
   offdctx.fillStyle = "#55dd55"
   offdctx.lineWidth = 4
   offdctx.setLineDash([4, 4])
-  canvas.addEventListener('mousedown', function(evt) {
+  canvas.addEventListener('mousedown', function (evt) {
     CELLSIZE = canvas.width/GRIDSIZE
     let mode = document.getElementById("qmode").checked
     let mousePos = getMousePos(canvas, evt);
