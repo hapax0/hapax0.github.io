@@ -2488,26 +2488,23 @@ function blobFill (fs) {
   let val = document.getElementById("opacity").value
   let num = document.getElementById("number").value
   let size = document.getElementById("featuresize").value
-  let color = randomPick(getCurrentPalette()) // was paintcolor
   let mode = ctx.globalCompositeOperation
   document.getElementById("number").value = 800
   document.getElementById("featuresize").value = 500
   document.getElementById("opacity").value = 100//15 + Math.random() + 75
-  randomPick(getCurrentPalette()) // was paintcolor = randomColorVLight()
-  fill()
+  ctx.fillStyle = randomColorVLight()
+  fill(canvas, ctx.fillStyle)
   ctx.fillStyle = randomColorVLight()
   ctx.fillRect(canvas.width/2, 0, canvas.width, canvas.height)
   let i = 0
   for (; i < 2; i++) {
-    randomPickColor() // randomLight
-    randomPick(getCurrentPalette()) // was paintcolor = randomColorLight()
+    ctx.fillStyle = randomColorVLight()
     blobs()
   }
   // restore
   document.getElementById("number").value = num
   document.getElementById("featuresize").value = size
   document.getElementById("opacity").value = val
-  randomPick(getCurrentPalette()) // was paintcolor = color
 }
 
 function landscape3 () {
@@ -2630,7 +2627,7 @@ function randomTexture () {
   let size = document.getElementById("featuresize").value
   let color = randomPick(getCurrentPalette()) // was paintcolor
   let alpha = document.getElementById("opacity").value
-  let alt = document.getElementById("grungy").checked
+  let alt = false// document.getElementById("grungy").checked
 
   functions = ["smudge", "smudge", "smudge", "smudge", "smudge", "blobs", "specksRadial", "strokes2", "strokesH"]
   let args = ["", "streaks", "arcs", "arcs2", "stars", "horizontal"]
@@ -7000,7 +6997,9 @@ function pushColor (c) {
 }
 
 function randomPickColor() {
-  randomPick(getCurrentPalette()) // was paintcolor = randomColor()
+  let canvas = document.getElementById('myCanvas')
+  let ctx = canvas.getContext('2d')
+  ctx.fillStyle = randomColor()
 }
 
 function updateColor () {
@@ -24543,8 +24542,6 @@ function roundedRectP () {//(x, y, w, h, r, ctx, BF) {
 function roundedRect (x, y, w, h, r, ctx, BF) {
   if (w < 2 * r) r = w / 2;
   if (h < 2 * r) r = h / 2;
- // y += pet(5)
- // x += pet(5)
   ctx.save()
   ctx.beginPath();
   ctx.moveTo(x+r, y);
@@ -24556,6 +24553,7 @@ function roundedRect (x, y, w, h, r, ctx, BF) {
   ctx.fill()
   ctx.clip()
   if (BF) {
+    ctx.fillStyle = randomColor()
     blobFill(ctx.fillStyle)
     ctx.fillStyle = "#ececdb"
     ctx.fillRect(w/2, y, w/2, h)
@@ -24568,10 +24566,8 @@ function moleskine2 (options) { // 3D
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
   let alpha = document.getElementById("opacity").value
-  let color = randomPick(getCurrentPalette()) // was paintcolor
   let small = true, half = true, scale = canvas.height/1080
   let W = canvas.width, H = canvas.height
-  randomPick(getCurrentPalette()) // was paintcolor = "#fdffee"
   ctx.clearRect(0,0,W,H)
   ctx.shadowColor = '#404040';
   let j = 0, x = 20, y = 20, d = 0, BF = true, PAPER = false
@@ -24651,7 +24647,7 @@ function moleskine2 (options) { // 3D
   //rc()
   stiches(20)
   document.getElementById("opacity").value = alpha
-  randomPick(getCurrentPalette()) // was paintcolor = color
+  //randomPick(getCurrentPalette()) // was paintcolor = color
 }
 
 function randomClue (PT) {
@@ -24876,7 +24872,7 @@ function moleText (canvas) {
     canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let alpha = document.getElementById("opacity").value
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  //let color = randomPick(getCurrentPalette()) // was paintcolor
   let small = true, half = true
   let scale = canvas.height/1080
   ctx.strokeStyle = "#ccccdc"
@@ -24924,7 +24920,7 @@ function moleDates (d) {
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
   let alpha = document.getElementById("opacity").value
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  let color = "#ff0000"//randomPick(getCurrentPalette()) // was paintcolor
   let small = true, half = true
   let scale = canvas.height/1080
   ctx.strokeStyle = "#ccccdc"
@@ -24936,7 +24932,7 @@ function moleDates (d) {
   let days = ["DOMINGO", "SEGUNDA-FEIRA", "TERÇA-FEIRA", "QUARTA-FEIRA", "QUINTA-FEIRA", "SEXTA-FEIRA", "SÁBADO"]
   let week = "semana "
   ctx.font = 12*scale+"px serif"
-  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor = "#666666"
+  ctx.fillStyle = "#666666"
   let voff = randomPick([1,2,-1,-2])
   let lasty = 0
   let linespace = Math.floor((canvas.height - 220*scale)/22)
@@ -24997,7 +24993,7 @@ function moleDates (d) {
   ctx.fillText(week+today.getWeek(), canvas.width - 108-d*scale, lasty-5+voff)// FR: "la semaine"
   
   ctx.font = size+"px serif"
-  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor = "#666666"
+  ctx.fillStyle = "#666666"
   x = 78*scale, y = 70*scale
   ctx.fillText(days[today.getDay()], x, y)
   ctx.font = 14*scale+"px serif"
@@ -34790,12 +34786,8 @@ function smeardownOff () {
 function wash4 () { // spin blur
   fill()
   checkAlt(true)
- // crackle()
-  //crackle()
-  //crackle()
   smudgewatercolor()
   smudgewatercolor()
-  //copyToOff()
   spin()
   spin()
   spin()
@@ -34805,6 +34797,7 @@ function wash4 () { // spin blur
   embossCanvas()
   zoomImage()
   zoomImage()
+  checkAlt(false)
 }
 
 function spin () {
