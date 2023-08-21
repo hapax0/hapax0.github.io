@@ -6,7 +6,7 @@ let GRIDSIZE = 1
 let lastpoints = []
 let ITEMS = []
 let INDEX = 0
-let code = [], cpx, cpy
+let code = [], cpx, cpy, cx, cy, radius = 1
   
 function initOC () {
   let canvas = document.getElementById('myDCanvas')
@@ -26,7 +26,8 @@ function initOC () {
   offdctx.setLineDash([4, 4])
   canvas.addEventListener('mousedown', function (evt) {
     CELLSIZE = canvas.width/GRIDSIZE
-    let mode = document.getElementById("qmode").checked
+    //let mode = document.getElementById("qmode").checked
+    let dmode = document.getElementById("dmode").value
     let mousePos = getMousePos(canvas, evt);
     ctx.fillStyle = '#000000'
     if (INDEX === 0) {
@@ -49,7 +50,8 @@ function initOC () {
       ctx.moveTo(Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE, Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE)
       ctx.fillRect(Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE-4, Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE-4, 10, 10)
     } else {
-      if (!mode) {
+      //if (!mode) {
+      if (dmode === "line") {
       // if (document.getElementById("ragged").checked)
       //   code.push("  ragged(ctx, x+"+Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE+", y+"+Math.round(mousePos.y/CELLSIZE)+"*H/"+GRIDSIZE+", "+lx+", "+ly+")")
       // else
@@ -65,7 +67,47 @@ function initOC () {
         ctx.stroke()
         ctx.fillStyle = "black"
         ctx.fillRect(Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE-5, Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE-5, 10, 10)
-      } else {
+      } else 
+      if (dmode === "circ") {
+        if (INDEX % 2 === 1) { // radius point
+          ctx.strokeStyle = "#ff4444"
+          ctx.lineWidth = 4
+          lx = Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE
+          ly = Math.round(mousePos.y/CELLSIZE)+"*W/"+GRIDSIZE
+          let rx = Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE
+          let ry = Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE
+          radius = Math.sqrt(Math.pow(lastx-rx, 2) +Math.pow(lasty-ry, 2))
+          offdctx.strokeStyle = "#00aaff"
+          offdctx.setLineDash([])
+          offdctx.beginPath()
+          offdctx.arc(lastx, lasty, radius, 0, Math.PI*2)
+          offdctx.stroke()
+          ctx.drawImage(ocd,0,0,canvas.width,canvas.height)
+          //offdctx.setLineDash([])
+          code.push("  resctx.beginPath()")
+          code.push("  cpx = x+"+Math.round(lastx/CELLSIZE)+"*W/"+GRIDSIZE+"+pet(P)")
+          code.push("  cpy = y+"+Math.round(lasty/CELLSIZE)+"*H/"+GRIDSIZE+"+pet(P)")
+          code.push("  resctx.arc(cpx, cpy, ("+radius/CELLSIZE+"*W/"+GRIDSIZE+"),0, Math.PI*2)")
+         // if fill
+            code.push("  resctx.closePath()")
+          lastpoints.push(lastx,lasty)
+          closePath()
+          INDEX = -1
+        } else {
+          ;
+         /*
+          console.log("INDEX b ", INDEX)
+          ctx.beginPath()
+          lastx = Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE
+          lasty = Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE
+          lx = Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE
+          ly = Math.round(mousePos.y/CELLSIZE)+"*W/"+GRIDSIZE
+          ctx.moveTo(Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE, Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE)
+          ctx.fillRect(Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE-4, Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE-4, 10, 10)
+        */
+        }
+      } else
+      if (dmode === "quad") {
         if (INDEX % 2 === 1) { // control point
           cpx = Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE
           cpy = Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE
@@ -103,6 +145,7 @@ function initOC () {
         }
       }
     }
+    if (dmode != "circ")
     lastpoints.push(lastx,lasty)
     INDEX++
   }, false)
@@ -137,6 +180,11 @@ function getIndex () {
   return(v)
 }
 
+function closePathIf() {
+  if (document.getElementById("dmode").value === "circ")
+    closePath()
+}
+
 function closePath () {
   let canvas = document.getElementById('myDCanvas')
   let ctx = canvas.getContext('2d')
@@ -155,15 +203,10 @@ function closePath () {
     code.push("  if ("+FILL+") {\n    resctx.fillStyle = randomGradientPal()\n  n += randomPick([1,2])\n    resctx.fill()\n}")
   else
     code.push("  if ("+FILL+") {\n    resctx.fillStyle = colors[n%colors.length]\n  n += randomPick([1,2])\n    resctx.fill()\n}")
-  //code.push("  ctx.clip()")
-  //code.push("  if (PATTERN)\n    ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)")
-  //code.push("  ctx.restore()")
   code.push("  if ("+STROKE+") {\n  resctx.lineWidth = "+LW+"\n  resctx.strokeStyle = randomPick(colors)\n    resctx.stroke()\n  }")
   code.push("  ctx.imageSmoothingEnabled = true")
   code.push("  ctx.imageSmoothingQuality = 'high'")
-  //code.push("console.log(res.width, canvas.width)")
   code.push("  ctx.drawImage(res,0,0,res.width,res.height,0,0,canvas.width/1,canvas.height/1)")
-  
   ctx.setLineDash([])
   ctx.globalAlpha = 1
   ctx.strokeStyle = "#ff4444"
@@ -344,7 +387,7 @@ function updateGrid () {
 }
 
 function killCP () {
-  if (INDEX > 0 && document.getElementById("qmode").checked) {
+  if (INDEX > 0 && document.getElementById("dmode").value === "quad") {
     INDEX = 1
   }
 }

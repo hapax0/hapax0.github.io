@@ -687,15 +687,13 @@
     <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
     <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
     </svg></a></button>
-    <button>
+    <!--button>
     <a id="palettedownloader" onclick="savePaletteAs()" download="image.png" title="save palette as png file">
-    
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="white" viewBox="0 0 16 16">
     <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
     <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
-  </svg></a></button>
+  </svg></a></button-->
   <button>
-    
     <a onclick="pickRandPalette()"  title="random palette">
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="white" viewBox="0 0 16 16">
     <path d="M13 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h10zM3 0a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V3a3 3 0 0 0-3-3H3z"/>
@@ -864,7 +862,12 @@
   &nbsp;
     
     &nbsp;<input type="checkbox" id="gradient" checked><label for="gradient"> gradient fills</label>
-    &nbsp;<input type="checkbox" id="qmode" onclick="killCP()"><label for="qmode"> quadratic</label>
+    &nbsp;<!--input type="checkbox" id="qmode" onclick="killCP()"><label for="qmode"> quadratic</label-->
+    mode:<select id="dmode" style="width:48px;" onchange="closePathIf()">
+      <option value="line">line</option>
+      <option value="quad">quad</option>
+      <option value="circ">circ</option>
+    </select>
     &nbsp;<select id="fillstroke" style="width:50px;" >
       <option value="fill">fill</option>
       <option value="stroke" selected>stroke</option>
@@ -1551,8 +1554,8 @@ function loadPalette (PUSH) {
     updateExtraColors(b)
   } else
   if (type === 'diebenkorn2') {
-  b = ["#6f3030", "#0e0e0e", "#3e3433", "#b2856c", "#c2a275", "#8a8379", "#d9bb90", "#d7cab5", "#8f7952", "#c0b6a1", "#fafbf7", "#555755", "#a02d35", "#934347"]
-  updateExtraColors(b)
+    b = ["#6f3030", "#0e0e0e", "#3e3433", "#b2856c", "#c2a275", "#8a8379", "#d9bb90", "#d7cab5", "#8f7952", "#c0b6a1", "#fafbf7", "#555755", "#a02d35", "#934347"]
+    updateExtraColors(b)
 } else
   if (type === "10") {
     let c1 = document.getElementById("p0").value
@@ -28171,6 +28174,22 @@ function circle () {
   let pad = 0 + document.getElementById("featuresize").value
   pad = 500 - pad
   let r = canvas.width/2 - pad
+  ctx.fillStyle = randomPick(getCurrentPalette())
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctx.beginPath()
+  ctx.moveTo(cx, cy)
+  ctx.arc (cx, cy, r, 0, 2*Math.PI)
+  ctx.closePath()
+  ctx.fill()
+}
+
+function circleAt () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let cx = LASTCLICK[0]
+  let cy = LASTCLICK[1]
+  let r = 1 + (document.getElementById("featuresize").value)
+  console.log(r)
   ctx.fillStyle = randomPick(getCurrentPalette())
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.beginPath()
