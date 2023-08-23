@@ -503,6 +503,8 @@
       <option value="form3">form (nest)</option>
       <option value="detail">detail</option>
       <option value="pageOfBook">book page</option>
+      <option value="pageOfBookIll">book illustrated</option>
+
       <option value="ctrlchart">ctrl chart</option>
       <option value="stepchart">step chart</option>
       <option value="histograph" >histograph</option>
@@ -646,7 +648,6 @@
           <option value="lundeberg">lundeberg</option>          
           <option value="diebenkorn">diebenkorn</option>    
           <option value="diebenkorn2">diebenkorn2</option>    
-          
           <option value="matisse">matisse</option>     
           <option value="flachbarth">flachbarth</option> 
           <option value="sabinefinkenauer">sabinefinkenauer</option> 
@@ -657,7 +658,7 @@
           <option value="rust">rust</option>
           <option value="post-it">post-it</option>
           <option value="yellowed">yellowed</option>
-          
+          <option value="darkink">dark ink</option>
           <option value="none">none</option>
         </select>
         <!--select id="numcolors" style="width:50px;" title='use N colors'>
@@ -1647,6 +1648,10 @@ function loadPalette (PUSH) {
   } else
   if (type === 'ettoretripodi2') {
     b = ["#6e3c1f", "#795632", "#a97a45", "#4c3d29", "#bf975b", "#24211c", "#928366", "#7c6c4b", "#b3a991", "#5d5846", "#cbc9c1", "#cadbea", "#949aa3"]
+    updateExtraColors(b)
+  } else
+  if (type === 'darkink') {
+    b = ["#3a3a3a", "#683800", "#801500", "#002d4f", "#222222", "#270f51", "#55001e", "#101010"]
     updateExtraColors(b)
   } else
   if (type === 'dali') {
@@ -24875,16 +24880,14 @@ function moleText (canvas) {
     canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let alpha = document.getElementById("opacity").value
-  //let color = randomPick(getCurrentPalette()) // was paintcolor
+  let color = randomPick(getCurrentPalette()) // was paintcolor
   let small = true, half = true
   let scale = canvas.height/1080
   ctx.strokeStyle = "#ccccdc"
-  let thebook//= crossword
   let PT = Math.random() > 0.5
   let fs = 18 //+ Math.floor(document.getElementById("featuresize").value/2)
-  //if (thebook === crossword)
-    thebook = clues(PT)
-  let text = document.getElementById("points").value
+  let  thebook = clues(PT)
+  let text = ""
   if (text.length > 0)
     thebook = text
   let lines = thebook.split(/\n/gm) // moby.js = book
@@ -27117,6 +27120,137 @@ function mockparagraphScript (canvas) {
   document.getElementById("opacity").value = alpha
 }
 
+function drawPictureAt (RIGHT) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  let colors = ["#f6c2d9","#fff69b","#bcdfc9","#a1c8e9","#e4dae2"]
+  let linecolors = getCurrentPalette()
+  let functions = shuffle(["origamiAt", "airplaneAt", "envelopeAt", "sardinesAt", "refractionAt", 
+  "mothAt", "firebirdAt", "spiralAt", "gunAt", 
+  "elephantAt", "coreAt", "orbitAt", "lensAt", "pythagAt", "floppyAt", "spiderAt", "shoesAt", 
+  "mushroomAt", "catAt", "birbAt",
+   "pantsAt", "tvAt", "drAt", "fishAt", "cactusAt", "umbrellaAt", "flameAt",
+    "appleAt", "bridgeAt", "bugAt", "mailboxAt", "jumpropeAt", "pointhouseAt", "breadAt",
+    "flathouseAt", "flatchairAt", "birdhouseAt", "factoryAt", "dashedAt", "phaseAt",
+    "leafAt", "allAt", "thenAt", "existAt", "tildeAt", "userAt", "heartAt", "glassAt", "prayerAt", 
+    "thoughtAt", "skullAt", "lampAt", "chairAt",
+  "stairsAt", "treeAt", "slideAt", "ladderAt", "swingAt"])
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let delta = W/4, x = 0, y = 0
+  let pad = W/10
+  x = pad+8, y = pad+24
+  if (RIGHT)
+    x = W-pad-delta-16
+  ctx.fillStyle = randomPick(linecolors)
+  ctx.strokeStyle = ctx.fillStyle
+  f = randomPick(functions)
+  window[f](x,y,delta,ctx.strokeStyle)
+  ctx.strokeRect(x-8,y-8,delta+16,delta+16)
+}
+
+function pageOfBookIll (canvas) { //illustrated
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let alt  = document.getElementById("grungy").checked
+  let W = canvas.width
+  let H = canvas.height
+  let pad = W/10, PW = W - pad*2
+  let delta = W/4
+  let x = pad
+  let y = pad
+  let wrap = randomPick([3,4,5])
+  let N = 3 + Math.floor(Math.random() * 14)
+  let stops = [".", ".", ".",". ",".",". ",".", ".","?", "!"]
+  let stopwords = ["a","adeus","agora","ainda","alem","algo","ali","além","ambas","ambos","ano","anos","antes","ao","aonde","aos","apoio","apos","após","aqui","as","assim","atrás","até","aí","baixo","bem","boa","boas","bom","bons","breve","cada","cedo","cento","cima","cinco","coisa","com","como","cuja","cujas","cujo","cujos","custa","cá","da","dar","das","de","dela","delas","dele","deles","desde","dessa","desse","desta","deste","deve","devem","deverá","dez","dia","diz","dizem","dizer","do","dois","dos","doze","duas","dá","dão","dúvida","e","ela","elas","ele","eles","em","entao","entre","então","era","eram","essa","essas","esse","esses","esta","estar","estará","estas","este","estes","estou","está","estás","estão","eu","falta","fará","favor","faz","fazem","fazer","fazes","fazia","faço","fez","fim","final","foi","fomos","for","fora","foram","forem","forma","fosse","foste","fui","geral","grupo","ha","haja","hajam","havia","hei","hoje","hora","horas","houve","há","hão","ir","irá","isso","ista","iste","isto","já","lado","lhe","lhes","local","logo","longe","lugar","lá","maior","mais","mal","mas","me","meio","menor","menos","meses","mesma","mesmo","meu","meus","mil","minha","muito","máximo","mês","na","nada","nao","nas","nem","nessa","nesse","nesta","neste","no","noite","nome","nos","nossa","nosso","nova","novas","nove","novo","novos","num","numa","numas","nunca","nuns","não","nível","nós","número","o","obra","oito","onde","ontem","onze","os","ou","outra","outro","para","parte","pegar","pela","pelas","pelo","pelos","perto","pode","podem","poder","poderá","podia","pois","ponto","por","posso","pouca","pouco","povo","pôde","põe","põem","quais","qual","que","quem","quer","quero","questão","quáis","quê","relação","sabe","sabem","saber","se","sei","seis","seja","sejam","sem","sendo","ser","serei","seria","será","serão","seríamos","sete","seu","seus","sexta","sexto","sim","sob","sobre","sois","somos","sou","sua","suas","são","sétima","sétimo","só","tal","também","tanta","tanto","tarde","te","tem","temos","tempo","tenha","tenho","tens","tente","ter","terei","teria","terá","terão","teu","teus","teve","tinha","tipo","tive","tiver","toda","todas","todo","todos","treze","três","tu","tua","tuas","tudo","tão","tém","têm","um","uma","umas","uns","usa","usar","vai","vais","valor","veja","vem","vens","ver","vez","vezes","vindo","vinte","você","vocês","vos","vossa","vosso","vários","vão","vêm","vós","zero","à","às","área","é","éramos","és"]
+  let i = 0
+  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  let fs = randomPick([12,13,14])//12 + document.getElementById("featuresize").value/25
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle'
+  let RIGHT = Math.random() > 0.5
+
+  drawPictureAt(RIGHT)
+  let w = 0, text = "", s = ""
+  ctx.font = "100 "+(fs)+"pt Georgia"
+  let j = 0
+  for (; j < 40; j++) { // 40 lines
+    text = "", para = ""
+    w = 0, i = 0
+    if (j === 0 || Math.random() > 0.77) {
+      y += fs*1.5
+      para = "\n     "
+      CAP = true
+    }
+    if (y > H - pad)
+      break
+    let PWF = PW * 0.4
+    while (w < PWF) {
+      if (y > pad+delta + 40)
+        PWF = PW *.67
+      s = ""
+      s += para
+      if (Math.random() > 0.5) {
+        if (CAP)
+          s += capitalize(randomWord(true))
+        else
+          s += randomWord(true)
+        CAP = false
+      } else {
+        if (CAP)
+          s += capitalize(randomPick(stopwords))
+        else
+          s += randomPick(stopwords)
+        CAP = false
+      }
+      if (Math.random() > 0.8) {
+        CAP = true
+        s += randomPick(stops)
+      }
+      text += s + " "
+      w = ctx.measureText(" "+text).width
+      i++
+      para = ""
+    }
+    if (PW - w >= 0) {
+      let pw = PW
+      if (y < pad+delta+40)
+        pw -= delta + 40
+      if (RIGHT)
+        spaceText(text, w, pw, x , y, ctx, fs, alt)
+      else
+      if (!RIGHT && y < pad+delta+40)
+        spaceText(text, w, pw, x+delta+36 , y, ctx, fs, alt)
+      else
+      spaceText(text, w, pw, x ,y,ctx,fs, alt)
+      y += fs * 2
+    }
+  }
+  // header
+  let maxl = Math.floor(Math.random() * 2)
+  text = capitalize(randomWord(true))
+  i = 0
+  for (; i < maxl; i++)
+    text += " "+capitalize(randomWord(true))
+  ctx.font = "400 "+(fs*1.3)+"pt Georgia"
+  w = ctx.measureText(text).width
+  ctx.fillText(text, W/2-w/2, pad-fs*1.3)
+  if (alt)
+    grit(ctx,text,W/2-w/2, pad-fs*1.3,w,fs)
+
+  text = Math.floor(1*(Math.random() * 200)) // page number
+  w = ctx.measureText(text).width
+  x = pad
+  if (Math.random() > 0.5)
+    x = W - pad - ctx.measureText(text).width*1.5
+  ctx.fillText(text, x, pad-fs*1.3)
+  if (alt)
+    grit(ctx,""+text,x,pad-fs*1.3,w,fs)
+}
+
+  
 function pageOfBook (canvas) {
   if (!canvas)
     canvas = document.getElementById("myCanvas");
@@ -27126,6 +27260,7 @@ function pageOfBook (canvas) {
   let W = canvas.width
   let H = canvas.height
   let pad = W/10, PW = W - pad*2
+  let delta = W/4
   let x = pad
   let y = pad
   let wrap = randomPick([3,4,5])
@@ -27134,7 +27269,7 @@ function pageOfBook (canvas) {
   let stopwords = ["a","adeus","agora","ainda","alem","algo","ali","além","ambas","ambos","ano","anos","antes","ao","aonde","aos","apoio","apos","após","aqui","as","assim","atrás","até","aí","baixo","bem","boa","boas","bom","bons","breve","cada","cedo","cento","cima","cinco","coisa","com","como","cuja","cujas","cujo","cujos","custa","cá","da","dar","das","de","dela","delas","dele","deles","desde","dessa","desse","desta","deste","deve","devem","deverá","dez","dia","diz","dizem","dizer","do","dois","dos","doze","duas","dá","dão","dúvida","e","ela","elas","ele","eles","em","entao","entre","então","era","eram","essa","essas","esse","esses","esta","estar","estará","estas","este","estes","estou","está","estás","estão","eu","falta","fará","favor","faz","fazem","fazer","fazes","fazia","faço","fez","fim","final","foi","fomos","for","fora","foram","forem","forma","fosse","foste","fui","geral","grupo","ha","haja","hajam","havia","hei","hoje","hora","horas","houve","há","hão","ir","irá","isso","ista","iste","isto","já","lado","lhe","lhes","local","logo","longe","lugar","lá","maior","mais","mal","mas","me","meio","menor","menos","meses","mesma","mesmo","meu","meus","mil","minha","muito","máximo","mês","na","nada","nao","nas","nem","nessa","nesse","nesta","neste","no","noite","nome","nos","nossa","nosso","nova","novas","nove","novo","novos","num","numa","numas","nunca","nuns","não","nível","nós","número","o","obra","oito","onde","ontem","onze","os","ou","outra","outro","para","parte","pegar","pela","pelas","pelo","pelos","perto","pode","podem","poder","poderá","podia","pois","ponto","por","posso","pouca","pouco","povo","pôde","põe","põem","quais","qual","que","quem","quer","quero","questão","quáis","quê","relação","sabe","sabem","saber","se","sei","seis","seja","sejam","sem","sendo","ser","serei","seria","será","serão","seríamos","sete","seu","seus","sexta","sexto","sim","sob","sobre","sois","somos","sou","sua","suas","são","sétima","sétimo","só","tal","também","tanta","tanto","tarde","te","tem","temos","tempo","tenha","tenho","tens","tente","ter","terei","teria","terá","terão","teu","teus","teve","tinha","tipo","tive","tiver","toda","todas","todo","todos","treze","três","tu","tua","tuas","tudo","tão","tém","têm","um","uma","umas","uns","usa","usar","vai","vais","valor","veja","vem","vens","ver","vez","vezes","vindo","vinte","você","vocês","vos","vossa","vosso","vários","vão","vêm","vós","zero","à","às","área","é","éramos","és"]
   let i = 0
   ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
-  let fs = randomPick([12,18,24])//12 + document.getElementById("featuresize").value/25
+  let fs = randomPick([12,10,9])//12 + document.getElementById("featuresize").value/25
   ctx.textAlign = 'left';
   ctx.textBaseline = 'middle'
   let w = 0, text = "", s = ""
@@ -27145,7 +27280,7 @@ function pageOfBook (canvas) {
     w = 0, i = 0
     if (j === 0 || Math.random() > 0.9) {
       y += fs*1.5
-      para = "     "
+      para = "\n     "
       CAP = true
     }
     if (y > H - pad)
@@ -27202,7 +27337,7 @@ function pageOfBook (canvas) {
     grit(ctx,""+text,x,pad-fs*1.3,w,fs)
 }
 
-function spaceText (t, width, finalwidth,x,y,ctx,fs, alt) {
+function spaceText (t, width, finalwidth, x, y, ctx, fs, alt) {
   let ta = t.split("")
   let diff = (finalwidth-width)/ta.length
   let i = 0
@@ -35244,7 +35379,8 @@ function tint (color) {
   offcanvas.height = canvas.height
   let offctx = offcanvas.getContext("2d");
   offctx.willReadFrequently = true
- // let color = randomPick(getCurrentPalette()) // was paintcolor
+  if (!color)
+    color = randomPick(getCurrentPalette()) // was paintcolor
   let alpha = document.getElementById("opacity").value
   let r = hexToR(color)
   let g = hexToG(color)
