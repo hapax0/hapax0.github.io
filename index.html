@@ -27120,33 +27120,266 @@ function mockparagraphScript (canvas) {
   document.getElementById("opacity").value = alpha
 }
 
-function drawPictureAt (RIGHT) {
+
+function coneAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W, cpx, cpy, points = []
+  let colors = shuffle(getCurrentPalette(true,13))
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  ctx.strokeStyle = color
+  ctx.lineCap = "square"
+  ctx.lineJoin = "bevel"
+  ctx.strokeStyle = randomPick(colors)
+
+  ctx.beginPath()
+  ctx.moveTo(x+4*W/32, y+26*H/32)
+  cpx = x+16*W/32
+  cpy = y+31*H/32
+  ctx.quadraticCurveTo(cpx, cpy, x+28*W/32, y+26*H/32)
+  cpx = x+16*W/32
+  cpy = y+21*H/32
+  ctx.quadraticCurveTo(cpx, cpy, x+4*W/32, y+26*H/32)
+  cpx = x+16*W/32
+  cpy = y+2*H/32
+  ctx.quadraticCurveTo(cpx, cpy, x+16*W/32, y+2*H/32)
+  cpx = x+28*W/32
+  cpy = y+26*H/32
+  ctx.quadraticCurveTo(cpx, cpy, x+28*W/32, y+26*H/32)
+  ctx.stroke()
+  
+  ctx.setLineDash([8,12])
+  ctx.beginPath()
+  ctx.moveTo(x+16*W/32, y+2*H/32)
+  cpx = x+16*W/32
+  cpy = y+26*H/32
+  ctx.quadraticCurveTo(cpx, cpy, x+16*W/32, y+26*H/32)
+  cpx = x+28*W/32
+  cpy = y+26*H/32
+  ctx.quadraticCurveTo(cpx, cpy, x+28*W/32, y+26*H/32)
+  ctx.stroke()
+
+  ctx.setLineDash([])
+}  
+
+function functionAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W, cpx, cpy, points = []
+  let colors = shuffle(getCurrentPalette(true,13))
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  ctx.strokeStyle = colors[0]
+  ctx.lineCap = "square"
+  ctx.lineJoin = "bevel"
+
+  ctx.beginPath()
+  ctx.moveTo(x+3*W/32, y+2*H/32)
+  ctx.lineTo(x+3*W/32, y+30*H/32)
+  ctx.lineTo(x+29*W/32, y+30*H/32)
+  
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+5*W/32, y+28*H/32)
+  cpx = x+6*W/32
+  cpy = y+16*H/32
+  ctx.quadraticCurveTo(cpx, cpy, x+17*W/32, y+16*H/32)
+  cpx = x+27*W/32
+  cpy = y+14*H/32
+  ctx.quadraticCurveTo(cpx, cpy, x+27*W/32, y+2*H/32)
+  ctx.stroke()
+  ctx.lineWidth *= 2
+  
+  ctx.beginPath()
+  ctx.moveTo(x+10*W/32, y+22*H/32)
+  cpx = x+10*W/32
+  cpy = y+22*H/32
+  ctx.quadraticCurveTo(cpx, cpy, x+10*W/32, y+22*H/32)
+
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+7*W/32, y+15*H/32)
+  cpx = x+7*W/32
+  cpy = y+15*H/32
+  ctx.quadraticCurveTo(cpx, cpy, x+7*W/32, y+15*H/32)
+
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+19*W/32, y+20*H/32)
+  cpx = x+19*W/32
+  cpy = y+20*H/32
+  ctx.quadraticCurveTo(cpx, cpy, x+19*W/32, y+20*H/32)
+
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+14*W/32, y+12*H/32)
+  cpx = x+14*W/32
+  cpy = y+12*H/32
+  ctx.quadraticCurveTo(cpx, cpy, x+14*W/32, y+12*H/32)
+  ctx.stroke()
+
+  ctx.beginPath()
+  ctx.moveTo(x+22*W/32, y+8*H/32)
+  cpx = x+22*W/32
+  cpy = y+8*H/32
+  ctx.quadraticCurveTo(cpx, cpy, x+22*W/32, y+8*H/32)
+
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+28*W/32, y+5*H/32)
+  cpx = x+28*W/32
+  cpy = y+5*H/32
+  ctx.quadraticCurveTo(cpx, cpy, x+28*W/32, y+5*H/32)
+
+  ctx.stroke()
+
+  ctx.setLineDash([])
+}  
+
+function pageAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W, cpx, cpy, points = []
+  let colors = shuffle(getCurrentPalette(true,13))
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  ctx.strokeStyle = colors[0]
+  ctx.lineCap = "square"
+  ctx.lineJoin = "bevel"
+
+  ctx.beginPath()
+  ctx.moveTo(x+4*W/32, y+2*H/32)
+  ctx.lineTo(x+4*W/32, y+30*H/32)
+  ctx.lineTo(x+28*W/32, y+30*H/32)
+  ctx.lineTo(x+28*W/32, y+2*H/32)
+  ctx.lineTo(x+4*W/32, y+2*H/32)
+  ctx.strokeStyle = randomPick(colors)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+20*W/32, y+8*H/32)
+  ctx.lineTo(x+20*W/32, y+14*H/32)
+  ctx.lineTo(x+26*W/32, y+14*H/32)
+  ctx.lineTo(x+26*W/32, y+8*H/32)
+  ctx.lineTo(x+20*W/32, y+8*H/32)
+  ctx.fillStyle = randomPick(colors)
+  ctx.stroke()
+  
+  ctx.beginPath()
+  ctx.moveTo(x+13*W/32, y+6*H/32)
+  ctx.lineTo(x+17*W/32, y+6*H/32)
+  ctx.fillStyle = randomPick(colors)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+25*W/32, y+6*H/32)
+  ctx.lineTo(x+26*W/32, y+6*H/32)
+  ctx.fillStyle = randomPick(colors)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+18*W/32, y+8*H/32)
+  ctx.lineTo(x+6*W/32, y+8*H/32)
+  ctx.fillStyle = randomPick(colors)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+18*W/32, y+14*H/32)
+  ctx.lineTo(x+6*W/32, y+14*H/32)
+  ctx.fillStyle = randomPick(colors)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/32, y+16*H/32)
+  ctx.lineTo(x+26*W/32, y+16*H/32)
+  ctx.fillStyle = randomPick(colors)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/32, y+18*H/32)
+  ctx.lineTo(x+26*W/32, y+18*H/32)
+  ctx.fillStyle = randomPick(colors)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/32, y+20*H/32)
+  ctx.lineTo(x+26*W/32, y+20*H/32)
+  ctx.fillStyle = randomPick(colors)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/32, y+22*H/32)
+  ctx.lineTo(x+26*W/32, y+22*H/32)
+  ctx.fillStyle = randomPick(colors)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/32, y+24*H/32)
+  ctx.lineTo(x+26*W/32, y+24*H/32)
+  ctx.fillStyle = randomPick(colors)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/32, y+26*H/32)
+  ctx.lineTo(x+26*W/32, y+26*H/32)
+  ctx.fillStyle = randomPick(colors)
+  ctx.stroke()
+
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/32, y+28*H/32)
+  ctx.lineTo(x+26*W/32, y+28*H/32)
+  ctx.fillStyle = randomPick(colors)
+  //ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/32, y+10*H/32)
+  ctx.lineTo(x+18*W/32, y+10*H/32)
+  ctx.fillStyle = randomPick(colors)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/32, y+12*H/32)
+  ctx.lineTo(x+18*W/32, y+12*H/32)
+  ctx.fillStyle = randomPick(colors)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.moveTo(x+23*W/32, y+13*H/32)
+  cpx = x+21*W/32
+  cpy = y+13*H/32
+  ctx.quadraticCurveTo(cpx, cpy, x+21*W/32, y+11*H/32)
+  cpx = x+21*W/32
+  cpy = y+9*H/32
+  ctx.quadraticCurveTo(cpx, cpy, x+23*W/32, y+9*H/32)
+  cpx = x+25*W/32
+  cpy = y+9*H/32
+  ctx.quadraticCurveTo(cpx, cpy, x+25*W/32, y+11*H/32)
+  cpx = x+25*W/32
+  cpy = y+13*H/32
+  ctx.quadraticCurveTo(cpx, cpy, x+23*W/32, y+13*H/32)
+  cpx = x+23*W/32
+  cpy = y+9*H/32
+  ctx.quadraticCurveTo(cpx, cpy, x+23*W/32, y+9*H/32)
+  ctx.fillStyle = randomPick(colors)
+  ctx.stroke()
+
+  ctx.setLineDash([])
+ 
+}  
+
+function drawPictureAt (RIGHT, delta, color) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let W = canvas.width, H = canvas.height
-  let colors = ["#f6c2d9","#fff69b","#bcdfc9","#a1c8e9","#e4dae2"]
-  let linecolors = getCurrentPalette()
   let functions = shuffle(["origamiAt", "airplaneAt", "envelopeAt", "sardinesAt", "refractionAt", 
-  "mothAt", "firebirdAt", "spiralAt", "gunAt", 
+  "mothAt", "firebirdAt", "spiralAt", "gunAt", "vineAt",
   "elephantAt", "coreAt", "orbitAt", "lensAt", "pythagAt", "floppyAt", "spiderAt", "shoesAt", 
-  "mushroomAt", "catAt", "birbAt",
+  "mushroomAt", "catAt", "birbAt", "functionAt", "coneAt", "pageAt",
    "pantsAt", "tvAt", "drAt", "fishAt", "cactusAt", "umbrellaAt", "flameAt",
     "appleAt", "bridgeAt", "bugAt", "mailboxAt", "jumpropeAt", "pointhouseAt", "breadAt",
     "flathouseAt", "flatchairAt", "birdhouseAt", "factoryAt", "dashedAt", "phaseAt",
     "leafAt", "allAt", "thenAt", "existAt", "tildeAt", "userAt", "heartAt", "glassAt", "prayerAt", 
-    "thoughtAt", "skullAt", "lampAt", "chairAt",
+    "thoughtAt", "skullAt", "lampAt", "chairAt", "cubeAt",
   "stairsAt", "treeAt", "slideAt", "ladderAt", "swingAt"])
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  let delta = W/4, x = 0, y = 0
+  let x = 0, y = 0
   let pad = W/10
-  x = pad+8, y = pad+24
+  x = pad+14, y = pad+24
+  
+  delta *= 0.95
   if (RIGHT)
-    x = W-pad-delta-16
-  ctx.fillStyle = randomPick(linecolors)
-  ctx.strokeStyle = ctx.fillStyle
+    x = W-pad-delta-38
+  ctx.strokeStyle = color
   f = randomPick(functions)
   window[f](x,y,delta,ctx.strokeStyle)
-  ctx.strokeRect(x-8,y-8,delta+16,delta+16)
+  delta *= 1.03
+ 
+  //ctx.strokeRect(x-12,y-12,delta+16,delta+16)
 }
 
 function pageOfBookIll (canvas) { //illustrated
@@ -27158,7 +27391,9 @@ function pageOfBookIll (canvas) { //illustrated
   let W = canvas.width
   let H = canvas.height
   let pad = W/10, PW = W - pad*2
-  let delta = W/4
+  let ddiv = randomPick([3,4,2.67])
+  let PWmult = ddiv/10
+  let delta = W/(ddiv)
   let x = pad
   let y = pad
   let wrap = randomPick([3,4,5])
@@ -27171,22 +27406,21 @@ function pageOfBookIll (canvas) { //illustrated
   ctx.textAlign = 'left';
   ctx.textBaseline = 'middle'
   let RIGHT = Math.random() > 0.5
-
-  drawPictureAt(RIGHT)
+  drawPictureAt(RIGHT, delta, ctx.fillStyle)
   let w = 0, text = "", s = ""
-  ctx.font = "100 "+(fs)+"pt Georgia"
+  ctx.font = "100 "+(fs)+ randomPick(["pt Georgia", "pt Times New Roman", "pt Garamond"])
   let j = 0
   for (; j < 40; j++) { // 40 lines
     text = "", para = ""
     w = 0, i = 0
     if (j === 0 || Math.random() > 0.77) {
       y += fs*1.5
-      para = "\n     "
+      para = ""
       CAP = true
     }
     if (y > H - pad)
       break
-    let PWF = PW * 0.4
+    let PWF = PW * PWmult
     while (w < PWF) {
       if (y > pad+delta + 40)
         PWF = PW *.67
