@@ -31,21 +31,11 @@
   <canvas id="myCanvas" width="500" height="500"></canvas><br>
   <div id="buttons" style="padding-left:20px;">
     grid: <select id="gridsize" onchange="clearAll()">
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-      <option value="7">7</option>
-      <option value="8">8</option>
-      <option value="9">9</option>
-      <option value="10" selected>10</option>
-      <option value="11">11</option>
-      <option value="12">12</option>
       <option value="13">13</option>
       <option value="14">14</option>
       <option value="15">15</option>
       <option value="16">16</option> 
-      <option value="32">32</option>
+      <option value="24" selected>24</option>
     </select>
     &nbsp;
     <button onclick="clearAll()">clear</button>
@@ -118,7 +108,7 @@ function clearAll () {
 function closePath () {
   if (i === 0)
     return
-  code.push("  ctx.fillStyle = randomPick(colors)\n  ctx.fill()")
+  code.push("  ctx.stroke()\n")
   //code.push("  ctx.stroke()")
   ctx.setLineDash([])
   ctx.globalAlpha = 1
@@ -229,10 +219,11 @@ function showPoints () {
   ctx.lineWidth = 1 + document.getElementById(\"featuresize\").value/50\n\
   ctx.strokeStyle = color\n\
   ctx.lineCap = \"square\"\n\
-  ctx.lineJoin = \"bevel\"\n\n"
+  ctx.lineJoin = \"bevel\"\n\n\
+  "
   document.getElementById("text1").value = header
   document.getElementById("text1").value += code.join("\n")
-  document.getElementById("text1").value += "\n\n  ctx.setLineDash([])\n  drawStars(x,y,W,points)\n}  "
+  document.getElementById("text1").value += "}"
 }
 
 function getMousePos(canvas, evt) {

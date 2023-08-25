@@ -31,19 +31,7 @@
   <canvas id="myCanvas" width="500" height="500"></canvas><br>
   <div id="buttons" style="padding-left:20px;">
     grid: <select id="gridsize" onchange="clearAll()">
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-      <option value="7">7</option>
-      <option value="8">8</option>
-      <option value="9">9</option>
-      <option value="10" >10</option>
-      <option value="12">12</option>
-      <option value="14">14</option>
-      <option value="16">16</option> 
-      <option value="18">18</option> 
-      <option value="20">20</option> 
-      <option value="23" selected>23</option> 
+      
       <option value="24">24</option> 
       <option value="32">32</option>
       <option value="80">80</option>
@@ -259,7 +247,7 @@ function showPoints () {
   oc.height = canvas.height, oc.width = canvas.width\n\
   let colors = shuffle(getCurrentPalette(true,13))\n\
   let H = W, cpx, cpy, points = [], n = 0\n\
-  let STROKE = false, FILL = true, PATTERN = false\n\
+  let STROKE = true, FILL = false, PATTERN = false\n\
   ctx.lineWidth = 1 + document.getElementById(\"featuresize\").value/5\n\
   ctx.strokeStyle = randomPick(colors)\n\
   ctx.fillStyle = randomPick(colors)\n\
