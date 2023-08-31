@@ -1,14 +1,14 @@
-let atList = ["origamiAt", "airplaneAt", "envelopeAt", "sardinesAt", "refractionAt", 
+let atList = ["origamiAt", "airplaneAt", "envelopeAt", "sardinesAt", "refractionAt", "starsAt", 
   "mothAt", "firebirdAt", "spiralAt", "finger_gunAt", "vineAt", "triangleAt", "flaskAt", "pencilAt", 
   "elephantAt", "coreAt", "orbitAt", "lensAt", "theoremAt", "floppyAt", "spiderAt", "shoesAt", 
   "mushroomAt", "catAt", "birbAt", "functionAt", "coneAt", "pageAt", "urnAt", "venn_diagramAt", "monsterAt", "frameAt",
    "pantsAt", "tvAt", "duckrabbitAt", "fishAt", "cactusAt", "umbrellaAt", "flameAt", "bulbAt",
-   "mazeAt", "transomAt", "cameraAt", "bowed_HeronAt", "bicycleAt", "cigarettesAt", 
+   "mazeAt", "transomAt", "cameraAt", "bowed_HeronAt", "bicycleAt", "cigarettesAt", "phoneAt", 
     "appleAt", "bridgeAt", "bugAt", "mailboxAt", "jumpropeAt", "pointy_houseAt", "domeAt", "heronAt",
-    "houseAt", "falling_chairAt", "birdhouseAt", "factoryAt", "shellsAt", "phaseAt",
+    "houseAt", "falling_chairAt", "birdhouseAt", "factoryAt", "shellsAt", "phaseAt", "mirrorAt", 
     "leafAt", /*"allAt", "thenAt", "existAt", "tildeAt",*/ "userAt", "heartAt", "glassAt", "prayerAt", 
     "thoughtAt", "skullAt", "lampAt", "chairAt", "cubeAt", "cupAt", "mouseAt", "uapAt", 
-  "stairsAt", "pineAt", "slideAt", "ladderAt", "swingAt", "cakeAt", "piechartAt"]  
+  "stairsAt", "treeAt", "slideAt", "ladderAt", "swingAt", "cakeAt", "piechartAt"]  
   
   function twocards () {
     let canvas = document.getElementById("myCanvas")
@@ -19,9 +19,266 @@ let atList = ["origamiAt", "airplaneAt", "envelopeAt", "sardinesAt", "refraction
     let funcs = shuffle(atList)
     let numbers = shuffle(["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII",
     "XIII", "XIV", "XV","XVI", "XVII", "XVIII","XIX", "XX", "XXI", "XXII"])
+    ctx.fillStyle = randomPick(getCurrentPalette())
+    ctx.fillRect(0,0,W,H)
     tarotcard(x+32, y+156, w, h, funcs[0], numbers[0])
-    
+    //cardback(x+32, y+156, w, h)
+    // cardback(x+W/2+18, y+156, w, h)
     tarotcard(x+W/2+18, y+156, w, h, funcs[1], numbers[1])
+  }
+  
+  function roundedRectCard (x, y, w, h, r) {
+    let canvas = document.getElementById("myCanvas")
+    let ctx = canvas.getContext("2d")
+    if (w < 2 * r) r = w / 2;
+    if (h < 2 * r) r = h / 2;
+    ctx.save()
+    ctx.beginPath();
+    ctx.moveTo(x+r, y);
+    ctx.arcTo(x+w, y,   x+w, y+h, r); // across to right
+    ctx.arcTo(x+w, y+h, x,   y+h, r);
+    ctx.arcTo(x,   y+h, x,   y,   r);
+    ctx.arcTo(x,   y,   x+w, y,   r);
+    ctx.closePath();
+    ctx.fill()
+    ctx.clip()
+    let pal =  shuffle(getCurrentPalette())
+    ctx.fillStyle = pal[0]
+    ctx.fillRect(x, y, w, h)
+    ctx.strokeStyle = pal[1]
+    LASTCLICK[0] = x+w/2, LASTCLICK[1] = y+h/2
+    linearSpiral(pal[1])
+    //blobFill(ctx.fillStyle)
+    //ctx.fillStyle = "#ececdb"
+    //ctx.fillRect(w/2, y, w/2, h)
+    
+    ctx.restore()
+    
+  }
+  
+  function cardback (x,y,w,h) {
+    let canvas = document.getElementById("myCanvas")
+    let ctx = canvas.getContext("2d")
+    let offcanvas = document.createElement('CANVAS')
+    let offctx = offcanvas.getContext("2d")
+    offcanvas.width = w, offcanvas.height = h
+    let colors = shuffle(getCurrentPalette())
+    let up = true, r = 32
+    BRIGHT = true
+    let pal = colors
+    ctx.fillStyle = pal[randomPick([0,1])]
+    ctx.strokeStyle = pal[randomPick([pal.length-1], [pal.length-2])]
+    ctx.lineWidth = 9
+    
+    ctx.shadowBlur = 10
+    ctx.shadowColor = "#444444"
+    ctx.shadowOffsetX = 2
+    ctx.shadowOffsetY  = 12
+    roundedRect (x, y, w, h, 32, ctx)
+    ctx.shadowBlur = 0
+    ctx.shadowOffsetX = 0
+    ctx.shadowOffsetY  = 0
+    ctx.lineWidth = 18
+    
+    roundedRect (x, y, w, h, r, ctx)
+    roundedRectCard (x+8, y+8, w-16, h-16, r)
+  }
+  
+  function starsAt (x,y,W,color) {
+    let canvas = document.getElementById("myCanvas")
+    let ctx = canvas.getContext("2d")
+    let H = W, cpx, cpy, points = []
+    let colors = shuffle(getCurrentPalette(true,13))
+    ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+    ctx.strokeStyle = color
+    ctx.lineCap = "square"
+    ctx.lineJoin = "bevel"
+  
+    ctx.beginPath()
+    ctx.moveTo(x+22*W/24, y+15*H/24)
+    ctx.lineTo(x+19*W/24, y+19*H/24)
+    ctx.lineTo(x+12*W/24, y+15*H/24)
+    ctx.lineTo(x+13*W/24, y+10*H/24)
+    ctx.lineTo(x+22*W/24, y+15*H/24)
+    ctx.stroke()
+  
+    ctx.beginPath()
+    ctx.moveTo(x+10*W/24, y+7*H/24)
+    ctx.lineTo(x+13*W/24, y+10*H/24)
+    ctx.stroke()
+  
+    ctx.beginPath()
+    ctx.moveTo(x+10*W/24, y+7*H/24)
+    ctx.lineTo(x+8*W/24, y+4*H/24)
+    ctx.lineTo(x+2*W/24, y+3*H/24)
+    ctx.stroke()
+    // arcs 
+    let r = ctx.lineWidth
+    ctx.beginPath()
+    ctx.arc(x+22*W/24, y+15*H/24, r, 0, Math.PI*2)
+    ctx.stroke()
+    ctx.beginPath()
+    ctx.arc(x+19*W/24, y+19*H/24, r, 0, Math.PI*2)
+    ctx.stroke()
+    ctx.beginPath()
+    ctx.arc(x+12*W/24, y+15*H/24, r, 0, Math.PI*2)
+    ctx.stroke()
+    ctx.beginPath()
+    ctx.arc(x+13*W/24, y+10*H/24, r, 0, Math.PI*2)
+    ctx.stroke()
+    ctx.beginPath()
+    ctx.arc(x+22*W/24, y+15*H/24, r, 0, Math.PI*2)
+    ctx.stroke()
+    ctx.beginPath()
+    ctx.arc(x+10*W/24, y+7*H/24, r, 0, Math.PI*2)
+    ctx.stroke()
+    ctx.beginPath()
+    ctx.arc(x+8*W/24, y+4*H/24, r, 0, Math.PI*2)
+    ctx.stroke()
+    ctx.beginPath()
+    ctx.arc(x+2*W/24, y+3*H/24, r, 0, Math.PI*2)
+    ctx.stroke()
+  }
+  
+  function mirrorAt (x,y,W,color) {
+    let canvas = document.getElementById("myCanvas")
+    let ctx = canvas.getContext("2d")
+    let H = W, cpx, cpy, points = []
+    let colors = shuffle(getCurrentPalette(true,13))
+    ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+    ctx.strokeStyle = color
+    ctx.lineCap = "square"
+    ctx.lineJoin = "bevel"
+  
+    ctx.beginPath()
+    ctx.moveTo(x+12*W/24, y+22*H/24)
+    cpx = x+14*W/24
+    cpy = y+22*H/24
+    ctx.quadraticCurveTo(cpx, cpy, x+14*W/24, y+20*H/24)
+    cpx = x+14*W/24
+    cpy = y+18*H/24
+    ctx.quadraticCurveTo(cpx, cpy, x+13*W/24, y+14*H/24)
+    ctx.stroke()
+  
+    ctx.beginPath()
+    ctx.moveTo(x+12*W/24, y+22*H/24)
+    cpx = x+10*W/24
+    cpy = y+22*H/24
+    ctx.quadraticCurveTo(cpx, cpy, x+10*W/24, y+20*H/24)
+    cpx = x+10*W/24
+    cpy = y+18*H/24
+    ctx.quadraticCurveTo(cpx, cpy, x+11*W/24, y+14*H/24)
+    cpx = x+6*W/24
+    cpy = y+14*H/24
+    ctx.quadraticCurveTo(cpx, cpy, x+6*W/24, y+8*H/24)
+    cpx = x+6*W/24
+    cpy = y+2*H/24
+    ctx.quadraticCurveTo(cpx, cpy, x+12*W/24, y+2*H/24)
+    cpx = x+18*W/24
+    cpy = y+2*H/24
+    ctx.quadraticCurveTo(cpx, cpy, x+18*W/24, y+8*H/24)
+    cpx = x+18*W/24
+    cpy = y+14*H/24
+    ctx.quadraticCurveTo(cpx, cpy, x+13*W/24, y+14*H/24)
+    ctx.stroke()
+  
+    ctx.beginPath()
+    ctx.moveTo(x+12*W/24, y+13*H/24)
+    cpx = x+7*W/24
+    cpy = y+13*H/24
+    ctx.quadraticCurveTo(cpx, cpy, x+7*W/24, y+8*H/24)
+    cpx = x+7*W/24
+    cpy = y+3*H/24
+    ctx.quadraticCurveTo(cpx, cpy, x+12*W/24, y+3*H/24)
+    cpx = x+17*W/24
+    cpy = y+3*H/24
+    ctx.quadraticCurveTo(cpx, cpy, x+17*W/24, y+8*H/24)
+    cpx = x+17*W/24
+    cpy = y+13*H/24
+    ctx.quadraticCurveTo(cpx, cpy, x+12*W/24, y+13*H/24)
+    ctx.stroke()
+  }
+  
+  function phoneAt (x,y,W,color) {
+    let canvas = document.getElementById("myCanvas")
+    let ctx = canvas.getContext("2d")
+    let H = W, cpx, cpy, points = []
+    let colors = shuffle(getCurrentPalette(true,13))
+    ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+    ctx.strokeStyle = color
+    ctx.lineCap = "square"
+    ctx.lineJoin = "bevel"
+  
+    ctx.beginPath()
+    ctx.moveTo(x+6*W/24, y+3*H/24)
+    cpx = x+6*W/24
+    cpy = y+2*H/24
+    ctx.quadraticCurveTo(cpx, cpy, x+7*W/24, y+2*H/24)
+    cpx = x+17*W/24
+    cpy = y+2*H/24
+    ctx.quadraticCurveTo(cpx, cpy, x+17*W/24, y+2*H/24)
+    cpx = x+18*W/24
+    cpy = y+2*H/24
+    ctx.quadraticCurveTo(cpx, cpy, x+18*W/24, y+3*H/24)
+    cpx = x+18*W/24
+    cpy = y+21*H/24
+    ctx.quadraticCurveTo(cpx, cpy, x+18*W/24, y+21*H/24)
+    cpx = x+18*W/24
+    cpy = y+22*H/24
+    ctx.quadraticCurveTo(cpx, cpy, x+17*W/24, y+22*H/24)
+    cpx = x+7*W/24
+    cpy = y+22*H/24
+    ctx.quadraticCurveTo(cpx, cpy, x+7*W/24, y+22*H/24)
+    cpx = x+6*W/24
+    cpy = y+22*H/24
+    ctx.quadraticCurveTo(cpx, cpy, x+6*W/24, y+21*H/24)
+    cpx = x+6*W/24
+    cpy = y+3*H/24
+    ctx.quadraticCurveTo(cpx, cpy, x+6*W/24, y+3*H/24)
+    ctx.stroke()
+  
+    ctx.beginPath()
+    ctx.moveTo(x+12*W/24, y+21*H/24)
+    cpx = x+11*W/24
+    cpy = y+21*H/24
+    ctx.quadraticCurveTo(cpx, cpy, x+11*W/24, y+20*H/24)
+    cpx = x+11*W/24
+    cpy = y+19*H/24
+    ctx.quadraticCurveTo(cpx, cpy, x+12*W/24, y+19*H/24)
+    cpx = x+13*W/24
+    cpy = y+19*H/24
+    ctx.quadraticCurveTo(cpx, cpy, x+13*W/24, y+20*H/24)
+    cpx = x+13*W/24
+    cpy = y+21*H/24
+    ctx.quadraticCurveTo(cpx, cpy, x+12*W/24, y+21*H/24)
+    ctx.stroke()
+
+  
+    ctx.beginPath()
+    ctx.moveTo(x+17*W/24, y+22*H/24)
+    cpx = x+19*W/24
+    cpy = y+22*H/24
+    ctx.quadraticCurveTo(cpx, cpy, x+19*W/24, y+21*H/24)
+    cpx = x+19*W/24
+    cpy = y+3*H/24
+    ctx.quadraticCurveTo(cpx, cpy, x+19*W/24, y+3*H/24)
+    cpx = x+19*W/24
+    cpy = y+2*H/24
+    ctx.quadraticCurveTo(cpx, cpy, x+17*W/24, y+2*H/24)
+    ctx.stroke()
+    
+    ctx.beginPath()
+    ctx.moveTo(x+15*W/24, y+2*H/24)
+    cpx = x+15*W/24
+    cpy = y+3*H/24
+    ctx.quadraticCurveTo(cpx, cpy, x+14*W/24, y+3*H/24)
+    cpx = x+10*W/24
+    cpy = y+3*H/24
+    ctx.quadraticCurveTo(cpx, cpy, x+10*W/24, y+3*H/24)
+    cpx = x+9*W/24
+    cpy = y+3*H/24
+    ctx.quadraticCurveTo(cpx, cpy, x+9*W/24, y+2*H/24)
+    ctx.stroke()
   }
   
   function uapAt (x,y,W,color) {
