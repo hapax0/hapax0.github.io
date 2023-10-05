@@ -25,8 +25,8 @@ function initOC () {
   offdctx.lineWidth = 4
   offdctx.setLineDash([4, 4])
   canvas.addEventListener('mousedown', function (evt) {
+    let LINETO = false
     CELLSIZE = canvas.width/GRIDSIZE
-    //let mode = document.getElementById("qmode").checked
     let dmode = document.getElementById("dmode").value
     let mousePos = getMousePos(canvas, evt);
     ctx.fillStyle = '#000000'
@@ -49,6 +49,7 @@ function initOC () {
       ly = Math.round(mousePos.y/CELLSIZE)+"*W/"+GRIDSIZE
       ctx.moveTo(Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE, Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE)
       ctx.fillRect(Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE-4, Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE-4, 10, 10)
+      LINETO = false
     } else {
       //if (!mode) {
       if (dmode === "line") {
@@ -56,6 +57,7 @@ function initOC () {
       //   code.push("  ragged(ctx, x+"+Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE+", y+"+Math.round(mousePos.y/CELLSIZE)+"*H/"+GRIDSIZE+", "+lx+", "+ly+")")
       // else
         code.push("  resctx.lineTo(x+"+Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE+"+pet(P)"+", y+"+Math.round(mousePos.y/CELLSIZE)+"*H/"+GRIDSIZE+"+pet(P)"+")")
+        LINETO = true
         ctx.lineTo(Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE, Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE)
         lastx = Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE
         lasty = Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE
@@ -67,6 +69,7 @@ function initOC () {
         ctx.stroke()
         ctx.fillStyle = "black"
         ctx.fillRect(Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE-5, Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE-5, 10, 10)
+        INDEX = 0
       } else 
       if (dmode === "circ") {
         if (INDEX % 2 === 1) { // radius point
@@ -82,6 +85,7 @@ function initOC () {
           offdctx.beginPath()
           offdctx.arc(lastx, lasty, radius, 0, Math.PI*2)
           offdctx.stroke()
+          LINETO = false
           ctx.drawImage(ocd,0,0,canvas.width,canvas.height)
           //offdctx.setLineDash([])
           code.push("  resctx.beginPath()")
@@ -244,7 +248,7 @@ function showPoints () {
   resctx.fillStyle = randomPick(colors)\n\
   resctx.strokeStyle = 'black'\n\n\
   //resctx.lineCap = \"round\"\n\
-  resctx.lineJoin = \"round\"\n\n"
+  //resctx.lineJoin = \"round\"\n\n"
   document.getElementById("text1").value = header
   document.getElementById("text1").value += code.join("\n")
 }
