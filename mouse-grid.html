@@ -129,7 +129,7 @@ offctx.setLineDash([4, 4])
 canvas.addEventListener('mousedown', function(evt) {
   let mode = document.getElementById("mode").checked
   let mousePos = getMousePos(canvas, evt);
-  
+  console.log(cellsize, gridsize)
   ctx.fillStyle = '#000000'
   if (i === 0) {
     code.push("  ctx.beginPath()")
