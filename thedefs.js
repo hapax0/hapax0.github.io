@@ -161,4 +161,5 @@ let defs = {
     "paper_bagAt":{"u":"lunch,groceries,beer","i":"never plastic"},
     "shopping_listAt":{"u":"routine,to-do,organization","i":"don't forget the cream"},
     "press_the_buttonAt":{"u":"go ahead... press it,what could go wrong?","i":"release the dogs,launch the missiles,drop the bombs"},
+    
     }
