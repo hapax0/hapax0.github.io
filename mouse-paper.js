@@ -33,23 +33,50 @@ function initOC () {
     if (INDEX === 0) {
       ITEM++
       code.push("  //"+ITEM)
-      /*code.push("  if (PATTERN)")
-      code.push("    fillOC(oc, occtx)")
-      code.push("  ctx.save()")*/
+
       code.push("  P = 0")
       code.push("  if(document.getElementById('grungy').checked)")
       code.push("    P = 37")
       code.push("  resctx.beginPath()")
-      code.push("  resctx.moveTo(x+"+Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE+"+pet(P)"+", y+"+Math.round(mousePos.y/CELLSIZE)+"*H/"+GRIDSIZE+"+pet(P)"+")")
-      ctx.lineWidth = 4
-      ctx.beginPath()
-      lastx = Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE
-      lasty = Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE
-      lx = Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE
-      ly = Math.round(mousePos.y/CELLSIZE)+"*W/"+GRIDSIZE
-      ctx.moveTo(Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE, Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE)
-      ctx.fillRect(Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE-4, Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE-4, 10, 10)
-      LINETO = false
+      if (dmode != "square") {
+        code.push("  resctx.moveTo(x+"+Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE+"+pet(P)"+", y+"+Math.round(mousePos.y/CELLSIZE)+"*H/"+GRIDSIZE+"+pet(P)"+")")
+        ctx.lineWidth = 4
+        ctx.beginPath()
+        lastx = Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE
+        lasty = Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE
+        lx = Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE
+        ly = Math.round(mousePos.y/CELLSIZE)+"*W/"+GRIDSIZE
+        ctx.moveTo(Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE, Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE)
+        ctx.fillRect(Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE-4, Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE-4, 10, 10)
+        LINETO = false
+      } else 
+      if (dmode === "square") {
+        ctx.strokeStyle = "#ff4444"
+          ctx.lineWidth = 4
+          lx = Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE
+          ly = Math.round(mousePos.y/CELLSIZE)+"*W/"+GRIDSIZE
+          let rx = Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE
+          let ry = Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE
+          radius = Math.sqrt(Math.pow(lastx-rx, 2) +Math.pow(lasty-ry, 2))
+          offdctx.strokeStyle = "#00aaff"
+          offdctx.setLineDash([])
+          offdctx.beginPath()
+          console.log(rx, ry, CELLSIZE, CELLSIZE)
+          offdctx.strokeRect(rx, ry, CELLSIZE, CELLSIZE)
+          //offdctx.stroke()
+          LINETO = false
+          ctx.drawImage(ocd,0,0,canvas.width,canvas.height)
+          //offdctx.setLineDash([])
+          code.push("  resctx.beginPath()")
+          code.push("  resctx.rect("+rx+","+ry+","+CELLSIZE+","+CELLSIZE+")")
+         // if fill
+            code.push("  resctx.closePath()")
+            code.push("  resctx.fill()")
+          lastpoints.push(lastx,lasty)
+          closePath()
+          INDEX = -1
+        
+      }
     } else {
       //if (!mode) {
       if (dmode === "line") {
@@ -71,6 +98,7 @@ function initOC () {
         ctx.fillRect(Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE-5, Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE-5, 10, 10)
         INDEX = 0
       } else 
+      
       if (dmode === "circ") {
         if (INDEX % 2 === 1) { // radius point
           ctx.strokeStyle = "#ff4444"
@@ -87,28 +115,17 @@ function initOC () {
           offdctx.stroke()
           LINETO = false
           ctx.drawImage(ocd,0,0,canvas.width,canvas.height)
-          //offdctx.setLineDash([])
           code.push("  resctx.beginPath()")
           code.push("  cpx = x+"+Math.round(lastx/CELLSIZE)+"*W/"+GRIDSIZE+"+pet(P)")
           code.push("  cpy = y+"+Math.round(lasty/CELLSIZE)+"*H/"+GRIDSIZE+"+pet(P)")
           code.push("  resctx.arc(cpx, cpy, ("+radius/CELLSIZE+"*W/"+GRIDSIZE+"),0, Math.PI*2)")
          // if fill
-          code.push("  resctx.closePath()")
+            code.push("  resctx.closePath()")
           lastpoints.push(lastx,lasty)
           closePath()
           INDEX = -1
         } else {
-          ;
-         /*
-          console.log("INDEX b ", INDEX)
-          ctx.beginPath()
-          lastx = Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE
-          lasty = Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE
-          lx = Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE
-          ly = Math.round(mousePos.y/CELLSIZE)+"*W/"+GRIDSIZE
-          ctx.moveTo(Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE, Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE)
-          ctx.fillRect(Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE-4, Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE-4, 10, 10)
-        */
+
         }
       } else
       if (dmode === "quad") {
@@ -133,7 +150,8 @@ function initOC () {
           ctx.drawImage(ocd,0,0,canvas.width,canvas.height)
           ctx.setLineDash([4, 4])
           ctx.strokeStyle = "#ff4444"
-        } else {
+        } else 
+        if (dmode !== "square") {
           code.push("  resctx.quadraticCurveTo(cpx+pet(P), cpy+pet(P), x+"+Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE+", y+"+Math.round(mousePos.y/CELLSIZE)+"*H/"+GRIDSIZE+")")
           ctx.quadraticCurveTo(cpx, cpy, Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE, Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE)
           ctx.strokeStyle = "#ff4444"
@@ -258,7 +276,7 @@ function getMousePos(canvas, evt) {
   return {
     x: Math.round(evt.clientX - rect.left),
     y: Math.round(evt.clientY - rect.top)
-  };updateItem
+  };
 }
 
 function undoLast () {
@@ -391,7 +409,7 @@ function updateGrid () {
 }
 
 function killCP () {
-  if (INDEX > 0 && document.getElementById("dmode").value === "quad") {
+  if (INDEX > 0 && (document.getElementById("dmode").value === "square" || document.getElementById("dmode").value === "quad")) {
     INDEX = 1
   }
 }
