@@ -93,7 +93,7 @@ function initOC () {
           code.push("  cpy = y+"+Math.round(lasty/CELLSIZE)+"*H/"+GRIDSIZE+"+pet(P)")
           code.push("  resctx.arc(cpx, cpy, ("+radius/CELLSIZE+"*W/"+GRIDSIZE+"),0, Math.PI*2)")
          // if fill
-            code.push("  resctx.closePath()")
+          code.push("  resctx.closePath()")
           lastpoints.push(lastx,lasty)
           closePath()
           INDEX = -1
@@ -258,7 +258,7 @@ function getMousePos(canvas, evt) {
   return {
     x: Math.round(evt.clientX - rect.left),
     y: Math.round(evt.clientY - rect.top)
-  };
+  };updateItem
 }
 
 function undoLast () {
