@@ -2,7 +2,7 @@ let defs = {
     "origamiAt":{"u":"dimensionality,adding depth,plans","i":"flatness"},
     "airplaneAt":{"u":"motion,travel","i":"staying put"},
     "envelopeAt":{"u":"contains a message","i":"lack of communication"},
-    "sardinesAt":{"u":"too close,cramped,need for space,'group think'","i":"alone,'room to spare',independance"},
+    "sardinesAt":{"u":"too close,cramped,need for space,'group think'","i":"alone,'room to spare',independence"},
     "refractionAt":{"u":"an incorrect perception","i":"an incorrect conclusion"},
     "starsAt":{"u":"far away,higher things,aspirations,fame,fate","i":"'the sky is falling',the unreachable,distant"},
     "mountainAt":{"u":"something that can't be moved ,or changed,'no getting around this'","i":"a small problem"},
@@ -11,10 +11,10 @@ let defs = {
     "firebirdAt":{"u":"rebirth","i":"stagnation"},
     "spiralAt":{"u":"long term path,covering all ground","i":"trapped,spiraling down"},
     "finger_gunAt":{"u":"playfulness","i":"foolishness,childish"},
-    "vineAt":{"u":"climbing,moving upward","i":"dependance,strangling"},
+    "vineAt":{"u":"climbing,moving upward","i":"dependence,strangling"},
     "triangleAt":{"u":"measurement,planning","i":"mistakes,measure twice: cut once"},
-    "flaskAt":{"u":"elixer,medicine","i":"poison,bad medicine"},
-    "pencilAt":{"u":"drawing,writing,expression","i":"unexpressiveness"},
+    "flaskAt":{"u":"elixir,medicine","i":"poison,bad medicine"},
+    "pencilAt":{"u":"drawing,writing,expression","i":"inexpressiveness"},
     "forestAt":{"u":"nature","i":"wasteland,lost,a parking lot"},
     
     "elephantAt":{"u":"strength,matriarchy","i":"weakness,gop"},
@@ -25,9 +25,9 @@ let defs = {
     "floppyAt":{"u":"memory,nostalgia,saudade","i":"stuck in the past,obsolescence"},
     "spiderAt":{"u":"venom,a web,a trap,(alarmist)","i":"don't squash it,just take it outside,(mercy)"},
     "shoesAt":{"u":"preparation","i":"unpreparedness"},
-    "bee_hiveAt":{"u":"industriousness,sisterhood,'works well with others'","i":"lazyness,hive mind"},
+    "bee_hiveAt":{"u":"industriousness,sisterhood,'works well with others'","i":"laziness,hive mind"},
     
-    "mushroomAt":{"u":"necessary decay,cleaning up","i":"loose ends,unfinished buisness"},
+    "mushroomAt":{"u":"necessary decay,cleaning up","i":"loose ends,unfinished business"},
     "catAt":{"u":"warmth","i":"aloofness"},
     "birdAt":{"u":"perspective","i":"lack of perspective"},
     "functionAt":{"u":"relationship between two factors","i":"functionally unrelated,separate"},
@@ -61,7 +61,7 @@ let defs = {
     "bridgeAt":{"u":"connection,transitions","i":"isolation"},
     "bugAt":{"u":"annoyances,errors","i":"lack of annoyances,or errors"},
     "mailboxAt":{"u":"sending and receiving","i":"withdrawing"},
-    "jumpropeAt":{"u":"rythm,synchronization,play","i":"monotiny"},
+    "jumpropeAt":{"u":"rhythm,synchronization,play","i":"monotony"},
     "observatoryAt":{"u":"taking in a larger view,outwardness","i":"detachment,narrowness of view,inwardness,'navel gazing'"},
     "heronAt":{"u":"gracefulness","i":"clumsiness"},
     "crazy_wallAt":{"u":"insight from connections","i":"paranoia"},
@@ -81,7 +81,7 @@ let defs = {
     "prayerAt":{"u":"hopes,wishes","i":"futility"},
     "body_of_waterAt":{"u":"abundance","i":"drought"},
     
-    "rainAt":{"u":"percipitate,sudden events","i":"another wet weekend"}, 
+    "rainAt":{"u":"precipitate,sudden events","i":"another wet weekend"}, 
     "cloudsAt":{"u":"obscurities,what is hidden","i":"shade"},
     
     "thoughtAt":{"u":"thoughtfulness","i":"obsessive thought"},
@@ -91,11 +91,11 @@ let defs = {
     "cubeAt":{"u":"foundation,solidity","i":"shapelessness,mushiness"},
     "full_cupAt":{"u":"fulfillment","i":"empty,spill: exposure,a lack of something"},
     "mouseAt":{"u":"motion (mental)","i":"stagnation,repetition,carpal tunnel syndrome"},
-    "uapAt":{"u":"outherworldliness,wanting to believe","i":"'it's just a weather ballon',incredulity"},
+    "uapAt":{"u":"otherworldliness,wanting to believe","i":"'it's just a weather balloon',incredulity"},
     "flipflopAt":{"u":"lack of conviction","i":"lack of conviction"},
     
     "stairsAt":{"u":"transition,levels","i":"stagnating,failing"},
-    "treeAt":{"u":"nature,heirarchy","i":"inversion of order,revolution"},
+    "treeAt":{"u":"nature,hierarchy","i":"inversion of order,revolution"},
     "slideAt":{"u":"change of status","i":"downfall"},
     "puzzle_pieceAt":{"u":"need all of the pieces","i":"start at the edges"},
     "ladderAt":{"u":"opportunity","i":"lack of opportunity"},
@@ -104,14 +104,14 @@ let defs = {
     "cakeAt":{"u":"reward,a special occasion","i":"gluttony,greed"},
     "piechartAt":{"u":"need for data","i":"ignoring the data"},
     "greenwashingAt":{"u":"deception","i":"exposure of deception"},
-    "bribeAt":{"u":"a bad influence,moral weakness","i":"resistence to bad influences,moral strength"},
+    "bribeAt":{"u":"a bad influence,moral weakness","i":"resistance to bad influences,moral strength"},
     "postcardAt":{"u":"a message,wish you were here","i":"forgot the stamp?"},
     "riverAt":{"u":"go with the flow","i":"swept away"},
     "big_fishAt":{"u":"predation,competition,food chain","i":"trickle-down economics,dog-eat-dog"},
     "clickbaitAt":{"u":"morbid curiosity,temptation,an attention trap","i":"don't look,don't fall for it,'nothing to see here'"},
     "two_ingredient_brownieAt":{"u":"too good to be true","i":"too true to be good"},
     "chatAt":{"u":"an interruption","i":"antisocial"},
-    "gas_station_shrubberyAt":{"u":"ugly but indestructable","i":"lingering illness"},
+    "gas_station_shrubberyAt":{"u":"ugly but indestructible","i":"lingering illness"},
     "misheard_lyricsAt":{"u":"'clowns in my coffee','you're so vein'","i" : "'clouds in my coffee','you're so vain'"},
     "plate_tectonicsAt":{"u":"'as above - so below',recycling,karma","i":"'what goes around - comes around'"},
     "negative_spaceAt":{"u":"when what is missing,defines what is present","i":"figure and ground,not obvious"},
@@ -124,7 +124,7 @@ let defs = {
     'virusAt':{"u":"not quite alive,parasite,spreading quickly","i":"horse paste won't save you"},
     "tissue_boxAt":{"u":"eponym,save a tree,use a handkerchief","i":"wipe away your tears"},
     "bandaidAt":{"u":"eponym,self-help","i":"not a real solution,superficial"},
-    "keyholeAt":{"u":"secrets,privacy","i":"lack of pricvacy"},
+    "keyholeAt":{"u":"secrets,privacy","i":"lack of privacy"},
     "uphillAt":{"u":"work required,switch to a lower gear","i":"(downhill),over the hill?,slow down,apply breaks"},
     "impossibleAt":{"u":"makes no sense","i":"maybe?"},
     
@@ -151,7 +151,7 @@ let defs = {
     "ghost_in_the_machineAt":{"u":"dualism (metaphorically)","i":"'grandmother cell',expecting too much from a single thing"},
     "conference_room_bAt":{"u":"important decisions,consensus,plans,agreements","i":"tedium,nothing gets done,...but there will be pizza"},
     "waveAt":{"u":"big changes,washed away,following a trend,","i":"bucking a trend"}, 
-    "sofaAt":{"u":"cushioned,confort-centered","i":"lazy,sad guest bed"},
+    "sofaAt":{"u":"cushioned,comfort-centered","i":"lazy,sad guest bed"},
     "talkAt":{"u":"words,talk is cheap","i":"actions speak louder"},
     "pencil_sharpenerAt":{"u":"everything looks like a pencil","i":"what's the point?"},
     "clickAt":{"u":"action,pointing,selecting","i":"inaction,hovering around"},
@@ -179,7 +179,7 @@ let defs = {
     "stone_axeAt":{"u":"old school tech","i":"\"primitive\""},
     "thread_the_needleAt":{"u":"difficult task,low margin for error","i":"easy-peasy"},
     "islandAt":{"u":"stranded,alone,solitary","i":"tourist trap"},
-    "walk_it_backAt":{"u":"undo!,undo!,undo!","i":"regrets,moonwalk"},
+    "walk_it_backAt":{"u":"undo!,undo!,undo!","i":"insincere,regrets,moonwalk"},
     "toy_drumAt":{"i":"full of sound and fury,signifying nothing","u":"bang your own drum, march to the beat, of a different drummer"},
     "aiAt":{"u":"will take away your job (good?),mechanical turk","i":"will take away your job (bad?)"},
     "antsAt":{"u":"busy","i":"may spoil a picnic"},
@@ -192,7 +192,7 @@ let defs = {
     "checkpointAt":{"u":"crossing a border,what is the purpose of this visit?,papers please","i":"better check yourself,before you wreck yourself"},
     "fish_hookAt":{"u":"caught up,snagged,reeled in","i":"the one that got away"},
     "coat_hangerAt":{"u":"hang ups,hang on","i":"patriarchy"},
-    "teak_rat_sculptureAt":{"u":"rat made \"acceptable\",yardsale finds","i":"wire legs will scratch table"},
+    "teak_rat_sculptureAt":{"u":"rat made \"acceptable\",yard sale finds","i":"wire legs will scratch table"},
     "winter_stickAt":{"u":"find your moorings,(after a cold season)","i":"lose your moorings"},
     "dreyAt":{"u":"nest up high","i":"squirrelly"},
     "oocyteAt":{"u":"half of the genes,all of the mitochondria","i":"half of the genes,all of the mitochondria"},
@@ -200,6 +200,72 @@ let defs = {
     "blast_radiusAt":{"u":"things that drag on,(outside the radius)","i":"things that end quickly,(inside the radius)"},
     "eyeglassesAt":{"u":"seeing clearly","i":"not seeing clearly"},
     "bacteriophageAt":{"u":"hijacker","i":"take control"},
-    "stone_wallAt":{"u":"what else are you going,to do will all those rocks?","i":"sisyphean tasks"},
+    "stone_wallAt":{"u":"what else are you going,to do with all those rocks?","i":"sisyphean tasks"},
     "whaleAt":{"u":"and I only am escaped,alone to tell thee","i":"all my means are sane, my motive and my object mad"},
+    "free_palletsAt":{"u":"so many uses","i":"destined for the fire pit"},
+    "running_with_scissorsAt":{"u":"reckless,scissors cut paper","i":"taking a risk,rock breaks scissors"},
+    "tape_dispenserAt":{"u":"bring together","i":"sticky situation"},
+    "cabin_air_filterAt":{"u":"always needs to be replaced","i":"breathless,i just wanted an oil change"},
+    "scattered_leavesAt":{"u":"winter coming","i":"time to rake"},
+    "nowAt":{"u":"already past,can't be held on to","i":"time is short,and now you're even older"},
+    "empty_setAt":{"u":"nothing to see here,...move along","i":"a void"},
+    "suburbsAt":{"u":"close...,but not too close,away...,but not too far away","i":"leaf blowers"},
+    "solar_systemAt":{"u":"heliocentric much?","i":"it's turtles all the way down"},
+    "evidenceAt":{"u":"challenging what you believe","i":"confirming what you believe"},
+    "holeAt":{"u":"lacuna,fill or patch,something is missing","i":"falling into,going down a rabbit hole"},
+    "urgentAt":{"u":"is it really so urgent?","i":"work stress"},
+  }
+  
+  function testCards() {
+    let keys = Object.keys(defs), i = 0
+    let text = "", err = "", UNUSED = []
+    for (; i < 200; i++)
+      threecards()
+    i = 0
+    for (; i < keys.length;i++) {
+      printableCard(keys[i])
+      text += keys[i].slice(0,-2) + "\n"
+      text += defs[keys[i]].u + "\n"
+      text += defs[keys[i]].i + "\n"
+      if (defs[keys[i]].u.length < 1 || defs[keys[i]].i.length < 1)
+        err = "-BLANK DEF"
+      else
+        err = ""
+      console.log(i, keys[i],err)
+      if (!atList.includes(keys[i]))
+        UNUSED.push(keys[i])
     }
+    console.log("Unused defs: "+UNUSED)
+    let ta = document.createElement("textarea")
+    ta.style.width = "100%"
+    ta.style.height = "300px"
+    ta.value = text.replace(/_/gm, " ")
+    document.body.appendChild(ta);
+  }
+  
+  function showdefs () {
+    let list = shortlist, i = 0
+    let tsv = "card\tif dealt upright\tif dealt inverted"
+    for (; i < list.length; i++) {
+      tsv += "\n"
+      tsv += list[i].replace(/At/gm,"").replace(/_/gm, " ") + "\t"
+      tsv += defs[list[i]].u + "\t"
+      tsv += defs[list[i]].i
+    }
+   
+    return tsv
+  }
+  
+  function mobydef () {
+      let text = book.replace(/_para_/gm,"").split("\n").join(" ")
+      let sentences = text.split(/[.!?]/gm)
+      //console.log(sentences)
+      return(randomPick(sentences).trim())
+  }
+  
+  function mobyword () {
+      let text = book.replace(/_para_/gm,"").split("\n").join(" ")
+      let sentences = text.split(/[^\w]/gm)
+      //console.log(sentences)
+      return(randomPick(sentences).trim())
+  }
