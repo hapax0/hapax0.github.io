@@ -224,8 +224,8 @@ function closePath () {
   if (document.getElementById("gradient").checked)
     code.push("  if ("+FILL+") {\n    resctx.fillStyle = randomGradientPal()\n  n += randomPick([1,2])\n    resctx.fill()\n}")
   else
-    code.push("  if ("+FILL+") {\n    resctx.fillStyle = colors[n%colors.length]\n  n += randomPick([1,2])\n    resctx.fill()\n}")
-  code.push("  if ("+STROKE+") {\n  resctx.lineWidth = "+LW+"\n  resctx.strokeStyle = randomPick(colors)\n    resctx.stroke()\n  }")
+    code.push("  if ("+FILL+") {\n    resctx.fillStyle = getselectedcolor()/*colors[n%colors.length]*/\n  n += randomPick([1,2])\n    resctx.fill()\n}")
+  code.push("  if ("+STROKE+") {\n  resctx.lineWidth = "+LW+"\n  resctx.strokeStyle =  getselectedcolor()\n    resctx.stroke()\n  }")
   code.push("  ctx.imageSmoothingEnabled = true")
   code.push("  ctx.imageSmoothingQuality = 'high'")
   code.push("  ctx.drawImage(res,0,0,res.width,res.height,0,0,canvas.width/1,canvas.height/1)")
@@ -258,15 +258,13 @@ function showPoints () {
   let oc = document.createElement('canvas')\n\
   let occtx = oc.getContext(\"2d\")\n\
   oc.height = canvas.height, oc.width = canvas.width\n\
-  let colors = shuffle(getCurrentPalette(true,13))\n\
+  let colors = getCurrentPalette()\n\
   let H = W, cpx, cpy, points = [], n = 0\n\
   let STROKE = "+STROKE+", FILL = "+FILL+", PATTERN = false\n\
   let P = 0\n\
-  resctx.strokeStyle = randomPick(colors)\n\
-  resctx.fillStyle = randomPick(colors)\n\
-  resctx.strokeStyle = 'black'\n\n\
-  //resctx.lineCap = \"round\"\n\
-  //resctx.lineJoin = \"round\"\n\n"
+  resctx.strokeStyle = randomPick(getCurrentPalette())\n\
+  resctx.fillStyle = randomPick(getCurrentPalette())\n\
+  resctx.strokeStyle = 'black'\n\n"
   document.getElementById("text1").value = header
   document.getElementById("text1").value += code.join("\n")
 }
@@ -374,11 +372,8 @@ function drawFileD () {
   ctx.globalAlpha = 1
   ctx.globalCompositeOperation = "source-over"
   IMG.onload = function () {
-    //canvas.height = this.height
-    //canvas.width = this.width
     ctx.globalAlpha = 0.5
     ctx.drawImage(IMG, 0, 0, canvas.width, canvas.height);
-   // resizeCanvas()
     url.revokeObjectURL(src);
     src  += timestamp
   }
