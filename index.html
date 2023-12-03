@@ -10,7 +10,7 @@
       white-space: nowrap;
     }
     input[type="color"] {
-      -webkit-appearance: none;
+      /*-webkit-appearance: none;*/
       border-radius: 0;
       border: none;
       padding: 0px;
@@ -294,7 +294,6 @@
        <!--option value="leftClip" style="color:red">left clip</option-->
        <option value="nudgeRight" style="color:red">nudge horizontal</option>
        <option value="nudgeDown" style="color:red">nudge vertcal</option>
-       <option value="wideMatt">wide matt</option>
        <option value="touchMatt">touch matt</option>
        <option value="rectFrame">rect frame</option>
        <option value="filmFrame">film frame</option>
@@ -399,7 +398,9 @@
         <option value="wash2" >wash2</option>
         <option value="wash3" >wash3</option>
         <option value="wash4" >wash4</option>
+        <option value="wash5" >wash5</option>
         <option value="landscape">landscape</option>
+        <option value="blockprint" >blockprint</option>
         <option value="randomTexture" >random texture</option>
         <option value="randomTexture2" >random texture2</option>
         <option value="increaseGrain">increase grain</option>
@@ -438,17 +439,17 @@
       <option value="placeNumAt">munbers</option>
       <!--option value="placeRectAt">mockup</option-->
       <option value="scratchout2">scratch out</option>
-      <option value="rose" selected>rose</option>
+      <option value="rose" >rose</option>
       <option value="natural">loop</option>
       <option value="spiral4">scribble</option>
       <option value="paintDrips">paint drips</option>
       <option value="paintDrip">drip at</option>
       <option value="threecards" >tarot</option>
-      <option value="printableCard">print tarot</option>
-      <option value="crackle">crackle curves</option>
+      <option value="printableCard" selected>print tarot</option>
+      <!--option value="crackle">crackle curves</option>
       <option value="cracklelines" >crackle lines</option>
-      <option value="halfTone">half-tone</option>
-      <option value="kites">kites</option>
+      <option value="halfTone">half-tone</option-->
+      <option value="bauhaus">bauhaus</option>
       <option value="crazy_wall">crazy wall</option>
       <option value="natal" >natal</option>
       <option value="aconst" >constellation</option>
@@ -581,8 +582,7 @@
         <option value="portrait" >portrait</option>
         <option value="1:0.75" >1:0.75</option>
         <option value="landscape">landscape</option>
-        <option value="3X5">3X5</option>
-        <option value="4X6">4X6</option>
+        <option value="3.5X5">3.5X5</option>
       </select> &nbsp;<span id="redspan" style="color:red;">cut </span><input type="number" step="1" id="rednumber" style="color:red;" onchange="pushMarker()">
       <!--input type="range" id="canvas_size" class="range" min="1" max="5" value="5" onchange="resizeCanvas()"-->
     </td>
@@ -606,18 +606,20 @@
     </div>
       <select id="palettechoice" onchange="loadPalette(true)">
       <option value="uno">uno</option>
+      <option value="dos">dos</option>
+      <option value="seis">seis</option>
+      <option value="ocho">ocho</option>
       <option value="halfway">color ramp</option>
       <option value="10">10</option>
-      <option value="16">16</option>
-      <option value="primary" >primary</option>
       <option value="bnw" selected>b & w</option>
       <option value="cmy">cmy</option>
+      <option value="primary" >primary</option>
       <option value="vivid">vivid</option>
       <option value="afklint">af klint</option>
       <option value="afklint2">af klint(2)</option>
+      <option value="de kooning">de kooning</option>
       <option value="gertrudeabercrombie">abercrombie</option>
       <option value="dali">dali</option>
-      <option value="ettoretripodi2">ettore tripodi</option>          
       <option value="klimt">klimt</option>
       <option value="kahlo">kahlo</option>          
       <option value="lundeberg">lundeberg</option>          
@@ -631,13 +633,12 @@
       <option value="faded poster">faded poster</option> 
       <option value="antique card">antique card</option> 
       <option value="tarot cards">tarot cards</option>     
-      <option value="rainbow">rainbow</option>
-      <option value="monokai">monokai</option>
       <option value="rust">rust</option>
       <option value="post-it">post-it</option>
       <option value="yellowed">yellowed</option>
       <option value="darkink">dark ink</option>
       <option value="paperink">paper ink</option>
+      <option value="rainbow">rainbow</option>
       <option value="none">none</option>
     </select>
     <button><a onclick="loadPalette()" title="reload palette">
@@ -678,9 +679,15 @@
 </svg></a></button>
 <button>
   <a onclick="dropselectedcolor()" title="drop selected color">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="white" viewBox="0 0 16 16">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="white" viewBox="0 0 16 16">
       <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
       <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+    </svg></a></button>
+<button>
+  <a onclick="addnewcolor()" title="add new color">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="white" viewBox="0 0 16 16">
+      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
     </svg></a></button>
   <button>
   <a onclick="sortByBrightness()"  title="sort by brightness">
@@ -813,7 +820,7 @@
     <option value="32">32</option>
     <option value="80">80</option>
   </select>
-    &nbsp;<input type="checkbox" id="gradient" checked><label for="gradient"> gradient </label>
+    &nbsp;<input type="checkbox" id="gradient"><label for="gradient"> gradient </label>
     &nbsp;<!--input type="checkbox" id="qmode" onclick="killCP()"><label for="qmode"> quadratic</label-->
     mode:<select id="dmode" style="width:48px;" onchange="closePathIf()">
       <option value="line">line</option>
@@ -871,10 +878,10 @@
   
     <br>
     <div style="display:none;">
-      <canvas id="offscreen" width='512' height='512' hidden></canvas>
+      <canvas id="offscreen" width='512' height='512' style="display:none;"></canvas>
     </div>
-     <div sytle="display:none;">
-      <canvas id="off" width='512' height='512' style="visibility:hidden;"></canvas>
+     <div style="display:none;">
+    <canvas id="off" width='512' height='512' style="display:none;"></canvas>
     </div>
     <br>
 <script>
@@ -909,7 +916,7 @@ function drawD () {
 window.onload = function () {
   let myCanvas = document.getElementById("myCanvas")
   let ctx = myCanvas.getContext("2d")
-  
+  myCanvas.getContext("2d", { willReadFrequently: true })
   ctx.willReadFrequently = true
   resizeCanvas()
   LASTCLICK[0] = myCanvas.width/2
@@ -1025,7 +1032,6 @@ function showTip (msg, item) {
   }, 3000);
 }
 
-
 function pattest ( ) {
   let container = document.getElementById("palettecanvas")
   if (container)
@@ -1090,7 +1096,6 @@ function jaggytest () {
     ctx.fillStyle = "#000000"
     ctx.fill()
   }
-
 
   //2
   ctx.beginPath()
@@ -1397,7 +1402,7 @@ let extendedPalette = []
 
 
 function getCurrentPalette () {
-  return extendedPalette.slice(0,18)
+  return extendedPalette.slice(0,20)
 }
 
 function stepPalette () {
@@ -1405,15 +1410,15 @@ function stepPalette () {
   sortByBrightness()
   let n = 0, c, k, amt
   let b = getCurrentPalette(true)
-  for (; n < b.length/2; n++) {
-    k = Math.floor(brightnessOfColor(b[n])/10)
-    b[n] = adjustBrightnessC(b[n], k)
-  }
+  if (b.length < 2)
+    return
+  n = Math.floor(b.length/2-1)
+  k = Math.floor(brightnessOfColor(b[n])/10)
+  b[n] = adjustBrightnessC(b[n], k)
+  
   n = Math.floor(b.length/2)
-  for (; n < b.length; n++) {
-    k = Math.floor(brightnessOfColor(b[n])/10)
-    b[n] = adjustBrightnessC(b[n], -k)
-  }
+  k = Math.floor(brightnessOfColor(b[n])/10)
+  b[n] = adjustBrightnessC(b[n], -k)
   updateExtraColors(b)
 }
 
@@ -1452,7 +1457,42 @@ function loadPalette (PUSH) {
   }
   if (type === "none")
     return
-  
+  if (type === "dos") {
+    let angle = randomPick([0,45,90,180])
+    let clrs = []
+    clrs.push(randomColorLight())
+    clrs.push(adjustBrightnessC(colorAngle(clrs[0], angle), -120))// darken
+    updateExtraColors(clrs)
+  } else
+  if (type === "seis") {
+    let angle = 22+Math.random() * 100//randomPick([60,45,30])
+    let clrs = []
+    clrs.push(randomColorLight()) 
+    clrs.push(adjustBrightnessC(colorAngle(clrs[0], angle), -10)) 
+    clrs.push(adjustBrightnessC(colorAngle(clrs[1], angle), -10)) 
+    
+    clrs.push(adjustBrightnessC(colorAngle(clrs[0], 180), -80))// darken
+    clrs.push(adjustBrightnessC(colorAngle(clrs[1], 180), -100))// darken
+    clrs.push(adjustBrightnessC(colorAngle(clrs[2], 180), -120))// darken
+    updateExtraColors(clrs)
+  } else
+  if (type === "ocho") {
+    let angle = 22+Math.random() * 100//randomPick([60,45,30])
+    let clrs = []
+    //console.log(angle)
+    clrs.push(randomColorLight()) 
+    clrs.push(adjustBrightnessC(colorAngle(clrs[0], angle),-10)) 
+    clrs.push(adjustBrightnessC(colorAngle(clrs[1], angle),-10)) 
+    clrs.push(adjustBrightnessC(colorAngle(clrs[2], angle),-10)) 
+    
+    clrs.push(adjustBrightnessC(colorAngle(clrs[0], 180), -100))// darken
+    clrs.push(adjustBrightnessC(colorAngle(clrs[1], 180), -100))// darken
+    clrs.push(adjustBrightnessC(colorAngle(clrs[2], 180), -100))// darken
+    clrs.push(adjustBrightnessC(colorAngle(clrs[3], 180), -120))// darken
+    updateExtraColors(clrs)
+    //BRIGHT = false
+    //sortByBrightness()
+  } else
   if (type === "comp") {
     let angle = 180, i = 0
     let clrs = getCurrentPalette()
@@ -1463,8 +1503,8 @@ function loadPalette (PUSH) {
   } else
   if (type === "halfway") {
     let clrs = getCurrentPalette()
-    let c1 = randomColor()
-    let c5 = randomColor()
+    let c1 = clrs[0]
+    let c5 = clrs[clrs.length-1]
     let c3 = halfway(c1,c5)
     b = [
     c1,
@@ -1549,54 +1589,6 @@ if (type === 'faded poster') {
     updateExtraColors(b)
     return
   } else
-  if (type === "16") {
-    let c1 = document.getElementById("p0").value
-    let brightness = brightnessofhex (c1) 
-    let amt = Math.floor((5+Math.random()*15))
-    if (brightness > 0.5)
-      amt *= -1
-    let i = 0
-    b = []
-    for (; i < 16; i++) {
-      b.push(adjustBrightnessC(c1, amt*i))
-    }
-    updateExtraColors(b)
-    return
-  } else
-  if (type === "101") {
-    let c1 = randomColorVDark()
-    let c2 = randomColorDark()
-    let c3 = randomColor()
-    let c4 = randomColorLight()
-    let amt = Math.floor((5+Math.random()*33))
-    b = [
-      c1,adjustBrightnessC(c1, amt),adjustBrightnessC(c1, amt*2),
-         adjustBrightnessC(c1, amt*3),adjustBrightnessC(c1, amt*4),
-         adjustBrightnessC(c1, amt*5),adjustBrightnessC(c1, amt*6),
-         adjustBrightnessC(c1, amt*7),adjustBrightnessC(c1, amt*8),
-         adjustBrightnessC(c1, amt*9),
-        c3
-    ]
-    updateExtraColors(b)
-    return
-  } else
-  if (type === "1011") {
-    let c1 = randomColorVDark()
-    let c2 = randomColorDark()
-    let c3 = randomColor()
-    let c4 = randomColorLight()
-    let amt = Math.floor((5+Math.random()*33))
-    b = [
-      c1,adjustBrightnessC(c1, amt),adjustBrightnessC(c1, amt*2),
-         adjustBrightnessC(c1, amt*3),adjustBrightnessC(c1, amt*4),
-         adjustBrightnessC(c1, amt*5),adjustBrightnessC(c1, amt*6),
-         adjustBrightnessC(c1, amt*7),adjustBrightnessC(c1, amt*8),
-         adjustBrightnessC(c1, amt*9),
-        c3,c4
-    ]
-    updateExtraColors(b)
-    return
-  } else
   if (type === 'bnw') {
     b = ["#000000", "#ffffff"]
     updateExtraColors(b)
@@ -1611,14 +1603,6 @@ if (type === 'faded poster') {
   } else
   if (type === 'klimt') {
     b = ["#010101", "#b74212", "#c5652b", "#c79308", "#30270d", "#998137", "#675721", "#d4b23c", "#bfb784", "#f1e050", "#e9e088", "#efedd3", "#faf77a", "#8fa83d", "#839168", "#538142", "#2c6123", "#35484f"]
-    updateExtraColors(b)
-  } else
-  if (type === 'ettoretripodi') {
-    b = ["#8c8381", "#ece8e7", "#a99a92", "#d2bcaa", "#dfcdbb", "#c7a782", "#ebdecd", "#f2cb98", "#07aeeb", "#5bbde5", "#79cdf0", "#0299dc", "#a8d6ed", "#cce0ee", "#c6cad1", "#aaa9b0", "#bbb6ba", "#625d5f"]
-    updateExtraColors(b)
-  } else
-  if (type === 'ettoretripodi2') {
-    b = ["#6e3c1f", "#795632", "#a97a45", "#4c3d29", "#bf975b", "#24211c", "#928366", "#7c6c4b", "#b3a991", "#5d5846", "#cbc9c1", "#cadbea", "#949aa3"]
     updateExtraColors(b)
   } else
   if (type === 'darkink') {
@@ -1641,7 +1625,10 @@ if (type === 'faded poster') {
     b = ["#fcfcfc", "#ec7d09", "#fbe90e", "#cedea5", "#49603a", "#7ad650", "#059440", "#0a9bdf", "#144263", "#074d98", "#7c43a3", "#e00665", "#730f36", "#040102", "#e10613", "#ffb9ba", "#c41c1d"]
     updateExtraColors(b)
   } else
-    
+  if (type === 'de kooning') {
+    b = ["#bd1513", "#940700", "#73271e", "#c25c44", "#e7886b", "#f1b388", "#fdecd8", "#b0a18f", "#d5cebd", "#005627", "#6c7373", "#4a8cae", "#106ca3", "#184868", "#1a262f"]
+    updateExtraColors(b)
+  } else
   if (type === 'afklint') {
     b = ["#be4a3c", "#4c4948", "#c76a47", "#ddc1b1", "#c2a491", "#d68d4a", "#e9ded2", "#24211d", "#d1a947", "#383631", "#e2b84c", "#828d63", "#657b64", "#4e6355", "#a9bac8", "#93a4b6", "#baa4ab", "#a89397"]
     updateExtraColors(b)
@@ -2066,6 +2053,14 @@ function quadstrokes () {
     ctx.stroke()
   }
   
+}
+function wash5 () {
+  fog()
+  fog()
+  fog()
+  embossCanvas()
+  zoomImage()
+  zoomImage()
 }
 
 function wash2 () {
@@ -2545,7 +2540,28 @@ function impasto (soft) {
   ctx.globalAlpha = document.getElementById("opacity").value/100
 }
 
-function randomTexture () {
+function blockprint () {
+  let block = true
+  clearCanvas()
+  randomTexture(block)
+  copyToOff()
+  clearCanvas()
+  randomTexture(block)
+  rc()
+  copyToOff()
+  clearCanvas()
+  randomTexture(block)
+  rc()
+  rc()
+  copyToOff()
+  clearCanvas()
+  randomTexture(block)
+  rcc()
+  copyToOff()
+  pasteFromOff()
+}
+
+function randomTexture (block) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let val = document.getElementById("opacity").value
@@ -2554,8 +2570,18 @@ function randomTexture () {
   let color = getselectedcolor()
   let alpha = document.getElementById("opacity").value
   let alt = false// document.getElementById("grungy").checked
-
-  functions = ["smudge", "rose", "smudge", "smudge", "smudge", "smudge", "blobs", "specksRadial", "strokes2", "strokesH"]
+  let W = canvas.width, H = canvas.height
+  ctx.save()
+  if (block) {
+    ctx.beginPath()
+    ctx.moveTo(6+pet(8),6+pet(8))
+    ctx.lineTo(W/2-pet(8)-6, 6+pet(8))
+    ctx.lineTo(W/2-pet(8)-6, H/2-pet(8)-6)
+    ctx.lineTo(6+pet(8), H/2-pet(8)-6)
+    ctx.closePath()
+    ctx.clip()
+  }
+  functions = ["smudge", "smudge", "smudge", "smudge", "smudge", "blobs", "specksRadial"]//, "strokes2","strokesH"]// "rose"]
   let args = ["", "streaks", "arcs", "arcs2", "stars", "horizontal"]
   let i = 0
   for (; i < 4; i++) {
@@ -2612,6 +2638,7 @@ function randomTexture () {
   ctx.globalCompositeOperation = mode
   ctx.globalAlpha = alpha/100
   refreshMode()
+  ctx.restore()
 }
 
 function randomTexture2 () {
@@ -2749,10 +2776,6 @@ function testHW () {// number to divide height by, to match width's divisor
 function updateExtraColors (colors) {
   extendedPalette = []
   let i = 0, x = 0, y = 0
-  //let canvas = document.getElementById("palettecanvas")
-  //let ctx = canvas.getContext("2d");
-  //ctx.fillStyle = "#a0a0a0"
-  //ctx.clearRect(0,0,canvas.width, canvas.height)
   if (colors === null || colors.length < 1)
     return
   for (; i < colors.length; i++) {
@@ -2761,12 +2784,9 @@ function updateExtraColors (colors) {
       y += 48
     }
     extendedPalette.push(colors[i])
-    //ctx.fillStyle = colors[i]
-    //ctx.fillRect(x,y,48,48)
     x += 48
   }
   pattest()
-  //document.getElementById("paintcolor").value = extendedPalette[0]
 }
 
 function getPaletteFromPickers() {
@@ -2836,6 +2856,19 @@ function dropselectedcolor () {
     }
     updateExtraColors(colors)
   }
+}
+
+function addnewcolor () {
+  colors = getCurrentPalette(true)
+  //if (colors.length < 20) {
+    colors.push(randomColor())
+    updateExtraColors(colors)
+ // }
+  colors = getCurrentPalette(true)
+  let id  = colors.length-1
+  //console.log("p"+id)
+  let el = document.getElementById("p"+ id)
+  el.click()
 }
 
 let BRIGHT = true
@@ -3153,6 +3186,57 @@ function cstest () {
   offctx.fillRect(0,0,off.width,off.height)
   ctx.drawImage(off,0,0, canvas.width, canvas.height)
   console.log(objToString(offctx))
+}
+
+function colormatrix () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d");
+  let W = canvas.width, H = canvas.height
+  let i = 0, j = 0
+  let colors = getCurrentPalette()
+  let w = 50, fs = 14, space = 50, x = space, y = 2
+  
+  ctx.lineWidth = 1
+  ctx.strokeStyle = "#bbbbbb"
+  ctx.fillStyle = "#ffffff"
+  ctx.fillRect (0,0,W,H)
+  for (; i < colors.length; i++) {
+    ctx.fillStyle = colors[i]
+    ctx.fillRect (x, y, w, w)
+    ctx.beginPath()
+    ctx.moveTo(x, 2)
+    ctx.lineTo(x, (1+colors.length)*(space+2))
+    ctx.stroke()
+    x += w+2
+  }
+  i = 0
+  x = 2, y = space
+  for (; i < colors.length; i++) {
+    ctx.fillStyle = colors[i]
+    ctx.fillRect (x, y, w, w)
+    ctx.beginPath()
+    ctx.moveTo(2, y)
+    ctx.lineTo((1+colors.length)*(space+2), y)
+    ctx.stroke()
+    y += w+2
+  }
+  i = 0, j = 0, x = space/2, y = space
+  let text = ""
+  ctx.fillStyle = "#000000"
+  ctx.font = "bold 10pt sans"
+  for (; i < colors.length; i++) {
+    j = 0
+    for (; j < colors.length; j++) {
+      x += space+2
+     // text = Math.floor(dist3d([hexToR(colors[i]), hexToG(colors[i]), hexToB(colors[i])], 
+      //                         [hexToR(colors[j]), hexToG(colors[j]), hexToB(colors[j])]))
+      text = Math.floor(anglebetween(colors[i], colors[j]))
+      if (j >= i)
+        ctx.fillText(text, x-18, y+space/2)
+    }
+    x = space/2
+    y += space + 2
+  }
 }
 
 function colormatrix () {
@@ -4047,7 +4131,7 @@ function ripSide () {
   ctx.lineTo(0, y)
   ctx.closePath()
   ctx.clip()
-  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.fillStyle = getselectedcolor() // was paintcolor
   if (grunge)
     ctx.clearRect(0,0,W,H)
   else
@@ -5838,6 +5922,7 @@ function paintcolorChange (i) {
   let p = getCurrentPalette()
   p[i] = document.getElementById("p"+i).value
   updateExtraColors(p)
+  document.getElementById("p"+i).style.border = "solid #ffffFF";
   pushFunction('setPaintColor')
 }
 
@@ -7038,7 +7123,7 @@ function drips () {
   ctx.globalAlpha = document.getElementById("opacity").value/750
   let colors = shuffle(['red', 'blue', 'yellow', 'orange', 'purple', "green"])
   let grunge = document.getElementById("grungy").checked
-  let scale = 7+document.getElementById("featuresize").value/5
+  let scale = 7+document.getElementById("featuresize").value/2
   let parts = Math.floor(W/(scale*2-1)) *1.8
   let rule = true
   if (Math.random() > 0.5)
@@ -7762,62 +7847,68 @@ points.push(x+W/2+r, y+H)
   drawStars(x,y,W,points)
 }
 
-function birdhouseAt (x,y,W,color,n) {
+function birdhouseAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
-  let H = W, points = []
-  ctx.globalAlpha = +document.getElementById("opacity").value/100
-  let alt = document.getElementById("grungy").checked
+  let H = W, cpx, cpy, points = []
+  let colors = shuffle(getCurrentPalette(true,13))
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
-  ctx.strokeStyle = "#0000ff"
-  //ctx.strokeRect(x,y,W,H)
   ctx.strokeStyle = color
-  ctx.lineCap = "butt"
-  ctx.lineJoin = "round"
-  let x0 = x, y0 = y
-  let r = W/12
+  ctx.lineCap = "square"
+  ctx.lineJoin = "bevel"
+
+  //1
   ctx.beginPath()
-  ctx.moveTo(x, y+H/2)
-points.push(x, y+H/2)
-  ctx.lineTo(x, y+H)
-points.push(x, y+H)
-  ctx.lineTo(x+W, y+H)
-points.push(x+W, y+H)
-  ctx.lineTo(x+W, y+H/2)
-points.push(x+W, y+H/2)
-  ctx.lineTo(x+3*W/4, y)
-points.push(x+3*W/4, y)
-  ctx.lineTo(x+W/4, y)
-points.push(x+W/4, y)
-  ctx.lineTo(x, y+H/2)
-points.push(x, y+H/2)
-  ctx.lineTo(x+W/2, y+H/2)
-points.push(x+W/2, y+H/2)
-  ctx.lineTo(x+W/2, y+H)
-points.push(x+W/2, y+H)
-  ctx.stroke()
-  
-  ctx.beginPath()
-  ctx.moveTo(x+W/2, y+H/2)
-points.push(x+W/2, y+H/2)
-  ctx.lineTo(x+3*H/4, y)
-points.push(x+3*H/4, y)
+  ctx.moveTo(x+2*W/24, y+22*H/24)
+  ctx.lineTo(x+12*W/24, y+22*H/24)
+  ctx.lineTo(x+12*W/24, y+12*H/24)
+  ctx.lineTo(x+2*W/24, y+12*H/24)
+  ctx.lineTo(x+2*W/24, y+22*H/24)
   ctx.stroke()
 
+  //2
   ctx.beginPath()
-  ctx.arc(x+3*W/4, y+H/2, r, 0, Math.PI*2)
+  ctx.moveTo(x+12*W/24, y+22*H/24)
+  ctx.lineTo(x+22*W/24, y+22*H/24)
+  ctx.lineTo(x+22*W/24, y+12*H/24)
+  ctx.lineTo(x+17*W/24, y+2*H/24)
+  ctx.lineTo(x+12*W/24, y+12*H/24)
+  ctx.stroke()
+
+  //3
+  ctx.beginPath()
+  ctx.moveTo(x+2*W/24, y+12*H/24)
+  ctx.lineTo(x+8*W/24, y+2*H/24)
+  ctx.lineTo(x+17*W/24, y+2*H/24)
+  ctx.stroke()
+  let r = W/16
+  //4
+  ctx.beginPath()
+  ctx.arc(x+17*W/24, y+13*H/24, r, 0, Math.PI*2)
   ctx.stroke()
   
+  r = W/48
+  //5
   ctx.beginPath()
-  ctx.arc(x+3*W/4, y+H/2+r*2, r/3, Math.PI*1.5, Math.PI/2, true)
-  ctx.arc(x+3*W/4+r*2, y+H/2+r*2, r/3, Math.PI/2, Math.PI*1.5)
-  ctx.closePath()
+  ctx.arc(x+17*W/24, y+17*H/24, r, Math.PI * 0.5, Math.PI*1.5)
+  ctx.stroke()
+
+  //6
+  ctx.beginPath()
+  ctx.arc(x+20*W/24, y+17*H/24, r, 0, Math.PI*2)
   ctx.stroke()
   
-  ctx.beginPath()
-  ctx.arc(x+3*W/4+r*2, y+H/2+r*2, r/3, Math.PI *1.5, Math.PI*0.5)
+   //7
+   ctx.beginPath()
+  ctx.moveTo(x+17*W/24, y+16.5*H/24)
+  ctx.lineTo(x+20*W/24, y+16.5*H/24)
   ctx.stroke()
-  drawStars(x,y,W,points,0.1)
+  
+   //7
+   ctx.beginPath()
+  ctx.moveTo(x+17*W/24, y+17.5*H/24)
+  ctx.lineTo(x+20*W/24, y+17.5*H/24)
+  ctx.stroke()
 }
 
 function swing () {
@@ -7848,106 +7939,6 @@ function swingArray () {
       y += delta+pad
     }
   }
-}
-
-function swingAt (x,y,W,color) {
-  let canvas = document.getElementById("myCanvas")
-  let ctx = canvas.getContext("2d")
-  let H = W
-  let C = W/2 + (Math.random() - 0.5) * W/4
-  ctx.globalAlpha = +document.getElementById("opacity").value/100
-  let grunge = document.getElementById("grungy").checked
-  ctx.lineWidth = 1+document.getElementById("featuresize").value/50
-  ctx.lineCap = "butt"
-  ctx.strokeStyle = color
-
-  let pad = 0, vpad = 0
-  let x0 = x, y0 = y
-  //   /\
-  //  /
-  // /\
-  let dh = W/7
-  
-  y += H // lower left A
-  ctx.beginPath()
-  ctx.moveTo(x,y)
-  x += dh
-  y -= H/2
-  ctx.lineTo(x, y)
-  x += dh
-  y += H/2
-  ctx.lineTo(x,y)
-  ctx.stroke()
-  
-//top bar
-  x -= dh
-  y -= H/2
-  ctx.moveTo(x,y)
-  x += 5*dh
-  ctx.lineTo(x, y0)
-  ctx.stroke()
-  
-  // right upper A
-  y = y0
-  ctx.beginPath()
-  x -= 1*dh
-  y += H/2
-  ctx.moveTo(x,y)
-  x += dh
-  y -= H/2
-  ctx.lineTo(x, y)
-  x += dh
-  y += H/2
-  ctx.lineTo(x, y)
-  ctx.stroke()
-  
-  y = y0, x = x0
-  // swings
-  y += H/2 - H/10
-  x += 2*dh
-  ctx.beginPath()
-  ctx.moveTo(x, y)
-  y += 3.5*H/10
-  ctx.lineTo(x,y)
-  x += dh
-  y -= H/10
-  ctx.lineTo(x,y)
-  y -= 3.5*H/10
-  ctx.lineTo(x,y)
-  ctx.stroke()
-  
-  y = y0
-  // swings
-  y += H/2 - 3*H/10
-  x += dh
-  ctx.beginPath()
-  ctx.moveTo(x, y)
-  y += 3.5*H/10
-  ctx.lineTo(x,y)
-  x += dh
-  y -= H/10
-  ctx.lineTo(x,y)
-  y -= 3.5*H/10
-  ctx.lineTo(x,y)
-  ctx.stroke()
-  
-  x = x0, y = y0
-  // 2 A bars
-  ctx.beginPath()
-  x += dh/2
-  y += 3*H/4
-  ctx.moveTo(x,y)
-  x += dh
-  ctx.lineTo(x,y)
-  ctx.stroke()
-  
-  ctx.beginPath()
-  x += 4*dh
-  y -= H/2
-  ctx.moveTo(x,y)
-  x += dh
-  ctx.lineTo(x,y)
-  ctx.stroke()
 }
 
 function jumpropeAt (x,y,W,color) {
@@ -8290,55 +8281,67 @@ function thoughtAt (x,y,W,color,n) {
 function falling_chairAt (x,y,W,color,n) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
-  let H = W
-  let points = []
-  ctx.globalAlpha = +document.getElementById("opacity").value/100
-  let alt = document.getElementById("grungy").checked
+  let H = W, cpx, cpy, points = []
+  let colors = shuffle(getCurrentPalette(true,13))
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
   ctx.strokeStyle = color
-  ctx.lineCap = "butt"
-  ctx.lineJoin = "round"
-  let x0 = x, y0 = y
+  ctx.fillStyle = color
+  ctx.lineCap = "square"
+  ctx.lineJoin = "bevel"
+  let p = [], cp = [], lastp = []
+  let cx = x+W/2, cy = y+H/2
+  let angle = randomFromTo(45,270)
+  if (Math.random() > 0.5)
+    angle *= -1
+  //1
+  ctx.beginPath()
+  p = rotatePoint(x+20*W/24, y+2*H/24 ,cx,cy,angle)
+  ctx.moveTo(p[0],p[1])
+  p = rotatePoint(x+10*W/24, y+2*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  p = rotatePoint(x+6*W/24, y+9*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  p = rotatePoint(x+16*W/24, y+9*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  p = rotatePoint(x+20*W/24, y+2*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  ctx.stroke()
 
+  //2
   ctx.beginPath()
-  ctx.moveTo(x,y+2*H/3)
-points.push(x,y+2*H/3)
-  ctx.lineTo(x+W/2,y)
-points.push(x+W/2,y)
-  ctx.lineTo(x+W,y)
-points.push(x+W,y)
-  ctx.lineTo(x+3*W/4,y+H/3)
-points.push(x+3*W/4,y+H/3)
-  ctx.lineTo(x+W,y+2*H/3)
-points.push(x+W,y+2*H/3)
-  ctx.lineTo(x+3*W/4,y+H)
-points.push(x+3*W/4,y+H)
+  p = rotatePoint(x+16*W/24, y+9*H/24 ,cx,cy,angle)
+  ctx.moveTo(p[0],p[1])
+  p = rotatePoint(x+20*W/24, y+16*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  p = rotatePoint(x+10*W/24, y+16*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  p = rotatePoint(x+6*W/24, y+9*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
   ctx.stroke()
-  
+
+  //3
   ctx.beginPath()
-  ctx.moveTo(x+W/4,y+H)
-points.push(x+W/4,y+H)
-  ctx.lineTo(x+W/2,y+2*H/3)
-points.push(x+W/2,y+2*H/3)
-  ctx.lineTo(x+W/4,y+H/3)
-points.push(x+W/4,y+H/3)
+  p = rotatePoint(x+6*W/24, y+9*H/24 ,cx,cy,angle)
+  ctx.moveTo(p[0],p[1])
+  p = rotatePoint(x+2*W/24, y+16*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
   ctx.stroke()
-  
+
+  //4
   ctx.beginPath()
-  ctx.moveTo(x+W/2,y+2*H/3)
-points.push(x+W/2,y+2*H/3)
-  ctx.lineTo(x+W,y+2*H/3)
-points.push(x+W,y+2*H/3)
+  p = rotatePoint(x+10*W/24, y+16*H/24 ,cx,cy,angle)
+  ctx.moveTo(p[0],p[1])
+  p = rotatePoint(x+6*W/24, y+23*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
   ctx.stroke()
-  
-  // optional?
+
+  //5
   ctx.beginPath()
-  ctx.moveTo(x+W/4,y+H/3)
-points.push(x+W/4,y+H/3)
-  ctx.lineTo(x+3*W/4,y+H/3)
-points.push(x+3*W/4,y+H/3)
+  p = rotatePoint(x+20*W/24, y+16*H/24 ,cx,cy,angle)
+  ctx.moveTo(p[0],p[1])
+  p = rotatePoint(x+16*W/24, y+23*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
   ctx.stroke()
-  drawStars(x,y,W,points,0.1)
 }
 
 function pointy_houseAt (x,y,W,color,n) {
@@ -8528,89 +8531,67 @@ function bird2At (x,y,W,color) {
   ctx.stroke()
 }
 
-function houseAt (x,y,W,color,n) {
+function houseAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
-  let H = W
-  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let H = W, cpx, cpy, points = []
+  let colors = shuffle(getCurrentPalette(true,13))
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
   ctx.strokeStyle = color
   ctx.lineCap = "square"
-  let x0 = x, y0 = y
-  let points = []
+  ctx.lineJoin = "bevel"
+
+  //1
   ctx.beginPath()
-  ctx.moveTo(x, y+H)
-points.push(x, y+H)
-  ctx.lineTo(x, y+H/2)
-points.push(x, y+H/2)
-  ctx.lineTo(x+W/3, y+H/4)
-points.push(x+W/3, y+H/4)
-  ctx.lineTo(x+2*W/3, y+H/2)
-points.push(x+2*W/3, y+H/2)
-  ctx.lineTo(x+2*W/3, y+W)
-points.push(x+2*W/3, y+W)
-  ctx.lineTo(x, y+W)
-points.push(x, y+W)
+  ctx.moveTo(x+2*W/24, y+22*H/24)
+  ctx.lineTo(x+22*W/24, y+22*H/24)
+  ctx.lineTo(x+22*W/24, y+7*H/24)
+  ctx.lineTo(x+15*W/24, y+2*H/24)
+  ctx.lineTo(x+2*W/24, y+12*H/24)
+  ctx.lineTo(x+2*W/24, y+22*H/24)
   ctx.stroke()
-  
+
+  //2
   ctx.beginPath()
-  ctx.moveTo(x+W/3,y+H/4)
-points.push(x+W/3,y+H/4)
-  ctx.lineTo(x+2*W/3,y)
-points.push(x+2*W/3,y)
-  ctx.lineTo(x+W,y+H/4)
-points.push(x+W,y+H/4)
-  ctx.lineTo(x+W, y+H)
-points.push(x+W, y+H)
-  ctx.lineTo(x+2*W/3, y+H)
-points.push(x+2*W/3, y+H)
+  ctx.moveTo(x+9*W/24, y+7*H/24)
+  ctx.lineTo(x+16*W/24, y+12*H/24)
+  ctx.lineTo(x+22*W/24, y+7*H/24)
   ctx.stroke()
-  
+
+  //3
   ctx.beginPath()
-  ctx.moveTo(x+2*W/3,y+H/2)
-points.push(x+2*W/3,y+H/2)
-  ctx.lineTo(x+W,y+H/4)
-points.push(x+W,y+H/4)
+  ctx.moveTo(x+16*W/24, y+12*H/24)
+  ctx.lineTo(x+16*W/24, y+22*H/24)
   ctx.stroke()
-  
-  // door
-  let dw = W/12
+
+  //4
   ctx.beginPath()
-  ctx.moveTo(x+W/3-dw,y+H)
-points.push(x+W/3-dw,y+H)
-  ctx.lineTo(x+W/3-dw,y+H-dw*3)
-points.push(x+W/3-dw,y+H-dw*3)
-  ctx.lineTo(x+W/3+dw,y+H-dw*3)
-points.push(x+W/3+dw,y+H-dw*3)
-  ctx.lineTo(x+W/3+dw,y+H)
-points.push(x+W/3+dw,y+H)
+  ctx.moveTo(x+7*W/24, y+22*H/24)
+  ctx.lineTo(x+7*W/24, y+17*H/24)
+  ctx.lineTo(x+10*W/24, y+17*H/24)
+  ctx.lineTo(x+10*W/24, y+22*H/24)
   ctx.stroke()
-  
-  //chimney
+
+  //5
   ctx.beginPath()
-  ctx.moveTo(x+W/3-dw,y+H/4+dw*0.75)
-points.push(x+W/3-dw,y+H/4+dw*0.75)
-  ctx.lineTo(x+W/3-dw,y+H/4-dw*2)
-points.push(x+W/3-dw,y+H/4-dw*2)
-  ctx.moveTo(x+W/3+dw,y+H/4-dw*2)
-points.push(x+W/3+dw,y+H/4-dw*2)
-  ctx.lineTo(x+W/3+dw,y+H/4-dw*0.75)
-points.push(x+W/3+dw,y+H/4-dw*0.75)
+  ctx.moveTo(x+9*W/24, y+1*H/24)
+  ctx.lineTo(x+7*W/24, y+2*H/24)
+  ctx.lineTo(x+9*W/24, y+3*H/24)
+  ctx.lineTo(x+11*W/24, y+2*H/24)
+  ctx.lineTo(x+9*W/24, y+1*H/24)
   ctx.stroke()
-  
+
+  //6
   ctx.beginPath()
-  ctx.moveTo(x+W/3-dw, y+H/4-dw*2)
-points.push(x+W/3-dw, y+H/4-dw*2)
-  ctx.lineTo(x+W/3, y+H/4-dw*3)
-points.push(x+W/3, y+H/4-dw*3)
-  ctx.lineTo(x+W/3+dw, y+H/4-dw*2)
-points.push(x+W/3+dw, y+H/4-dw*2)
-  ctx.lineTo(x+W/3, y+H/4-dw*1)
-points.push(x+W/3, y+H/4-dw*1)
-  ctx.closePath()
+  ctx.moveTo(x+7*W/24, y+2*H/24)
+  ctx.lineTo(x+7*W/24, y+8*H/24)
   ctx.stroke()
-  
-  drawStars(x,y,W,points)
+
+  //7
+  ctx.beginPath()
+  ctx.moveTo(x+11*W/24, y+2*H/24)
+  ctx.lineTo(x+11*W/24, y+5*H/24)
+  ctx.stroke()
 }
 
 function rowhousesAt (x,y,W,color,n) {
@@ -8878,49 +8859,6 @@ function prayerAt (x,y,W,color,n) {
   ctx.stroke()
   ctx.beginPath()
   ctx.arc(x, y+H/3, xo*2, Math.PI*1.5, Math.PI*2) // pinkey
-  ctx.stroke()
-}
-
-function birdAt (x,y,W,color,n) {
-  let canvas = document.getElementById("myCanvas")
-  let ctx = canvas.getContext("2d")
-  let H = W
-  ctx.globalAlpha = +document.getElementById("opacity").value/100
-  let alt = document.getElementById("grungy").checked
-  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
-  ctx.strokeStyle = "#0000ff"
-  //ctx.strokeRect(x,y,W,H)
-  ctx.strokeStyle = color
-  ctx.lineCap = "butt"
-  ctx.lineJoin = "round"
-  let x0 = x, y0 = y
-  let N = n || randomPick([3,4,5,7,9,11]), i = 0
-  let sh = H/N
-  let xo,yo // offsets
-  
-  ctx.beginPath()
-  ctx.moveTo(x+W/4,y+H/8)
-  let cpx1 = x+W/2, cpy1 = y
-  let cpx2 = x+W/2, cpy2 = y + H/3
-  ctx.bezierCurveTo(cpx1,cpy1,cpx2,cpy2,x+W/2,y+(H-(H/5))/2)
-  
-  cpx1 = x+W/2, cpy1 = y + H/2
-  cpx2 = x+W/2, cpy2 = y + 3*H/4
-  ctx.bezierCurveTo(cpx1,cpy1,cpx2,cpy2,x+W,y+4*H/5)
-  ctx.lineTo(x+3*W/4,y+H)
-  ctx.stroke()
- 
-  // right slide
-  ctx.beginPath()
-  ctx.moveTo(x+W/4,y+H/8)
-  cpx1 = x+3*W/4, cpy1 = y- H/10
-  cpx2 = x+3*W/4, cpy2 = y + H/3
-  ctx.bezierCurveTo(cpx1,cpy1,cpx2,cpy2,x+3*W/4,y+(H-(H/5))/2)
-  
-  cpx1 = x+3*W/4, cpy1 = y + H/2
-  cpx2 = x+3*W/4, cpy2 = y + 3*H/4
-  ctx.bezierCurveTo(cpx1,cpy1,cpx2,cpy2,x+W,y+4*H/5)
-  ctx.lineTo(x+W,y+H)
   ctx.stroke()
 }
 
@@ -9226,32 +9164,18 @@ function envelopeAt (x,y,W,color) {
   ctx.lineCap = "square"
   ctx.lineJoin = "bevel"
 
+  //1
   ctx.beginPath()
-  ctx.moveTo(x+0*W/10, y+10*H/10)
-  points.push(x+0*W/10, y+10*H/10)
-  ctx.lineTo(x+10*W/10, y+10*H/10)
-  points.push(x+10*W/10, y+10*H/10)
-  ctx.lineTo(x+10*W/10, y+4*H/10)
-  points.push(x+10*W/10, y+4*H/10)
-  ctx.lineTo(x+5*W/10, y+0*H/10)
-  points.push(x+5*W/10, y+0*H/10)
-  ctx.lineTo(x+0*W/10, y+4*H/10)
-  points.push(x+0*W/10, y+4*H/10)
-  ctx.lineTo(x+0*W/10, y+10*H/10)
-  points.push(x+0*W/10, y+10*H/10)
-  ctx.lineTo(x+5*W/10, y+7*H/10)
-  points.push(x+5*W/10, y+7*H/10)
-  ctx.lineTo(x+0*W/10, y+4*H/10)
-  points.push(x+0*W/10, y+4*H/10)
-  ctx.lineTo(x+10*W/10, y+4*H/10)
-  points.push(x+10*W/10, y+4*H/10)
-  ctx.lineTo(x+5*W/10, y+7*H/10)
-  points.push(x+5*W/10, y+7*H/10)
-  ctx.lineTo(x+10*W/10, y+10*H/10)
-  points.push(x+10*W/10, y+10*H/10)
+  ctx.moveTo(x+2*W/24, y+22*H/24)
+  ctx.lineTo(x+22*W/24, y+22*H/24)
+  ctx.lineTo(x+22*W/24, y+10*H/24)
+  ctx.lineTo(x+2*W/24, y+10*H/24)
+  ctx.lineTo(x+2*W/24, y+22*H/24)
+  ctx.lineTo(x+22*W/24, y+10*H/24)
+  ctx.lineTo(x+12*W/24, y+2*H/24)
+  ctx.lineTo(x+2*W/24, y+10*H/24)
+  ctx.lineTo(x+22*W/24, y+22*H/24)
   ctx.stroke()
-
-  drawStars(x,y,W,points)
 }
 
 function theoremAt (x,y,W,color) {
@@ -10615,151 +10539,6 @@ function foldedback2At (x,y,W,color) {
   drawStars(x,y,W,points)
 }
 
-function updownAt (x,y,W,color) {
-  let canvas = document.getElementById("myCanvas")
-  let ctx = canvas.getContext("2d")
-  let H = W, cpx, cpy, points = []
-  let colors = shuffle(getCurrentPalette(true,13))
-  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
-  ctx.strokeStyle = color
-  ctx.lineCap = "square"
-  ctx.lineJoin = "bevel"
-
-  ctx.beginPath()
-  ctx.moveTo(x+5*W/16, y+1*H/16)
-  ctx.lineTo(x+2*W/16, y+7*H/16)
-  ctx.lineTo(x+8*W/16, y+7*H/16)
-  ctx.lineTo(x+5*W/16, y+1*H/16)
-  ctx.fillStyle = randomPick(colors)
- ctx.fill()
-  ctx.beginPath()
-  ctx.moveTo(x+5*W/16, y+15*H/16)
-  ctx.lineTo(x+8*W/16, y+9*H/16)
-  ctx.lineTo(x+2*W/16, y+9*H/16)
-  ctx.lineTo(x+5*W/16, y+15*H/16)
-  ctx.fillStyle = randomPick(colors)
- ctx.fill()
-  ctx.beginPath()
-  ctx.moveTo(x+9*W/16, y+1*H/16)
-  ctx.lineTo(x+9*W/16, y+6*H/16)
-  ctx.lineTo(x+10*W/16, y+6*H/16)
-  ctx.lineTo(x+10*W/16, y+7*H/16)
-  ctx.lineTo(x+13*W/16, y+7*H/16)
-  ctx.lineTo(x+13*W/16, y+6*H/16)
-  ctx.lineTo(x+14*W/16, y+6*H/16)
-  ctx.lineTo(x+14*W/16, y+1*H/16)
-  ctx.lineTo(x+12*W/16, y+1*H/16)
-  ctx.lineTo(x+12*W/16, y+5*H/16)
-  ctx.lineTo(x+11*W/16, y+5*H/16)
-  ctx.lineTo(x+11*W/16, y+2*H/16)
-  ctx.lineTo(x+10*W/16, y+1*H/16)
-  ctx.lineTo(x+9*W/16, y+1*H/16)
-  ctx.fillStyle = randomPick(colors)
- ctx.fill()
-  ctx.beginPath()
-  ctx.moveTo(x+9*W/16, y+9*H/16)
-  ctx.lineTo(x+9*W/16, y+15*H/16)
-  ctx.lineTo(x+13*W/16, y+15*H/16)
-  ctx.lineTo(x+13*W/16, y+14*H/16)
-  ctx.lineTo(x+14*W/16, y+14*H/16)
-  ctx.lineTo(x+14*W/16, y+10*H/16)
-  ctx.lineTo(x+13*W/16, y+10*H/16)
-  ctx.lineTo(x+13*W/16, y+9*H/16)
-  ctx.lineTo(x+9*W/16, y+9*H/16)
-  ctx.fillStyle = randomPick(colors)
- ctx.fill()
-  ctx.beginPath()
-  ctx.moveTo(x+10*W/16, y+10*H/16)
-  ctx.lineTo(x+10*W/16, y+14*H/16)
-  ctx.lineTo(x+12*W/16, y+14*H/16)
-  ctx.lineTo(x+13*W/16, y+13*H/16)
-  ctx.lineTo(x+13*W/16, y+11*H/16)
-  ctx.lineTo(x+12*W/16, y+10*H/16)
-  ctx.lineTo(x+10*W/16, y+10*H/16)
-  ctx.fillStyle = randomPick(colors)
- ctx.fill()
-  ctx.beginPath()
-  ctx.moveTo(x+8*W/16, y+7*H/16)
-  ctx.lineTo(x+7*W/16, y+8*H/16)
-  ctx.lineTo(x+6*W/16, y+9*H/16)
-  ctx.lineTo(x+2*W/16, y+9*H/16)
-  ctx.lineTo(x+5*W/16, y+15*H/16)
-  ctx.lineTo(x+4*W/16, y+16*H/16)
-  ctx.lineTo(x+0*W/16, y+15*H/16)
-  ctx.lineTo(x+0*W/16, y+8*H/16)
-  ctx.lineTo(x+2*W/16, y+7*H/16)
-  ctx.fillStyle = randomPick(colors)
- ctx.fill()
-  ctx.beginPath()
-  ctx.moveTo(x+9*W/16, y+1*H/16)
-  ctx.lineTo(x+6*W/16, y+3*H/16)
-  ctx.lineTo(x+8*W/16, y+7*H/16)
-  ctx.lineTo(x+6*W/16, y+9*H/16)
-  ctx.lineTo(x+8*W/16, y+9*H/16)
-  ctx.lineTo(x+9*W/16, y+8*H/16)
-  ctx.lineTo(x+13*W/16, y+8*H/16)
-  ctx.lineTo(x+14*W/16, y+6*H/16)
-  ctx.fillStyle = randomPick(colors)
- ctx.fill()
-  ctx.beginPath()
-  ctx.moveTo(x+10*W/16, y+11*H/16)
-  ctx.lineTo(x+12*W/16, y+12*H/16)
-  ctx.lineTo(x+13*W/16, y+13*H/16)
-  ctx.lineTo(x+13*W/16, y+11*H/16)
-  ctx.lineTo(x+12*W/16, y+10*H/16)
-  ctx.lineTo(x+10*W/16, y+10*H/16)
-  ctx.fillStyle = randomPick(colors)
- ctx.fill()
-  ctx.beginPath()
-  ctx.moveTo(x+6*W/16, y+13*H/16)
-  ctx.lineTo(x+8*W/16, y+14*H/16)
-  ctx.lineTo(x+7*W/16, y+16*H/16)
-  ctx.lineTo(x+14*W/16, y+16*H/16)
-  ctx.lineTo(x+14*W/16, y+14*H/16)
-  ctx.lineTo(x+13*W/16, y+14*H/16)
-  ctx.lineTo(x+13*W/16, y+15*H/16)
-  ctx.lineTo(x+9*W/16, y+15*H/16)
-  ctx.lineTo(x+9*W/16, y+9*H/16)
-  ctx.lineTo(x+8*W/16, y+9*H/16)
-  ctx.lineTo(x+6*W/16, y+13*H/16)
-  ctx.fillStyle = randomPick(colors)
- ctx.fill()
-  ctx.beginPath()
-  ctx.moveTo(x+8*W/16, y+9*H/16)
-  ctx.lineTo(x+15*W/16, y+9*H/16)
-  ctx.lineTo(x+16*W/16, y+7*H/16)
-  ctx.lineTo(x+16*W/16, y+6*H/16)
-  ctx.lineTo(x+14*W/16, y+6*H/16)
-  ctx.lineTo(x+13*W/16, y+8*H/16)
-  ctx.lineTo(x+9*W/16, y+8*H/16)
-  ctx.lineTo(x+8*W/16, y+9*H/16)
-  ctx.fillStyle = randomPick(colors)
- ctx.fill()
- ctx.beginPath()
-  ctx.moveTo(x+9*W/16, y+1*H/16)
-  ctx.lineTo(x+9*W/16, y+6*H/16)
-  ctx.lineTo(x+10*W/16, y+6*H/16)
-  ctx.lineTo(x+10*W/16, y+7*H/16)
-  ctx.lineTo(x+13*W/16, y+7*H/16)
-  ctx.lineTo(x+13*W/16, y+6*H/16)
-  ctx.lineTo(x+14*W/16, y+6*H/16)
-  ctx.lineTo(x+14*W/16, y+1*H/16)
-  ctx.lineTo(x+12*W/16, y+1*H/16)
-  ctx.lineTo(x+12*W/16, y+5*H/16)
-  ctx.lineTo(x+11*W/16, y+5*H/16)
-  ctx.lineTo(x+11*W/16, y+2*H/16)
-  ctx.lineTo(x+10*W/16, y+1*H/16)
-  ctx.lineTo(x+9*W/16, y+1*H/16)
-  ctx.lineTo(x+9*W/16, y+6*H/16)
-  ctx.lineTo(x+10*W/16, y+6*H/16)
-  ctx.fillStyle = randomPick(colors)
-  ctx.fill()
-
-  ctx.setLineDash([])
-  drawStars(x,y,W,points)
-}
-
-
 function refractionAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -11178,764 +10957,6 @@ function refractfishAt (x,y,W,color) {
   drawStars(x,y,W,points)
 }
 
-function fiss3At (x,y,W,color) {
-  let canvas = document.getElementById("myCanvas")
-  let ctx = canvas.getContext("2d")
-  let H = W, cpx, cpy, points = []
-  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
-  ctx.strokeStyle = color
-  ctx.lineCap = "square"
-
-  ctx.beginPath()
-  ctx.moveTo(x+0*W/12, y+4*H/12)
-  points.push(x+0*W/12, y+4*H/12)
-  cpx = x+0*W/12
-  cpy = y+3*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+1*W/12, y+0*H/12)
-  points.push(x+1*W/12, y+0*H/12)
-  cpx = x+2*W/12
-  cpy = y+3*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+2*W/12, y+4*H/12)
-  points.push(x+2*W/12, y+4*H/12)
-  cpx = x+2*W/12
-  cpy = y+6*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+3*W/12, y+10*H/12)
-  points.push(x+3*W/12, y+10*H/12)
-  cpx = x+4*W/12
-  cpy = y+6*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+4*W/12, y+4*H/12)
-  points.push(x+4*W/12, y+4*H/12)
-  cpx = x+4*W/12
-  cpy = y+3*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+5*W/12, y+0*H/12)
-  points.push(x+5*W/12, y+0*H/12)
-  cpx = x+6*W/12
-  cpy = y+3*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+4*H/12)
-  points.push(x+6*W/12, y+4*H/12)
-  cpx = x+6*W/12
-  cpy = y+6*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+7*W/12, y+10*H/12)
-  points.push(x+7*W/12, y+10*H/12)
-  cpx = x+8*W/12
-  cpy = y+6*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+8*W/12, y+4*H/12)
-  points.push(x+8*W/12, y+4*H/12)
-  cpx = x+8*W/12
-  cpy = y+3*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+9*W/12, y+0*H/12)
-  points.push(x+9*W/12, y+0*H/12)
-  cpx = x+10*W/12
-  cpy = y+3*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+10*W/12, y+4*H/12)
-  points.push(x+10*W/12, y+4*H/12)
-  cpx = x+10*W/12
-  cpy = y+6*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+11*W/12, y+10*H/12)
-  points.push(x+11*W/12, y+10*H/12)
-  cpx = x+12*W/12
-  cpy = y+6*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+12*W/12, y+4*H/12)
-  points.push(x+12*W/12, y+4*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+2*W/12, y+12*H/12)
-  points.push(x+2*W/12, y+12*H/12)
-  cpx = x+2*W/12
-  cpy = y+10*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+3*W/12, y+10*H/12)
-  points.push(x+3*W/12, y+10*H/12)
-  cpx = x+4*W/12
-  cpy = y+10*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+4*W/12, y+12*H/12)
-  points.push(x+4*W/12, y+12*H/12)
-  cpx = x+3*W/12
-  cpy = y+11*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+2*W/12, y+12*H/12)
-  points.push(x+2*W/12, y+12*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+6*W/12, y+12*H/12)
-  points.push(x+6*W/12, y+12*H/12)
-  cpx = x+6*W/12
-  cpy = y+10*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+7*W/12, y+10*H/12)
-  points.push(x+7*W/12, y+10*H/12)
-  cpx = x+8*W/12
-  cpy = y+10*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+8*W/12, y+12*H/12)
-  points.push(x+8*W/12, y+12*H/12)
-  cpx = x+7*W/12
-  cpy = y+11*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+12*H/12)
-  points.push(x+6*W/12, y+12*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+10*W/12, y+12*H/12)
-  points.push(x+10*W/12, y+12*H/12)
-  cpx = x+10*W/12
-  cpy = y+10*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+11*W/12, y+10*H/12)
-  points.push(x+11*W/12, y+10*H/12)
-  cpx = x+12*W/12
-  cpy = y+10*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+12*W/12, y+12*H/12)
-  points.push(x+12*W/12, y+12*H/12)
-  cpx = x+11*W/12
-  cpy = y+11*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+10*W/12, y+12*H/12)
-  points.push(x+10*W/12, y+12*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+0*W/12, y+4*H/12)
-  points.push(x+0*W/12, y+4*H/12)
-  ctx.lineTo(x+12*W/12, y+4*H/12)
-  points.push(x+12*W/12, y+4*H/12)
-  ctx.stroke()
-  
-  ctx.beginPath()
-  ctx.moveTo(x+6*W/12, y+4*H/12)
-  points.push(x+6*W/12, y+4*H/12)
-  cpx = x+5*W/12
-  cpy = y+4*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+5*W/12, y+8*H/12)
-  points.push(x+5*W/12, y+8*H/12)
-  cpx = x+6*W/12
-  cpy = y+7*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+7*W/12, y+10*H/12)
-  points.push(x+7*W/12, y+10*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+10*W/12, y+4*H/12)
-  points.push(x+10*W/12, y+4*H/12)
-  cpx = x+9*W/12
-  cpy = y+4*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+9*W/12, y+8*H/12)
-  points.push(x+9*W/12, y+8*H/12)
-  cpx = x+10*W/12
-  cpy = y+7*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+11*W/12, y+10*H/12)
-  points.push(x+11*W/12, y+10*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+2*W/12, y+4*H/12)
-  points.push(x+2*W/12, y+4*H/12)
-  cpx = x+1*W/12
-  cpy = y+4*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+1*W/12, y+8*H/12)
-  points.push(x+1*W/12, y+8*H/12)
-  cpx = x+2*W/12
-  cpy = y+7*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+3*W/12, y+10*H/12)
-  points.push(x+3*W/12, y+10*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.arc(x+1*W/12, y+3*H/12, W/24,0,Math.PI*2)
-  points.push(x+1*W/12, y+3*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.arc(x+5*W/12, y+3*H/12, W/24,0,Math.PI*2)
-  points.push(x+5*W/12, y+3*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.arc(x+9*W/12, y+3*H/12, W/24,0,Math.PI*2)
-  points.push(x+9*W/12, y+3*H/12)
-  ctx.stroke()
-// sides & bottom
-  ctx.beginPath()
-  ctx.moveTo(x+0*W/12, y+4*H/12)
-  points.push(x+0*W/12, y+4*H/12)
-  ctx.lineTo(x+0*W/12, y+12*H/12)
-  points.push(x+0*W/12, y+12*H/12)
-  ctx.lineTo(x+12*W/12, y+12*H/12)
-  points.push(x+12*W/12, y+12*H/12)
-  ctx.lineTo(x+12*W/12, y+4*H/12)
-  points.push(x+12*W/12, y+4*H/12)
-  ctx.stroke()
-  drawStars(x,y,W,points)
-}
-
-function fiss2At (x,y,W,color) {
-  let canvas = document.getElementById("myCanvas")
-  let ctx = canvas.getContext("2d")
-  let H = W, cpx, cpy, points = []
-  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
-  ctx.strokeStyle = color
-  ctx.lineCap = "square"
-  
-  ctx.beginPath()
-  ctx.moveTo(x+0*W/12, y+12*H/12)
-  points.push(x+0*W/12, y+12*H/12)
-  ctx.lineTo(x+6*W/12, y+10*H/12)
-  points.push(x+6*W/12, y+10*H/12)
-  ctx.lineTo(x+12*W/12, y+12*H/12)
-  points.push(x+12*W/12, y+12*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+0*W/12, y+0*H/12)
-  points.push(x+0*W/12, y+0*H/12)
-  ctx.lineTo(x+6*W/12, y+2*H/12)
-  points.push(x+6*W/12, y+2*H/12)
-  ctx.lineTo(x+12*W/12, y+0*H/12)
-  points.push(x+12*W/12, y+0*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+6*W/12, y+10*H/12)
-  points.push(x+6*W/12, y+10*H/12)
-  ctx.lineTo(x+6*W/12, y+2*H/12)
-  points.push(x+6*W/12, y+2*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+6*W/12, y+9*H/12)
-  points.push(x+6*W/12, y+9*H/12)
-  cpx = x+5*W/12
-  cpy = y+10*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+3*W/12, y+9*H/12)
-  points.push(x+3*W/12, y+9*H/12)
-  cpx = x+5*W/12
-  cpy = y+7*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+7*H/12)
-  points.push(x+6*W/12, y+7*H/12)
-  cpx = x+7*W/12
-  cpy = y+7*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+9*W/12, y+6*H/12)
-  points.push(x+9*W/12, y+6*H/12)
-  cpx = x+7*W/12
-  cpy = y+5*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+5*H/12)
-  points.push(x+6*W/12, y+5*H/12)
-  cpx = x+5*W/12
-  cpy = y+5*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+3*W/12, y+3*H/12)
-  points.push(x+3*W/12, y+3*H/12)
-  cpx = x+5*W/12
-  cpy = y+2*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+3*H/12)
-  points.push(x+6*W/12, y+3*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+6*W/12, y+3*H/12)
-  points.push(x+6*W/12, y+3*H/12)
-  cpx = x+9*W/12
-  cpy = y+2*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+10*W/12, y+3*H/12)
-  points.push(x+10*W/12, y+3*H/12)
-  cpx = x+9*W/12
-  cpy = y+4*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+5*H/12)
-  points.push(x+6*W/12, y+5*H/12)
-  cpx = x+5*W/12
-  cpy = y+5*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+2*W/12, y+6*H/12)
-  points.push(x+2*W/12, y+6*H/12)
-  cpx = x+5*W/12
-  cpy = y+7*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+7*H/12)
-  points.push(x+6*W/12, y+7*H/12)
-  cpx = x+9*W/12
-  cpy = y+8*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+10*W/12, y+9*H/12)
-  points.push(x+10*W/12, y+9*H/12)
-  cpx = x+9*W/12
-  cpy = y+10*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+9*H/12)
-  points.push(x+6*W/12, y+9*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+10*W/12, y+3*H/12)
-  points.push(x+10*W/12, y+3*H/12)
-  cpx = x+10*W/12
-  cpy = y+2*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+12*W/12, y+1*H/12)
-  points.push(x+12*W/12, y+1*H/12)
-  cpx = x+11*W/12
-  cpy = y+3*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+12*W/12, y+3*H/12)
-  points.push(x+12*W/12, y+3*H/12)
-  cpx = x+12*W/12
-  cpy = y+4*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+11*W/12, y+4*H/12)
-  points.push(x+11*W/12, y+4*H/12)
-  cpx = x+10*W/12
-  cpy = y+4*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+10*W/12, y+3*H/12)
-  points.push(x+10*W/12, y+3*H/12)
-  ctx.stroke()
-  
-  ctx.beginPath()
-  ctx.moveTo(x+3*W/12, y+9*H/12)
-  points.push(x+3*W/12, y+9*H/12)
-  cpx = x+3*W/12
-  cpy = y+10*H/12
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+10*W/12, y+9*H/12)
-  points.push(x+10*W/12, y+9*H/12)
-  cpx = x+10*W/12
-  cpy = y+10*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+12*W/12, y+11*H/12)
-  points.push(x+12*W/12, y+11*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+10*W/12, y+9*H/12)
-  points.push(x+10*W/12, y+9*H/12)
-  cpx = x+10*W/12
-  cpy = y+8*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+11*W/12, y+8*H/12)
-  points.push(x+11*W/12, y+8*H/12)
-  cpx = x+12*W/12
-  cpy = y+8*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+12*W/12, y+9*H/12)
-  points.push(x+12*W/12, y+9*H/12)
-  cpx = x+11*W/12
-  cpy = y+9*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+12*W/12, y+11*H/12)
-  points.push(x+12*W/12, y+11*H/12)
-  ctx.stroke()
-  // center tail
-  ctx.beginPath()
-  ctx.moveTo(x+2*W/12, y+6*H/12)
-  points.push(x+2*W/12, y+6*H/12)
-  cpx = x+2*W/12
-  cpy = y+5*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+0*W/12, y+5*H/12)
-  points.push(x+0*W/12, y+5*H/12)
-  cpx = x+1*W/12
-  cpy = y+6*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+0*W/12, y+7*H/12)
-  points.push(x+0*W/12, y+7*H/12)
-  cpx = x+2*W/12
-  cpy = y+7*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+2*W/12, y+6*H/12)
-  points.push(x+2*W/12, y+6*H/12)
-  ctx.stroke()
-  // eyes
-  ctx.beginPath()
-  ctx.arc(x+5*W/12, y+3.5*H/12, W/24,0,Math.PI*2)
-  points.push(x+5*W/12, y+3.5*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.arc(x+7*W/12, y+6*H/12, W/24,0,Math.PI*2)
-  points.push(x+7*W/12, y+6*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.arc(x+5*W/12, y+8.5*H/12, W/24,0,Math.PI*2)
-  points.push(x+5*W/12, y+8.5*H/12)
-  ctx.stroke()
- 
-  drawStars(x,y,W,points)
-}
-
-function fissAt (x,y,W,color) {
-  let canvas = document.getElementById("myCanvas")
-  let ctx = canvas.getContext("2d")
-  let H = W, cpx, cpy, points = []
-  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
-  ctx.strokeStyle = color
-  ctx.lineCap = "square"
-  ctx.beginPath()
-  ctx.moveTo(x+6*W/12, y+7*H/12)
-  points.push(x+6*W/12, y+7*H/12)
-  cpx = x+7*W/12
-  cpy = y+7*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+9*W/12, y+6*H/12)
-  points.push(x+9*W/12, y+6*H/12)
-  cpx = x+7*W/12
-  cpy = y+5*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+5*H/12)
-  points.push(x+6*W/12, y+5*H/12)
-  cpx = x+5*W/12
-  cpy = y+5*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+3*W/12, y+4*H/12)
-  points.push(x+3*W/12, y+4*H/12)
-  cpx = x+5*W/12
-  cpy = y+3*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+3*H/12)
-  points.push(x+6*W/12, y+3*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+6*W/12, y+7*H/12)
-  points.push(x+6*W/12, y+7*H/12)
-  cpx = x+5*W/12
-  cpy = y+7*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+3*W/12, y+8*H/12)
-  points.push(x+3*W/12, y+8*H/12)
-  cpx = x+5*W/12
-  cpy = y+9*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+9*H/12)
-  points.push(x+6*W/12, y+9*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+6*W/12, y+3*H/12)
-  points.push(x+6*W/12, y+3*H/12)
-  cpx = x+9*W/12
-  cpy = y+2*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+10*W/12, y+3*H/12)
-  points.push(x+10*W/12, y+3*H/12)
-  cpx = x+9*W/12
-  cpy = y+4*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+5*H/12)
-  points.push(x+6*W/12, y+5*H/12)
-  cpx = x+3*W/12
-  cpy = y+5*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+2*W/12, y+6*H/12)
-  points.push(x+2*W/12, y+6*H/12)
-  cpx = x+3*W/12
-  cpy = y+7*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+7*H/12)
-  points.push(x+6*W/12, y+7*H/12)
-  cpx = x+9*W/12
-  cpy = y+8*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+10*W/12, y+9*H/12)
-  points.push(x+10*W/12, y+9*H/12)
-  cpx = x+9*W/12
-  cpy = y+10*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+9*H/12)
-  points.push(x+6*W/12, y+9*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+0*W/12, y+7*H/12)
-  points.push(x+0*W/12, y+7*H/12)
-  cpx = x+2*W/12
-  cpy = y+7*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+2*W/12, y+6*H/12)
-  points.push(x+2*W/12, y+6*H/12)
-  cpx = x+2*W/12
-  cpy = y+5*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+0*W/12, y+5*H/12)
-  points.push(x+0*W/12, y+5*H/12)
-  cpx = x+1*W/12
-  cpy = y+6*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+0*W/12, y+7*H/12)
-  points.push(x+0*W/12, y+7*H/12)
-  ctx.stroke()
-  
-  ctx.beginPath()
-  ctx.moveTo(x+0*W/12, y+12*H/12)
-  points.push(x+0*W/12, y+12*H/12)
-  ctx.lineTo(x+6*W/12, y+10*H/12)
-  points.push(x+6*W/12, y+10*H/12)
-  ctx.lineTo(x+6*W/12, y+2*H/12)
-  points.push(x+6*W/12, y+2*H/12)
-  ctx.lineTo(x+0*W/12, y+0*H/12)
-  points.push(x+0*W/12, y+0*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+6*W/12, y+10*H/12)
-  points.push(x+6*W/12, y+10*H/12)
-  ctx.lineTo(x+12*W/12, y+12*H/12)
-  points.push(x+12*W/12, y+12*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+6*W/12, y+2*H/12)
-  points.push(x+6*W/12, y+2*H/12)
-  ctx.lineTo(x+12*W/12, y+0*H/12)
-  points.push(x+12*W/12, y+0*H/12)
-  ctx.stroke()
-  // eyes
-  ctx.beginPath()
-  ctx.arc(x+5*W/12, y+4*H/12, W/24,0,Math.PI*2)
-  points.push(x+5*W/12, y+4*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.arc(x+7*W/12, y+6*H/12, W/24,0,Math.PI*2)
-  points.push(x+7*W/12, y+6*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.arc(x+5*W/12, y+8*H/12, W/24,0,Math.PI*2)
-  points.push(x+5*W/12, y+8*H/12)
-  ctx.stroke()
-  
-  // rt top tail
-  ctx.beginPath()
-  ctx.moveTo(x+10*W/12, y+3*H/12)
-  points.push(x+10*W/12, y+3*H/12)
-  cpx = x+10*W/12
-  cpy = y+2*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+12*W/12, y+1*H/12)
-  points.push(x+12*W/12, y+1*H/12)
-  cpx = x+11*W/12
-  cpy = y+2*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+12*W/12, y+3*H/12)
-  points.push(x+12*W/12, y+3*H/12)
-  cpx = x+11*W/12
-  cpy = y+4*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+10*W/12, y+3*H/12)
-  points.push(x+10*W/12, y+3*H/12)
-  ctx.stroke()
-  // bottom tail
-  ctx.beginPath()
-  ctx.moveTo(x+10*W/12, y+9*H/12)
-  points.push(x+10*W/12, y+9*H/12)
-  cpx = x+10*W/12
-  cpy = y+10*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+12*W/12, y+11*H/12)
-  points.push(x+12*W/12, y+11*H/12)
-  cpx = x+11*W/12
-  cpy = y+10*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+12*W/12, y+9*H/12)
-  points.push(x+12*W/12, y+9*H/12)
-  cpx = x+11*W/12
-  cpy = y+8*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+10*W/12, y+9*H/12)
-  points.push(x+10*W/12, y+9*H/12)
-  ctx.stroke()
-  // alt heads
-  ctx.beginPath()
-  ctx.moveTo(x+6*W/12, y+7*H/12)
-  points.push(x+6*W/12, y+7*H/12)
-  cpx = x+5*W/12
-  cpy = y+7*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+3*W/12, y+9*H/12)
-  points.push(x+3*W/12, y+9*H/12)
-  cpx = x+5*W/12
-  cpy = y+10*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+9*H/12)
-  points.push(x+6*W/12, y+9*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+6*W/12, y+5*H/12)
-  points.push(x+6*W/12, y+5*H/12)
-  cpx = x+5*W/12
-  cpy = y+5*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+3*W/12, y+3*H/12)
-  points.push(x+3*W/12, y+3*H/12)
-  cpx = x+5*W/12
-  cpy = y+2*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+3*H/12)
-  points.push(x+6*W/12, y+3*H/12)
-  ctx.stroke()
-  
-  drawStars(x,y,W,points,0.2)
-}
-
-function ohoneAt (x,y,W,color) {
-  let canvas = document.getElementById("myCanvas")
-  let ctx = canvas.getContext("2d")
-  let H = W, cpx, cpy, points = []
-  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
-  ctx.strokeStyle = color
-  ctx.lineCap = "square"
-  ctx.beginPath()
-  ctx.moveTo(x+4*W/14, y+2*H/14)
-  points.push(x+4*W/14, y+2*H/14)
-  cpx = x+2*W/14
-  cpy = y+2*H/14
-  ctx.quadraticCurveTo(cpx, cpy, x+2*W/14, y+7*H/14)
-  points.push(x+2*W/14, y+7*H/14)
-  cpx = x+2*W/14
-  cpy = y+12*H/14
-  ctx.quadraticCurveTo(cpx, cpy, x+4*W/14, y+12*H/14)
-  points.push(x+4*W/14, y+12*H/14)
-  ctx.lineTo(x+4*W/14, y+14*H/14)
-  points.push(x+4*W/14, y+14*H/14)
-  cpx = x+0*W/14
-  cpy = y+14*H/14
-  ctx.quadraticCurveTo(cpx, cpy, x+0*W/14, y+7*H/14)
-  points.push(x+0*W/14, y+7*H/14)
-  cpx = x+0*W/14
-  cpy = y+0*H/14
-  ctx.quadraticCurveTo(cpx, cpy, x+4*W/14, y+0*H/14)
-  points.push(x+4*W/14, y+0*H/14)
-  ctx.lineTo(x+4*W/14, y+2*H/14)
-  points.push(x+4*W/14, y+2*H/14)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+5*W/14, y+2*H/14)
-  points.push(x+5*W/14, y+2*H/14)
-  ctx.lineTo(x+5*W/14, y+0*H/14)
-  points.push(x+5*W/14, y+0*H/14)
-  cpx = x+9*W/14
-  cpy = y+0*H/14
-  ctx.quadraticCurveTo(cpx, cpy, x+9*W/14, y+7*H/14)
-  points.push(x+9*W/14, y+7*H/14)
-  cpx = x+9*W/14
-  cpy = y+14*H/14
-  ctx.quadraticCurveTo(cpx, cpy, x+5*W/14, y+14*H/14)
-  points.push(x+5*W/14, y+14*H/14)
-  ctx.lineTo(x+5*W/14, y+12*H/14)
-  points.push(x+5*W/14, y+12*H/14)
-  cpx = x+7*W/14
-  cpy = y+12*H/14
-  ctx.quadraticCurveTo(cpx, cpy, x+7*W/14, y+7*H/14)
-  points.push(x+7*W/14, y+7*H/14)
-  cpx = x+7*W/14
-  cpy = y+2*H/14
-  ctx.quadraticCurveTo(cpx, cpy, x+5*W/14, y+2*H/14)
-  points.push(x+5*W/14, y+2*H/14)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+12*W/14, y+0*H/14)
-  points.push(x+12*W/14, y+0*H/14)
-  ctx.lineTo(x+14*W/14, y+0*H/14)
-  points.push(x+14*W/14, y+0*H/14)
-  ctx.lineTo(x+14*W/14, y+14*H/14)
-  points.push(x+14*W/14, y+14*H/14)
-  ctx.lineTo(x+12*W/14, y+14*H/14)
-  points.push(x+12*W/14, y+14*H/14)
-  ctx.lineTo(x+12*W/14, y+0*H/14)
-  points.push(x+12*W/14, y+0*H/14)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+9*W/14, y+2*H/14)
-  points.push(x+9*W/14, y+2*H/14)
-  ctx.lineTo(x+11*W/14, y+2*H/14)
-  points.push(x+11*W/14, y+2*H/14)
-  ctx.lineTo(x+11*W/14, y+0*H/14)
-  points.push(x+11*W/14, y+0*H/14)
-  ctx.lineTo(x+9*W/14, y+2*H/14)
-  points.push(x+9*W/14, y+2*H/14)
-  ctx.stroke()
-  drawStars(x,y,W,points)
-}
-
-function mothAt (x,y,W,color) {
-  let canvas = document.getElementById("myCanvas")
-  let ctx = canvas.getContext("2d")
-  let H = W, cpx, cpy, points = []
-  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
-  ctx.strokeStyle = color
-  ctx.lineCap = "square"
-  ctx.beginPath()
-  ctx.moveTo(x+5*W/12, y+5*H/12)
-  points.push(x+5*W/12, y+5*H/12)
-  cpx = x+5*W/12
-  cpy = y+0*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+0*W/12, y+0*H/12)
-  points.push(x+0*W/12, y+0*H/12)
-  cpx = x+0*W/12
-  cpy = y+7*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+5*W/12, y+5*H/12)
-  points.push(x+5*W/12, y+5*H/12)
-  cpx = x+5*W/12
-  cpy = y+0*H/12
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+7*W/12, y+5*H/12)
-  points.push(x+7*W/12, y+5*H/12)
-  cpx = x+7*W/12
-  cpy = y+0*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+12*W/12, y+0*H/12)
-  points.push(x+12*W/12, y+0*H/12)
-  cpx = x+12*W/12
-  cpy = y+7*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+7*W/12, y+5*H/12)
-  points.push(x+7*W/12, y+5*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+5*W/12, y+5*H/12)
-  points.push(x+5*W/12, y+5*H/12)
-  cpx = x+5*W/12
-  cpy = y+12*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+0*W/12, y+11*H/12)
-  points.push(x+0*W/12, y+11*H/12)
-  cpx = x+0*W/12
-  cpy = y+7*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+5*W/12, y+5*H/12)
-  points.push(x+5*W/12, y+5*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+7*W/12, y+5*H/12)
-  points.push(x+7*W/12, y+5*H/12)
-  cpx = x+7*W/12
-  cpy = y+12*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+12*W/12, y+11*H/12)
-  points.push(x+12*W/12, y+11*H/12)
-  cpx = x+12*W/12
-  cpy = y+7*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+7*W/12, y+5*H/12)
-  points.push(x+7*W/12, y+5*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+7*W/12, y+4*H/12)
-  points.push(x+7*W/12, y+4*H/12)
-  cpx = x+7*W/12
-  cpy = y+3*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+3*H/12)
-  points.push(x+6*W/12, y+3*H/12)
-  cpx = x+5*W/12
-  cpy = y+3*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+5*W/12, y+4*H/12)
-  points.push(x+5*W/12, y+4*H/12)
-  cpx = x+5*W/12
-  cpy = y+9*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+10*H/12)
-  points.push(x+6*W/12, y+10*H/12)
-  cpx = x+7*W/12
-  cpy = y+9*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+7*W/12, y+5*H/12)
-  points.push(x+7*W/12, y+5*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+3*W/12, y+2*H/12)
-  points.push(x+3*W/12, y+2*H/12)
-  cpx = x+3*W/12
-  cpy = y+1*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+2*W/12, y+1*H/12)
-  points.push(x+2*W/12, y+1*H/12)
-  cpx = x+1*W/12
-  cpy = y+1*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+1*W/12, y+2*H/12)
-  points.push(x+1*W/12, y+2*H/12)
-  cpx = x+1*W/12
-  cpy = y+3*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+2*W/12, y+3*H/12)
-  points.push(x+2*W/12, y+3*H/12)
-  cpx = x+3*W/12
-  cpy = y+3*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+3*W/12, y+2*H/12)
-  points.push(x+3*W/12, y+2*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+9*W/12, y+1*H/12)
-  points.push(x+9*W/12, y+1*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+9*W/12, y+2*H/12)
-  points.push(x+9*W/12, y+2*H/12)
-  cpx = x+9*W/12
-  cpy = y+1*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+10*W/12, y+1*H/12)
-  points.push(x+10*W/12, y+1*H/12)
-  cpx = x+11*W/12
-  cpy = y+1*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+11*W/12, y+2*H/12)
-  points.push(x+11*W/12, y+2*H/12)
-  cpx = x+11*W/12
-  cpy = y+3*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+10*W/12, y+3*H/12)
-  points.push(x+10*W/12, y+3*H/12)
-  cpx = x+9*W/12
-  cpy = y+3*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+9*W/12, y+2*H/12)
-  points.push(x+9*W/12, y+2*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+6*W/12, y+3*H/12)
-  points.push(x+6*W/12, y+3*H/12)
-  cpx = x+7*W/12
-  cpy = y+3*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+7*W/12, y+2*H/12)
-  points.push(x+7*W/12, y+2*H/12)
-  cpx = x+7*W/12
-  cpy = y+0*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+9*W/12, y+0*H/12)
-  points.push(x+9*W/12, y+0*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+6*W/12, y+3*H/12)
-  points.push(x+6*W/12, y+3*H/12)
-  cpx = x+5*W/12
-  cpy = y+3*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+5*W/12, y+2*H/12)
-  points.push(x+5*W/12, y+2*H/12)
-  cpx = x+5*W/12
-  cpy = y+0*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+3*W/12, y+0*H/12)
-  points.push(x+3*W/12, y+0*H/12)
-  ctx.stroke()
-  drawStars(x,y,W,points)
-}
 
 function vineAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
@@ -12510,274 +11531,131 @@ function firebirdAt (x,y,W,color) {
   drawStars(x,y,W,points)
 }
 
-function face2At (x,y,W,color) {
-  let canvas = document.getElementById("myCanvas")
-  let ctx = canvas.getContext("2d")
-  let H = W, cpx, cpy, points = []
-  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
-  ctx.strokeStyle = color
-  ctx.lineCap = "square"
-  ctx.beginPath()
-  ctx.moveTo(x+7*W/12, y+12*H/12)
-  points.push(x+7*W/12, y+12*H/12)
-  cpx = x+7*W/12
-  cpy = y+11*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+9*W/12, y+11*H/12)
-  points.push(x+9*W/12, y+11*H/12)
-  cpx = x+11*W/12
-  cpy = y+11*H/12
-  //ctx.quadraticCurveTo(cpx, cpy, x+11*W/12, y+7*H/12)
-  points.push(x+11*W/12, y+7*H/12)
-  cpx = x+11*W/12
-  cpy = y+2*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+9*W/12, y+2*H/12)
-  points.push(x+9*W/12, y+2*H/12)
-  cpx = x+1*W/12
-  cpy = y+2*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+1*W/12, y+11*H/12)
-  points.push(x+1*W/12, y+11*H/12)
-  cpx = x+1*W/12
-  cpy = y+12*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+0*W/12, y+12*H/12)
-  points.push(x+0*W/12, y+12*H/12)
-  //ctx.stroke()
-  
-  
-  ctx.beginPath()
-  ctx.moveTo(x+9*W/12, y+2*H/12)
-  points.push(x+9*W/12, y+2*H/12)
-  cpx = x+9*W/12
-  cpy = y+1*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+1*W/12, y+1*H/12)
-  points.push(x+1*W/12, y+1*H/12)
-  cpx = x+0*W/12
-  cpy = y+1*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+0*W/12, y+10*H/12)
-  points.push(x+0*W/12, y+10*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+9*W/12, y+2*H/12)
-  points.push(x+9*W/12, y+2*H/12)
-  cpx = x+9*W/12
-  cpy = y+1*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+8*W/12, y+1*H/12)
-  points.push(x+8*W/12, y+1*H/12)
-  cpx = x+1*W/12
-  cpy = y+1*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+0*W/12, y+10*H/12)
-  points.push(x+0*W/12, y+10*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+8*W/12, y+1*H/12)
-  points.push(x+8*W/12, y+1*H/12)
-  cpx = x+8*W/12
-  cpy = y+0*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+7*W/12, y+0*H/12)
-  points.push(x+7*W/12, y+0*H/12)
-  cpx = x+0*W/12
-  cpy = y+0*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+0*W/12, y+10*H/12)
-  points.push(x+0*W/12, y+10*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+5*W/12, y+5*H/12)
-  points.push(x+5*W/12, y+5*H/12)
-  cpx = x+3*W/12
-  cpy = y+5*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+3*W/12, y+6*H/12)
-  points.push(x+3*W/12, y+6*H/12)
-  cpx = x+3*W/12
-  cpy = y+7*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+5*W/12, y+7*H/12)
-  points.push(x+5*W/12, y+7*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+3*W/12, y+1*H/12)
-  points.push(x+3*W/12, y+1*H/12)
-  cpx = x+3*W/12
-  cpy = y+0*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+2*W/12, y+0*H/12)
-  points.push(x+2*W/12, y+0*H/12)
-  cpx = x+0*W/12
-  cpy = y+0*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+0*W/12, y+10*H/12)
-  points.push(x+0*W/12, y+10*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+6*W/12, y+6*H/12)
-  points.push(x+6*W/12, y+6*H/12)
-  cpx = x+7*W/12
-  cpy = y+5*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+8*W/12, y+6*H/12)
-  points.push(x+8*W/12, y+6*H/12)
-  cpx = x+7*W/12
-  cpy = y+7*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+6*H/12)
-  points.push(x+6*W/12, y+6*H/12)
-  cpx = x+9*W/12
-  cpy = y+6*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+9*W/12, y+6*H/12)
-  points.push(x+9*W/12, y+6*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+9*W/12, y+6*H/12)
-  points.push(x+9*W/12, y+6*H/12)
-  cpx = x+10*W/12
-  cpy = y+7*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+11*W/12, y+6*H/12)
-  points.push(x+11*W/12, y+6*H/12)
-  cpx = x+10*W/12
-  cpy = y+5*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+9*W/12, y+6*H/12)
-  points.push(x+9*W/12, y+6*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+8*W/12, y+6*H/12)
-  points.push(x+8*W/12, y+6*H/12)
-  cpx = x+9*W/12
-  cpy = y+6*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+9*W/12, y+8*H/12)
-  points.push(x+9*W/12, y+8*H/12)
-  cpx = x+9*W/12
-  cpy = y+9*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+8*W/12, y+9*H/12)
-  points.push(x+8*W/12, y+9*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+7*W/12, y+10*H/12)
-  points.push(x+7*W/12, y+10*H/12)
-  cpx = x+9*W/12
-  cpy = y+10*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+9*W/12, y+9*H/12)
-  points.push(x+9*W/12, y+9*H/12)
-  cpx = x+9*W/12
-  cpy = y+10*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+7*W/12, y+10*H/12)
-  points.push(x+7*W/12, y+10*H/12)
-  cpx = x+9*W/12
-  cpy = y+11*H/12
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+7*W/12, y+10*H/12)
-  points.push(x+7*W/12, y+10*H/12)
-  cpx = x+9*W/12
-  cpy = y+10*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+9*W/12, y+11*H/12)
-  points.push(x+9*W/12, y+11*H/12)
-  ctx.stroke()
-  drawStars(x,y,W,points)
-}
-
 function floppyAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let H = W, cpx, cpy, points = []
+  let colors = shuffle(getCurrentPalette(true,13))
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
   ctx.strokeStyle = color
   ctx.lineCap = "square"
+  ctx.lineJoin = "bevel"
+
+  //1
   ctx.beginPath()
-  ctx.moveTo(x+0*W/16, y+1*H/16)
-points.push(x+0*W/16, y+1*H/16)
-  cpx = x+0*W/16
-  cpy = y+0*H/16
-  ctx.quadraticCurveTo(cpx, cpy, x+1*W/16, y+0*H/16)
-  ctx.lineTo(x+14*W/16, y+0*H/16)
-points.push(x+14*W/16, y+0*H/16)
-  ctx.lineTo(x+16*W/16, y+2*H/16)
-points.push(x+16*W/16, y+2*H/16)
-  ctx.lineTo(x+16*W/16, y+15*H/16)
-points.push(x+16*W/16, y+15*H/16)
-  cpx = x+16*W/16
-  cpy = y+16*H/16
-  ctx.quadraticCurveTo(cpx, cpy, x+15*W/16, y+16*H/16)
-  ctx.lineTo(x+1*W/16, y+16*H/16)
-points.push(x+1*W/16, y+16*H/16)
-  cpx = x+0*W/16
-  cpy = y+16*H/16
-  ctx.quadraticCurveTo(cpx, cpy, x+0*W/16, y+15*H/16)
-  ctx.lineTo(x+0*W/16, y+1*H/16)
-points.push(x+0*W/16, y+1*H/16)
+  ctx.moveTo(x+3*W/24, y+22*H/24)
+  cpx = x+21*W/24
+  cpy = y+22*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+21*W/24, y+22*H/24)
+  cpx = x+22*W/24
+  cpy = y+22*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+22*W/24, y+21*H/24)
+  cpx = x+22*W/24
+  cpy = y+6*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+22*W/24, y+6*H/24)
+  cpx = x+18*W/24
+  cpy = y+2*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+18*W/24, y+2*H/24)
+  cpx = x+3*W/24
+  cpy = y+2*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+3*W/24, y+2*H/24)
+  cpx = x+2*W/24
+  cpy = y+2*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+2*W/24, y+3*H/24)
+  cpx = x+2*W/24
+  cpy = y+21*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+2*W/24, y+21*H/24)
+  cpx = x+2*W/24
+  cpy = y+22*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+3*W/24, y+22*H/24)
   ctx.stroke()
+
+  //2
   ctx.beginPath()
-  ctx.moveTo(x+2*W/16, y+0*H/16)
-points.push(x+2*W/16, y+0*H/16)
-  ctx.lineTo(x+2*W/16, y+4*H/16)
-points.push(x+2*W/16, y+4*H/16)
-  cpx = x+2*W/16
-  cpy = y+5*H/16
-  ctx.quadraticCurveTo(cpx, cpy, x+3*W/16, y+5*H/16)
-  ctx.lineTo(x+10*W/16, y+5*H/16)
-points.push(x+10*W/16, y+5*H/16)
-  cpx = x+11*W/16
-  cpy = y+5*H/16
-  ctx.quadraticCurveTo(cpx, cpy, x+11*W/16, y+4*H/16)
-  ctx.lineTo(x+11*W/16, y+0*H/16)
-points.push(x+11*W/16, y+0*H/16)
+  ctx.moveTo(x+4*W/24, y+2*H/24)
+  cpx = x+4*W/24
+  cpy = y+7*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+4*W/24, y+7*H/24)
+  cpx = x+4*W/24
+  cpy = y+8*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+5*W/24, y+8*H/24)
+  cpx = x+16*W/24
+  cpy = y+8*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+16*W/24, y+8*H/24)
+  cpx = x+17*W/24
+  cpy = y+8*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+17*W/24, y+7*H/24)
+  cpx = x+17*W/24
+  cpy = y+2*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+17*W/24, y+2*H/24)
   ctx.stroke()
+
+  //3
   ctx.beginPath()
-  ctx.moveTo(x+3*W/16, y+6*H/16)
-points.push(x+3*W/16, y+6*H/16)
-  cpx = x+2*W/16
-  cpy = y+6*H/16
-  ctx.quadraticCurveTo(cpx, cpy, x+2*W/16, y+7*H/16)
-  ctx.lineTo(x+2*W/16, y+14*H/16)
-points.push(x+2*W/16, y+14*H/16)
-  cpx = x+2*W/16
-  cpy = y+15*H/16
-  ctx.quadraticCurveTo(cpx, cpy, x+3*W/16, y+15*H/16)
-  ctx.lineTo(x+13*W/16, y+15*H/16)
-points.push(x+13*W/16, y+15*H/16)
-  cpx = x+14*W/16
-  cpy = y+15*H/16
-  ctx.quadraticCurveTo(cpx, cpy, x+14*W/16, y+14*H/16)
-  ctx.lineTo(x+14*W/16, y+7*H/16)
-points.push(x+14*W/16, y+7*H/16)
-  cpx = x+14*W/16
-  cpy = y+6*H/16
-  ctx.quadraticCurveTo(cpx, cpy, x+13*W/16, y+6*H/16)
-  ctx.lineTo(x+3*W/16, y+6*H/16)
-points.push(x+3*W/16, y+6*H/16)
+  ctx.moveTo(x+4*W/24, y+11*H/24)
+  cpx = x+4*W/24
+  cpy = y+10*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+5*W/24, y+10*H/24)
+  cpx = x+19*W/24
+  cpy = y+10*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+19*W/24, y+10*H/24)
+  cpx = x+20*W/24
+  cpy = y+10*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+20*W/24, y+11*H/24)
+  cpx = x+20*W/24
+  cpy = y+20*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+20*W/24, y+20*H/24)
+  cpx = x+20*W/24
+  cpy = y+21*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+19*W/24, y+21*H/24)
+  cpx = x+5*W/24
+  cpy = y+21*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+5*W/24, y+21*H/24)
+  cpx = x+4*W/24
+  cpy = y+21*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+4*W/24, y+20*H/24)
+  cpx = x+4*W/24
+  cpy = y+11*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+4*W/24, y+11*H/24)
   ctx.stroke()
+
+  //4
   ctx.beginPath()
-  ctx.moveTo(x+10*W/16, y+4*H/16)
-points.push(x+10*W/16, y+4*H/16)
-  ctx.lineTo(x+8*W/16, y+4*H/16)
-points.push(x+8*W/16, y+4*H/16)
-  ctx.lineTo(x+8*W/16, y+1*H/16)
-points.push(x+8*W/16, y+1*H/16)
-  ctx.lineTo(x+10*W/16, y+1*H/16)
-points.push(x+10*W/16, y+1*H/16)
-  ctx.lineTo(x+10*W/16, y+4*H/16)
-points.push(x+10*W/16, y+4*H/16)
+  ctx.moveTo(x+8*W/24, y+2*H/24)
+  cpx = x+8*W/24
+  cpy = y+7*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+8*W/24, y+7*H/24)
+  cpx = x+8*W/24
+  cpy = y+8*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+9*W/24, y+8*H/24)
   ctx.stroke()
+
+  //5
   ctx.beginPath()
-  ctx.moveTo(x+3*W/16, y+12*H/16)
-points.push(x+3*W/16, y+12*H/16)
-  ctx.lineTo(x+13*W/16, y+12*H/16)
-points.push(x+13*W/16, y+12*H/16)
+  ctx.moveTo(x+13*W/24, y+3*H/24)
+  ctx.lineTo(x+16*W/24, y+3*H/24)
+  ctx.lineTo(x+16*W/24, y+7*H/24)
+  ctx.lineTo(x+13*W/24, y+7*H/24)
+  ctx.lineTo(x+13*W/24, y+3*H/24)
   ctx.stroke()
+
+  //6
   ctx.beginPath()
-  ctx.moveTo(x+3*W/16, y+10*H/16)
-points.push(x+3*W/16, y+10*H/16)
-  ctx.lineTo(x+13*W/16, y+10*H/16)
-points.push(x+13*W/16, y+10*H/16)
+  ctx.moveTo(x+6*W/24, y+12*H/24)
+  ctx.lineTo(x+18*W/24, y+12*H/24)
   ctx.stroke()
+
+  //7
   ctx.beginPath()
-  ctx.moveTo(x+3*W/16, y+8*H/16)
-points.push(x+3*W/16, y+8*H/16)
-  ctx.lineTo(x+13*W/16, y+8*H/16)
-points.push(x+13*W/16, y+8*H/16)
+  ctx.moveTo(x+6*W/24, y+15*H/24)
+  ctx.lineTo(x+18*W/24, y+15*H/24)
   ctx.stroke()
+
+  //8
   ctx.beginPath()
-  ctx.moveTo(x+4*W/16, y+0*H/16)
-points.push(x+4*W/16, y+0*H/16)
-  ctx.lineTo(x+4*W/16, y+4*H/16)
-points.push(x+4*W/16, y+4*H/16)
-  cpx = x+4*W/16
-  cpy = y+5*H/16
-  ctx.quadraticCurveTo(cpx, cpy, x+5*W/16, y+5*H/16)
+  ctx.moveTo(x+6*W/24, y+18*H/24)
+  ctx.lineTo(x+18*W/24, y+18*H/24)
   ctx.stroke()
-  drawStars(x,y,W,points)
 }
 
 function scratchout2 () {
@@ -12976,98 +11854,6 @@ function spiralAt (x,y,W,color) {
   drawStars(x,y,W,points)
 }
 
-function catAt (x,y,W,color) {
-  let canvas = document.getElementById("myCanvas")
-  let ctx = canvas.getContext("2d")
-  let H = W, cpx, cpy
-  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
-  ctx.strokeStyle = color
-  ctx.lineCap = "square"
-  ctx.beginPath()
-  ctx.moveTo(x+5*W/9, y+2*H/9)
-  cpx = x+0*W/9
-  cpy = y+2*H/9
-  ctx.quadraticCurveTo(cpx, cpy, x+0*W/9, y+8*H/9)
-  cpx = x+0*W/9
-  cpy = y+9*H/9
-  ctx.quadraticCurveTo(cpx, cpy, x+1*W/9, y+9*H/9)
-  ctx.lineTo(x+6*W/9, y+9*H/9)
-  cpx = x+6*W/9
-  cpy = y+8*H/9
-  ctx.quadraticCurveTo(cpx, cpy, x+5*W/9, y+8*H/9)
-  ctx.lineTo(x+4*W/9, y+8*H/9)
-  cpx = x+4*W/9
-  cpy = y+6*H/9
-  ctx.quadraticCurveTo(cpx, cpy, x+2*W/9, y+6*H/9)
-  ctx.stroke()
-  ctx.beginPath() // face
-  ctx.moveTo(x+5*W/9, y+0*H/9)
-  ctx.lineTo(x+5*W/9, y+2*H/9)
-  cpx = x+5*W/9
-  cpy = y+4*H/9
-  ctx.quadraticCurveTo(cpx, cpy, x+7*W/9, y+4*H/9)
-  cpx = x+9*W/9
-  cpy = y+4*H/9
-  ctx.quadraticCurveTo(cpx, cpy, x+9*W/9, y+2*H/9)
-  ctx.lineTo(x+9*W/9, y+0*H/9)
-  ctx.lineTo(x+8*W/9, y+1*H/9)
-  cpx = x+7*W/9
-  cpy = y+0*H/9
-  ctx.quadraticCurveTo(cpx, cpy, x+6*W/9, y+1*H/9)
-  ctx.lineTo(x+5*W/9, y+0*H/9)
-  ctx.stroke()
-  
-  ctx.beginPath() // left front leg
-  ctx.moveTo(x+5*W/9, y+5*H/9)
-  ctx.lineTo(x+5*W/9, y+8*H/9)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+6*W/9, y+6*H/9)
-  ctx.lineTo(x+6*W/9, y+9*H/9)
-  ctx.stroke()
-
-  ctx.beginPath()
-  ctx.moveTo(x+8*W/9, y+7*H/9)
-  cpx = x+8*W/9
-  cpy = y+8*H/9
-  ctx.quadraticCurveTo(cpx, cpy, x+6*W/9, y+8*H/9)
-  ctx.stroke()
-  
-  ctx.beginPath()
-  ctx.moveTo(x+6*W/9, y+2*H/9)
-  cpx = x+7*W/9
-  cpy = y+2*H/9
-  ctx.quadraticCurveTo(cpx, cpy, x+7*W/9, y+3*H/9)
-  cpx = x+7*W/9
-  cpy = y+2*H/9
-  ctx.quadraticCurveTo(cpx, cpy, x+8*W/9, y+2*H/9)
-  ctx.stroke()
-  
-  //right leg
-  ctx.beginPath()
-  ctx.moveTo(x+8*W/9, y+4*H/9)
-  cpx = x+9*W/9
-  cpy = y+4*H/9
-  ctx.quadraticCurveTo(cpx, cpy, x+9*W/9, y+5*H/9)
-  ctx.lineTo(x+9*W/9, y+9*H/9)
-  cpx = x+8*W/9
-  cpy = y+9*H/9
-  ctx.quadraticCurveTo(cpx, cpy, x+8*W/9, y+8*H/9)
-  ctx.lineTo(x+8*W/9, y+6*H/9)
-  ctx.stroke()
-  
-  // tail
-  ctx.beginPath()
-  ctx.moveTo(x+0*W/9, y+7*H/9)
-  ctx.lineTo(x+0*W/9, y+0*H/9)
-  cpx = x+1*W/9
-  cpy = y+0*H/9
-  ctx.quadraticCurveTo(cpx, cpy, x+1*W/9, y+1*H/9)
-  ctx.lineTo(x+1*W/9, y+3.8*H/9)
-  ctx.stroke()
-  
-}
-
 function mailboxAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -13075,152 +11861,83 @@ function mailboxAt (x,y,W,color) {
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
   ctx.strokeStyle = color
   ctx.lineCap = "square"
+  //1 front (left)
   ctx.beginPath()
-  ctx.moveTo(x+0*W/12, y+12*H/12)
-  ctx.lineTo(x+0*W/12, y+7*H/12)
-  ctx.lineTo(x+1*W/12, y+6*H/12)
-  ctx.lineTo(x+2*W/12, y+5*H/12)
-  ctx.lineTo(x+4*W/12, y+5*H/12)
-  ctx.lineTo(x+6*W/12, y+7*H/12)
-  ctx.lineTo(x+6*W/12, y+12*H/12)
-  ctx.lineTo(x+0*W/12, y+12*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+6*W/12, y+12*H/12)
-  ctx.lineTo(x+12*W/12, y+7*H/12)
-  ctx.lineTo(x+12*W/12, y+2*H/12)
-  ctx.lineTo(x+10*W/12, y+0*H/12)
-  ctx.lineTo(x+8*W/12, y+0*H/12)
-  ctx.lineTo(x+2*W/12, y+5*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+4*W/12, y+5*H/12)
-  ctx.lineTo(x+10*W/12, y+0*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+6*W/12, y+7*H/12)
-  ctx.lineTo(x+12*W/12, y+2*H/12)
-  ctx.stroke()
-  ctx.beginPath() // flag
-  ctx.moveTo(x+7*W/12, y+8*H/12)
-  ctx.lineTo(x+7*W/12, y+4*H/12)
-  ctx.lineTo(x+8*W/12, y+3*H/12)
-  ctx.lineTo(x+8*W/12, y+4*H/12)
-  ctx.lineTo(x+7*W/12, y+5*H/12)
-  ctx.stroke()
-  // 30
-  ctx.beginPath()
-  ctx.moveTo(x+8*W/12, y+7*H/12)
-  ctx.lineTo(x+9*W/12, y+6*H/12)
-  ctx.lineTo(x+9*W/12, y+7*H/12)
-  ctx.lineTo(x+8*W/12, y+8*H/12)
-  ctx.lineTo(x+9*W/12, y+7*H/12)
-  ctx.lineTo(x+9*W/12, y+8*H/12)
-  ctx.lineTo(x+8*W/12, y+9*H/12)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(x+10*W/12, y+5*H/12)
-  ctx.lineTo(x+11*W/12, y+4*H/12)
-  ctx.lineTo(x+11*W/12, y+6*H/12)
-  ctx.lineTo(x+10*W/12, y+7*H/12)
-  ctx.lineTo(x+10*W/12, y+5*H/12)
-  ctx.stroke()
-}
-
-function elephantAt (x,y,W,color) {
-  let canvas = document.getElementById("myCanvas")
-  let ctx = canvas.getContext("2d")
-  let H = W, cpx, cpy, points = []
-  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
-  ctx.strokeStyle = color
-  ctx.lineCap = "square"
-  ctx.beginPath()
-  ctx.moveTo(x+2*W/12, y+10*H/12)
-  points.push(x+2*W/12, y+10*H/12)
-  cpx = x+1*W/12
-  cpy = y+10*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+0*W/12, y+6*H/12)
-  points.push(x+0*W/12, y+6*H/12)
-  cpx = x+0*W/12
-  cpy = y+2*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+2*W/12, y+2*H/12)
-  points.push(x+2*W/12, y+2*H/12)
-  cpx = x+8*W/12
-  cpy = y+2*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+8*W/12, y+3*H/12)
-  points.push(x+8*W/12, y+3*H/12)
-  cpx = x+10*W/12
-  cpy = y+3*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+11*W/12, y+8*H/12)
-  points.push(x+11*W/12, y+8*H/12)
-  cpx = x+11*W/12
-  cpy = y+10*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+12*W/12, y+10*H/12)
-  points.push(x+12*W/12, y+10*H/12)
-  cpx = x+11*W/12
-  cpy = y+10*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+9*W/12, y+7*H/12)
-  points.push(x+9*W/12, y+7*H/12)
-  cpx = x+8*W/12
-  cpy = y+7*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+8*W/12, y+10*H/12)
-  points.push(x+8*W/12, y+10*H/12)
-  cpx = x+7*W/12
-  cpy = y+10*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+7*W/12, y+8*H/12)
-  points.push(x+7*W/12, y+8*H/12)
-  cpx = x+5*W/12
-  cpy = y+9*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+3*W/12, y+8*H/12)
-  points.push(x+3*W/12, y+8*H/12)
-  cpx = x+2*W/12
-  cpy = y+8*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+2*W/12, y+10*H/12)
-  points.push(x+2*W/12, y+10*H/12)
-  ctx.stroke()
-  // ear
-  ctx.beginPath()
-  ctx.moveTo(x+7*W/12, y+4*H/12)
-  points.push(x+7*W/12, y+4*H/12)
-  cpx = x+7*W/12
-  cpy = y+3*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+3*H/12)
-  points.push(x+6*W/12, y+3*H/12)
-  cpx = x+5*W/12
-  cpy = y+3*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+6*H/12)
-  points.push(x+6*W/12, y+6*H/12)
-  cpx = x+7*W/12
-  cpy = y+6*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+7*W/12, y+5*H/12)
-  points.push(x+7*W/12, y+5*H/12)
+  ctx.moveTo(x+2*W/24, y+22*H/24)
+  ctx.lineTo(x+12*W/24, y+22*H/24)
+  ctx.lineTo(x+12*W/24, y+12*H/24)
+  cpx = x+12*W/24
+  cpy = y+8*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+7*W/24, y+8*H/24)
+  cpx = x+2*W/24
+  cpy = y+8*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+2*W/24, y+12*H/24)
+  cpx = x+2*W/24
+  cpy = y+22*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+2*W/24, y+22*H/24)
   ctx.stroke()
   
+  //5 back top curve
   ctx.beginPath()
-  ctx.moveTo(x+3*W/12, y+8*H/12)
-  points.push(x+3*W/12, y+8*H/12)
-  cpx = x+3*W/12
-  cpy = y+10*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+4*W/12, y+10*H/12)
-  points.push(x+4*W/12, y+10*H/12)
-  cpx = x+4*W/12
-  cpy = y+8*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+5*W/12, y+8*H/12)
-  points.push(x+5*W/12, y+8*H/12)
+  ctx.moveTo(x+22*W/24, y+6*H/24)
+  cpx = x+22*W/24
+  cpy = y+2*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+17*W/24, y+2*H/24)
+  cpx = x+16*W/24
+  cpy = y+2*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+14*W/24, y+3*H/24)
+  cpx = x+3*W/24
+  cpy = y+9*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+3.2*W/24, y+9*H/24)
   ctx.stroke()
+
+  //2 rear right
   ctx.beginPath()
-  ctx.moveTo(x+6*W/12, y+8*H/12)
-  points.push(x+6*W/12, y+8*H/12)
-  cpx = x+6*W/12
-  cpy = y+10*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+7*W/12, y+10*H/12)
-  points.push(x+7*W/12, y+10*H/12)
-  cpx = x+7*W/12
-  cpy = y+9*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+8*W/12, y+8*H/12)
-  points.push(x+8*W/12, y+8*H/12)
+  ctx.moveTo(x+12*W/24, y+22*H/24)
+  ctx.lineTo(x+22*W/24, y+17*H/24)
+  ctx.lineTo(x+22*W/24, y+6*H/24)
   ctx.stroke()
-  drawStars(x,y,W,points)
+  
+   //1 e
+  ctx.beginPath()
+  ctx.moveTo(x+14*W/24, y+15*H/24)
+  ctx.lineTo(x+16*W/24, y+14*H/24)
+  ctx.lineTo(x+16*W/24, y+18*H/24)
+  ctx.lineTo(x+14*W/24, y+19*H/24)
+  ctx.stroke()
+  //2 e
+  ctx.beginPath()
+  ctx.moveTo(x+16*W/24, y+16*H/24)
+  ctx.lineTo(x+14*W/24, y+17*H/24)
+  ctx.stroke()
+
+  //3 0
+  ctx.beginPath()
+  ctx.moveTo(x+18*W/24, y+17*H/24)
+  ctx.lineTo(x+18*W/24, y+13*H/24)
+  ctx.lineTo(x+20*W/24, y+12*H/24)
+  ctx.lineTo(x+20*W/24, y+16*H/24)
+  ctx.lineTo(x+18*W/24, y+17*H/24)
+  ctx.stroke()
+  
+  //9 flag
+  ctx.beginPath()
+  ctx.moveTo(x+14*W/24, y+12*H/24)
+  ctx.lineTo(x+14*W/24, y+6*H/24)
+  ctx.lineTo(x+16*W/24, y+5*H/24)
+  ctx.lineTo(x+16*W/24, y+7*H/24)
+  ctx.lineTo(x+14*W/24, y+8*H/24)
+  ctx.stroke()
+  // latch
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/24, y+8.2*H/24)
+  cpx = x+6*W/24
+  cpy = y+9*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+7*W/24, y+9*H/24)
+  cpx = x+8*W/24
+  cpy = y+9*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+8*W/24, y+8.2*H/24)
+  ctx.stroke()
 }
 
 function cactusAt (x,y,W,color) {
@@ -13564,56 +12281,7 @@ function birdAt (x,y,W,color) {
   ctx.stroke()
   ctx.beginPath()
 
-  ctx.arc(x+6.25*W/12, y+1*H/12, W/24, 0, Math.PI*2)
-  ctx.stroke()
-}
-
-function bridgeAt (x,y,W,color) {
-  let canvas = document.getElementById("myCanvas")
-  let ctx = canvas.getContext("2d")
-  let H = W, cpx, cpy
-  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
-  ctx.strokeStyle = color
-  ctx.lineCap = "square"
-  ctx.beginPath()
-  ctx.moveTo(x+0*W/12, y+6*H/12)
-  ctx.lineTo(x+0*W/12, y+12*H/12)
-  ctx.lineTo(x+1*W/12, y+12*H/12)
-  ctx.lineTo(x+1*W/12, y+8*H/12)
-  cpx = x+2*W/12
-  cpy = y+7*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+3*W/12, y+8*H/12)
-  ctx.lineTo(x+3*W/12, y+12*H/12)
-  ctx.lineTo(x+4*W/12, y+12*H/12)
-  ctx.lineTo(x+4*W/12, y+6*H/12)
-  cpx = x+6*W/12
-  cpy = y+4*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+8*W/12, y+6*H/12)
-  ctx.lineTo(x+8*W/12, y+12*H/12)
-  ctx.lineTo(x+9*W/12, y+12*H/12)
-  ctx.lineTo(x+9*W/12, y+8*H/12)
-  cpx = x+10*W/12
-  cpy = y+7*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+11*W/12, y+8*H/12)
-  ctx.lineTo(x+11*W/12, y+12*H/12)
-  ctx.lineTo(x+12*W/12, y+12*H/12)
-  ctx.lineTo(x+12*W/12, y+6*H/12)
-  cpx = x+8*W/12
-  cpy = y+2*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+2*H/12)
-  cpx = x+4*W/12
-  cpy = y+2*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+0*W/12, y+6*H/12)
-  // large arc offset up
-  ctx.moveTo(x+12*W/12, y+6*H/12)
-  ctx.lineTo(x+12*W/12, y+4*H/12)
-  cpx = x+8*W/12
-  cpy = y+0*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+0*H/12)
-  cpx = x+4*W/12
-  cpy = y+0*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+0*W/12, y+4*H/12)
-  ctx.lineTo(x+0*W/12, y+6*H/12)
+  ctx.arc(x+6.25*W/12, y+1*H/12, W/32, 0, Math.PI*2)
   ctx.stroke()
 }
 
@@ -13861,56 +12529,57 @@ function coreAt (x,y,W,color) {
 function tvAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
-  let H = W, cpx, cpy
+  let H = W, cpx, cpy, points = []
+  let colors = shuffle(getCurrentPalette(true,13))
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
   ctx.strokeStyle = color
   ctx.lineCap = "square"
-  let points = []
+  ctx.lineJoin = "bevel"
+
+  //1
   ctx.beginPath()
-  ctx.moveTo(x+0*W/15, y+3*H/15)
-points.push(x+0*W/15, y+3*H/15)
-  ctx.lineTo(x+15*W/15, y+3*H/15)
-points.push(x+15*W/15, y+3*H/15)
-  ctx.lineTo(x+15*W/15, y+15*H/15)
-points.push(x+15*W/15, y+15*H/15)
-  ctx.lineTo(x+0*W/15, y+15*H/15)
-points.push(x+0*W/15, y+15*H/15)
-  ctx.lineTo(x+0*W/15, y+3*H/15)
-points.push(x+0*W/15, y+3*H/15)
+  ctx.moveTo(x+2*W/24, y+22*H/24)
+  ctx.lineTo(x+22*W/24, y+22*H/24)
+  ctx.lineTo(x+22*W/24, y+8*H/24)
+  ctx.lineTo(x+2*W/24, y+8*H/24)
+  ctx.lineTo(x+2*W/24, y+22*H/24)
   ctx.stroke()
+
+  //3
   ctx.beginPath()
-  ctx.moveTo(x+1*W/15, y+6*H/15)
-points.push(x+1*W/15, y+6*H/15)
-  cpx = x+1*W/15
-  cpy = y+4*H/15
-  ctx.quadraticCurveTo(cpx, cpy, x+3*W/15, y+4*H/15)
-  ctx.lineTo(x+12*W/15, y+4*H/15)
-points.push(x+12*W/15, y+4*H/15)
-  cpx = x+14*W/15
-  cpy = y+4*H/15
-  ctx.quadraticCurveTo(cpx, cpy, x+14*W/15, y+6*H/15)
-  ctx.lineTo(x+14*W/15, y+12*H/15)
-points.push(x+14*W/15, y+12*H/15)
-  cpx = x+14*W/15
-  cpy = y+14*H/15
-  ctx.quadraticCurveTo(cpx, cpy, x+12*W/15, y+14*H/15)
-  ctx.lineTo(x+3*W/15, y+14*H/15)
-points.push(x+3*W/15, y+14*H/15)
-  cpx = x+1*W/15
-  cpy = y+14*H/15
-  ctx.quadraticCurveTo(cpx, cpy, x+1*W/15, y+12*H/15)
-  ctx.lineTo(x+1*W/15, y+6*H/15)
-points.push(x+1*W/15, y+6*H/15)
+  ctx.moveTo(x+4*W/24, y+21*H/24)
+  cpx = x+20*W/24
+  cpy = y+21*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+20*W/24, y+21*H/24)
+  cpx = x+21*W/24
+  cpy = y+21*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+21*W/24, y+20*H/24)
+  cpx = x+21*W/24
+  cpy = y+10*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+21*W/24, y+10*H/24)
+  cpx = x+21*W/24
+  cpy = y+9*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+20*W/24, y+9*H/24)
+  cpx = x+4*W/24
+  cpy = y+9*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+4*W/24, y+9*H/24)
+  cpx = x+3*W/24
+  cpy = y+9*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+3*W/24, y+9*H/24)
+  cpx = x+3*W/24
+  cpy = y+20*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+3*W/24, y+20*H/24)
+  cpx = x+3*W/24
+  cpy = y+21*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+4*W/24, y+21*H/24)
   ctx.stroke()
+
+  //4
   ctx.beginPath()
-  ctx.moveTo(x+0*W/15, y+0*H/15)
-points.push(x+0*W/15, y+0*H/15)
-  ctx.lineTo(x+7*W/15, y+3*H/15)
-points.push(x+7*W/15, y+3*H/15)
-  ctx.lineTo(x+14*W/15, y+0*H/15)
-points.push(x+14*W/15, y+0*H/15)
+  ctx.moveTo(x+2*W/24, y+2*H/24)
+  ctx.lineTo(x+12*W/24, y+8*H/24)
+  ctx.lineTo(x+22*W/24, y+2*H/24)
   ctx.stroke()
-  drawStars(x,y,W,points,0.1)
 }
 
 function duckAt (x,y,W,color) {
@@ -14120,7 +12789,7 @@ function everythingSymb () {
   }
 }
 
-function shoesAt (x,y,W,color) {
+function shoesAt___ (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let H = W, cpx, cpy
@@ -14347,6 +13016,7 @@ points.push( x+8*W/12, y+11*H/12)
 }
 
 function drawStars (x,y,W, points, T) {
+  return//kill for now
   if (!document.getElementById("grungy").checked)
     return
   if (!T)
@@ -14952,25 +13622,34 @@ function allAt (x,y,W,color) {
 function heartAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
-  let H = W
-  let alt = document.getElementById("grungy").checked
+  let H = W, cpx, cpy, points = []
+  let colors = shuffle(getCurrentPalette(true,13))
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
   ctx.strokeStyle = color
-  let x0 = x, y0 = y
-  let r = W/4
+  ctx.lineCap = "square"
+  ctx.lineJoin = "bevel"
+
+  //1
   ctx.beginPath()
-  ctx.moveTo(x+W/2, y+H)
-  cpx = x0
-  cpy = y0+H*0.57
-  ctx.quadraticCurveTo(cpx,cpy,x+0, y+r)
-  x += W/4
-  y += r
-  ctx.arc(x, y, r, Math.PI, Math.PI*2) // thumb
-  x += r*2
-  ctx.arc(x, y, r, Math.PI, Math.PI*2) // thumb
-  cpx = x0+W
-  cpy = y0+H*0.57
-  ctx.quadraticCurveTo(cpx,cpy,x0+W/2, y0+H)
+  ctx.moveTo(x+12*W/24, y+22*H/24)
+  cpx = x+22*W/24
+  cpy = y+12*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+22*W/24, y+8*H/24)
+  cpx = x+22*W/24
+  cpy = y+2*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+17*W/24, y+2*H/24)
+  cpx = x+12*W/24
+  cpy = y+2*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+12*W/24, y+8*H/24)
+  cpx = x+12*W/24
+  cpy = y+2*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+7*W/24, y+2*H/24)
+  cpx = x+2*W/24
+  cpy = y+2*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+2*W/24, y+8*H/24)
+  cpx = x+2*W/24
+  cpy = y+12*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+12*W/24, y+22*H/24)
   ctx.stroke()
 }
 
@@ -15851,7 +14530,6 @@ function ablob (cx,cy,w,h) {
     strokePath(points)
 }
 
-
 function kites () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -15869,6 +14547,100 @@ function kites () {
       y += delta
     }
   }
+}
+
+function bauhaus_circ () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  let w = W/8, h = H/8
+  let x = 0, y = 0, i = 0, j = 0
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let mode = document.getElementById("mode").value
+  let colors = (getCurrentPalette())
+  BRIGHT = true
+  sortByBrightness()
+  ctx.fillStyle = colors[colors.length-1]
+  ctx.fillRect(0,0,W,H)
+  let r = w/2 * 1.3
+  for (; j < 4; j++) {
+    i = 0
+    for (; i < 4; i++) {
+      ctx.fillStyle = randomPick(colors.slice(1,colors.length-1))
+      ctx.beginPath()
+      ctx.arc(x+r,y+r, r, 0, Math.PI*2)
+      ctx.closePath()
+      ctx.fill()
+      
+      ctx.fillStyle = colors[0]
+      ctx.beginPath()
+      ctx.arc(x+r,y+r, r, 1.75*Math.PI, 3*Math.PI/4)
+      ctx.arc(x+w*2-r, y+h*2-r, r, 3*Math.PI/4, 1.75*Math.PI, 1)
+      ctx.closePath()
+      ctx.fill()
+      wrap()
+      wrap()
+    }
+    rcc()
+    wrap()
+    wrap()
+    rc()
+  }
+  zoomOutImage()
+  ctx.globalCompositeOperation = "destination-over"
+  ctx.fillStyle = colors[colors.length-1]
+  ctx.fillRect(0,0,W,H)
+  ctx.globalCompositeOperation = mode
+}
+
+function bauhaus () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  let w = W/8, h = H/8
+  let x = 0, y = 0, i = 0, j = 0
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  BRIGHT = false
+  sortByBrightness()
+  let colors = (getCurrentPalette())
+  
+  ctx.fillStyle = colors[colors.length-1]
+  ctx.fillRect(0,0,W,H)
+  for (; j < 4; j++) {
+    i = 0
+    for (; i < 4; i++) {
+      ctx.fillStyle = randomPick(colors.slice(1,colors.length-1))
+      ctx.beginPath()
+      ctx.moveTo(x,y)
+      ctx.lineTo(x+w,y)
+      ctx.lineTo(x+w, y+h)
+      ctx.lineTo(x,y+h)
+      ctx.closePath()
+      ctx.fill()
+      
+      ctx.fillStyle = colors[0]
+      ctx.beginPath()
+      ctx.moveTo(x,y+h)
+      ctx.lineTo(x+w, y+h*2)
+      ctx.lineTo(x+w*2, y+h*2)
+      ctx.lineTo(x+w*2, y+h)
+      ctx.lineTo(x+w, y)
+      ctx.lineTo(x+w, y+h)
+      ctx.closePath()
+      ctx.fill()
+      wrap()
+      wrap()
+    }
+    rcc()
+    wrap()
+    wrap()
+    rc()
+  }
+  zoomOutImage()
+  ctx.globalCompositeOperation = "destination-over"
+  ctx.fillStyle = colors[colors.length-1]
+  ctx.fillRect(0,0,W,H)
+  ctx.globalCompositeOperation = mode
 }
 
 function amonocube (x,y,w,h) {
@@ -16756,11 +15528,86 @@ function rose () { // chemotaxis like
           lw *= increment
         else
           lw /= increment
-        //gs = distance(x,y,cx,cy,fs)
         if (Math.random() > 0.5) {
           turn = true
         } else
-        if (Math.random() > 0.95) {//gs < turnAt-55) {
+        if (Math.random() > 0.95) {
+          turn = false
+        }
+        if (turn)
+          angle += A + pet(k/4)/k/2
+        else
+          angle += A-pet(k)
+      }
+      // if collision, break
+      if (pixelIsColor(nx, ny, color))
+          break;
+    }
+  }
+}
+
+function dendrites () { // chemotaxis like
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let W = canvas.width
+  let H = canvas.height
+  let cx = LASTCLICK[0]
+  let cy = LASTCLICK[1]
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let alt = document.getElementById("grungy").checked
+  ctx.lineWidth = 1+document.getElementById("featuresize").value/50
+  let fs = ctx.lineWidth * 4
+  let minD = fs +fs/6
+  ctx.lineCap = "round"
+  ctx.strokeStyle = randomPick(getCurrentPalette())
+  let color = getselectedcolor()
+  let size = 0.0001 + document.getElementById("number").value/50000
+  
+  let num = 1+document.getElementById("number").value/500
+  ctx.fillStyle = color
+  let angle = Math.PI/2//Math.random() * 6.28
+  let n = 0, end = 5000
+
+  let inc = false, dec = false
+  let turn = false
+  let A = 0.001 + Math.random()/120
+  let lw = fs/4, a = 2*Math.PI * Math.random()
+  let turnAt = W*0.33*1//size
+  let k = lw/7
+  let x = cx
+  let y = cy
+  let nx,ny
+  let increment = 1.06, DIR = true
+  let INC = 0, BEC = end/2, gs = 0
+  let i = 0
+  for (; i < num; i++) {
+    x = Math.random() * W
+    y = Math.random() * H/5
+    angle = Math.PI/Math.random() * 6.28
+    a = 2*Math.PI * Math.random()
+    increment = 1.0008, DIR = true
+    n = 0
+    for (; n < end; n++) {
+      x = x + Math.sin(angle) * (Math.random()*-0.5)
+      y = y + Math.cos(angle) * 1
+      nx = x + Math.sin(angle) * minD
+      ny = y + Math.cos(angle) * minD
+      ctx.lineTo(x, y);
+      if (n % 2 === 0) {
+        ctx.beginPath()
+        ctx.ellipse(x, y, 2*lw+pet(lw/2), lw, a, 0, 2* Math.PI)
+        ctx.closePath()
+        ctx.fill()
+        if (Math.random() > 0.92)
+          DIR = !DIR
+        if (DIR)
+          lw *= increment
+        else
+          lw /= increment
+        if (Math.random() > 0.5) {
+          turn = true
+        } else
+        if (Math.random() > 0.95) {
           turn = false
         }
         if (turn)
@@ -22370,7 +21217,6 @@ function scriptAt (x,y,fs,color) {
   ctx.strokeStyle = color
   ctx.fillStyle = color
 
-  //ctx.imageSmoothingQuality = "high"
   let i = 0
   let cx1, cy1, cx2, cy2
   let maxX = x+1*fs + Math.random() * 8 * fs
@@ -26750,7 +25596,7 @@ function walk () {
     x += 1 * Math.cos(angle)
     y += 1 * Math.sin(angle)
     w += 0.001
-    s++
+    s++ 
   }
 }
 
@@ -26763,7 +25609,7 @@ function frame () {
   let H = canvas.height
   ctx.globalAlpha = document.getElementById("opacity").value/100
  // clip()
-  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.fillStyle = getselectedcolor() // was paintcolor
   let x = -1, y = -1
   let w = 6 +Math.random()*14
   let p = 6+D*1.2
@@ -26825,7 +25671,7 @@ function roundedFrame (n) {
   off.width = W
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.save()
-  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.fillStyle = getselectedcolor() // was paintcolor
   let radius = 36
   //if (grunge)
   //  radius *= 2
@@ -26859,7 +25705,7 @@ function roundedFrame (n) {
   ctx.globalCompositeOperation = mode
 }
 
-function capitalize(str) {
+function capitalize (str) {
   return str.charAt(0).toUpperCase() + str.slice(1)
 }
 
@@ -29685,7 +28531,7 @@ function lineFrame () {
   let W = canvas.width
   let H = canvas.height
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.strokeStyle = getselectedcolor() // was paintcolor
   ctx.lineWidth = LW
   let x = 0, y = 0
   ctx.beginPath();
@@ -29741,52 +28587,6 @@ function touchMatt () {
   ctx.fill()
 }
 
-function wideMatt () {
-  let canvas = document.getElementById("myCanvas");
-  let ctx = canvas.getContext("2d");
-  let D =  (5 + Math.floor(document.getElementById("featuresize").value/25))
-  let D2 = D*1.61
-  let alt = document.getElementById("grungy").checked
-  let W = canvas.width
-  let H = canvas.height
-  ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.fillStyle = "#ffffff"
-  if (alt) 
-    rc()
-  ctx.shadowColor = "#333333"
-  ctx.shadowBlur = 4 + Math.random() * 1
-  ctx.shadowOffsetY = 3
-  ctx.shadowOffsetX = 3
-
-  ctx.beginPath()
-  ctx.moveTo(0, 0)
-  ctx.lineTo(W, 0)
-  ctx.lineTo(W, 2*H/D)
-  ctx.lineTo(W/D2, 2*H/D)
-  ctx.lineTo(W/D2, H)
-  ctx.lineTo(0, H)
-  ctx.closePath()
-  ctx.fillStyle = "#ffffff"
-  ctx.fill()
-
-  ctx.shadowBlur = 0
-  ctx.shadowOffsetY = 0
-  ctx.shadowOffsetX = 0
-  
-  ctx.beginPath()
-  ctx.moveTo(W-W/D2,2*H/D)
-  ctx.lineTo(W,2*H/D)
-  ctx.lineTo(W,H)
-  ctx.lineTo(0,H)
-  ctx.lineTo(0,H-2*H/D)
-  ctx.lineTo(W-W/D2, H-2*H/D)
-  ctx.closePath()
-  ctx.fillStyle = "#ffffff"
-  ctx.fill()
-  if (alt)
-    rcc()
-}
-
 function rectFrame () {
   const rect = true
   framePolaroid(rect)
@@ -29800,7 +28600,7 @@ function framePolaroid (rect) {
   let W = canvas.width
   let H = canvas.height
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.fillStyle = getselectedcolor() // was paintcolor
   let x = -1, y = -1
   let w = 6 + Math.random()*14
   let wobble = 6
@@ -29876,7 +28676,7 @@ function frameCircle () {
   let cx = W/2, cy = H/2
   let rx = cx - (cx * r), ry = cy - (cy * r)
   ctx.globalAlpha = 1
-  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.fillStyle = getselectedcolor() // was paintcolor
   ctx.clearRect(0,0,W,H)
   ctx.save()
   ctx.beginPath()
@@ -30399,6 +29199,7 @@ function brightnessofhex (hex) {
 }
 
 function brightnessOf10 (ctx,x,y,d) {
+  ctx.willReadFrequently = true
   let imgData = ctx.getImageData(x,y,d,d)
   let pixels = imgData.data;
   let i = 0, brightness = 0
@@ -34186,7 +32987,7 @@ function specksRadial (color) {
     }
     ctx.fill()
   }
-  ctx.restore()
+ // ctx.restore()
 }
 
 function caption () {
@@ -35216,42 +34017,126 @@ function updatetxtsize () {
   document.getElementById("txtsize").innerHTML = v
 }
 
-function scatteredLeaves () {
+function scattered_leavesAt (x,y,w,c) {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let fs = 1+document.getElementById("featuresize").value/2
-  let num = 1+document.getElementById("number").value/500
-  
-  console.log (fs, num)
-  let H = canvas.height;
-  let W = canvas.width;
-  let x = Math.random() * W
-  let y = Math.random() * H
-  let i = 0, w = fs
+  let num = 9//1+document.getElementById("number").value/500
+  let i = 0, x2, y2
   for (; i < num; i++) {
-    x = Math.random() * W
-    y = Math.random() * H
-    w = fs
-    testRotateAt (x,y,w) 
+    x2 = x+Math.random() * w *0.8
+    y2 = y+Math.random() * w *0.8
+   // w = fs
+    oneleafAt (x2,y2,w/6+pet(w/10), c) 
     
   }
 }
 
-function testRotateAt (x,y,W,color) {
-  if (!color)
-    color = getselectedcolor()
+function oneleafAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let H = W, cpx, cpy, points = []
-  let colors = shuffle(getCurrentPalette(true,13))
-  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/75
   ctx.strokeStyle = color
   ctx.fillStyle = color
   ctx.lineCap = "square"
   ctx.lineJoin = "bevel"
   let p = [], cp = [], lastp = []
-  let cx = x+W/2, cy = y+H/2, angle = 0+pet(1000)
-  
+  let cx = x+W/2, cy = y+H/2, angle = pet(360)
+
+   //1
+   ctx.beginPath()
+  p = rotatePoint(x+12*W/24, y+21*H/24 ,cx,cy,angle)
+  ctx.moveTo(p[0],p[1])
+  cpx = x+20*W/24
+  cpy = y+21*H/24
+  cp = rotatePoint(cpx,cpy,cx,cy,angle)
+  p = rotatePoint(x+20*W/24, y+12*H/24,cx,cy,angle)
+  ctx.quadraticCurveTo(cp[0],cp[1],p[0],p[1])
+  ctx.stroke()
+
+  //2
+  ctx.beginPath()
+  p = rotatePoint(x+12*W/24, y+0*H/24 ,cx,cy,angle)
+  ctx.moveTo(p[0],p[1])
+  cpx = x+18*W/24
+  cpy = y+4*H/24
+  cp = rotatePoint(cpx,cpy,cx,cy,angle)
+  p = rotatePoint(x+20*W/24, y+12*H/24,cx,cy,angle)
+  ctx.quadraticCurveTo(cp[0],cp[1],p[0],p[1])
+  ctx.stroke()
+
+  //3
+  ctx.beginPath()
+  p = rotatePoint(x+12*W/24, y+21*H/24 ,cx,cy,angle)
+  ctx.moveTo(p[0],p[1])
+  cpx = x+4*W/24
+  cpy = y+21*H/24
+  cp = rotatePoint(cpx,cpy,cx,cy,angle)
+  p = rotatePoint(x+4*W/24, y+12*H/24,cx,cy,angle)
+  ctx.quadraticCurveTo(cp[0],cp[1],p[0],p[1])
+  cpx = x+6*W/24
+  cpy = y+4*H/24
+  cp = rotatePoint(cpx,cpy,cx,cy,angle)
+  p = rotatePoint(x+12*W/24, y+0*H/24,cx,cy,angle)
+  ctx.quadraticCurveTo(cp[0],cp[1],p[0],p[1])
+  ctx.stroke()
+
+  //4
+  ctx.beginPath()
+  p = rotatePoint(x+12*W/24, y+24*H/24 ,cx,cy,angle)
+  ctx.moveTo(p[0],p[1])
+  p = rotatePoint(x+12*W/24, y+1*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  ctx.stroke()
+
+  //5
+  ctx.beginPath()
+  p = rotatePoint(x+12*W/24, y+18*H/24 ,cx,cy,angle)
+  ctx.moveTo(p[0],p[1])
+  p = rotatePoint(x+6*W/24, y+14*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  ctx.stroke()
+
+  //6
+  ctx.beginPath()
+  p = rotatePoint(x+12*W/24, y+18*H/24 ,cx,cy,angle)
+  ctx.moveTo(p[0],p[1])
+  p = rotatePoint(x+18*W/24, y+14*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  ctx.stroke()
+
+  //7
+  ctx.beginPath()
+  p = rotatePoint(x+12*W/24, y+12*H/24 ,cx,cy,angle)
+  ctx.moveTo(p[0],p[1])
+  p = rotatePoint(x+7*W/24, y+8*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  ctx.stroke()
+
+  //8
+  ctx.beginPath()
+  p = rotatePoint(x+12*W/24, y+12*H/24 ,cx,cy,angle)
+  ctx.moveTo(p[0],p[1])
+  p = rotatePoint(x+17*W/24, y+8*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  ctx.stroke()
+
+  //9
+  ctx.beginPath()
+  p = rotatePoint(x+12*W/24, y+7*H/24 ,cx,cy,angle)
+  ctx.moveTo(p[0],p[1])
+  p = rotatePoint(x+9*W/24, y+4*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  ctx.stroke()
+
+  //10
+  ctx.beginPath()
+  p = rotatePoint(x+12*W/24, y+7*H/24 ,cx,cy,angle)
+  ctx.moveTo(p[0],p[1])
+  p = rotatePoint(x+15*W/24, y+4*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  ctx.stroke()
 }
 
 function placeSquareAt (x,y,r) {
@@ -35545,15 +34430,19 @@ function placeTextAt (t,canvas) {
 
 function randomWordAt (x,y,fs,W,color) {
   let text = randomWord()
-  let canvas = document.getElementById("myCanvas");
+  let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   ctx.globalAlpha = (document.getElementById("opacity").value)/100
   ctx.fillStyle = color
-  ctx.textAlign = 'left';
+  let ta = ctx.textAlign
+  let tbl = ctx.textBaseline
+  ctx.textAlign = 'left'
   ctx.textBaseline = 'middle'
   ctx.font = "100 "+(fs)+"pt AmericanTypewriter,Courier"
   let w = ctx.measureText(text).width
   ctx.fillText(text, x+W/2-w/2, y)
+  ctx.textAlign = ta
+  ctx.textBaseline = tbl
 }
 
 
@@ -36829,8 +35718,10 @@ function refreshMode () {
 
 function syncBackground (canvas) {
   let bkg = document.getElementById("background");
-  bkg.style.height = canvas.height +"px"
-  bkg.style.width = canvas.width +"px"
+  bkg.style.height = canvas.height+"px"
+  bkg.style.width = canvas.width+"px"
+  bkg.height = canvas.height
+  bkg.width = canvas.width
  // displayRatio()
   //syncMarker()
 }
@@ -36870,6 +35761,10 @@ function resizeCanvas () {
   } else
   if (selection == "3X5") {
     canvas.width = 3*96
+    canvas.height = 5*96
+  } else
+  if (selection == "3.5X5") {
+    canvas.width = 3.5*96
     canvas.height = 5*96
   }
 
