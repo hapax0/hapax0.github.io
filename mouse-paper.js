@@ -3,15 +3,29 @@ let ocd = null
 let offdctx = null
 let CELLSIZE = 0
 let GRIDSIZE = 1
+let OPENED = false
 let lastpoints = []
 let ITEMS = []
 let INDEX = 0
 let code = [], cpx, cpy, cx, cy, radius = 1
   
+function testSquares () {
+  let canvas = document.getElementById('myCanvas')
+  let ctx = canvas.getContext('2d')
+  let i = 0, W = canvas.width
+  ctx.fillStyle = getselectedcolor()
+  ctx.beginPath()
+ // ctx.moveTo(20,20)
+ for (;i < 400;i++)
+  ctx.rect(Math.random()*W,Math.random()*W,40,40)
+  
+ // ctx.closePath()
+  ctx.fill()
+}
+
 function initOC () {
   let canvas = document.getElementById('myDCanvas')
   let ctx = canvas.getContext('2d')
-  
   let lastx, lasty, lx, ly
   lastpoints = []
   
@@ -24,16 +38,16 @@ function initOC () {
   offdctx.fillStyle = "#55dd55"
   offdctx.lineWidth = 4
   offdctx.setLineDash([4, 4])
+
   canvas.addEventListener('mousedown', function (evt) {
     let LINETO = false
     CELLSIZE = canvas.width/GRIDSIZE
     let dmode = document.getElementById("dmode").value
     let mousePos = getMousePos(canvas, evt);
     ctx.fillStyle = '#000000'
-    if (INDEX === 0) {
+    if (INDEX === 0 || dmode === "square") {
       ITEM++
       code.push("  //"+ITEM)
-
       code.push("  P = 0")
       code.push("  if(document.getElementById('grungy').checked)")
       code.push("    P = 37")
@@ -52,37 +66,37 @@ function initOC () {
       } else 
       if (dmode === "square") {
         ctx.strokeStyle = "#ff4444"
-          ctx.lineWidth = 4
-          lx = Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE
-          ly = Math.round(mousePos.y/CELLSIZE)+"*W/"+GRIDSIZE
-          let rx = Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE
-          let ry = Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE
-          radius = Math.sqrt(Math.pow(lastx-rx, 2) +Math.pow(lasty-ry, 2))
-          offdctx.strokeStyle = "#00aaff"
-          offdctx.setLineDash([])
-          offdctx.beginPath()
-          console.log(rx, ry, CELLSIZE, CELLSIZE)
-          offdctx.strokeRect(rx, ry, CELLSIZE, CELLSIZE)
-          //offdctx.stroke()
-          LINETO = false
-          ctx.drawImage(ocd,0,0,canvas.width,canvas.height)
-          //offdctx.setLineDash([])
-          code.push("  resctx.beginPath()")
-          code.push("  resctx.rect("+rx+","+ry+","+CELLSIZE+","+CELLSIZE+")")
-         // if fill
-            code.push("  resctx.closePath()")
-            code.push("  resctx.fill()")
-          lastpoints.push(lastx,lasty)
-          closePath()
-          INDEX = -1
-        
+        ctx.lineWidth = 4
+        lastx = Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE
+        lasty = Math.round(mousePos.y/CELLSIZE)+"*W/"+GRIDSIZE
+        let rx = Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE
+        let ry = Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE
+        lastx = rx
+        lasty = ry
+        offdctx.strokeStyle = "#00aaee"
+        offdctx.setLineDash([])
+        offdctx.beginPath()
+        offdctx.strokeRect(rx, ry, CELLSIZE, CELLSIZE)
+        LINETO = false
+        ctx.drawImage(ocd,0,0,canvas.width,canvas.height)
+       // code.push("  resctx.beginPath()")
+        rx = Math.floor(rx/CELLSIZE)
+        ry = Math.floor(ry/CELLSIZE)
+        lastpoints.push(lastx,lasty)
+        code.push("  resctx.fillStyle = getselectedcolor()\n")
+        let F = 2*1080/GRIDSIZE
+        code.push("  resctx.rect("+rx*F+","+ry*F+",W/"+GRIDSIZE+",W/"+GRIDSIZE+")")
+        code.push("  resctx.closePath()")
+        code.push("  resctx.fill()")
+        code.push("  ctx.drawImage(res,0,0,res.width,res.height,0,0,canvas.width,canvas.height)")
+        lastpoints.push(lastx,lasty)
+        ITEMS.push(lastpoints)
+        lastpoints = []
+        INDEX = -1
       }
-    } else {
-      //if (!mode) {
+    } else
+    if (dmode !== "square") {
       if (dmode === "line") {
-      // if (document.getElementById("ragged").checked)
-      //   code.push("  ragged(ctx, x+"+Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE+", y+"+Math.round(mousePos.y/CELLSIZE)+"*H/"+GRIDSIZE+", "+lx+", "+ly+")")
-      // else
         code.push("  resctx.lineTo(x+"+Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE+"+pet(P)"+", y+"+Math.round(mousePos.y/CELLSIZE)+"*H/"+GRIDSIZE+"+pet(P)"+")")
         LINETO = true
         ctx.lineTo(Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE, Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE)
@@ -98,7 +112,6 @@ function initOC () {
         ctx.fillRect(Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE-5, Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE-5, 10, 10)
         INDEX = 0
       } else 
-      
       if (dmode === "circ") {
         if (INDEX % 2 === 1) { // radius point
           ctx.strokeStyle = "#ff4444"
@@ -124,10 +137,8 @@ function initOC () {
           lastpoints.push(lastx,lasty)
           closePath()
           INDEX = -1
-        } else {
-
-        }
-      } else
+        } 
+      } else // need quad curve to case!!!
       if (dmode === "quad") {
         if (INDEX % 2 === 1) { // control point
           cpx = Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE
@@ -167,7 +178,7 @@ function initOC () {
         }
       }
     }
-    if (dmode != "circ")
+    if (dmode != "circ" && dmode != "square")
     lastpoints.push(lastx,lasty)
     INDEX++
   }, false)
@@ -203,7 +214,9 @@ function getIndex () {
 }
 
 function closePathIf() {
-  if (document.getElementById("dmode").value === "circ")
+  if (document.getElementById("dmode").value === "square")
+    document.getElementById("fillstroke").value = "fill"
+  if (document.getElementById("dmode").value === "circ" || document.getElementById("dmode").value === "square")
     closePath()
 }
 
@@ -213,6 +226,8 @@ function closePath () {
   let FILL = false, STROKE = false
   let LW = document.getElementById('lwg').value*2
   let fs = document.getElementById("fillstroke").value
+  let dmode = document.getElementById("dmode").value
+ 
   if (fs === "fill") 
     FILL = true
   else
@@ -267,6 +282,7 @@ function showPoints () {
   resctx.strokeStyle = 'black'\n\n"
   document.getElementById("text1").value = header
   document.getElementById("text1").value += code.join("\n")
+  //console.log(code.join("\n"))
 }
 
 function getMousePos(canvas, evt) {
@@ -279,7 +295,7 @@ function getMousePos(canvas, evt) {
 
 function undoLast () {
   closePath()
-  if (ITEM < 1) 
+  if (ITEM < 1 || ITEMS.length < 1) 
     return
   let index = code.indexOf("  //"+ITEM)
   code = code.slice(0, index)
