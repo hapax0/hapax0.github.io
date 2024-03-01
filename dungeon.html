@@ -20,6 +20,11 @@
     canvas[id=hud] {
     padding: 0px;
     white-space: nowrap; }
+
+    canvas [id=OC]{
+     top:-600px;
+     left:-600px;
+    }
     div {
     padding-left: 20px;
     padding-top: 6px;}
@@ -29,7 +34,6 @@
       left:366px;
       color:#fff;
       display: none;
-      background-color: #ff0000;
       border:2px solid #000000;
       padding:8px;
       font-size:24px;
@@ -419,14 +423,14 @@ function refresh (ux,uy) {
     sctx.arc(pad+20, pad+20, r, 0, Math.PI*2)
     sctx.closePath()
     sctx.clip()
-    sctx.drawImage(oc,-pad,-pad,W+pad,W+pad,-ux,-uy,W+pad,W+pad)
+    sctx.drawImage(oc,pad-ux,pad-uy,W,W)
     sctx.restore()
     r += 9//*= 0.6
   }
   sctx.fillStyle = retrocolors[4]
   sctx.globalAlpha = 1
   if (LIGHTS > 0)
-    sctx.drawImage(oc,-pad,-pad,W+pad,W+pad,-ux,-uy,W+pad,W+pad)
+    sctx.drawImage(oc,pad-ux,pad-uy,W,W)
   statusbar()
   showposition()
 }
