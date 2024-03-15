@@ -154,9 +154,6 @@
     <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
   </svg></a>
   &nbsp;
-  
- 
-  
   <a href="javascript:stack_fill()" title="fill"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-bucket" viewBox="0 0 16 16">
     <path d="M2.522 5H2a.5.5 0 0 0-.494.574l1.372 9.149A1.5 1.5 0 0 0 4.36 16h7.278a1.5 1.5 0 0 0 1.483-1.277l1.373-9.149A.5.5 0 0 0 14 5h-.522A5.5 5.5 0 0 0 2.522 5zm1.005 0a4.5 4.5 0 0 1 8.945 0H3.527zm9.892 1-1.286 8.574a.5.5 0 0 1-.494.426H4.36a.5.5 0 0 1-.494-.426L2.58 6h10.838z"/>
   </svg></a>
@@ -291,6 +288,9 @@
        <option value="cropSquare">crop to square</option>
        <option value="resizeTo1080">crop to 1080</option>
        <option value="ripFrame">rip frame</option>
+
+      <option value="topRip" style="color:red">top rip</option>
+
        <option value="halfRip" style="color:red">left rip</option>
        <option value="leftClip" style="color:red">left clip</option>
        <option value="leftCut" style="color:red">left cut</option>
@@ -305,10 +305,7 @@
        <option value="frameCircle">circle frame</option>
        <option value="framePolaroid">polaroid frame</option>
        <option value="frame">jaggy frame</option>
-       
-
        <!--option value="make4to5">pad to 4:5</option-->
-       
        <option value="nudgehalfdown" style="color:red">nudge down right</option>
        <option value="nudgeCW" style="color:red">nudge angle</option>
        <option value="expandMarginsAll">expand margins</option>
@@ -360,6 +357,7 @@
       <option value="filterGrays">filter grays</option>
       <option value="highContrast">high contrast</option>
       <option value="threshold">threshold</option>
+      <option value="pixelate">pixelate</option>
       <option value="threshold_soft">threshold soft</option>
       <option value="posterize" >posterize</option>
       <option value="palettetint" >palette tint</option>
@@ -396,6 +394,7 @@
         <option value="watercolorPaper">wc paper</option>
         <option value="diss" >distress</option>
         <option value="wash" >wash</option>
+        <option value="washS" >wash-strokes</option>
         <option value="wash2" >wash2</option>
         <option value="wash3" >wash3</option>
         <option value="wash4" >wash4</option>
@@ -421,6 +420,7 @@
         <option value="smudgearcs2" >arcs2</option>
         <option value="smudgestars">stars</option>
         <option value="skritches">skritches</option>
+        <option value="topScratch">top scratch</option>
         <option value="rays">rays</option>
         <option value="chips">chips</option>
         <option value="strokes2">strokes</option>
@@ -442,6 +442,7 @@
       <option value="placeNumAt">munbers</option>
       <!--option value="placeRectAt">mockup</option-->
       <option value="scratchout2">scratch out</option>
+      <option value="aletter">a cursive</option>
       <option value="rose" >rose</option>
       <option value="natural">loop</option>
       <option value="spiral4">scribble</option>
@@ -456,11 +457,7 @@
       <option value="halfTone">half-tone</option-->
       <option value="bauhaus">bauhaus</option>
       <option value="crazy_wall">crazy wall</option>
-      <option value="natal" >natal</option>
-      <option value="aconst" >constellation</option>
-      <option value="socialnetwork">social network</option>
       <option value="everythingArray">symbol array</option>
-      
       <option value="chair" >chair</option>
       <option value="chairStorm">chair storm</option>
       <option value="glass_line" >glass</option>
@@ -488,16 +485,14 @@
       <option value="moleskineDay">day planner</option>
       <option value="cuttingboard">cutting board</option>
       <option value="perforations">perforations</option>
+      <option value="sketchpage">sketch page</option>
       <option value="label">label</option>
+      <option value="detail">detail</option>
       <option value="form1">form</option>
       <option value="form2">form decoration</option>
       <option value="form3">form (nest)</option>
-      <option value="detail">detail</option>
       <option value="pageOfBook">book page</option>
       <option value="pageOfBookIll">book illustrated</option>
-      <option value="ctrlchart">ctrl chart</option>
-      <option value="stepchart">step chart</option>
-      <option value="histograph" >histograph</option>
       <option value="pairedwords">form pairs</option>
       <option value="nested">nested sqrs</option>
       <option value="index">index</option>
@@ -506,6 +501,7 @@
       <option value="sketchpad">sketch pad</option>
       <option value="floppyPage">stack of pages</option>
       <option value="linedPad">lined pad</option>
+      <option value="tablePad">table pad</option>
       <option value="dividedPad">divided pad</option>
       <option value="gridLinear" >grid paper</option>
       <option value="griddiag">grid diag</option>
@@ -515,11 +511,8 @@
       <option value="gridpaper">grid</option>
       <option value="musicpaper">music</option>
       <option value="checklist">checklist</option>
-      <option value="survey">survey</option>
-      <option value="requirements">requirements pad</option>
       <option value="messagepad">message</option>
       <option value="datedue">date due</option>
-      <option value="interdepartmental">interdepartmental</option>
       <option value="postcard">postcard</option>
       <option value="indexcard">index card</option>
       <!--option value="oiloncanvas">oiloncanvas</option>
@@ -557,11 +550,9 @@
       <option value="afold" >fold</option>
       <option value="unfolded" >unfolded</option>
       <option value="fourfold">fourfold</option>
-      <option value="distortion">fisheye</option>
       <option value="ripinhalf">rip in half</option>
       <option value="duplicate">duplicate</option>
       <option value="fourbyfourplain">4x4</option>
-      <option value="fourbyfour">warhol</option>
       <!--option value="reverse">reversible</option>
       <option value="pasta">pasta</option>
       <option value="blasco">blasco</option>
@@ -579,7 +570,7 @@
    </div>
    
    <div style="margin-left:8px;display:block;" id="tools">
-   <table border="0" cellpadding="4" style="margin-left:6px;">
+   <table border="1" cellpadding="4" style="margin-left:6px;">
      <tr>
        <td style="text-align:right;">canvas size </td><td>
       <select id="canvassizes" onchange="resizeCanvas()">
@@ -615,6 +606,7 @@
       <option value="seis">seis</option>
       <option value="deiz">deiz</option>
       <option value="halfway">color ramp</option>
+      <option value="5">5</option>
       <option value="10">10</option>
       <option value="bnw" selected>b & w</option>
       <option value="cmy">cmy</option>
@@ -729,7 +721,41 @@
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="white" viewBox="0 0 16 16">
       <path d="M8.39 12.648a1.32 1.32 0 0 0-.015.18c0 .305.21.508.5.508.266 0 .492-.172.555-.477l.554-2.703h1.204c.421 0 .617-.234.617-.547 0-.312-.188-.53-.617-.53h-.985l.516-2.524h1.265c.43 0 .618-.227.618-.547 0-.313-.188-.524-.618-.524h-1.046l.476-2.304a1.06 1.06 0 0 0 .016-.164.51.51 0 0 0-.516-.516.54.54 0 0 0-.539.43l-.523 2.554H7.617l.477-2.304c.008-.04.015-.118.015-.164a.512.512 0 0 0-.523-.516.539.539 0 0 0-.531.43L6.53 5.484H5.414c-.43 0-.617.22-.617.532 0 .312.187.539.617.539h.906l-.515 2.523H4.609c-.421 0-.609.219-.609.531 0 .313.188.547.61.547h.976l-.516 2.492c-.008.04-.015.125-.015.18 0 .305.21.508.5.508.265 0 .492-.172.554-.477l.555-2.703h2.242l-.515 2.492zm-1-6.109h2.266l-.515 2.563H6.859l.532-2.563z"/>
     </svg></a></button>
-  </div></td>
+  </div>
+  type <input type="checkbox" id="typing">
+  <select id="fontweight">
+  <option>normal</option>
+  <option>bold</option>
+  <option>italic</option>
+  <option>italic bold</option>
+  <option>100</option>
+  <option>200</option>
+  <option>300</option>
+  <option>400</option>
+  <option>500</option>
+  <option>600</option>
+  <option>700</option>
+  <option>800</option>
+  <option>900</option>
+  </select>
+
+  <select id="fontface">
+  <option>Arial</option>
+  <option>Arial Black</option>
+  <option>Tahoma</option>
+  <option>Trebuchet MS</option>
+  <option>Impact</option>
+  <option>Times New Roman</option>
+  <option>Georgia</option>
+  <option>Palatino</option>
+  <option>Courier</option>
+  <option>Verdana</option>
+  <option>Comic Sans MS</option>
+  </select>
+  kern <input type="checkbox" id="kern" checked>
+  <label id="sample"> The quick brown fox...</label>
+  
+  </td>
   <td rowspan="2">
   <div style="display:inline-block;
   vertical-align: baseline;">
@@ -757,7 +783,7 @@
     </tr>
     <tr>
 <td style="text-align:right;">&nbsp;&nbsp;alt:<input type="checkbox" id="grungy" title="alternate behaviour" onchange="checkChange()"></td>
-  <td>mode: <select id="mode" onchange="modeChange()">
+  <td>mode: <select id="mode" style="width:150px" onchange="modeChange()">
       <option value="source-over" selected>source-over</option>
       <option value="source-in">source-in</option>
       <option value="source-out">source-out</option>
@@ -769,13 +795,11 @@
       <option value="overlay">overlay</option>
       <option value="darken">darken</option>
       <option value="lighten">lighten</option>
-      
       <option value="difference">difference</option>
       <option value="exclusion">exclusion</option>
       <option value="color-dodge">color-dodge</option>
       <option value="color-burn">color-burn</option>
       <option value="screen">screen</option>
-      
       <option value="color">color</option>
       <option value="hue">hue</option>
       <option value="saturation">saturation</option>
@@ -800,7 +824,7 @@
   <br>
   <div id="background" style="width:1024px;height:1024px;float:left;position:relative;">
   
-  <canvas id="myCanvas" width="1080" height="1080" style="border:1px solid #000000;">
+  <canvas id="myCanvas" tabindex='1' width="1080" height="1080" style="border:1px solid #000000;">
   </canvas><canvas id="OC" width="1080" height="1080" style="border:1px solid #000000;display:none;"></canvas>
   </div>
   <div>
@@ -827,7 +851,7 @@
     <option value="80">80</option>
   </select>
     &nbsp;<input type="checkbox" id="gradient"><label for="gradient"> gradient </label>
-    &nbsp;<!--input type="checkbox" id="qmode" onclick="killCP()"><label for="qmode"> quadratic</label-->
+    &nbsp;
     mode:<select id="dmode" style="width:48px;" onchange="closePathIf()">
       <option value="line">line</option>
       <option value="quad">quad</option>
@@ -839,7 +863,7 @@
       <option value="stroke" selected>stroke</option>
      
     </select>
-    &nbsp;<button onclick="closePath()">close path</button>
+    &nbsp;<button onclick="closePath()">close</button>
     &nbsp;
     <button onclick="drawD()">draw</button>
     <br>
@@ -913,18 +937,32 @@ function drawD () {
   let c = document.getElementById("myCanvas")
   var ctx = c.getContext('2d');
   copyCode()
-  let txt = document.getElementById("text1").value
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.globalCompositeOperation = document.getElementById("mode").value
   eval(txt)
 }
 
-let WD = 0, WS = 0 // windAt
-
+let WD = 0, WS = 0, TEMP = 0, CONDITIONS = ""// windAt
+let LEFTX = 0
 window.onload = function () {
-  WD = wd()
   let myCanvas = document.getElementById("myCanvas")
   let ctx = myCanvas.getContext("2d")
+  document.addEventListener('keydown', (event)=> {    
+    let key = event.key
+    if (!document.getElementById("typing").checked) {
+      return false
+    } else
+    if (key.length === 1 || key === "Enter") {
+      placeCharAt(key)
+      if (key === " ") {
+        event.preventDefault()
+      }
+      return false
+    }
+  });
+
+  WD = wd()
+  
   myCanvas.getContext("2d", { willReadFrequently: true })
   ctx.willReadFrequently = true
   resizeCanvas()
@@ -937,6 +975,7 @@ window.onload = function () {
     LASTCLICK = []
     LASTCLICK.push(x)
     LASTCLICK.push(y)
+    LEFTX = x
     syncMarker(true)
     pushFunction('setLastclick', [x,y])
 }, false);
@@ -952,17 +991,31 @@ marker.addEventListener('click', function(event) {
     
 }, false);
 
-  document.getElementById("mode").addEventListener ('change', function(event) {
+function refreshSample () {
+  let s = document.getElementById("sample")
+  let weight = document.getElementById("fontweight").value
+  let face = document.getElementById("fontface").value
+  s.style.font = weight +" 14pt " + face
+}
+
+document.getElementById("fontweight").addEventListener ('change', function(event) {
+    refreshSample()
+  }, false);
+
+document.getElementById("fontface").addEventListener ('change', function(event) {
+    refreshSample()
+  }, false);
+
+document.getElementById("mode").addEventListener ('change', function(event) {
     refreshMode()
   }, false);
   
-  document.getElementById("opacity").addEventListener ('change', function(event) {
+document.getElementById("opacity").addEventListener ('change', function(event) {
     ctx.globalAlpha = document.getElementById("opacity").value/100
   }, false);
   
   let result = document.getElementById("background")
   result.style.backgroundColor = "#fff";
-  randomPick(getCurrentPalette()) // was paintcolor = randomColor()
   loadPalette()
   const selectElement = document.getElementById("mode");
   selectElement.addEventListener('change', (event) => {
@@ -1014,6 +1067,8 @@ function checkAlt (checked) {
     elm.click();
   }
 }
+
+
 
 function setLastclick (lc) {
 console.log(lc)
@@ -1527,23 +1582,23 @@ function loadPalette (PUSH) {
   } else
   
   if (type === "deiz") {
-    let angle = 10 + Math.random() * 5
+    let angle = 20 + Math.random() * 60
     let clrs = []
     clrs.push(randomColor()) 
-    clrs.push(adjustBrightnessC(colorAngle(clrs[0], angle),-70)) 
+    clrs.push(adjustBrightnessC(colorAngle(clrs[0], angle/2),-70)) 
     clrs.push(adjustBrightnessC(colorAngle(clrs[0], angle),-20)) 
-    clrs.push(adjustBrightnessC(colorAngle(clrs[0], angle),90)) 
+    clrs.push(adjustBrightnessC(colorAngle(clrs[1], angle),60)) 
     let rgb = hextorgb(clrs[0])
     let hsv = rgbtohsv(rgb[0], rgb[1], rgb[2])
     rgb = hsvtorgb(hsv[0], hsv[1]/4, hsv[2])
     let cgrayed = rgbtohex(rgb[0], rgb[1], rgb[2])
     clrs.push(adjustBrightnessC(colorAngle(cgrayed, 30), -130))
-    clrs.push(adjustBrightnessC(colorAngle(cgrayed, 35), -90))
-    clrs.push(adjustBrightnessC(colorAngle(cgrayed, 40), 10))
+    clrs.push(adjustBrightnessC(colorAngle(cgrayed, 90), -90))
+    clrs.push(adjustBrightnessC(colorAngle(cgrayed, 60), 10))
 
-    clrs.push(adjustBrightnessC(colorAngle(clrs[0], 50), 110))
-    clrs.push(adjustBrightnessC(colorAngle(clrs[0], 160), -80))
-    clrs.push(adjustBrightnessC(colorAngle(clrs[0], 180), -140))
+    clrs.push(adjustBrightnessC(colorAngle(clrs[2], 20), 110))
+    clrs.push(adjustBrightnessC(colorAngle(clrs[2], 20), -80))
+    clrs.push(adjustBrightnessC(colorAngle(clrs[2], 20), -140))
 
     updateExtraColors(clrs)
   } else
@@ -1633,7 +1688,22 @@ if (type === 'faded poster') {
     updateExtraColors(b)
     return
   } else
-  
+   if (type === "5") {
+    let c1 = document.getElementById("p0").value
+    let amt = 17//Math.floor((5+Math.random()*20))
+    let brightness = brightnessofhex (c1) 
+    if (brightness > 0.5)
+      amt *= -1
+    b = [
+      c1,
+      adjustBrightnessC(c1, amt*3),
+      adjustBrightnessC(c1, amt*5),
+      adjustBrightnessC(c1, amt*7),
+      adjustBrightnessC(c1, amt*9)
+    ]
+    updateExtraColors(b)
+    return
+  } else
   if (type === "uno") {
     let pal = getCurrentPalette()
     if (pal.length > 1)
@@ -1845,13 +1915,8 @@ function showResize() {
 // returns true if every pixel's uint32 representation is 0 (or "blank")
 function isCanvasBlank(canvas) {
   const context = canvas.getContext('2d');
-  /*let temp = document.createElement('CANVAS')
-  let tempctx = temp.getContext("2d") // workaround
-  temp.width = canvas.width
-  temp.height = canvas.height
-  tempctx.drawImage(canvas,0, 0, canvas.width, canvas.height)*/
   const pixelBuffer = new Uint32Array(
-    ctx.getImageData(0, 0, canvas.width, canvas.height).data.buffer
+    context.getImageData(0, 0, canvas.width, canvas.height).data.buffer
   );
   return !pixelBuffer.some(color => color !== 0);
 }
@@ -2118,6 +2183,27 @@ function wash5 () {
   fog()
   fog()
   fog()
+  embossCanvas()
+  zoomImage()
+  zoomImage()
+}
+function washS () {
+  fillA()
+  fillA()
+  strokes()
+  strokes()
+  wrap()
+  rcc()
+  impasto()
+  motionblur()
+  strokes()
+  impasto()
+  strokes()
+  impasto()
+  impasto()
+  dirblur()
+  motionblur()
+  motionblur()
   embossCanvas()
   zoomImage()
   zoomImage()
@@ -2497,7 +2583,7 @@ function landscape3 () {
   let val = document.getElementById("opacity").value
   let num = document.getElementById("number").value
   let size = document.getElementById("featuresize").value
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  let color = getselectedcolor()
   let grunge = document.getElementById("grungy").checked
   let mode = ctx.globalCompositeOperation
   functions = ["smudge", "smudge", "smudge", "rays", "blobs", "hrips", "fog", "specksRadial"]
@@ -2775,35 +2861,6 @@ function testClip () {
   ctx.restore()
 }
 
-function testdrawfromoff__ () {
-  let canvas = document.getElementById("myCanvas")
-  let ctx = canvas.getContext("2d")
-  let W = canvas.height, H = canvas.height
-  let temp = document.createElement('CANVAS')
-  let tempctx = temp.getContext("2d")
-  let i = 0, x, y
-  temp.width = W
-  temp.height = H
-  ctx.fillStyle = "#ffff00"
-  ctx.fillRect(0,0,W,H)
-  console.log("post fill")
-  return
-  let d = ctx.getImageData(0,0,16,16)
-  for (; i < 10; i++) {
-    ctx.save()
-    ctx.beginPath()
-    x = Math.random() * W
-    y = Math.random() * H
-    ctx.arc(x,y,50,0,Math.PI*2)
-    ctx.closePath()
-    ctx.clip()
-    tempctx.fillStyle = "red"
-    tempctx.fillRect(0,0,W,H)
-    ctx.drawImage(temp, pet(44), pet(44), canvas.width, canvas.height)
-    ctx.restore()
-  }
-}
-
 function setClip (block,divs) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -2972,7 +3029,7 @@ function randomTexture () {
   document.getElementById("opacity").value = val
   document.getElementById("number").value = num
   document.getElementById("featuresize").value = size
-  randomPick(getCurrentPalette()) // was paintcolor = color
+  
   ctx.globalCompositeOperation = mode
   ctx.globalAlpha = alpha/100
   refreshMode()
@@ -3921,7 +3978,7 @@ async function palettetint (canvas) {
   levels.push(colors[mid+plusminus])
   levels.push(colors[colors.length-1])
   
-  let saved = randomPick(getCurrentPalette()) // was paintcolor
+  let saved = getselectedcolor()
 
   let level = 20
   let lows = [100, 83.33, 66.67, 50, 16.67]
@@ -3957,7 +4014,7 @@ async function palettetint_2ramps (canvas) {
   colors.push(document.getElementById("pal3").value)
   colors.push(document.getElementById("pal4").value)
   colors.push(document.getElementById("pal5").value)
-  let saved = randomPick(getCurrentPalette()) // was paintcolor
+  let saved = getselectedcolor()
 
   let level = 20
   let lows = [100, 83.33, 66.67, 50, 16.67]
@@ -3968,14 +4025,14 @@ async function palettetint_2ramps (canvas) {
     highs = [100, 80, 60, 40, 20].reverse()
   }
   let i = 0
-  randomPick(getCurrentPalette()) // was paintcolor = colors[0]
+  s[0]
   tintlow()
-  randomPick(getCurrentPalette()) // was paintcolor = colors[4]
+  s[4]
   tinthigh()
   document.getElementById("lower").value = 100
   document.getElementById("upper").value = 100
   rangecheck()
-  randomPick(getCurrentPalette()) // was paintcolor = saved
+  getselectedcolor() = saved
   ctx.globalAlpha = alpha
   return true
 }
@@ -4117,9 +4174,9 @@ function fourbyfour () {
   let offctx = off.getContext("2d")
   offctx.drawImage(canvas,0,0,W/2,H/2)
   //offctx.globalCompositeOperation = "overlay"
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  let color = getselectedcolor()
   let warhol = document.getElementById("grungy").checked
-  randomPick(getCurrentPalette()) // was paintcolor = randomColor()
+  getselectedcolor() = randomColor()
   let D = (Math.floor(33+Math.random() * 255) % 256)
   let colors = []
   colors.push(randomColor())
@@ -4133,7 +4190,7 @@ function fourbyfour () {
   .then(
     posterize2(off,ctx,W/2,H/2,W/2,H/2)
     )
-  randomPick(getCurrentPalette()) // was paintcolor = color
+  
   return true
 }
 
@@ -4146,9 +4203,9 @@ function fourbyfourplain () {
   let offctx = off.getContext("2d")
   offctx.drawImage(canvas,0,0,W/2,H/2)
   //offctx.globalCompositeOperation = "overlay"
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  let color = getselectedcolor()
   let warhol = document.getElementById("grungy").checked
-  randomPick(getCurrentPalette()) // was paintcolor = randomColor()
+  getselectedcolor() = randomColor()
   let D = (Math.floor(33+Math.random() * 255) % 256)
   let colors = []
   colors.push(randomColor())
@@ -4162,13 +4219,27 @@ function fourbyfourplain () {
   .then(
     drawSome(ctx,off,W/2,H/2,W/2,H/2)
     )
-  randomPick(getCurrentPalette()) // was paintcolor = color
+  
   return true
 }
 
 async function drawSome (ctx,can,x,y,W,H) {
   await ctx.drawImage(can,x,y,W,H)
   return true
+}
+
+function pixblur (x,y,W) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let tiny = document.createElement('CANVAS')
+  tiny.width = 16, tiny.height = 16
+  let ctxtiny = tiny.getContext("2d")
+  /*motionblur(tiny)
+  motionblur(tiny)
+  motionblur(tiny)
+shaken(tiny)*/
+  ctxtiny.drawImage(canvas, x,y,W,W, 0,0,16,16)
+  ctx.drawImage(tiny, x,y,W,W)
 }
 
 function shrinkBlur (PUSH) {
@@ -4210,7 +4281,7 @@ function distortion () {
     }
   }
   if (alt) {
-    ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+    ctx.fillStyle = getselectedcolor()
     ctx.fillRect(0,0,sizew, sizeh)
   }
   ctx.putImageData(imgData, 0, 0);
@@ -4254,6 +4325,8 @@ function wrap (canvas) {
   let canvasoff = document.createElement("CANVAS")
   let ctxoff = canvasoff.getContext("2d")
   let a = document.getElementById("opacity").value/100
+  let mode = document.getElementById("mode").value
+  ctx.globalCompositeOperation = "source-over"
   ctx.globalAlpha = 1.0
   let W = canvas.width, H = canvas.height
   canvasoff.width = W, canvasoff.height = H
@@ -4266,6 +4339,7 @@ function wrap (canvas) {
   ctx.drawImage(canvasoff,  W-half,0,W,H, 0,0,W,H)
   ctx.drawImage(canvasoff,  0,0,W,H, half,0,W,H)
   ctx.globalAlpha = a
+  ctx.globalCompositeOperation = mode
 }
 
 function mirror () {
@@ -4371,39 +4445,85 @@ function halfCurve () {
   ctx.restore()
 }
 
-function topRip () {
+function topRip (back) {
   let canvas = document.getElementById("myCanvas")
-  ctx = canvas.getContext("2d")
-  let W = canvas.width, H = canvas.height
-  let half = canvas.width/2
-  copyToOff()
-  //setLastclick([half,10])
-  LASTCLICK[0] = half
-  halfRip()
-  setMode("destination-over")
+  let ctx = canvas.getContext("2d")
+  let H = canvas.height, W = canvas.width
+  let alpha = document.getElementById("opacity").value
   ctx.fillStyle = getselectedcolor()
-  console.log(W,H)
+  let s = 1+document.getElementById("featuresize").value/20
+  let x = 0, y = 0, end = LASTCLICK[1]
+  back = 6
+  x = LASTCLICK[0]
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x,y)
+  while (y < end) {
+    x += pet(s)
+    y += 4 + pet(s*0.7)
+    ctx.lineTo(x, y)
+    if (Math.random() > 0.95)
+      y += s
+  }
+  x-=back
+  y -= s/3
+  while (y > 0) {
+    x += pet(s)
+    y -= 4 + pet(s*0.7)
+    ctx.lineTo(x, y)
+    if (Math.random() > 0.95)
+      y -= s
+  }
+  ctx.closePath()
+  ctx.clip()
   ctx.fillRect(0,0,W,H)
+  ctx.globalAlpha = alpha/100
+  ctx.restore()
+}
 
-  rc()
-  leftClip()
-  rcc()
-  LASTCLICK[0] = half-23
-  leftClip()
-  halfRip()
-  halfRip()
-  halfRip()
-  swapWithOff()
-  pasteFromOff()
-  setMode("source-over")
-  pasteFromOff()
+function ripFrame () {
+  let i = 0
+  for (; i < 4;i++) {
+    ripSide()
+    rc()
+  }
+}
+
+function topScratch () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = canvas.height, W = canvas.width
+  let alpha = document.getElementById("opacity").value
+  ctx.strokeStyle = getselectedcolor()
+  ctx.lineWidth = 1+document.getElementById("featuresize").value/20
+  let s = document.getElementById("number").value/1000
+  let x = 0, y = 0, end = LASTCLICK[1]
+  x = LASTCLICK[0]
+  ctx.lineJoin = "miter"
+  while (y < end) {
+    ctx.beginPath()
+    ctx.moveTo(x,y)
+    x += pet(s)
+    y += 8 + pet(s* ctx.lineWidth)
+    if (Math.random() > 0.95)
+      y += s
+    ctx.lineTo(x, y)
+    ctx.stroke()
+  }
+}
+
+function ripFrame () {
+  let i = 0
+  for (; i < 4;i++) {
+    ripSide()
+    rc()
+  }
 }
 
 function halfRip () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let H = canvas.height, W = canvas.width
-  //let grunge = document.getElementById("grungy").checked
   let alpha = document.getElementById("opacity").value
   let s = 1+document.getElementById("featuresize").value/10
   let x = 0, y = 0
@@ -4411,15 +4531,16 @@ function halfRip () {
   ctx.beginPath()
   ctx.moveTo(x,y)
   x = LASTCLICK[0]
-  ctx.lineTo(x, y)
-  while (y < H) {
+ // ctx.lineTo(x, y)
+  while (y <= H) {
     x += pet(s)
-    y += 4 + pet(s*0.7)
     ctx.lineTo(x, y)
+    y += 4 + pet(s*0.7)
     if (Math.random() > 0.95)
       y += s
   }
-  ctx.lineTo(0, y)
+  ctx.lineTo(x, y+50)
+  ctx.lineTo(0, y+50)
   ctx.closePath()
   ctx.clip()
   ctx.clearRect(0,0,W,H)
@@ -4484,7 +4605,7 @@ function findBrightSpots (FLARE) {
   off.height = canvas.height
   let offctx = off.getContext("2d")
   offctx.drawImage(canvas,0,0)
-  offctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  offctx.fillStyle = getselectedcolor()
   let grunge = document.getElementById("grungy").checked
   let cw = canvas.width
   let ch = canvas.height
@@ -4555,7 +4676,7 @@ function sampleImageDataR () { // darkness
   off.width = canvas.width
   off.height = canvas.height
   let offctx = off.getContext("2d")
-  offctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  offctx.fillStyle = getselectedcolor()
   let grunge = document.getElementById("grungy").checked
   // set above as in rectify
   let W = 0.5 + Math.floor(document.getElementById("featuresize").value/2)
@@ -4614,7 +4735,7 @@ function sampleImageData () { // darkness
   off.width = canvas.width
   off.height = canvas.height
   let offctx = off.getContext("2d")
-  offctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  offctx.fillStyle = getselectedcolor()
   let grunge = document.getElementById("grungy").checked
   // set above as in rectify
   let W = 0.5 + Math.floor(document.getElementById("featuresize").value/2)
@@ -4672,7 +4793,7 @@ function etch (color) {
   off.width = canvas.width
   off.height = canvas.height
   let offctx = off.getContext("2d")
-  offctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
+  offctx.strokeStyle = getselectedcolor()
   offctx.lineCap = "square"
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let grunge = document.getElementById("grungy").checked
@@ -4770,7 +4891,7 @@ function hatches (color) {
   off.width = canvas.width
   off.height = canvas.height
   let offctx = off.getContext("2d")
-  offctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
+  offctx.strokeStyle = getselectedcolor()
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let grunge = document.getElementById("grungy").checked
   // set above as in rectify
@@ -4881,7 +5002,7 @@ function stipple () {
   off.width = canvas.width
   off.height = canvas.height
   let offctx = off.getContext("2d")
-  offctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  offctx.fillStyle = getselectedcolor()
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let grunge = document.getElementById("grungy").checked
   // set above as in rectify
@@ -4965,7 +5086,7 @@ function mosaic () { // 4 sided
   off.width = canvas.width
   off.height = canvas.height
   let offctx = off.getContext("2d")
-  offctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  offctx.fillStyle = getselectedcolor()
   let grunge = document.getElementById("grungy").checked
   ctx.globalAlpha = document.getElementById("opacity").value/100
   // set above as in rectify
@@ -5051,7 +5172,7 @@ function pointillism2 () { // multi sided
   off.width = canvas.width
   off.height = canvas.height
   let offctx = off.getContext("2d")
-  offctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  offctx.fillStyle = getselectedcolor()
   let grunge = document.getElementById("grungy").checked
   ctx.globalAlpha = document.getElementById("opacity").value/100
   // set above as in rectify
@@ -5142,7 +5263,7 @@ function pointillismE () {
   off.width = canvas.width
   off.height = canvas.height
   let offctx = off.getContext("2d")
-  offctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  offctx.fillStyle = getselectedcolor()
   let grunge = document.getElementById("grungy").checked
   ctx.globalAlpha = document.getElementById("opacity").value/100
   // set above as in rectify
@@ -5213,7 +5334,7 @@ function pointillism () {
   off.width = canvas.width
   off.height = canvas.height
   let offctx = off.getContext("2d")
-  offctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  offctx.fillStyle = getselectedcolor()
   let grunge = document.getElementById("grungy").checked
   ctx.globalAlpha = document.getElementById("opacity").value/100
   // set above as in rectify
@@ -5436,7 +5557,7 @@ function nearest () {
   off.width = canvas.width
   off.height = canvas.height
   let offctx = off.getContext("2d")
-  offctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  offctx.fillStyle = getselectedcolor()
   let grunge = document.getElementById("grungy").checked
   ctx.globalAlpha = document.getElementById("opacity").value/100
   // set above as in rectify
@@ -5518,7 +5639,7 @@ function bricks () { //lego
   off.width = canvas.width
   off.height = canvas.height
   let offctx = off.getContext("2d")
-  offctx.fillStyle = "#000000"//randomPick(getCurrentPalette()) // was paintcolor
+  offctx.fillStyle = "#000000"//getselectedcolor()
   let grunge = document.getElementById("grungy").checked
   // set above as in rectify
   let W = 4 + Math.floor(document.getElementById("featuresize").value/5)
@@ -5604,7 +5725,7 @@ function nicksmith () {
   off.width = canvas.width
   off.height = canvas.height
   let offctx = off.getContext("2d")
-  offctx.fillStyle = "#000000"//randomPick(getCurrentPalette()) // was paintcolor
+  offctx.fillStyle = "#000000"//getselectedcolor()
   let grunge = document.getElementById("grungy").checked
   // set above as in rectify
   let W = 4 + Math.floor(document.getElementById("featuresize").value/5)
@@ -5663,7 +5784,7 @@ function nicksmithWords () {
   off.width = canvas.width
   off.height = canvas.height
   let offctx = off.getContext("2d")
-  offctx.fillStyle = "#000000"//randomPick(getCurrentPalette()) // was paintcolor
+  offctx.fillStyle = "#000000"//getselectedcolor()
   let grunge = document.getElementById("grungy").checked
   // set above as in rectify
   let W = 2 + Math.floor(document.getElementById("featuresize").value/10)
@@ -5736,7 +5857,7 @@ function namedcolorWords () {
   off.width = canvas.width
   off.height = canvas.height
   let offctx = off.getContext("2d")
-  offctx.fillStyle = "#000000"//randomPick(getCurrentPalette()) // was paintcolor
+  offctx.fillStyle = "#000000"//getselectedcolor()
   let grunge = document.getElementById("grungy").checked
   // set above as in rectify
   let W = 2 + Math.floor(document.getElementById("featuresize").value/10)
@@ -5808,7 +5929,7 @@ function sampleImageDataColor () {
   off.width = canvas.width
   off.height = canvas.height
   let offctx = off.getContext("2d")
-  offctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  offctx.fillStyle = getselectedcolor()
   let grunge = document.getElementById("grungy").checked
   // set above as in rectify
   let W = 2 + Math.floor(document.getElementById("featuresize").value/2)
@@ -5992,8 +6113,8 @@ function sampleImageDataColor2 () {
   off.width = canvas.width
   off.height = canvas.height
   let offctx = off.getContext("2d")
-  offctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
-  let targetcolor = randomPick(getCurrentPalette()) // was paintcolor
+  offctx.fillStyle = getselectedcolor()
+  let targetcolor = getselectedcolor()
   let tr = hexToR(targetcolor)
   let tg = hexToG(targetcolor)
   let tb = hexToB(targetcolor)
@@ -6080,14 +6201,14 @@ function filterGrays () {
 function filterGrays2 () {
   let ctx = document.getElementById("myCanvas").getContext("2d")
   let op = document.getElementById("opacity").value
-  let oc = randomPick(getCurrentPalette()) // was paintcolor
+  let oc = getselectedcolor()
  // document.getElementById("opacity").value = 50
-  randomPick(getCurrentPalette()) // was paintcolor = "#000000"
+  getselectedcolor() = "#000000"
   colorFilterOut()
  // document.getElementById("opacity").value = 50
-  randomPick(getCurrentPalette()) // was paintcolor = "#7f7f7f"
+  getselectedcolor() = "#7f7f7f"
   colorFilterOut()
-  randomPick(getCurrentPalette()) // was paintcolor = "#ffffff"
+  getselectedcolor() = "#ffffff"
   colorFilterOut()
   document.getElementById("opacity").value = op
   let mode = ctx.globalCompositeOperation
@@ -6096,7 +6217,7 @@ function filterGrays2 () {
     fillA()
   ctx.globalCompositeOperation = mode
   refreshMode()
-  randomPick(getCurrentPalette()) // was paintcolor = oc
+  getselectedcolor() = oc
 }
 
 function alphaBlack (t) {
@@ -6150,7 +6271,7 @@ function paintcolorChange (i) {
 }
 
 function setPaintColor (a) {
-  randomPick(getCurrentPalette()) // was paintcolor = a
+  getselectedcolor() = a
 }
 
 function numberChange () {
@@ -6199,7 +6320,7 @@ function recordSettings () {
   pushFunction('setOpacity', a)
   a = document.getElementById("featuresize").value
   pushFunction('setFeaturesize', a)
-  a = randomPick(getCurrentPalette()) // was paintcolor
+  a = getselectedcolor()
   pushFunction('setPaintColor', a)
   a = document.getElementById("mode").value
   pushFunction('setMode', a)
@@ -6355,10 +6476,10 @@ function multileak () {
   off.width = canvas.width, off.height = canvas.height
   let offctx = off.getContext("2d")
   let alpha = document.getElementById("opacity").value
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  let color = getselectedcolor()
   let colors = getCurrentPalette()
   let alt = document.getElementById("grungy").checked
-  offctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor//randomGradient(canvas, randomColorMedium())
+  offctx.fillStyle = getselectedcolor()//randomGradient(canvas, randomColorMedium())
   let cw = canvas.width, ch  = canvas.height
   let y = 0//ch/5
   
@@ -6906,7 +7027,7 @@ function retro () {
   let alpha = document.getElementById("opacity").value
   let feature_size = document.getElementById("featuresize").value
   let number = document.getElementById("number").value
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  let color = getselectedcolor()
   let alt = document.getElementById("grungy").checked
   let pal = getCurrentPalette(true)
   let ga = ctx.globalAlpha
@@ -6932,12 +7053,12 @@ function retro () {
     ctx.restore()
   }
   if (Math.random() > 0.3 && alt) {
-    randomPick(getCurrentPalette()) // was paintcolor = randomPick(["#d4f595", "#80dfff", "#ffee80", "#ff80aa", "#45de45"])
+    getselectedcolor() = randomPick(["#d4f595", "#80dfff", "#ffee80", "#ff80aa", "#45de45"])
     document.getElementById("opacity").value = 25 + Math.random() * 10
     haze()
   }
   if (Math.random() > 0.3 && alt) {
-    randomPick(getCurrentPalette()) // was paintcolor = randomPick(["#7f7e60", "#707060", "#507070", "#505070"])
+    getselectedcolor() = randomPick(["#7f7e60", "#707060", "#507070", "#505070"])
     document.getElementById("opacity").value = 30
     document.getElementById("number").value = 6000
     document.getElementById("featuresize").value = 300
@@ -6950,7 +7071,7 @@ function retro () {
   if (Math.random() > 0.3 && alt) {
     ctx.save()
     clipIrregular()
-    randomPick(getCurrentPalette()) // was paintcolor = "#ffffff"
+    getselectedcolor() = "#ffffff"
     document.getElementById("opacity").value = 70 + Math.random() * 20
     document.getElementById("number").value = 3000 + Math.random() * 3000
     document.getElementById("featuresize").value = 400
@@ -6970,7 +7091,7 @@ function retro () {
   document.getElementById("opacity").value = alpha
   document.getElementById("featuresize").value = feature_size
   document.getElementById("number").value = number
-  randomPick(getCurrentPalette()) // was paintcolor = color
+  
   document.getElementById("palettechoice").value = type
   loadPalette()
 }
@@ -7185,6 +7306,42 @@ function stack_pasteFromOff () {
   pushFunction('pasteFromOff',0)
 }
 
+ function scrapsOff (x,y,W) {
+  let H = W
+  let OC = document.getElementById('OC')
+  let canvas = document.getElementById('myCanvas')
+  //if (isCanvasBlank(OC)) {
+    OC.height = canvas.height
+    OC.width = canvas.width
+    OCISCLEAR = false
+  //}
+  let ctx = canvas.getContext('2d')
+  let OCctx = OC.getContext('2d')
+
+  OCctx.save()
+  OCctx.beginPath()
+  OCctx.moveTo(x+12*W/24, y+2*H/24)
+  OCctx.lineTo(x+2*W/24, y+1*H/24)
+  OCctx.lineTo(x+2*W/24, y+22*H/24)
+  OCctx.lineTo(x+22*W/24, y+22*H/24)
+  OCctx.lineTo(x+22*W/24, y+1*H/24)
+  OCctx.lineTo(x+12*W/24, y+2*H/24)
+  OCctx.closePath()
+  OCctx.clip()
+  multiScraps(OC)
+  
+
+  ctx.globalAlpha = 1.0
+  let mode = ctx.globalCompositeOperation
+  ctx.globalCompositeOperation = "source-over"
+  OCctx.globalAlpha = 1.0
+  OCctx.globalCompositeOperation = "source-over"
+  ctx.drawImage(OC, 0, 0)
+  ctx.globalCompositeOperation = mode
+  OCISCLEAR = false
+  OCctx.restore()
+}
+
 function clearOff () {
  let OC = document.getElementById('OC')
  let octx = OC.getContext('2d')
@@ -7199,14 +7356,13 @@ async function copyToOff () {
   let OC = document.getElementById('OC')
   let canvas = document.getElementById('myCanvas')
   if (isCanvasBlank(OC)) {
+  console.log ("off was blank")
     OC.height = canvas.height
     OC.width = canvas.width
     OCISCLEAR = false
   }
   let ctx = canvas.getContext('2d')
   let OCctx = OC.getContext('2d')
-  OCctx.willReadFrequently = true
-  ctx.willReadFrequently = true
   ctx.globalAlpha = 1.0
   let mode = ctx.globalCompositeOperation
   ctx.globalCompositeOperation = "source-over"
@@ -7254,7 +7410,7 @@ document.getElementById("uploadimage2").addEventListener("change", drawFileD, tr
 document.getElementById("openextract").addEventListener("change", extractFile, true)
 
 function pushColor (c) {
-  randomPick(getCurrentPalette()) // was paintcolor = c
+  getselectedcolor() = c
 }
 
 function randomPickColor() {
@@ -7265,7 +7421,7 @@ function randomPickColor() {
 
 function updateColor () {
   let uc = document.getElementById("usercolor").value
-  randomPick(getCurrentPalette()) // was paintcolor = uc
+  getselectedcolor() = uc
 }
 
 function randn_bm (min, max, skew) {
@@ -9089,12 +9245,11 @@ function everythingArray () {
   let functions = shuffle(atList)
   let pad = 150
   let delta = Math.round(W/N) - pad*1
-  let colors = getCurrentPalette()
   let x = pad/2, y = pad/2, i = 0
   let cnt = 0, f
   for (; i < N*N; i++) {
     f = functions[i]
-    window[f](x,y,delta,randomPick (colors))
+    window[f](x,y,delta,getselectedcolor())
     x += delta+pad
     cnt++
     if (cnt > 1 && cnt%N === 0) {
@@ -11867,7 +12022,7 @@ function zagout () {
   let colors = shuffle(getCurrentPalette(true,13))
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
   let w = 15 * ctx.lineWidth
-  ctx.strokeStyle = colors[0]
+  ctx.strokeStyle = getselectedcolor()
   ctx.lineCap = "square"
   ctx.lineJoin = "bevel"
   let x = cx-w/10,y = cy+w, i = 0
@@ -11894,7 +12049,7 @@ function crossout () {
   let colors = shuffle(getCurrentPalette(true,13))
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
   let w = 15 * ctx.lineWidth
-  ctx.strokeStyle = colors[0]
+  ctx.strokeStyle = getselectedcolor()
   ctx.lineCap = "square"
   ctx.lineJoin = "bevel"
   let x = cx-w,y = cy-w, i = 0
@@ -11935,118 +12090,41 @@ function pantsAt (x,y,W,color) {
   ctx.lineCap = "square"
   ctx.lineJoin = "bevel"
 
+  //1
   ctx.beginPath()
-  ctx.moveTo(x+2*W/24, y+19*H/24)
-  cpx = x+2*W/24
-  cpy = y+17*H/24
-  ctx.quadraticCurveTo(cpx, cpy, x+6*W/24, y+17*H/24)
-  cpx = x+10*W/24
-  cpy = y+17*H/24
-  ctx.quadraticCurveTo(cpx, cpy, x+10*W/24, y+19*H/24)
-  cpx = x+10*W/24
-  cpy = y+21*H/24
-  ctx.quadraticCurveTo(cpx, cpy, x+6*W/24, y+21*H/24)
-  cpx = x+2*W/24
-  cpy = y+21*H/24
-  ctx.quadraticCurveTo(cpx, cpy, x+2*W/24, y+19*H/24)
+  ctx.moveTo(x+7*W/24, y+2*H/24)
+  ctx.lineTo(x+17*W/24, y+2*H/24)
+  ctx.lineTo(x+22*W/24, y+20*H/24)
+  ctx.lineTo(x+16*W/24, y+22*H/24)
+  ctx.lineTo(x+12*W/24, y+8*H/24)
+  ctx.lineTo(x+8*W/24, y+22*H/24)
+  ctx.lineTo(x+2*W/24, y+20*H/24)
+  ctx.lineTo(x+7*W/24, y+2*H/24)
   ctx.stroke()
 
+  //2
   ctx.beginPath()
-  ctx.moveTo(x+22*W/24, y+19*H/24)
-  cpx = x+22*W/24
-  cpy = y+21*H/24
-  ctx.quadraticCurveTo(cpx, cpy, x+18*W/24, y+21*H/24)
-  cpx = x+14*W/24
-  cpy = y+21*H/24
-  ctx.quadraticCurveTo(cpx, cpy, x+14*W/24, y+19*H/24)
-  cpx = x+14*W/24
-  cpy = y+17*H/24
-  ctx.quadraticCurveTo(cpx, cpy, x+18*W/24, y+17*H/24)
-  cpx = x+22*W/24
-  cpy = y+17*H/24
-  ctx.quadraticCurveTo(cpx, cpy, x+22*W/24, y+19*H/24)
+  ctx.moveTo(x+9*W/24, y+3*H/24)
+  cpx = x+9*W/24
+  cpy = y+6*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+6*W/24, y+6*H/24)
   ctx.stroke()
 
+  //3
   ctx.beginPath()
-  ctx.moveTo(x+10*W/24, y+19*H/24)
-  ctx.lineTo(x+11*W/24, y+12*H/24)
-  ctx.lineTo(x+13*W/24, y+12*H/24)
-  ctx.lineTo(x+14*W/24, y+19*H/24)
+  ctx.moveTo(x+15*W/24, y+3*H/24)
+  cpx = x+15*W/24
+  cpy = y+6*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+18*W/24, y+6*H/24)
   ctx.stroke()
 
+  //4
   ctx.beginPath()
-  ctx.moveTo(x+2*W/24, y+19*H/24)
-  ctx.lineTo(x+3*W/24, y+2*H/24)
-  ctx.lineTo(x+21*W/24, y+2*H/24)
-  ctx.lineTo(x+22*W/24, y+19*H/24)
+  ctx.moveTo(x+11.5*W/24, y+2*H/24)
+  ctx.lineTo(x+11.5*W/24, y+6*H/24)
+  ctx.lineTo(x+12.5*W/24, y+6*H/24)
+  ctx.lineTo(x+12.5*W/24, y+2*H/24)
   ctx.stroke()
-}
-
-function spiralAt (x,y,W,color) {
-  let canvas = document.getElementById("myCanvas")
-  let ctx = canvas.getContext("2d")
-  let H = W, cpx, cpy, points = []
-  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
-  ctx.strokeStyle = color
-  ctx.lineCap = "square"
-  ctx.beginPath()
-  ctx.moveTo(x+7*W/12, y+7*H/12)
-  points.push(x+7*W/12, y+7*H/12)
-  cpx = x+7*W/12
-  cpy = y+8*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+8*H/12)
-  points.push(x+6*W/12, y+8*H/12)
-  cpx = x+5*W/12
-  cpy = y+8*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+5*W/12, y+7*H/12)
-  points.push(x+5*W/12, y+7*H/12)
-  cpx = x+5*W/12
-  cpy = y+5*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+7*W/12, y+5*H/12)
-  points.push(x+7*W/12, y+5*H/12)
-  cpx = x+9*W/12
-  cpy = y+5*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+9*W/12, y+7*H/12)
-  points.push(x+9*W/12, y+7*H/12)
-  cpx = x+9*W/12
-  cpy = y+10*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+10*H/12)
-  points.push(x+6*W/12, y+10*H/12)
-  cpx = x+3*W/12
-  cpy = y+10*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+3*W/12, y+7*H/12)
-  points.push(x+3*W/12, y+7*H/12)
-  cpx = x+3*W/12
-  cpy = y+3*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+7*W/12, y+3*H/12)
-  points.push(x+7*W/12, y+3*H/12)
-  cpx = x+11*W/12
-  cpy = y+3*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+11*W/12, y+7*H/12)
-  points.push(x+11*W/12, y+7*H/12)
-  cpx = x+11*W/12
-  cpy = y+12*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+12*H/12)
-  points.push(x+6*W/12, y+12*H/12)
-  cpx = x+1*W/12
-  cpy = y+12*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+1*W/12, y+6*H/12)
-  points.push(x+1*W/12, y+6*H/12)
-  cpx = x+1*W/12
-  cpy = y+0*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+6*W/12, y+0*H/12)
-  points.push(x+6*W/12, y+0*H/12)
-  ctx.stroke()
-  // extra arm part
-  ctx.beginPath()
-  ctx.moveTo(x+6*W/12, y+0*H/12)
-  points.push(x+6*W/12, y+0*H/12)
-  cpx = x+12*W/12
-  cpy = y+0*H/12
-  ctx.quadraticCurveTo(cpx, cpy, x+12*W/12, y+3*H/12)
-  points.push(x+12*W/12, y+3*H/12)
-  ctx.stroke()
-  drawStars(x,y,W,points)
 }
 
 function mailboxAt (x,y,W,color) {
@@ -14674,7 +14752,7 @@ function monoblobs () {
   let W = canvas.width, H = canvas.height
   let N = randomPick([2,3,4])
   let pad = document.getElementById("featuresize").value/10000 * W
-  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.strokeStyle = getselectedcolor()
   let delta = W/N
   let x = 0, y = 0, i = 0, cnt = 0
   for (; i < N*N; i++) {
@@ -15597,7 +15675,7 @@ function spiral () {
   let grunge = document.getElementById("grungy").checked
   ctx.lineWidth = 2+document.getElementById("featuresize").value/20
   ctx.lineCap = "round"
-  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.strokeStyle = getselectedcolor()
   let radius = 250, r0 = W/2.3 +Math.random() * 250, angle = Math.random() * 6.28
   let n = 0, end = 2400
   let shrink = 100 + Math.random() * 300
@@ -15631,7 +15709,7 @@ function spiral2 () {
   let grunge = document.getElementById("grungy").checked
   ctx.lineWidth = 2+document.getElementById("featuresize").value/20
   ctx.lineCap = "round"
-  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.strokeStyle = getselectedcolor()
   let radius = 250, r0 = W/4 +Math.random() * 250, angle = Math.random() * 6.28
   let n = 0, end = 3000
   let shrink = W * 0.37
@@ -15824,11 +15902,10 @@ function spiral4 () {
   let cy = cx
   let C = W/2 + (Math.random() - 0.5) * W/4
   ctx.globalAlpha = +document.getElementById("opacity").value/100
-  //let colors = shuffle(['red', 'blue', 'yellow', 'orange', 'purple', "green"])
   let grunge = document.getElementById("grungy").checked
   ctx.lineWidth = 2+document.getElementById("featuresize").value/20
   ctx.lineCap = "round"
-  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.strokeStyle = getselectedcolor()
   let radius = W/4 + Math.random() * W/10
   let angle = Math.random() * 6.28
   let n = 0, end = 17000
@@ -15859,72 +15936,6 @@ function spiral4 () {
     }
   }
   ctx.stroke();
-}
-
-function drops () {
-  let canvas = document.getElementById("myCanvas");
-  let ctx = canvas.getContext("2d");
- // ctx.save()
-  clip()
-  let W = canvas.width
-  let c = W/2
-  let margin = W/20
-  let w4 = (W-2*margin)/(2+Math.floor(Math.random() * 10))*8//document.getElementById("rows").value
-  ctx.globalAlpha = document.getElementById("opacity").value/100
-  let colors = shuffle(['red', 'blue', 'yellow', 'orange', 'purple', "green"])
-  let grunge = document.getElementById("grungy").checked
-  let scale = 7+document.getElementById("featuresize").value/5
-  let parts = Math.floor(W/(scale*2-1)) *1.8
-  let rule = true
-  if (Math.random() > 0.5)
-    rule = false
-  if (!grunge) {
-    let t = 0
-    colors = []
-    for (; t < 21; t++)
-      colors.push(randomColor())
-  }
-  let x = scale, y = 71 + pet(1)
-  let i = 0, r = scale/2
-  let d = 0, drift = 0
-  for (; i < parts; i++) {
-    let x1 = x
-    let xf = 20 + Math.random() * 100
-    let yf = 0.001 + Math.random()/3 * 0.002
-    r = scale/2 + pet(scale/4)
-    while (y < 72) {
-      d = (x1-c)
-      if (d < 1)
-        d += -1
-      drift = xf/(d+0.01)
-      if (rule) {
-        if (x1 > c)
-          drift -= y * yf
-        else
-          drift += y * yf
-      } else {
-        if (x1 < c)
-          drift -= y * yf
-        else
-          drift += y * yf
-      }
-      x1 += drift
-      y += 2
-      x1 += pet(1.25)
-      if (r < 0.5)
-        r = 0.5
-      ctx.beginPath();
-      ctx.moveTo(x1, y)
-      ctx.arc(x1,y,1+r+pet(2) ,0,2*Math.PI)
-      ctx.closePath()
-      ctx.fillStyle = colors[i%colors.length]
-      ctx.fill()
-      r*= 0.998
-    }
-    x += scale * 1.05
-    y = 41 + pet(41)
-  }
-  ctx.restore()
 }
 
 function chair () {
@@ -15968,7 +15979,7 @@ function chair () {
   }
   
   ctx.lineCap = "round"
-  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.strokeStyle = getselectedcolor()
   
   let flip = Math.random() > 0.5
   if (flip) {
@@ -16083,7 +16094,7 @@ function person () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   ctx.lineWidth = 0.5+document.getElementById("featuresize").value/10
-  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.strokeStyle = getselectedcolor()
   let W = canvas.width
   let margin = W/8
   margin = 50 + (W-2*margin)/(2+Math.floor(Math.random() * 10))//document.getElementById("rows").value
@@ -16181,7 +16192,7 @@ function lamp () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   ctx.lineWidth = 0.5+document.getElementById("featuresize").value/10
-  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.strokeStyle = getselectedcolor()
   let W = canvas.width
   let margin = W/8
   margin = 50 + (W-2*margin)/(2+Math.floor(Math.random() * 10))//document.getElementById("rows").value
@@ -16308,7 +16319,7 @@ function birdhouse () {
   }
   
   ctx.lineCap = "round"
-  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.strokeStyle = getselectedcolor()
   
   let flip = Math.random() > 0.5
   
@@ -16831,7 +16842,7 @@ function star () {
   ctx.fill()
   if (document.getElementById("grungy").checked) {
     document.getElementById("caption").value = randomPick(placenames_stars)
-    randomPick(getCurrentPalette()) // was paintcolor = colors[0]
+    s[0]
     caption()
   }
 }
@@ -16847,7 +16858,7 @@ function makePalette () {
   let colors = getCurrentPalette()
   if (ctx.globalAlpha == 1)
     alert("Set opacity to < 1.0 for remix.")
-  let mixcolor = randomPick(getCurrentPalette()) // was paintcolor
+  let mixcolor = getselectedcolor()
   if (!alt) {
     ctx.fillStyle = mixcolor // mix with paintcolor
     ctx.fillRect(0,0,W,H)
@@ -16884,7 +16895,7 @@ function waves () {
   ctx.lineWidth = 1 + Math.floor(document.getElementById("featuresize").value/10)
   inc = ctx.lineWidth * 2
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  let color = getselectedcolor()
   let pad = 0
   let x = pad, y = -20//pad
   ctx.strokeStyle = color
@@ -17339,7 +17350,7 @@ function natural () {
   let inc = Math.PI * 2/360
   ctx.lineJoin = "round"
   let b = 0, sign = 1
-  ctx.strokeStyle = (colors[0])
+  ctx.strokeStyle = getselectedcolor()
   ctx.beginPath()
   let max = 2.4*360 + Math.random()*120
   max += 120
@@ -18954,7 +18965,7 @@ function foldings () {
   ctx.lineTo(cx, cy*2-pad) // bottom right
   ctx.lineTo(cx/2, cy*2-pad) // bottom right
   ctx.stroke()
-  ctx.strokeStyle = randomPick(colors)
+  ctx.strokeStyle = getselectedcolor()
   ctx.lineWidth *= 1.5
   ctx.beginPath()
   ctx.moveTo(W-pad*2, pad) // start
@@ -19006,7 +19017,7 @@ function arch () {
   ctx.lineTo(cx+r + ctx.lineWidth/2, cy-cy/3)//-ctx.lineWidth)
   ctx.stroke()
   cx = W/4
-  ctx.strokeStyle = randomPick(colors)
+  ctx.strokeStyle = getselectedcolor()
   ctx.beginPath()
   ctx.moveTo(cx-r/2, cy/3-ctx.lineWidth/2)
   ctx.lineTo(cx-r/2, H-cy/3+ctx.lineWidth/2)
@@ -19142,7 +19153,7 @@ function formDec (canvas) {
 
 function paperize (canvas) {
   let ctx = canvas.getContext("2d")
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  let color = getselectedcolor()
   let fs = document.getElementById("featuresize").value
   let alt = document.getElementById("grungy").checked
   let functions = ["smudgestreaks2", "smudgearcs", "smudgestars", "smudgehorizontal2"]
@@ -19189,15 +19200,16 @@ function hstripes_sml (canvas) {
   setFeaturesize (fs)
 }
 
-function multiScraps () {
-  let canvas = document.getElementById("myCanvas")
+function multiScraps (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas")
   let W = canvas.width, H = canvas.height
   let functions = shuffle(["typo", "scripto", "pageOfBook", "formDec",
   "form2", "gridpaper", "snow",
   "hstripes_sml", "crosswordPad", "gridLog", "moleText", "index"])
   let N = 7, i = 0
   for (; i < N; i++) {
-    tapeText(functions[i])
+    tapeText(functions[i], canvas)
   }
 }
 
@@ -19226,10 +19238,10 @@ function splashAt (x,y,w,color) {
   ctx.fill()
  
 }
-
   
-function tapeText (f) {
-  let canvas = document.getElementById("myCanvas");
+function tapeText (f, canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let oc = document.createElement('canvas')
   let occtx = oc.getContext("2d");
@@ -19339,7 +19351,7 @@ function tape () {
   let mode = document.getElementById("mode").value
   let alpha = document.getElementById("opacity").value
   let alt = document.getElementById("grungy").checked
-  ctx.fillStyle = randomPick(colors)
+  ctx.fillStyle = getselectedcolor()
   let cx =  LASTCLICK[0]
   let cy =  LASTCLICK[1]
   let rotate = (cx < D*1.5 || canvas.width - cx < D*1.5)
@@ -19357,7 +19369,7 @@ function tape () {
   let ye = cy-DH
   let y0 = ye, x0 = xe
   
-  ctx.fillStyle = colors[0]
+  //ctx.fillStyle = colors[0]
   ctx.beginPath()
   ctx.moveTo(xe,ye)
   x = xe
@@ -19994,7 +20006,7 @@ function justlines (canvas) { // grid paper
     canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let W = canvas.width, H = canvas.height
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  let color = getselectedcolor()
   let alt = document.getElementById("grungy").checked
   let space = 6 + Math.floor(document.getElementById("featuresize").value/10)
   let pad = 24 + Math.random()*90
@@ -20065,7 +20077,7 @@ function gridpaper (canvas) { // grid paper
     canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let W = canvas.width, H = canvas.height
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  let color = getselectedcolor()
   let alt = document.getElementById("grungy").checked
   let space = 6 + Math.floor(document.getElementById("featuresize").value/10)
   let pad = 32
@@ -20073,7 +20085,7 @@ function gridpaper (canvas) { // grid paper
   let colors = ["#ed6060", "#0000ba", "0000ed", "#ed0000", "#000000"]
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let alpha = ctx.globalAlpha
-  ctx.strokeStyle = randomPick(getCurrentPalette())
+  ctx.strokeStyle = getselectedcolor()
   ctx.lineWidth = randomPick([1,2,3,4,5])
  // ctx.clearRect(0,0,W,H)
   ctx.fillStyle = color
@@ -20295,7 +20307,7 @@ function cuttingboard () { // white grid on teal
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let W = canvas.width, H = canvas.height
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  let color = getselectedcolor()
   let space = 6 + Math.floor(document.getElementById("featuresize").value/10)
   let mod = randomPick([4,5,6])
   let alpha = document.getElementById("opacity").value
@@ -20342,16 +20354,16 @@ function cuttingboard () { // white grid on teal
   ctx.closePath()
   ctx.stroke()
   let fs = document.getElementById("featuresize").value
-  randomPick(getCurrentPalette()) // was paintcolor = "#ddffff"
+  getselectedcolor() = "#ddffff"
   document.getElementById("opacity").value = 17
   haze()
-  randomPick(getCurrentPalette()) // was paintcolor = "#ddffff"
+  getselectedcolor() = "#ddffff"
   document.getElementById("featuresize").value = 170
   document.getElementById("opacity").value = 70
   rays()
-  randomPick(getCurrentPalette()) // was paintcolor = "#006060"
+  getselectedcolor() = "#006060"
   rays()
-  randomPick(getCurrentPalette()) // was paintcolor = color
+  
   document.getElementById("opacity").value = alpha
   ctx.globalAlpha = document.getElementById("opacity").value/100
   document.getElementById("featuresize").value = fs
@@ -20361,14 +20373,14 @@ function gridpaper_og () { // grid paper
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let W = canvas.width, H = canvas.height
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  let color = getselectedcolor()
   let alt = document.getElementById("grungy").checked
   let space = 6 + Math.floor(document.getElementById("featuresize").value/10)
   let pad = 8
   let mod = randomPick([4,5,6])
   let colors = ["#ed6060", "#6060ba", "#6060ed", "#ed6060", "#000000"]
   ctx.globalAlpha = document.getElementById("opacity").value/200
-  ctx.strokeStyle = randomPick(colors)
+  ctx.strokeStyle = getselectedcolor()
   ctx.lineWidth = 1
   if (alt)
     pad = 42
@@ -20439,7 +20451,7 @@ function dividedPad () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  let color = getselectedcolor()
   let alt = document.getElementById("grungy").checked
   let pad = 2
   let H = canvas.height, W = canvas.width
@@ -20494,7 +20506,7 @@ function dividedPad () {
   ctx.closePath()
   ctx.stroke()*/
   ctx.lineWidth = 1
-  ctx.strokeStyle = randomPick(colors)//"#6060ed"
+  ctx.strokeStyle = getselectedcolor()//"#6060ed"
   let i = 0
   x = 2+pad, y = 100+pad
   while (y < canvas.height-pad) {
@@ -20522,7 +20534,7 @@ function thisSpace () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  let color = getselectedcolor()
   let alt = document.getElementById("grungy").checked
   ctx.globalAlpha = document.getElementById("opacity").value/100
 
@@ -20559,7 +20571,7 @@ function thisSpace () {
   ctx.shadowBlur = 0
   ctx.shadowOffsetX = 0
   ctx.shadowOffsetY = 0
-  ctx.strokeStyle = randomPick(colors)
+  ctx.strokeStyle = getselectedcolor()
   ctx.lineWidth = 3 + Math.floor(Math.random() * 6)
   
   ctx.beginPath()
@@ -20607,14 +20619,14 @@ function survey () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  let color = getselectedcolor()
   let alt = document.getElementById("grungy").checked
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let H = canvas.height, W = canvas.width
   ctx.fillStyle = color
   let colors = getCurrentPalette()
   ctx.lineWidth = 3
-  ctx.strokeStyle = randomPick(colors)
+  ctx.strokeStyle = getselectedcolor()
   ctx.fillStyle = ctx.strokeStyle
   let agree = ["1 [  ] strongly disagree", "2 [  ] somewhat disagree", "3 [  ] neutral", "4 [  ] somewhat agree", "5 [  ] strongly agree"]
   let text =""
@@ -20651,14 +20663,14 @@ function checklist () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  let color = getselectedcolor()
   let alt = document.getElementById("grungy").checked
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let H = canvas.height, W = canvas.width
   ctx.fillStyle = color
   let colors = getCurrentPalette()
   ctx.lineWidth = 3
-  ctx.strokeStyle = randomPick(colors)
+  ctx.strokeStyle = getselectedcolor()
   ctx.fillStyle = ctx.strokeStyle
   let w = Math.floor(W/8.5)
   let h = Math.floor(H/20)
@@ -20690,7 +20702,7 @@ function requirements () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  let color = getselectedcolor()
   let alt = document.getElementById("grungy").checked
   ctx.globalAlpha = document.getElementById("opacity").value/100
 
@@ -20728,7 +20740,7 @@ function requirements () {
   ctx.shadowOffsetX = 0
   ctx.shadowOffsetY = 0
   ctx.lineWidth = 7
-  ctx.strokeStyle = randomPick(colors)
+  ctx.strokeStyle = getselectedcolor()
   let text = "R E Q U I R E M E N T S"
   let face = "Arial"
   ctx.font = "800 "+(20)+"pt " + face
@@ -20789,7 +20801,7 @@ function numberShow () {
   let pad = 30 + Math.floor(Math.random() * 12)
   let linespace = 34 + Math.floor(pet(16))
 
-  let color = randomPick(getCurrentPalette())
+  let color = getselectedcolor()
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.lineWidth = 1
   let i = 0, x = pad+2, y = pad+94
@@ -20818,7 +20830,7 @@ function crosswordPad (canvas) {
     canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  let color = getselectedcolor()
   let alt = document.getElementById("grungy").checked
   let W = canvas.width, H = canvas.height
   let pad = 24 + Math.floor(Math.random() * 44)
@@ -20896,7 +20908,7 @@ function crosswordPad (canvas) {
       if (y > linespace*MULT)
         y = pad
   }
-  randomPick(getCurrentPalette()) // was paintcolor = color
+  
 }
 
 function isolatedBlank (i,j,filled) {
@@ -20989,7 +21001,7 @@ function griddiagd (canvas) {
   let pad = 0
   if (document.getElementById("grungy").checked)
     pad = divs * 2
-  ctx.strokeStyle = randomPick(colors)
+  ctx.strokeStyle = getselectedcolor()
   ctx.lineCap = "square"
   //ctx.lineJoin = "meter"
   let i = 0, x = 0, y = 0
@@ -21040,7 +21052,7 @@ function griddiag (canvas) {
   let pad = 0
   if (document.getElementById("grungy").checked)
     pad = divs * 2
-  ctx.strokeStyle = randomPick(colors)
+  ctx.strokeStyle = getselectedcolor()
   ctx.lineCap = "square"
   //ctx.lineJoin = "meter"
   let i = 0, x = 0, y = 0
@@ -21105,7 +21117,7 @@ function gridLinear (canvas) {
     canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/10
-  let color = randomPick(getCurrentPalette(true, 13))
+  let color = getselectedcolor()
   let alt = document.getElementById("grungy").checked
   let W = canvas.width, H = canvas.height
   let pad = 24 + Math.floor(Math.random() * 44)
@@ -21146,7 +21158,7 @@ function gridLinear (canvas) {
       else
       ctx.lineWidth = 1
   }
-  randomPick(getCurrentPalette()) // was paintcolor = color
+  
 }
 
 function gridLog (canvas) {
@@ -21154,7 +21166,7 @@ function gridLog (canvas) {
     canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 //+ document.getElementById("featuresize").value/10
-  let color = randomPick(getCurrentPalette(true, 13))
+  let color = getselectedcolor()
   let alt = document.getElementById("grungy").checked
   let W = canvas.width, H = canvas.height
   let pad = 24 + Math.floor(Math.random() * 36)
@@ -21165,7 +21177,7 @@ function gridLog (canvas) {
   let LS = linespace
   let spacer = avail/55 * 1//linespace
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = color
+  ctx.strokeStyle = getselectedcolor()
   let i = 0, x = pad, y = pad
   while (i < divisions*10+1) {
     ctx.beginPath()
@@ -21193,7 +21205,7 @@ function gridLog (canvas) {
     if (i % 10 === 0)
       linespace = LS
   }
-  randomPick(getCurrentPalette()) // was paintcolor = color
+  
 }
 
 
@@ -21203,7 +21215,7 @@ function scratchout () {
   let fs = 7 + document.getElementById("featuresize").value/10
   let D = 1 + document.getElementById("number").value/5000
   let bump = fs/2
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  let color = getselectedcolor()
   let alt = document.getElementById("grungy").checked
   let W = canvas.width, H = canvas.height
   let pad = 4 + Math.floor(Math.random() * 2)
@@ -21211,7 +21223,7 @@ function scratchout () {
   ctx.fillStyle = "#ffffff"//color
   //let colors = ["#ed6060", "#6060ba", "#6060ed", "#ed6060", "#000000"]
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = randomPick(getCurrentPalette())
+  ctx.strokeStyle = getselectedcolor()
   ctx.lineJoin = "round"
   ctx.lineWidth = Math.floor(1 + fs/20)
   ctx.imageSmoothingQuality = "high"
@@ -21243,17 +21255,15 @@ function aletter () {
   let x = LASTCLICK[0], y = LASTCLICK[1]
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  let fs = 7 + document.getElementById("featuresize").value/10
+  let fs = 7 + document.getElementById("featuresize").value/8
   let D = 1 + document.getElementById("number").value/4000
   let bump = fs/2
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  let color = getselectedcolor()
   let alt = document.getElementById("grungy").checked
   let W = canvas.width, H = canvas.height
   let pad = 4 + Math.floor(Math.random() * 2)
   let linespace = 18 + Math.floor(pet(8))
-  ctx.fillStyle = "#ffffff"//color
-  //ctx.fillRect(0,0,W,H)
-  //let colors = ["#ed6060", "#6060ba", "#6060ed", "#ed6060", "#000000"]
+ // ctx.fillStyle = "#ffffff"//color
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.strokeStyle = color
   ctx.lineJoin = "round"
@@ -21452,7 +21462,7 @@ function musicpaper () {
   ctx.fillStyle = "#ffffff"//color
   let colors = ["#ed6060", "#6060ba", "#6060ed", "#ed6060", "#000000"]
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = randomPick(colors)
+  ctx.strokeStyle = getselectedcolor()
   ctx.lineWidth = 1
   let i = 0, x = pad+2, y = pad+94
   
@@ -21471,7 +21481,7 @@ function musicpaper () {
      // ctx.fillStyle = color
     }
   }
-  //randomPick(getCurrentPalette()) // was paintcolor = color
+  //
 }
 
 function lyrics (y, d) {
@@ -21479,7 +21489,7 @@ function lyrics (y, d) {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   //let d = 3 + document.getElementById("featuresize").value/10
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  let color = getselectedcolor()
   let alt = document.getElementById("grungy").checked
   let W = canvas.width, H = canvas.height
   let pad = 4 + Math.floor(Math.random() * 2)
@@ -21541,7 +21551,7 @@ function music (y, d) {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   //let d = 3 + document.getElementById("featuresize").value/10
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  let color = getselectedcolor()
   let alt = document.getElementById("grungy").checked
   let W = canvas.width, H = canvas.height
   let pad = 4 + Math.floor(Math.random() * 2)
@@ -21568,16 +21578,142 @@ function music (y, d) {
       x += d*3
     i++
   }
-  //randomPick(getCurrentPalette()) // was paintcolor = color
+  //
 }
 
+function tablePadInset () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
+  let alt = document.getElementById("grungy").checked
+  let W = canvas.width, H = canvas.height
+  let pad = 40 + Math.random() * 30
+  let linespace = 44 + Math.floor(pet(16))
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctx.strokeStyle = "#6060ed"
+  ctx.fillStyle = 'white'
+  ctx.fillRect(0,0,W,H)
+  ctx.lineWidth = randomPick([1,2])
+  let i = 0, x = pad, y = pad+60
+  ctx.strokeStyle = "#ee6060"
+  while (i < 1) {
+    ctx.beginPath()
+    ctx.moveTo(x, y)
+    ctx.lineTo(canvas.width-pad-2, y)
+    ctx.closePath()
+    ctx.stroke()
+    y += linespace/8
+    i++
+  }
+  y+= 60
+  while (y < canvas.height-pad) {
+    ctx.beginPath()
+    ctx.moveTo(x+5, y)
+    ctx.lineTo(canvas.width-pad-7, y)
+    ctx.closePath()
+    ctx.stroke()
+    y += linespace
+    ctx.strokeStyle = "#6060ed"
+  }
+  ctx.strokeStyle = "#ee6060"
+  i = 0, y = pad+60, x = pad
+  for (; i < 2; i++) {
+    ctx.beginPath()
+    ctx.moveTo(x, y)
+    ctx.lineTo(x, canvas.height-pad)
+    ctx.closePath()
+    ctx.stroke()
+    x += 5
+  }
 
+  i = 0, y = pad+60, x = pad
+  for (; i < 7; i++) {
+    ctx.beginPath()
+    ctx.moveTo(x, y)
+    ctx.lineTo(x, canvas.height-pad)
+    ctx.closePath()
+    ctx.stroke()
+    x += 138
+  }
+  x = canvas.width-pad-2, y = pad+60
+  ctx.beginPath()
+  ctx.moveTo(x, y)
+  ctx.lineTo(x, canvas.height-pad)
+  ctx.closePath()
+  ctx.stroke()
+  x = canvas.width-pad-7, y = pad+60
+  ctx.beginPath()
+  ctx.moveTo(x, y)
+  ctx.lineTo(x, canvas.height-pad)
+  ctx.closePath()
+  ctx.stroke()
+}
+
+function tablePad () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
+  let alt = document.getElementById("grungy").checked
+  let W = canvas.width, H = canvas.height
+  let pad = 4 + Math.floor(Math.random() * 2)
+  let linespace = 34 + Math.floor(pet(16))
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  ctx.strokeStyle = "#6060ed"
+  ctx.lineWidth = randomPick([1,2])
+  let i = 0, x = pad+2, y = pad+94
+  ctx.strokeStyle = "#ee6060"
+  while (i < 1) {
+    ctx.beginPath()
+    ctx.moveTo(x, y)
+    ctx.lineTo(canvas.width-pad-2, y)
+    ctx.closePath()
+    ctx.stroke()
+    y += linespace/8
+    i++
+  }
+  
+  while (y < canvas.height-pad) {
+    ctx.beginPath()
+    ctx.moveTo(x, y)
+    ctx.lineTo(canvas.width-pad-2, y)
+    ctx.closePath()
+    ctx.stroke()
+    y += linespace
+    ctx.strokeStyle = "#6060ed"
+  }
+  ctx.strokeStyle = "#ee6060"
+  i = 0, y = pad+94, x = 96
+  for (; i < 2; i++) {
+    ctx.beginPath()
+    ctx.moveTo(x, y)
+    ctx.lineTo(x, canvas.height-pad)
+    ctx.closePath()
+    ctx.stroke()
+    x += 5
+  }
+
+  i = 0, y = pad+94, x = 96+148
+  for (; i < 6; i++) {
+    ctx.beginPath()
+    ctx.moveTo(x, y)
+    ctx.lineTo(x, canvas.height-pad)
+    ctx.closePath()
+    ctx.stroke()
+    x += 148
+  }
+  x -= 143, y = pad+94
+  ctx.beginPath()
+  ctx.moveTo(x, y)
+  ctx.lineTo(x, canvas.height-pad)
+  ctx.closePath()
+  ctx.stroke()
+}
 
 function linedPad () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  let color = getselectedcolor()
   let alt = document.getElementById("grungy").checked
   let W = canvas.width, H = canvas.height
   let pad = 4 + Math.floor(Math.random() * 2)
@@ -21622,20 +21758,20 @@ function linedPad () {
     ctx.stroke()
     x += 5
   }
-  randomPick(getCurrentPalette()) // was paintcolor = color
+  
 }
 
 function postcard () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  let color = getselectedcolor()
   let alt = document.getElementById("grungy").checked
   let W = canvas.width, H = canvas.height
   let pad = 24, hpad = 7 * pad
   let linespace = 34 + Math.floor(pet(16))
   let colors = ["#6060ba", "#6060ed", "#000000", "#2020cc"]
-  ctx.strokeStyle = randomPick(colors)
+  ctx.strokeStyle = getselectedcolor()
 
   ctx.globalAlpha = document.getElementById("opacity")/100
   ctx.shadowColor = "#403030"
@@ -21710,7 +21846,7 @@ function postcard () {
   ctx.shadowBlur = 0
   ctx.shadowOffsetY = 0
   ctx.shadowOffsetX = 0
-  randomPick(getCurrentPalette()) // was paintcolor = color
+  
 }
 
 function sold () {
@@ -21735,7 +21871,7 @@ function oiloncanvas () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  let color = getselectedcolor()
   let alt = document.getElementById("grungy").checked
   let W = canvas.width, H = canvas.height
   let hpad = 20 + Math.random()*6, pad = 7 * hpad + pet(33)
@@ -21839,7 +21975,7 @@ function indexcard () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  let color = getselectedcolor()
   let alt = document.getElementById("grungy").checked
   let W = canvas.width, H = canvas.height
   let pad = 24, hpad = 7 * pad
@@ -21869,7 +22005,7 @@ function indexcard () {
     y += 36
     ctx.strokeStyle =  "#2020cc"
   }
-  randomPick(getCurrentPalette()) // was paintcolor = color
+  
 }
 
 function photoBook () {
@@ -21877,7 +22013,7 @@ function photoBook () {
   let ctx = canvas.getContext("2d");
   const H = canvas.height, W = canvas.width
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  let color = getselectedcolor()
   let alpha = document.getElementById("opacity").value
   let mode = ctx.globalCompositeOperation
   let small = true, half = true
@@ -21907,7 +22043,7 @@ function perforations () {
   let ctx = canvas.getContext("2d");
   const H = canvas.height, W = canvas.width
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  let color = getselectedcolor()
   let alpha = document.getElementById("opacity").value
   let mode = ctx.globalCompositeOperation
   let small = true, half = true
@@ -22196,7 +22332,7 @@ function singlePage () {
   let ctx = canvas.getContext("2d");
   const H = canvas.height, W = canvas.width
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  let color = getselectedcolor()
   let alpha = document.getElementById("opacity").value
   ctx.globalAlpha = alpha/100
   let mode = ctx.globalCompositeOperation
@@ -22296,7 +22432,7 @@ function ragged (ctx,endX,endY,x,y, d) {
 
 function raggedX (ctx,endX,endY,x,y) {
   let inc = 3 + Math.floor(document.getElementById("featuresize").value/10)
-  let p = 1 + document.getElementById("number").value/1000
+  let p = 10//1 + document.getElementById("number").value/1000
   let xdiff = x - endX, ydiff = y - endY
   let D = distance(x,y,endX,endY)
   let Dy = (endY-y)
@@ -22323,7 +22459,7 @@ function floppyPage () { // half
   let ctx = canvas.getContext("2d");
   const H = canvas.height, W = canvas.width
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  let color = getselectedcolor()
   let alpha = document.getElementById("opacity").value
   ctx.globalAlpha = alpha/100
   let mode = ctx.globalCompositeOperation
@@ -22416,7 +22552,7 @@ function spiralbound () { //
   let ctx = canvas.getContext("2d");
   const H = canvas.height, W = canvas.width
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  let color = getselectedcolor()
   let alpha = document.getElementById("opacity").value
   let mode = ctx.globalCompositeOperation
   let small = true, half = true
@@ -22530,7 +22666,7 @@ function letterE () {
   let W = canvas.width, H = canvas.height
   let colors = shuffle(getCurrentPalette())
   let x = 50, y = 50, len = 70
-  ctx.strokeStyle = randomPick(colors)
+  ctx.strokeStyle = getselectedcolor()
   ctx.lineWidth = 7
   ctx.beginPath()
   ctx.moveTo(x+pet(5),y)
@@ -22608,7 +22744,7 @@ function labyrinth () {
   ctx.lineWidth = 2 + Math.floor(Math.random() * 40)
   ctx.lineCap = "round"
   ctx.lineJoin = "round"
-  ctx.strokeStyle = randomPick(colors)
+  ctx.strokeStyle = getselectedcolor()
   let bump = randomPick([1.25, 1.5, 2, 1, 0.5])
   let pad = 40, r = W/2.5, offset = ctx.lineWidth * 1.7
   let x = W/2, y = H/2
@@ -22644,7 +22780,7 @@ function messagepad () { // while you were ouy
   ctx.clearRect(0,0,W,H)
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.lineWidth = 5
-  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor//"#ffc0cb"
+  ctx.fillStyle = getselectedcolor()//"#ffc0cb"
   //ctx.fillRect(0,0,W,H)
   ctx.strokeStyle = "#000000"
   let pad = 40
@@ -22660,7 +22796,7 @@ function messagepad () { // while you were ouy
   ctx.fillStyle = "#505050"
   ctx.fillRect(W-pad-218, pad*1.4-8, 204, 53)
   ctx.globalAlpha *= 2
-  //ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  //ctx.fillStyle = getselectedcolor()
  // ctx.fillRect(W-pad-60, pad+16, 40, 40) // check box
   ctx.strokeRect(W-pad-60, pad+16, 40, 40) // check box
   let text = "Urgent"
@@ -22757,7 +22893,7 @@ function calendar () {
     ctx.lineTo(x+len+pet(5), y+len/2)
     ctx.lineTo(x, y+len/2+pet(5))
     ctx.closePath()
-    ctx.strokeStyle = randomPick(colors)
+    ctx.strokeStyle = getselectedcolor()
     ctx.fillStyle = randomPick(colors)
     if (Math.random() > 0.2) {
       let face = "AmericanTypewriter-Bold"
@@ -22778,7 +22914,7 @@ function calendar () {
     ctx.lineTo(x+len+pet(5), y+len)
     ctx.lineTo(x, y+len+pet(5))
     ctx.closePath()
-    ctx.strokeStyle = randomPick(colors)
+    ctx.strokeStyle = getselectedcolor()
     ctx.fillStyle = randomPick(colors)
     if ((row === 1 && i < day) || (row === 6 && col > lastDayOfMonth+1))
       ;
@@ -22820,7 +22956,7 @@ function periodictable () {
     ctx.lineTo(x+len+pet(5), y+len)
     ctx.lineTo(x, y+len+pet(5))
     ctx.closePath()
-    ctx.strokeStyle = randomPick(colors)
+    ctx.strokeStyle = getselectedcolor()
     ctx.fillStyle = randomPick(colors)
     if ((row === 8) || (row > 7 && (col < 4 || col > 16)) || ((row === 2 || row ===3) && (col > 2 && col < 13))|| (row === 1 && (col>1 && col<18)))
       ;
@@ -22970,10 +23106,10 @@ function interdepartmental (canvas) { // ideal 8 X 10
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 2 //+ document.getElementById("featuresize").value/4
   let alpha = document.getElementById("opacity").value
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  let color = getselectedcolor()
   let BACK = document.getElementById("grungy").checked
   let small = true, half = true
-  randomPick(getCurrentPalette()) // was paintcolor = "#eaae3a"
+  getselectedcolor() = "#eaae3a"
   ctx.fillStyle = "#eaae3a"
   ctx.fillRect(0,0,canvas.width, canvas.height)
   let face = "helvetica"
@@ -23187,7 +23323,7 @@ function interdepartmental (canvas) { // ideal 8 X 10
   ctx.shadowOffsetX = 0
   ctx.shadowOffsetY = 0
   document.getElementById("opacity").value = alpha
-  randomPick(getCurrentPalette()) // was paintcolor = color
+  
 }
 
 function roundedRectFrame (x, y, w, h, r, ctx) {
@@ -23368,7 +23504,7 @@ function moleskine2 (options) { // 3D
   //rc()
   stiches(20)
   document.getElementById("opacity").value = alpha
-  //randomPick(getCurrentPalette()) // was paintcolor = color
+  //
 }
 
 function randomClue (PT) {
@@ -23573,7 +23709,7 @@ function filmFrame () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let alpha = document.getElementById("opacity").value
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  let color = getselectedcolor()
   let W = canvas.width, H = canvas.height
   let scale = W/1080
   ctx.strokeStyle = "#201010"
@@ -23648,7 +23784,7 @@ function moleText (canvas) {
     canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let alpha = document.getElementById("opacity").value
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  let color = getselectedcolor()
   let small = true, half = true
   let scale = canvas.height/1080
   ctx.strokeStyle = "#ccccdc"
@@ -23694,7 +23830,7 @@ function moleDates (d) {
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
   let alpha = document.getElementById("opacity").value
-  let color = "#ff0000"//randomPick(getCurrentPalette()) // was paintcolor
+  let color = "#ff0000"//getselectedcolor()
   let small = true, half = true
   let scale = canvas.height/1080
   ctx.strokeStyle = "#ccccdc"
@@ -23804,7 +23940,7 @@ function nested (color, lw) {
   if (lw)
     ctx.lineWidth = lw
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.strokeStyle = getselectedcolor()
   if (color)
     ctx.strokeStyle = color
   ctx.lineCap = 'square'
@@ -23858,7 +23994,7 @@ function neckerline () {
   let margin = W/20
   let w4 = (W-2*margin)/3//(2+Math.floor(Math.random() * 3))//document.getElementById("rows").value
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.strokeStyle = getselectedcolor()
   ctx.lineCap = 'round'
   ctx.lineJoin = 'round'
 
@@ -23922,7 +24058,7 @@ function pyrm () {
   let margin = W/20
   let w4 = (W-2*margin)/3//(2+Math.floor(Math.random() * 3))//document.getElementById("rows").value
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.strokeStyle = getselectedcolor()
   ctx.lineCap = 'round'
   ctx.lineJoin = 'round'
   let points = []
@@ -23978,7 +24114,7 @@ function elle () {
   let colors = shuffle(['#ff0000', '#00ff00', '#FFFF00', '#FFA500', '#800080', "#0000ff"])
   let grunge = false//document.getElementById("grungy").checked
   
-  ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette())) // was paintcolor)
+  ctx.fillStyle = randomGradient(canvas, getselectedcolor()) // was paintcolor)
 
   ctx.beginPath();
   ctx.moveTo(0+margin, W-w4-margin) // square in lower left
@@ -24042,7 +24178,7 @@ function flower () {
   let xf = w4 //* 1.0
   let r = W
   let inc = W/2
-  ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
+  ctx.fillStyle = randomGradient(canvas, getselectedcolor())
   let i = 0, x = 0, y = 0
 
   if (Math.random() > 0.5) {
@@ -24140,7 +24276,7 @@ function folded () {
   let p4 = [w4+ margin, W-margin]
   
   
-  ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
+  ctx.fillStyle = randomGradient(canvas, getselectedcolor())
   ctx.beginPath();
   ctx.moveTo(p1[0], p1[1]) // \
   ctx.lineTo(p2[0], p2[1])
@@ -24154,7 +24290,7 @@ function folded () {
   let maxloop = 7 + +(2+Math.floor(Math.random() * 10))//
   let i = 0
   for (;i < maxloop; i++) {
-    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
+    ctx.fillStyle = randomGradient(canvas, getselectedcolor())
     ctx.beginPath();
     ctx.moveTo(p4[0], p4[1]) // /
     ctx.lineTo(p3[0], p3[1])
@@ -24170,7 +24306,7 @@ function folded () {
     p3[0] += xf
     p4[0] += xf
     
-    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
+    ctx.fillStyle = randomGradient(canvas, getselectedcolor())
     ctx.beginPath();
     ctx.moveTo(p1[0], p1[1])
     ctx.lineTo(p2[0], p2[1])
@@ -24203,7 +24339,7 @@ function pyramid () {
   
   if (Math.random() > 0.5) {
    // left
-    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
+    ctx.fillStyle = randomGradient(canvas, getselectedcolor())
     ctx.beginPath();
     ctx.moveTo(p1[0], p1[1]) // bottom left
     ctx.lineTo(p2[0], p2[1]) // up
@@ -24213,7 +24349,7 @@ function pyramid () {
       ctx.fillStyle = colors[0]
     ctx.fill()
     // right
-    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
+    ctx.fillStyle = randomGradient(canvas, getselectedcolor())
     ctx.beginPath();
     ctx.moveTo(p2[0], p2[1])
     ctx.lineTo(p3[0], p3[1]) // up
@@ -24224,7 +24360,7 @@ function pyramid () {
     ctx.fill()
     
     
-    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
+    ctx.fillStyle = randomGradient(canvas, getselectedcolor())
     ctx.beginPath();
     ctx.moveTo(p2[0], p2[1]) // bottom left
     ctx.lineTo(p3[0], p3[1]) // up
@@ -24235,7 +24371,7 @@ function pyramid () {
     ctx.fill()
     
     // top
-    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
+    ctx.fillStyle = randomGradient(canvas, getselectedcolor())
     ctx.beginPath();
     ctx.moveTo(p1[0], p1[1]) // bottom left
     ctx.lineTo(p2[0], p2[1]) //peak
@@ -24245,7 +24381,7 @@ function pyramid () {
       ctx.fillStyle = colors[3]
     ctx.fill()
    
-    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
+    ctx.fillStyle = randomGradient(canvas, getselectedcolor())
     ctx.beginPath();
     ctx.moveTo(p1[0], p1[1]) // bottom left
     ctx.lineTo(p4[0], p4[1]) // up
@@ -24258,7 +24394,7 @@ function pyramid () {
     
  } else {
    
-    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
+    ctx.fillStyle = randomGradient(canvas, getselectedcolor())
     ctx.beginPath();
     ctx.moveTo(p1[0], p1[1]) // bottom left
     ctx.lineTo(p4[0], p4[1]) // up
@@ -24269,7 +24405,7 @@ function pyramid () {
       ctx.fillStyle = colors[5]
     ctx.fill()
     
-    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
+    ctx.fillStyle = randomGradient(canvas, getselectedcolor())
     ctx.beginPath();
     ctx.moveTo(p2[0], p2[1]) // bottom left
     ctx.lineTo(p3[0], p3[1]) // up
@@ -24280,7 +24416,7 @@ function pyramid () {
     ctx.fill()
     
     // top
-    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
+    ctx.fillStyle = randomGradient(canvas, getselectedcolor())
     ctx.beginPath();
     ctx.moveTo(p1[0], p1[1]) // bottom left
     ctx.lineTo(p2[0], p2[1]) //peak
@@ -24290,7 +24426,7 @@ function pyramid () {
       ctx.fillStyle = colors[3]
     ctx.fill()
    
-    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
+    ctx.fillStyle = randomGradient(canvas, getselectedcolor())
     ctx.beginPath();
     ctx.moveTo(p1[0], p1[1]) // bottom left
     ctx.lineTo(p2[0], p2[1]) // up
@@ -24300,7 +24436,7 @@ function pyramid () {
       ctx.fillStyle = colors[0]
     ctx.fill()
     // right
-    ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
+    ctx.fillStyle = randomGradient(canvas, getselectedcolor())
     ctx.beginPath();
     ctx.moveTo(p2[0], p2[1])
     ctx.lineTo(p3[0], p3[1]) // up
@@ -24677,7 +24813,7 @@ function strokes () {
   let x = 0, y = 0, angle = 4.7;
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.strokeStyle = getselectedcolor()
   ctx.save()
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let maxalpha = ctx.globalAlpha
@@ -24852,8 +24988,8 @@ function strokesH () {
   let x = 0, y = 0, angle = 4.7;
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.strokeStyle = getselectedcolor()
+  let color = getselectedcolor()
   ctx.save()
   ctx.globalAlpha = document.getElementById("opacity").value/200
   let maxalpha = ctx.globalAlpha
@@ -24928,7 +25064,7 @@ function birds () {
   let ctx = canvas.getContext("2d");
   let centerx = ctx.canvas.width / 2;
   let centery = ctx.canvas.height / 2;
-  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.fillStyle = getselectedcolor()
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let birdradius = 3 + document.getElementById("featuresize").value/20
   let br = birdradius
@@ -25051,7 +25187,7 @@ function rothko () {
   let rows = 3
   let margin = 16 + Math.random() * rows * 9
   let gap = margin/4
-  let oc = ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  let oc = ctx.fillStyle = getselectedcolor()
   let op = document.getElementById("opacity").value
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let grunge = document.getElementById("grungy").checked
@@ -25122,10 +25258,10 @@ function rothko () {
   f = randomPick(functions)
   window[f](canvas)
   document.getElementById("opacity").value = 20 + pet(10)
-  randomPick(getCurrentPalette()) // was paintcolor =  "#000000"
+  getselectedcolor() =  "#000000"
   haze()
   document.getElementById("opacity").value = op
-  randomPick(getCurrentPalette()) // was paintcolor = oc
+  getselectedcolor() = oc
   refreshMode()
 }
 
@@ -25148,7 +25284,7 @@ function grid () {
   let ctx = canvas.getContext("2d");
   let w = canvas.width, h = canvas.height
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.strokeStyle = getselectedcolor()
   ctx.lineWidth = Math.floor(1 +  document.getElementById("featuresize").value/20)
   let spacing = Math.floor(1 + (document.getElementById("number").value/200))
   let ratio = 1
@@ -25234,7 +25370,7 @@ function skritches () {
   let W = canvas.width
   let H = canvas.height
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.strokeStyle = getselectedcolor()
   ctx.lineWidth = 1.0
   let x = Math.random() * W, y = Math.random() * H
   if (grunge) {
@@ -25274,7 +25410,7 @@ function rays () {
   let W = canvas.width
   let H = canvas.height
   ctx.globalAlpha = document.getElementById("opacity").value/200
-  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.strokeStyle = getselectedcolor()
   ctx.lineWidth = 0.25
   let x = Math.random() * W, y = Math.random() * H
   if (grunge) {
@@ -25305,7 +25441,7 @@ function curveAcross () {
   let ctx = canvas.getContext("2d");
   let D =  (5 + Math.floor(document.getElementById("featuresize").value/80))
   let grunge = document.getElementById("grungy").checked
-  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.strokeStyle = getselectedcolor()
   ctx.lineWidth = 12
   ctx.lineCap = "round"
   let W = canvas.width
@@ -25369,7 +25505,7 @@ function roadmap () {
     for(; i < points.length; i++) {
       ctx.lineTo(points[i][0], points[i][1])
     }
-    ctx.strokeStyle = randomPick(colors)
+    ctx.strokeStyle = getselectedcolor()
     ctx.globalAlpha = 0.4
     ctx.stroke();
     
@@ -25757,8 +25893,8 @@ function walk () {
   let H = canvas.height
   ctx.globalAlpha = document.getElementById("opacity").value/100
  // clip()
- ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
- ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
+ ctx.fillStyle = getselectedcolor()
+ ctx.strokeStyle = getselectedcolor()
   let x = 2, y = 100
   let p = 1+D*1
   let i = 0
@@ -27970,7 +28106,7 @@ function divRects (canvas) {
   let W = canvas.width
   let H = canvas.height
   ctx.globalAlpha = document.getElementById("opacity").value/200
-  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.fillStyle = getselectedcolor()
   ctx.lineWidth = LW + 1
   let x = inset, y = inset
   let div = 6+ Math.floor(Math.random()*20)
@@ -27998,8 +28134,8 @@ function scale (canvas) {
   let W = canvas.width
   let H = canvas.height
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
-  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.strokeStyle = getselectedcolor()
+  ctx.fillStyle = getselectedcolor()
   ctx.lineCap = "square"
   ctx.lineWidth = LW
   let x = 3*inset + pet(inset), x0 = x
@@ -28045,8 +28181,8 @@ function polar (canvas) {
   let W = canvas.width
   let H = canvas.height
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
-  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.strokeStyle = getselectedcolor()
+  ctx.fillStyle = getselectedcolor()
   ctx.lineCap = "square"
   ctx.lineWidth = LW
   let x = (Math.random() > 0.5)? 0: W;
@@ -28097,8 +28233,8 @@ function pairedwords () {
   let LW = 1 + Math.floor(document.getElementById("featuresize").value/50)
   ctx.lineWidth = LW
   ctx.lineCap = "square"
-  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
-  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.strokeStyle = getselectedcolor()
+  ctx.fillStyle = getselectedcolor()
   let pairs =
   {"dir":"ls",
   "\\r":"\\n",
@@ -28165,8 +28301,8 @@ function histograph () {
   let W = canvas.width
   let H = canvas.height
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
-  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.strokeStyle = getselectedcolor()
+  ctx.fillStyle = getselectedcolor()
   ctx.lineCap = "square"
   ctx.lineWidth = LW + 3
   let x = inset+12, y = H/2
@@ -28207,7 +28343,7 @@ function trendchart (canvas) {
   let H = canvas.height
   let a = ctx.globalAlpha = document.getElementById("opacity").value/100
   let colors = getCurrentPalette()
-  ctx.strokeStyle = randomPick(colors) 
+  ctx.strokeStyle = getselectedcolor() 
   ctx.fillStyle = randomPick(colors) 
   ctx.lineCap = "butt"
   ctx.lineWidth = LW + 1
@@ -28223,7 +28359,7 @@ function trendchart (canvas) {
   ctx.stroke()
   
   let cpx = inset*2 + Math.random() * (W-inset*4), cpy = inset*2 + Math.random() * (H-inset*4)
-  ctx.strokeStyle = randomPick(colors)
+  ctx.strokeStyle = getselectedcolor()
   ctx.beginPath()
   ctx.moveTo(inset+LW*2, inset + Math.random() * (H-2*inset))
   //ctx.lineTo(W-inset-LW*2, inset + Math.random() * (H-2*inset))
@@ -28254,8 +28390,8 @@ function stepchart (canvas) {
   let W = canvas.width
   let H = canvas.height
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
-  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.strokeStyle = getselectedcolor()
+  ctx.fillStyle = getselectedcolor()
   ctx.lineCap = "butt"
   ctx.lineWidth = LW + 1
   let x = inset, y = H/2
@@ -28352,8 +28488,8 @@ function ctrlchart (canvas) {
   let W = canvas.width
   let H = canvas.height
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
-  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.strokeStyle = getselectedcolor()
+  ctx.fillStyle = getselectedcolor()
   ctx.lineCap = "square"
   ctx.lineWidth = LW + 1
   let x = inset, y = H/2
@@ -28403,7 +28539,7 @@ function ctrlchart (canvas) {
   ctx.closePath()
   ctx.stroke()
   
-  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.strokeStyle = getselectedcolor()
   y = H/2 + pet(H/8)
   let w = W/40, i = 0
   while (x < W-inset-w) {
@@ -28553,8 +28689,8 @@ function form2 (canvas) {
   let W = canvas.width
   let H = canvas.height
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
-  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.strokeStyle = getselectedcolor()
+  ctx.fillStyle = getselectedcolor()
   ctx.lineCap = "square"
   let x = 0, y = 0
   ctx.lineWidth = LW
@@ -28635,7 +28771,7 @@ function form1 (canvas) {
   let W = canvas.width
   let H = canvas.height
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.strokeStyle = getselectedcolor()
   ctx.lineWidth = LW + 1
   let x = 0, y = 0
   ctx.strokeRect(inset,inset,W-inset*2, H-inset*2)
@@ -28987,7 +29123,7 @@ function sides () {
   let x = 0, y = 0
   let x2 = w
   let y2 = canvas.height
-  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.fillStyle = getselectedcolor()
   if (document.getElementById("grungy").checked)
     ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette())) // was paintcolor)
   ctx.globalAlpha = document.getElementById("opacity").value/100
@@ -29009,7 +29145,7 @@ function sides2 () {
   let x = canvas.width * Math.random() - w, y = 0
   let x2 = x + w
   let y2 = canvas.height
-  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.fillStyle = getselectedcolor()
   if (document.getElementById("grungy").checked)
     ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette())) // was paintcolor)
   ctx.globalAlpha = document.getElementById("opacity").value/100
@@ -29030,7 +29166,7 @@ function square (x, y, w) {
   let len = 10 + 2 * Math.floor(document.getElementById("featuresize").value)
   cx -= len/2
   cy -= len/2
-  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.fillStyle = getselectedcolor()
   if (document.getElementById("grungy").checked)
     ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette())) // was paintcolor)
   ctx.globalAlpha = document.getElementById("opacity").value/100
@@ -29174,7 +29310,7 @@ function ascript () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let fs = 100// + document.getElementById("featuresize").value/10
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  let color = getselectedcolor()
   let alt = document.getElementById("grungy").checked
   let W = canvas.width, H = canvas.height
   let pad = 4 + Math.floor(Math.random() * 2)
@@ -29235,7 +29371,7 @@ function markwriter () {
   const PI = Math.PI
   let sa = Math.PI*Math.random(), ea = sa + Math.PI*Math.random()*2//, cw = true
   ctx.lineWidth = 1
-  ctxOC.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctxOC.strokeStyle = getselectedcolor()
   let i = 0, j = 0, N1 = N, v = 0
   x = 0, y = 0
   while (y < H) {
@@ -29285,7 +29421,7 @@ function typewriter () {
   let chars = ["s","s","s","s","e","e","e","e","e","e","e","e","e","e","r","r","r","r","r","i","a","t","i","a","t","i","a","t","n","n","n","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q"
     ,"r","s","t","u","v","w","x","y","z"]
   let x = 0, y = 0
-  ctxOC.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctxOC.fillStyle = getselectedcolor()
   let i = 0, j = 0, N1 = N, v = 0
   x = 0, y = 0
   while (y < H) {
@@ -29416,7 +29552,7 @@ function colorOf10 (ctx,x,y,d,color) {
   return 10 - Math.floor(10*D/444) // invert
 }
 
-function colorOf (ctx,x,y,d) { // single pixel
+function colorOf_OG (ctx,x,y,d) { // single pixel
   d = Math.floor(d)
   let imgData = ctx.getImageData(Math.floor(x),Math.floor(y),d,d)
   let pixels = imgData.data;
@@ -29428,24 +29564,44 @@ function colorOf (ctx,x,y,d) { // single pixel
   return color
 }
 
-function pixelate () {
+function colorOf (ctx,x,y,d) { // d X d pixels
+  d = Math.floor(d)
+  let imgData = ctx.getImageData(Math.floor(x),Math.floor(y),d,d)
+  let pixels = imgData.data;
+  let i = 0, R = 0, G = 0, B = 0
+  for (;i < pixels.length; i+=4) {
+    let color = 0// R = 0, G = 0, B = 0
+    R += Math.round(pixels[i]),
+    G += Math.round(pixels[i+1]),
+    B += Math.round(pixels[i+2]);
+  }
+  R = ('0'+(Math.round(R/(pixels.length/4))).toString(16)).slice(-2),
+  G = ('0'+(Math.round(G/(pixels.length/4))).toString(16)).slice(-2),
+  B = ('0'+(Math.round(B/(pixels.length/4))).toString(16)).slice(-2);
+  color = "#"+R+G+B
+  return color
+}
+
+function pixelate (x,y,W,H) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let width = 2+Math.floor(document.getElementById("featuresize").value/8)
-  console.log(width)
-  let W = canvas.width, H = canvas.height
-  //width = 16
+  if (!W)
+    W = canvas.width, H = canvas.height
+  if (document.getElementById("grungy").checked)
+    width = Math.floor(W/32)
   let color
- 
-  let x = 0, y = 0
-  while (y < H) {
-    while (x < W) {
-      let color = colorOf(ctx,x,y,10)
+  if (!x)
+    x = 0, y = 0
+  let x0 = x
+  while (y <= H) {
+    while (x <= W) {
+      let color = colorOf(ctx,x,y,width)
       ctx.fillStyle = color
       ctx.fillRect(x,y,width,width)
       x += width
     }
-    x = 0
+    x = x0
     y += width
   }
 }
@@ -29543,10 +29699,10 @@ function tile (type) {
   }
   let numshapes = sides*sides
   let i = 0, x = 0, y = 0
-  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.fillStyle = getselectedcolor()
   if (type != "W")
     ctx.fillRect(0, 0, w, w)
-  ctx.fillStyle = randomColor()//randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
+  ctx.fillStyle = randomColor()//randomGradient(canvas, getselectedcolor())
   let grunge = document.getElementById("grungy").checked
   let rc = randomColor()
   let pattern = [0,1,2,3,4,5,6,7,8,9,10,11]
@@ -29862,8 +30018,6 @@ function triangle (x, y, w, i) {
   ctx.fill()
 }
 
-
-
 function albers () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -29915,7 +30069,7 @@ function albers () {
   top += t*2
   ctx.fillStyle = randomColor()
   if (grunge)
-    ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+    ctx.fillStyle = getselectedcolor()
   ctx.beginPath();
   ctx.moveTo(f3, f3+top)
   ctx.lineTo(W-f3, f3+top)
@@ -29935,7 +30089,7 @@ function concentriccirc() {
   let grunge = document.getElementById("grungy").checked
   ctx.globalAlpha = document.getElementById("opacity").value/100
   clip()
-  ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
+  ctx.fillStyle = randomGradient(canvas, getselectedcolor())
   if (grunge)
     ctx.fillStyle = randomColor()
   ctx.fillRect(0,0,canvas.width,canvas.height)
@@ -29945,7 +30099,7 @@ function concentriccirc() {
   ctx.fill()
 
   r -= f1
-  ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
+  ctx.fillStyle = randomGradient(canvas, getselectedcolor())
   if (grunge)
     ctx.fillStyle = randomColor()
   ctx.beginPath();
@@ -29954,7 +30108,7 @@ function concentriccirc() {
   ctx.fill()
 
   r -= f1
-  ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
+  ctx.fillStyle = randomGradient(canvas, getselectedcolor())
   if (grunge)
     ctx.fillStyle = randomColor()
   ctx.beginPath();
@@ -29963,7 +30117,7 @@ function concentriccirc() {
   ctx.fill()
 
   r -= f1
-  ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
+  ctx.fillStyle = randomGradient(canvas, getselectedcolor())
   if (grunge)
     ctx.fillStyle = randomColor()
   ctx.beginPath();
@@ -29994,7 +30148,7 @@ function concentricrect () {
   let grunge = document.getElementById("grungy").checked
 
   clip()
-  ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
+  ctx.fillStyle = randomGradient(canvas, getselectedcolor())
   if (grunge)
     ctx.fillStyle = randomColor()
   ctx.beginPath();
@@ -30005,7 +30159,7 @@ function concentricrect () {
   ctx.closePath()
   ctx.fill()
 
-  ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
+  ctx.fillStyle = randomGradient(canvas, getselectedcolor())
   if (grunge)
     ctx.fillStyle = randomColor()
   ctx.beginPath();
@@ -30016,7 +30170,7 @@ function concentricrect () {
   ctx.closePath()
   ctx.fill()
 
-  ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
+  ctx.fillStyle = randomGradient(canvas, getselectedcolor())
   if (grunge)
     ctx.fillStyle = randomColor()
   ctx.beginPath();
@@ -30027,7 +30181,7 @@ function concentricrect () {
   ctx.closePath()
   ctx.fill()
 
-  ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette()) // was paintcolor)
+  ctx.fillStyle = randomGradient(canvas, getselectedcolor())
   if (grunge)
     ctx.fillStyle = randomColor()
   ctx.beginPath();
@@ -30049,7 +30203,7 @@ function chipAt (x,y,big) {
   let r = 0.5 + Math.random()*0.2
   if (big)
     r += Math.random() * 1
-  //ctx.fillStyle = "#ffffff"//randomPick(getCurrentPalette()) // was paintcolor
+  //ctx.fillStyle = "#ffffff"//getselectedcolor()
   for (var t = 0; t < 1; t++) {
     let radius = r + pet(r/2)
     let r0 = radius
@@ -30131,7 +30285,7 @@ function chaze () {
   let r = x * (multiplier + Math.random()/2)
   let r1 = r/5
   let rg = ctx.createRadialGradient(x, y, r, x1, y1, r1)
-  let col1 = randomPick(getCurrentPalette()) // was paintcolor
+  let col1 = getselectedcolor()
   let col2 = "rgba("+hexToR(col1)+", "+hexToG(col1)+", "+hexToB(col1)+", 0.0)";// transparent
   rg.addColorStop(0.01, col1);
   rg.addColorStop(document.getElementById("opacity").value/100, col2);
@@ -30387,7 +30541,8 @@ function motionblur (canvas) {
   let ctx = canvas.getContext("2d")
   let alpha = ctx.globalAlpha = document.getElementById("opacity").value
   let step = document.getElementById("featuresize").value
-  let stepsize = step
+  let stepsize = +step+ pet(step / 2)
+  console.log(stepsize)
   let grunge = document.getElementById("grungy").checked
  // let maxangle = 9
   if (grunge) {
@@ -30829,7 +30984,7 @@ function nudgeCWorCCW (cc, canvas) {
   let w = canvas.width;
   ctx.globalAlpha = (document.getElementById("opacity").value)/100
   let alpha = document.getElementById("opacity").value
-  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.fillStyle = getselectedcolor()
   let angle = +document.getElementById("rednumber").value
   angle *= Math.PI/180
   if (cc)
@@ -30852,7 +31007,7 @@ function rotateRandom (canvas) {
   let w = canvas.width;
   ctx.globalAlpha = (document.getElementById("opacity").value)/100
   let alpha = document.getElementById("opacity").value
-  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.fillStyle = getselectedcolor()
   let angle = (Math.random()-0.5) * 11
   angle *= Math.PI/180
   let x = w/2
@@ -30865,8 +31020,9 @@ function rotateRandom (canvas) {
   ctx.globalAlpha = alpha/100
 }
 
-function shaken () {
-  let canvas = document.getElementById("myCanvas");
+function shaken (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let canvasoff = document.createElement("CANVAS")
   let ctxoff = canvasoff.getContext("2d")
@@ -30932,7 +31088,7 @@ async function fillA (canvas, fs) {
   let ctx = canvas.getContext("2d")
   
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.fillStyle = getselectedcolor()
   if (fs)
     ctx.fillStyle = fs
   await ctx.fillRect(0,0,canvas.width, canvas.height)
@@ -31414,7 +31570,7 @@ function dots () {
   let grunge = document.getElementById("grungy").checked
   ctx.globalAlpha = 1.0
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.fillStyle = getselectedcolor()
   let ch = canvas.height
   let h = 2 + Math.floor(document.getElementById("featuresize").value/4)
   let w = h
@@ -31772,7 +31928,7 @@ function dropFrameRagged () {
   endY = pady
   ragged (ctx, endX, endY, x, y) //top left
   ctx.closePath()
-  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.fillStyle = getselectedcolor()
   ctx.fill()
   
   pasteFromOff()
@@ -31793,7 +31949,6 @@ function detail () {
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + Math.floor(document.getElementById("featuresize").value/50)
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  let colors = shuffle(getCurrentPalette())
   let mode = document.getElementById("mode").value
   let alpha = document.getElementById("opacity").value
   let alt = document.getElementById("grungy").checked
@@ -31805,8 +31960,8 @@ function detail () {
   //let div = 1 + Math.random() * 4
   let a = Math.random() * 2 * Math.PI
   ctx.lineJoin = "round"
-  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
-  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.strokeStyle = getselectedcolor() 
+  ctx.fillStyle = getselectedcolor()
   let i = 0
   for (; i < 1 ;i++) {
     a = Math.random() * 2 * Math.PI
@@ -31831,11 +31986,7 @@ function detail () {
     ctx.stroke()
     LASTCLICK[0] = x2, LASTCLICK[1] = y2
     aletter ()
-    
-    if (alt)
-      ;//chairAt(x2-r/2,y2-r/2,r,ctx.strokeStyle)
-    else
-      ;//cubeAt(x2-r/2,y2-r/2,r,ctx.strokeStyle)
+  
   }
   document.getElementById("mode").value = mode
   document.getElementById("opacity").value = alpha
@@ -32648,14 +32799,14 @@ function crayonScript () {
   let D = 1 + document.getElementById("number").value/4000
   D/= 2
   let bump = fs/2.4
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  let color = getselectedcolor()
   let alt = document.getElementById("grungy").checked
   let W = canvas.width, H = canvas.height
   let pad = 4 + Math.floor(Math.random() * 2)
   let linespace = 18 + Math.floor(pet(8))
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
-  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.strokeStyle = getselectedcolor()
+  ctx.fillStyle = getselectedcolor()
   ctx.lineJoin = "round"
   ctx.lineWidth = Math.floor(1 + fs/12)
   ctx.imageSmoothingQuality = "high"
@@ -33196,8 +33347,8 @@ function caption () {
   let text = document.getElementById("caption").value
   let size = document.getElementById("featuresize").value
   ctx.globalAlpha = (document.getElementById("opacity").value)/100
-  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
-  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.fillStyle = getselectedcolor()
+  ctx.strokeStyle = getselectedcolor()
   ctx.font = size+"pt " + face
   let x = canvas.width/2, y = canvas.height/2+size/2
   w = ctx.measureText(text).width
@@ -33218,8 +33369,8 @@ function character () {
   let x_inc = 16, y_inc = 16
   ctx.globalAlpha = (document.getElementById("opacity").value)/100
   let alpha0 = ctx.globalAlpha
-  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
-  ctx.strokeStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.fillStyle = getselectedcolor()
+  ctx.strokeStyle = getselectedcolor()
   let text = "+"//document.getElementById("atext").value
   let radius = document.getElementById("featuresize").value/6.25
   let rad0 = radius
@@ -34235,103 +34386,74 @@ function oneleafAt (x,y,W,color) {
   let H = W, cpx, cpy, points = []
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/75
   ctx.strokeStyle = color
-  ctx.fillStyle = color
+  //ctx.fillStyle = color
   ctx.lineCap = "square"
   ctx.lineJoin = "bevel"
   let p = [], cp = [], lastp = []
   let cx = x+W/2, cy = y+H/2, angle = pet(360)
 
    //1
-   ctx.beginPath()
-  p = rotatePoint(x+12*W/24, y+21*H/24 ,cx,cy,angle)
-  ctx.moveTo(p[0],p[1])
-  cpx = x+20*W/24
-  cpy = y+21*H/24
-  cp = rotatePoint(cpx,cpy,cx,cy,angle)
-  p = rotatePoint(x+20*W/24, y+12*H/24,cx,cy,angle)
-  ctx.quadraticCurveTo(cp[0],cp[1],p[0],p[1])
-  ctx.stroke()
-
-  //2
-  ctx.beginPath()
-  p = rotatePoint(x+12*W/24, y+0*H/24 ,cx,cy,angle)
-  ctx.moveTo(p[0],p[1])
-  cpx = x+18*W/24
-  cpy = y+4*H/24
-  cp = rotatePoint(cpx,cpy,cx,cy,angle)
-  p = rotatePoint(x+20*W/24, y+12*H/24,cx,cy,angle)
-  ctx.quadraticCurveTo(cp[0],cp[1],p[0],p[1])
-  ctx.stroke()
-
-  //3
   ctx.beginPath()
   p = rotatePoint(x+12*W/24, y+21*H/24 ,cx,cy,angle)
   ctx.moveTo(p[0],p[1])
   cpx = x+4*W/24
   cpy = y+21*H/24
   cp = rotatePoint(cpx,cpy,cx,cy,angle)
-  p = rotatePoint(x+4*W/24, y+12*H/24,cx,cy,angle)
+  p = rotatePoint(x+4*W/24, y+14*H/24,cx,cy,angle)
   ctx.quadraticCurveTo(cp[0],cp[1],p[0],p[1])
-  cpx = x+6*W/24
-  cpy = y+4*H/24
+  cpx = x+7*W/24
+  cpy = y+5*H/24
   cp = rotatePoint(cpx,cpy,cx,cy,angle)
-  p = rotatePoint(x+12*W/24, y+0*H/24,cx,cy,angle)
+  p = rotatePoint(x+12*W/24, y+2*H/24,cx,cy,angle)
   ctx.quadraticCurveTo(cp[0],cp[1],p[0],p[1])
+  cpx = x+17*W/24
+  cpy = y+5*H/24
+  cp = rotatePoint(cpx,cpy,cx,cy,angle)
+  p = rotatePoint(x+20*W/24, y+14*H/24,cx,cy,angle)
+  ctx.quadraticCurveTo(cp[0],cp[1],p[0],p[1])
+  cpx = x+20*W/24
+  cpy = y+21*H/24
+  cp = rotatePoint(cpx,cpy,cx,cy,angle)
+  p = rotatePoint(x+12*W/24, y+21*H/24,cx,cy,angle)
+  ctx.quadraticCurveTo(cp[0],cp[1],p[0],p[1])
+  ctx.fill()
+  ctx.stroke()
+
+  //2
+  ctx.beginPath()
+  p = rotatePoint(x+12*W/24, y+23*H/24 ,cx,cy,angle)
+  ctx.moveTo(p[0],p[1])
+  p = rotatePoint(x+12*W/24, y+2*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  ctx.stroke()
+
+  //3
+  ctx.beginPath()
+  p = rotatePoint(x+5*W/24, y+16*H/24 ,cx,cy,angle)
+  ctx.moveTo(p[0],p[1])
+  p = rotatePoint(x+12*W/24, y+19*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  p = rotatePoint(x+19*W/24, y+16*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
   ctx.stroke()
 
   //4
   ctx.beginPath()
-  p = rotatePoint(x+12*W/24, y+24*H/24 ,cx,cy,angle)
+  p = rotatePoint(x+6*W/24, y+12*H/24 ,cx,cy,angle)
   ctx.moveTo(p[0],p[1])
-  p = rotatePoint(x+12*W/24, y+1*H/24 ,cx,cy,angle)
+  p = rotatePoint(x+12*W/24, y+15*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  p = rotatePoint(x+18*W/24, y+12*H/24 ,cx,cy,angle)
   ctx.lineTo(p[0],p[1])
   ctx.stroke()
 
   //5
   ctx.beginPath()
-  p = rotatePoint(x+12*W/24, y+18*H/24 ,cx,cy,angle)
+  p = rotatePoint(x+7.5*W/24, y+8*H/24 ,cx,cy,angle)
   ctx.moveTo(p[0],p[1])
-  p = rotatePoint(x+6*W/24, y+14*H/24 ,cx,cy,angle)
+  p = rotatePoint(x+12*W/24, y+11*H/24 ,cx,cy,angle)
   ctx.lineTo(p[0],p[1])
-  ctx.stroke()
-
-  //6
-  ctx.beginPath()
-  p = rotatePoint(x+12*W/24, y+18*H/24 ,cx,cy,angle)
-  ctx.moveTo(p[0],p[1])
-  p = rotatePoint(x+18*W/24, y+14*H/24 ,cx,cy,angle)
-  ctx.lineTo(p[0],p[1])
-  ctx.stroke()
-
-  //7
-  ctx.beginPath()
-  p = rotatePoint(x+12*W/24, y+12*H/24 ,cx,cy,angle)
-  ctx.moveTo(p[0],p[1])
-  p = rotatePoint(x+7*W/24, y+8*H/24 ,cx,cy,angle)
-  ctx.lineTo(p[0],p[1])
-  ctx.stroke()
-
-  //8
-  ctx.beginPath()
-  p = rotatePoint(x+12*W/24, y+12*H/24 ,cx,cy,angle)
-  ctx.moveTo(p[0],p[1])
-  p = rotatePoint(x+17*W/24, y+8*H/24 ,cx,cy,angle)
-  ctx.lineTo(p[0],p[1])
-  ctx.stroke()
-
-  //9
-  ctx.beginPath()
-  p = rotatePoint(x+12*W/24, y+7*H/24 ,cx,cy,angle)
-  ctx.moveTo(p[0],p[1])
-  p = rotatePoint(x+9*W/24, y+4*H/24 ,cx,cy,angle)
-  ctx.lineTo(p[0],p[1])
-  ctx.stroke()
-
-  //10
-  ctx.beginPath()
-  p = rotatePoint(x+12*W/24, y+7*H/24 ,cx,cy,angle)
-  ctx.moveTo(p[0],p[1])
-  p = rotatePoint(x+15*W/24, y+4*H/24 ,cx,cy,angle)
+  p = rotatePoint(x+16.5*W/24, y+8*H/24 ,cx,cy,angle)
   ctx.lineTo(p[0],p[1])
   ctx.stroke()
 }
@@ -34444,7 +34566,7 @@ function placeBokehAt () {
   r /= 2
   r += pet(r/3)
   
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  let color = getselectedcolor()
   let a = 0.4 + Math.random() * 0.3
   let grd = ctx.createRadialGradient(x+pet(r*1.2), y+pet(r*1.2), 0, x+pet(r*1.2), y+pet(r*1.1), r*1.5);
   grd.addColorStop(0, "rgba("+hexToR(color)+", "+hexToG(color)+", "+hexToB(color)+", "+a+")");
@@ -34556,31 +34678,43 @@ function randomChar () {
   return text.slice(0,length).join("")
 }
 
-function placeCharAt (t,canvas) {
-  let text = randomChar()//document.getElementById("points").value
-  if (t)
-    text = t
+//let LEFTX = Math.min(LASTCLICK[0], LEFTX)
+
+function placeCharAt (char,canvas) {
   if (!canvas)
     canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let W = canvas.width
   ctx.globalAlpha = (document.getElementById("opacity").value)/100
   ctx.fillStyle = getselectedcolor()
-  let fs = 5*(4 + document.getElementById("featuresize").value/5)
+  let fs = 10*(4 + document.getElementById("featuresize").value/4)
+  if (char === "Enter") {
+    LASTCLICK[0] = LEFTX
+    LASTCLICK[1] += fs*1.2
+    return
+  }
   ctx.textAlign = 'left';
   ctx.textBaseline = 'middle'
-  if (text.length < 1)
-    text = randomWord()
   let x = LASTCLICK[0]
   let y = LASTCLICK[1]
-  let face = randomPick(["AmericanTypewriter,Courier","Helvetica","Times New Roman","Garamond"])
-  ctx.font = "100 "+(fs)+"pt "+face
-  let w = ctx.measureText(" "+text).width
-  ctx.fillText(text, x, y)
-  LASTCLICK[0] += w
+  let weight = document.getElementById("fontweight").value
+  let face = document.getElementById("fontface").value
+  ctx.font = weight +" "+fs+"px " + face
+  let w = ctx.measureText(" "+char).width
+  ctx.fillText(char, x, y)
+  if (document.getElementById("kern").checked) {
+    if (char === "w" || char === "W" || char === "m"|| char === "M" || char === "Q") 
+      LASTCLICK[0] += w*0.72
+    else
+    if (char === "i" || char === "l" || char === "j"|| char === "f" || char === "t") 
+      LASTCLICK[0] += w*0.58
+    else
+      LASTCLICK[0] += w*0.67
+  } else
+    LASTCLICK[0] += w*0.72
   if (x+w > W) {
-    LASTCLICK[1] += fs*2
-    LASTCLICK[0] = 0
+    LASTCLICK[1] += fs*1.2
+    LASTCLICK[0] = LEFTX
   }
   if (document.getElementById("grungy").checked) {
     // add grit
@@ -34591,6 +34725,7 @@ function placeCharAt (t,canvas) {
       drawBlobAt(ctx, x + Math.random()*w, y-fs/2 + Math.random()*fs, r)
     }
   }
+  ctx.textBaseline = 'alphabetic'
 }
 
 function placeNumAt (t,canvas) {
@@ -34700,7 +34835,7 @@ function stem (x,y,r, m) {
 function branching () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
-  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  ctx.fillStyle = getselectedcolor()
   ctx.globalAlpha = (document.getElementById("opacity").value)/100
   let h = canvas.height;
   let w = canvas.width;
@@ -34741,8 +34876,8 @@ function land () {
   let centerx = ctx.canvas.width / 2;
   let centery = ctx.canvas.height / 2;
   ctx.globalAlpha = (document.getElementById("opacity").value)/100
-  //randomPick(getCurrentPalette()) // was paintcolor = randomColor()
-  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor
+  //getselectedcolor() = randomColor()
+  ctx.fillStyle = getselectedcolor()
   let baseline = h - h/7 * Math.random() - 10
   let x =-10
   let y = baseline - h/3 * Math.random() - 30
@@ -34856,7 +34991,7 @@ function shapeC () {// centered
   let grunge = document.getElementById("grungy").checked
   let numshapes = 1
   let ia = 0
-  ctx.fillStyle = randomPick(getCurrentPalette()) // was paintcolor;
+  ctx.fillStyle = getselectedcolor();
   if (grunge)
     ctx.fillStyle = randomGradient(canvas, randomPick(getCurrentPalette())) // was paintcolor)
   for (var t = 0; t < numshapes; t++) {
@@ -36326,7 +36461,7 @@ function tintlow (canvas) {
   offcanvas.height = canvas.height
   let offctx = offcanvas.getContext("2d");
   offctx.willReadFrequently = true
-  let color = randomPick(getCurrentPalette()) // was paintcolor
+  let color = getselectedcolor()
   let alpha = document.getElementById("opacity").value
   let r = hexToR(color)
   let g = hexToG(color)
@@ -36904,11 +37039,7 @@ function FakeImageData(data, width, height) {
 }
 
 let placenames_stars = ["XO-5", "θ1 Eridani A", "α Eridani A", "η Cassiopeiae A", "β1 Scorpii Aa", "α Crucis Aa", "α Cancri Aa", "ζ Leonis Aa", "ε Canis Majoris A", "ξ Andromedae", "ε Tauri Aa1", "ν1 Sagittarii A", "η Lyrae Aa", "γ Andromedae", "HD 168746", "μ Lyrae", "π Sagittarii A", "ε Aquarii", "β1 Cygni Aa", "α Corvi", "80 Ursae Majoris Ca", "η Tauri A", "α Tauri", "α Cephei", "γ Gruis", "ζ Draconis A", "ε Delphini", "β Cephei Aa", "α2 Capricorni", "γ Pegasi", "γ1 Leonis", "β Persei Aa1", "δ Corvi A", "γ Geminorum Aa", "ε Ursae Majoris A", "ε Cygni Aa", "η Ursae Majoris", "ρ2 Cephei", "μ1 Boötis Aa", "κ Ursae Majoris A", "υ Pegasi", "α Crateris", "ε Aurigae", "γ Andromedae A", "κ Leonis", "α Gruis", "γ2 Sagittarii", "ε Orionis", "ζ Orionis Aa", "σ Scorpii Aa1", "α Hydrae", "α Coronae Borealis", "α Andromedae Aa", "η Piscium A", "μ Draconis A", "α Piscium A", "HD 161693", "σ Draconis", "31 Lyncis", "δ Velorum Aa", "β Aquilae A", "ν Capricorni A", "α Aquilae", "δ Draconis", "λ Leonis", "η Canis Majoris", "ξ Ursae Majoris Aa", "ν Ursae Majoris", "θ1 Serpentis A", "ξ Geminorum", "HD 43197", "WASP-34", "WASP-52", "θ Aquarii", "τ2 Eridani", "HD 102956", "α Phoenicis", "α Vulpeculae", "α Scorpii A", "HD 131496", "α Boötis", "β2 Sagittarii", "β1 Sagittarii", "α Leporis A", "ζ Sagittarii A", "δ Cancri Aa", "γ Cancri Aa", "ε Hydrae A", "θ Boötis", "ι Boötis", "κ Boötis", "ι Carinae", "21 Tauri A", "WASP-64", "η Draconis A", "ο Persei A", "27 Tauri Aa1", "α Trianguli Australis", "ε Carinae A", "HD 224693", "HD 18742", "π1 Cygni", "η Eridani", "ξ Puppis", "8 Ursae Minoris", "V2500 Ophiuchi", "ζ Ceti Aa", "υ3 Eridani", "ο1 Eridani", "HD 181342", "HD 8574", "γ Orionis", "HAT-P-15", "α Orionis Aa", "41 Arietis Aa", "HD 86081", "θ Pegasi", "HD 206610", "δ Arietis", "σ Librae A", "HD 38283", "HD 16175", "ξ Aquarii A", "α Carinae A", "α Aurigae Aa", "β Cassiopeiae A", "α Geminorum Aa", "υ2 Cassiopeiae", "β Ophiuchi", "HD 63454", "16 Tauri", "μ Arae", "47 Ursae Majoris", "θ2 Tauri Aa", "WASP-50", "β Canum Venaticorum Aa", "HAT-P-5", "HD 192699", "θ Leonis", "HD 1502", "HD 52265", "HD 4208", "55 Cancri A", "α2 Canum Venaticorum Aa", "ω Herculis A", "β Eridani", "β1 Capricorni Aa", "α Fornacis A", "α Cygni", "δ Capricorni Aa", "β Leonis", "α Comae Berenices A", "HD 96063", "β Ceti", "WASP-17", "WASP-72", "HD 117618", "HAT-P-3", "δ Scorpii A", "α Ursae Majoris A", "ψ1 Draconis A", "HD 218566", "ι Draconis", "17 Tauri", "φ Virginis A", "θ Columbae", "β Tauri Aa", "γ Draconis", "HD 7199", "ε Pegasi", "γ Cephei Aa", "42 Draconis A", "π Scorpii Aa", "δ Cygni A", "HD 85951", "BD−17 63", "HD 102195", "α Piscis Austrini A", "HD 100655", "HAT-P-14", "ζ Cassiopeiae", "HD 109246", "β Piscium", "ζ Canis Majoris Aa", "G Scorpii", "γ Crucis", "HD 73534", "μ Cephei", "λ Draconis", "γ Corvi A", "ε Crucis", "WASP-13", "β Canis Minoris A", "ξ Scorpii", "ξ Draconis A", "κ Serpentis", "HD 179949", "36 Ophiuchi A", "β Centauri Aa", "η Aurigae", "α Arietis", "ι Aurigae", "ι Orionis Aa", "51 Pegasi", "ζ Virginis A", "HD 28678", "ζ Pegasi A", "HAT-P-38", "HD 98219", "HAT-P-2", "ρ Scorpii Aa", "HD 82886", "δ Crucis", "41 Lyncis", "HD 156411", "HD 20868", "WASP-38", "HD 208487", "ε Boötis A", "ν Scorpii Aa", "ο Geminorum", "γ Ceti A", "α Lupi", "HD 83443", "HD 145457", "κ Virginis", "HD 137388", "ε Sagittarii A", "λ Sagittarii", "δ Sagittarii", "HD 175541", "β Lupi", "ο2 Eridani A", "λ Virginis A", "α Equulei A", "β Ursae Minoris", "HIP 12961", "XO-4", "β Herculis Aa", "β Corvi", "ν Draconis", "ξ Cephei Aa", "Y Canum Venaticorum", "ε Scorpii", "HAT-P-42", "υ Scorpii", "ξ Aquilae A", "PSR B1257+12", "HD 118203", "39 Arietis", "HD 212771", "HD 45350", "HD 45652", "λ Herculis", "HD 93083", "HD 32518", "θ Aurigae A", "HD 152581", "20 Tauri", "WASP-39", "θ Cassiopeiae", "λ Ophiuchi A", "α Pegasi", "κ Velorum", "WASP-6", "κ Herculis A", "η Pegasi Aa", "HAT-P-21", "ε Geminorum", "δ Ursae Majoris", "λ Orionis A", "ζ Geminorum Aa", "ε Cancri Aa", "β Aurigae Aa", "α Ceti", "θ Centauri", "ξ Persei", "β Ursae Majoris", "38 Boötis", "α Coronae Australis", "23 Tauri Aa", "γ1 Arietis A", "β Carinae", "β Crucis", "σ Hydrae", "δ Virginis", "δ Orionis Aa", "ο Ceti Aa", "β Andromedae", "η Persei A", "α Persei", "β Canis Majoris", "κ Persei Aa", "ζ Ursae Majoris Aa", "XO-1", "HD 130322", "WASP-79", "WASP-60", "HAT-P-23", "α Trianguli", "HD 30856", "WASP-71", "γ Canis Majoris", "η Boötis Aa", "ο Ursae Majoris A", "18 Delphini", "HAT-P-29", "ξ Cancri A", "WASP-62", "ζ Puppis", "γ1 Sagittarii A", "γ Capricorni A", "HD 68988", "HD 85390", "γ Cassiopeiae", "β Boötis", "51 Andromedae", "HD 6434", "HD 49674", "β Leporis A", "HD 136418", "HD 48265", "σ Sagittarii Aa", "β Coronae Borealis A", "HD 17156", "WASP-15", "HD 149026", "ζ Aquilae A", "τ Scorpii A", "WASP-32", "α Pavonis Aa", "WASP-80", "α Columbae", "γ Ursae Majoris Aa", "γ Ursae Minoris", "HD 192263", "λ Cancri", "HD 164604", "TrES-3", "μ2 Scorpii A", "28 Tauri Aa", "HD 221287", "α Ursae Minoris", "σ Octantis", "μ Sagittarii Aa", "β Geminorum", "γ Virginis A", "46 Leonis Minoris", "γ Tauri A", "α Canis Minoris A", "η Geminorum A", "α Centauri C", "ε Eridani", "HD 153950", "μ Leonis", "α1 Herculis Aa", "α Ophiuchi A", "β Draconis A", "γ Velorum", "α Leonis A", "ζ Piscium A", "β Orionis A", "α Centauri A", "HD 149143", "β Delphini A", "δ Cassiopeiae Aa", "α Sagittarii", "η Ophiuchi A", "ζ Aurigae A", "γ Aquarii Aa", "μ Pegasi", "α Aquarii A", "β Aquarii A", "γ Cygni A", "HD 100777", "κ Orionis", "τ Pegasi", "HD 205739", "HAT-P-34", "θ Scorpii A", "δ Herculis Aa", "θ Ursae Majoris", "53 Eridani A", "β Pegasi", "α Cassiopeiae", "δ Tauri Aa", "ε Cassiopeiae", "γ Boötis Aa", "α Sagittae", "HD 99109", "HIP 79431", "λ Scorpii Aa", "β Lyrae Aa1", "β Arietis A", "HD 181720", "α Canis Majoris A", "κ Aquarii A", "δ Aquarii A", "BD+14 4559", "α Virginis Aa", "HAT-P-6", "HD 75898", "α Delphini Aa", "ο Leonis Aa", "λ Velorum", "γ Lyrae", "ι Virginis", "π3 Orionis", "HAT-P-40", "χ Ursae Majoris", "8 Draconis", "ι Ursae Majoris Aa", "WASP-21", "μ Ursae Majoris A", "λ Ursae Majoris A", "HD 63765", "γ Aquilae", "β Cancri A", "19 Tauri Aa", "ζ1 Cancri A", "μ Geminorum Aa", "ω Sagittarii A", "HAT-P-9", "υ Orionis", "υ2 Eridani", "α Draconis A", "β Gruis", "ζ Tauri A", "7 Draconis", "HD 148427", "WASP-161", "υ Andromedae A", "WASP-22", "α Centauri B", "HD 104985", "ο Piscium A", "HAT-P-36", "HD 108147", "HD 23079", "ρ Puppis A", "ι Hydrae", "HD 102117", "α Serpentis", "σ Canis Majoris", "HD 231701", "α Lyrae", "14 Andromedae A", "ε Virginis", "δ Geminorum Aa", "β Columbae", "δ Canis Majoris Aa", "ζ Phoenicis Aa", "μ1 Scorpii Aa", "HD 173416", "λ Boötis", "ε Ophiuchi", "δ Ophiuchi", "δ Ursae Minoris", "η Virginis Aa", "γ Eridani", "β Virginis", "υ1 Hydrae A", "ζ Eridani Aa", "δ Leonis", "α2 Librae Aa", "γ Librae A", "β Librae", "Phalacrocorax carbo", "Phalacrocorax urile", "Phalacrocorax pelagicus", "Egretta rufescens", "Egretta tricolor", "Egretta caerulea", "Egretta garzetta", "Egretta gularis", "Egretta thula", "Egretta eulophotes", "Ardea cinerea", "Ardea herodias", "Bubulcus ibis", "Ardeola bacchus", "Butorides striatus", "Butorides virescens", "Nyctanassa violacea", "Nycticorax nycticorax", "Ixobrychus sinensis", "Ixobrychus exilis", "Botaurus lentiginosus", "Phoenicopterus ruber", "Eudocimus albus", "Eudocimus ruber", "Plegadis falcinellus", "Plegadis chihi", "Ajaia ajaja", "Pelecanus erythrorhynchos", "Pelecanus occidentalis", "Coragyps atratus", "Cathartes aura", "Gymnogyps californianus", "Mycteria americana", "Jabiru mycteria", "Fregata magnificens", "Fregata minor", "Gavia stellata", "Gavia arctica", "Gavia pacifica", "Gavia immer", "Gavia adamsii", "Fulmarus glacialis", "Daption capense", "Pterodroma inexpectata", "Pterodroma cookii", "Pterodroma longirostris", "Pterodroma ultima", "Pterodroma macroptera", "Pterodroma feae", "Pterodroma hasitata", "Bulweria bulwerii", "Procellaria aequinoctialis", "Calonectris diomedea", "Puffinus pacificus", "Puffinus bulleri", "Puffinus carneipes", "Puffinus creatopus", "Puffinus gravis", "Puffinus griseus", "Puffinus tenuirostris", "Puffinus puffinus", "Puffinus opisthomelas", "Puffinus lherminieri", "Puffinus assimilis", "Diomedea exulans", "Oceanites oceanicus", "Pelagodroma marina", "Fregetta tropica", "Oceanodroma microsoma", "Oceanodroma tethys", "Oceanodroma castro", "Oceanodroma leucorhoa", "Oceanodroma melania", "Oceanodroma homochroa", "Oceanodroma hornbyi", "Oceanodroma furcata", "Camptostoma imberbe", "Myiopagis viridicata", "Mitrephanes phaeocercus", "Contopus pertinax", "Contopus sordidulus", "Contopus virens", "Contopus caribaeus", "Empidonax flaviventris", "Empidonax virescens", "Empidonax alnorum", "Empidonax traillii", "Empidonax minimus", "Empidonax hammondii", "Empidonax wrightii", "Empidonax oberholseri", "Empidonax difficilis", "Empidonax occidentalis", "Empidonax fulvifrons", "Sayornis phoebe", "Sayornis saya", "Sayornis nigricans", "Pyrocephalus rubinus", "Myiarchus tuberculifer", "Myiarchus cinerascens", "Myiarchus nuttingi", "Myiarchus crinitus", "Myiarchus tyrannulus", "Myiarchus sagrae", "Tyrannus melancholicus", "Tyrannus couchii", "Tyrannus vociferans", "Tyrannus crassirostris", "Tyrannus verticalis", "Tyrannus forficatus", "Tyrannus savana", "Tyrannus tyrannus", "Tyrannus dominicensis", "Empidonomus varius", "Myiodynastes luteiventris", "Myiozetetes similis", "Legatus leucophaius", "Pitangus sulphuratus", "Pachyramphus aglaiae", "Tityra semifasciata", "Lanius cristatus", "Lanius ludovicianus", "Lanius excubitor", "Vireo bellii", "Vireo atricapillus", "Vireo huttoni", "Vireo griseus", "Vireo crassirostris", "Vireo vicinior", "Vireo cassinii", "Vireo plumbeus", "Vireo solitarius", "Vireo flavifrons", "Vireo philadelphicus", "Vireo olivaceus", "Vireo flavoviridis", "Vireo altiloquus", "Vireo magister", "Vireo gilvus", "Gymnorhinus cyanocephalus", "Cyanocitta cristata", "Cyanocitta stelleri", "Aphelocoma insularis", "Aphelocoma californica", "Aphelocoma coerulescens", "Aphelocoma ultramarina", "Cyanocorax yncas", "Psilorhinus morio", "Perisoreus canadensis", "Pica pica", "Pica nuttalli", "Nucifraga columbiana", "Corvus monedula", "Corvus caurinus", "Corvus brachyrhynchos", "Corvus ossifragus", "Corvus imparatus", "Corvus cryptoleucus", "Corvus corax", "Lalage leucomela", "Ptilogonys cinereus", "Phainopepla nitens", "Bombycilla garrulus", "Bombycilla cedrorum", "Cinclus mexicanus", "Zoothera naevia", "Zoothera pinicola", "Sialia sialis", "Sialia mexicana", "Sialia currucoides", "Myadestes townsendi", "Myadestes occidentalis", "Catharus gracilirostris", "Catharus aurantiirostris", "Catharus fuscescens", "Catharus minimus", "Catharus ustulatus", "Catharus guttatus", "Hylocichla mustelina", "Turdus obscurus", "Turdus naumanni", "Turdus pilaris", "Turdus iliacus", "Turdus grayi", "Turdus rufopalliatus", "Turdus migratorius", "Muscicapa striata", "Muscicapa griseisticta", "Muscicapa sibirica", "Muscicapa dauurica", "Ficedula narcissina", "Ficedula mugimaki", "Ficedula parva", "Luscinia sibilans", "Luscinia calliope", "Luscinia svecica", "Luscinia cyane", "Tarsiger cyanurus", "Irania gutturalis", "Saxicola torquata", "Oenanthe oenanthe", "Sturnus vulgaris", "Acridotheres tristis", "Acridotheres grandis", "Dumetella carolinensis", "Melanoptila glabrirostris", "Melanotis caerulescens", "Mimus polyglottos", "Mimus gundlachii", "Oreoscoptes montanus", "Toxostoma rufum", "Toxostoma longirostre", "Toxostoma bendirei", "Toxostoma curvirostre", "Toxostoma lecontei", "Toxostoma redivivum", "Toxostoma crissale", "Sitta pygmaea", "Sitta pusilla", "Sitta canadensis", "Sitta carolinensis", "Certhia americana", "Campylorhynchus brunneicapillus", "Salpinctes obsoletus", "Catherpes mexicanus", "Cistothorus platensis", "Cistothorus palustris", "Thryomanes bewickii", "Thryothorus ludovicianus", "Troglodytes troglodytes", "Troglodytes aedon", "Auriparus flaviceps", "Polioptila caerulea", "Polioptila californica", "Polioptila melanura", "Polioptila nigriceps", "Poecile carolinensis", "Poecile atricapillus", "Poecile gambeli", "Poecile sclateri", "Poecile cinctus", "Poecile hudsonicus", "Poecile rufescens", "Parus major", "Baeolophus wollweberi", "Baeolophus inornatus", "Baeolophus bicolor", "Baeolophus atricristatus", "Psaltriparus minimus", "Tachycineta bicolor", "Tachycineta albilinea", "Tachycineta thalassina", "Tachycineta cyaneoviridis", "Progne subis", "Progne cryptoleuca", "Progne chalybea", "Progne modesta", "Stelgidopteryx serripennis", "Riparia riparia", "Hirundo rustica", "Petrochelidon pyrrhonota", "Petrochelidon fulva", "Delichon urbica", "Regulus calendula", "Regulus satrapa", "Pycnonotus jocosus", "Locustella lanceolata", "Locustella ochotensis", "Phylloscopus trochilus", "Phylloscopus sibilatrix", "Phylloscopus fuscatus", "Phylloscopus proregulus", "Phylloscopus inornatus", "Phylloscopus borealis", "Chamaea fasciata", "Sylvia curruca", "Alauda arvensis", "Eremophila alpestris", "Passer domesticus", "Passer montanus", "Motacilla alba", "Motacilla lugens", "Motacilla citreola", "Motacilla flava", "Motacilla cinerea", "Anthus trivialis", "Anthus hodgsoni", "Anthus gustavi", "Anthus cervinus", "Anthus spinoletta", "Anthus rubescens", "Anthus spragueii", "Prunella montanella", "Ploceus golandi", "Peucedramus taeniatus", "Fringilla coelebs", "Fringilla montifringilla", "Carduelis sinica", "Carduelis spinus", "Carduelis pinus", "Carduelis tristis", "Carduelis psaltria", "Carduelis lawrencei", "Carduelis carduelis", "Carduelis hornemanni", "Carduelis flammea", "Leucosticte tephrocotis", "Leucosticte atrata", "Leucosticte australis", "Carpodacus purpureus", "Carpodacus erythrinus", "Carpodacus cassinii", "Carpodacus mexicanus", "Pinicola enucleator", "Loxia curvirostra", "Loxia leucoptera", "Pyrrhula pyrrhula", "Coccothraustes coccothraustes", "Hesperiphona vespertina", "Emberiza leucocephalos", "Emberiza pusilla", "Emberiza rustica", "Emberiza elegans", "Emberiza aureola", "Emberiza variabilis", "Emberiza pallasi", "Emberiza schoeniclus", "Calcarius mccownii", "Calcarius lapponicus", "Calcarius pictus", "Calcarius ornatus", "Plectrophenax nivalis", "Plectrophenax hyperboreus", "Calamospiza melanocorys", "Passerella iliaca", "Melospiza melodia", "Melospiza lincolnii", "Melospiza georgiana", "Zonotrichia querula", "Zonotrichia albicollis", "Zonotrichia leucophrys", "Zonotrichia atricapilla", "Junco hyemalis", "Junco phaeonotus", "Passerculus sandwichensis", "Ammodramus maritimus", "Ammodramus caudacutus", "Ammodramus leconteii", "Ammodramus henslowii", "Ammodramus bairdii", "Ammodramus savannarum", "Spizella arborea", "Spizella passerina", "Spizella pallida", "Spizella breweri", "Spizella pusilla", "Spizella wortheni", "Spizella atrogularis", "Pooecetes gramineus", "Chondestes grammacus", "Amphispiza bilineata", "Amphispiza belli", "Aimophila quinquestriata", "Aimophila aestivalis", "Aimophila botterii", "Aimophila cassinii", "Aimophila carpalis", "Aimophila ruficeps", "Pipilo chlorurus", "Pipilo erythrophthalmus", "Pipilo aberti", "Pipilo crissalis", "Pipilo fuscus", "Arremonops rufivirgatus", "Vermivora bachmanii", "Vermivora pinus", "Vermivora chrysoptera", "Vermivora peregrina", "Vermivora celata", "Vermivora ruficapilla", "Vermivora virginiae", "Vermivora crissalis", "Vermivora luciae", "Parula americana", "Parula pitiayumi", "Parula superciliosa", "Dendroica petechia", "Dendroica pensylvanica", "Dendroica magnolia", "Dendroica tigrina", "Dendroica caerulescens", "Dendroica coronata", "Dendroica nigrescens", "Dendroica townsendi", "Dendroica occidentalis", "Dendroica virens", "Dendroica chrysoparia", "Dendroica fusca", "Dendroica dominica", "Dendroica graciae", "Dendroica pinus", "Dendroica kirtlandii", "Dendroica discolor", "Dendroica palmarum", "Dendroica castanea", "Dendroica striata", "Dendroica cerulea", "Mniotilta varia", "Setophaga ruticilla", "Protonotaria citrea", "Helmitheros vermivorus", "Limnothlypis swainsonii", "Seiurus aurocapillus", "Seiurus noveboracensis", "Seiurus motacilla", "Oporornis formosus", "Oporornis agilis", "Oporornis philadelphia", "Oporornis tolmiei", "Geothlypis trichas", "Geothlypis nelsoni", "Geothlypis poliocephala", "Wilsonia citrina", "Wilsonia pusilla", "Wilsonia canadensis", "Cardellina rubrifrons", "Myioborus pictus", "Myioborus miniatus", "Euthlypis lachrymosa", "Basileuterus culicivorus", "Basileuterus rufifrons", "Icteria virens", "Coereba flaveola", "Piranga bidentata", "Piranga flava", "Piranga rubra", "Piranga olivacea", "Piranga ludoviciana", "Spindalis zena", "Poospiza lateralis", "Sporophila torqueola", "Tiaris olivacea", "Tiaris bicolor", "Spiza americana", "Pheucticus chrysopeplus", "Pheucticus ludovicianus", "Pheucticus melanocephalus", "Cardinalis cardinalis", "Cardinalis sinuatus", "Rhodothraupis celaeno", "Cyanocompsa parellina", "Guiraca caerulea", "Passerina amoena", "Passerina cyanea", "Passerina versicolor", "Passerina ciris", "Passerina rositae", "Icterus graduacauda", "Icterus pectoralis", "Icterus gularis", "Icterus pustulatus", "Icterus galbula", "Icterus cucullatus", "Icterus spurius", "Icterus wagleri", "Icterus parisorum", "Xanthocephalus xanthocephalus", "Agelaius cyanopus", "Agelaius phoeniceus", "Agelaius tricolor", "Agelaius humeralis", "Sturnella magna", "Sturnella neglecta", "Quiscalus mexicanus", "Quiscalus major", "Quiscalus quiscula", "Euphagus carolinus", "Euphagus cyanocephalus", "Molothrus bonariensis", "Molothrus aeneus", "Molothrus ater", "Dolichonyx oryzivorus", "Falcipennis canadensis", "Nomonyx dominica", "Branta hutchinsii", "Picoides dorsalis", "Tyto detorta", "Otus sunia", "Phalaropus tricolor", "Catharacta skua", "Catharacta maccormicki", "Larus brachyrhynchus", "Brachyramphus perdix", "Buteo nitidus", "Caracara plancus", "Caracara cheriway", "Sula granti", "Ardea alba", "Ardea intermedia", "Pterodroma heraldica", "Phoebastria albatrus", "Phoebastria nigripes", "Phoebastria immutabilis", "Thalassarche melanophris", "Thalassarche cauta", "Thalassarche chlororhynchos", "Contopus cooperi", "Cyanocorax luxuosus", "Catharus bicknelli", "Parus ridgwayi", "Progne tapera", "Ammodramus nelsoni", "Pipilo maculatus", "Icterus bullockii", "Icterus abeillei"]
-
-
 let placenames = ["Elegant Crested-Tinamou", "Plain Chachalaca", "Himalayan Snowcock", "Rock Partridge", "Chukar", "Grey Partridge", "Common Quail", "Common Pheasant", "Indian Peafowl", "Dusky Grouse", "Sooty Grouse", "Willow Ptarmigan", "Rock Ptarmigan", "White-tailed Ptarmigan", "Ruffed Grouse", "Sage Grouse", "Gunnison Sage-Grouse", "Sharp-tailed Grouse", "Greater Prairie-chicken", "Lesser Prairie-chicken", "Wild Turkey", "Mountain Quail", "Scaled Quail", "California Quail", "Gambel's Quail", "Northern Bobwhite", "Montezuma Quail", "Fulvous Whistling-Duck", "Black-bellied Whistling-Duck", "Ruddy Duck", "Mute Swan", "Whooper Swan", "Trumpeter Swan", "Tundra Swan", "Pink-footed Goose", "Bean Goose", "Greater White-fronted Goose", "Lesser White-fronted Goose", "Snow Goose", "Ross's Goose", "Emperor Goose", "Canada Goose", "Barnacle Goose", "Brent Goose", "Muscovy Duck", "Wood Duck", "Gadwall", "Falcated Teal", "Eurasian Wigeon", "American Wigeon", "American Black Duck", "Mottled Duck", "Mallard", "Spot-billed Duck", "Blue-winged Teal", "Cinnamon Teal", "Red Shoveler", "Northern Shoveler", "White-cheeked Pintail", "Northern Pintail", "Garganey", "Baikal Teal", "Common Teal", "Common Pochard", "Canvasback", "Redhead", "Ring-necked Duck", "Tufted Duck", "Greater Scaup", "Lesser Scaup", "Common Eider", "King Eider", "Spectacled Eider", "Steller's Eider", "Labrador Duck", "Harlequin Duck", "Long-tailed Duck", "Black Scoter", "Surf Scoter", "White-winged Scoter", "Common Goldeneye", "Barrow's Goldeneye", "Bufflehead", "Smew", "Hooded Merganser", "Red-breasted Merganser", "Common Merganser", "Lark Buttonquail", "Eurasian Wryneck", "Lewis's Woodpecker", "Red-headed Woodpecker", "Acorn Woodpecker", "Gila Woodpecker", "Red-bellied Woodpecker", "Golden-fronted Woodpecker", "Yellow-bellied Sapsucker", "Red-naped Sapsucker", "Red-breasted Sapsucker", "Williamson's Sapsucker", "Great Spotted Woodpecker", "Nuttall's Woodpecker", "Ladder-backed Woodpecker", "Downy Woodpecker", "Red-cockaded Woodpecker", "Strickland's Woodpecker", "Hairy Woodpecker", "White-headed Woodpecker", "Three-toed Woodpecker", "Black-backed Woodpecker", "Northern Flicker", "Gilded Flicker", "Pileated Woodpecker", "Ivory-billed Woodpecker", "Eurasian Hoopoe", "Eared Trogon", "Elegant Trogon", "Belted Kingfisher", "Ringed Kingfisher", "Green Kingfisher", "Common Cuckoo", "Oriental Cuckoo", "Black-billed Cuckoo", "Yellow-billed Cuckoo", "Mangrove Cuckoo", "Dark-billed Cuckoo", "Smooth-billed Ani", "Groove-billed Ani", "Greater Roadrunner", "Budgerigar", "Green Parakeet", "Nanday Parakeet", "Thick-billed Parrot", "Carolina Parakeet", "Monk Parakeet", "Canary-winged Parakeet", "Red-crowned Parrot", "Black Swift", "White-collared Swift", "White-throated Needletail", "Chimney Swift", "Vaux's Swift", "White-throated Swift", "Antillean Palm-Swift", "Common Swift", "Fork-tailed Swift", "Green Violet-ear", "Green-breasted Mango", "Broad-billed Hummingbird", "Xantus's Hummingbird", "White-eared Hummingbird", "Berylline Hummingbird", "Cinnamon Hummingbird", "Buff-bellied Hummingbird", "Violet-crowned Hummingbird", "Blue-throated Hummingbird", "Magnificent Hummingbird", "Green-tailed Trainbearer", "Plain-capped Starthroat", "Lucifer Hummingbird", "Ruby-throated Hummingbird", "Black-chinned Hummingbird", "Anna's Hummingbird", "Costa's Hummingbird", "Calliope Hummingbird", "Bumblebee Hummingbird", "Broad-tailed Hummingbird", "Rufous Hummingbird", "Allen's Hummingbird", "Barn Owl", "Flammulated Owl", "Western Screech-Owl", "Eastern Screech-Owl", "Whiskered Screech-Owl", "Great Horned Owl", "Snowy Owl", "Spotted Owl", "Barred Owl", "Great Grey Owl", "Mottled Owl", "Northern Hawk Owl", "Northern Pygmy-Owl", "Mountain Pygmy-Owl", "Ferruginous Pygmy-Owl", "Elf Owl", "Spotted Owlet", "Burrowing Owl", "Boreal Owl", "Saw-whet Owl", "Stygian Owl", "Long-eared Owl", "Short-eared Owl", "Barred Owlet-Nightjar", "Lesser Nighthawk", "Common Nighthawk", "Antillean Nighthawk", "Pauraque", "Common Poorwill", "Chuck-will's-widow", "Buff-collared Nightjar", "Whip-poor-will", "Grey Nightjar", "Rock Dove", "White-crowned Pigeon", "Scaly-naped Pigeon", "Band-tailed Pigeon", "Red-billed Pigeon", "European Turtle-Dove", "Oriental Turtle-Dove", "Spotted Dove", "Eurasian Collared-Dove", "White-winged Collared-Dove", "Passenger Pigeon", "Mourning Dove", "Zenaida Dove", "White-winged Dove", "Inca Dove", "Common Ground-Dove", "Ruddy Ground-Dove", "White-tipped Dove", "Key West Quail-Dove", "Ruddy Quail-Dove", "Sandhill Crane", "Demoiselle Crane", "Common Crane", "Whooping Crane", "Limpkin", "Yellow Rail", "Black Rail", "Clapper Rail", "King Rail", "Virginia Rail", "Corn Crake", "Baillon's Crake", "Sora", "Hawaiian Crake", "Paint-billed Crake", "Spotted Rail", "Purple Swamphen", "Purple Gallinule", "Azure Gallinule", "Common Moorhen", "American Coot", "Eurasian Woodcock", "American Woodcock", "Pintail Snipe", "Common Snipe", "Jack Snipe", "Black-tailed Godwit", "Hudsonian Godwit", "Bar-tailed Godwit", "Marbled Godwit", "Little Curlew", "Eskimo Curlew", "Whimbrel", "Bristle-thighed Curlew", "Slender-billed Curlew", "Eurasian Curlew", "Long-billed Curlew", "Far Eastern Curlew", "Upland Sandpiper", "Spotted Redshank", "Common Redshank", "Marsh Sandpiper", "Common Greenshank", "Greater Yellowlegs", "Lesser Yellowlegs", "Solitary Sandpiper", "Green Sandpiper", "Wood Sandpiper", "Terek Sandpiper", "Common Sandpiper", "Spotted Sandpiper", "Grey-tailed Tattler", "Wandering Tattler", "Willet", "Ruddy Turnstone", "Black Turnstone", "Short-billed Dowitcher", "Long-billed Dowitcher", "Surfbird", "Great Knot", "Red Knot", "Sanderling", "Semipalmated Sandpiper", "Western Sandpiper", "Little Stint", "Red-necked Stint", "Temminck's Stint", "Long-toed Stint", "Least Sandpiper", "White-rumped Sandpiper", "Baird's Sandpiper", "Pectoral Sandpiper", "Sharp-tailed Sandpiper", "Purple Sandpiper", "Rock Sandpiper", "Dunlin", "Curlew Sandpiper", "Stilt Sandpiper", "Buff-breasted Sandpiper", "Spoonbill Sandpiper", "Broad-billed Sandpiper", "Ruff", "Red-necked Phalarope", "Red Phalarope", "Northern Jacana", "Double-striped Thick-knee", "Black Oystercatcher", "American Oystercatcher", "Black-winged Stilt", "Black Stilt", "Black-necked Stilt", "American Avocet", "European Golden-Plover", "Pacific Golden-Plover", "American Golden-Plover", "Grey Plover", "Common Ringed Plover", "Semipalmated Plover", "Little Ringed Plover", "Wilson's Plover", "Killdeer", "Piping Plover", "Kentish Plover", "Collared Plover", "Mongolian Plover", "Greater Sand Plover", "Mountain Plover", "Eurasian Dotterel", "Northern Lapwing", "Oriental Pratincole", "Rock Pratincole", "Pomarine Jaeger", "Parasitic Jaeger", "Long-tailed Jaeger", "Black Skimmer", "Band-tailed Gull", "Black-tailed Gull", "Heermann's Gull", "Common Gull", "Ring-billed Gull", "California Gull", "Great Black-backed Gull", "Kelp Gull", "Glaucous-winged Gull", "Western Gull", "Yellow-footed Gull", "Glaucous Gull", "Iceland Gull", "Herring Gull", "Slaty-backed Gull", "Yellow-legged Gull", "Lesser Black-backed Gull", "Great Black-headed Gull", "Grey-headed Gull", "Black-headed Gull", "Bonaparte's Gull", "Thayer's Gull", "Laughing Gull", "Franklin's Gull", "Little Gull", "Ivory Gull", "Ross's Gull", "Sabine's Gull", "Swallow-tailed Gull", "Black-legged Kittiwake", "Red-legged Kittiwake", "Gull-billed Tern", "Caspian Tern", "Royal Tern", "Elegant Tern", "Sandwich Tern", "Roseate Tern", "Common Tern", "Arctic Tern", "Forster's Tern", "Least Tern", "Aleutian Tern", "Bridled Tern", "Sooty Tern", "White-winged Tern", "Black Tern", "Large-billed Tern", "Brown Noddy", "Black Noddy", "Dovekie", "Common Murre", "Thick-billed Murre", "Razorbill", "Great Auk", "Black Guillemot", "Pigeon Guillemot", "Marbled Murrelet", "Kittlitz's Murrelet", "Xantus's Murrelet", "Craveri's Murrelet", "Ancient Murrelet", "Cassin's Auklet", "Parakeet Auklet", "Crested Auklet", "Whiskered Auklet", "Least Auklet", "Rhinoceros Auklet", "Atlantic Puffin", "Horned Puffin", "Tufted Puffin", "Osprey", "Hook-billed Kite", "Swallow-tailed Kite", "Black-shouldered Kite", "White-tailed Kite", "Snail Kite", "Rufous-thighed Kite", "Mississippi Kite", "White-tailed Eagle", "Bald Eagle", "Steller's Sea-Eagle", "Western Marsh-Harrier", "Northern Harrier", "Chinese Goshawk", "Sharp-shinned Hawk", "Cooper's Hawk", "Northern Goshawk", "Crane Hawk", "Common Black-Hawk", "Harris's Hawk", "Roadside Hawk", "Red-shouldered Hawk", "Broad-winged Hawk", "Short-tailed Hawk", "Swainson's Hawk", "White-tailed Hawk", "Zone-tailed Hawk", "Red-tailed Hawk", "Common Buzzard", "Ferruginous Hawk", "Rough-legged Hawk", "Golden Eagle", "Collared Forest-Falcon", "Common Kestrel", "American Kestrel", "Aplomado Falcon", "Merlin", "Eurasian Hobby", "Gyrfalcon", "Prairie Falcon", "Peregrine Falcon", "Least Grebe", "Pied-billed Grebe", "Red-necked Grebe", "Horned Grebe", "Black-necked Grebe", "Western Grebe", "Clark's Grebe", "Red-billed Tropicbird", "Red-tailed Tropicbird", "White-tailed Tropicbird", "Northern Gannet", "Blue-footed Booby", "Masked Booby", "Red-footed Booby", "Brown Booby", "Anhinga", "Brandt's Cormorant", "Neotropic Cormorant", "Double-crested Cormorant", "Great Cormorant", "Red-faced Cormorant", "Pelagic Cormorant", "Reddish Egret", "Tricolored Heron", "Little Blue Heron", "Little Egret", "Western Reef-Egret", "Snowy Egret", "Chinese Egret", "Grey Heron", "Great Blue Heron", "Cattle Egret", "Chinese Pond-Heron", "Striated Heron", "Green Heron", "Yellow-crowned Night-Heron", "Black-crowned Night-Heron", "Yellow Bittern", "Least Bittern", "American Bittern", "Greater Flamingo", "White Ibis", "Scarlet Ibis", "Glossy Ibis", "White-faced Ibis", "Roseate Spoonbill", "American White Pelican", "Brown Pelican", "Black Vulture", "Turkey Vulture", "California Condor", "Wood Stork", "Jabiru", "Magnificent Frigatebird", "Great Frigatebird", "Red-throated Loon", "Arctic Loon", "Pacific Loon", "Common Loon", "Yellow-billed Loon", "Northern Fulmar", "Cape Petrel", "Mottled Petrel", "Cook's Petrel", "Stejneger's Petrel", "Murphy's Petrel", "Great-winged Petrel", "Fea's Petrel", "Black-capped Petrel", "Bulwer's Petrel", "White-chinned Petrel", "Cory's Shearwater", "Wedge-tailed Shearwater", "Buller's Shearwater", "Flesh-footed Shearwater", "Pink-footed Shearwater", "Great Shearwater", "Sooty Shearwater", "Short-tailed Shearwater", "Manx Shearwater", "Black-vented Shearwater", "Audubon's Shearwater", "Little Shearwater", "Wandering Albatross", "Wilson's Storm-Petrel", "White-faced Storm-Petrel", "Black-bellied Storm-Petrel", "Least Storm-Petrel", "Wedge-rumped Storm-Petrel", "Band-rumped Storm-Petrel", "Leach's Storm-Petrel", "Black Storm-Petrel", "Ashy Storm-Petrel", "Ringed Storm-Petrel", "Fork-tailed Storm-Petrel", "Northern Beardless-Tyrannulet", "Greenish Elaenia", "Tufted Flycatcher", "Greater Pewee", "Western Wood-Pewee", "Eastern Wood-Pewee", "Cuban Pewee", "Yellow-bellied Flycatcher", "Acadian Flycatcher", "Alder Flycatcher", "Willow Flycatcher", "Least Flycatcher", "Hammond's Flycatcher", "Grey Flycatcher", "Dusky Flycatcher", "Pacific-slope Flycatcher", "Cordilleran Flycatcher", "Buff-breasted Flycatcher", "Eastern Phoebe", "Say's Phoebe", "Black Phoebe", "Vermilion Flycatcher", "Dusky-capped Flycatcher", "Ash-throated Flycatcher", "Nutting's Flycatcher", "Great Crested Flycatcher", "Brown-crested Flycatcher", "La Sagra's Flycatcher", "Tropical Kingbird", "Couch's Kingbird", "Cassin's Kingbird", "Thick-billed Kingbird", "Western Kingbird", "Scissor-tailed Flycatcher", "Fork-tailed Flycatcher", "Eastern Kingbird", "Grey Kingbird", "Variegated Flycatcher", "Sulphur-bellied Flycatcher", "Social Flycatcher", "Piratic Flycatcher", "Great Kiskadee", "Rose-throated Becard", "Masked Tityra", "Brown Shrike", "Loggerhead Shrike", "Northern Shrike", "Bell's Vireo", "Black-capped Vireo", "Hutton's Vireo", "White-eyed Vireo", "Thick-billed Vireo", "Grey Vireo", "Cassin's Vireo", "Plumbeous Vireo", "Blue-headed Vireo", "Yellow-throated Vireo", "Philadelphia Vireo", "Red-eyed Vireo", "Yellow-green Vireo", "Black-whiskered Vireo", "Yucatan Vireo", "Eastern Warbling-Vireo", "Pinyon Jay", "Blue Jay", "Steller's Jay", "Island Scrub-Jay", "Western Scrub-Jay", "Florida Scrub-Jay", "Mexican Jay", "Inca Jay", "Brown Jay", "Grey Jay", "Black-billed Magpie", "Yellow-billed Magpie", "Clark's Nutcracker", "Eurasian Jackdaw", "Northwestern Crow", "American Crow", "Fish Crow", "Tamaulipas Crow", "Chihuahuan Raven", "Common Raven", "Varied Triller", "Grey Silky-flycatcher", "Phainopepla", "Bohemian Waxwing", "Cedar Waxwing", "American Dipper", "Varied Thrush", "Aztec Thrush", "Eastern Bluebird", "Western Bluebird", "Mountain Bluebird", "Townsend's Solitaire", "Brown-backed Solitaire", "Black-billed Nightingale-Thrush", "Orange-billed Nightingale-Thrush", "Veery", "Grey-cheeked Thrush", "Swainson's Thrush", "Hermit Thrush", "Wood Thrush", "Eyebrowed Thrush", "Dusky Thrush", "Fieldfare", "Redwing", "Clay-colored Thrush", "Rufous-backed Thrush", "American Robin", "Spotted Flycatcher", "Grey-streaked Flycatcher", "Dark-sided Flycatcher", "Asian Brown Flycatcher", "Narcissus Flycatcher", "Mugimaki Flycatcher", "Red-breasted Flycatcher", "Rufous-tailed Robin", "Siberian Rubythroat", "Bluethroat", "Siberian Blue Robin", "Red-flanked Bluetail", "White-throated Robin", "Common Stonechat", "Northern Wheatear", "Common Starling", "Common Myna", "White-vented Myna", "Grey Catbird", "Black Catbird", "Blue Mockingbird", "Northern Mockingbird", "Bahama Mockingbird", "Sage Thrasher", "Brown Thrasher", "Long-billed Thrasher", "Bendire's Thrasher", "Curve-billed Thrasher", "Le Conte's Thrasher", "California Thrasher", "Crissal Thrasher", "Pygmy Nuthatch", "Brown-headed Nuthatch", "Red-breasted Nuthatch", "White-breasted Nuthatch", "Brown Creeper", "Cactus Wren", "Rock Wren", "Canyon Wren", "Sedge Wren", "Marsh Wren", "Bewick's Wren", "Carolina Wren", "Winter Wren", "House Wren", "Verdin", "Blue-grey Gnatcatcher", "California Gnatcatcher", "Black-tailed Gnatcatcher", "Black-capped Gnatcatcher", "Carolina Chickadee", "Black-capped Chickadee", "Mountain Chickadee", "Mexican Chickadee", "Siberian Tit", "Boreal Chickadee", "Chestnut-backed Chickadee", "Great Tit", "Bridled Titmouse", "Plain Titmouse", "Tufted Titmouse", "Black-crested Titmouse", "Bushtit", "Tree Swallow", "Mangrove Swallow", "Violet-green Swallow", "Bahama Swallow", "Purple Martin", "Cuban Martin", "Grey-breasted Martin", "Southern Martin", "Northern Rough-winged Swallow", "Sand Martin", "Barn Swallow", "Cliff Swallow", "Cave Swallow", "Northern House-Martin", "Ruby-crowned Kinglet", "Golden-crowned Kinglet", "Red-whiskered Bulbul", "Lanceolated Warbler", "Middendorff's Grasshopper-Warbler", "Willow Warbler", "Wood Warbler", "Dusky Warbler", "Pallas's Leaf-Warbler", "Inornate Warbler", "Arctic Warbler", "Wrentit", "Lesser Whitethroat", "Sky Lark", "Horned Lark", "House Sparrow", "Eurasian Tree Sparrow", "White Wagtail", "Black-backed Wagtail", "Citrine Wagtail", "Yellow Wagtail", "Grey Wagtail", "Tree Pipit", "Olive-backed Pipit", "Pechora Pipit", "Red-throated Pipit", "Water Pipit", "American Pipit", "Sprague's Pipit", "Siberian Accentor", "Clarke's Weaver", "Olive Warbler", "Chaffinch", "Brambling", "Grey-capped Greenfinch", "Eurasian Siskin", "Pine Siskin", "American Goldfinch", "Lesser Goldfinch", "Lawrence's Goldfinch", "European Goldfinch", "Hoary Redpoll", "Common Redpoll", "Grey-crowned Rosy-Finch", "Black Rosy-Finch", "Brown-capped Rosy-Finch", "Purple Finch", "Common Rosefinch", "Cassin's Finch", "House Finch", "Pine Grosbeak", "Red Crossbill", "White-winged Crossbill", "Eurasian Bullfinch", "Hawfinch", "Evening Grosbeak", "Pine Bunting", "Little Bunting", "Rustic Bunting", "Yellow-throated Bunting", "Yellow-breasted Bunting", "Grey Bunting", "Pallas's Bunting", "Reed Bunting", "McCown's Longspur", "Lapland Longspur", "Smith's Longspur", "Chestnut-collared Longspur", "Snow Bunting", "McKay's Bunting", "Lark Bunting", "Fox Sparrow", "Song Sparrow", "Lincoln's Sparrow", "Swamp Sparrow", "Harris's Sparrow", "White-throated Sparrow", "White-crowned Sparrow", "Golden-crowned Sparrow", "Dark-eyed Junco", "Yellow-eyed Junco", "Savannah Sparrow", "Seaside Sparrow", "Saltmarsh Sharp-tailed Sparrow", "Le Conte's Sparrow", "Henslow's Sparrow", "Baird's Sparrow", "Grasshopper Sparrow", "American Tree Sparrow", "Chipping Sparrow", "Clay-colored Sparrow", "Brewer's Sparrow", "Field Sparrow", "Worthen's Sparrow", "Black-chinned Sparrow", "Vesper Sparrow", "Lark Sparrow", "Black-throated Sparrow", "Sage Sparrow", "Five-striped Sparrow", "Bachman's Sparrow", "Botteri's Sparrow", "Cassin's Sparrow", "Rufous-winged Sparrow", "Rufous-crowned Sparrow", "Green-tailed Towhee", "Eastern Towhee", "Abert's Towhee", "California Towhee", "Canyon Towhee", "Olive Sparrow", "Bachman's Warbler", "Blue-winged Warbler", "Golden-winged Warbler", "Tennessee Warbler", "Orange-crowned Warbler", "Nashville Warbler", "Virginia's Warbler", "Colima Warbler", "Lucy's Warbler", "Northern Parula", "Tropical Parula", "Crescent-chested Warbler", "Yellow Warbler", "Chestnut-sided Warbler", "Magnolia Warbler", "Cape May Warbler", "Black-throated Blue Warbler", "Yellow-rumped Warbler", "Black-throated Grey Warbler", "Townsend's Warbler", "Hermit Warbler", "Black-throated Green Warbler", "Golden-cheeked Warbler", "Blackburnian Warbler", "Yellow-throated Warbler", "Grace's Warbler", "Pine Warbler", "Kirtland's Warbler", "Prairie Warbler", "Palm Warbler", "Bay-breasted Warbler", "Blackpoll Warbler", "Cerulean Warbler", "Black-and-white Warbler", "American Redstart", "Prothonotary Warbler", "Worm-eating Warbler", "Swainson's Warbler", "Ovenbird", "Northern Waterthrush", "Louisiana Waterthrush", "Kentucky Warbler", "Connecticut Warbler", "Mourning Warbler", "MacGillivray's Warbler", "Common Yellowthroat", "Hooded Yellowthroat", "Grey-crowned Yellowthroat", "Hooded Warbler", "Wilson's Warbler", "Canada Warbler", "Red-faced Warbler", "Painted Redstart", "Slate-throated Redstart", "Fan-tailed Warbler", "Golden-crowned Warbler", "Rufous-capped Warbler", "Yellow-breasted Chat", "Bananaquit", "Flame-colored Tanager", "Hepatic Tanager", "Summer Tanager", "Scarlet Tanager", "Westfern Tanager", "Stripe-headed Tanager", "Red-rumped Warbling-Finch", "White-collared Seedeater", "Yellow-faced Grassquit", "Black-faced Grassquit", "Dickcissel", "Yellow Grosbeak", "Rose-breasted Grosbeak", "Black-headed Grosbeak", "Northern Cardinal", "Pyrrhuloxia", "Crimson-collared Grosbeak", "Blue Bunting", "Blue Grosbeak", "Lazuli Bunting", "Indigo Bunting", "Varied Bunting", "Painted Bunting", "Rose-bellied Bunting", "Audubon's Oriole", "Spot-breasted Oriole", "Altamira Oriole", "Streak-backed Oriole", "Baltimore Oriole", "Hooded Oriole", "Orchard Oriole", "Black-vented Oriole", "Scott's Oriole", "Yellow-headed Blackbird", "Unicolored Blackbird", "Red-winged Blackbird", "Tricolored Blackbird", "Tawny-shouldered Blackbird", "Eastern Meadowlark", "Western Meadowlark", "Great-tailed Grackle", "Boat-tailed Grackle", "Common Grackle", "Rusty Blackbird", "Brewer's Blackbird", "Shiny Cowbird", "Bronzed Cowbird", "Brown-headed Cowbird", "Bobolink", "Spruce Grouse", "Masked Duck", "Tundra Goose", "American Three-toed Woodpecker", "Cape Verde Barn Owl", "Oriental Scops-Owl", "Wilson's Phalarope", "Great Skua", "South Polar Skua", "Mew Gull", "Long-billed Murrelet", "Grey-lined Hawk", "Southern Caracara", "Crested Caracara", "Nazca Booby", "Great Egret", "Intermediate Egret", "Herald Petrel", "Short-tailed Albatross", "Black-footed Albatross", "Laysan Albatross", "Black-browed Albatross", "Shy Albatross", "Yellow-nosed Albatross", "Olive-sided Flycatcher", "Green Jay", "Bicknell's Thrush", "Ridgway's Titmouse", "Brown-chested Martin", "Nelson's Sharp-tailed Sparrow", "Spotted Towhee", "Bullock's Oriole", "Black-backed Oriole"]
-
-let placenames_ = ["Abaíra", "Abaré", "Acajutiba", "Adustina", "Água Fria", "Aiquara", "Alagoinhas", "Alcobaça", "Almadina", "Amargosa", "Amélia Rodrigues", "América Dourada", "Anagé", "Andaraí", "Andorinha", "Angical", "Anguera", "Antas", "Antônio Cardoso", "Antônio Gonçalves", "Aporá", "Apuarema", "Araçás", "Aracatu", "Araci", "Aramari", "Arataca", "Aratuípe", "Aurelino Leal", "Baianópolis", "Baixa Grande", "Banzaê", "Barra", "Barra da Estiva", "Barra do Choça", "Barra do Mendes", "Barra do Rocha", "Barreiras", "Barro Alto", "Barro Preto", "Barrocas", "Belmonte", "Belo Campo", "Biritinga", "Boa Nova", "Boa Vista do Tupim", "Bom Jesus da Lapa", "Bom Jesus da Serra", "Boninal", "Bonito", "Boquira", "Botuporã", "Brejões", "Brejolândia", "Brotas de Macaúbas", "Brumado", "Buerarema", "Buritirama", "Caatiba", "Cabaceiras do Paraguaçu", "Cachoeira", "Caculé", "Caém", "Caetanos", "Caetité", "Cafarnaum", "Cairu", "Caldeirão Grande", "Camacan", "Camaçari", "Camamu", "Campo Alegre de Lourdes", "Campo Formoso", "Canápolis", "Canarana", "Canavieiras", "Candeal", "Candeias", "Candiba", "Cândido Sales", "Cansanção", "Canudos", "Capela do Alto Alegre", "Capim Grosso", "Caraíbas", "Caravelas", "Cardeal da Silva", "Carinhanha", "Casa Nova", "Castro Alves", "Catolândia", "Catu", "Caturama", "Central", "Chorrochó", "Cícero Dantas", "Cipó", "Coaraci", "Cocos", "Conceição da Feira", "Conceição do Almeida", "Conceição do Coité", "Conceição do Jacuípe", "Conde", "Condeúba", "Contendas do Sincorá", "Coração de Maria", "Cordeiros", "Coribe", "Coronel João Sá", "Correntina", "Cotegipe", "Cravolândia", "Crisópolis", "Cristópolis", "Cruz das Almas", "Curaçá", "Dário Meira", "Dias d'Ávila", "Dom Basílio", "Dom Macedo Costa", "Elísio Medrado", "Encruzilhada", "Entre Rios", "Érico Cardoso", "Esplanada", "Euclides da Cunha", "Eunápolis", "Fátima", "Feira da Mata", "Feira de Santana", "Filadélfia", "Firmino Alves", "Floresta Azul", "Formosa do Rio Preto", "Gandu", "Gavião", "Gentio do Ouro", "Glória", "Gongogi", "Governador Mangabeira", "Guajeru", "Guanambi", "Guaratinga", "Heliópolis", "Iaçu", "Ibiassucê", "Ibicaraí", "Ibicoara", "Ibicuí", "Ibipeba", "Ibipitanga", "Ibiquera", "Ibirapitanga", "Ibirapuã", "Ibirataia", "Ibitiara", "Ibititá", "Ibotirama", "Ichu", "Igaporã", "Igrapiúna", "Iguaí", "Ilhéus", "Inhambupe", "Ipecaetá", "Ipiaú", "Ipirá", "Ipupiara", "Irajuba", "Iramaia", "Iraquara", "Irará", "Irecê", "Itabela", "Itaberaba", "Itabuna", "Itacaré", "Itaetê", "Itagi", "Itagibá", "Itagimirim", "Itaguaçu da Bahia", "Itaju do Colônia", "Itajuípe", "Itamaraju", "Itamari", "Itambé", "Itanagra", "Itanhém", "Itaparica", "Itapé", "Itapebi", "Itapetinga", "Itapicuru", "Itapitanga", "Itaquara", "Itarantim", "Itatim", "Itiruçu", "Itiúba", "Itororó", "Ituaçu", "Ituberá", "Iuiú", "Jaborandi", "Jacaraci", "Jacobina", "Jaguaquara", "Jaguarari", "Jaguaripe", "Jandaíra", "Jequié", "Jeremoabo", "Jiquiriçá", "Jitaúna", "João Dourado", "Juazeiro", "Jucuruçu", "Jussara", "Jussari", "Jussiape", "Lafaiete Coutinho", "Lagoa Real", "Laje", "Lajedão", "Lajedinho", "Lajedo do Tabocal", "Lamarão", "Lapão", "Lauro de Freitas", "Lençóis", "Licínio de Almeida", "Livramento de Nossa Senhora", "Luis Eduardo Magalhães", "Macajuba", "Macarani", "Macaúbas", "Macururé", "Madre de Deus", "Maetinga", "Maiquinique", "Mairi", "Malhada", "Malhada de Pedras", "Manoel Vitorino", "Mansidão", "Maracás", "Maragogipe", "Maraú", "Marcionílio Souza", "Mascote", "Mata de São João", "Matina", "Medeiros Neto", "Miguel Calmon", "Milagres", "Mirangaba", "Mirante", "Monte Santo", "Morpará", "Morro do Chapéu", "Mortugaba", "Mucugê", "Mucuri", "Mulungu do Morro", "Mundo Novo", "Muniz Ferreira", "Muquém de São Francisco", "Muritiba", "Mutuípe", "Nazaré", "Nilo Peçanha", "Nordestina", "Nova Canaã", "Nova Fátima", "Nova Ibiá", "Nova Itarana", "Nova Redenção", "Nova Soure", "Nova Viçosa", "Novo Horizonte", "Novo Triunfo", "Olindina", "Oliveira dos Brejinhos", "Ouriçangas", "Ourolândia", "Palmas de Monte Alto", "Palmeiras", "Paramirim", "Paratinga", "Paripiranga", "Pau Brasil", "Paulo Afonso", "Pé de Serra", "Pedrão", "Pedro Alexandre", "Piatã", "Pilão Arcado", "Pindaí", "Pindobaçu", "Pintadas", "Piraí do Norte", "Piripá", "Piritiba", "Planaltino", "Planalto", "Poções", "Pojuca", "Ponto Novo", "Porto Seguro", "Potiraguá", "Prado", "Presidente Dutra", "Presidente Jânio Quadros", "Presidente Tancredo Neves", "Queimadas", "Quijingue", "Quixabeira", "Rafael Jambeiro", "Remanso", "Retirolândia", "Riachão do Jacuípe", "Riacho de Santana", "Ribeira do Amparo", "Ribeira do Pombal", "Ribeirão do Largo", "Rio de Contas", "Rio do Antônio", "Rio do Pires", "Rio Real", "Rodelas", "Ruy Barbosa", "Salinas da Margarida", "Salvador", "Santa Bárbara", "Santa Brígida", "Santa Cruz Cabrália", "Santa Cruz da Vitória", "Santa Inês", "Santa Luzia", "Santa Maria da Vitória", "Santa Rita de Cássia", "Santa Teresinha", "Santaluz", "Santana", "Santanópolis", "Santo Amaro", "Santo Antônio de Jesus", "Santo Estêvão", "São Desidério", "São Domingos", "São Felipe", "São Félix", "São Félix do Coribe", "São Francisco do Conde", "São Gabriel", "São Gonçalo dos Campos", "São José da Vitória", "São José do Jacuípe", "São Miguel das Matas", "São Sebastião do Passé", "Sapeaçu", "Sátiro Dias", "Saubara", "Saúde", "Seabra", "Sebastião Laranjeiras", "Senhor do Bonfim", "Sento Sé", "Serra do Ramalho", "Serra Dourada", "Serra Preta", "Serrinha", "Serrolândia", "Simões Filho", "Sítio do Mato", "Sítio do Quinto", "Sobradinho", "Souto Soares", "Tabocas do Brejo Velho", "Tanhaçu", "Tanque Novo", "Tanquinho", "Taperoá", "Tapiramutá", "Teixeira de Freitas", "Teodoro Sampaio", "Teofilândia", "Teolândia", "Tremedal", "Tucano", "Uauá", "Ubaíra", "Ubaitaba", "Ubatã", "Uibaí", "Umburanas", "Una", "Urandi", "Uruçuca", "Utinga", "Valença", "Valente", "Várzea da Roça", "Várzea do Poço", "Várzea Nova", "Varzedo", "Vera Cruz", "Vereda", "Vitória da Conquista", "Wagner", "Wanderley", "Wenceslau Guimarães", "Xique-Xique"];
 
 
 </script>
