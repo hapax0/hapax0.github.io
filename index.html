@@ -937,9 +937,10 @@ function drawD () {
   let c = document.getElementById("myCanvas")
   var ctx = c.getContext('2d');
   copyCode()
+  let text = document.getElementById("text1").value
   ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.globalCompositeOperation = document.getElementById("mode").value
-  eval(txt)
+  eval(text)
 }
 
 let WD = 0, WS = 0, TEMP = 0, CONDITIONS = ""// windAt
@@ -21581,6 +21582,8 @@ function music (y, d) {
   //
 }
 
+
+
 function tablePadInset () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -34687,7 +34690,7 @@ function placeCharAt (char,canvas) {
   let W = canvas.width
   ctx.globalAlpha = (document.getElementById("opacity").value)/100
   ctx.fillStyle = getselectedcolor()
-  let fs = 10*(4 + document.getElementById("featuresize").value/4)
+  let fs = (4 + document.getElementById("featuresize").value/4)
   if (char === "Enter") {
     LASTCLICK[0] = LEFTX
     LASTCLICK[1] += fs*1.2
