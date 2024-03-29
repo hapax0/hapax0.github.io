@@ -851,7 +851,7 @@ function processthing (t) {
     let audio = new Audio('sounds/pop.mp3')
     audio.play()
   }
-  if (t === "mineAt" || t === "invaderAt" || t === "ghostAt" || t === "spiderAt" || t === "skullAt" || (t !== NOBURN && lavas.includes(t))) {
+  if (t === "mineAt" || t === "invaderAt" || t === "ghostAt" || t === "spiderAt" || t === "skullAt" || (t !== "blue" && lavas.includes(t))) {
     if (HITS > 0 && (t !== "mineAt" && !lavas.includes(t))) {
       let audio = new Audio('sounds/swish.mp3')
       audio.play()
@@ -863,7 +863,7 @@ function processthing (t) {
       return
     }
     let audio = new Audio('sounds/hurt1.mp3')
-    if (lavas.includes(t))
+    if (lavas.includes(t) && t !== "blue")
       audio = new Audio('sounds/steam.mp3')
 
     if (t === "mineAt")
