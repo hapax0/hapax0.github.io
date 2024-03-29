@@ -432,6 +432,8 @@ function left () {
   let D = 40
   RIGHT = false
   VERT = false
+  if (MAP === "Mines")
+    numberMines()
   if (MAP === "Maze" && (wallthings[ifromxy(ux/40-1, uy/40)] === "rightWallAt" || 
     wallthings[ifromxy(ux/40, uy/40)] === "leftWallAt"))
   return false
@@ -443,6 +445,8 @@ function left () {
   UD = 0
   LR = -15
   refresh (ux,uy)
+  if (MAP === "Mines")
+    numberMines()
 }
 
 function right () {
@@ -451,6 +455,8 @@ function right () {
   let D = 40
   VERT = false
   RIGHT = true
+  if (MAP === "Mines")
+    numberMines()
   if (MAP === "Maze" && (wallthings[ifromxy(ux/40+1, uy/40)] === "leftWallAt" || 
     wallthings[ifromxy(ux/40, uy/40)] === "rightWallAt"))
   return false
@@ -462,6 +468,8 @@ function right () {
   UD = 0
   LR = 15
   refresh (ux,uy)
+  if (MAP === "Mines")
+    numberMines()
 }
 
 function up () {
@@ -470,6 +478,8 @@ function up () {
   let D = 40
   VERT = true
   UP = true
+  if (MAP === "Mines")
+    numberMines()
   if (MAP === "Maze" && (wallthings[ifromxy(ux/40, uy/40)] === "topWallAt" || 
     wallthings[ifromxy(ux/40, uy/40-1)] === "bottomWallAt"))
   return false
@@ -481,6 +491,8 @@ function up () {
   LR = 0
   UD = -15
   refresh (ux,uy)
+  if (MAP === "Mines")
+    numberMines()
 }
 
 function down () {
@@ -489,6 +501,8 @@ function down () {
   let D = 40
   VERT = true
   UP = false
+  if (MAP === "Mines")
+    numberMines()
  if (MAP === "Maze" && (wallthings[ifromxy(ux/40, uy/40+1)] === "topWallAt" || 
     wallthings[ifromxy(ux/40, uy/40)] === "bottomWallAt"))
   return false
@@ -500,6 +514,8 @@ function down () {
   LR = 0
   UD = 15
   refresh (ux,uy)
+  if (MAP === "Mines")
+    numberMines()
 }
 
 function updateUser(ctx, dir) {
