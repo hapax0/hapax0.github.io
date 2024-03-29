@@ -852,10 +852,10 @@ function processthing (t) {
     audio.play()
   }
   if (t === "mineAt" || t === "invaderAt" || t === "ghostAt" || t === "spiderAt" || t === "skullAt" || (t !== NOBURN && lavas.includes(t))) {
-    if (HITS > 0) {
-    let audio = new Audio('sounds/swish.mp3')
-    audio.play()
-      HITS--
+    if (HITS > 0 && (t !== "mineAt" && !lavas.includes(t))) {
+      let audio = new Audio('sounds/swish.mp3')
+      audio.play()
+        HITS--
       if (HITS < 1) {
         SWORDS = 0
         message("Your sword has broken!\n")
@@ -3147,9 +3147,9 @@ function scissorsAt (x,y,W,color) {
   let canvas = document.getElementById("OC")
   let ctx = canvas.getContext("2d")
   let H = W, cpx, cpy
-  ctx.lineWidth = 3
+  ctx.lineWidth = 4
   ctx.strokeStyle = "#fe9090"
-  ctx.lineCap = "square"
+  ctx.lineCap = "round"
   ctx.lineJoin = "bevel"
   //1
   ctx.beginPath()
@@ -3161,7 +3161,7 @@ function scissorsAt (x,y,W,color) {
   //2
   ctx.beginPath()
   ctx.moveTo(x+16*W/24, y+8*H/24)
-  ctx.lineTo(x+16*W/24, y+13*H/24)
+  ctx.lineTo(x+16*W/24, y+12*H/24)
   ctx.stroke()
 
   //3
@@ -3174,13 +3174,13 @@ function scissorsAt (x,y,W,color) {
 
   //4
   ctx.beginPath()
-  ctx.moveTo(x+8*W/24, y+13*H/24)
+  ctx.moveTo(x+8*W/24, y+12*H/24)
   ctx.lineTo(x+5*W/24, y+2*H/24)
   ctx.stroke()
 
   //5
   ctx.beginPath()
-  ctx.moveTo(x+12*W/24, y+13*H/24)
+  ctx.moveTo(x+12*W/24, y+12*H/24)
   ctx.lineTo(x+13*W/24, y+1*H/24)
   ctx.stroke()
 }
@@ -3189,9 +3189,9 @@ function rockAt (x,y,W,color) {
   let canvas = document.getElementById("OC")
   let ctx = canvas.getContext("2d")
   let H = W, cpx, cpy
-  ctx.lineWidth = 3
+  ctx.lineWidth = 4
   ctx.strokeStyle = "#48d8e2"
-  ctx.lineCap = "square"
+  ctx.lineCap = "round"
   ctx.lineJoin = "bevel"
   //1
   ctx.beginPath()
@@ -3231,9 +3231,9 @@ function paperAt (x,y,W,color) {
   let canvas = document.getElementById("OC")
   let ctx = canvas.getContext("2d")
   let H = W, cpx, cpy, points = []
-  ctx.lineWidth = 3
+  ctx.lineWidth = 4
   ctx.strokeStyle = "#f1c350"//color
-  ctx.lineCap = "square"
+  ctx.lineCap = "round"
   ctx.lineJoin = "bevel"
   //1
   ctx.beginPath()
