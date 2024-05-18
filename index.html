@@ -126,12 +126,15 @@
     }
     svg {background-color:#ccc;}
     svg[class=white] { background-color:#fff;}
+    svg[class=blue] { background-color:#aaaadd;}
   </style>
   
   <script src="pantone.js"></script>
   <script src="wordlist2.js"></script>
   <script src="ptwords.js"></script>
   <script src="moby.js"></script>
+  <script src="frank.js"></script>
+  <script src="dict.js"></script>
   <script src="mouse-paper.js"></script>
   <script src="atfunctions.js"></script>
   <script src="thedefs.js"></script>
@@ -281,16 +284,16 @@
       <path d="M3.5.5A.5.5 0 0 1 4 1v13h13a.5.5 0 0 1 0 1h-2v2a.5.5 0 0 1-1 0v-2H3.5a.5.5 0 0 1-.5-.5V4H1a.5.5 0 0 1 0-1h2V1a.5.5 0 0 1 .5-.5zm2.5 3a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4H6.5a.5.5 0 0 1-.5-.5z"/>
       </svg></button>
      <select id="framefunctions">
-       <option value="dropFrame">drop shadow</option>
+       <option value="dropshadow">drop shadow</option>
+       <option value="tissue" selected>tissue</option>
+       <option value="dropFrame">drop frame</option>
        <option value="zoomOutImage">zoom out</option>
        <option value="zoomImage">zoom in</option>
        <option value="makeSquare">pad to square</option>
        <option value="cropSquare">crop to square</option>
        <option value="resizeTo1080">crop to 1080</option>
        <option value="ripFrame">rip frame</option>
-
-      <option value="topRip" style="color:red">top rip</option>
-
+       <option value="topRip" style="color:red">top rip</option>
        <option value="halfRip" style="color:red">left rip</option>
        <option value="leftClip" style="color:red">left clip</option>
        <option value="leftCut" style="color:red">left cut</option>
@@ -330,11 +333,11 @@
         <option value="lightleak">light leak</option>
         <option value="multileak">multi leak</option>        
         <option value="blurAlpha">blur alpha</option>
-        <option value="edgeDarken" style="color:red">darken edges</option>
-        <option value="edgeLighten" style="color:red">lighten edges</option>
-        <option value="edgeBlur" style="color:red">blur edges</option>
-        <option value="edgeGrey" style="color:red">gray edges</option>
-        <option value="fadeCenter" style="color:red">fade center</option>
+        <option value="edgeDarken" style="color:red">darken edges v</option>
+        <option value="edgeLighten" style="color:red">lighten edges v</option>
+        <option value="edgeBlur" style="color:red">blur edges v</option>
+        <option value="edgeGrey" style="color:red">gray edges v</option>
+        <option value="fadeCenter" style="color:red">fade center v</option>
         <option value="transparenter">fade all</option>
         <option value="opaqueer">unfade all</option>
         <option value="fr">fade right</option>
@@ -357,8 +360,8 @@
       <option value="filterGrays">filter grays</option>
       <option value="highContrast">high contrast</option>
       <option value="threshold">threshold</option>
-      <option value="pixelate">pixelate</option>
       <option value="threshold_soft">threshold soft</option>
+      <option value="pixelate">pixelate</option>
       <option value="posterize" >posterize</option>
       <option value="palettetint" >palette tint</option>
       <option value="tintByCloseness" >extracted tint</option>
@@ -393,12 +396,13 @@
         <option value="canvas1">canvas</option>
         <option value="watercolorPaper">wc paper</option>
         <option value="diss" >distress</option>
-        <option value="wash" >wash</option>
-        <option value="washS" >wash-strokes</option>
-        <option value="wash2" >wash2</option>
-        <option value="wash3" >wash3</option>
-        <option value="wash4" >wash4</option>
-        <option value="wash5" >wash5</option>
+        <option value="paperize">paperize</option>
+        <option value="wash">wash</option>
+        <option value="wash2">wash2</option>
+        <option value="wash3">wash3</option>
+        <option value="wash4">wash4</option>
+        <option value="wash5">wash5</option>
+        <option value="pushUp">push up</option>
         <option value="landscape">landscape</option>
         <option value="blockstrips">blockstrips</option>
         <option value="blockprint2">blockprint 2</option>
@@ -443,13 +447,13 @@
       <!--option value="placeRectAt">mockup</option-->
       <option value="scratchout2">scratch out</option>
       <option value="aletter">a cursive</option>
-      <option value="rose" >rose</option>
+      <option value="rose">crackle</option>
+      <option value="rose_og" >rose</option>
       <option value="natural">loop</option>
       <option value="spiral4">scribble</option>
       <option value="paintDrips">paint drips</option>
       <option value="paintDrip">drip at</option>
       <option value="threecards" >tarot</option>
-      <option value="bigcard">big tarot</option>
       <option value="twosides" selected>card+inverted</option>
       <option value="printableCard" >print tarot</option>
       <!--option value="crackle">crackle curves</option>
@@ -470,6 +474,8 @@
       <option value="monocube">cube (mono)</option>
       <option value="cube">cube (fill)</option>
       <option value="cube2">cube2</option>
+      <option value="polywalk">poly walk</option>
+      <option value="raggedpoly">ragged poly</option>
       <option value="shape2">shape</option>
       <option value="scraps">scraps</option>
       <option value="multiScraps">multi scraps</option>
@@ -480,6 +486,18 @@
     </svg></button>
     <select id="paperfunctions">
       <!--option value="roadmap">road map</option-->
+      <option value="insertLinesAt">lines at</option>
+      <option value="insertNumberedLinesAt">num lines at</option>
+      <option value="insertHeaderAt">header at</option>
+      <option value="insertMeasureingTapeAt">tape at</option>
+      <option value="insertPolarAt">polar at</option>
+      <option value="insertTableAt">table at</option>
+      <option value="insertRectAt">rect at</option>     
+      <option value="insertxhairAt">cross hair at</option>
+      <option value="insertGridAt">grid at</option>
+      <option value="insertReticuleAt">reticule at</option>
+      <option value="mole_unbound">mole unbound</option>
+
       <option value="moleskine2">mole blank</option>
       <option value="moleskine">mole grid</option>
       <option value="moleskineDay">day planner</option>
@@ -493,6 +511,8 @@
       <option value="form3">form (nest)</option>
       <option value="pageOfBook">book page</option>
       <option value="pageOfBookIll">book illustrated</option>
+      <option value="pageOfBook2Col">2 column page</option>
+      <option value="pageOfBook3Col">3 column page</option>
       <option value="pairedwords">form pairs</option>
       <option value="nested">nested sqrs</option>
       <option value="index">index</option>
@@ -535,6 +555,9 @@
       <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
       </svg></button>
     <select id="transformfunctions">
+      <option value="wrap">wrap</option>
+      <option value="motionblur">motion blur</option>
+      <option value="afold" >fold</option>
       <option value="impasto">impasto</option>
       <option value="dotblur" >dot blur</option>
       <option value="dirblur">dir blur</option>
@@ -542,12 +565,9 @@
       <option value="bokehs">bokeh</option>
       <option value="flares">flares</option>
       <option value="smearside">smear right</option>
-      <option value="motionblur">motion blur</option>
       <option value="spin">spin</option>
-      <option value="shaken" selected>shaken</option>
+      <option value="shaken">shaken</option>
       <option value="tiltshift">tilt-shift</option>
-      <option value="wrap" selected>wrap</option>
-      <option value="afold" >fold</option>
       <option value="unfolded" >unfolded</option>
       <option value="fourfold">fourfold</option>
       <option value="ripinhalf">rip in half</option>
@@ -582,11 +602,18 @@
       </select> &nbsp;<span id="redspan" style="color:red;">cut </span><input type="number" step="1" id="rednumber" style="color:red;" onchange="pushMarker()">
       <!--input type="range" id="canvas_size" class="range" min="1" max="5" value="5" onchange="resizeCanvas()"-->
     </td>
-       <td style="text-align:left;">&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-thermometer-high" viewBox="0 0 16 16">
+       <td style="text-align:left;">&nbsp;
+       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="red" class="bi bi-thermometer-high" viewBox="0 0 16 16">
+    <path d="M9.5 12.5a1.5 1.5 0 1 1-2-1.415V2.5a.5.5 0 0 1 1 0v8.585a1.5 1.5 0 0 1 1 1.415z"/>
+    <path d="M5.5 2.5a2.5 2.5 0 0 1 5 0v7.55a3.5 3.5 0 1 1-5 0V2.5zM8 1a1.5 1.5 0 0 0-1.5 1.5v7.987l-.167.15a2.5 2.5 0 1 0 3.333 0l-.166-.15V2.5A1.5 1.5 0 0 0 8 1z"/>
+  </svg>
+  <br>&nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="blue" class="bi bi-thermometer-high" viewBox="0 0 16 16">
     <path d="M9.5 12.5a1.5 1.5 0 1 1-2-1.415V2.5a.5.5 0 0 1 1 0v8.585a1.5 1.5 0 0 1 1 1.415z"/>
     <path d="M5.5 2.5a2.5 2.5 0 0 1 5 0v7.55a3.5 3.5 0 1 1-5 0V2.5zM8 1a1.5 1.5 0 0 0-1.5 1.5v7.987l-.167.15a2.5 2.5 0 1 0 3.333 0l-.166-.15V2.5A1.5 1.5 0 0 0 8 1z"/>
   </svg></td><td>
-    <button onclick="adjustWarmth(5, null, true)">+</button>&nbsp;&nbsp;<button onclick="adjustWarmth(-5, null, true)">-</button>
+    <button style="width:8px;height:18px;"onclick="adjustWarmth(5, null, true)">+</button>&nbsp;&nbsp;<button style="width:8px;height:18px;" onclick="adjustWarmth(-5, null, true)">-</button>
+    <br>
+    <button style="width:8px;height:18px;"onclick="adjustBlue(5, null, true)">+</button>&nbsp;&nbsp;<button style="width:8px;height:18px;" onclick="adjustBlue(-5, null, true)">-</button>
      </td>
      <td rowspan='4'>
          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" viewBox="0 0 16 16">
@@ -611,7 +638,11 @@
       <option value="bnw" selected>b & w</option>
       <option value="cmy">cmy</option>
       <option value="primary" >primary</option>
+      
       <option value="vivid">vivid</option>
+      <option value="stella">stella</option>
+      <option value="abdominales">abdominales</option>
+      
       <option value="afklint">af klint</option>
       <option value="afklint2">af klint(2)</option>
       <option value="de kooning">de kooning</option>
@@ -713,22 +744,27 @@
         <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
       </svg></a></button>
   
-  <button><a onclick="colormatrix()" title="show color matrix">
+  <!--button><a onclick="colormatrix()" title="show color matrix">
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="white" viewBox="0 0 16 16">
     <path fill-rule="evenodd" d="M0 0h1v15h15v1H0V0Zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07Z"/>
-  </svg></a></button>
+  </svg></a></button-->
   <button><a  onclick="showHex()" title="show hex values">
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="white" viewBox="0 0 16 16">
       <path d="M8.39 12.648a1.32 1.32 0 0 0-.015.18c0 .305.21.508.5.508.266 0 .492-.172.555-.477l.554-2.703h1.204c.421 0 .617-.234.617-.547 0-.312-.188-.53-.617-.53h-.985l.516-2.524h1.265c.43 0 .618-.227.618-.547 0-.313-.188-.524-.618-.524h-1.046l.476-2.304a1.06 1.06 0 0 0 .016-.164.51.51 0 0 0-.516-.516.54.54 0 0 0-.539.43l-.523 2.554H7.617l.477-2.304c.008-.04.015-.118.015-.164a.512.512 0 0 0-.523-.516.539.539 0 0 0-.531.43L6.53 5.484H5.414c-.43 0-.617.22-.617.532 0 .312.187.539.617.539h.906l-.515 2.523H4.609c-.421 0-.609.219-.609.531 0 .313.188.547.61.547h.976l-.516 2.492c-.008.04-.015.125-.015.18 0 .305.21.508.5.508.265 0 .492-.172.554-.477l.555-2.703h2.242l-.515 2.492zm-1-6.109h2.266l-.515 2.563H6.859l.532-2.563z"/>
     </svg></a></button>
+<button><a  onclick="makeAPalette()" title="mix palette">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="white" viewBox="0 0 16 16">
+  <path d="M0 .5A.5.5 0 0 1 .5 0h5a.5.5 0 0 1 .5.5v5.277l4.147-4.131a.5.5 0 0 1 .707 0l3.535 3.536a.5.5 0 0 1 0 .708L10.261 10H15.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-.5.5H3a3 3 0 0 1-2.121-.879A3 3 0 0 1 0 13.044m6-.21 7.328-7.3-2.829-2.828L6 7.188zM4.5 13a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0M15 15v-4H9.258l-4.015 4zM0 .5v12.495zm0 12.495V13z"/>
+</svg></a></button>
   </div>
-  type <input type="checkbox" id="typing">
+  <div style="background-color:#aaaadd;">
+  &nbsp;type <input type="checkbox" id="typing">
   <select id="fontweight">
   <option>normal</option>
   <option>bold</option>
   <option>italic</option>
   <option>italic bold</option>
-  <option>100</option>
+  <!--option>100</option>
   <option>200</option>
   <option>300</option>
   <option>400</option>
@@ -736,7 +772,7 @@
   <option>600</option>
   <option>700</option>
   <option>800</option>
-  <option>900</option>
+  <option>900</option-->
   </select>
 
   <select id="fontface">
@@ -747,21 +783,25 @@
   <option>Impact</option>
   <option>Times New Roman</option>
   <option>Georgia</option>
-  <option>Palatino</option>
+  <option selected>Garamond</option>
   <option>Courier</option>
   <option>Verdana</option>
   <option>Comic Sans MS</option>
   </select>
   kern <input type="checkbox" id="kern" checked>
-  <label id="sample"> The quick brown fox...</label>
-  
+  <!--label id="sample"> The quick brown fox...</label-->
+
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#000000"  class="blue"  viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+</svg><select id="linespace" style="width:48px" title="line spacing">
+  <option>1</option>
+  <option selected>1.5</option>
+  <option>2</option>
+  </select>
   </td>
-  <td rowspan="2">
-  <div style="display:inline-block;
-  vertical-align: baseline;">
-  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-  <path d="M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-</svg></div></td>
+  </div>
+  </td>
+  <!--td rowspan="2"></div></td-->
   </tr>
   <tr>
     <td style="text-align:right;">feature size</td><td><input type="range" id="featuresize" onchange="featuresizeChange()" min="0" max="500" value="25"></td>
@@ -814,6 +854,18 @@
     <button onclick="adjustBrightness(5, null, true)">+</button>&nbsp;&nbsp;<button onclick="adjustBrightness(-5, null, true)">-</button>
   </td>
   <td rowspan='1'>
+  <input type='number' style='width: 40px;' id='angle' value='0'></input> &deg;
+
+  <!-- drawD stuff here
+  <input type="checkbox" id="draw"><label for="draw">draw</label> 
+  <select id="fillorstrokee" style="width:64px;" >
+    <option value="fill">fill</option>
+    <option value="stroke" selected>stroke</option>
+  </select>
+    <input type="checkbox" id="quad2"><label for="quad2">quad</label> 
+
+  <button id="closePath" style="width:32px;" title="close path">X</button>
+-->
 
   </td>
   </tr>
@@ -858,10 +910,10 @@
       <option value="circ">circ</option>
       <option value="square">square</option>
     </select>
-    &nbsp;<select id="fillstroke" style="width:58px;" >
+    &nbsp;<select id="fillstroke" style="width:64px;" >
       <option value="fill">fill</option>
       <option value="stroke" selected>stroke</option>
-     
+      <option value="stipple">stipple</option>
     </select>
     &nbsp;<button onclick="closePath()">close</button>
     &nbsp;
@@ -908,7 +960,7 @@
   
     <br>
     <div style="display:none;">
-      <canvas id="offscreen" width='512' height='512' style="display:none;"></canvas>
+      <canvas id="offscreen" width='513' height='513' style="display:none;"></canvas>
     </div>
      <div style="display:none;">
     <canvas id="off" width='512' height='512' style="display:none;"></canvas>
@@ -917,7 +969,6 @@
 <script>
 let BLACK = 0
 let LASTCLICK = [512,512]
-let OCISCLEAR = true
 let SHOWBOX = false
 
 function toggleGridBox () {
@@ -948,7 +999,7 @@ let LEFTX = 0
 window.onload = function () {
   let myCanvas = document.getElementById("myCanvas")
   let ctx = myCanvas.getContext("2d")
-  document.addEventListener('keydown', (event)=> {    
+  document.addEventListener('keydown', (event) => {    
     let key = event.key
     if (!document.getElementById("typing").checked) {
       return false
@@ -980,7 +1031,10 @@ window.onload = function () {
     syncMarker(true)
     pushFunction('setLastclick', [x,y])
 }, false);
-
+let lw = document.getElementById("lwg")
+lw.addEventListener('change', function(event) {
+    document.getElementById("fillstroke").value="stroke"
+}, false);
 
 let marker = document.getElementById("marker")
 marker.addEventListener('click', function(event) {
@@ -991,21 +1045,6 @@ marker.addEventListener('click', function(event) {
     showTip("X: "+Math.floor(x), "marker")
     
 }, false);
-
-function refreshSample () {
-  let s = document.getElementById("sample")
-  let weight = document.getElementById("fontweight").value
-  let face = document.getElementById("fontface").value
-  s.style.font = weight +" 14pt " + face
-}
-
-document.getElementById("fontweight").addEventListener ('change', function(event) {
-    refreshSample()
-  }, false);
-
-document.getElementById("fontface").addEventListener ('change', function(event) {
-    refreshSample()
-  }, false);
 
 document.getElementById("mode").addEventListener ('change', function(event) {
     refreshMode()
@@ -1069,10 +1108,7 @@ function checkAlt (checked) {
   }
 }
 
-
-
 function setLastclick (lc) {
-console.log(lc)
   LASTCLICK[0] = lc[0]
   LASTCLICK[1] = lc[1]
   syncMarker()
@@ -1603,6 +1639,10 @@ function loadPalette (PUSH) {
 
     updateExtraColors(clrs)
   } else
+  if (type === 'abdominales') {
+    b = ["#1a1211", "#7e0d45", "#1c4547", "#a13506", "#474c44", "#48497a", "#8c424c", "#be4637", "#9b581d", "#947c14", "#b5678b", "#768588", "#a88c44", "#d19819", "#afa58b", "#d6a38a", "#d4cdc0"]
+    updateExtraColors(b)
+  } else
   if (type === "comp") {
     let angle = 180, i = 0
     let clrs = getCurrentPalette()
@@ -1750,6 +1790,10 @@ if (type === 'faded poster') {
     b = ["#fcfcfc", "#ec7d09", "#fbe90e", "#cedea5", "#49603a", "#7ad650", "#059440", "#0a9bdf", "#144263", "#074d98", "#7c43a3", "#e00665", "#730f36", "#040102", "#e10613", "#ffb9ba", "#c41c1d"]
     updateExtraColors(b)
   } else
+  if (type === 'stella') {
+    b = ["#b83931", "#d27310", "#eed40a", "#669d3b", "#385d8f", "#64407d"]
+    updateExtraColors(b)
+  } else
   if (type === 'de kooning') {
     b = ["#bd1513", "#940700", "#73271e", "#c25c44", "#e7886b", "#f1b388", "#fdecd8", "#b0a18f", "#d5cebd", "#005627", "#6c7373", "#4a8cae", "#106ca3", "#184868", "#1a262f"]
     updateExtraColors(b)
@@ -1823,7 +1867,7 @@ if (type === 'faded poster') {
     updateExtraColors(b)
   } else
   if (type === "primary") {
-    a = ['#ff0000', '#0000ff', '#ffff00', '#008000', '#ffa500', '#800080']
+    a = ['#ff0000', '#0000ff', '#ffff00', '#008000', '#ffa500', '#800080',"#000000", "#ffffff"]
     updateExtraColors(a)
   } else
   if (type === "nighthawks") {
@@ -1843,10 +1887,48 @@ if (type === 'faded poster') {
   } 
 }
 
+function makeAPalette () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  let colors = []//getCurrentPalette()
+  let c = 0
+  for (; c < 8; c++)
+    colors.push(randomColor())
+  let selection = shuffle(colors)
+  let max = (selection.length > 3)? 3: selection.length;
+  selection = selection.slice(0, max)
+  
+  let a = document.getElementById("opacity").value
+  ctx.globalCompositeOperation = "source-over"
+  ctx.globalAlpha = 1
+  let i = 0
+  let w = W / max
+  for (; i < max; i++) {
+    ctx.fillStyle = selection[i]
+    ctx.fillRect(i*w, 0, (i+1)*w, H)
+  }
+  ctx.globalCompositeOperation = document.getElementById("mode").value
+  colors = shuffle(colors)
+  ctx.globalAlpha = 0.3
+  i = 0
+  for (; i < selection.length; i++) {
+    ctx.fillStyle = colors[i]
+    ctx.fillRect(i*w, 0, (i+1)*w, H/2)
+  }
+  colors = shuffle(colors)
+  ctx.globalAlpha = 0.4
+  i = 0
+  for (; i < selection.length; i++) {
+    ctx.fillStyle = colors[i]
+    ctx.fillRect(i*w, H/2, (i+1)*w, H)
+  }
+  document.getElementById("opacity").value = a
+}
+
 function setRandPalette () { // 60:30:10
   let pal = randomPick(listPalettes())
   pal = document.getElementById("palettechoice").value
-  
   setPalette(pal)
   let clrs = shuffle(getCurrentPalette())
   if (clrs.length < 2)
@@ -2138,25 +2220,6 @@ function facets (canvas) {
 	return
 }
 
-function wash3_og () {
-  fillA()
-  //setFeaturesize(371)
-  crackle()
-  crackle()
-  motionblur()
-  embossCanvas()
-  embossCanvas()
-  zoomImage()
-  motionblur()
-  embossCanvas()
-  motionblur()
-  zoomImage()
-  enhanceExposure()
-  //enhanceExposure()
-  zoomImage()
-  zoomImage()
-}
-
 function quadstrokes () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -2180,30 +2243,19 @@ function quadstrokes () {
   }
   
 }
+
 function wash5 () {
-  fog()
-  fog()
-  fog()
+  fill()
+  strokes2()
+  strokes2()
+  strokes2()
+  strokes2()
+  strokes2()
+  strokes2()
+  strokes2()
+  motionblur()
   embossCanvas()
-  zoomImage()
-  zoomImage()
-}
-function washS () {
-  fillA()
-  fillA()
-  strokes()
-  strokes()
-  wrap()
   rcc()
-  impasto()
-  motionblur()
-  strokes()
-  impasto()
-  strokes()
-  impasto()
-  impasto()
-  dirblur()
-  motionblur()
   motionblur()
   embossCanvas()
   zoomImage()
@@ -2268,6 +2320,74 @@ function wash () {
   //setOpacity(100)
   fillA()
   setMode("source-over")
+}
+
+function raggedB (ctx,endX,endY,x,y, d) {
+  if (!d)
+    d = 50
+  let inc = 3 + Math.floor(document.getElementById("featuresize").value/d)
+  let p = 1 + document.getElementById("number").value/1000
+  p = randomPick([7,10,3,4,5,7,8])
+  let xdiff = x - endX, ydiff = y - endY
+  let D = distance(x,y,endX,endY)
+  let Dy = (endY-y)
+  let Dx = (endX-x)
+  let xinc = Dx/(D+0.000001)*inc
+  let yinc = Dy/(D+0.000001)*inc
+  let xsteps = (x - endX)/(xinc + 0.000001)
+  let ysteps = (y - endY)/(yinc + 0.000001)
+  let xf = xdiff/(xsteps + 0.000001)
+  let yf = ydiff/(ysteps + 0.000001)
+
+  while (distance(endX,endY,x,y) > inc) {
+    // add to x and y to get closer to endX,endY
+    x += xinc
+    y += yinc
+    x += xf
+    y += yf
+    ctx.lineTo(x+pet(p), y+pet(p))
+  }
+}
+
+function raggedpoly () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let size = 10+4*document.getElementById("featuresize").value/2
+  let color = getselectedcolor()
+  ctx.globalCompositeOperation = document.getElementById("mode").value
+  let radii = size//[W/4, W/3.7, W/4.3]
+  ctx.fillStyle = color
+  let N = randomPick([19,11,23,13,17])
+  let i = 0, LONG = false
+  let angle = Math.random()*2*Math.PI, inc =(Math.PI*2)/N
+  let ia = angle
+  let radius = size, cx = LASTCLICK[0], cy = LASTCLICK[1]
+  let x1 = cx + radius * Math.cos(angle), 
+      y1 = cy + radius * Math.sin(angle)
+  let x0 = x1, y0 = y1
+  let mult = 0.35
+  if (document.getElementById("grungy").checked)
+    mult = 0.9
+  ctx.beginPath()
+  ctx.moveTo(x1,y1)
+  for (; i < N-1; i++) {
+    radius = size + (Math.random() * mult * size)
+    angle += inc + (pet(ia/7))
+    x = cx + radius * Math.cos(angle)
+    y = cy + radius * Math.sin(angle)
+    raggedB (ctx,x,y,x1,y1)
+    x1 = x
+    y1 = y
+    if (/*LONG === false &&*/ i > N/3 && i < N-3 && Math.random() > 0.75) {
+      angle += inc *3
+      i+=4
+      LONG = true
+    }
+  }
+  raggedB (ctx,x0,y0,x1,y1)
+  ctx.fill()
 }
 
 function diss () {
@@ -2982,7 +3102,7 @@ function randomTexture () {
   let alt = false// document.getElementById("grungy").checked
   let W = canvas.width, H = canvas.height
 
-  functions = ["smudge", "smudge", "smudge", "smudge", "smudge", "blobs", "specksRadial"]//, "strokes2","strokesH"]// "rose"]
+  functions =  ["smudge", "smudge", "smudge", "smudge", "smudge", "blobs", "specksRadial"]//, "strokes2","strokesH"]// "rose"]
   let args = ["", "streaks", "arcs", "arcs2", "stars", "horizontal"]
   let i = 0
   for (; i < 3; i++) {
@@ -2994,25 +3114,18 @@ function randomTexture () {
     document.getElementById("number").value = 3 + Math.random() * 10000
     document.getElementById("featuresize").value = 1 + Math.random() * 400
     document.getElementById("opacity").value = 15 + Math.random() + 75
-   // if (alt) {
-  //    ctx.save()
-  //    clipIrregular()
-  //  }
     window[f](a)
-  //  if (alt)
-   //   ctx.restore()
   }
   sobel()
   document.getElementById("opacity").value = 50
   alphaWhite()
-  if (Math.random() > 0.6)
+  if (Math.random() > 0.3)
     alphaBlack()
-  
   let mode = ctx.globalCompositeOperation
   ctx.globalCompositeOperation = "source-atop"
   ctx.fillStyle = color
   ctx.fillRect(0,0,canvas.width, canvas.height)
-  ctx.globalCompositeOperation = "difference"//"destination-out"
+ // ctx.globalCompositeOperation = "difference"//"destination-out"
   functions = functions.slice(0, -1)
   functions.push("rays")
   i = 0
@@ -3231,6 +3344,20 @@ function dropfirstcolor () {
     colors.shift()
     updateExtraColors(colors)
   }
+}
+
+function getselectedcolorpicker () {
+  colors = getCurrentPalette(true)
+  let i = 0, el
+  for (; i < colors.length; i++) {
+    let el = document.getElementById("p"+i)
+    if (el.style.border.toString().startsWith("solid")) {
+      return i
+    }
+    if (colors.length === 1)
+      return 0
+  }
+  return -1 // no selection
 }
 
 function getselectedcolor () {
@@ -3958,18 +4085,20 @@ function bright (c) { //-ness
   return (hexToR(c)*0.2126 + hexToG(c)*0.7152 + hexToB(c)*0.0722)
 }
 
-async function palettetint (canvas) {
+async function palettetint (canvas, nosort) {
   if (!canvas)
     canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let alt = document.getElementById("grungy").checked
-  let alpha = document.getElementById("opacity").value
+  let alpha = +document.getElementById("opacity").value
+  ctx.globalAlpha = alpha/100
   let colors = []
   colors = getCurrentPalette()
   if (colors.length < 5)
     return
   BRIGHT = false
-  colors = sortByBrightness(colors)
+  if (!nosort)
+    colors = sortByBrightness(colors)
   let levels = []
   levels.push(colors[0])
   let mid = Math.floor(colors.length/2)
@@ -4203,15 +4332,7 @@ function fourbyfourplain () {
   off.height = H/2, off.width = W/2
   let offctx = off.getContext("2d")
   offctx.drawImage(canvas,0,0,W/2,H/2)
-  //offctx.globalCompositeOperation = "overlay"
-  let color = getselectedcolor()
-  let warhol = document.getElementById("grungy").checked
-  getselectedcolor() = randomColor()
-  let D = (Math.floor(33+Math.random() * 255) % 256)
-  let colors = []
-  colors.push(randomColor())
-  colors.push(randomColor())
-  colors.push(randomColor())
+
   drawSome(ctx,off,0,0,W/2,H/2)
   .then(
     drawSome(ctx,off,W/2,0,W/2,H/2))
@@ -4220,7 +4341,6 @@ function fourbyfourplain () {
   .then(
     drawSome(ctx,off,W/2,H/2,W/2,H/2)
     )
-  
   return true
 }
 
@@ -4229,27 +4349,13 @@ async function drawSome (ctx,can,x,y,W,H) {
   return true
 }
 
-function pixblur (x,y,W) {
-  let canvas = document.getElementById("myCanvas")
-  let ctx = canvas.getContext("2d")
-  let tiny = document.createElement('CANVAS')
-  tiny.width = 16, tiny.height = 16
-  let ctxtiny = tiny.getContext("2d")
-  /*motionblur(tiny)
-  motionblur(tiny)
-  motionblur(tiny)
-shaken(tiny)*/
-  ctxtiny.drawImage(canvas, x,y,W,W, 0,0,16,16)
-  ctx.drawImage(tiny, x,y,W,W)
-}
-
 function shrinkBlur (PUSH) {
-  zoom_neg()
-  zoom_neg()
-  zoom_neg()
-  zoom()
-  zoom()
-  zoom()
+  zoom_neg(true)
+  zoom_neg(true)
+  zoom_neg(true)
+  zoom(true)
+  zoom(true)
+  zoom(true)
   if (PUSH)
     pushFunction("shrinkBlur")
 }
@@ -4336,7 +4442,6 @@ function wrap (canvas) {
   if (document.getElementById("grungy").checked)
     half = W/128
   ctx.clearRect(0,0,W,H)
-  
   ctx.drawImage(canvasoff,  W-half,0,W,H, 0,0,W,H)
   ctx.drawImage(canvasoff,  0,0,W,H, half,0,W,H)
   ctx.globalAlpha = a
@@ -4521,8 +4626,9 @@ function ripFrame () {
   }
 }
 
-function halfRip () {
-  let canvas = document.getElementById("myCanvas")
+function halfRip (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let H = canvas.height, W = canvas.width
   let alpha = document.getElementById("opacity").value
@@ -6263,16 +6369,26 @@ function setFeaturesize (a) {
   document.getElementById("featuresize").value = a
 }
 
-function paintcolorChange (i) {
+function paintcolorChange (i) { // works for selecting a different picker???
   let p = getCurrentPalette()
   p[i] = document.getElementById("p"+i).value
   updateExtraColors(p)
   document.getElementById("p"+i).style.border = "solid #ffffFF";
-  pushFunction('setPaintColor')
+  pushFunction('setPaintColor', p[i])
 }
 
 function setPaintColor (a) {
-  getselectedcolor() = a
+ // getselectedcolor() = a
+  let p = getCurrentPalette()
+  let i = getselectedcolorpicker()
+  if (i >= 0) {
+    document.getElementById("p"+i).value = a
+    p[i] = a
+    updateExtraColors(p)
+    document.getElementById("p"+i).select()
+    document.getElementById("p"+i).style.border = "solid #ffffFF";
+    // but deselect old??
+  }
 }
 
 function numberChange () {
@@ -6370,6 +6486,7 @@ function togglerecord () {
     stopRecording()
   }
 }
+
 function record () {
   document.getElementById("recordsvg").style.fill="#ff0000"
   document.getElementById("playsvg").style.fill="#707070"
@@ -6385,7 +6502,7 @@ function stopRecording () {
   if (functionStack.length > 0) {
     document.getElementById("playsvg").style.fill="#ff0000"
     document.getElementById("codesvg").style.fill="#000000"
-}
+  }
 }
 
 function playFunctions () {
@@ -6504,7 +6621,6 @@ function multileak () {
   ctx.drawImage(off,0+pet(21),0+pet(21),canvas.width, canvas.height)
   document.getElementById("opacity").value = alpha
 }
-
 
 function lightleak () {
   let canvas = document.getElementById("myCanvas")
@@ -6655,7 +6771,7 @@ function testdrawfromoff () {
   }
 }
 
-function dotted (canvas, source, jaggy, dir) {
+function dotted_temp_fix (canvas, source, jaggy, dir) {
   if (!canvas)
     canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
@@ -6705,7 +6821,7 @@ function dotted (canvas, source, jaggy, dir) {
   refreshMode()
 }
 
-function dotted_OG (canvas, source, jaggy, dir) {
+function dotted (canvas, source, jaggy, dir) {
   if (!canvas)
     canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
@@ -7025,28 +7141,33 @@ function mapRanges (start, end, startF, endF, val) { // F is full range 0 to 255
 function retro () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
-  let alpha = document.getElementById("opacity").value
+  let alpha = +document.getElementById("opacity").value
   let feature_size = document.getElementById("featuresize").value
   let number = document.getElementById("number").value
   let color = getselectedcolor()
   let alt = document.getElementById("grungy").checked
   let pal = getCurrentPalette(true)
-  let ga = ctx.globalAlpha
+  ctx.globalAlpha = alpha/100
+
+  //console.log(ctx.globalAlpha )
   document.getElementById("number").value = 1500 + pet(500)
   document.getElementById("opacity").value = 100
   LASTCLICK[0] = canvas.width/2
   LASTCLICK[1] = canvas.height/2
   increaseGrain()
-  
+  document.getElementById("opacity").value = alpha
   let type = document.getElementById("palettechoice").value
   document.getElementById("palettechoice").value = "rainbow"
   loadPalette()
-  palettetint()
+  palettetint(null, false)
   contrastImage(-5,canvas,false)
   adjustBrightness(5,canvas,false)
   
   yellowedEdges()
-  yellowedEdges()
+//  yellowedEdges()
+  //edgeDarken()
+  //edgeDarken()
+  edgeDarken()
   if (Math.random() > 0.3 && alt) {
     ctx.save()
     clipIrregular()
@@ -7054,12 +7175,13 @@ function retro () {
     ctx.restore()
   }
   if (Math.random() > 0.3 && alt) {
-    getselectedcolor() = randomPick(["#d4f595", "#80dfff", "#ffee80", "#ff80aa", "#45de45"])
+    randomPick(["#d4f595", "#80dfff", "#ffee80", "#ff80aa", "#45de45"])
     document.getElementById("opacity").value = 25 + Math.random() * 10
     haze()
   }
+  /*
   if (Math.random() > 0.3 && alt) {
-    getselectedcolor() = randomPick(["#7f7e60", "#707060", "#507070", "#505070"])
+    randomPick(["#7f7e60", "#707060", "#507070", "#505070"])
     document.getElementById("opacity").value = 30
     document.getElementById("number").value = 6000
     document.getElementById("featuresize").value = 300
@@ -7072,7 +7194,7 @@ function retro () {
   if (Math.random() > 0.3 && alt) {
     ctx.save()
     clipIrregular()
-    getselectedcolor() = "#ffffff"
+    //getselectedcolor() = "#ffffff"
     document.getElementById("opacity").value = 70 + Math.random() * 20
     document.getElementById("number").value = 3000 + Math.random() * 3000
     document.getElementById("featuresize").value = 400
@@ -7086,7 +7208,7 @@ function retro () {
     if (r <= 0.33)
       smudgestars()
     ctx.restore()
-  }
+  }*/
   //restorePalette(pal)
   ctx.globalAlpha = alpha/100
   document.getElementById("opacity").value = alpha
@@ -7209,7 +7331,12 @@ function extractFile () {
 function drawFile () {
   let canvas = document.getElementById('myCanvas')
   let ctx = canvas.getContext('2d')
-  let SHRINK = document.getElementById("grungy").checked
+  let OC = document.getElementById('OC')
+  if (isCanvasBlank(OC)) {
+    //console.log('blank')
+    OC.height = canvas.height
+    OC.width = canvas.width
+  }
   let IMG = new Image()
   let f = document.getElementById("uploadimage").files[0]
   let url = window.URL || window.webkitURL
@@ -7224,12 +7351,6 @@ function drawFile () {
     imgwidth = this.width
     canvas.height = this.height
     canvas.width = this.width
-    if (SHRINK) {
-      // fit to current canvas size w/o changing aspect ratio
-      
-      canvas.height = Math.round(canvas.height/1.2)
-      canvas.width = Math.round(canvas.width/1.2)
-    }
     syncBackground(canvas)
     //document.getElementById("canvaswidth").value = canvas.width
     //document.getElementById("canvasheight").value = canvas.height
@@ -7314,7 +7435,6 @@ function stack_pasteFromOff () {
   //if (isCanvasBlank(OC)) {
     OC.height = canvas.height
     OC.width = canvas.width
-    OCISCLEAR = false
   //}
   let ctx = canvas.getContext('2d')
   let OCctx = OC.getContext('2d')
@@ -7339,7 +7459,6 @@ function stack_pasteFromOff () {
   OCctx.globalCompositeOperation = "source-over"
   ctx.drawImage(OC, 0, 0)
   ctx.globalCompositeOperation = mode
-  OCISCLEAR = false
   OCctx.restore()
 }
 
@@ -7349,7 +7468,6 @@ function clearOff () {
  octx.clearRect(0, 0, OC.width, OC.height)
  let canvas = document.getElementById("myCanvas")
  OC.width = canvas.width, OC.height = canvas.height
- OCISCLEAR = true
  return true
 }
 
@@ -7357,10 +7475,8 @@ async function copyToOff () {
   let OC = document.getElementById('OC')
   let canvas = document.getElementById('myCanvas')
   if (isCanvasBlank(OC)) {
-  console.log ("off was blank")
     OC.height = canvas.height
     OC.width = canvas.width
-    OCISCLEAR = false
   }
   let ctx = canvas.getContext('2d')
   let OCctx = OC.getContext('2d')
@@ -7371,7 +7487,6 @@ async function copyToOff () {
   OCctx.globalCompositeOperation = "source-over"
   await OCctx.drawImage(canvas, 0, 0)
   ctx.globalCompositeOperation = mode
-  OCISCLEAR = false
   return true
 }
 
@@ -7379,10 +7494,11 @@ function swapWithOff () {
   let OC = document.getElementById('OC')
   let canvas = document.getElementById('myCanvas')
   if (isCanvasBlank(OC)) {
+    //console.log('blank')
     OC.height = canvas.height
     OC.width = canvas.width
-    OCISCLEAR = false
   }
+ // console.log(canvas.width, OC.width)
   let mode = document.getElementById("mode").value
   if (OC && OC.width > 0) {
     let ctx = canvas.getContext('2d')
@@ -7395,17 +7511,18 @@ function swapWithOff () {
     let tempctx = temp.getContext('2d')
     temp.width = canvas.width
     temp.height = canvas.height
-    tempctx.globalAlpha = 1//document.getElementById("opacity").value/100
-    tempctx.drawImage(canvas,0,0)
+    tempctx.globalAlpha = 1
+    tempctx.drawImage(canvas,0,0,canvas.width,canvas.height)//
     ctx.clearRect(0,0,canvas.width,canvas.height)
-    ctx.drawImage(OC, 0, 0)
+    ctx.drawImage(OC,0,0,OC.width,OC.height)
     OCctx.clearRect(0,0,canvas.width,canvas.height)
-    OCctx.drawImage(temp,0,0)
+    OCctx.drawImage(temp,0,0,temp.width,temp.height)
     ctx.globalCompositeOperation = mode
   }
   ctx.globalCompositeOperation = mode
   return true
 }
+
 document.getElementById("uploadimage").addEventListener("change", drawFile, true)
 document.getElementById("uploadimage2").addEventListener("change", drawFileD, true)
 document.getElementById("openextract").addEventListener("change", extractFile, true)
@@ -7905,6 +8022,27 @@ function treeStorm () {
     //y += (H-y)*Math.random()
     //x += (W/2-x) * Math.random()
     treeAt (x, y ,w + pet (w/2),randomPick(colors))
+  }
+}
+
+function stacked3 () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let color = getselectedcolor()
+  let w = W/2, h = w
+  let i = 0, f
+  let x = W/4, y = -h/2
+  f = randomPick(atList)
+  for (; i < 3; i++) {
+    window[f](x+pet(11),y+pet(11),w+pet(3),color)
+    window[f](x+pet(31),y+pet(11),w+pet(3),color)
+    window[f](x+pet(11),y+pet(11),w+pet(3),color)
+    window[f](x+pet(11),y+pet(11),w+pet(3),color)
+    window[f](x+pet(11),y+pet(31),w+pet(3),color)
+    window[f](x+pet(11),y+pet(11),w+pet(3),color)
+    y += h
   }
 }
 
@@ -9242,9 +9380,9 @@ function everythingArray () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let W = canvas.width, H = canvas.height
-  let N = randomPick([2])//7,9,11,13])
+  let N = 6//randomPick([2])//7,9,11,13])
   let functions = shuffle(atList)
-  let pad = 150
+  let pad = 2
   let delta = Math.round(W/N) - pad*1
   let x = pad/2, y = pad/2, i = 0
   let cnt = 0, f
@@ -9258,6 +9396,7 @@ function everythingArray () {
       y += delta+pad
     }
   }
+  console.log(i)
 }
 
 function cameraAt (x,y,W,color) {
@@ -15819,6 +15958,66 @@ function rose () { // chemotaxis like
   }
 }
 
+function rose_og () { // chemotaxis like
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let W = canvas.width
+  let H = canvas.height
+  let cx = LASTCLICK[0]
+  let cy = LASTCLICK[1]
+  ctx.globalAlpha = +document.getElementById("opacity").value/100
+  let alt = document.getElementById("grungy").checked
+  ctx.lineWidth = 1+document.getElementById("featuresize").value/400
+  let fs = ctx.lineWidth * 4
+  ctx.lineCap = "round"
+  ctx.strokeStyle = getselectedcolor()
+  let color = getselectedcolor()
+  let size = 0.0001 + document.getElementById("number").value/50000
+  ctx.fillStyle = color
+  let angle = Math.random() * 6.28
+  let n = 0, end = 5000
+  let shrink = W * 0.37
+  let grow = W * 0.05
+  let inc = false, dec = false
+  let turn = false
+  let A = 0.01 + Math.random()/90
+  let lw = fs, a = 1.6*Math.PI
+  let turnAt = W*0.33*size
+  let k = lw/7
+  let x = cx
+  let y = cy
+  let increment = 1.001, DIR = true
+  let INC = 0, BEC = end/2, gs = 0
+  for (; n < end; n++) {
+    x = x + Math.sin(angle) * 1
+    y = y + Math.cos(angle) * 1
+    ctx.lineTo(x, y);
+    if (n % 2 === 0) {
+      ctx.beginPath()
+      ctx.ellipse(x, y, 1.3*lw+pet(lw/2), lw, a, 0, 2* Math.PI)
+      ctx.closePath()
+      ctx.fill()
+      if (Math.random() > 0.98)
+        DIR = !DIR
+      if (DIR)
+        lw *= increment
+      else
+        lw /= increment
+      gs = distance(x,y,cx,cy,fs)
+      if (gs > turnAt+50) {
+        turn = true
+      } else
+      if (gs < turnAt-50) {
+        turn = false
+      }
+      if (turn)
+        angle += A + pet(k/4)/k/2
+      else
+        angle += pet(k)
+    }
+  }
+}
+
 function dendrites () { // chemotaxis like
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -19153,22 +19352,27 @@ function formDec (canvas) {
 }
 
 function paperize (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let color = getselectedcolor()
   let fs = document.getElementById("featuresize").value
+  let mode = document.getElementById("mode").value
+  ctx.globalCompositeOperation = "source-over"
   let alt = document.getElementById("grungy").checked
-  let functions = ["smudgestreaks2", "smudgearcs", "smudgestars", "smudgehorizontal2"]
+  let functions = ["smudgestreaks2", "smudgearcs", "smudgestars"]//, "smudgehorizontal2"]
   checkAlt(false)
   setFeaturesize (Math.floor(75+Math.random()*75))
   setPaintColor("#ffffff")
   smudgestreaks2(canvas)
   window[randomPick(functions)](canvas)
-  setPaintColor("#333333")
+  setPaintColor("#b29e85")
   setFeaturesize (Math.floor(75+Math.random()*75))
   window[randomPick(functions)](canvas)
   setFeaturesize(fs)
   checkAlt(alt)
   setPaintColor(color)
+  ctx.globalCompositeOperation = mode
 }
 
 function scripto (canvas) {
@@ -19188,6 +19392,7 @@ function typo (canvas) {
   LASTCLICK[1] = 24+Math.random() * 40
   setFeaturesize (Math.floor(80+Math.random() * 80))
   let N = 27, i = 0
+  document.getElementById("angle").value = Math.floor(Math.random() *360)
   for (; i < N; i++)
     placeTextAt(null, canvas)
   setFeaturesize (fs)
@@ -19205,7 +19410,7 @@ function multiScraps (canvas) {
   if (!canvas)
     canvas = document.getElementById("myCanvas")
   let W = canvas.width, H = canvas.height
-  let functions = shuffle(["typo", "scripto", "pageOfBook", "formDec",
+  let functions = ([/*"typo",*/ "scripto", "pageOfBook", "formDec",
   "form2", "gridpaper", "snow",
   "hstripes_sml", "crosswordPad", "gridLog", "moleText", "index"])
   let N = 7, i = 0
@@ -19269,7 +19474,6 @@ function tapeText (f, canvas) {
   let cy =  Math.random() * oc.height//LASTCLICK[1]
   let rotate = (cx < D*1.5 || canvas.width - cx < D*1.5)
   let angle = Math.PI/19
-  
   ctx.save()
   ctx.fillStyle = colors[0]
   if (rotate)
@@ -19423,17 +19627,16 @@ function scraps (d,random) {
   if (d)
     D = d
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  let colors = shuffle(getCurrentPalette())
+  let color = getselectedcolor()
   let mode = document.getElementById("mode").value
   let alpha = document.getElementById("opacity").value
-  ctx.fillStyle = randomPick(colors)
+  ctx.fillStyle = color
 
   let cx = canvas.width/2, cy = canvas.height/2
   let xe = cx-D+pet(D*0.9)
   let ye = cy-D+pet(D*0.9)
   let x0 = xe, y0 = ye
 
-  ctx.fillStyle = randomPick(colors)
   cx =  LASTCLICK[0]
   cy =  LASTCLICK[1]
   if (random) {
@@ -20355,14 +20558,14 @@ function cuttingboard () { // white grid on teal
   ctx.closePath()
   ctx.stroke()
   let fs = document.getElementById("featuresize").value
-  getselectedcolor() = "#ddffff"
+ // getselectedcolor() = "#ddffff"
   document.getElementById("opacity").value = 17
   haze()
-  getselectedcolor() = "#ddffff"
+  //getselectedcolor() = "#ddffff"
   document.getElementById("featuresize").value = 170
   document.getElementById("opacity").value = 70
   rays()
-  getselectedcolor() = "#006060"
+ // getselectedcolor() = "#006060"
   rays()
   
   document.getElementById("opacity").value = alpha
@@ -21548,7 +21751,6 @@ function lyrics (y, d) {
 
 function music (y, d) {
   d /= 2
-  
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   //let d = 3 + document.getElementById("featuresize").value/10
@@ -21582,72 +21784,681 @@ function music (y, d) {
   //
 }
 
+function insertxhairAt (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let oc = document.createElement('canvas')
+  let occtx = oc.getContext("2d");
+  oc.height = canvas.height, oc.width = canvas.width
+  let W = canvas.width, H = canvas.height
+  ctx.globalAlpha = (document.getElementById("opacity").value)/100
+  ctx.fillStyle = getselectedcolor()
+  ctx.strokeStyle = ctx.fillStyle
+  occtx.fillStyle = ctx.fillStyle
+  occtx.strokeStyle = occtx.fillStyle
+  ctx.lineWidth = 3
+  let fs = 1+document.getElementById("featuresize").value/20
+  occtx.lineWidth = fs
+  let x = LASTCLICK[0]
+  let y = LASTCLICK[1]
+  let cx =  x
+  let cy =  y
+  let angle = ((+document.getElementById("angle").value) * Math.PI)/180
+  ctx.save()
+  ctx.translate(cx,cy)
+  ctx.rotate(angle)
+  ctx.translate(-cx,-cy)
+  let i = 0, width = 0, iw = 0
+  if (!document.getElementById("grungy").checked) // solid
+    occtx.setLineDash([10,20])
 
+  occtx.beginPath()
+  occtx.moveTo(x-W,y)
+  occtx.lineTo(x+W,y)
+  occtx.closePath()
+  occtx.stroke()
 
-function tablePadInset () {
+  occtx.beginPath()
+  occtx.moveTo(x,y-H)
+  occtx.lineTo(x,y+H)
+  occtx.closePath()
+  occtx.stroke()
+  
+  ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+}
+
+function insertDashedGridAt (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let oc = document.createElement('canvas')
+  let occtx = oc.getContext("2d");
+  oc.height = canvas.height, oc.width = canvas.width
+  let W = canvas.width
+  ctx.globalAlpha = (document.getElementById("opacity").value)/100
+  ctx.fillStyle = getselectedcolor()
+  ctx.strokeStyle = ctx.fillStyle
+  occtx.fillStyle = ctx.fillStyle
+  occtx.strokeStyle = occtx.fillStyle
+  occtx.setLineDash([20,10])
+  ctx.lineWidth = 3
+  occtx.lineWidth = 6
+  let fs = 2.0*(8 + document.getElementById("featuresize").value/20)
+
+  let x = LASTCLICK[0]
+  let y = LASTCLICK[1]
+  let cx =  x
+  let cy =  y
+  let angle = ((+document.getElementById("angle").value) * Math.PI)/180
+  let a = 0, r = fs*8, ir = r*0.75
+  ctx.save()
+  ctx.translate(cx,cy)
+  ctx.rotate(angle)
+  ctx.translate(-cx,-cy)
+  let i = 0, width = 0, iw = 0
+  let inc = 80 + fs
+  occtx.setLineDash([10,20])
+  for (; i < 10; i++) {
+  y += inc
+    occtx.beginPath()
+    occtx.moveTo(x,y)
+    occtx.lineTo(x+fs*50,y)
+    occtx.closePath()
+    occtx.stroke()
+  }
+  y = LASTCLICK[1]
+  x += inc
+  i = 0
+  inc *= 1.6
+  for (; i < 8; i++) {
+    occtx.beginPath()
+    occtx.moveTo(x,y)
+    occtx.lineTo(x,y+fs*60)
+    occtx.closePath()
+    occtx.stroke()
+    x += inc
+  }
+  ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+}
+
+function insertPolarAt (canvas) {
+  let text = randomWord()
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let oc = document.createElement('canvas')
+  let occtx = oc.getContext("2d");
+  oc.height = canvas.height, oc.width = canvas.width
+  let W = canvas.width
+  ctx.globalAlpha = (document.getElementById("opacity").value)/100
+  let mode = document.getElementById("mode").value
+  ctx.globalCompositeOperation = "source-over"
+  ctx.fillStyle = getselectedcolor()
+  ctx.strokeStyle = ctx.fillStyle
+  occtx.fillStyle = ctx.fillStyle
+  occtx.strokeStyle = occtx.fillStyle
+  ctx.lineWidth = 1
+  occtx.lineWidth = 1
+  let fs = 2.0*(8 + document.getElementById("featuresize").value/20)
+  if (text.length < 1)
+    text = randomWord()
+  let x = LASTCLICK[0]
+  let y = LASTCLICK[1]
+  let cx =  x
+  let cy =  y
+  let angle = ((+document.getElementById("angle").value) * Math.PI)/180
+  let a = 0, r = fs*8, ir = r*0.75
+  ctx.save()
+  ctx.translate(cx,cy)
+  ctx.rotate(angle)
+  ctx.translate(-cx,-cy)
+  let i = 0, width = 0, iw = 0
+  let inc = Math.PI/180
+  ctx.beginPath()
+  ctx.moveTo(x, y)
+  ctx.arc(x,y,r,0,Math.PI*2)
+  ctx.closePath()
+  ctx.stroke()
+  let x2, y2
+  for (; i < 180; i++) {
+    if (i % 45 === 0)
+      ir = 0
+    else
+    if (i % 10 === 0)
+      ir = r*(0.8)
+    else 
+    if (i % 5 === 0)
+      ir = r*(0.7)
+    else 
+      ir  = r* 0.9
+
+    x2 = ir * Math.cos(a)+x;
+    y2 = ir * Math.sin(a)+y;
+    ctx.beginPath()
+    ctx.moveTo(x2, y2)
+    x2 = r * Math.cos(a)+x;
+    y2 = r * Math.sin(a)+y;
+    ctx.lineTo(x2 ,y2)
+    ctx.closePath()
+    ctx.stroke()
+    a +=2* Math.PI/180
+  }
+  ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  ctx.globalCompositeOperation = mode
+}
+
+function insertMeasureingTapeAt (canvas) {
+  let text = randomWord()
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let oc = document.createElement('canvas')
+  let occtx = oc.getContext("2d");
+  oc.height = canvas.height, oc.width = canvas.width
+  let W = canvas.width
+  ctx.globalAlpha = (document.getElementById("opacity").value)/100
+  let mode = document.getElementById("mode").value
+  ctx.globalCompositeOperation = "source-over"
+  ctx.fillStyle = getselectedcolor()
+  ctx.strokeStyle = ctx.fillStyle
+  occtx.fillStyle = ctx.fillStyle
+  occtx.strokeStyle = occtx.fillStyle
+  occtx.lineWidth = 2
+  ctx.lineWidth = 2
+  let fs = 2.0*(8 + document.getElementById("featuresize").value/20)
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle'
+  if (text.length < 1)
+    text = randomWord()
+  let x = LASTCLICK[0]
+  let y = LASTCLICK[1]
+  
+  let weight = document.getElementById("fontweight").value
+  let face = document.getElementById("fontface").value
+  ctx.font = weight +" "+fs+"px " + face
+  occtx.font = weight +" "+fs+"px " + face
+  let w = ctx.measureText("17) ").width +fs*7
+  let cx =  x//+w/3
+  let cy =  y//+7*fs*1.5
+  let angle = ((+document.getElementById("angle").value) * Math.PI)/180
+  
+  ctx.save()
+  ctx.translate(cx,cy)
+  ctx.rotate(angle)
+  ctx.translate(-cx,-cy)
+  let i = 0, width = 0, iw = 0
+  let inc = w/2
+  ctx.beginPath()
+  ctx.moveTo(x, y)
+  ctx.lineTo(x+inc*12,y)
+  ctx.closePath()
+  ctx.stroke()
+  inc /= 8
+  for (; i < 12*8; i++) {
+    ctx.beginPath()
+    ctx.moveTo(x+inc*i, y)
+    if (i % 4 === 0)
+      ctx.lineTo(x+inc*i ,y-fs*1.75)
+    else
+    if (i % 2 === 0)
+      ctx.lineTo(x+inc*i ,y-fs*1.25)
+    else
+      ctx.lineTo(x+inc*i ,y-fs)
+    ctx.closePath()
+    ctx.stroke()
+  }
+  i = 0, inc = w/2
+  for (; i < 13; i++) {
+    ctx.beginPath()
+    ctx.moveTo(x+inc*i, y)
+    ctx.lineTo(x+inc*i ,y-fs*2)
+    ctx.closePath()
+    ctx.stroke()
+    text = i
+    width = ctx.measureText(text).width
+    iw = width
+    if (i > 0)
+    occtx.fillText(text, x+inc*i-iw*1.2, y-fs*1.4)
+  }  
+  ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  ctx.globalCompositeOperation = mode
+  ctx.textBaseline = 'alphabetic'
+}
+
+function insertNumberedLinesAt (canvas) {
+  let text = randomWord()
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let oc = document.createElement('canvas')
+  let occtx = oc.getContext("2d");
+  oc.height = canvas.height, oc.width = canvas.width
+  let W = canvas.width
+  ctx.globalAlpha = (document.getElementById("opacity").value)/100
+  ctx.fillStyle = getselectedcolor()
+  occtx.fillStyle = getselectedcolor()
+  let fs = 2.0*(8 + document.getElementById("featuresize").value/20)
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle'
+  if (text.length < 1)
+    text = randomWord()
+  let x = LASTCLICK[0]
+  let y = LASTCLICK[1]
+  
+  let weight = document.getElementById("fontweight").value
+  let face = document.getElementById("fontface").value
+  ctx.font = weight +" "+fs+"px " + face
+  occtx.font = weight +" "+fs+"px " + face
+  let w = ctx.measureText("17) ").width +fs*7
+  let cx =  x//+w/3
+  let cy =  y//+7*fs*1.5
+  let angle = ((+document.getElementById("angle").value) * Math.PI)/180
+  
+  ctx.save()
+  ctx.translate(cx,cy)
+  ctx.rotate(angle)
+  ctx.translate(-cx,-cy)
+  let i = 0, width = 0, iw = 0
+  for (; i < 17; i++) {
+    text = i+1+") "
+    width = ctx.measureText(text).width
+    iw = width
+    while (width < fs * 7+iw) {
+      text += "_"
+      width = ctx.measureText(text).width
+    }
+    occtx.fillText(text, x-iw, y)
+    y += fs*1.4
+  }  
+  ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  ctx.textBaseline = 'alphabetic'
+}
+
+function insertHeaderAt (canvas) {
+  let text = randomWord()
+  let headings = ["Location ", "       Unit  ", "User ","Date _____________, 19 "]
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let oc = document.createElement('canvas')
+  let occtx = oc.getContext("2d");
+  oc.height = canvas.height, oc.width = canvas.width
+  let W = canvas.width
+  ctx.globalAlpha = (document.getElementById("opacity").value)/100
+  ctx.fillStyle = getselectedcolor()
+  occtx.fillStyle = getselectedcolor()
+  let fs = 2.0*(8 + document.getElementById("featuresize").value/20)
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle'
+  if (text.length < 1)
+    text = randomWord()
+  let x = LASTCLICK[0]
+  let y = LASTCLICK[1]
+  
+  let weight = document.getElementById("fontweight").value
+  let face = document.getElementById("fontface").value
+  ctx.font = weight +" "+fs+"px " + face
+  occtx.font = weight +" "+fs+"px " + face
+
+  let cx =  x//+W/2
+  let cy =  y//+fs/2
+  let angle = ((+document.getElementById("angle").value) * Math.PI)/180
+  
+  ctx.save()
+  ctx.translate(cx,cy)
+  ctx.rotate(angle)
+  ctx.translate(-cx,-cy)
+  let i = 0, width = 0
+  for (; i < headings.length; i++) {
+    text = headings[i]
+    width = ctx.measureText(text).width
+    while (width < fs * 13) {
+      text += "_"
+      width = ctx.measureText(text).width
+    }
+    occtx.fillText(text, x, y)
+    y += fs*1.4
+  }  
+  ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  ctx.textBaseline = 'alphabetic'
+}
+
+function insertLinesAt () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let alt = document.getElementById("grungy").checked
+  let W = canvas.width, H = canvas.height
+  let pad = 80
+  let x = LASTCLICK[0], y = LASTCLICK[1]
+  let D = 2.5
+  D = 0.5+document.getElementById("featuresize").value/250
+  D *= 2
+  D = 5/D
+  let w = W/D-8, h = H/D-8
+  let cx = x,// + w/2, 
+  cy = y// +h/2
+  let angle = +document.getElementById("angle").value//(Math.random()-0.5)*5, p = []
+  ctx.strokeStyle = getselectedcolor()
+  ctx.lineWidth = 2
+  x += 4, y += 4
+  let i = 0
+  for (; i < 20; i++) {
+    ctx.beginPath()
+    p = rotatePoint(x,y,cx,cy,angle)
+    ctx.moveTo(p[0], p[1])
+    p = rotatePoint(x+w,y,cx,cy,angle)
+    ctx.lineTo(p[0], p[1])
+    ctx.closePath()
+    ctx.stroke()
+    y += h/10
+  }
+}
+
+function insertRectAt () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let alt = document.getElementById("grungy").checked
+  let W = canvas.width, H = canvas.height
+  let pad = 80
+  let x = LASTCLICK[0], y = LASTCLICK[1]
+  let D = 0.5+document.getElementById("featuresize").value/250
+  D *= 2
+  // 1 to 5 : invert
+  D = 5/D
+  let w = W/D, h = 1.618*H/D
+  let cx = x,// + w/2, 
+  cy = y// +h/2
+  let angle = +document.getElementById("angle").value, p = []
+  ctx.lineWidth = 1
+  ctx.strokeStyle = getselectedcolor()
+ // ctx.strokeRect(x,y,W/D,H/D)
+  ctx.lineWidth = randomPick([1,2,3])
+  ctx.beginPath()
+  p = rotatePoint(x,y,cx,cy,angle)
+  ctx.moveTo(p[0], p[1])
+  p = rotatePoint(x+w,y,cx,cy,angle)
+  ctx.lineTo(p[0], p[1])
+  p = rotatePoint(x+w,y+h,cx,cy,angle)
+  ctx.lineTo(p[0], p[1])
+  p = rotatePoint(x,y+h,cx,cy,angle)
+  ctx.lineTo(p[0], p[1])
+  p = rotatePoint(x,y,cx,cy,angle)
+  ctx.lineTo(p[0], p[1])
+  ctx.closePath()
+  ctx.stroke()
+  ctx.lineWidth = randomPick([1,2,4])
+  inset = randomPick([5,6,8])
+  x += inset, y += inset
+  w -= 2*inset, h -= 2*inset
+  ctx.beginPath()
+  p = rotatePoint(x,y,cx,cy,angle)
+  ctx.moveTo(p[0], p[1])
+  p = rotatePoint(x+w,y,cx,cy,angle)
+  ctx.lineTo(p[0], p[1])
+  p = rotatePoint(x+w,y+h,cx,cy,angle)
+  ctx.lineTo(p[0], p[1])
+  p = rotatePoint(x,y+h,cx,cy,angle)
+  ctx.lineTo(p[0], p[1])
+  p = rotatePoint(x,y,cx,cy,angle)
+  ctx.lineTo(p[0], p[1])
+  ctx.closePath()
+  //ctx.stroke()
+
+  ctx.lineWidth = randomPick([1,2,4])
+  inset = randomPick([11,13,8])
+  x += inset, y += inset
+  w -= 2*inset, h -= 2*inset
+  ctx.beginPath()
+  p = rotatePoint(x,y,cx,cy,angle)
+  ctx.moveTo(p[0], p[1])
+  p = rotatePoint(x+w,y,cx,cy,angle)
+  ctx.lineTo(p[0], p[1])
+  p = rotatePoint(x+w,y+h,cx,cy,angle)
+  ctx.lineTo(p[0], p[1])
+  p = rotatePoint(x,y+h,cx,cy,angle)
+  ctx.lineTo(p[0], p[1])
+  p = rotatePoint(x,y,cx,cy,angle)
+  ctx.lineTo(p[0], p[1])
+  ctx.closePath()
+  ctx.stroke()
+}
+
+function insertReticuleAt () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let alt = document.getElementById("grungy").checked
+  let W = canvas.width, H = canvas.height
+  let pad = 80
+  let x = LASTCLICK[0], y = LASTCLICK[1]
+  let D = 0.5+document.getElementById("featuresize").value/250
+  D *= 2
+  // 1 to 5 : invert
+  D = 5/D
+  let w = W/D, h = w/1.3
+  rl = w/7
+  let angle = ((+document.getElementById("angle").value) * Math.PI)/180
+  ctx.lineWidth = 2
+  ctx.strokeStyle = getselectedcolor()
+  let cx =  x 
+  let cy =  y
+  
+  ctx.save()
+  ctx.translate(cx,cy)
+  ctx.rotate(angle)
+  ctx.translate(-cx,-cy)
+
+  ctx.beginPath()
+  ctx.moveTo(x, y+rl)
+  ctx.lineTo(x, y)
+  ctx.lineTo(x+rl, y)
+  ctx.stroke()
+
+  ctx.beginPath()
+  ctx.moveTo(x + w-rl, y) 
+  ctx.lineTo(x + w, y)
+  ctx.lineTo(x + w, y + rl)
+  ctx.stroke()
+
+  ctx.beginPath()
+  ctx.moveTo(x + w-rl, y + h) 
+  ctx.lineTo(x + w,    y + h)
+  ctx.lineTo(x + w,    y + h - rl)
+  ctx.stroke()
+
+  ctx.beginPath()
+  ctx.moveTo(x, y + h - rl) 
+  ctx.lineTo(x, y + h)
+  ctx.lineTo(x + rl, y + h)
+  ctx.stroke()
+
+  let cx2 = x + w/2, cy2 = y + h/2
+  r = w/10
+  ctx.beginPath()
+  ctx.arc(cx2,cy2,r,0,Math.PI*2)
+  ctx.stroke()
+
+  ctx.beginPath()
+  ctx.arc(cx2,cy2,r*1.3,0,Math.PI*2)
+  ctx.stroke()
+
+  ctx.beginPath()
+  ctx.moveTo(cx2 - r/2, cy2) 
+  ctx.lineTo(cx2 + r/2, cy2)
+  ctx.stroke()
+
+  ctx.beginPath()
+  ctx.moveTo(cx2, cy2-r/2) 
+  ctx.lineTo(cx2, cy2+r/2)
+  ctx.stroke()
+
+  ctx.restore()
+  
+}
+
+function insertGridAt () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let alt = document.getElementById("grungy").checked
+  let W = canvas.width, H = canvas.height
+  let pad = 80
+  let x = LASTCLICK[0], y = LASTCLICK[1]
+  let D = 0.5+document.getElementById("featuresize").value/250
+  D *= 2
+  // 1 to 5 : invert
+  D = 5/D
+  let w = W/D, h = H/D
+  let cx = x,// + w/2, 
+  cy = y// +h/2
+  let angle = +document.getElementById("angle").value, p = []
+  ctx.lineWidth = 3 
+  ctx.strokeStyle = getselectedcolor()
+ // ctx.strokeRect(x,y,W/D,H/D)
+  ctx.beginPath()
+  p = rotatePoint(x,y,cx,cy,angle)
+  ctx.moveTo(p[0], p[1])
+  p = rotatePoint(x+w,y,cx,cy,angle)
+  ctx.lineTo(p[0], p[1])
+  p = rotatePoint(x+w,y+h,cx,cy,angle)
+  ctx.lineTo(p[0], p[1])
+  p = rotatePoint(x,y+h,cx,cy,angle)
+  ctx.lineTo(p[0], p[1])
+  p = rotatePoint(x,y,cx,cy,angle)
+  ctx.lineTo(p[0], p[1])
+  ctx.closePath()
+  ctx.stroke()
+  ctx.lineWidth = 1
+  x += 6, y += 6
+  w = W/D-12, h = H/D-12
+  //ctx.strokeRect(x,y,w,h)
+  ctx.beginPath()
+  p = rotatePoint(x,y,cx,cy,angle)
+  ctx.moveTo(p[0], p[1])
+  p = rotatePoint(x+w,y,cx,cy,angle)
+  ctx.lineTo(p[0], p[1])
+  p = rotatePoint(x+w,y+h,cx,cy,angle)
+  ctx.lineTo(p[0], p[1])
+  p = rotatePoint(x,y+h,cx,cy,angle)
+  ctx.lineTo(p[0], p[1])
+  p = rotatePoint(x,y,cx,cy,angle)
+  ctx.lineTo(p[0], p[1])
+  ctx.closePath()
+  ctx.stroke()
+  let i = 0
+  for (; i < 4; i++) {
+    ctx.beginPath()
+    p = rotatePoint(x,y,cx,cy,angle)
+    ctx.moveTo(p[0], p[1])
+    p = rotatePoint(x+w,y,cx,cy,angle)
+    ctx.lineTo(p[0], p[1])
+    ctx.closePath()
+    ctx.stroke()
+    y += h/4
+  }
+  y = LASTCLICK[1] + 6
+  i = 0
+  for (; i < 4; i++) {
+    ctx.beginPath()
+    p = rotatePoint(x,y,cx,cy,angle)
+    ctx.moveTo(p[0], p[1])
+    p = rotatePoint(x,y+h,cx,cy,angle)
+    ctx.lineTo(p[0], p[1])
+    ctx.closePath()
+    ctx.stroke()
+    x += w/4
+  }
+}
+
+function insertTableAt () { // rotate
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/4
   let alt = document.getElementById("grungy").checked
   let W = canvas.width, H = canvas.height
-  let pad = 40 + Math.random() * 30
+  let x = LASTCLICK[0], y = LASTCLICK[1]
+  let D = 0.5+document.getElementById("featuresize").value/250
+  D *= 2
+  // 1 to 5 : invert
+  D = 5/D
+  let w = W/D, h = H/D
   let linespace = 44 + Math.floor(pet(16))
+  linespace /= D
+  let colspace = w/6
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  ctx.strokeStyle = "#6060ed"
-  ctx.fillStyle = 'white'
-  ctx.fillRect(0,0,W,H)
+  let cx = x,// + w/2,
+  cy = y //+h/2
+  let angle  = +document.getElementById("angle").value, p = []
   ctx.lineWidth = randomPick([1,2])
-  let i = 0, x = pad, y = pad+60
-  ctx.strokeStyle = "#ee6060"
+  let i = 0
+  ctx.strokeStyle = "#ee6060" //-----
   while (i < 1) {
     ctx.beginPath()
-    ctx.moveTo(x, y)
-    ctx.lineTo(canvas.width-pad-2, y)
+    p = rotatePoint(x,y,cx,cy,angle)
+    ctx.moveTo(p[0], p[1])
+    p = rotatePoint(x+w,y,cx,cy,angle)
+    ctx.lineTo(p[0], p[1])
     ctx.closePath()
     ctx.stroke()
-    y += linespace/8
+    y += linespace
     i++
   }
-  y+= 60
-  while (y < canvas.height-pad) {
+  y += linespace
+  while (y < LASTCLICK[1]+h) { //------
     ctx.beginPath()
-    ctx.moveTo(x+5, y)
-    ctx.lineTo(canvas.width-pad-7, y)
+     p = rotatePoint(x+5,y,cx,cy,angle)
+    ctx.moveTo(p[0], p[1])
+     p = rotatePoint(x+w-5,y,cx,cy,angle)
+    ctx.lineTo(p[0], p[1])
     ctx.closePath()
     ctx.stroke()
     y += linespace
     ctx.strokeStyle = "#6060ed"
   }
+  
   ctx.strokeStyle = "#ee6060"
-  i = 0, y = pad+60, x = pad
+  i = 0, y = LASTCLICK[1], x = LASTCLICK[0]
   for (; i < 2; i++) {
     ctx.beginPath()
-    ctx.moveTo(x, y)
-    ctx.lineTo(x, canvas.height-pad)
+    p = rotatePoint(x,y,cx,cy,angle)
+    ctx.moveTo(p[0], p[1])
+    p = rotatePoint(x,LASTCLICK[1]+h,cx,cy,angle)
+    ctx.lineTo(p[0], p[1])
     ctx.closePath()
     ctx.stroke()
     x += 5
   }
-
-  i = 0, y = pad+60, x = pad
+  i = 0, y = LASTCLICK[1], x = LASTCLICK[0]
   for (; i < 7; i++) {
     ctx.beginPath()
-    ctx.moveTo(x, y)
-    ctx.lineTo(x, canvas.height-pad)
+    p = rotatePoint(x,y,cx,cy,angle)
+    ctx.moveTo(p[0], p[1])
+    p = rotatePoint(x,LASTCLICK[1]+h,cx,cy,angle)
+    ctx.lineTo(p[0], p[1])
     ctx.closePath()
     ctx.stroke()
-    x += 138
+    x += colspace
   }
-  x = canvas.width-pad-2, y = pad+60
+  
+  x = LASTCLICK[0]+w-5, y = LASTCLICK[1]
   ctx.beginPath()
-  ctx.moveTo(x, y)
-  ctx.lineTo(x, canvas.height-pad)
+  p = rotatePoint(x,y,cx,cy,angle)
+  ctx.moveTo(p[0], p[1])
+  p = rotatePoint(x,LASTCLICK[1]+ h,cx,cy,angle)
+  ctx.lineTo(p[0], p[1])
   ctx.closePath()
   ctx.stroke()
-  x = canvas.width-pad-7, y = pad+60
+  x += 5, y = LASTCLICK[1]
   ctx.beginPath()
-  ctx.moveTo(x, y)
-  ctx.lineTo(x, canvas.height-pad)
+  p = rotatePoint(x,y,cx,cy,angle)
+  ctx.moveTo(p[0], p[1])
+  p = rotatePoint(x,LASTCLICK[1]+ h,cx,cy,angle)
+  ctx.lineTo(p[0], p[1])
   ctx.closePath()
   ctx.stroke()
 }
@@ -23351,6 +24162,9 @@ function wavyPaperRounded (x, y, w, h, r) {
   oc.height = canvas.height
   ob.width = canvas.width
   ob.height = canvas.height
+  let mode = document.getElementById("mode").value
+  document.getElementById("mode").value = "source-over"
+  ctx.globalCompositeOperation = "source-over"
   roundedRect(x, y, w, h, r, ctxoc, false) // draw to off
   swapWithOff() // switch to OC
   paperSelect()
@@ -23364,6 +24178,7 @@ function wavyPaperRounded (x, y, w, h, r) {
   document.getElementById("mode").value = "source-over"
   ctx.globalCompositeOperation = "source-over"
   ctx.drawImage(oc,0,0,canvas.width,canvas.height)
+  ctx.globalCompositeOperation = mode
 }
 
 
@@ -23390,12 +24205,6 @@ function roundedRectP () {//(x, y, w, h, r, ctx, BF) {
   ctx.fill()
   ctx.globalCompositeOperation = "source-atop"
   wavyPaper()
-
- // if (BF) {
-//    blobFill(ctx.fillStyle)
- //   ctx.fillStyle = "#ececdb"
- //   ctx.fillRect(w/2, y, w/2, h)
-//  }
   ctx.restore()
 }
 
@@ -23508,6 +24317,400 @@ function moleskine2 (options) { // 3D
   stiches(20)
   document.getElementById("opacity").value = alpha
   //
+}
+
+function mole_unbound () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let alpha = document.getElementById("opacity").value
+  let mode = document.getElementById("mode").value
+  let W = canvas.width, H = canvas.height
+  ctx.clearRect(0,0,W,H)
+  x = 20, y = 20, d = 0, BF = false, PAPER = false
+  ctx.shadowColor = 'rgba(10, 10, 10, .5)'
+  ctx.shadowBlur = 5 + Math.random() * 3
+  ctx.shadowOffsetX = 2 + Math.random() * 2
+  ctx.shadowOffsetY = 1 + Math.random() * 2
+  roundedRect(x+d, y, W-40-d*2, H-40, 14, ctx, BF) // same size. to get drop-shadow
+  ctx.shadowBlur = 0
+  ctx.shadowOffsetX = 0
+  ctx.shadowOffsetY = 0
+  wavyPaperRounded(x+d, y, W-40-d*2, H-40, 14)
+  ctx.globalCompositeOperation = "source-atop"
+ // moleDates(23)
+  afold(20)
+  ctx.globalCompositeOperation = mode
+  stiches(20)
+  document.getElementById("opacity").value = alpha
+  ctx.globalCompositeOperation = mode
+}
+
+function cols_3_2 () { // mole unbound
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let W = canvas.width, H = canvas.height
+  let PW = (W - 40)/2
+  ctx.lineWidth = 1
+  ctx.strokeStyle = "#ee6000"
+  let x = 20, y = 30, linespace = 30
+  let i = 0
+
+  ctx.beginPath()
+  ctx.moveTo(x+PW/3, y)
+  ctx.lineTo(x+PW/3, y + 2*PW-24)
+  ctx.closePath()
+  ctx.stroke()
+
+  ctx.beginPath()
+  ctx.moveTo(x+2*PW/3, y)
+  ctx.lineTo(x+2*PW/3, y + 2*PW-24)
+  ctx.closePath()
+  ctx.stroke()
+
+  ctx.beginPath()
+  ctx.moveTo(x+W/2+PW/2, y)
+  ctx.lineTo(x+W/2+PW/2, y + 2*PW-24)
+  ctx.closePath()
+  ctx.stroke()
+
+  ctx.strokeStyle = "#0040dd"
+  i = 0, y = 120
+  while (y < H - 30) {
+    ctx.beginPath()
+    ctx.moveTo(x+10, y)
+    ctx.lineTo(x+W-52, y)
+    ctx.closePath()
+    ctx.stroke()
+    y += linespace
+  }
+}
+
+function stickers () {
+  let x = 275, y = 210, w = 70
+  let fs = shuffle(["snakeAt", "skullAt", "mericaAt"])
+  let color = '#ebdfd2'
+  window[fs[0]] (x,y,w,color)
+
+  window[fs[1]] (x+13,y+178,w*1.2,color)
+
+ // window[fs[2]] (x-6,y+191,w,color)
+  window[fs[2]] (x+446,y+171,w*1.2,color)
+}
+ 
+function mericaAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W, cpx, cpy, points = []
+  let colors = shuffle(getCurrentPalette(true,13))
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  ctx.strokeStyle = color
+  ctx.fillStyle = color
+  ctx.lineCap = "square"
+  ctx.lineJoin = "bevel"
+  let p = [], cp = [], lastp = []
+  let cx = x+W/2, cy = y+H/2, angle = 0
+
+  //1
+  ctx.beginPath()
+  p = rotatePoint(x+0*W/24, y+6*H/24 ,cx,cy,angle)
+  ctx.moveTo(p[0],p[1])
+  p = rotatePoint(x+9*W/24, y+6*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  p = rotatePoint(x+9*W/24, y+13*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  p = rotatePoint(x+0*W/24, y+13*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  ctx.fill()
+
+  //2
+  ctx.beginPath()
+  p = rotatePoint(x+9*W/24, y+6*H/24 ,cx,cy,angle)
+  ctx.moveTo(p[0],p[1])
+  p = rotatePoint(x+24*W/24, y+6*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  p = rotatePoint(x+24*W/24, y+7*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  p = rotatePoint(x+9*W/24, y+7*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  ctx.fill()
+
+  //3
+  ctx.beginPath()
+  p = rotatePoint(x+9*W/24, y+8*H/24 ,cx,cy,angle)
+  ctx.moveTo(p[0],p[1])
+  p = rotatePoint(x+24*W/24, y+8*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  p = rotatePoint(x+24*W/24, y+9*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  p = rotatePoint(x+9*W/24, y+9*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  ctx.fill()
+
+  //4
+  ctx.beginPath()
+  p = rotatePoint(x+9*W/24, y+10*H/24 ,cx,cy,angle)
+  ctx.moveTo(p[0],p[1])
+  p = rotatePoint(x+24*W/24, y+10*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  p = rotatePoint(x+24*W/24, y+11*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  p = rotatePoint(x+9*W/24, y+11*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  ctx.fill()
+
+  //5
+  ctx.beginPath()
+  p = rotatePoint(x+9*W/24, y+12*H/24 ,cx,cy,angle)
+  ctx.moveTo(p[0],p[1])
+  p = rotatePoint(x+24*W/24, y+12*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  p = rotatePoint(x+24*W/24, y+13*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  p = rotatePoint(x+9*W/24, y+13*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  ctx.fill()
+
+  //6
+  ctx.beginPath()
+  p = rotatePoint(x+0*W/24, y+14*H/24 ,cx,cy,angle)
+  ctx.moveTo(p[0],p[1])
+  p = rotatePoint(x+24*W/24, y+14*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  p = rotatePoint(x+24*W/24, y+15*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  p = rotatePoint(x+0*W/24, y+15*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  ctx.fill()
+
+  //7
+  ctx.beginPath()
+  p = rotatePoint(x+0*W/24, y+16*H/24 ,cx,cy,angle)
+  ctx.moveTo(p[0],p[1])
+  p = rotatePoint(x+24*W/24, y+16*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  p = rotatePoint(x+24*W/24, y+17*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  p = rotatePoint(x+0*W/24, y+17*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  ctx.fill()
+
+  //8
+  ctx.beginPath()
+  p = rotatePoint(x+0*W/24, y+18*H/24 ,cx,cy,angle)
+  ctx.moveTo(p[0],p[1])
+  p = rotatePoint(x+24*W/24, y+18*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  p = rotatePoint(x+24*W/24, y+19*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  p = rotatePoint(x+0*W/24, y+19*H/24 ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  ctx.fill()
+}
+
+function tissue () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let mode = document.getElementById("mode").value
+  let W = canvas.width, H = canvas.height
+  let x = LASTCLICK[0], y = LASTCLICK[1]
+  W -= 2*x, H -= 2*y
+  if (H <=0 ||W <= 0)
+    return
+  let side = 0//randomPick([0,2,3])
+  let OC = document.createElement('canvas')
+  let OCctx = OC.getContext("2d")
+  OC.width = W, OC.height = H
+  let foldw = Math.random() * 79, alt = false
+  if (Math.random() > 0.5)
+    foldw = 0
+  OCctx.fillStyle = "#a88c44"
+  if (document.getElementById("grungy").checked) {
+    OCctx.fillStyle = getselectedcolor()
+    alt = true
+  }
+  let alpha = document.getElementById("opacity").value
+  OCctx.globalAlpha = alpha/100
+  let h = H/2 + pet(H/3)
+  let w = h/16
+  OCctx.beginPath()
+  OCctx.moveTo(Math.random()*12,  Math.random()*12)
+  if (side === 0)
+    raggedB(OCctx, W-Math.random()*12, Math.random()*12,Math.random()*12,  Math.random()*12)
+  else
+    OCctx.lineTo(W-Math.random()*12, Math.random()*12)
+  OCctx.lineTo(W-Math.random()*12, h)
+  OCctx.lineTo(W-Math.random()*12-w, H-Math.random()*12)
+  if (side === 1)
+    raggedB(OCctx, Math.random()*12, H-Math.random()*12,W-Math.random()*12-w, H-Math.random()*12)
+  else
+    OCctx.lineTo(Math.random()*12, H-Math.random()*12)
+  if (side === 2)
+    raggedB(OCctx, Math.random()*12, Math.random()*12,Math.random()*12, H-Math.random()*12)
+  else
+    OCctx.lineTo(Math.random()*12, Math.random()*12)
+
+  OCctx.closePath()
+  OCctx.fill()
+  let size = document.getElementById("featuresize").value
+  if (!alt) {
+    yellowedEdges(OC)
+    document.getElementById("featuresize").value = 25
+    yellowedEdges(OC)
+    yellowedEdges(OC)
+    document.getElementById("featuresize").value = 10
+    yellowedEdges(OC)
+    document.getElementById("featuresize").value = 50
+    yellowedEdges(OC)
+    yellowedEdges(OC)
+    yellowedEdges(OC)
+    yellowedEdges(OC)
+    yellowedEdges(OC)
+  }
+  document.getElementById("featuresize").value = size
+  OCctx.globalAlpha = alpha/100
+  OCctx.globalCompositeOperation = mode
+  // folded over dogear
+  OCctx.beginPath()
+  OCctx.moveTo(W-Math.random()*12, h)
+  OCctx.lineTo(W-Math.random()*12-w, H-Math.random()*12)
+  OCctx.lineTo(W-Math.random()*12-w*2, H-Math.random()*12)
+  OCctx.closePath()
+  OCctx.fill()
+
+  ctx.globalCompositeOperation = mode
+  ctx.globalAlpha = alpha/100
+  if (Math.random() > 0.5)
+    flipV(OC)
+  if (Math.random() > 0.5)
+    flipH(OC)
+  LASTCLICK[0] = x
+  ctx.drawImage(OC,x,y,W,H)
+}
+
+function tissue_OG () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let mode = document.getElementById("mode").value
+  let W = canvas.width, H = canvas.height
+  let foldw = Math.random() * 79, alt = false
+  if (Math.random() > 0.5)
+    foldw = 0
+  ctx.lineWidth = 1
+  ctx.fillStyle = "#a88c44"
+  if (document.getElementById("grungy").checked) {
+    ctx.fillStyle = getselectedcolor()
+    alt = true
+  }
+  let alpha = document.getElementById("opacity").value
+  ctx.globalAlpha = alpha/100
+  //ctx.fillRect(Math.random()*12,Math.random()*12,W-Math.random()*24,H-Math.random()*24)
+  ctx.beginPath()
+  ctx.moveTo(Math.random()*12,   Math.random()*12)
+  ctx.lineTo(W-Math.random()*12, Math.random()*12)
+  ctx.lineTo(W-Math.random()*12, 80+Math.random()*180)
+  ctx.lineTo(W-Math.random()*12-foldw/2.5, H-Math.random()*12)
+  ctx.lineTo(Math.random()*12, H-Math.random()*12)
+  ctx.closePath()
+  ctx.fill()
+  let size = document.getElementById("featuresize").value
+  if (!alt) {
+    yellowedEdges()
+    document.getElementById("featuresize").value = 25
+    yellowedEdges()
+    yellowedEdges()
+    document.getElementById("featuresize").value = 10
+    yellowedEdges()
+    document.getElementById("featuresize").value = 50
+    yellowedEdges()
+  }
+  document.getElementById("featuresize").value = size
+  LASTCLICK[0] = 20 *Math.random()
+  ctx.globalCompositeOperation = "destination-out"
+  let h = H - 160 - Math.random()*600
+  let w = h/16
+  ctx.beginPath()
+  ctx.moveTo(0,h)
+  ctx.lineTo(w,H)
+  ctx.lineTo(0,H)
+  ctx.closePath()
+  ctx.globalAlpha = 1
+  ctx.fill()
+  ctx.globalAlpha = alpha/100
+  ctx.globalCompositeOperation = mode
+  // folded over dogear
+  ctx.beginPath()
+  ctx.moveTo(0,h+pet(15))
+  ctx.lineTo(w*2,H-Math.random()*5)
+  ctx.lineTo(w+pet(5),H-Math.random()*25)
+  ctx.closePath()
+  ctx.fill()
+
+  // draw middle fold
+  let m = randomPick([1,2])
+  h = 400+pet(100), w = m*W/3+pet(W/3)
+  if (Math.random() > 0.5) {
+    ctx.globalCompositeOperation = "destination-out"
+    ctx.globalAlpha = 1
+  }
+  if (foldw > 0) {
+    ctx.beginPath()
+    ctx.moveTo(w,h)
+    raggedX(ctx,w+foldw/4,H-Math.random()*5,   w,h)
+    ctx.lineTo(w-3*foldw/4,H-Math.random()*5)
+    raggedX(ctx,w,h, w-3*foldw/4,H-Math.random()*5)
+    ctx.closePath()
+    ctx.fill()
+  }
+  ctx.globalCompositeOperation = mode
+  ctx.globalAlpha = alpha/100
+  if (Math.random() > 0.5)
+    flipV()
+  if (Math.random() > 0.5)
+    flipH()
+  if (W===H && Math.random() > 0.5)
+    rc()
+  halfRip()
+  if (Math.random() > 0.5)
+    flipH()
+  zoomImage (true, 1.05)
+}
+
+function dropshadow () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let W = canvas.width, H = canvas.height
+  // 20% inset rect
+  let x = W/10, y = H/10
+  let W2 = W*0.8, H2 = H*0.8
+  ctx.lineWidth = 1
+  ctx.fillStyle = "#101010"
+  // alpha should be 0.1 or so
+  // draw 4 or so paralleograms  /  / or \  \
+  // height & width > the rect's height
+  // left hanging...
+  let w = W/20 * Math.random()
+  let h = H/15 * Math.random()
+  ctx.beginPath()
+  ctx.moveTo(x+10, y+20) //leftmost top
+  ctx.lineTo(x-w, y+20+h)
+  ctx.lineTo(x-w, y+H2+h)
+  ctx.lineTo(x+W2-w, y+H2+h)
+  ctx.lineTo(x+W2, y+H2)
+  ctx.lineTo(x+W2, y+20)
+  ctx.closePath()
+  ctx.fill()
+
+  w = W/20 * Math.random()
+  h = H/20 * Math.random()
+  ctx.beginPath()
+  ctx.moveTo(x+10, y+20) //leftmost top
+  ctx.lineTo(x+10, y+H2)
+  ctx.lineTo(x+10+w,  y+H2+h)
+  ctx.lineTo(x+W2+w, y+H2+h) // rightmost lower corner
+  ctx.lineTo(x+W2+w, y+h+20)
+  ctx.lineTo(x+W2, y+20)
+  ctx.closePath()
+  ctx.fill()
 }
 
 function randomClue (PT) {
@@ -23703,7 +24906,7 @@ function pagenumbers () {
     nums.push(3+Math.floor(Math.random()* 389))
   nums - nums.sort(function(a, b) {return a - b;});
   i = 0
-  for (; i < nums.length; i++)
+  for (; i < nums.length; i++)ctx.rotate
     pages += nums[i] + ", "
   return pages.slice(0, -2)
 }
@@ -23777,8 +24980,24 @@ function filmFrame () {
 function mobySlice () {
   let text = ""
   let lines = book.split("\n")
-  let start = Math.floor(Math.random() * (lines.length-40))
-  let sel = lines.slice(start, start+ 40)
+  let start = Math.floor(Math.random() * (lines.length-80))
+  let sel = lines.slice(start, start+ 80)
+  return sel.join(" ").split(" ")
+}
+
+function frankSlice () {
+  let text = ""
+  let lines = frank.split("\n")
+  let start = Math.floor(Math.random() * (lines.length-80))
+  let sel = lines.slice(start, start+ 80)
+  return sel.join(" ").split(" ")
+}
+
+function dictSlice () {
+  let text = ""
+  let lines = dict.split("\n")
+  let start = Math.floor(Math.random() * (lines.length-80))
+  let sel = lines.slice(start, start+ 80)
   return sel.join(" ").split(" ")
 }
 
@@ -24810,6 +26029,240 @@ function origami4by4 () {
   ctx.closePath()
   ctx.fill()
 }
+
+function insertPlotAt () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W, cpx, cpy, points = []
+  let color = getselectedcolor()
+  ctx.lineWidth = 4
+  ctx.strokeStyle = color
+  ctx.fillStyle = color
+  ctx.lineCap = "square"
+  ctx.lineJoin = "bevel"
+
+  let fs = 3*(44+document.getElementById("featuresize").value/2)
+    console.log(fs)
+  let x = LASTCLICK[0]
+  let y = LASTCLICK[1]
+W = fs
+H = W
+  let text = randomWord().substring(0,8)
+  ctx.font = W/6+"px " + document.getElementById("fontface").value
+  let w = ctx.measureText(text).width/2
+  x -= W/24, y -= W/24
+  ctx.fillText(text, x+(W/2-w), y+7.5*H/24)
+  //1
+  ctx.beginPath()
+  ctx.moveTo(x+1*W/24, y+1*H/24)
+  ctx.lineTo(x+23*W/24, y+1*H/24)
+  ctx.lineTo(x+23*W/24, y+12*H/24)
+  ctx.lineTo(x+1*W/24, y+12*H/24)
+  ctx.lineTo(x+1*W/24, y+1*H/24)
+  ctx.stroke()
+  ctx.lineWidth = 2
+
+//33
+  ctx.beginPath()
+  ctx.moveTo(x+5*W/24, y+3*H/24)
+  ctx.lineTo(x+7*W/24, y+1*H/24)
+  ctx.stroke()
+  //2
+  ctx.beginPath()
+  ctx.moveTo(x+3*W/24, y+1*H/24)
+  ctx.lineTo(x+1*W/24, y+3*H/24)
+  ctx.stroke()
+
+  //3
+  ctx.beginPath()
+  ctx.moveTo(x+1*W/24, y+5*H/24)
+  ctx.lineTo(x+5*W/24, y+1*H/24)
+  ctx.stroke()
+
+  //4
+  ctx.beginPath()
+  ctx.moveTo(x+4*W/24, y+4*H/24)
+  ctx.lineTo(x+1*W/24, y+7*H/24)
+  ctx.stroke()
+
+  //5
+  ctx.beginPath()
+  ctx.moveTo(x+4*W/24, y+6*H/24)
+  ctx.lineTo(x+1*W/24, y+9*H/24)
+  ctx.stroke()
+
+  //6
+  ctx.beginPath()
+  ctx.moveTo(x+4*W/24, y+8*H/24)
+  ctx.lineTo(x+1*W/24, y+11*H/24)
+  ctx.stroke()
+
+  //7
+  ctx.beginPath()
+  ctx.moveTo(x+4*W/24, y+10*H/24)
+  ctx.lineTo(x+2*W/24, y+12*H/24)
+  ctx.stroke()
+
+  //8
+  ctx.beginPath()
+  ctx.moveTo(x+6*W/24, y+10*H/24)
+  ctx.lineTo(x+4*W/24, y+12*H/24)
+  ctx.stroke()
+
+  //9
+  ctx.beginPath()
+  ctx.moveTo(x+7*W/24, y+1*H/24)
+  ctx.lineTo(x+5*W/24, y+3*H/24)
+  ctx.lineTo(x+4*W/24, y+4*H/24)
+ // ctx.stroke()
+
+  //10
+  ctx.beginPath()
+  ctx.moveTo(x+9*W/24, y+1*H/24)
+  ctx.lineTo(x+7*W/24, y+3*H/24)
+  ctx.stroke()
+
+  //11
+  ctx.beginPath()
+  ctx.moveTo(x+11*W/24, y+1*H/24)
+  ctx.lineTo(x+9*W/24, y+3*H/24)
+  ctx.stroke()
+
+  //12
+  ctx.beginPath()
+  ctx.moveTo(x+13*W/24, y+1*H/24)
+  ctx.lineTo(x+11*W/24, y+3*H/24)
+  ctx.stroke()
+
+  //13
+  ctx.beginPath()
+  ctx.moveTo(x+15*W/24, y+1*H/24)
+  ctx.lineTo(x+13*W/24, y+3*H/24)
+  ctx.stroke()
+
+  //14
+  ctx.beginPath()
+  ctx.moveTo(x+8*W/24, y+10*H/24)
+  ctx.lineTo(x+6*W/24, y+12*H/24)
+  ctx.stroke()
+
+  //15
+  ctx.beginPath()
+  ctx.moveTo(x+10*W/24, y+10*H/24)
+  ctx.lineTo(x+8*W/24, y+12*H/24)
+  ctx.stroke()
+
+  //16
+  ctx.beginPath()
+  ctx.moveTo(x+12*W/24, y+10*H/24)
+  ctx.lineTo(x+10*W/24, y+12*H/24)
+  ctx.stroke()
+
+  //17
+  ctx.beginPath()
+  ctx.moveTo(x+14*W/24, y+10*H/24)
+  ctx.lineTo(x+12*W/24, y+12*H/24)
+  ctx.stroke()
+
+  //18
+  ctx.beginPath()
+  ctx.moveTo(x+16*W/24, y+10*H/24)
+  ctx.lineTo(x+14*W/24, y+12*H/24)
+  ctx.stroke()
+
+  //19
+  ctx.beginPath()
+  ctx.moveTo(x+18*W/24, y+10*H/24)
+  ctx.lineTo(x+16*W/24, y+12*H/24)
+  ctx.stroke()
+
+  //20
+  ctx.beginPath()
+  ctx.moveTo(x+20*W/24, y+10*H/24)
+  ctx.lineTo(x+18*W/24, y+12*H/24)
+  ctx.stroke()
+
+  //21
+  ctx.beginPath()
+  ctx.moveTo(x+23*W/24, y+9*H/24)
+  ctx.lineTo(x+20*W/24, y+12*H/24)
+  ctx.stroke()
+
+  //22
+  ctx.beginPath()
+  ctx.moveTo(x+15*W/24, y+3*H/24)
+  ctx.lineTo(x+17*W/24, y+1*H/24)
+  ctx.stroke()
+
+  //23
+  ctx.beginPath()
+  ctx.moveTo(x+17*W/24, y+3*H/24)
+  ctx.lineTo(x+19*W/24, y+1*H/24)
+  ctx.stroke()
+
+  //24
+  ctx.beginPath()
+  ctx.moveTo(x+19*W/24, y+3*H/24)
+  ctx.lineTo(x+21*W/24, y+1*H/24)
+  ctx.stroke()
+
+  //25
+  ctx.beginPath()
+  ctx.moveTo(x+23*W/24, y+1*H/24)
+  ctx.lineTo(x+21*W/24, y+3*H/24)
+  ctx.stroke()
+
+  //26
+  ctx.beginPath()
+  ctx.moveTo(x+20*W/24, y+10*H/24)
+  ctx.lineTo(x+23*W/24, y+7*H/24)
+  ctx.stroke()
+
+  //27
+  ctx.beginPath()
+  ctx.moveTo(x+20*W/24, y+8*H/24)
+  ctx.lineTo(x+23*W/24, y+5*H/24)
+  ctx.stroke()
+
+  //28
+  ctx.beginPath()
+  ctx.moveTo(x+20*W/24, y+6*H/24)
+  ctx.lineTo(x+23*W/24, y+3*H/24)
+  ctx.stroke()
+
+  //29
+  ctx.beginPath()
+  ctx.moveTo(x+20*W/24, y+4*H/24)
+  ctx.lineTo(x+21*W/24, y+3*H/24)
+  ctx.stroke()
+}
+
+function plot() {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = W
+  let x = 20, y = 20, w = 120, h = w/2
+  let fs = h/3
+  ctx.fillStyle = getselectedcolor()
+  ctx.strokeStyle = ctx.fillStyle
+  ctx.lineWidth = 3
+
+  ctx.font = fs+"px serif"
+  ctx.fillText("rasin", x+w/4, y+h/2+fs/2)
+  ctx.strokeRect(x,y,w,h)
+
+  let i = 0, d = w/10
+  for (;i < d; i++) {
+    ctx.beginPath()
+    ctx.moveTo(x,y)
+    ctx.lineTo(x - d, y+d)
+    ctx.closePath()
+    ctx.stroke()
+    x += d
+  }
+  
+
+}
 /**/
 function strokes () {
   let increase = Math.PI * 2 / 40;
@@ -24847,8 +26300,8 @@ function strokes () {
       ymut *= -1;
     for (let i = 0; i < edges; i++) {
       radius = (Math.random() * maxradius) + maxradius * 0.8;
-      x = radius * Math.cos(angle)+centx;
-      y = radius * Math.sin(angle)+centy;
+      // x = radius * Math.cos(angle)+centx;
+      // y = radius * Math.sin(angle)+centy;
       points.push([x, y]);
       angle += increase;
     }
@@ -24897,6 +26350,98 @@ function strokes () {
 }
 
 function strokes2 () {
+  let increase = Math.PI * 2 / 40;
+  let x = 0, y = 0, angle = 4.7;
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.strokeStyle = getselectedcolor()
+  let color = getselectedcolor()
+  ctx.save()
+  ctx.globalAlpha = document.getElementById("opacity").value/200
+  let maxalpha = ctx.globalAlpha
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  let grunge = document.getElementById("grungy").checked
+  let stroke_width = 11+ document.getElementById("featuresize").value/20
+  let stroke_ct = 8+Math.floor(document.getElementById("number").value/400 + 1)
+  for (let t = 0; t < stroke_ct; t++) {
+    let paths = [];
+    let radius = Math.floor(Math.random() * 50) + 20;
+    x = 0;
+    y = 0;
+    angle = Math.floor(Math.random() * 6.42);
+    let centx = Math.random()*canvas.width/2;
+    let centy = Math.random()*canvas.height/2;
+    let edges = 4+(9 * (Math.floor(Math.random()*6))+2);
+    let maxradius = Math.random() * 5 + canvas.width/20;
+    increase = Math.PI * 2/edges*0.52;
+    points = [];
+    bez = [];
+    let xmut = -1;
+    let ymut = -1;
+    if (Math.random() < 0.5)
+      xmut *= -1;
+    if (Math.random() < 0.5)
+      ymut *= -1;
+    for (let i = 0; i < edges; i++) {
+      centx += pet(canvas.width/2)//Math.random()*ctx.canvas.width;
+      centy += pet(canvas.height/2)//Math.random()*ctx.canvas.height;
+      radius = (Math.random() * maxradius) + maxradius * 0.5;
+      x = radius * Math.cos(angle)+centx;
+      y = radius * Math.sin(angle)+centy;
+     // console.log(x,y)
+      points.push([x, y]);
+      angle += increase;
+    }
+    paths.push(points);
+    let D = 59
+    let pop = 60
+    if (grunge)
+      pop *= 2
+    let offset = 50 + stroke_width * 50;
+    let numpaths = 10 + Math.random()*30;
+    for (let s = 0; s < numpaths; s++) {
+      let path = [];
+      for (let c = 0; c < points.length; c++) {
+        path.push([points[c][0] + xmut*(offset + (pop * (Math.random()-0.5))), points[c][1] + ymut*(offset + (pop * (Math.random()-0.5)))]);
+      }
+      offset += (Math.random()-0.5) * stroke_width;
+      paths.push(path);
+    }
+    radius = (canvas.width > canvas.height)? canvas.width/4: canvas.height/4;
+    angle = Math.random()*6.27;
+    let x1 = radius * Math.cos(angle)+centx;
+    let y1 = radius * Math.sin(angle)+centy;
+    let x2 = radius * Math.cos(angle+3.14)+centx;
+    let y2 = radius * Math.sin(angle+3.14)+centy;
+    for (let f = 1; f < paths.length; f++) {
+      let pts = paths[f];
+      ctx.beginPath();
+      ctx.lineWidth = 1 + Math.random() * stroke_width;
+      let i = 0;
+      for (; i < pts.length; i++) {
+        x = pts[i][0] + pet(13)
+        y = pts[i][1] + pet(13)
+        if (i == 0) {
+          ctx.moveTo(x, y);
+        } else
+        if (i % 3 == 0)
+          ctx.bezierCurveTo(pts[i-2][0]+pet(D), pts[i-2][1]+pet(D), pts[i-1][0]+pet(D), pts[i-1][1]+pet(D), pts[i][0]+pet(D), pts[i][1]+pet(D));
+      }
+      if (grunge)
+        ctx.strokeStyle = petColor(color, 81) // try darken/lighten
+      else
+        ctx.strokeStyle = petColor(color, 51)
+      ctx.strokeStyle = adjustBrightnessC(color, (Math.random()-0.5) * 20)
+      //ctx.globalAlpha = (maxalpha * 0.1 + Math.random() * maxalpha * 0.2)
+      ctx.stroke();
+    }
+  }
+  ctx.restore()
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+}
+
+function strokes2_OG () {
   let increase = Math.PI * 2 / 40;
   let x = 0, y = 0, angle = 4.7;
   let canvas = document.getElementById("myCanvas");
@@ -25602,6 +27147,7 @@ function roadmap () {
     ctx.stroke();
     x += d
   }
+  ctx.textBaseline = 'alphabetic'
 }
 
 function lavalamp () {
@@ -27771,18 +29317,14 @@ function drawPictureAt (RIGHT, delta, color) {
   let x = 0, y = 0
   let pad = W/6
   x = pad+14, y = pad+24
-  
   delta *= 0.95
   if (RIGHT)
     x = W-pad-delta-38
   ctx.strokeStyle = color
-
-  f = randomPick(atList)
+  let f = randomPick(atList)
   window[f](x,y,delta,ctx.strokeStyle)
   delta *= 1.03
-
   return f // as card title
-
 }
 
 function pageOfBookIll (canvas) { //illustrated
@@ -27793,7 +29335,9 @@ function pageOfBookIll (canvas) { //illustrated
   let alt  = document.getElementById("grungy").checked
   let W = canvas.width
   let H = canvas.height
+  
   let pad = W/6, PW = W - pad*2
+
   let ddiv = randomPick([3,4,2.67])
   let PWmult = ddiv/10
   let delta = W/(ddiv)
@@ -27803,18 +29347,30 @@ function pageOfBookIll (canvas) { //illustrated
   let N = 3 + Math.floor(Math.random() * 14)
   let i = 0
   ctx.fillStyle = getselectedcolor()
-  let fs = randomPick([15,17,16])
-  y += fs * 1.5
   ctx.textAlign = 'left';
   ctx.textBaseline = 'middle'
   let RIGHT = Math.random() > 0.5
-  drawPictureAt(RIGHT, delta, ctx.fillStyle)
+  let f
+  if (alt)
+    f = ""
+  else
+    f = drawPictureAt(RIGHT, delta, ctx.fillStyle)
   ctx.fillStyle = getselectedcolor()
   let w = 0, text = "", s = ""
-  ctx.font = "100 "+(fs)+ randomPick(["pt Georgia", "pt Times New Roman", "pt Garamond"])
+  let fs = 16 + document.getElementById("featuresize").value/25
+  y += fs * 1.5
+  let weight = document.getElementById("fontweight").value
+  let face = document.getElementById("fontface").value
+  ctx.font = weight +" "+fs+"px " + face
+
   let j = 0
-  let moby = mobySlice() // array of words
-  //console.log(moby)
+  let moby = frankSlice() // array of words
+  if (Math.random() > 0.67)
+    moby = mobySlice()
+  if (Math.random() > 0.67)
+    moby = dictSlice()  
+  
+
   let mi = 0
   for (; j < 40; j++) { // 40 lines
     text = ""
@@ -27855,7 +29411,7 @@ function pageOfBookIll (canvas) { //illustrated
       else
       if (!RIGHT )//&& y < pad+delta+fs*2)
         spaceText(text, w, pw, x+delta+36 , y, ctx, fs, alt, done)
-      y += fs * 2
+      y += fs * 1.5
       if (done)
         y += fs * 1
     }
@@ -27863,17 +29419,102 @@ function pageOfBookIll (canvas) { //illustrated
   // header
   let maxl = Math.floor(Math.random() * 2)
   let prefix = "THE "
-  if (noThe.includes(f))
+  if (noThe.includes(f) || f.length < 1)
     prefix = ""
   text = prefix+capitalize(f.slice(0,-2))
   text = text.replace(/_/gm, " ")
   text = text.toUpperCase()
   i = 0
-  ctx.font = "400 "+(fs*1.3)+"pt Georgia"
+  ctx.font = weight +" "+fs*1.25+"px " + face  
   w = ctx.measureText(text).width
   ctx.fillText(text, W/2-w/2, pad-fs*1.3)
-  if (alt)
-    grit(ctx,text,W/2-w/2, pad-fs*1.3,w,fs)
+ // if (alt)
+//    grit(ctx,text,W/2-w/2, pad-fs*1.3,w,fs)
+  text = Math.floor(1*(Math.random() * 200)) // page number
+  w = ctx.measureText(text).width
+  x = pad
+  if (Math.random() > 0.5)
+    x = W - pad - ctx.measureText(text).width*1.5
+  ctx.fillText(text, x, pad-fs*1.3)
+  //if (alt)
+   // grit(ctx,""+text,x,pad-fs*1.3,w,fs)
+   ctx.textBaseline = 'alphabetic'
+}
+
+function pageOfBook2Col (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let alt  = document.getElementById("grungy").checked
+  let W = canvas.width
+  let H = canvas.height
+  let pad = W/12, PW = W - pad*2 // was W/7
+  let delta = W/4
+  let x = pad
+  let y = pad
+  let moby = dictSlice()
+  if (Math.random() > 0.5)
+    moby = mobySlice() // array of words
+
+  let mi = 0
+  let wrap = randomPick([3,4,5])
+  let N = 3 + Math.floor(Math.random() * 14)
+  let i = 0
+  ctx.fillStyle =  getselectedcolor()
+  let fs = 16 + document.getElementById("featuresize").value/25
+  y += fs * 3
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle'
+  let w = 0, text = "", s = ""
+  let weight = document.getElementById("fontweight").value
+  let face = document.getElementById("fontface").value
+  ctx.font = weight +" "+fs+"px " + face
+  let j = 0, done = false, newpara = false
+  let col = 0
+  for (; col < 2; col++) {
+    for (; j < 40; j++) {
+      done = false
+      w = 0, i = 0
+      if (j === 0 ) {
+        y += fs*1.1
+      }
+      if (y > H - pad)
+        break
+      while (w < PW*0.30) {
+        s = ""
+        if (moby[mi] === "_para_") {
+          newpara = true
+          done = true
+          mi++
+        }
+        if (!done) {
+          s += moby[mi++]
+        } 
+        text += s + " "
+        w = ctx.measureText(" "+text).width
+        i++
+        if (done) {
+          break
+        }
+      }
+      if (PW - w >= 0 || done) {
+        spaceText(text, w, PW/2.2, x,y,ctx,fs, alt, done) // PW/2
+        y += fs * 1.5
+        if (newpara) {
+          y += fs *0.5
+          newpara = false
+          text = "      "
+        } else
+          text = ""
+        if (done)
+          y += fs
+      }
+    }
+    // right column
+    j = 0, done = false, newpara = false
+    x = W/2+pad/2, y = pad + fs * 3
+  }
   text = Math.floor(1*(Math.random() * 200)) // page number
   w = ctx.measureText(text).width
   x = pad
@@ -27882,6 +29523,89 @@ function pageOfBookIll (canvas) { //illustrated
   ctx.fillText(text, x, pad-fs*1.3)
   if (alt)
     grit(ctx,""+text,x,pad-fs*1.3,w,fs)
+  ctx.textBaseline = 'alphabetic'
+}
+
+function pageOfBook3Col (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let alt  = document.getElementById("grungy").checked
+  let W = canvas.width
+  let H = canvas.height
+  let pad = W/18, PW = W - pad*3
+  let delta = W/4
+  let x = pad
+  let y = pad
+  let moby = dictSlice()//mobySlice() 
+  let mi = 0
+  let wrap = randomPick([3,4,5])
+  let N = 3 + Math.floor(Math.random() * 14)
+  let i = 0
+  ctx.fillStyle =  getselectedcolor()
+  let fs = 16 + document.getElementById("featuresize").value/25
+  y += fs * 3
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle'
+  let w = 0, text = "", s = ""
+  let weight = document.getElementById("fontweight").value
+  let face = document.getElementById("fontface").value
+  ctx.font = weight +" "+fs+"px " + face
+  let j = 0, done = false, newpara = false
+  let col = 0
+  for (; col < 3; col++) {
+    for (; j < 40; j++) {
+      done = false
+      w = 0, i = 0
+      if (j === 0 ) {
+        y += fs*1.1
+      }
+      if (y > H - pad)
+        break
+      while (w < PW*0.20) {
+        s = ""
+        if (moby[mi] === "_para_") {
+          newpara = true
+          done = true
+          mi++
+        }
+        if (!done) {
+          s += moby[mi++]
+        } 
+        text += s + " "
+        w = ctx.measureText(" "+text).width
+        i++
+        if (done) {
+          break
+        }
+      }
+      if (PW - w >= 0 || done) {
+        spaceText(text, w, PW/3, x,y,ctx,fs, alt, done) // PW/2
+        y += fs * 1.5
+        if (newpara) {
+          y += fs *0.5
+          newpara = false
+          text = "   "
+        } else
+          text = ""
+        if (done)
+          y += fs
+      }
+    }
+    // right column
+    j = 0, done = false, newpara = false
+    x += W/3.7+pad/2, y = pad + fs * 3
+  }
+  text = Math.floor(1*(Math.random() * 200)) // page number
+  w = ctx.measureText(text).width
+  x = pad
+  if (Math.random() > 0.5)
+    x = W - pad - ctx.measureText(text).width*1.5
+  ctx.fillText(text, x, pad-fs*1.3)
+  if (alt)
+    grit(ctx,""+text,x,pad-fs*1.3,w,fs)
+  ctx.textBaseline = 'alphabetic'
 }
 
 function pageOfBook (canvas) {
@@ -27901,13 +29625,15 @@ function pageOfBook (canvas) {
   let wrap = randomPick([3,4,5])
   let N = 3 + Math.floor(Math.random() * 14)
   let i = 0
-  ctx.fillStyle =  getselectedcolor()
-  let fs = randomPick([16,15,17])
-  y += fs * 1.5
+  ctx.fillStyle =  getselectedcolor()  
   ctx.textAlign = 'left';
   ctx.textBaseline = 'middle'
   let w = 0, text = "", s = ""
-  ctx.font = "100 "+(fs)+"pt Georgia"
+  let fs = 16 + document.getElementById("featuresize").value/25 
+  y += fs * 1.5
+  let weight = document.getElementById("fontweight").value
+  let face = document.getElementById("fontface").value
+  ctx.font = weight +" "+fs+"px " + face
   let j = 0, done = false
   for (; j < 40; j++) {
     text = "", done = false
@@ -27947,12 +29673,11 @@ function pageOfBook (canvas) {
   i = 0
   for (; i < maxl; i++)
     text += " "+capitalize(randomWord(true))
-  ctx.font = "400 "+(fs*1.3)+"pt Georgia"
+  ctx.font = weight +" "+fs*1.25+"px " + face  
   w = ctx.measureText(text).width
   ctx.fillText(text, W/2-w/2, pad-fs*1.3)
   if (alt)
     grit(ctx,text,W/2-w/2, pad-fs*1.3,w,fs)
-
   text = Math.floor(1*(Math.random() * 200)) // page number
   w = ctx.measureText(text).width
   x = pad
@@ -27961,6 +29686,7 @@ function pageOfBook (canvas) {
   ctx.fillText(text, x, pad-fs*1.3)
   if (alt)
     grit(ctx,""+text,x,pad-fs*1.3,w,fs)
+  ctx.textBaseline = 'alphabetic'
 }
 
 
@@ -27985,11 +29711,10 @@ function lineAt (x1,y1,W,fs) {
   offctx.font = randomPick(["1", "3", "5", "8"])+"00 "+(fs)+"pt " + face
   let j = 0
   let x = 0, y = 200
-
-    text = randomPick(lines)
-    spaceText (text, W, W, x1, y1, offctx, fs) 
-
+  text = randomPick(lines)
+  spaceText (text, W, W, x1, y1, offctx, fs) 
   ctx.drawImage(off,x1,y1,W,H)
+  ctx.textBaseline = 'alphabetic'
 }
 
 function paragraph2At (x1,y1,W) {
@@ -28031,11 +29756,10 @@ function paragraph2At (x1,y1,W) {
       x += w*4
     }
     y += 50//fs * (0.5 + Math.random() * 1.5)
-    
   }
   ctx.drawImage(off,x1,y1,W,H)
+  ctx.textBaseline = 'alphabetic'
 }
-
 
 function paragraphAt (x1,y1,W) {
   let lines = book.split("\n")
@@ -28056,8 +29780,11 @@ function paragraphAt (x1,y1,W) {
   offctx.textAlign = 'left';
   offctx.textBaseline = 'middle'
   let w = 0, text = "", s = ""
-  let face = randomPick(["Helvetica", "Arial", "Courier", "Georgia", "Futura"])
-  offctx.font = randomPick(["1", "3", "5", "8"])+"00 "+(fs)+"pt " + face
+ // let face = randomPick(["Helvetica", "Arial", "Courier", "Georgia", "Futura"])
+ // offctx.font = randomPick(["1", "3", "5", "8"])+"00 "+(fs)+"pt " + face
+  let weight = document.getElementById("fontweight").value
+  let face = document.getElementById("fontface").value
+  offctx.font = weight +" "+fs+"px " + face
   let j = 0
   let x = 0, y = 0
   let yup = Math.random() *fs/2
@@ -28071,6 +29798,7 @@ function paragraphAt (x1,y1,W) {
     y += fs * (0.5 + Math.random() * 1.5)
   }
   ctx.drawImage(off, x1,y1,W,H)
+  ctx.textBaseline = 'alphabetic'
 }
 
 function spaceText (t, width, finalwidth, x, y, ctx, fs, alt, DONE) {
@@ -28084,8 +29812,8 @@ function spaceText (t, width, finalwidth, x, y, ctx, fs, alt, DONE) {
     ctx.fillText(ta[i], x, y)
     ctx.font = font
     w = ctx.measureText(ta[i]).width
-    if (alt)
-      grit(ctx,ta[i],x,y,w,fs)
+   // if (alt)
+   //   grit(ctx,ta[i],x,y,w,fs)
     x += w+diff
   }
 }
@@ -28144,9 +29872,7 @@ function scale (canvas) {
   let x = 3*inset + pet(inset), x0 = x
   let y = 3*inset + pet(inset), d = 0
   let w = H/32, h = w
-  //let b = 0
   ctx.font = w/2 + "pt Helvetica"
-
   let i = 0, N = 8, FLIP = true
   for (; i < N; i++) {
     ctx.globalAlpha = ctx.globalAlpha/2
@@ -28169,7 +29895,6 @@ function scale (canvas) {
       h *= 5
     if (i === 6)
       h *= 2
-    
   }
 }
 
@@ -30545,7 +32270,6 @@ function motionblur (canvas) {
   let alpha = ctx.globalAlpha = document.getElementById("opacity").value
   let step = document.getElementById("featuresize").value
   let stepsize = +step+ pet(step / 2)
-  console.log(stepsize)
   let grunge = document.getElementById("grungy").checked
  // let maxangle = 9
   if (grunge) {
@@ -30614,44 +32338,6 @@ function duplicate () {
   ctx.clearRect(0,0,canvas.width,canvas.height)
   ctx.drawImage(top, 0, canvas.height/4)
   ctx.drawImage(top, 0, -canvas.height/4)
-}
-
-
-function halfRip_mod () {
-  let canvas = document.getElementById("myCanvas")
-  let ctx = canvas.getContext("2d")
-  let H = canvas.height, W = canvas.width
-  let grunge = document.getElementById("grungy").checked
-  let s = document.getElementById("featuresize").value/500
-  let half = W*s
-  let lx = LASTCLICK[0]
-  const offset = 2 + W/100
-  let x = 0, y = 0
-  x = 0, y = 0
-  ctx.save()
-  ctx.beginPath()
-  ctx.moveTo(x,y)
-  x = lx + pet(50)//half-offset
-  ctx.lineTo(x, y)
-  H += 40
-  while (y <= H) {
-    x += pet(9)
-    y += 9 + pet(4)
-    ctx.lineTo(x, y)
-    if (Math.random() > 0.95)
-      x += pet(60)
-    if (Math.random() > 0.95)
-      y += 39
-  }
-  ctx.lineTo(0, y)
-  ctx.closePath()
-  ctx.clip()
-  let color = (Math.random() > 0.5)? "#000000": "#ffffff";
-  ctx.fillStyle = randomGradient(canvas, color)
-  ctx.globalAlpha = 0.3
-  ctx.fillRect(0,0,canvas.width, canvas.height)
-  ctx.restore()
-  ctx.restore()
 }
 
 function ripShade () {
@@ -31216,10 +32902,11 @@ function rcc (canvas) {
   ctx.globalCompositeOperation = mode
 }
 
-function flipH () {
+function flipH (canvas) {
   let ocanvas = document.getElementById('off')
   let octx = ocanvas.getContext('2d')
-  let canvas = document.getElementById("myCanvas");
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let mode = ctx.globalCompositeOperation
   ctx.globalCompositeOperation = "source-over"
@@ -31240,10 +32927,11 @@ function flipH () {
   return true
 }
 
-function flipV () {
+function flipV (canvas) {
   let ocanvas = document.getElementById('off')
   let octx = ocanvas.getContext('2d')
-  let canvas = document.getElementById("myCanvas");
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let mode = ctx.globalCompositeOperation
   ctx.globalCompositeOperation = "source-over"
@@ -32168,7 +33856,7 @@ function zoomImage (out, d) {
   ctx.globalAlpha = alpha/100
 }
 
-function zoom () {
+function zoom (NOSYNC) {
   let ocanvas = document.getElementById('off')
   let octx = ocanvas.getContext('2d')
   let canvas = document.getElementById("myCanvas");
@@ -32182,6 +33870,7 @@ function zoom () {
   octx.drawImage(canvas, 0, 0)
   canvas.width = Math.round(canvas.width * 1.2)
   canvas.height = Math.round(canvas.height * 1.2)
+  if (!NOSYNC)
   syncBackground(canvas)
   ctx.drawImage(ocanvas,0,0,canvas.width,canvas.height)
   octx.clearRect(0,0,ocanvas.width,ocanvas.height)
@@ -32192,7 +33881,7 @@ function zoom () {
   syncMarker()
 }
 
-function zoom_neg () {
+function zoom_neg (NOSYNC) {
   let ocanvas = document.getElementById('off')
   let octx = ocanvas.getContext('2d')
   let canvas = document.getElementById("myCanvas");
@@ -32206,6 +33895,7 @@ function zoom_neg () {
   octx.drawImage(canvas, 0, 0)
   canvas.width = Math.round(canvas.width / 1.2)
   canvas.height = Math.round(canvas.height / 1.2)
+  if (!NOSYNC)
   syncBackground(canvas)
   ctx.drawImage(ocanvas,0,0,canvas.width,canvas.height)
   octx.clearRect(0,0,ocanvas.width,ocanvas.height)
@@ -32671,8 +34361,8 @@ function smudge (type, canvas, color) {
       offwatercolor(color)
     else
       offspecks(color)
-    x = Math.random()*canvas.width - 256 // 256 == half the width of the offseceen canvas
-    y = Math.random()*canvas.height - 256
+    x = Math.random()*canvas.width - 251 // 256 == half the width of the offseceen canvas
+    y = Math.random()*canvas.height - 251
     dx = pet(13), dy = pet(13)
     let i = 0
     let moves = smudge_size
@@ -32680,7 +34370,6 @@ function smudge (type, canvas, color) {
       moves = 1
     for (; i < moves; i++) {
       ctx.drawImage(canvasoff, x,   y)
-      /*
       ctx.drawImage(canvasoff, x-W, y-H)
       ctx.drawImage(canvasoff, x,   y-H)
       ctx.drawImage(canvasoff, x+W, y-H)
@@ -32688,7 +34377,7 @@ function smudge (type, canvas, color) {
       ctx.drawImage(canvasoff, x,   y+H)
       ctx.drawImage(canvasoff, x+W, y+H)
       ctx.drawImage(canvasoff, x-W, y)
-      ctx.drawImage(canvasoff, x+W, y)*/
+      ctx.drawImage(canvasoff, x+W, y) 
       x += dx + pet(23)
       y += dy + pet(23)
     }
@@ -32769,7 +34458,7 @@ function crayAt (x,y,ctx, fs) {
   let canvasoff = document.getElementById("offscreen")
   let ctxoff = canvasoff.getContext("2d")
   ctx.globalAlpha = document.getElementById("opacity").value/100
-  let color = null
+  let color = getselectedcolor()
   if (!x)
     x = LASTCLICK[0]
   if (!y)
@@ -32856,6 +34545,52 @@ function crayonScript () {
   LASTCLICK[0] = x + bump
 }
 
+function streaking () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d");
+  let W = canvas.width
+  let H = canvas.height
+  let i = 0, n = 500 + Math.random() * 5
+  for (; i < n; i++)
+    streak(W*Math.random(), H*Math.random())
+}
+
+function streak (x,y) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d");
+  let W = canvas.width
+  let H = canvas.height
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let len = 10 + document.getElementById("number").value/250
+  console.log(len)
+  let color = null
+  ctx.lineWidth = 2
+  color = colorOf (ctx,x,y,1)
+  if (colorDistance(color,getselectedcolor()) < 19) {
+    ctx.strokeStyle = color
+    ctx.beginPath()
+    ctx.moveTo(x,y)
+    y += len*2.5//*Math.random()
+    ctx.lineTo(x,y)
+    ctx.closePath()
+    ctx.stroke()
+    ctx.lineWidth = 1.0
+  //  ctx.beginPath()
+  //  ctx.moveTo(x,y)
+    y += len*0.25//*Math.random()
+  //  ctx.lineTo(x,y)
+  //  ctx.closePath()
+   // ctx.stroke()
+  //  ctx.lineWidth = 0.5
+ //   ctx.beginPath()
+  //  ctx.moveTo(x,y)
+ //   y += len*0.25//*Math.random()
+ //   ctx.lineTo(x,y)
+  //  ctx.closePath()
+  //  ctx.stroke()
+  }
+}
+
 function paintDrips () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d");
@@ -32909,6 +34644,28 @@ function paintDrip (x,y) {
     y += dy + pet(maxradius/2)
   }
   ctxoff.clearRect(0,0,canvasoff.width, canvasoff.height)
+}
+
+function offdots (color) {
+  let canvas = document.getElementById("offscreen");
+  let ctx = canvas.getContext("2d");
+  let cx = ctx.canvas.width/2;
+  let cy = ctx.canvas.height/2;
+  let x = 0, y = 0
+  ctx.clearRect(0,0,ctx.canvas.width, ctx.canvas.height)
+  ctx.globalAlpha = 0.9
+  ctx.fillStyle = getselectedcolor()
+  if (color)
+    ctx.fillStyle = color
+  let d =  1 + Math.random() * 1
+  let count = 50
+  for (let j = 0; j < count; j++) {
+    ctx.beginPath();
+    x = cx //+ pet(d)*Math.cos(Math.random()*6.28)
+    y = cy + pet(d)*Math.sin(Math.random()*6.28)
+    ctx.arc(x, y, 0.5, 0, 2*Math.PI)
+    ctx.fill();
+  }
 }
 
 function offdrops (color) {
@@ -34667,6 +36424,7 @@ function placeRectAt () { // word-shaped rect
   ctx.shadowBlur = 0
   ctx.shadowOffsetX = 0
   ctx.shadowOffsetY = 0
+  ctx.textBaseline = 'alphabetic'
 }
 
 function randomNumber () {
@@ -34681,8 +36439,6 @@ function randomChar () {
   return text.slice(0,length).join("")
 }
 
-//let LEFTX = Math.min(LASTCLICK[0], LEFTX)
-
 function placeCharAt (char,canvas) {
   if (!canvas)
     canvas = document.getElementById("myCanvas");
@@ -34690,10 +36446,11 @@ function placeCharAt (char,canvas) {
   let W = canvas.width
   ctx.globalAlpha = (document.getElementById("opacity").value)/100
   ctx.fillStyle = getselectedcolor()
-  let fs = (4 + document.getElementById("featuresize").value/4)
+  let linespace = document.getElementById("linespace").value
+  let fs = 4*(4 + document.getElementById("featuresize").value/4)
   if (char === "Enter") {
     LASTCLICK[0] = LEFTX
-    LASTCLICK[1] += fs*1.2
+    LASTCLICK[1] += fs*linespace
     return
   }
   ctx.textAlign = 'left';
@@ -34716,14 +36473,14 @@ function placeCharAt (char,canvas) {
   } else
     LASTCLICK[0] += w*0.72
   if (x+w > W) {
-    LASTCLICK[1] += fs*1.2
+    LASTCLICK[1] += fs*linespace
     LASTCLICK[0] = LEFTX
   }
   if (document.getElementById("grungy").checked) {
     // add grit
-    w = ctx.measureText(text).width
+    w = ctx.measureText(char).width
     let i = 0
-    for (; i < 8*text.length; i++) {
+    for (; i < 8/**text.length*/; i++) {
       let r = (fs*fs/9)/111 * Math.random()
       drawBlobAt(ctx, x + Math.random()*w, y-fs/2 + Math.random()*fs, r)
     }
@@ -34766,18 +36523,68 @@ function placeNumAt (t,canvas) {
       drawBlobAt(ctx, x + Math.random()*w, y-fs/2 + Math.random()*fs, r)
     }
   }
+  ctx.textBaseline = 'alphabetic'
 }
 
-function placeTextAt (t,canvas) {
-  let text = randomWord()//document.getElementById("points").value
-  if (t)
-    text = t
+function alteredTextAt (canvas) {
+  let text = randomWord()
   if (!canvas)
     canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let W = canvas.width
   ctx.globalAlpha = (document.getElementById("opacity").value)/100
   ctx.fillStyle = getselectedcolor()
+  let fs = 2.6*(4 + document.getElementById("featuresize").value/5)
+  let mode = document.getElementById("mode").value
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle'
+  if (text.length < 1)
+    text = (randomWord())
+  console.log(text)
+  let x = LASTCLICK[0]
+  let y = LASTCLICK[1]
+ ctx.strokeStyle = 'white'
+ ctx.lineWidth = fs/9
+  let weight = document.getElementById("fontweight").value
+  let face = document.getElementById("fontface").value
+  ctx.font = weight +" "+fs+"px " + face
+  let letters = text.toUpperCase().split("")
+  let i = 0, w = 0
+  for (; i < letters.length; i++) {
+    w = ctx.measureText(letters[i]).width
+    ctx.globalCompositeOperation = "source-over"
+    ctx.fillText(letters[i], x, y)
+
+    ctx.globalCompositeOperation = "destination-out"
+    ctx.beginPath()
+    ctx.moveTo(x,        y-fs/10)
+    ctx.lineTo(x+w-fs/20,y-fs/10)
+    ctx.closePath()
+    ctx.stroke()
+
+    ctx.beginPath()
+    ctx.moveTo(x+w/2,y-fs/2)
+    ctx.lineTo(x+w/2,y+fs/2)
+    ctx.closePath()
+    ctx.stroke()
+    x += w
+  }
+  ctx.globalCompositeOperation = mode
+  ctx.textBaseline = 'alphabetic'
+}
+
+function placeTextAt (/*t,*/canvas) {
+  let text = randomWord()
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let oc = document.createElement('canvas')
+  let occtx = oc.getContext("2d");
+  oc.height = canvas.height, oc.width = canvas.width
+  let W = canvas.width
+  ctx.globalAlpha = (document.getElementById("opacity").value)/100
+  ctx.fillStyle = getselectedcolor()
+  occtx.fillStyle = getselectedcolor()
   let fs = 2.6*(4 + document.getElementById("featuresize").value/5)
   ctx.textAlign = 'left';
   ctx.textBaseline = 'middle'
@@ -34786,23 +36593,30 @@ function placeTextAt (t,canvas) {
   let x = LASTCLICK[0]
   let y = LASTCLICK[1]
  
-  ctx.font = "100 "+(fs)+"pt AmericanTypewriter,Courier"
-  let w = ctx.measureText(" "+text).width
-  ctx.fillText(text, x, y)
+  let weight = document.getElementById("fontweight").value
+  let face = document.getElementById("fontface").value
+  ctx.font = weight +" "+fs+"px " + face
+  occtx.font = weight +" "+fs+"px " + face
+
+  let w = ctx.measureText(text).width
+  let cx =  x+w/2
+  let cy =  y+fs*1.2
+  let angle = ((+document.getElementById("angle").value) * Math.PI)/180
+  
+  ctx.save() 
+  ctx.translate(cx,cy)
+  ctx.rotate(angle)
+  ctx.translate(-cx,-cy)
+  
+  occtx.fillText(text, x, y)
   LASTCLICK[0] += w
   if (x+w > W) {
     LASTCLICK[1] += fs*2
     LASTCLICK[0] = 0
   }
-  if (document.getElementById("grungy").checked) {
-    // add grit
-    w = ctx.measureText(text).width
-    let i = 0
-    for (; i < 4*text.length; i++) {
-      let r = (fs*fs/9)/111 * Math.random()
-      drawBlobAt(ctx, x + Math.random()*w, y-fs/2 + Math.random()*fs, r)
-    }
-  }
+  ctx.drawImage(oc, 0, 0, canvas.width, canvas.height)
+  ctx.restore()
+  ctx.textBaseline = 'alphabetic'
 }
 
 function randomWordAt (x,y,fs,W,color) {
@@ -34815,7 +36629,10 @@ function randomWordAt (x,y,fs,W,color) {
   let tbl = ctx.textBaseline
   ctx.textAlign = 'left'
   ctx.textBaseline = 'middle'
-  ctx.font = "100 "+(fs)+"pt AmericanTypewriter,Courier"
+ // ctx.font = "100 "+(fs)+"pt AmericanTypewriter,Courier"
+  let weight = document.getElementById("fontweight").value
+  let face = document.getElementById("fontface").value
+  ctx.font = weight +" "+fs+"px " + face
   let w = ctx.measureText(text).width
   ctx.fillText(text, x+W/2-w/2, y)
   ctx.textAlign = ta
@@ -35250,6 +37067,7 @@ function edgeDistance (x,W) {
   return ((x < W/2)? x: W-x)
 }
 
+
 async function contraEdges () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
@@ -35349,6 +37167,42 @@ async function fadeEdges () {
   return true
 }
 
+async function darkenTop () {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let w = canvas.width, h = canvas.height
+  let maxdist = canvas.width
+  let data = ctx.getImageData(0,0,canvas.width,canvas.height)
+  let divisor = Math.floor(document.getElementById("featuresize").value/25) + 4
+  //invert range of divisor [3- 25] => [25 - 3]
+  divisor = 25 - divisor + 4
+  let margin = w/divisor + pet(w/divisor/2)
+  let i = 0, x = 0, y = 0, dx = 0, dy = 0
+  let cnt = 0
+  let len = w * h
+  for (;i < len; i++) {
+    x = i % w
+    if (i > 0 && i % w === 0) {
+      x = 0
+      y += 1
+    }
+    if (Math.random() > 0.25)
+      margin = w/divisor + pet(w/divisor/2)
+    dy = y//edgeDistance(y,h)
+    if (y < margin && dy > 0) {
+      //dx += 10 // prevent 100% dark at very close to edge
+      let px = data.data.slice(i*4, i*4+4)
+      px[0] -= margin/dy * Math.random()*4
+      px[1] -= margin/dy * Math.random()*4
+      px[2] -= margin/dy * Math.random()*4
+      
+      data.data.set(px, i*4)
+    }
+    cnt++
+  }
+  await ctx.putImageData(data, 0, 0);
+  return true
+}
 
 async function darkenEdges () {
   let canvas = document.getElementById("myCanvas");
@@ -35429,7 +37283,47 @@ async function lightenEdges () {
   return true
 }
 
-async function yellowedEdges () {
+async function yellowedEdges (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let w = canvas.width, h = canvas.height
+  let maxdist = canvas.width
+  let data = ctx.getImageData(0,0,canvas.width,canvas.height)
+  let divisor = Math.floor(document.getElementById("featuresize").value/25) + 4
+  //invert range of divisor [3- 25] => [25 - 3]
+  divisor = 25 - divisor + 4
+  let margin = w/divisor + pet(w/divisor/2)
+  let i = 0, x = 0, y = 0, dx = 0, dy = 0
+  let len = w * h
+ 
+  for (;i < len; i++) {
+    x = i % w
+    if (i > 0 && i % w === 0) {
+      x = 0
+      y += 1
+    }
+    if (Math.random() > 0.25)
+      margin = w/divisor + pet(w/divisor/2)
+    dx = edgeDistance(x,w)
+    dy = edgeDistance(y,h)
+    if ((dx < margin && dx > 0)||(dy < margin && dy > 0)) {
+     
+      let px = data.data.slice(i*4, i*4+4)
+      if (dy < dx)
+        dx = dy
+      dx += 10 // prevent 100% dark at very close to edge
+      px[0] -= margin/dx * Math.random()*3
+      px[1] -= margin/dx * Math.random()*4
+      px[2] -= margin/dx * Math.random()*6
+      data.data.set(px, i*4)
+    } 
+  }
+  await ctx.putImageData(data, 0, 0);
+  return true
+}
+
+async function yellowedTop () {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let w = canvas.width, h = canvas.height
@@ -35449,30 +37343,97 @@ async function yellowedEdges () {
     }
     if (Math.random() > 0.25)
       margin = w/divisor + pet(w/divisor/2)
-    dx = edgeDistance(x,w)
-    dy = edgeDistance(y,h)
-    if (dx < margin && dx > 0) {
-      dx += 10 // prevent 100% dark at very close to edge
+   // dx = edgeDistance(x,w)
+    dy = y// edgeDistance(y,0)
+    if (dy < margin && dy > 0) {
+     
       let px = data.data.slice(i*4, i*4+4)
-      px[0] -= margin/dx * Math.random()*3
-      px[1] -= margin/dx * Math.random()*4
-      px[2] -= margin/dx * Math.random()*6
+  
+      dy += 10 // prevent 100% dark at very close to edge
+      px[0] -= margin/dy * Math.random()*3
+      px[1] -= margin/dy * Math.random()*4
+      px[2] -= margin/dy * Math.random()*6
       data.data.set(px, i*4)
-    }
+    } 
+    /*
     if (dy < margin && dy > 0) {
       dy+= 10
       let px = data.data.slice(i*4, i*4+4)
       px[0] -= margin/dy * Math.random()*3
       px[1] -= margin/dy * Math.random()*4
       px[2] -= margin/dy * Math.random()*6
-      data.data.set(px, i*4)
-    }
+     // data.data.set(px, i*4)
+    }*/
   }
   await ctx.putImageData(data, 0, 0);
   return true
 }
 
-async function fr () {
+function polywalk (x0,y0) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  let maxdist = 33+document.getElementById("featuresize").value*2
+  let stepsizes = [maxdist/9,maxdist/19,maxdist/13,maxdist/7,maxdist/11], i = 0
+  if (!x0) {
+    x0 = LASTCLICK[0], y0 = LASTCLICK[1]
+  }
+  let x = x0, y = y0, x1 = x0, y1 = y0
+  ctx.fillStyle = getselectedcolor()
+  let d = 8, ds = [1,3,5,9,7,11]
+  ctx.beginPath()
+  ctx.moveTo(x0,y0)
+  if (Math.random() > 0.5)
+    x += randomPick(stepsizes)
+  else
+    y += randomPick(stepsizes)
+  while (distance(x,y,x0,y0) < maxdist) {
+    ragged(ctx,x,y,x1,y1,randomPick(ds))
+     x1 = x, y1 = y
+    if (Math.random() > 0.5)
+      x += randomPick(stepsizes)
+    else
+      y += randomPick(stepsizes)
+      i++
+  }
+  let j = i, j2 = i
+  while (i > 1) {
+    x1 = x, y1 = y
+    if (Math.random() > 0.5)
+      x -= randomPick(stepsizes)
+    else
+      y += randomPick(stepsizes)
+    ragged(ctx,x,y,x1,y1,randomPick(ds))
+    i--
+  }
+
+  while (j > 1) {
+    x1 = x, y1 = y
+    if (Math.random() > 0.5)
+      x -= randomPick(stepsizes)
+    else
+      y -= randomPick(stepsizes)
+    ragged(ctx,x,y,x1,y1,randomPick(ds))
+    j--
+  }
+
+  while (j2 >= 1) {
+    x1 = x, y1 = y
+    if (Math.random() > 0.5)
+      x += randomPick(stepsizes)
+    else
+      y -= randomPick(stepsizes)
+   // if (j2 === 1)
+   //   raggedX(ctx,x,y,x0,y0)
+    //else
+      ragged(ctx,x,y,x1,y1,randomPick(ds))
+    j2--
+  }
+  ctx.closePath()
+  ctx.fill()
+}
+
+async function fr () { // fade right
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   if (LASTCLICK[0] > canvas.width)
@@ -35501,7 +37462,7 @@ async function fr () {
   return true
 }
 
-async function fd () {
+async function fd () { //fade down
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   if (LASTCLICK[1] > canvas.height)
@@ -35704,7 +37665,7 @@ function vig_rect (canvas, FADE) {
 
 function vig (canvas, FADE) {
   if (!canvas)
-    canvas = document.getElementById("myCanvas");
+    canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let cx = ctx.canvas.width/2 + pet(150)
   let cy = ctx.canvas.height/2 + pet(150)
@@ -35742,7 +37703,20 @@ function vig (canvas, FADE) {
       }
     }
   }
-  ctx.putImageData(data, 0, 0);
+  ctx.putImageData(data, 0, 0)
+}
+
+function pushUp () { // from off into an existing wash
+  let mode = document.getElementById("mode").value
+  setOpacity(96)
+  setMode("overlay")
+  pasteFromOff()
+  setOpacity(52)
+  setMode("darken")
+  pasteFromOff()
+  setMode("lighten")
+  pasteFromOff()
+  document.getElementById("mode").value = mode
 }
 
 function pasteFromOff () {
@@ -36062,7 +38036,25 @@ function syncBackground (canvas) {
   bkg.style.width = canvas.width+"px"
   bkg.height = canvas.height
   bkg.width = canvas.width
- // displayRatio()
+  let ctx = canvas.getContext("2d")
+  let OC = document.getElementById('OC') 
+  let OCctx = OC.getContext("2d")
+  if (isCanvasBlank (OC)) {
+    OC.height = canvas.height
+    OC.width = canvas.width
+  } else {
+    if (OC.height !== canvas.height || OC.width !== canvas.width) {
+      //console.log(canvas.width)
+      let temp = document.createElement('CANVAS')
+      let tempctx = temp.getContext("2d")
+      temp.width = canvas.width
+      temp.height = canvas.height
+      tempctx.drawImage(OC, 0, 0)//, temp.width, temp.height)
+      OC.height = canvas.height
+      OC.width = canvas.width
+      OCctx.drawImage(temp, 0, 0)//, temp.width, temp.height)
+    }
+  }
   //syncMarker()
 }
 
@@ -36275,7 +38267,8 @@ function tintSky (canvas) {
   let r = hexToR(color)
   let g = hexToG(color)
   let b = hexToB(color)
-  let ctx = canvas.getContext("2d");
+  let ctx = canvas.getContext("2d")
+  ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.willReadFrequently = true
   let mode = ctx.globalCompositeOperation
   let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
@@ -36304,12 +38297,6 @@ function tintSky (canvas) {
   ctx.drawImage(offcanvas,0,0)
   ctx.globalCompositeOperation = mode
 }
-/*
-function edgeDistance (x,y,W,H) {
-  let dx = (x < W/2)? x: W-x;
-  let dy = (y < H/2)? y: H-y
-  return Math.min(dx,dy)
-}*/
 
 function darkenSky (canvas) {
   if (!canvas)
@@ -36427,11 +38414,12 @@ function tint (color) {
   offctx.willReadFrequently = true
   if (!color) 
     color =  getselectedcolor()
-  let alpha = document.getElementById("opacity").value
+  let alpha = +document.getElementById("opacity").value
   let r = hexToR(color)
   let g = hexToG(color)
   let b = hexToB(color)
-  let ctx = canvas.getContext("2d");
+  let ctx = canvas.getContext("2d")
+  //ctx.globalAlpha = document.getElementById("opacity").value/100
   ctx.willReadFrequently = true
   let mode = ctx.globalCompositeOperation
   let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
@@ -36450,6 +38438,7 @@ function tint (color) {
     }
     ct++
   }
+  ctx.globalAlpha = +alpha/100
   offctx.putImageData(imgData, 0, 0);
   ctx.drawImage(offcanvas,0,0)
   ctx.globalCompositeOperation = mode
@@ -36553,12 +38542,37 @@ function adjustWarmth (n, canvas, PUSH) {
     if (brightness >= lowest && brightness <= highest) {
       pixels[i] += n;
      // pixels[i + 1] += g;
-      pixels[i + 2] -= n;
+    //  pixels[i + 2] -= n;
     }
   }
   ctx.putImageData(imgData, 0, 0)
   if (PUSH)
     pushFunction("adjustWarmth", n)
+}
+
+function adjustBlue (n, canvas, PUSH) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas");
+  let g = n/2
+  let ctx = canvas.getContext("2d");
+  let imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
+  let pixels = imgData.data;
+  let i = 0
+  let lh = rangecheck()
+  let lowest = lh[0], highest = lh[1]
+  let brightness = 0
+  
+  for (; i < pixels.length; i += 4) {
+    brightness = (pixels[i]+pixels[i+1]+pixels[i+2])/(255*3)
+    if (brightness >= lowest && brightness <= highest) {
+      pixels[i+2] += n;
+     // pixels[i + 1] += g;
+      //pixels[i + 2] -= n;
+    }
+  }
+  ctx.putImageData(imgData, 0, 0)
+  if (PUSH)
+    pushFunction("adjustBlue", n)
 }
 
 function saturationScale (sv, canvas, PUSH) {
@@ -36803,6 +38817,7 @@ function embossCanvas () {
         ]
   convolutionMatrix(randomPick(k), 0)
 }
+
 
 function sharpen2 (PUSH) {
   let canvas = document.getElementById("myCanvas")
