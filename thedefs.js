@@ -223,7 +223,7 @@ let defs = {
   "missingAt":{"u":"where do they go?","i":"they will be missed"},
   "joineryAt":{"u":"bring together","i":"take apart"},
   "big_cityAt":{"u":"'you can forget all your troubles, forget all your cares'","i":"'my building has every convenience,It's gonna make life easy for me'"},
-  "coffee_makerAt":{"u":"mr coffee,simple,'drinkable',not pretentious","i":"french press,so fussy!,bitter,grind you fancy beans much?"},
+  "coffee_makerAt":{"u":"mr coffee,simple,'drinkable',not pretentious","i":"french press,so fussy!,bitter,grind your fancy beans much?"},
   "hang_manAt":{"u":"guessing game,spell check","i":"hidden word,hung out to dry"},
   "octopusAt":{"u":"eight arms,mimic,camoflage,shape-shifter","i":"left in a cloud of ink"},
   "reel_to_reelAt":{"u":"analog (metaphorically)","i":"hissing"},
@@ -308,8 +308,51 @@ let defs = {
   "serverAt":{"u": "but her emails","i":"'to serve man',(it's a cookbook!)"},
   "philosopherAt":{"u": "what has kierkegaard done for me lately?","i":"critique of pure reason... my ass!"},
   "jailAt":{"u": "do not pass go","i":"1% of US population incarcerated"},
-  "anosognosiaAt":{"u":"damage you can't see,obvious to others","i":"things are broken,denial"},
+  "anosognosiaAt":{"u":"damage you can't see,obvious to others","i":"'everything is fine','I don't see the problem',denial"},
+  "stone_of_madnessAt":{"u":"the cause","i":"the cure,(trepanation)"},
+  "foundationalismAt":{"u":"'The above proposition, is occasionally useful.'","i":"it's turtles all the way up!"},
+  "stageAt":{"u":"all the world's a stage,'I laughed\\c I cried',your 15 minutes of fame","i":"show's over,take a bow,exit stage left"},
+  "splashdownAt":{"u":"'wanna come down right now'","i":"'but the little green wheels are following me'"},
+  "unhingedAt":{"u":"everything is going to be OK (NOT!)","i":"ignore everything else...,just listen to the voices"},
+  "stainAt":{"u":"out damn spot!","i":"should have used a coaster"},
+  "tankAt":{"u":"liberation","i":"invasion"},
+  "empty_tableAt":{"u":"arrived too early,asynchronous (metaphorically)","i":"arrived too late"},
+  "idling_black_pickup_with_tinted_windowsAt":{"u":"compensation","i":"'you might be in a cult'"},
+  "fallen_idolAt":{"u":"losing my religion","i":"fall from grace"},
+  "empty_signifierAt":{"u":"<something> <something> <something>\\c,signifying nothing","i":"at a loss for words"},
+  "field_guideAt":{"u":"special interests","i":"to cram for (metaphorically)"},
+  "P_versus_NPAt":{"u":"unlikely things","i":"some things just take (a lot of) time"},
+  "no_longer_supportedAt":{"u":"obsolete,e-waste (metaphorically)","i":"can't bring yourself to throw it away,lives in your junk draw (metaphorically)"},
+  "traveling_salesmanAt":{"u":"efficiency","i":"no plan (metaphorically)"},
+  "ouroborosAt":{"u":"self-centered","i":"'no step on snek!'"},
+  "late_stage_capitalismAt":{"u":"the world was destroyed but, at least my package arrived the next day","i":"this card sponsered by...,(he hates when you call it twitter)"},
+  "holy_days_of_obligationAt":{"u":"","i":""},
+  "stay_in_your_laneAt":{"u":"rule-following","i":"over-cautious"},
+  "lazy_evaluationAt":{"u":"only as needed","i":"just in time"},
+  "too_far_awayAt":{"u":"'look like specks!'","i":"should have zoomed in (metaphorically)"},
+  "palimpsestAt":{"u":"erased,reused","i":"trace of the past,showing through"},
+  "homunculus_has_left_the_buildingAt":{"u":"gone baby gone","i":"was never in there"},
+  "mixtapeAt":{"u":"ego","i":"insecurity"},
+  "magic_8_ballAt":{"u":"","i":""},
+  "psychicAt":{"u":"as was foretold","i":"que sera sera"},
+  "bothsidesismAt":{"u":"fear of being accused of bias,goodbye to facts and evidence","i":"fair and balanced - my ass,'next we'll hear from a flat-earther'"},
+//"La_macetaAt":{"u":"El que nace pa'maceta, no sale del corredor.,(loteria)","i":"El que nace pa'maceta, no sale del corredor.,(loteria)"}
+  "sigilAt":{"u":"lesser angels","i":"inner demons"},
+  "swimming_poolAt":{"u":"thrown into the deep end","i":"staying at the shallow end"},
+  "you_make_a_better_door_than_a_windowAt":{"u":"you are a solid citizen,(some would say dense),your lifetime achievement award came early","i":"transparency"},
+  "trope_they_re_shutting_down_the_x_filesAt":{"u":"...and they were just about to expose the conspiracy","i":"...but\\c we're getting the band back together"},
+}
 
+let eightball_u = ["It is certain","It is decidedly so","Without a doubt","Yes definitely","You may rely on it","As I see it\\c yes","Most likely","Outlook good","Yes","Signs point to yes"]
+let eightball_i = ["Reply hazy, try again","Ask again later","Better not tell you now","Cannot predict now","Concentrate and ask again","Don't count on it","My reply is no","My sources say no","Outlook not so good","Very doubtful"]
+
+function holyday () {
+  let thing = randomPick(words.match(/\b\w{3,}(ist(ic)?|able|ible|ous)\b/g))
+  saint = randomPick(names)
+  if (Math.random() > 0.5)
+    return("Saint "+saint+" the "+thing+"'s day")
+  else
+    return "The feast of " + randomPick(words.match(/\b\w{3,}(ous|ic|ful|ive|ish(ed)?|able)\b/g)) + " " + randomPick(words.match(/\b\w{3,}(ation|ment|ion|[eaiou]nt?y)s?\b/g))
 }
 
 function testThrees () {

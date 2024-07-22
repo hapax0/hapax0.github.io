@@ -120,7 +120,7 @@
     div[id='background'] {
       background-color: #ffffff;
       opacity: 1.0;
-      background-image:  repeating-linear-gradient(45deg, #aaaaaa 25%, transparent 25%, transparent 75%, #aaaaaa 75%, #aaaaaa), repeating-linear-gradient(45deg, #aaaaaa 25%, #ffffff 25%, #ffffff 75%, #aaaaaa 75%, #aaaaaa);
+      background-image:  repeating-linear-gradient(45deg, #cccccc 25%, transparent 25%, transparent 75%, #cccccc 75%, #cccccc), repeating-linear-gradient(45deg, #cccccc 25%, #ffffff 25%, #ffffff 75%, #cccccc 75%, #cccccc);
       background-position: 0 0, 10px 10px;
       background-size: 20px 20px;
     }
@@ -133,6 +133,7 @@
   <script src="wordlist2.js"></script>
   <script src="ptwords.js"></script>
   <script src="moby.js"></script>
+  <script src="names.js"></script>
   <script src="frank.js"></script>
   <script src="dict.js"></script>
   <script src="mouse-paper.js"></script>
@@ -325,6 +326,8 @@
         <option value="tint">tint</option>
         <option value="haze">haze</option>
         <option value="sobel">sobel</option>
+        <option value="stainEdgeDarken">stain edge darken</option>
+        <option value="stainEdge">stain edge alpha</option>
         <option value="yellowedEdges">yellowed edge</option>
         <option value="lightenEdges">lighten edge</option>
         <option value="darkenEdges">darken edge</option>
@@ -449,13 +452,16 @@
       <option value="aletter">a cursive</option>
       <option value="rose">crackle</option>
       <option value="rose_og" >rose</option>
+      <option value="stainAt" >stain</option>
       <option value="natural">loop</option>
       <option value="spiral4">scribble</option>
+      <option value="splatterAt">splatter</option>
       <option value="paintDrips">paint drips</option>
       <option value="paintDrip">drip at</option>
+      <option value="randomAtItemAt">at at</option>
       <option value="threecards" >tarot</option>
       <option value="twosides" selected>card+inverted</option>
-      <option value="printableCard" >print tarot</option>
+      <!--option value="printableCard" >print tarot</option-->
       <!--option value="crackle">crackle curves</option>
       <option value="cracklelines" >crackle lines</option>
       <option value="halfTone">half-tone</option-->
@@ -496,8 +502,8 @@
       <option value="insertxhairAt">cross hair at</option>
       <option value="insertGridAt">grid at</option>
       <option value="insertReticuleAt">reticule at</option>
+      <option value="foldedpages">opened flat</option>
       <option value="mole_unbound">mole unbound</option>
-
       <option value="moleskine2">mole blank</option>
       <option value="moleskine">mole grid</option>
       <option value="moleskineDay">day planner</option>
@@ -558,6 +564,8 @@
       <option value="wrap">wrap</option>
       <option value="motionblur">motion blur</option>
       <option value="afold" >fold</option>
+      <option value="shadowAt" >shadow</option>
+      <option value="stiches" >stiches</option>
       <option value="impasto">impasto</option>
       <option value="dotblur" >dot blur</option>
       <option value="dirblur">dir blur</option>
@@ -645,7 +653,7 @@
       
       <option value="afklint">af klint</option>
       <option value="afklint2">af klint(2)</option>
-      <option value="de kooning">de kooning</option>
+      <option value="lauren dela roche">lauren dela roche</option>
       <option value="gertrudeabercrombie">abercrombie</option>
       <option value="dali">dali</option>
       <option value="klimt">klimt</option>
@@ -1778,6 +1786,10 @@ if (type === 'faded poster') {
     b = ["#dff3f8", "#e8e2d0", "#b3c5cf", "#dda83f", "#c2a289", "#da8249", "#b1803e", "#878180", "#5981b3", "#c6632e", "#6c6740", "#435db2", "#475e80", "#5c4720"]
     updateExtraColors(b)
   } else
+  if (type === 'lauren dela roche') {
+    b = ["#eb2d2c", "#e0663c", "#eca286", "#e7ccb4", "#7b6856", "#f6e6d3", "#f9d459", "#99977b", "#53534f", "#363736", "#88b7bf", "#7fdaf1", "#35add4", "#567b88"]
+    updateExtraColors(b)
+  } else
   if (type === 'dali') {
     b = ["#9d4305", "#271100", "#a95912", "#5b3a08", "#2f2513", "#674c18", "#c0a651", "#f4d673", "#837648", "#d8d18b", "#dce5c6", "#9bb7a0", "#65826e"]
     updateExtraColors(b)
@@ -1898,7 +1910,7 @@ function makeAPalette () {
   let selection = shuffle(colors)
   let max = (selection.length > 3)? 3: selection.length;
   selection = selection.slice(0, max)
-  
+  selection = getselectedcolor()
   let a = document.getElementById("opacity").value
   ctx.globalCompositeOperation = "source-over"
   ctx.globalAlpha = 1
@@ -3774,6 +3786,20 @@ function colormatrix () {
     y += space + 2
   }
 }
+
+function transparentNeighbors (canvas) {
+  if (!canvas)
+    canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d");
+  let W = canvas.width, H = canvas.height
+  let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  let pixels = imgData.data;
+  let sample = []
+  let i = 0, j = 0, alphaMean = 0
+
+
+}
+
 
 function colorSamplePalette (canvas, SIMPLIFY, SHARP) {
   if (!canvas)
@@ -9375,6 +9401,16 @@ function rowofsymbols () {
   }
 }
 
+function randomAtItemAt () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  let w = 1 + document.getElementById("number").value/50
+  let x = LASTCLICK[0], y = LASTCLICK[1]
+  let functions = shuffle(atList)
+  window[randomPick(functions)](x,y,w,getselectedcolor(),Math.random()> 0.5)
+}
+
   
 function everythingArray () {
   let canvas = document.getElementById("myCanvas")
@@ -9396,7 +9432,7 @@ function everythingArray () {
       y += delta+pad
     }
   }
-  console.log(i)
+ // console.log(i)
 }
 
 function cameraAt (x,y,W,color) {
@@ -10264,7 +10300,7 @@ function crazy_wall () {
     ctx.shadowOffsetX = 0
     ctx.shadowOffsetY = 0
     f = randomPick(functions)
-    window["crazy_wallAt"/*functions[i]*/](x,y,delta,randomPick (linecolors))
+    window[functions[i]] (x,y,delta,randomPick (linecolors))
     if (i > 4) {
       ctx.shadowBlur = 3
       ctx.shadowOffsetX = 0
@@ -16278,9 +16314,158 @@ function chair () {
  // ctx.restore()
 }
 
+function looping () { // circle
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let size = 1 + document.getElementById("featuresize").value/3
+  console.log(size)
+  let n = 3, i = 0, SA = 0
+  let points = []
+  let x = LASTCLICK[0], y = LASTCLICK[1], r0 = size, r = r0,cx = x, cy = y, k = 0
+  ctx.lineCap = 'round'
+  ctx.lineJoin = 'bevel'
+  let max = randomPick([8,13,21])
+  for (; k < max; k++) {
+    i = 0
+    n = randomPick([2,1])
+    r = r0
+    for (; i < n; i++) {
+      SA = randomPick([0.5,1.0,1.4])
+      a = SA+Math.random() * Math.PI * 0.4
+      if (Math.random() > 0.5)
+        a += Math.PI
+        r += pet(size/2)// base on size
+      x = cx + r * Math.cos(a),
+      y = cy + r * Math.sin(a)
+      
+      points.push(new point(x,y))
+      r = r0
+    }
+    cx += size/2 + pet(size/2)
+  }
+  LASTCLICK[0] = cx
+  ctx.strokeStyle = getselectedcolor()
+  ctx.lineWidth = size/10
+ // points = nearest_first(points)
+  i = 0
+  ctx.beginPath()
+  ctx.moveTo(points[i].x, points[i++].y)
+  for (; i < points.length-1; i += 2) {
+    ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x, points[i+1].y)
+  }
+  ctx.stroke()
+}
+
 function point (x, y) {
   this.x = x
   this.y = y
+}
+
+// functions for traveling salesman
+function traveling_salesmanAt (x,y,w,color,INVERTED) {
+  let pts = bestOf100(25,w,w)
+  travelingAt (x,y,w,color,INVERTED, pts)
+}
+
+let POINTS = []
+
+function traveling_salesmanAt (x,y,w,color,INVERTED) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W
+  let points = makePoints(25,w,w)
+  if (POINTS.length < 1)
+    POINTS = points
+  else
+    points = POINTS
+  points = bestOf100(points)
+
+  if (INVERTED)
+    points = shuffle(points)
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  ctx.strokeStyle = color
+  ctx.fillStyle = color
+  ctx.lineCap = "square"
+  ctx.lineJoin = "bevel"
+  let i = 1
+  ctx.beginPath()
+  ctx.moveTo(x+points[0].x, y+points[0].y)
+  for (; i < points.length-1; i++) {
+    ctx.lineTo(x+points[i].x, y+points[i].y)
+  }
+  ctx.lineTo(x+points[0].x, y+points[0].y)
+  ctx.stroke()
+
+  i = 0
+  let r = ctx.lineWidth +2
+  for (; i < points.length-1; i++) {
+    ctx.beginPath()
+    ctx.arc(x+points[i].x, y+points[i].y,r,0,Math.PI*2)
+    ctx.fill()
+  }
+  if (INVERTED)
+    POINTS = []
+}
+
+function bestOf100 (pts) { 
+  let pmin = [], i = 0
+  let L_min = 9999999999999, l
+  for (; i < 100; i++) {
+    let path = nearestFirst (pts,true)
+    l = measurePath(path)
+    if (l < L_min) {
+      L_min = l
+      pmin = path
+    }
+  }
+  return pmin
+}
+
+function nearestFirst (pts) {
+  let res = []
+  let index = Math.floor(Math.random()*pts.length)
+  pts[index].lo = true
+  res.push(pts[index])
+  let sorted = closestNeighbors(index, pts)
+  let i = 0, L = sorted.length-1
+  while (i < L) {
+    sorted = closestNeighbors(0, sorted)
+    res.push(sorted[1])
+    sorted = sorted.slice(1)
+    i++
+  }
+  return res
+}
+
+function measurePath (pts) {
+  let i = 0, D = 0
+  for (; i < pts.length-1; i++) {
+    D += distance2D(pts[i], pts[i+1])
+  }
+  D += distance2D(pts[i], pts[0])
+  return D
+}
+
+function makePoints (n, w, h) {
+ // let n = +document.getElementById("numpoints").value, i = 0
+  let i = 0, points = []
+  for (; i< n; i++) {
+    points.push(new point(Math.random() * w, Math.random() * h))
+  }
+  return points
+}
+
+function distance2D (p1, p2) {
+  return Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2))
+}
+
+function closestNeighbors (index, points) {
+  const sortByDistance = (pts, pt) => {
+    const sorter = (a, b) => distance2D(a, pt) - distance2D(b, pt)
+    pts.sort(sorter)
+  }
+  sortByDistance(points, points[index])
+  return points
 }
 
 function drawLine (ctx, pt1, pt2) {
@@ -21552,11 +21737,13 @@ function bez_pts (ax,ay, bx,by, cx,cy, dx, dy, ctx, fs) { // b and c are control
   }
 }
 
-function script (canvas) {
+function script (canvas,MINI) {
   if (!canvas)
     canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let fs = 7 + document.getElementById("featuresize").value/2
+  if (MINI)
+    fs /= 4
   let D = 1 + document.getElementById("number").value/4000
   D/= 4
   let bump = fs/2.4
@@ -21572,7 +21759,10 @@ function script (canvas) {
   ctx.lineJoin = "round"
   ctx.lineWidth = Math.floor(1 + fs/12)
   ctx.imageSmoothingQuality = "high"
+  if (MINI)
+    LASTCLICK[0] = 0, LASTCLICK[0] = 0
   let i = 0, x = LASTCLICK[0], y = LASTCLICK[1]
+  
   let cx1, cy1, cx2, cy2
   let maxX = x+1*fs + Math.random() * 8 * fs
   let x2 = 0, y2 = 0
@@ -21611,7 +21801,7 @@ function script (canvas) {
 }
 
 
-function scriptAt (x,y,fs,color) {
+function scriptAt (x,y,fs,color,a) {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let D = 1 + document.getElementById("number").value/4000
@@ -21622,6 +21812,9 @@ function scriptAt (x,y,fs,color) {
   let pad = 4 + Math.floor(Math.random() * 2)
   let linespace = 18 + Math.floor(pet(8))
   ctx.globalAlpha = document.getElementById("opacity").value/100
+  if (a)
+    ctx.globalAlpha = a
+  //console.log(ctx.globalAlpha)
   ctx.strokeStyle = color
   ctx.fillStyle = color
 
@@ -22956,7 +23149,7 @@ function sketchpad () {
   ctx.fillRect(W/2-6, pad*1.5+6, W/2-pad, H-pad*3)
   ctx.fillStyle = "#ffffff"
   ctx.fillRect(W/2-4, pad*1.5+4, W/2-pad, H-pad*3)
-return
+//return
   ctx.fillStyle = color
   ctx.globalAlpha = 0.5
  // ctx.shadowColor = "#403030"
@@ -25117,7 +25310,7 @@ function moleDates (d) {
   tomorrow.setDate(tomorrow.getDate() + 1)
   
   let size = 20*scale//document.getElementById("featuresize").value/6.25
-  if (Math.random() > 0.5) {
+  if (Math.random() > 1) {
     months = monthsFR
     days = daysFR
     week = "la semaine "
@@ -29327,6 +29520,96 @@ function drawPictureAt (RIGHT, delta, color) {
   return f // as card title
 }
 
+function minipageAt (x,y,w,color) {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  let off = document.createElement("CANVAS");
+  let offctx = off.getContext("2d");
+  offctx.fillStyle = color
+  off.width = w, off.height = w
+  pageOfBook2Col(off,true,color)
+  console.log(x,y,w)
+  ctx.drawImage(off,x,y,w,w)
+}
+
+function twoColAt (x0,y0,w0,color) {
+  //if (!canvas)
+  let  canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let alt  = document.getElementById("grungy").checked
+  let W = w0//canvas.width
+  let H = W
+  let x = 0, y = 0
+  let pad = W/12, PW = W - pad*2 // was W/7
+  let delta = W/4
+  let moby = dictSlice()
+  if (Math.random() > 0.5)
+    moby = mobySlice() // array of words
+  let mi = 0
+  let wrap = 6
+  let N = 3 + Math.floor(Math.random() * 14)
+  let i = 0
+  ctx.fillStyle = color
+  let fs = 16 + document.getElementById("featuresize").value/25
+    fs/=2
+  y += fs * 3
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle'
+  let w = 0, text = "", s = ""
+  let weight = document.getElementById("fontweight").value
+  let face = document.getElementById("fontface").value
+  ctx.font = weight +" "+fs+"px " + face
+  let j = 0, done = false, newpara = false
+  let col = 0
+
+  for (; col < 2; col++) {
+    for (; j < 40; j++) {
+      done = false
+      w = 0, i = 0
+      if (j === 0 ) {
+        y += fs*1.1
+      }
+      if (y > H - pad)
+        break
+      while (w < PW*0.30) {
+        s = ""
+        if (moby[mi] === "_para_") {
+          newpara = true
+          done = true
+          mi++
+        }
+        if (!done) {
+          s += moby[mi++]
+        } 
+        text += s + " "
+        w = ctx.measureText(" "+text).width
+        i++
+        if (done) {
+          break
+        }
+      }
+      if (PW - w >= 0 || done) {
+        ctx.fillText(text, x0+x, y0+y)
+        y += fs * 1.5
+        if (newpara) {
+          y += fs *0.5
+          newpara = false
+          text = "      "
+        } else
+          text = ""
+        if (done)
+          y += fs
+      }
+    }
+    // right column
+    j = 0, done = false, newpara = false
+    x = W/2+pad/2, y = pad + fs * 3
+  }
+  ctx.textBaseline = 'alphabetic'
+}
+
+
 function pageOfBookIll (canvas) { //illustrated
   if (!canvas)
     canvas = document.getElementById("myCanvas");
@@ -29335,9 +29618,7 @@ function pageOfBookIll (canvas) { //illustrated
   let alt  = document.getElementById("grungy").checked
   let W = canvas.width
   let H = canvas.height
-  
   let pad = W/6, PW = W - pad*2
-
   let ddiv = randomPick([3,4,2.67])
   let PWmult = ddiv/10
   let delta = W/(ddiv)
@@ -29441,14 +29722,14 @@ function pageOfBookIll (canvas) { //illustrated
    ctx.textBaseline = 'alphabetic'
 }
 
-function pageOfBook2Col (canvas) {
+function pageOfBook2Col (canvas,MINI,color) {
   if (!canvas)
     canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   ctx.globalAlpha = document.getElementById("opacity").value/100
   let alt  = document.getElementById("grungy").checked
   let W = canvas.width
-  let H = canvas.height
+  let H = W
   let pad = W/12, PW = W - pad*2 // was W/7
   let delta = W/4
   let x = pad
@@ -29456,14 +29737,18 @@ function pageOfBook2Col (canvas) {
   let moby = dictSlice()
   if (Math.random() > 0.5)
     moby = mobySlice() // array of words
-
   let mi = 0
   let wrap = randomPick([3,4,5])
   let N = 3 + Math.floor(Math.random() * 14)
   let i = 0
-  ctx.fillStyle =  getselectedcolor()
+  ctx.fillStyle = getselectedcolor()
+  if (color)
+    ctx.fillStyle = color
   let fs = 16 + document.getElementById("featuresize").value/25
+  if (MINI)
+    fs/=2
   y += fs * 3
+  console.log(x,y,W,pad,PW) 
   ctx.textAlign = 'left';
   ctx.textBaseline = 'middle'
   let w = 0, text = "", s = ""
@@ -29472,7 +29757,10 @@ function pageOfBook2Col (canvas) {
   ctx.font = weight +" "+fs+"px " + face
   let j = 0, done = false, newpara = false
   let col = 0
+
+  //return
   for (; col < 2; col++) {
+
     for (; j < 40; j++) {
       done = false
       w = 0, i = 0
@@ -29815,6 +30103,31 @@ function spaceText (t, width, finalwidth, x, y, ctx, fs, alt, DONE) {
    // if (alt)
    //   grit(ctx,ta[i],x,y,w,fs)
     x += w+diff
+  }
+}
+
+
+
+function splatterAt (x,y,w) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  ctx.fillStyle = getselectedcolor()
+  ctx.globalAlpha = document.getElementById("opacity")/100
+  x = LASTCLICK[0], y = LASTCLICK[1]
+  w = 3+document.getElementById("featuresize").value/5
+  w += pet(w/2)
+  let i = 0,r = 1
+  for (; i < 11; i++) {
+    r = 1+ (w*w/10)/20 * Math.random()
+    if (Math.random() < 1.67)
+      drawBlobAt(ctx, x + Math.random()*w*7, y + Math.random()*w*7, r)
+    else {
+      ctx.beginPath()
+      ctx.arc(x + Math.random()*w*4, y + Math.random()*w*5, r, 0, Math.PI*2)
+      ctx.closePath() 
+      ctx.fill()
+    }
+    w += pet(w/2)
   }
 }
 
@@ -31310,6 +31623,113 @@ function colorOf (ctx,x,y,d) { // d X d pixels
   return color
 }
 
+function stainEdgeDarken () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  let imgData = ctx.getImageData(0,0,W,H) // inset to avoid off bounds
+  let pixels = imgData.data
+  let off = document.createElement("CANVAS")
+  let offctx = off.getContext("2d")
+  off.width = W, off.height = H
+  let offData = offctx.getImageData(0,0,W,H)
+  let offpixels = offData.data
+  let m = 1*document.getElementById("opacity").value/100
+  let d = 24, i = 0, a = 0
+  let x = 0, y = 0, n = 0
+  let l = W * H, ct = 0
+  for (; i < l; i++) {
+    // get color of pixel
+    let a = pixels[i*4+3]; // Alpha
+    // get the position of pixel
+    y = parseInt(i/W, 10)
+    x = i - y * W
+    d = randomPick([40,32,48,16,8])
+    if (pixels[i*4+3] > 0 && a > 0) {
+      a = alphaOf(ctx,x-d/2,y-d/2,d) // neighboorhood alpha: > 0 to 255
+      offpixels[i*4]   = pixels[i*4] - m*(255 - a)/2// copy RGB
+      offpixels[i*4+1] = pixels[i*4+1]- m*(255 - a)/2
+      offpixels[i*4+2] = pixels[i*4+2]- m*(255 - a)/2
+      offpixels[i*4+3] = pixels[i*4+3] 
+      ct++
+    }
+  }
+  let alpha = ctx.globalAlpha 
+  offctx.putImageData(offData,0,0)
+  ctx.clearRect(0,0,W,H)
+  ctx.globalAlpha = 1
+  ctx.drawImage(off,0,0)
+  ctx.globalAlpha = alpha
+  console.log("done", ct)
+}
+
+function stainEdge () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  let imgData = ctx.getImageData(0,0,W,H) // inset to avoid off bounds
+  let pixels = imgData.data
+  let off = document.createElement("CANVAS")
+  let offctx = off.getContext("2d")
+  off.width = W, off.height = H
+  let offData = offctx.getImageData(0,0,W,H)
+  let offpixels = offData.data
+  let threshold = 255*document.getElementById("opacity").value/100
+  let d = 24, i = 0, a = 0
+  let x = 0, y = 0, n = 0
+  let l = W * H, ct = 0
+  for (; i < l; i++) {
+    // get color of pixel
+    let r = pixels[i*4]; // Red
+    let g = pixels[i*4+1]; // Green
+    let b = pixels[i*4+2]; // Blue
+    let a = pixels[i*4+3]; // Alpha
+    // get the position of pixel
+    y = parseInt(i/W, 10);
+    x = i - y * W;
+    d = randomPick([40,32,48,80,16])
+    if (pixels[i*4+3] && a > 0) {
+      a = alphaOf(ctx,x-d/2,y-d/2,d) // neighboorhood alpha: > 0 to 255
+      offpixels[i*4]   = pixels[i*4] // copy RGB
+      offpixels[i*4+1] = pixels[i*4+1]
+      offpixels[i*4+2] = pixels[i*4+2]
+      offpixels[i*4+3] = pixels[i*4+3] // adjust this one
+      if (a < threshold) {
+        offpixels[i*4+3] = pixels[i*4+3] + (threshold - a)
+        ct++
+      }
+    }
+  }
+  let alpha = ctx.globalAlpha 
+  offctx.putImageData(offData,0,0)
+  ctx.clearRect(0,0,W,H)
+  ctx.globalAlpha = 1
+  ctx.drawImage(off,0,0)
+  ctx.globalAlpha = alpha
+  console.log("done", ct)
+}
+
+function alphaOf (ctx,x,y,d) { // d X d pixels
+  d = Math.floor(d)
+  let imgData = ctx.getImageData(Math.floor(x),Math.floor(y),d,d)
+  let pixels = imgData.data
+  let i = 0, A = 0
+  for (;i < pixels.length; i+=4) {
+    A += Math.round(pixels[i+3])
+  }
+  let D = pixels.length/4
+ // console.log(A, D, A/D)
+  return (A/D)
+}
+
+function testAlpha () {
+  let canvas = document.getElementById("myCanvas")
+    let ctx = canvas.getContext("2d")
+  let x = LASTCLICK[0], y = LASTCLICK[1]
+  let d = 50
+  console.log(alphaOf(ctx,x,y,d))
+}
+
 function pixelate (x,y,W,H) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -32520,7 +32940,54 @@ function trifold () {
   ctx.globalAlpha = alpha/100
 }
 
+function foldedpages () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let alpha = document.getElementById("opacity").value
+  let alt = document.getElementById("grungy").checked
+  ctx.fillStyle = getselectedcolor()
+  let W = canvas.width, H = canvas.height
+  let cpx, cpy
+  let pad = randomPick([2,3,4,5,6])
+  if (!alt) {
+    ctx.shadowColor = "#444444"
+    ctx.shadowBlur = 7 + Math.random() * 1
+    ctx.shadowOffsetY = 3 + Math.random() * 1
+    ctx.shadowOffsetX = 3 + Math.random() * 1
+  }
+  ctx.beginPath()
+  ctx.moveTo(0+pad,0+pad)
+  cpx = W/2 - Math.random()*W/50
+  cpy = Math.random()*H/30
+  ctx.quadraticCurveTo(cpx,cpy,W/2,pet(H/50)+pad) //top, middle
+  cpx = W/2 + Math.random()*W/50
+  cpy = Math.random()*H/20
+  ctx.quadraticCurveTo(cpx,cpy,W-pad,pet(H/50)) // to top, right
+
+  cpx = W - Math.random()*W/50
+  cpy = H/2+Math.random()*H/30
+  ctx.quadraticCurveTo(cpx,cpy,W-pad,H+pet(H/50)-pad) // to bottom,right
+  cpx = W/2 - Math.random()*W/50
+  cpy = H-Math.random()*H/30
+  ctx.quadraticCurveTo(cpx,cpy,W/2,H+pet(H/50)-pad) //bottom, middle
+
+  cpx = W/2 - Math.random()*W/50
+  cpy = H-Math.random()*H/30
+  ctx.quadraticCurveTo(cpx,cpy,0+pad,H+pet(H/50)-pad) //bottom, left  
+
+  cpx = Math.random()*W/50
+  cpy = H/2-Math.random()*H/20
+  ctx.quadraticCurveTo(cpx,cpy,0+pad,pet(H/50)+pad) //top, left  
+  ctx.closePath()
+  ctx.fill()
+  ctx.shadowBlur = 0
+  ctx.shadowOffsetY = 0
+  ctx.shadowOffsetX = 0
+}
+
 function stiches (pad) {
+  if (!pad)
+    pad = 20
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d")
   let alpha = document.getElementById("opacity").value
@@ -32546,6 +33013,30 @@ function stiches (pad) {
   ctx.shadowOffsetX = 0
   ctx.globalAlpha = alpha/100
 }
+
+function shadowAt () { // 
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let alpha = document.getElementById("opacity").value
+  let W = canvas.width, H = canvas.height
+  let x = LASTCLICK[0], y = LASTCLICK[1]
+  let left = document.createElement("CANVAS")
+  left.height = H, left.width = x
+  let leftctx = left.getContext("2d")
+
+  let right = document.createElement("CANVAS")
+  right.height = H, right.width = W-x
+  let rightctx = right.getContext("2d")
+
+  leftctx.drawImage(canvas,0,0)
+  rightctx.drawImage(canvas,x,0,W-x,H,    0,0,W-x,H)
+ // drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
+  adjustBrightness(-10, left)
+  adjustBrightness(+10, right)
+  ctx.drawImage(left,0,0)
+  ctx.drawImage(right,0,0,right.width,H , x,0,right.width,H)
+}
+  
 
 function afoldAt () {
   let canvas = document.getElementById("myCanvas");
@@ -35582,25 +36073,128 @@ function scratch () { // based on blobs
   }
 }
 
-function drawBlobAt (ctx, x, y, r) {
-  let x0 = x;
-  let y0 = y;
-  angle = Math.floor(Math.random() * 6.42);
-  let edges = 7 * Math.random() + 3;
-  let rmax = r
-  let maxradius = 1 + rmax/1.5 * Math.random();
+function pebbleAt (x, y, r) {
+  let angle = Math.random() * 6.42
+  let edges = Math.floor(13 * Math.random() + 7)
+  r *= 2
+  let maxradius = r * 1.5, r0 = r
+  increase = (Math.PI * 2)/edges
+  points = []
+  let cx = x, cy = y
+  x = r * Math.cos(angle)+cx
+  y = r * Math.sin(angle)+cy
+  points.push(new point(x,y))
+  for (let i = 0; i < edges; i++) {
+    r = r0 + pet(maxradius/6)
+    x = r * Math.cos(angle) + cx
+    y = r * Math.sin(angle) + cy
+    points.push(new point(x,y))
+    angle += increase
+  }
+  return points
+}
 
-  let r0 = r
-  increase = Math.PI * 2/edges*0.98;
-  points = [];
+function scatteredPebbles () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  ctx.strokeStyle = "#ef0000"
+  ctx.lineWidth = 4
+  let W = canvas.width, H = canvas.height
+  let n = 10, i = 0, x, y, r, color
+  let pts = [], pad = 80
+  for (; i < n; i++) {
+    x = pad +Math.random() * (W-pad*2)
+    y = pad + Math.random() * (H-pad*2)
+    pts.push(new point(x,y))
+  }
+  pts = nearestFirst(pts)
+  i = 0
+ // ctx.shadowBlur = 6
+  ctx.shadowColor = "#222222"
+  ctx.shadowBlur = 4
+  ctx.shadowOffsetX = 4
+  ctx.shadowOffsetY = 4
+  ctx.beginPath()
+  ctx.moveTo(pts[i].x, pts[i++].y)
+  for (; i < n-1; i++) {
+    ctx.lineTo(pts[i].x, pts[i].y)
+  }
+  ctx.closePath()
+  ctx.stroke()
+  ctx.shadowBlur = 0
+  ctx.shadowOffsetX = 0
+  ctx.shadowOffsetY = 0
+
+  i = 0
+  for (; i < n; i++) {
+    x = pts[i].x
+    y = pts[i].y
+    r = 11 + Math.random() * 7
+    color = "#ffffff"
+    if (i === n-1)
+      color = "#000000"
+    shadowStone(x,y,r,color) 
+  }
+}
+
+function shadowStone (x,y,r,color) {
+  let canvas = document.getElementById("myCanvas")
+  if (!r)
+    r = 10+ document.getElementById("featuresize").value/5
+  if (!x) {
+    x = LASTCLICK[0]
+    y = LASTCLICK[1]
+  }
+  let ctx = canvas.getContext("2d")
+  let points = pebbleAt(x, y, r+pet(r/3))
+  let alpha = ctx.globalAlpha
+  ctx.globalAlpha = 0.04
+  ctx.fillStyle = "#000000"
+  let i = 0, n = 0
+  for (; n < 13; n++) {
+    i = 0
+    let yoff = Math.abs(pet(r*2)),xoff = Math.abs(pet(r*2))
+    ctx.beginPath()
+    ctx.moveTo(points[i].x+xoff, points[i++].y+yoff)
+    for (; i < points.length-1; i+=2) {
+      ctx.quadraticCurveTo(points[i].x+xoff, points[i].y+yoff, points[i+1].x+xoff, points[i+1].y+yoff)
+    }
+    ctx.closePath()
+    ctx.fill()
+  }
+  ctx.globalAlpha = 1
+  if (! color)
+    color = getselectedcolor()
+  ctx.fillStyle = color
+  i = 0, xoff = 0, yoff = 0
+  ctx.beginPath()
+  ctx.moveTo(points[i].x, points[i++].y)
+  for (; i < points.length-1; i+=2) {
+    ctx.quadraticCurveTo(points[i].x+xoff, points[i].y+yoff, points[i+1].x+xoff, points[i+1].y+yoff)
+  }
+  ctx.closePath()
+  ctx.fill()
+  ctx.globalAlpha = alpha
+}
+
+
+function drawBlobAt (ctx, x, y, r) {
+  let angle = Math.random() * 6.42
+  let edges = 13 * Math.random() + 7
+  r *= 2
+  let maxradius = r * 2, r0 = r
+  increase = 0.9*(Math.PI * 2)/edges
+  points = []
+  let cx = x, cy = y
+  x = r * Math.cos(angle)+cx
+  y = r * Math.sin(angle)+cy
   points.push([x,y])
-  radius = (Math.random() * maxradius) + maxradius * 0.9;
-  for (let i = 0; i < edges-1; i++) {
-    radius += pet(maxradius)
-    x += radius * Math.cos(angle);
-    y += radius * Math.sin(angle);
-    points.push([x, y]);
-    angle += increase;
+  for (let i = 0; i < edges; i++) {
+    r = r0 + pet(maxradius/6)
+    x = r * Math.cos(angle) + cx
+    y = r * Math.sin(angle) + cy
+    points.push([x, y])
+    angle += increase
   }
   drawPath(points, 0, 0, ctx)
 }
@@ -37369,6 +37963,81 @@ async function yellowedTop () {
   return true
 }
 
+function polywalkQ (x0,y0) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  let maxdist = 33+document.getElementById("featuresize").value*2
+  let stepsizes = [maxdist/9,maxdist/7,maxdist/5], i = 0
+  if (!x0) {
+    x0 = LASTCLICK[0], y0 = LASTCLICK[1]
+  }
+  let x = x0, y = y0, x1 = x0, y1 = y0
+  let cpx = x, cpy = y
+  ctx.fillStyle = getselectedcolor()
+  let d = 8, ds = [1,3,5,9,7,11]
+  ctx.beginPath()
+  ctx.moveTo(x0,y0)
+  if (Math.random() > 0.5)
+    x += randomPick(stepsizes)
+  else
+    y += randomPick(stepsizes)
+  cpx = x+randomPick(stepsizes)
+  cpy = y+randomPick(stepsizes)
+  while (distance(x,y,x0,y0) < maxdist) {
+    ctx.quadraticCurveTo(cpx,cpy,x,y)
+     x1 = x, y1 = y
+    if (Math.random() > 0.5)
+      x += randomPick(stepsizes)
+    else
+      y += randomPick(stepsizes)
+    cpx = x+randomPick(stepsizes)
+    cpy = y+randomPick(stepsizes)
+    i++
+  }
+  let j = i, j2 = i
+  while (i > 1) {
+    x1 = x, y1 = y
+    if (Math.random() > 0.5)
+      x -= randomPick(stepsizes)
+    else
+      y += randomPick(stepsizes)
+    cpx = x-randomPick(stepsizes)
+    cpy = y+randomPick(stepsizes)
+    ctx.quadraticCurveTo(cpx,cpy,x,y)
+    i--
+  }
+
+  while (j > 1) {
+    x1 = x, y1 = y
+    if (Math.random() > 0.5)
+      x -= randomPick(stepsizes)
+    else
+      y -= randomPick(stepsizes)
+    cpx = x-randomPick(stepsizes)
+    cpy = y-randomPick(stepsizes)
+    ctx.quadraticCurveTo(cpx,cpy,x,y)
+    j--
+  }
+
+  while (j2 >= 1) {
+    x1 = x, y1 = y
+    if (Math.random() > 0.5)
+      x += randomPick(stepsizes)
+    else
+      y -= randomPick(stepsizes)
+   // if (j2 === 1)
+   //   raggedX(ctx,x,y,x0,y0)
+    //else
+    cpx = x+randomPick(stepsizes)
+    cpy = y-randomPick(stepsizes)
+      ctx.quadraticCurveTo(cpx,cpy,x,y)
+    j2--
+  }
+  ctx.closePath()
+  ctx.fill()
+}
+
 function polywalk (x0,y0) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -37724,6 +38393,7 @@ function pasteFromOff () {
   if (OC && OC.width > 0) {
     let canvas = document.getElementById('myCanvas')
     let ctx = canvas.getContext('2d')
+    ctx.globalAlpha = document.getElementById('opacity').value/100
     let OCctx = OC.getContext('2d')
     OCctx.globalCompositeOperation = document.getElementById("mode").value
     ctx.globalCompositeOperation = document.getElementById("mode").value
