@@ -5,7 +5,7 @@ let defs = {
   "sardinesAt":{"u":"too close,cramped,need for space,'group think'","i":"alone,'room to spare',independence"},
   "refractionAt":{"u":"an incorrect perception","i":"an incorrect conclusion"},
   "starsAt":{"u":"far away,higher things,aspirations,fame,fate","i":"'the sky is falling',the unreachable,distant"},
-  "mountainAt":{"u":"something that can't be moved ,or changed,'no getting around this'","i":"a small problem"},
+  "mountainAt":{"u":"something that can't be moved,or changed,'no getting around this'","i":"a small problem"},
   "mothAt":{"u":"night,dreaming","i":"insomnia,lack of dreams"},
   "firebirdAt":{"u":"rebirth","i":"stagnation"},
   "spiralAt":{"u":"long term path,covering all ground","i":"trapped,spiraling down"},
@@ -93,7 +93,7 @@ let defs = {
   "unread_spreadAt":{"u":"draw again,go fish,\"UNO!\",","i":"pointless self-reference"},
   "cakeAt":{"u":"reward,a special occasion","i":"gluttony,greed"},
   "piechartAt":{"u":"need for data","i":"ignoring the data"},
-  "greenwashingAt":{"u":"deception","i":"exposure of deception"},
+  "greenwashingAt":{"u":"deception,(plastics stamped with a number > 2 are rarely recycled)","i":"exposure of deception"},
   "bribeAt":{"u":"a bad influence,moral weakness","i":"resistance to bad influences,moral strength"},
   "postcardAt":{"u":"a message,wish you were here","i":"forgot the stamp?"},
   "riverAt":{"u":"go with the flow","i":"swept away"},
@@ -215,7 +215,7 @@ let defs = {
   "meanAt":{"u":"just average","i":"outlier"},
   "pongAt":{"u":"table tennis (methphorically)","i":"blip...bloop"},
   "le_crépusculeAt":{"u":"twighlight,before dawn,after sunset","i":"deer time"},
-  "galleryAt":{"u":"there may be wine and cheese","i":"there may not be wine and cheese"},
+  "galleryAt":{"u":"there may be wine and cheese","i":"they ran out of wine and cheese"},
   "one_of_suitsAt":{"u":"privilege,prestige,power suit","i":"clothes make the man,dress for the job you want,anachronism"},
   "regexAt":{"u":"you solved a problem using,a regular expression...","i":"...now you have two problems"},
   "space_intentionally_left_blankAt":{"u":"for office use only","i":"not everything needs an interpretation"},
@@ -261,7 +261,7 @@ let defs = {
   "wrack_lineAt":{"u": "high and dry","i":"cast ashore"},
   "platformAt":{"u": "up a pole","i":"watching over"},
   "covid_testAt":{"u": "negative","i":"positive"},
-  "end_of_the_worldAt":{"u": "it probably won't be an asteroid,more likely we cause it,(not the most fun card - sorry)","i":"something might survive,not us - but something"},
+  "end_of_the_worldAt":{"u": "it probably won't be an asteroid,more likely we cause it","i":"something might survive,not us - but something"},
   "razor_wireAt":{"u": "callous and cruel","i":"blood in the water,red meat for the base"},
   "ingredientsAt":{"u": "magical thinking about food","i":"you are what you eat"},
   "surface_areaAt":{"u": "rotgut (200ml),","i":"4 nips (50ml), same volume,about 33% more plastic"},
@@ -331,7 +331,7 @@ let defs = {
   "lazy_evaluationAt":{"u":"only as needed","i":"just in time"},
   "too_far_awayAt":{"u":"'look like specks!'","i":"should have zoomed in (metaphorically)"},
   "palimpsestAt":{"u":"erased,reused","i":"trace of the past,showing through"},
-  "homunculus_has_left_the_buildingAt":{"u":"gone baby gone","i":"was never in there"},
+  "homunculus_has_left_the_buildingAt":{"u":"gone baby gone,(Cartesian theater)","i":"was never in there"},
   "mixtapeAt":{"u":"ego","i":"insecurity"},
   "magic_8_ballAt":{"u":"","i":""},
   "psychicAt":{"u":"as was foretold","i":"que sera sera"},
@@ -341,7 +341,93 @@ let defs = {
   "swimming_poolAt":{"u":"thrown into the deep end","i":"staying at the shallow end"},
   "you_make_a_better_door_than_a_windowAt":{"u":"you are a solid citizen,(some would say dense),your lifetime achievement award came early","i":"transparency"},
   "trope_they_re_shutting_down_the_x_filesAt":{"u":"...and they were just about to expose the conspiracy","i":"...but\\c we're getting the band back together"},
-}
+  "lithomancyAt":{"u":"toss the bones","i":"read the stones"},
+  "red_shirtAt":{"u":"sacrificial lamb","i":"might survive the away mission"},
+  //"red_hatAt":{"u":"dunce cap","i":"self-identifies as idiot"},
+  "pareidoliaAt":{"u":"I can see HIM! ...can't you?","i":"no\\c looks random to me"},
+  "koanAt":{"u":"what is the sound of one hand clapping?","i":"if a tree falls in the forest and no living thing is around,what sound does it make?"},
+  "counterfactualAt":{"u":"\"If I was where I would be,\Then I'd be where I am not,\Here I am where I must be,\Where I would be\\c I can not\"","i":"\"I don't know half of you half as well as I should like; and I like less than half of you half as well as you deserve.\""},
+  "synecdocheAt":{"u":"part for the whole","i":"whole for the part"},
+  "transducerAt":{"u":"translator","i":"man in the middle"},
+
+  "frogAt":{"u":"\"this is fine\"","i":"\"this is fine\""},
+  "crazy_cat_ladyAt":{"u":"will not vote for you","i":"will vote for your opponent"},
+  "gray_areaAt":{"u":"easy decisions","i":"difficult decisions"},
+  "pat_yourself_on_the_backAt":{"u":"well done,you deserve it","i":"tell us all about your \"amazing\" accomplishment,blowhard"},
+  "asteriskAt":{"u":"wildcard","i":"(*footnote)"},
+  "night_drivingAt":{"u":"very late or very early","i":"don't nod off"},
+  "full_moonAt":{"u":"","i":""},
+  "auroraAt":{"u":"borealis,the sky is always overcast when 'visible' at your latitude","i":"australis"},
+  "meteor_showerAt":{"u":"one or two per minute","i":"four or five per hour,light polution (metaphorically)"},
+  "deer_in_the_headlightsAt":{"u":"frozen (metaphorically)","i":"get out of the way!"},
+  "colanderAt":{"u":"separation","i":"high and dry,feeling drained"},
+  "house_on_fireAt":{"u":"unstoppable","i":"vulnerable"},
+  "pants_on_fireAt":{"u":"liar liar","i":"fact checked"},
+  "soundingsAt":{"u":"navigation,hidden depths","i":"sunken (metaphorically)"},
+  "up_lateAt":{"u":"'I'll sleep when I'm dead'","i":"up early?"},
+  "a_trapAt":{"u":"don't fall for it","i":"bait and switch"},
+  "accidentAt":{"u":"everything happens for a reason","i":"everything happens for no reason"},
+  "acrophobiaAt":{"u":"at you peak","i":"let down"},
+  "flying_dreamAt":{"u":"above it all","i":"down to earth"},
+  "like_pulling_teethAt":{"u":"reticence","i":"please shut up!"},
+  "agoraphobiaAt":{"u":"safe inside","i":"outside your comfort zone (metaphorically)"},
+  "like_and_followAt":{"u":"I \"liked\" it but I didn't \"like\" it","i":"\u{2605}\u{272b}\u{272b}\u{272b}\u{272b},if I could\\c I would give it zero stars"},
+  "ramenAt":{"u":"dorm room feast","i":"slurp!"},
+  "scratchy_sweaterAt":{"u":"you have to wear it because your aunt Thelma made it by hand, just for you","i":"so itchy!,(looks suspiciously like ramen)"},
+  "automatic_writingAt":{"u":"receiving the messages","i":"transmission transcription"},
+  "did_you_even_read_my_email_q_At":{"u":"self-importance","i":"uh\\c no"},
+  "bathtub_madonnaAt":{"u":"backyard fatima","i":"like a virgin"},
+  "jogo_do_bichoAt":{"u":"número perdido","i":"perdedor\\c perdedor\\c perdedor"},
+  "sunporchAt":{"u":"escapism (metaphorically)","i":"retreat"},
+  "burdenAt":{"u":"carrying a load","i":"unburdened"},
+  "double_slitAt":{"u":"particle [wave]","i":"[particle] wave"},
+  "bobberAt":{"u":"which way is up?","i":"pulled down"},
+  "rear_viewAt":{"u":"only used for backing up","i":"eyes straight ahead"},
+  "dyslexiaAt":{"u":"difficult to read (metaphorically)","i":"\"read the room\""},
+  "hunter_bidens_laptopAt":{"u":"falling flat,(see \"But her emails!\")","i":"a MacGuffin"},
+  "mass_shootingAt":{"u":"every day events","i":"hopes and prayers,too soon to talk about how to fix this"},
+  "artspeakAt":{"u":"illuminating","i":"obscuring"},
+  "sanewashingAt":{"u":"interpreting/elevating/legitimizing abnormal gibberish as if it were coherent thought","i":"it is what is is,garbage in\\c garbage out"},
+  "nimbyAt":{"u":"not actually in your back yard,(unless there's an easement)","i":"use your clout to get it moved to a poor neighborhood"},
+  "bomberAt":{"u":"foreign policy (metaphorically)","i":"stealth"},
+  "concept_of_a_planAt":{"u":"methinks you have no plan","i":"stalling tactic"},
+  "flowAt":{"u":"absorption","i":"locked in"},
+  "people_are_sayingAt":{"u":"hearsay","i":"repeating lies"},
+  "swimming_in_circlesAt":{"u":"round and round","i":"not getting anywhere,bait ball (metaphorically)"},
+  "tidally_lockedAt":{"u":"always showing the same face,same old same old","i":"one rotation per orbit"},
+  "red_lineAt":{"u":"can never cross this","i":"can always re-draw this"},
+  "banned_bookAt":{"u":"taliban much?,brown shirt much?","i":"always boosts sales and readership"},
+  "convenience_store_sushiAt":{"u":"things to avoid","i":"oh my god\\c no!"},
+  "traumaAt":{"u":"'forehead'? more like fivehead!","i":"words can hurt too"},
+  "cone_of_shameAt":{"u":"it's all fun and games until someone ends up with a cone on their head","i":"oh the shame of it!"},
+  "your_better_halfAt":{"u":"there's no competition","i":"a house divided"},
+  "cat_doorAt":{"u":"departures","i":"arriavals"},
+  "synapseAt":{"u":"pre","i":"post"},
+  "tree_hugging_communistAt":{"u":"\u{1F5F9}  likes trees ,\u{1F5F9} gives hugs,\u{1F5F9} communist","i":"eco-terrorist (metaphorically)"},
+  "reciprocalAt":{"u":"reciprocity in all things","i":"opposite day"},
+  "snailAt":{"u":"slow,sluggish,(see SPIRAL)","i":"coming out of your shell,(see CHIRALITY)"},
+  "scotomaAt":{"u":"blind spot,(see REDACTED\\c ANOSOGNOSIA)","i":"both eyes open"},
+  "local_maximaAt":{"u":"think you've peaked?,(maxima)","i":"can't go any lower?,(minima)"},
+  "washing_machineAt":{"u":"it all comes out in the wash","i":"dirty laundry (metaphorically)"},
+  "cellular_automataAt":{"u":"follow the rules,predictable","i":"input\\output,(rule 110 is Turing complete)"},
+  "voidAt":{"u":"","i":""},
+  "patriarchyAt":{"u":"fight the power","i":"abolish marriage"},
+  "liberal_eliteAt":{"u":"out of touch with 'real' america,(see FLYOVER STATES),where were the jewish space lasers when we needed them?","i":"my latte is getting cold \u{2639},snowflake \u{2744}"},
+  "i_apos_m_with_stupidAt":{"u":"you are so intellegent and well informed, (and fankly\\c good-looking)...","i":"...not so much"},
+  "hurricaneAt":{"u":"disaster (repeated) (metaphorically),(see CONE OF UNCERTAINTY)","i":"\"share with me a common disaster\""},
+  "not_my_circus_not_my_monkeysAt":{"u":"\"I really don't care\\c do you?\"","i":"desensitized (metaphorically)"},
+  "price_of_a_dozen_eggsAt":{"u":"a very very very horrible number","i":"things that look worse in binary"},
+  "gigoAt":{"u":"garbage in/garbage out","i":"trash half full/trash half empty,(it's trash all the way down)"},
+  "bicycles_are_everywhereAt":{"u":"watch out (metaphorically)","i":"that can't be right,there'd be no room to move"},
+  "razorAt":{"u":"\"Never attribute to malice that which can be adequately explained by stupidity\"","i":"a close shave (metaphorically)"},
+  "wind_chimesAt":{"u":"not music,not noise","i":"a few more windy days and you will become silent"},
+  "zero_knowledge_proofAt":{"u":"know you know","i":"don't know what you know"},
+  "resistanceAt":{"u":"vive la","i":"V / I"},
+  "misprintAt":{"u":"misaligned","i":"quality failure"},
+  "gone_silentAt":{"u":"say no more","i":"loose lips,silence is complicity,snitches get stitches"},
+  "snitches_get_stitchesAt":{"u":"veiled threats (metaphorically)","i":"compliance"},
+  "kioskAt":{"u":"where you're at","i":"where you're going"},
+  }
 
 let eightball_u = ["It is certain","It is decidedly so","Without a doubt","Yes definitely","You may rely on it","As I see it\\c yes","Most likely","Outlook good","Yes","Signs point to yes"]
 let eightball_i = ["Reply hazy, try again","Ask again later","Better not tell you now","Cannot predict now","Concentrate and ask again","Don't count on it","My reply is no","My sources say no","Outlook not so good","Very doubtful"]
@@ -354,6 +440,58 @@ function holyday () {
   else
     return "The feast of " + randomPick(words.match(/\b\w{3,}(ous|ic|ful|ive|ish(ed)?|able)\b/g)) + " " + randomPick(words.match(/\b\w{3,}(ation|ment|ion|[eaiou]nt?y)s?\b/g))
 }
+
+
+function artspeak () {
+  let art = ["This work", "This piece", "This exhibit", "The artist", "The artwork"]
+  let things = ["the spacial, ", "the void, ", "the real ", "the dialectic, ", "the intersectional, ", "the parallel, ","parallelism, "]
+  let ant = words.match(/\b\w{3,}ant\b/g)
+  let ates = words.match(/\b\w{3,}ates\b/g)
+  let ating = ["abbreviating","abdicating","ablating","abrogating","accelerating","accentuating","accommodating","accumulating","activating","actuating","adjudicating","administrating","adulterating","adumbrating","advocating","affiliating","agglomerating","aggravating","aggregating","agitating","alienating","alleviating","alliterating","allocating","alternating","amalgamating","ameliorating","amputating","animating","annihilating","antedating","anticipating","appreciating","appropriating","approximating","arbitrating","articulating","aspirating","assassinating","assimilating","associating","attenuating","authenticating","automating","berating","calculating","calibrating","capitulating","captivating","castigating","castrating","celebrating","circulating","cogitating","collaborating","collating","combating","commemorating","commentating","commiserating","communicating","compensating","complicating","concatenating","concentrating","conciliating","confiscating","conflating","congratulating","congregating","conjugating","consecrating","consolidating","consternating","contaminating","contemplating","cooperating","coordinating","copulating","correlating","corroborating","culminating","cultivating","deactivating","debilitating","decapitating","decelerating","decimating","decontaminating","dedicating","defecating","deflating","degenerating","dehydrating","deliberating","delineating","demarcating","demonstrating","denigrating","deprecating","depreciating","deregulating","desecrating","designating","desolating","deteriorating","detonating","devastating","deviating","dictating","differentiating","dilating","disaffiliating","disambiguating","disassociating","discriminating","disintegrating","dislocating","disorientating","disseminating","dissipating","dissociating","dominating","elaborating","elevating","eliminating","elongating","elucidating","emanating","emancipating","emasculating","emigrating","emulating","encapsulating","enervating","entreating","enumerating","enunciating","equilibrating","equivocating","eradicating","escalating","estimating","evacuating","evaluating","evaporating","exacerbating","exaggerating","exasperating","excavating","excommunicating","excruciating","exhilarating","exonerating","expostulating","expurgating","extenuating","exterminating","extrapolating","extricating","fabricating","facilitating","fascinating","fibrillating","fluctuating","fornicating","fractionating","frustrating","fulminating","germinating","gestating","gesticulating","gravitating","gyrating","hallucinating","hesitating","hibernating","humiliating","hyperventilating","hyphenating","illuminating","impersonating","implicating","impregnating","inactivating","inaugurating","incapacitating","incarcerating","incinerating","incorporating","incriminating","inculcating","indoctrinating","infiltrating","infuriating","ingratiating","initiating","innovating","inoculating","insinuating","instantiating","instigating","insulating","integrating","interpolating","interrogating","intimating","intimidating","intoxicating","invalidating","invigilating","invigorating","irradiating","irrigating","irritating","isolating","iterating","legitimating","levitating","liberating","liquidating","litigating","lubricating","luxuriating","manipulating","masticating","matriculating","mediating","meditating","menstruating","migrating","militating","mistranslating","mistreating","mitigating","moderating","modulating","motivating","mutating","mutilating","narrating","nauseating","navigating","negating","negotiating","nominating","obliterating","obviating","officiating","operating","orchestrating","originating","oscillating","oxygenating","paginating","palpitating","participating","penetrating","perambulating","percolating","permeating","perpetrating","perpetuating","pirating","placating","pollinating","pontificating","populating","postulating","precipitating","predating","predicating","predominating","prevaricating","procrastinating","procreating","proliferating","promulgating","propagating","propitiating","prostrating","pulsating","punctuating","pupating","radiating","reactivating","reallocating","reanimating","recalibrating","reciprocating","recirculating","recreating","recuperating","redecorating","reformulating","regenerating","regurgitating","rehabilitating","reincarnating","reinstating","reiterating","rejuvenating","relegating","relocating","remonstrating","renegotiating","renovating","repatriating","repeating","replicating","repudiating","resonating","restating","resuscitating","retaliating","retreating","reverberating","rollerskating","rotating","ruminating","salivating","saturating","scintillating","sedating","segregating","separating","simulating","situating","speculating","stagnating","stimulating","stipulating","subjugating","subordinating","substantiating","suffocating","superannuating","supplicating","suppurating","sweating","tabulating","terminating","titillating","tolerating","translating","transliterating","triangulating","truncating","unaccommodating","underestimating","understating","undiscriminating","undulating","unhesitating","vacillating","validating","vegetating","venerating","ventilating","vibrating","vindicating","violating","vitiating"]
+  let v_ises = words.match(/\b\w{3,}i(s|z)es\b/g)
+  let not_ises = ["cruises","demises","enterprises","pelvises","porpoises","portcullises","sunrises","tortoises","trellises",]
+  v_ises = v_ises.filter(word => !not_ises.includes(word))
+  let n_ality = words.match(/\b\w{3,}(al)?ity\b/g)
+  let ism = words.match(/\b\w{3,}(al)?ism\b/g)
+  let not_ism = ["autism","baptism","botulism","catechism","colloquialism","electromagnetism","embolism","euphemism","geomagnetism","hypnotism","journalism","judaism","mannerism","mechanism","metabolism","microorganism","neologism","nepotism","opportunism","organism","orientalism","plagiarism","rheumatism","schism","syllogism","truism","witticism"]
+  ism = ism.filter(word => !not_ism.includes(word))
+  let v_ising = words.match(/\b\w{3,}i(s|z)ing\b/g)
+  let not_ising = ["appetising","cruising","enterprising","fundraising","hairraising","liaising","practising","praising","premising","promising","surprising","symbolising","unappetising","uncompromising","unpromising","unsurprising","uprising"]
+  v_ising = v_ising.filter(word => !not_ising.includes(word))
+
+  let ive = words.match(/\b\w{3,}ive\b/g)
+  let ions = words.match(/\b\w{3,}ions\b/g)
+
+  let ly = words.match(/\b\w{3,}ly\b/g)
+  let not_adv = ["only", "family", "early", "likely", "supply", "apply", "daily", "lovely", "unlikely", "assembly", "elderly", "reply", "badly", "friendly", "fly", "holy", "rely", "silly", "billy", "kelly", "monthly", "lonely", "monopoly", "rally", "freely", "imply", "lively", "comply", "sally", "ugly", "kindly", "costly", "folly", "holly", "bodily", "jolly", "ally", "lily", "telly", "belly", "deadly", "molly", "quarterly", "butterfly", "dolly", "orderly", "multiply", "grimly", "jelly", "scholarly", "yearly", "curly", "weakly", "ghastly", "leisurely", "melancholy", "timely", "stately", "bully", "heavenly", "chilly", "willy", "tally", "sly", "hourly", "piccadilly", "earthly", "poly", "gully", "oily", "smelly", "homely", "ghostly", "woolly", "anomaly", "worldly", "lowly", "nightly", "sickly", "wally", "disorderly", "unruly", "prickly", "unfriendly", "wobbly", "burly", "filly", "cuddly", "unsightly", "northerly", "steely", "princely", "cowardly", "manly", "shapely", "hilly", "cleanly", "bubbly", "fortnightly", "courtly", "user-friendly", "priestly", "beastly", "gilly", "westerly", "ply", "grisly", "masterly", "nelly", "unholy", "southerly", "godly", "gentlemanly", "wily", "saintly", "untimely", "unseemly", "deathly", "frilly", "surly", "tilly", "pearly", "easterly", "brotherly", "ungainly", "cicely", "sprightly", "spindly", "firefly", "fiddly", "solly", "scaly", "golly", "neighbourly", "motherly", "whitely", "knightly", "lordly", "lully", "unearthly", "dragonfly", "knobbly", "caerphilly", "portly", "shelly", "gravelly", "straggly", "grizzly", "fatherly", "duopoly", "no-fly", "termly", "greenfly", "lolly", "unworldly", "environment-friendly", "gamely", "crinkly", "slovenly", "comely", "miserly", "panoply", "stubbly", "womanly", "bristly", "goodly", "underbelly", "lally", "waterlily", "dally", "welly", "brolly", "kingly", "painterly", "reapply", "superfamily", "chantilly", "crumbly", "subfamily", "ungodly", "gadfly", "homily", "oversupply", "dastardly", "half-yearly", "hurly-burly", "measly", "oligopoly", "unlovely", "bally", "twice-weekly", "whitefly", "other-worldly", "ozone-friendly", "seemly", "sisterly", "sparkly", "pally", "resupply", "rockabilly", "roly-poly", "south-westerly", "wiggly", "comradely", "read-only", "giggly", "girly", "gangly", "twice-yearly", "north-westerly", "dilly", "drizzly", "ly", "mealy", "niggardly", "matronly", "overfly", "seely", "sully", "wrinkly", "muscly", "postmultiply", "selly", "south-easterly", "ungentlemanly", "writerly", "cully", "heterosexually", "premultiply", "tiddly", "acromegaly", "hillbilly", "mayfly", "pebbly", "self-assembly", "soldierly", "unmanly", "googly", "doolally", "eco-friendly", "softly-softly", "fam'ly", "fleshly", "north-easterly", "singlehandedly", "treacly", "wifely", "crackly", "feely", "-ly", "pimply", "squally", "tinkly", "bi-weekly", "botfly", "clerkly", "disapply", "hepatomegaly", "jangly", "paly", "readerly", "reassembly", "splenomegaly", "twiddly", "two-ply", "bimonthly", "half-hourly", "maidenly", "niggly", "purply", "squiggly", "three-ply", "tingly", "blackfly", "coaly", "creepy-crawly", "doily", "sawfly", "stepfamily", "tickly", "barfly", "disassembly", "girl-friendly", "rascally", "swirly", "beggarly", "bobbly", "fruitfly", "jungly", "moly", "otherworldly", "scally", "shingly", "trebly", "underly", "wheely", "bly", "cousinly", "crawly", "dangly", "grandmotherly", "hoverfly", "marly", "microcephaly", "muddly", "rubbly", "this-worldly", "trembly", "twinkly", "undersupply", "unmannerly", "whirly", "diddly", "dolphin-friendly", "freckly", "gnarly", "housewifely", "laggardly", "philately", "scrawly", "shaly", "spangly", "spritely", "unneighbourly", "wibbly", "wriggly", "wurly", "creaturely", "damselfly", "dilly-dally", "dribbly", "freight-only", "horsefly", "hurly", "jubbly", "northwesterly", "pre-emptively", "radio-friendly", "rattly", "relly", "rolly", "rustly", "southwesterly", "subassembly", "superfly", "uncomely", "unwomanly", "wordly", "blowfly", "citizenly", "daughterly", "dimply", "pot-belly", "slatternly", "southeasterly", "stilly", "tangly", "waffly", "biweekly", "booly", "craftsmanly", "curmudgeonly", "gristly", "headly", "headmasterly", "helly", "housefly", "non-daily", "northeasterly", "potbelly", "queenly", "ruffianly", "sandfly", "scrolly", "snuffly", "unscholarly", "unwieldly", "weaselly", "wooly", "actorly", "auntly", "brambly", "business-friendly", "celly", "contumely", "crumply", "dayly", "dooly", "drawly", "drooly", "firebelly", "gobbly", "grumbly", "heav'nly", "hover-fly", "husbandly", "interactionally", "lawyerly", "lurvely", "luvverly", "mannerly", "piddly", "pully", "savourly", "schoolmasterly", "scraggly", "shuffly", "skelly", "sluggardly", "snuggly", "speckly", "toxophily", "trolly", "twirly", "unfatherly", "unshapely", "user-unfriendly", "waggly", "wibbly-wobbly", "anencephaly", "bearly", "bely", "bibliophily", "big-sisterly", "blackguardly", "brachycephaly", "brawly", "caramelly", "chiropterophily", "churchly", "cobbly", "colly", "cooly", "cranefly", "dancerly", "dealy", "designerly", "dovely", "dudely", "entomophily", "exencephaly", "family-friendly", "felly", "fishbelly", "footmanly", "gentlewomanly", "girlfriendly", "goatly", "godfatherly", "gospelly", "gradely", "grandfatherly", "growly", "gruelly", "guestly", "gurgly", "heartly", "hepatosplenomegaly", "hevenly", "hydrocephaly", "jiggly", "jingly", "jowly", "knubbly", "knuckly", "loverly", "male-friendly", "marbly", "megalencephaly", "metally", "misapply", "modelly", "nonfamily", "nubbly", "oly", "ornithophily", "outfly", "overfriendly", "peely-wally", "profamily", "protractedly", "psychobilly", "rambly", "ripply", "rumbly", "samely", "schoolmistressly", "sclerodactyly", "scrabbly", "scrambly", "scribbly", "shambly", "shoggly", "shoogly", "sightly", "skilly", "snivelly", "spinsterly", "squirrely", "statesmanly", "studly", "summerly", "swivelly", "teacherly", "test-fly", "tinselly", "towardly", "trichinopoly", "twilly", "unbrotherly", "uncleanly", "uncourtly", "unkingly", "unlively", "unmotherly", "unreflectively", "unsaintly", "unsisterly", "unsleepingly", "unsoldierly", "unwifely", "viewly", "waly", "weatherly", "weevilly", "whistly", "widdly", "winterly", "wizardly"]
+  ly = ly.filter(word => !not_adv.includes(word))
+
+  let ed = words.match(/\b\w{3,}ed\b/g)
+  let not_ed = ["aniseed","breezed","creed", "illmannered","jotted","lunged"]
+  let junc = ["while simultaneously", "while also", "at the same time", "while always already"]
+  let pre = ["para-", "proto-", "post-", "hyper-"]
+  let thing = randomPick(words.match(/\b\w{3,}(ist(ic)?|able|ible|ous)\b/g))
+  let does = ["serves to", "functions to", "seems to","interrogates", "questions", "encodes", "transforms", "subverts", "imbricates", "displaces"]
+  // ly and ly ed
+  let adv_adv = (" - " + randomPick(ly) +" and "+randomPick(ly) +" "+randomPick(ed) +" - ")
+  return("\""+randomPick(art)+ " " +isToiz(randomPick(v_ises))+ " the "
+  + randomPick(n_ality) + " of "+randomPick(things) 
+  + adv_adv
+  + randomPick(junc) +" " 
+  + isToiz(randomPick(v_ising))+", " + isToiz(randomPick(v_ising))+", " + isToiz(randomPick(v_ising))+" and " + isToiz(randomPick(v_ising))
+  + " the " +randomPick(pre) +randomPick(ism) +" of its "
+  + randomPick(ating) + " " + randomPick(n_ality) + " "
+  + randomPick(["thereby", "in so", "so by", "such that"]) + " " 
+  + randomPick(ating)+" "+randomPick(ive)+" "+randomPick(ions) +".\"")
+
+}
+
+function isToiz (word) {
+  //word = word.replace(/(ises)/g,"izes")
+ // word = word.replace(/(ising)/g,"izing")
+  return word
+}
+
 
 function testThrees () {
   let i = 0
@@ -381,11 +519,13 @@ function testCards () {
   if (dupes.length < 1)
     dupes = "None"
   console.log("duplicates in atList: " + dupes)
-  for (; i < 100; i++)
+  for (; i < 200; i++)
     threecards()
+  fill()
   i = 0
   for (; i < keys.length;i++) {
-    printableCard(keys[i])
+    tarotcard (44,187,453, 700,keys[i],cardnumber(keys[i]),undefined,[0])
+    tarotcard (44+530,187,453, 700,keys[i],cardnumber(keys[i]),undefined,[1])
     text += keys[i].slice(0,-2) + "\n"
     text += "  "+defs[keys[i]].u + "\n"
     text += "  "+defs[keys[i]].i + "\n"
@@ -404,6 +544,12 @@ function testCards () {
   ta.value = text.replace(/_/gm, " ")
   document.body.appendChild(ta)
   ta.scrollTop = ta.scrollHeight
+  console.log("starting TMT test...")
+  i = 0
+  for (; i < 1000; i++) 
+    too_many_thingsAt(0,0,100,"#000000")
+  
+  console.log("...done. \ncheck spelling.")
 }
 
 function showdefs () {
@@ -415,7 +561,6 @@ function showdefs () {
     tsv += defs[list[i]].u + "\t"
     tsv += defs[list[i]].i
   }
- 
   return tsv
 }
 
