@@ -1,0 +1,400 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+    body {
+      background-color: #dbbbdb;
+    }
+    canvas {
+      margin: 1%;
+    }
+    svg {
+      margin-top: 2px;
+      margin-right: 4px;
+      vertical-align:baseline;
+      display:inline-block;
+      padding:4px;
+      background-color:#ffffff;
+    }
+    textarea {
+      width: 360px;
+      margin-left: 1%;
+      font-size:12px;
+    }
+    div[id="buttons"] {
+      width: 500px;
+      margin-left: 1%;
+      margin-top: 1%;
+    }
+    </style>
+  </head>
+  <body>
+<div id="container" >
+  <div id="buttons" style="display: inline-block;">
+  <canvas id="myCanvas" width="500" height="500"></canvas><br>
+  <div id="buttons" style="padding-left:20px;">
+    grid: <select id="gridsize" onchange="clearAll()">
+      <option value="13">13</option>
+      <option value="14">14</option>
+      <option value="15">15</option>
+      <option value="16">16</option> 
+      <option value="24" selected>24</option>
+      <option value="32">32</option> 
+    </select>
+    &nbsp;
+    <input type="checkbox" id="mode" onclick="killCP()"><label for="mode">quad</label>
+    &nbsp;
+    <a href="javascript:closePath()" title="close path">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="white" viewBox="0 0 16 16">
+      <path d="M12.5 4a.5.5 0 0 0-1 0v3.248L5.233 3.612C4.713 3.31 4 3.655 4 4.308v7.384c0 .653.713.998 1.233.696L11.5 8.752V12a.5.5 0 0 0 1 0zM5 4.633 10.804 8 5 11.367z"/>
+    </svg></a>
+    <a href="javascript:undoLast()" title="undo">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="white" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
+      <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
+    </svg></a>
+  <a href="javascript:saveAs()" id="downloader" download="image.png" title="save as png file">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-download" viewBox="0 0 16 16">
+    <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+    <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+    </svg></a>
+  <input type='file' name='img' size='58' id='uploadimage2' style="display:none;">
+  <a href="javascript:openFileD()" id="imgloader2" title="open file">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-upload" viewBox="0 0 16 16">
+      <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"></path>
+      <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"></path>
+    </svg></a>
+    <a href="javascript:copy()" title="copy">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-copy" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z"/>
+    </svg></a>
+    <a href="javascript:clearAll()" title="clear all">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="white" viewBox="0 0 16 16">
+    <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
+    </svg></a>
+    </div>
+  </div>
+  <div id="text" style="display: inline-block;vertical-align: top;padding:20px;">
+  <textarea id="text1" name="text1" rows="24" cols="32" wrap="soft"></textarea>
+  </div>
+</div>
+  
+<script>
+window.onload = function () {
+  document.getElementById("gridsize").addEventListener("change", updateGrid, true)
+  document.getElementById("uploadimage2").addEventListener("change", drawFileD, true)
+  updateGrid()
+}
+
+function updateGrid () {
+  let gs = document.getElementById("gridsize").value
+  gridsize = gs, cellsize = W/gridsize
+  frameVisible()
+}
+
+function killCP () {
+  if (i > 0 && document.getElementById("mode").checked) {
+    i = 1
+  }
+}
+
+let canvas = document.getElementById('myCanvas')
+let ctx = canvas.getContext('2d')
+ctx.fillStyle = '#ffffff'
+ctx.lineWidth = 4
+ctx.fillRect(0, 0, canvas.width, canvas.height)
+let message = ''
+let cps = []
+let W = canvas.width, H = W
+let gridsize = 5, cellsize = W/gridsize
+let i = 0
+let colors = ['red', 'green', 'blue', 'orange', 'purple', 'yellow']
+let code = [], cpx, cpy
+let ocd = document.createElement('canvas')
+let offdctx = ocd.getContext('2d')
+offdctx.strokeStyle = "#55dd55"
+offdctx.fillStyle = "#55dd55"
+offdctx.lineWidth = 4
+offdctx.setLineDash([4, 4])
+let CELLSIZE = 0
+let GRIDSIZE = 1
+let lastpoints = []
+let ITEM = 0
+let ITEMS = []
+
+function undoLast () {
+  closePath()
+  if (ITEM < 1) 
+    return
+  let index = code.indexOf("  //"+ITEM)
+  code = code.slice(0, index)
+  ITEM -= 1
+  closePath()
+  showPoints()
+  let last = ITEMS.pop()
+  crossoutItem(last)
+}
+
+function crossoutItem (item) {
+  let canvas = document.getElementById('myCanvas')
+  let ctx = canvas.getContext('2d')
+  let ocd = document.createElement('canvas')
+  let offdctx = canvas.getContext('2d')
+  let ofill = offdctx.fillStyle
+  let cfill = ctx.fillStyle
+  offdctx.fillStyle = "#ffd000"
+  ctx.fillStyle = "#ffd000"
+  let i = 0
+  for (; i < item.length; i+=2) {
+    offdctx.fillRect(Math.round(item[i])-6, Math.round(item[i+1])-6, 12, 12)
+    ctx.drawImage(ocd,0,0,canvas.width,canvas.height)
+    ctx.fillRect(Math.round(item[i])-6, Math.round(item[i+1])-6, 12, 12)
+  }
+  offdctx.fillStyle = ofill
+  ctx.fillStyle = cfill
+}
+  
+function clearAll () {
+  code = []
+  i = 0
+  ctx.fillStyle = 'white'
+  ctx.fillRect(0,0,canvas.width,canvas.height)
+  offctx.clearRect(0,0,canvas.width,canvas.height)
+  frameVisible()
+  document.getElementById("text1").innerHTML = ""
+  offdctx.clearRect(0,0,canvas.width,canvas.height)
+  ITEM = 0
+}
+
+function closePath () {
+  if (i === 0)
+    return
+  code.push("  ctx.fill()\n")
+  ctx.setLineDash([])
+  ctx.globalAlpha = 1
+  ctx.strokeStyle = "#ff4444"
+  ctx.stroke()
+  i = 0
+  ITEMS.push(lastpoints)
+  lastpoints = []
+}
+
+let lastx, lasty
+let oc = document.createElement('canvas')
+oc.height = canvas.height, oc.width = canvas.width
+let offctx = oc.getContext('2d')
+offctx.strokeStyle = "#55dd55"
+offctx.fillStyle = "#55dd55"
+offctx.lineWidth = 4
+offctx.setLineDash([4, 4])
+
+canvas.addEventListener('mousedown', function(evt) {
+  let mode = document.getElementById("mode").checked
+  let mousePos = getMousePos(canvas, evt);
+  ctx.fillStyle = '#000000'
+  if (i === 0) {
+    ITEM++
+    code.push("  //"+ITEM)
+    code.push("  ctx.beginPath()")
+    code.push("  p = rotatePoint(x+"+Math.round(mousePos.x/cellsize)+"*W/"+gridsize+"+pet(d), y+"+Math.round(mousePos.y/cellsize)+"*H/"+gridsize+"+pet(d) ,cx,cy,angle)")
+    code.push("  ctx.moveTo(p[0],p[1])")
+    ctx.lineWidth = 4
+    ctx.beginPath()
+    lastx = Math.round(mousePos.x/cellsize)*W/gridsize
+    lasty = Math.round(mousePos.y/cellsize)*W/gridsize
+    
+    ctx.moveTo(Math.round(mousePos.x/cellsize)*W/gridsize, Math.round(mousePos.y/cellsize)*W/gridsize)
+    ctx.fillRect(Math.round(mousePos.x/cellsize)*W/gridsize-4, Math.round(mousePos.y/cellsize)*W/gridsize-4, 10, 10)
+  } else {
+    if (!mode) {
+      
+      code.push("  p = rotatePoint(x+"+Math.round(mousePos.x/cellsize)+"*W/"+gridsize+"+pet(d), y+"+Math.round(mousePos.y/cellsize)+"*H/"+gridsize+"+pet(d) ,cx,cy,angle)")
+      code.push("  ctx.lineTo(p[0],p[1])")
+      ctx.lineTo(Math.round(mousePos.x/cellsize)*W/gridsize, Math.round(mousePos.y/cellsize)*W/gridsize)
+      lastx = Math.round(mousePos.x/cellsize)*W/gridsize
+      lasty = Math.round(mousePos.y/cellsize)*W/gridsize
+      ctx.strokeStyle = "#ff4444"
+      ctx.lineWidth = 4
+      ctx.setLineDash([4, 4])
+      ctx.stroke()
+      ctx.fillStyle = "black"
+      ctx.fillRect(Math.round(mousePos.x/cellsize)*W/gridsize-5, Math.round(mousePos.y/cellsize)*W/gridsize-5, 10, 10)
+    } else {
+      if (i % 2 === 1) { // control point
+        cpx = Math.round(mousePos.x/cellsize)*W/gridsize
+        cpy = Math.round(mousePos.y/cellsize)*W/gridsize
+        
+        code.push("  cpx = x+"+Math.round(mousePos.x/cellsize)+"*W/"+gridsize+"+pet(d)")
+        code.push("  cpy = y+"+Math.round(mousePos.y/cellsize)+"*H/"+gridsize+"+pet(d)")
+        code.push("  cp = rotatePoint(cpx,cpy,cx,cy,angle)")
+        ctx.fillStyle = "#55dd55"
+        
+        offctx.strokeStyle = "#ffffff"
+        offctx.setLineDash([])
+        offctx.beginPath()
+        offctx.moveTo(lastx, lasty)
+        offctx.lineTo(cpx,cpy)
+        offctx.strokeStyle = "#55dd55"
+        offctx.setLineDash([4,4])
+        offctx.beginPath()
+        offctx.moveTo(lastx, lasty)
+        offctx.lineTo(cpx,cpy)
+        offctx.stroke()
+        offctx.fillRect(Math.round(mousePos.x/cellsize)*W/gridsize-5, Math.round(mousePos.y/cellsize)*W/gridsize-5, 10, 10)
+
+        ctx.drawImage(oc,0,0,canvas.width,canvas.height)
+        ctx.setLineDash([4, 4])
+        ctx.strokeStyle = "#ff4444"
+      } else {
+        code.push("  p = rotatePoint(x+"+Math.round(mousePos.x/cellsize)+"*W/"+gridsize+"+pet(d), y+"+Math.round(mousePos.y/cellsize)+"*H/"+gridsize+"+pet(d),cx,cy,angle)")
+        code.push("  ctx.quadraticCurveTo(cp[0],cp[1],p[0],p[1])")
+        ctx.quadraticCurveTo(cpx, cpy, Math.round(mousePos.x/cellsize)*W/gridsize, Math.round(mousePos.y/cellsize)*W/gridsize)
+        ctx.strokeStyle = "#ff4444"
+        ctx.lineWidth = 4
+        ctx.setLineDash([4, 4])
+        ctx.stroke()
+        ctx.fillStyle = "black"
+        lastx = Math.round(mousePos.x/cellsize)*W/gridsize
+        lasty = Math.round(mousePos.y/cellsize)*W/gridsize
+        ctx.fillRect(Math.round(mousePos.x/cellsize)*W/gridsize-5, Math.round(mousePos.y/cellsize)*W/gridsize-5, 10, 10)
+      }
+    }
+  }
+  i++
+  lastpoints.push(lastx,lasty)
+}, false)
+
+function copy () {
+  closePath()
+  showPoints()
+  let copyText = document.getElementById("text1")
+  navigator.clipboard.writeText(copyText.value)
+}
+
+function showPoints () {
+  //console.log(code)
+  let header = "function ____At (x,y,W,color) {\n\
+  let canvas = document.getElementById(\"myCanvas\")\n\
+  let ctx = canvas.getContext(\"2d\")\n\
+  let H = W, cpx, cpy, points = []\n\
+  let colors = shuffle(getCurrentPalette(true,13))\n\
+  ctx.lineWidth = 1 + document.getElementById(\"featuresize\").value/50\n\
+  ctx.strokeStyle = color\n\
+  ctx.fillStyle = color\n\
+  ctx.lineCap = \"square\"\n\
+  ctx.lineJoin = \"bevel\"\n\
+  let p = [], cp = [], lastp = []\n\
+  let cx = x+W/2, cy = y+H/2, d = 0, angle = pet(180)\n\n"
+  document.getElementById("text1").value = header
+  document.getElementById("text1").value += code.join("\n")
+  document.getElementById("text1").value += "}"
+}
+
+function getMousePos(canvas, evt) {
+  let rect = canvas.getBoundingClientRect()
+  return {
+    x: Math.floor(evt.clientX - rect.left),
+    y: Math.floor(evt.clientY - rect.top)
+  };
+}
+
+function frameVisible () {
+  let canvas = document.getElementById('myCanvas')
+  let ctx = canvas.getContext('2d')
+  ctx.fillStyle = "#ffffff"
+  ctx.strokeStyle = "#d8d8d8"
+  ctx.lineWidth = 3
+  ctx.setLineDash([])
+  ctx.fillRect(0,0,W,H)
+  let i = 0, x = 0, y = 0
+  for (; i < gridsize; i++) {
+    if (i % 2 === 0)
+      ctx.strokeStyle = "#c0c0c0"
+    else
+      ctx.strokeStyle = "#d8d8d8"
+    ctx.beginPath()
+    ctx.moveTo(x,y)
+    ctx.lineTo(x+canvas.width, y)
+    ctx.stroke()
+    y += cellsize
+  }
+  i = 0, x = 0, y = 0
+  for (; i < gridsize; i++) {
+    if (i % 2 === 0)
+      ctx.strokeStyle = "#c0c0c0"
+    else
+      ctx.strokeStyle = "#d8d8d8"
+    ctx.beginPath()
+    ctx.moveTo(x,y)
+    ctx.lineTo(x, y+canvas.height)
+    ctx.stroke()
+    x += cellsize
+  }
+  ctx.lineWidth = 4
+}
+
+function writeMessage (canvas, message) {
+  var ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+
+function openFile () {
+  let canvas = document.getElementById('myCanvas')
+  let ctx = canvas.getContext('2d')
+  document.getElementById('uploadimage').click();
+}
+
+function resizeCanvas () {
+  let ocanvas = document.createElement('CANVAS')
+  let octx = ocanvas.getContext('2d')
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  ocanvas.height = canvas.height
+  ocanvas.width = canvas.width
+  octx.drawImage(canvas, 0, 0)
+  let ar = canvas.width/canvas.height
+  if (canvas.width > 800) {
+    let W = canvas.width
+    canvas.width = 800
+    canvas.height = Math.floor(canvas.height * 800/W)
+  }
+  ctx.drawImage(ocanvas,0,0,canvas.width,canvas.height)
+  octx.clearRect(0,0,ocanvas.width,ocanvas.height)
+}
+
+// saveAs stuff
+
+function saveAs () {
+  document.getElementById("downloader").download = "image.png";
+  document.getElementById("downloader").href = document.getElementById("myCanvas").toDataURL("image/png").replace(/^data:image\/[^;]/, 'data:application/octet-stream');
+}
+
+function openFileD () {
+  document.getElementById('uploadimage2').click();
+}
+
+function drawFileD () {
+  let canvas = document.getElementById('myCanvas')
+  let ctx = canvas.getContext('2d')
+  let IMG = new Image()
+  let f = document.getElementById("uploadimage2").files[0]
+  let url = window.URL || window.webkitURL
+  let src = url.createObjectURL(f)
+  let timestamp = new Date().getTime()
+  IMG.src = src
+  ctx.globalAlpha = 1
+  ctx.globalCompositeOperation = "source-over"
+  IMG.onload = function () {
+    ctx.globalAlpha = 0.5
+    ctx.drawImage(IMG, 0, 0, canvas.width, canvas.height);
+    url.revokeObjectURL(src);
+    src  += timestamp
+    ctx.globalAlpha = 1
+  }
+  document.getElementById("uploadimage2").value = ""
+}
+
+</script>
+  </body>
+</html>
