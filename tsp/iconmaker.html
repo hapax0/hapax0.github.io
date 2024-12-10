@@ -1,0 +1,521 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+    body {
+      background-color: #9090f8;
+    }
+    canvas {
+      margin: 1%;
+      background-color: #ffffff;
+    }
+    select {
+      vertical-align: text-top;
+      height:24px;
+      margin-bottom: 4px;
+    }
+    svg {
+      margin-top: 2px;
+      margin-right: 4px;
+      vertical-align:baseline;
+      display:inline-block;
+      padding:4px;
+      background-color:#ffffff;
+    }
+    .solve {
+      background-color:#c7d2ff;
+    }
+    textarea {
+      width: 480px;
+      margin-left: 1%;
+      font-size:12px;
+      display: none;
+    }
+    div[id="buttons"] {
+      width: 500px;
+      margin-left: 1%;
+      margin-top: 1%;
+    }
+    </style>
+  </head>
+  <body>
+<div id="container" >
+  <div id="buttons" style="display: inline-block;">
+  <canvas id="myCanvas" width="500" height="500"></canvas>
+  <br>
+  <div id="buttons" style="padding-left:20px;">
+
+    <a href="javascript:drawD()" title="draw">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="white"" viewBox="0 0 16 16">
+    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
+    </svg></a>
+   
+    <a href="javascript:closePath()" title="close path">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 240 240" version="1.1">
+      <path fill-opacity="0.247" d="M 31.500 21.400 C 27.546 23.143, 23.051 27.717, 21.360 31.718 C 19.618 35.840, 19.614 44.145, 21.352 48.282 C 23.013 52.235, 28.662 57.877, 31.729 58.647 L 34 59.217 34 120 L 34 180.783 31.697 181.361 C 28.399 182.189, 22.266 188.665, 20.921 192.739 C 19.173 198.036, 20.184 207.186, 22.967 211.247 C 26.672 216.654, 31.362 219.326, 37.988 219.805 C 41.178 220.036, 45.351 219.709, 47.261 219.079 C 51.335 217.734, 57.811 211.601, 58.639 208.303 L 59.217 206 120 206 L 180.783 206 181.361 208.303 C 182.189 211.601, 188.665 217.734, 192.739 219.079 C 198.036 220.827, 207.186 219.816, 211.247 217.033 C 217.527 212.730, 219.500 208.658, 219.500 200 C 219.500 191.342, 217.527 187.270, 211.247 182.967 C 207.186 180.184, 198.036 179.173, 192.739 180.921 C 188.665 182.266, 182.189 188.399, 181.361 191.697 L 180.783 194 120 194 L 59.217 194 58.639 191.697 C 57.892 188.722, 51.278 182.108, 48.303 181.361 L 46 180.783 46 120 L 46 59.217 48.303 58.639 C 51.278 57.892, 57.892 51.278, 58.639 48.303 L 59.217 46 120 46 L 180.783 46 181.361 48.303 C 182.189 51.601, 188.665 57.734, 192.739 59.079 C 198.036 60.827, 207.186 59.816, 211.247 57.033 C 217.527 52.730, 219.500 48.658, 219.500 40 C 219.500 31.342, 217.527 27.270, 211.247 22.967 C 207.186 20.184, 198.036 19.173, 192.739 20.921 C 188.665 22.266, 182.189 28.399, 181.361 31.697 L 180.783 34 120 34 L 59.217 34 58.647 31.729 C 57.877 28.662, 52.235 23.013, 48.282 21.352 C 44.220 19.645, 35.425 19.671, 31.500 21.400 M 194 80 L 194 90 200 90 L 206 90 206 80 L 206 70 200 70 L 194 70 194 80 M 194 120 L 194 130 200 130 L 206 130 206 120 L 206 110 200 110 L 194 110 194 120 M 194 160 L 194 170 200 170 L 206 170 206 160 L 206 150 200 150 L 194 150 194 160 " stroke="none" fill="black" fill-rule="evenodd"/>
+      <path fill-opacity="0.255" d="M 31.500 21.890 C 26.659 24.124, 23.612 27.290, 21.548 32.232 C 17.530 41.846, 22.161 54.339, 31.117 58.049 L 34 59.243 34 120 L 34 180.757 31.117 181.951 C 19.181 186.896, 16.321 205.683, 26.132 214.702 C 35.815 223.604, 53.269 220.422, 58.049 208.883 L 59.243 206 120 206 L 180.757 206 181.951 208.883 C 186.731 220.422, 204.185 223.604, 213.868 214.702 C 221.754 207.453, 221.754 192.547, 213.868 185.298 C 204.185 176.396, 186.731 179.578, 181.951 191.117 L 180.757 194 120 194 L 59.243 194 57.998 190.995 C 56.613 187.651, 51.244 182.530, 48.066 181.521 C 46.008 180.868, 46 180.632, 46 120 C 46 59.368, 46.008 59.132, 48.066 58.479 C 51.244 57.470, 56.613 52.349, 57.998 49.005 L 59.243 46 120 46 L 180.757 46 181.951 48.883 C 185.778 58.122, 198.725 62.622, 208.500 58.110 C 223.838 51.031, 223.838 28.969, 208.500 21.890 C 198.725 17.378, 185.778 21.878, 181.951 31.117 L 180.757 34 120 34 L 59.243 34 58.049 31.117 C 54.222 21.878, 41.275 17.378, 31.500 21.890 M 194 80 L 194 90 200 90 L 206 90 206 80 L 206 70 200 70 L 194 70 194 80 M 194 120 L 194 130 200 130 L 206 130 206 120 L 206 110 200 110 L 194 110 194 120 M 194 160 L 194 170 200 170 L 206 170 206 160 L 206 150 200 150 L 194 150 194 160 " stroke="none" fill="black" fill-rule="evenodd"/>
+      <path fill-opacity="0.245" d="M 33.211 21.071 C 28.446 22.529, 22.326 29.076, 20.950 34.187 C 18.516 43.225, 22.278 52.815, 29.983 57.215 L 33.985 59.500 33.985 120 L 33.985 180.500 29.983 182.785 C 27.783 184.042, 24.749 186.934, 23.241 189.212 C 20.951 192.672, 20.500 194.436, 20.500 199.927 C 20.500 207.804, 23.036 212.672, 29.300 216.817 C 32.677 219.052, 34.464 219.500, 40 219.500 C 45.571 219.500, 47.316 219.057, 50.788 216.759 C 53.066 215.251, 55.958 212.217, 57.215 210.017 L 59.500 206.015 120 206.015 L 180.500 206.015 182.785 210.017 C 184.042 212.217, 186.934 215.251, 189.212 216.759 C 192.684 219.057, 194.429 219.500, 200 219.500 C 205.536 219.500, 207.323 219.052, 210.700 216.817 C 216.964 212.672, 219.500 207.804, 219.500 199.927 C 219.500 194.470, 219.044 192.665, 216.817 189.300 C 212.672 183.036, 207.804 180.500, 199.927 180.500 C 194.436 180.500, 192.672 180.951, 189.212 183.241 C 186.934 184.749, 184.042 187.783, 182.785 189.983 L 180.500 193.985 120 193.961 L 59.500 193.937 56.839 189.549 C 55.331 187.064, 52.409 184.152, 50.097 182.831 L 46.015 180.500 46.015 120 L 46.015 59.500 50.097 57.169 C 52.409 55.848, 55.331 52.936, 56.839 50.451 L 59.500 46.063 120 46.039 L 180.500 46.015 182.785 50.017 C 184.042 52.217, 186.934 55.251, 189.212 56.759 C 192.684 59.057, 194.429 59.500, 200 59.500 C 205.536 59.500, 207.323 59.052, 210.700 56.817 C 216.942 52.686, 219.500 47.798, 219.500 40 C 219.500 32.202, 216.942 27.314, 210.700 23.183 C 207.323 20.948, 205.536 20.500, 200 20.500 C 194.429 20.500, 192.684 20.943, 189.212 23.241 C 186.934 24.749, 184.042 27.783, 182.785 29.983 L 180.500 33.985 120 33.985 L 59.500 33.985 57.215 29.983 C 52.798 22.249, 42.208 18.317, 33.211 21.071 M 194 80 L 194 90 200 90 L 206 90 206 80 L 206 70 200 70 L 194 70 194 80 M 194 120 L 194 130 200 130 L 206 130 206 120 L 206 110 200 110 L 194 110 194 120 M 194 160 L 194 170 200 170 L 206 170 206 160 L 206 150 200 150 L 194 150 194 160 " stroke="none" fill="black" fill-rule="evenodd"/>
+      <path fill-opacity="1.000" d="M 33.637 21.465 C 24.012 24.896, 18.383 35.282, 20.961 44.854 C 22.227 49.558, 26.882 55.370, 31.148 57.577 L 34 59.051 34 120 L 34 180.949 31.148 182.423 C 21.648 187.336, 17.666 199.652, 22.535 209.067 C 25.431 214.667, 33.940 219.989, 40 219.989 C 46.161 219.989, 54.574 214.658, 57.577 208.852 L 59.051 206 120 206 L 180.949 206 182.423 208.852 C 185.426 214.658, 193.839 219.989, 200 219.989 C 206.060 219.989, 214.569 214.667, 217.465 209.067 C 223.562 197.278, 216.278 183.019, 202.875 180.504 C 195.581 179.136, 186.077 184.083, 182.423 191.148 L 180.949 194 120 194 L 59.051 194 57.615 191.250 C 55.975 188.109, 51.559 183.789, 48.250 182.087 L 46 180.930 46 119.990 L 46 59.051 48.750 57.615 C 51.891 55.975, 56.211 51.559, 57.913 48.250 L 59.070 46 120.010 46 L 180.949 46 182.423 48.852 C 187.336 58.352, 199.652 62.334, 209.067 57.465 C 214.667 54.569, 219.989 46.060, 219.989 40 C 219.989 33.940, 214.667 25.431, 209.067 22.535 C 199.652 17.666, 187.336 21.648, 182.423 31.148 L 180.949 34 120 34 L 59.051 34 57.577 31.148 C 54.454 25.109, 46.010 19.925, 39.500 20.049 C 38.400 20.071, 35.762 20.707, 33.637 21.465 M 194 80 L 194 90 200 90 L 206 90 206 80 L 206 70 200 70 L 194 70 194 80 M 194 120 L 194 130 200 130 L 206 130 206 120 L 206 110 200 110 L 194 110 194 120 M 194 160 L 194 170 200 170 L 206 170 206 160 L 206 150 200 150 L 194 150 194 160 " stroke="none" fill="black" fill-rule="evenodd"/>
+    </svg></a>
+    <a href="javascript:undoLast()" title="undo">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="white" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
+      <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
+    </svg></a>
+  <input type='file' name='img' size='58' id='uploadimage2' style="display:none;">
+  
+  <a href="javascript:openFileD()" id="imgloader2" title="open file">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-upload" viewBox="0 0 16 16">
+    <rect x="0" y="0" width="100%" height="100%" fill="#ffffff" />
+    <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"></path>
+    <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"></path>
+  </svg></a>
+  <a href="javascript:saveAs()" id="downloader" download="image.png" title="save as png file"
+  ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-download" viewBox="0 0 16 16">
+    <rect x="0" y="0" width="100%" height="100%" fill="#ffffff" /><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+    <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+  </svg></a>
+  
+  <a href="https://cancerberosgx.github.io/demos/svg-png-converter/playground/#" target="_blank">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 240 240" version="1.1">
+	<rect x="0" y="0" width="100%" height="100%" fill="#ffffff" />
+	<path fill-opacity="0.498" d="M 93.711 51.089 C 92.495 51.139, 89.324 51.777, 86.665 52.507 C 84.006 53.238, 81.543 54.123, 81.192 54.475 C 80.840 54.826, 85.262 73.876, 91.017 96.807 C 96.772 119.738, 101.403 139.992, 101.307 141.816 C 101.199 143.878, 101.822 145.822, 102.953 146.953 C 104.282 148.282, 106.203 148.751, 110.080 148.692 C 113.888 148.635, 115.926 148.074, 117.292 146.708 C 118.584 145.416, 119.028 143.952, 118.673 142.152 C 118.358 140.556, 122.299 122.889, 128.575 97.768 C 134.309 74.815, 139 55.633, 139 55.140 C 139 54.647, 136.095 53.513, 132.544 52.622 C 128.994 51.730, 125.670 51, 125.158 51 C 124.647 51, 121.150 63.364, 117.389 78.475 C 113.627 93.586, 110.264 105.623, 109.914 105.225 C 109.565 104.826, 106.720 94.150, 103.592 81.500 C 100.464 68.850, 97.459 56.813, 96.914 54.750 C 96.134 51.797, 95.453 51.019, 93.711 51.089 M 62.250 52.110 C 53.587 52.170, 44.549 52.603, 42.164 53.072 C 39.779 53.541, 35.912 55.137, 33.570 56.619 C 31.229 58.100, 28.113 61.209, 26.646 63.527 C 25.180 65.845, 23.500 70.335, 22.915 73.505 C 22.329 76.674, 22.146 81.570, 22.509 84.384 C 22.872 87.198, 24.051 91.371, 25.130 93.659 C 26.208 95.946, 28.236 98.963, 29.636 100.364 C 31.037 101.764, 34.054 103.799, 36.341 104.885 C 38.629 105.970, 44.273 107.301, 48.883 107.841 C 55.210 108.582, 57.786 109.342, 59.383 110.939 C 61.132 112.688, 61.500 114.261, 61.500 120 C 61.500 125.890, 61.155 127.290, 59.225 129.222 C 57.058 131.391, 56.116 131.515, 39.475 131.814 L 22 132.129 22 140.174 L 22 148.219 40.250 147.841 C 56.765 147.499, 58.943 147.246, 63.159 145.186 C 65.721 143.934, 68.963 141.764, 70.364 140.364 C 71.764 138.963, 73.926 135.721, 75.168 133.159 C 76.968 129.442, 77.425 126.781, 77.425 120 C 77.425 113.219, 76.968 110.558, 75.168 106.841 C 73.926 104.279, 71.764 101.037, 70.364 99.636 C 68.963 98.236, 65.946 96.201, 63.659 95.115 C 61.371 94.030, 55.727 92.699, 51.117 92.159 C 44.790 91.418, 42.214 90.658, 40.617 89.061 C 38.868 87.312, 38.500 85.739, 38.500 80 C 38.500 74.110, 38.845 72.710, 40.775 70.778 C 42.942 68.609, 43.884 68.485, 60.525 68.186 L 78 67.871 78 59.936 L 78 52 62.250 52.110 M 182.750 52.102 C 174.363 52.159, 166.150 52.533, 164.500 52.935 C 162.850 53.337, 160.150 54.376, 158.500 55.243 C 156.850 56.111, 154.312 58.099, 152.860 59.661 C 151.408 61.222, 149.269 64.398, 148.106 66.719 C 146.943 69.039, 145.314 73.764, 144.485 77.219 C 143.656 80.673, 142.722 88.450, 142.408 94.500 C 142.010 102.177, 142.289 107.984, 143.333 113.723 C 144.155 118.245, 146.017 124.545, 147.471 127.723 C 148.924 130.900, 151.325 134.782, 152.807 136.350 C 154.288 137.917, 157.418 140.530, 159.762 142.156 C 162.408 143.992, 166.768 145.687, 171.262 146.627 C 175.687 147.553, 180.240 147.883, 182.977 147.476 C 185.439 147.109, 189.039 145.994, 190.977 144.996 C 192.914 143.999, 195.688 141.904, 197.140 140.342 C 198.592 138.779, 200.731 135.602, 201.894 133.281 C 203.057 130.961, 204.692 126.236, 205.527 122.781 C 206.362 119.327, 207.329 110.987, 207.675 104.250 L 208.304 92 190.152 92 L 172 92 172 100 L 172 108 182.034 108 L 192.069 108 191.398 113.250 C 191.029 116.138, 189.851 120.877, 188.780 123.782 C 187.676 126.775, 185.771 129.759, 184.383 130.668 C 182.550 131.870, 180.543 132.129, 176.397 131.702 C 172.591 131.309, 169.784 130.310, 167.420 128.507 C 165.529 127.064, 163.128 124.212, 162.085 122.167 C 161.043 120.123, 159.632 115.618, 158.951 112.155 C 158.159 108.130, 157.911 101.649, 158.263 94.180 C 158.662 85.703, 159.406 80.926, 160.975 76.759 C 162.164 73.601, 164.106 70.338, 165.291 69.509 C 166.983 68.324, 170.722 68, 182.723 68 L 198 68 198 60 L 198 52 182.750 52.102 " stroke="none" fill="#000000" fill-rule="evenodd"/>
+	<path fill-opacity="0.055" d="M 94.525 51.099 C 93.961 51.154, 90.800 51.891, 87.500 52.738 C 84.200 53.585, 81.371 54.382, 81.213 54.509 C 81.055 54.637, 85.680 73.741, 91.491 96.964 C 99.364 128.429, 101.893 140.054, 101.417 142.593 C 100.904 145.324, 101.097 146, 102.389 146 C 103.275 146, 104 146.567, 104 147.260 C 104 148.124, 105.885 148.545, 110 148.601 C 114.391 148.661, 116 148.323, 116 147.341 C 116 146.604, 116.711 146, 117.579 146 C 118.794 146, 119.015 145.345, 118.535 143.160 C 118.109 141.221, 121.259 126.941, 128.456 98.178 C 134.255 75, 139 55.633, 139 55.140 C 139 54.647, 136.095 53.513, 132.544 52.622 C 128.994 51.730, 125.673 51, 125.165 51 C 124.657 51, 121.201 63.262, 117.484 78.250 C 113.767 93.238, 110.436 105.829, 110.083 106.230 C 109.729 106.632, 106.315 94.369, 102.495 78.980 C 98.675 63.591, 95.089 51.045, 94.525 51.099 M 63.500 52.362 C 55.800 52.286, 47.250 52.575, 44.500 53.005 C 41.750 53.434, 38.261 54.273, 36.747 54.869 C 35.234 55.465, 31.999 57.948, 29.560 60.387 C 26.689 63.258, 24.707 66.353, 23.940 69.161 C 23.288 71.548, 22.767 76.512, 22.782 80.194 C 22.796 83.876, 23.365 88.601, 24.045 90.694 C 24.726 92.787, 26.586 96.161, 28.179 98.192 C 29.773 100.223, 32.562 102.802, 34.377 103.924 C 36.273 105.096, 41.045 106.422, 45.589 107.041 C 49.940 107.633, 54.500 108.321, 55.722 108.571 C 56.945 108.820, 58.857 110.004, 59.972 111.201 C 61.523 112.865, 62 114.733, 62 119.142 C 62 122.312, 61.500 126.003, 60.890 127.343 C 60.279 128.684, 58.816 130.280, 57.640 130.891 C 56.390 131.539, 48.636 132.105, 39 132.251 L 22.500 132.500 22.500 140 L 22.500 147.500 39 147.477 C 49.982 147.462, 57.120 146.992, 60.344 146.071 C 63.642 145.129, 66.729 143.186, 70.018 139.983 C 73.329 136.758, 75.225 133.897, 76.046 130.889 C 76.706 128.475, 77.233 123.488, 77.218 119.806 C 77.204 116.124, 76.635 111.399, 75.955 109.306 C 75.274 107.213, 73.414 103.839, 71.821 101.808 C 70.227 99.777, 67.438 97.198, 65.623 96.076 C 63.727 94.904, 58.955 93.578, 54.411 92.959 C 50.060 92.367, 45.500 91.679, 44.278 91.429 C 43.055 91.180, 41.143 89.996, 40.028 88.799 C 38.477 87.135, 38 85.267, 38 80.858 C 38 77.688, 38.500 73.997, 39.110 72.657 C 39.721 71.316, 41.184 69.720, 42.360 69.109 C 43.610 68.461, 51.364 67.895, 61 67.749 L 77.500 67.500 77.500 60 L 77.500 52.500 63.500 52.362 M 184 52.354 C 176.575 52.274, 168.427 52.565, 165.894 53.001 C 163.361 53.436, 159.401 54.984, 157.094 56.441 C 154.787 57.897, 151.584 61.163, 149.976 63.699 C 148.368 66.235, 146.344 70.746, 145.478 73.724 C 144.612 76.702, 143.510 83.675, 143.028 89.220 C 142.507 95.224, 142.530 102.980, 143.087 108.400 C 143.601 113.405, 144.753 119.750, 145.647 122.500 C 146.542 125.250, 148.369 129.394, 149.707 131.708 C 151.046 134.023, 153.774 137.351, 155.770 139.103 C 157.766 140.855, 161.392 143.170, 163.828 144.248 C 166.264 145.326, 170.702 146.539, 173.690 146.945 C 176.678 147.350, 181.300 147.338, 183.961 146.917 C 186.621 146.497, 190.639 144.990, 192.889 143.570 C 195.139 142.150, 198.170 139.188, 199.626 136.989 C 201.081 134.790, 203.127 130.406, 204.172 127.246 C 205.234 124.035, 206.551 115.669, 207.157 108.285 C 207.753 101.017, 207.972 94.369, 207.643 93.512 C 207.127 92.168, 204.661 91.990, 189.772 92.226 L 172.500 92.500 172.500 100 L 172.500 107.500 182.358 107.788 L 192.216 108.075 191.543 112.788 C 191.173 115.379, 190.451 119.120, 189.938 121.099 C 189.424 123.078, 187.967 126.228, 186.699 128.099 C 184.468 131.391, 184.182 131.500, 177.789 131.500 C 171.932 131.500, 170.749 131.155, 167.342 128.449 C 165.229 126.771, 162.375 123.171, 161 120.449 C 158.642 115.781, 158.501 114.593, 158.512 99.500 C 158.519 89.711, 159.004 81.909, 159.760 79.401 C 160.440 77.147, 162.026 73.772, 163.285 71.901 L 165.575 68.500 181.537 68 L 197.500 67.500 197.500 60 L 197.500 52.500 184 52.354 " stroke="none" fill="#000000" fill-rule="evenodd"/>
+	<path fill-opacity="0.983" d="M 94.518 51.099 C 93.958 51.154, 90.800 51.891, 87.500 52.738 C 84.200 53.585, 81.371 54.382, 81.213 54.509 C 81.055 54.637, 85.700 73.811, 91.535 97.120 C 97.452 120.757, 101.962 140.757, 101.732 142.343 C 101.475 144.114, 101.824 145.379, 102.660 145.700 C 103.397 145.983, 104 146.769, 104 147.447 C 104 148.312, 105.709 148.600, 109.726 148.413 C 112.875 148.266, 115.612 147.663, 115.809 147.073 C 116.006 146.483, 116.809 146, 117.595 146 C 118.684 146, 118.883 145.108, 118.434 142.250 C 117.990 139.426, 120.313 128.623, 127.843 98.500 C 133.342 76.500, 137.989 57.638, 138.170 56.584 C 138.446 54.982, 137.396 54.387, 131.742 52.943 C 128.025 51.993, 124.826 51.505, 124.633 51.858 C 124.440 52.211, 121.192 64.976, 117.416 80.225 C 113.639 95.473, 110.260 107.623, 109.907 107.225 C 109.554 106.826, 106.176 94.013, 102.401 78.750 C 98.626 63.487, 95.079 51.045, 94.518 51.099 M 59.250 53.022 C 44.225 53.041, 40.882 53.324, 37.478 54.871 C 35.266 55.876, 32.069 58.084, 30.375 59.779 C 28.681 61.473, 26.455 64.578, 25.428 66.680 C 24.212 69.167, 23.426 73.406, 23.175 78.829 C 22.892 84.913, 23.232 88.318, 24.434 91.466 C 25.339 93.836, 27.584 97.325, 29.424 99.219 C 31.263 101.112, 34.475 103.472, 36.561 104.462 C 38.647 105.452, 43.918 106.660, 48.274 107.148 C 52.630 107.635, 57.041 108.487, 58.074 109.040 C 59.108 109.593, 60.462 110.995, 61.083 112.155 C 61.704 113.315, 62.236 116.801, 62.265 119.901 C 62.294 123.001, 61.786 126.531, 61.136 127.746 C 60.486 128.960, 58.952 130.505, 57.727 131.178 C 56.334 131.943, 49.418 132.557, 39.250 132.818 L 23 133.235 23 140.117 L 23 147 40.750 146.978 C 55.775 146.959, 59.118 146.676, 62.522 145.129 C 64.734 144.124, 67.931 141.916, 69.625 140.221 C 71.319 138.527, 73.545 135.422, 74.572 133.320 C 75.788 130.833, 76.574 126.594, 76.825 121.171 C 77.108 115.087, 76.768 111.682, 75.566 108.534 C 74.661 106.164, 72.416 102.675, 70.576 100.781 C 68.737 98.888, 65.525 96.528, 63.439 95.538 C 61.353 94.548, 56.082 93.340, 51.726 92.852 C 47.370 92.365, 42.959 91.513, 41.926 90.960 C 40.892 90.407, 39.538 89.005, 38.917 87.845 C 38.296 86.685, 37.764 83.199, 37.735 80.099 C 37.706 76.999, 38.214 73.469, 38.864 72.254 C 39.514 71.040, 41.048 69.495, 42.273 68.822 C 43.666 68.057, 50.582 67.443, 60.750 67.182 L 77 66.765 77 59.883 L 77 53 59.250 53.022 M 180.750 53.022 C 167.193 53.040, 163.837 53.346, 160.500 54.866 C 158.300 55.868, 154.867 58.499, 152.871 60.713 C 150.875 62.927, 148.300 67.256, 147.149 70.333 C 145.997 73.409, 144.596 78.756, 144.035 82.213 C 143.474 85.671, 143.018 93.675, 143.022 100 C 143.026 106.626, 143.656 114.157, 144.508 117.769 C 145.321 121.217, 147.114 126.265, 148.493 128.986 C 149.872 131.707, 152.539 135.473, 154.421 137.355 C 156.303 139.236, 160.388 142.021, 163.499 143.543 C 167.593 145.547, 171.206 146.442, 176.587 146.787 C 182.075 147.139, 185.173 146.824, 188.431 145.580 C 190.870 144.648, 194.606 141.982, 196.786 139.616 C 198.955 137.263, 201.678 132.803, 202.837 129.705 C 203.996 126.608, 205.404 121.244, 205.965 117.787 C 206.526 114.329, 206.988 107.338, 206.992 102.250 L 207 93 190 93 L 173 93 173 100 L 173 107 182.500 107 L 192 107 192 110.790 C 192 112.874, 191.328 117.161, 190.506 120.316 C 189.684 123.471, 188.288 127.157, 187.403 128.508 C 186.518 129.858, 184.313 131.372, 182.502 131.872 C 180.577 132.403, 177.267 132.418, 174.533 131.907 C 171.960 131.427, 168.480 130.054, 166.800 128.857 C 165.119 127.660, 162.693 124.388, 161.410 121.585 C 160.053 118.621, 158.668 112.892, 158.100 107.891 C 157.495 102.565, 157.464 95.718, 158.019 89.897 C 158.512 84.729, 159.458 78.925, 160.123 77 C 160.787 75.075, 161.978 72.496, 162.768 71.269 C 163.559 70.041, 165.847 68.581, 167.853 68.024 C 169.859 67.467, 177.238 67.009, 184.250 67.006 L 197 67 197 60 L 197 53 180.750 53.022 " stroke="none" fill="#000000" fill-rule="evenodd"/>
+	<path fill-opacity="1.000" d="M 131.742 52.943 C 128.025 51.993, 124.828 51.505, 124.637 51.858 C 124.446 52.211, 121.238 64.875, 117.508 80 C 113.778 95.125, 110.439 107.826, 110.088 108.225 C 109.738 108.623, 106.365 96.473, 102.593 81.225 C 98.821 65.976, 95.392 53.120, 94.972 52.655 C 94.553 52.190, 91.642 52.384, 88.504 53.087 C 85.365 53.789, 82.598 54.884, 82.354 55.520 C 82.110 56.156, 86.574 75.316, 92.274 98.098 C 99.656 127.598, 102.432 140.294, 101.919 142.210 C 101.346 144.353, 101.650 145.196, 103.412 146.350 C 104.629 147.148, 107.254 147.800, 109.246 147.800 C 111.238 147.800, 113.298 148.066, 113.824 148.391 C 114.351 148.717, 115.477 147.921, 116.327 146.623 C 117.178 145.325, 117.854 142.966, 117.830 141.382 C 117.805 139.797, 122.298 120.500, 127.813 98.500 C 133.328 76.500, 137.989 57.638, 138.170 56.584 C 138.446 54.982, 137.396 54.387, 131.742 52.943 M 60.250 53.086 C 51.037 53.133, 42.372 53.515, 40.994 53.934 C 39.615 54.354, 37.073 55.428, 35.344 56.322 C 33.615 57.216, 30.616 59.799, 28.679 62.062 C 26.540 64.561, 24.684 68.148, 23.952 71.199 C 23.289 73.962, 22.962 79.210, 23.224 82.861 C 23.505 86.778, 24.558 91.179, 25.791 93.595 C 26.941 95.847, 29.534 99.139, 31.552 100.912 C 33.571 102.684, 36.410 104.590, 37.861 105.146 C 39.312 105.703, 44.296 106.554, 48.935 107.037 C 55.991 107.772, 57.789 108.334, 59.935 110.480 C 62.197 112.742, 62.500 113.868, 62.500 120 C 62.500 126.266, 62.226 127.229, 59.729 129.727 L 56.958 132.500 39.979 132.834 L 23 133.169 23 140.164 L 23 147.159 41.250 146.827 C 57.807 146.526, 59.884 146.290, 63.643 144.282 C 65.921 143.065, 69.373 140.214, 71.314 137.946 C 73.460 135.440, 75.315 131.855, 76.048 128.801 C 76.711 126.038, 77.038 120.790, 76.776 117.139 C 76.495 113.222, 75.442 108.821, 74.209 106.405 C 73.059 104.153, 70.466 100.861, 68.448 99.088 C 66.429 97.316, 63.590 95.410, 62.139 94.854 C 60.688 94.297, 55.704 93.446, 51.065 92.963 C 44.009 92.228, 42.211 91.666, 40.065 89.520 C 37.803 87.258, 37.500 86.132, 37.500 80 C 37.500 73.734, 37.774 72.771, 40.271 70.273 L 43.042 67.500 60.021 67.166 L 77 66.831 77 59.916 L 77 53 60.250 53.086 M 181.750 53.136 C 173.363 53.211, 165.408 53.478, 164.073 53.729 C 162.739 53.980, 160.489 54.901, 159.073 55.775 C 157.658 56.649, 155.221 58.520, 153.658 59.932 C 152.096 61.344, 149.996 64.094, 148.994 66.043 C 147.991 67.992, 146.432 72.267, 145.529 75.543 C 144.627 78.819, 143.630 87.350, 143.315 94.500 C 142.875 104.506, 143.124 109.340, 144.399 115.492 C 145.310 119.887, 147.028 125.493, 148.217 127.948 C 149.406 130.404, 151.943 134.145, 153.856 136.262 C 155.768 138.379, 159.170 141.160, 161.416 142.443 C 163.662 143.726, 167.918 145.335, 170.874 146.017 C 174.029 146.746, 178.680 147.005, 182.138 146.643 C 185.378 146.305, 189.259 145.265, 190.764 144.332 C 192.269 143.399, 194.779 141.480, 196.342 140.068 C 197.904 138.656, 200.004 135.906, 201.006 133.957 C 202.009 132.008, 203.566 127.733, 204.466 124.457 C 205.366 121.181, 206.369 112.763, 206.695 105.750 L 207.287 93 190.144 93 L 173 93 173 100 L 173 107 183.045 107 L 193.091 107 192.485 110.750 C 192.152 112.813, 191.396 116.750, 190.806 119.500 C 190.215 122.250, 189.108 125.733, 188.345 127.241 C 187.582 128.748, 185.835 130.717, 184.462 131.617 C 182.547 132.872, 180.767 133.094, 176.826 132.571 C 174 132.196, 170.461 131.256, 168.963 130.481 C 167.464 129.706, 165.071 127.684, 163.644 125.988 C 162.217 124.293, 160.337 120.564, 159.465 117.703 C 158.594 114.841, 157.627 108.450, 157.317 103.500 C 157.006 98.550, 157.254 91.350, 157.866 87.500 C 158.479 83.650, 159.478 78.735, 160.085 76.579 C 160.692 74.422, 162.462 71.385, 164.017 69.829 L 166.846 67 181.923 67 L 197 67 197 60 L 197 53 181.750 53.136 " stroke="none" fill="#000000" fill-rule="evenodd"/>
+  </svg></a>
+  <a href="javascript:clearAll()" title="clear all">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="white" viewBox="0 0 16 16">
+    <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
+    </svg></a>
+  </div>
+  </div>
+  <div id="text" style="display: inline-block;vertical-align: top;padding:20px;">
+  <canvas id="iconCanvas" width="240" height="240"></canvas><br>preview: <canvas id="preview" width="24" height="24"></canvas>
+  <br>
+  grid: <select id="gridsize" onchange="clearAll()">
+      <option value="24" selected>24</option>
+      <option value="32">32</option>/option>
+    </select><br>
+  lineWidth: <select id="lineWidth">
+      <option value="0.5">0.5</option>
+      <option value="1">1</option>
+      <option value="1.2">1.2</option>
+      <option value="1.5" selected>1.5</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="5">5</option>
+      <option value="8">8</option>
+    </select>
+     &nbsp;radius: <select id="radius">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+    </select><br>
+   lineCap: <select id="lineCap">
+      <option value="butt">butt</option>
+      <option value="round">round</option>
+      <option value="square">square</option>
+    </select><br>
+    lineJoin: <select id="lineJoin">
+      <option value="miter">miter</option>
+      <option value="round">round</option>
+      <option value="bevel">bevel</option>
+    </select><br>
+    lineDash: <select id="lineDash">
+      <option value="[]">none</option>
+      <option value="[10]">10</option>
+      <option value="[20]">20</option>
+      <option value="[25]">25</option>
+      <option value="[30]">30</option>
+    </select><br>
+    <input type="checkbox" id="mode" onclick="killCP()"><label for="mode"> quad</label><br>
+    <input type="checkbox" id="dot" onclick="killCP()"><label for="dot"> dot mode</label><br>
+    <input type="checkbox" id="fill""><label for="fill"> fill</label>
+  <br>
+  <input type="color" id="picker" value="#000000">
+  <br>
+  <textarea  id="text1" name="text1" rows="4" cols="32" wrap="soft"></textarea>
+  <br>
+  </div>
+</div>
+  
+<script>
+let UNDO = [], BUFF = []
+window.onload = function () {
+  document.getElementById("gridsize").addEventListener("change", updateGrid, true)
+  document.getElementById("uploadimage2").addEventListener("change", drawFileD, true)
+  updateGrid()
+}
+
+function updateGrid () {
+  let gs = document.getElementById("gridsize").value
+  gridsize = gs, cellsize = W/gridsize
+  frameVisible()
+}
+
+function killCP () {
+  if (i > 0 && document.getElementById("mode").checked) {
+    i = 1
+  }
+}
+let icon = document.getElementById('iconCanvas')
+let ictx = icon.getContext('2d')
+ictx.fillStyle = '#ffffff'
+ictx.strokeStyle = '#000000'
+ictx.fillRect(0, 0, icon.width, icon.height)
+let canvas = document.getElementById('myCanvas')
+let ctx = canvas.getContext('2d')
+ctx.fillStyle = '#ffffff'
+ctx.lineWidth = 4
+ctx.fillRect(0, 0, canvas.width, canvas.height)
+BUFF.push("ctx.fillStyle = '#ffffff'\n\
+ctx.lineWidth = 4\n")
+let message = ''
+let cps = []
+let W = canvas.width, H = W
+let gridsize = 5, cellsize = W/gridsize
+let i = 0
+let code = [], cpx, cpy
+let CELLSIZE = 0
+let GRIDSIZE = 1
+let ITEM = 0
+
+function undoLast () {
+  closePath()
+  if (ITEM < 1) 
+    return
+  let index = code.indexOf("  //"+ITEM)
+  code = code.slice(0, index)
+  ITEM -= 1
+  closePath()
+  showPoints()
+  UNDO.pop()
+  let u = UNDO.join("\n")
+  updateGrid()
+  //console.log("let canvas = document.getElementById('myCanvas')\nlet ctx = canvas.getContext('2d')\n"+u)
+  eval("let canvas = document.getElementById('myCanvas')\nlet ctx = canvas.getContext('2d')\n"+u)
+  drawD()
+}
+
+function clearAll () {
+  UNDO = []
+  BUFF = []
+  code = []
+  i = 0
+  ctx.fillStyle = 'white'
+  ctx.fillRect(0,0,canvas.width,canvas.height)
+  frameVisible()
+  document.getElementById("text1").innerHTML = ""
+  ITEM = 0
+}
+
+function closePath () {
+  if (i === 0)
+    return
+  let cap = "'"+document.getElementById("lineCap").value+"'"
+  let join = "'"+document.getElementById("lineJoin").value+"'"
+  let dash = document.getElementById("lineDash").value
+  let lw = +document.getElementById("lineWidth").value * 10
+  let fill = document.getElementById("fill").checked
+  let color = document.getElementById("picker").value
+  code.push("  ictx.lineWidth="+lw+"\n")
+  code.push("  ictx.lineCap = "+cap+"\n")
+  code.push("  ictx.lineJoin = "+join+"\n")
+  code.push("  ictx.setLineDash("+dash+")\n") 
+  code.push("  ictx.strokeStyle='"+color+"'\n")
+  code.push("  ictx.fillStyle = ictx.strokeStyle\n")
+  if (fill)
+    code.push("  ictx.fill()\n")
+  else  
+    code.push("  ictx.stroke()\n")
+  code.push("  ictx.fillStyle = \"#ffffff\"\n")
+  ctx.globalAlpha = 1
+  ctx.strokeStyle = "#ff4444"
+  ctx.stroke()
+
+  BUFF.push(
+  "ctx.globalAlpha = 1\n\
+  ctx.strokeStyle = '#ff4444'\n\
+  ctx.stroke()")
+  UNDO.push(BUFF.join("\n"))
+  BUFF = []
+  i = 0
+}
+
+function drawD () {
+  closePath()
+  showPoints()
+  let text = document.getElementById("text1").value
+  //console.log(text)
+  eval(text)
+  let preview = document.getElementById('preview')
+  let ctxpre = preview.getContext('2d')
+  let canvas = document.getElementById('iconCanvas')
+  let ctx = canvas.getContext('2d')
+  ctxpre.drawImage(canvas,0,0,preview.width,preview.height)
+}
+
+canvas.addEventListener('mousedown', function(evt) {
+  let mode = document.getElementById("mode").checked
+  let dot = document.getElementById("dot").checked
+  let FILL = document.getElementById("fill").checked
+  let color = document.getElementById("picker").value
+  let r = document.getElementById("radius").value*10
+  let dash = document.getElementById("lineDash").value
+  let mousePos = getMousePos(canvas, evt)
+  let b = 10
+  if (cellsize <= 16)
+    b = 6
+  ctx.fillStyle = '#000000'
+  ctx.strokeStyle = '#000000'
+  BUFF.push("ctx.fillStyle = '#000000'\n")
+  if (dot) {
+     i = -1
+    ITEM++
+    code.push("  //"+ITEM)
+    let lw = document.getElementById("lineWidth").value*10
+    ctx.lineWidth = 2
+    ctx.setLineDash([])
+    code.push("  ictx.setLineDash("+dash+")")
+    code.push("  ictx.fillStyle = '"+color+"'")
+    code.push("  ictx.strokeStyle = '"+color+"'")
+    code.push("  ictx.lineWidth = "+lw)
+    code.push("  ictx.beginPath()")
+    code.push("  ictx.arc(x+"+Math.round(mousePos.x/cellsize)+"*W/"+gridsize+", y+"+Math.round(mousePos.y/cellsize)+"*H/"+gridsize+","+r+",0,Math.PI*2)")
+    code.push("  ictx.closePath()")
+    if (FILL)
+      code.push("  ictx.fill()")
+    else
+      code.push("  ictx.stroke()")
+    code.push("  ictx.fillStyle = '#ffffff'")
+    ctx.fillStyle = '#000000'
+    ctx.fillStyle = color
+    ctx.strokeStyle = color
+    ctx.lineWidth = 4
+    ctx.beginPath()
+    ctx.arc(Math.round(mousePos.x/cellsize)*W/gridsize, Math.round(mousePos.y/cellsize)*W/gridsize, r*2, 0,Math.PI*2)  
+    if (FILL)
+      ctx.fill()
+    else
+      ctx.stroke()
+    if (FILL)
+      UNDO.push("ctx.lineWidth=2\nctx.fillStyle='"+color+"'\nctx.beginPath()\n\
+      //ctx.moveTo("+Math.round(mousePos.x/cellsize)*W/gridsize+","+Math.round(mousePos.y/cellsize)*W/gridsize+")\n\
+      ctx.arc("+Math.round(mousePos.x/cellsize)*W/gridsize+","+Math.round(mousePos.y/cellsize)*W/gridsize+","+r*2+",0,"+Math.PI*2+")\n\
+      ctx.fill()")
+    else
+        UNDO.push("ctx.setLineDash([])\nctx.lineWidth=4\nctx.strokeStyle='"+color+"'\nctx.beginPath()\n\
+      //ctx.moveTo("+Math.round(mousePos.x/cellsize)*W/gridsize+","+Math.round(mousePos.y/cellsize)*W/gridsize+")\n\
+      ctx.arc("+Math.round(mousePos.x/cellsize)*W/gridsize+","+Math.round(mousePos.y/cellsize)*W/gridsize+","+r*2+",0,"+Math.PI*2+")\n\
+      ctx.stroke()")
+  } else {
+    if (i === 0) {
+      ITEM++
+      code.push("  //"+ITEM)
+      code.push("  ictx.beginPath()")
+      code.push("  ictx.moveTo(x+"+Math.round(mousePos.x/cellsize)+"*W/"+gridsize+", y+"+Math.round(mousePos.y/cellsize)+"*H/"+gridsize+")")
+      ctx.lineWidth = 2
+      ctx.setLineDash([])
+      ctx.beginPath()
+      ctx.moveTo(Math.round(mousePos.x/cellsize)*W/gridsize, Math.round(mousePos.y/cellsize)*W/gridsize)
+      ctx.fillRect(Math.round(mousePos.x/cellsize)*W/gridsize-4, Math.round(mousePos.y/cellsize)*W/gridsize-4, b, b)
+      BUFF.push("ctx.beginPath()\n")
+      BUFF.push("ctx.moveTo("+Math.round(mousePos.x/cellsize)*W/gridsize+","+Math.round(mousePos.y/cellsize)*W/gridsize+")")
+      BUFF.push("ctx.fillRect("+(Math.round(mousePos.x/cellsize)*W/gridsize-4)+","+(Math.round(mousePos.y/cellsize)*W/gridsize-4)+","+b+","+b+")")
+    } else {
+      if (!mode) {
+        code.push("  ictx.lineTo(x+"+Math.round(mousePos.x/cellsize)+"*W/"+gridsize+", y+"+Math.round(mousePos.y/cellsize)+"*H/"+gridsize+")")
+        ctx.lineTo(Math.round(mousePos.x/cellsize)*W/gridsize, Math.round(mousePos.y/cellsize)*W/gridsize)
+        ctx.strokeStyle = "#ff4444"
+        ctx.lineWidth = 4
+        ctx.setLineDash([4, 4])
+        ctx.stroke()
+        ctx.setLineDash([])
+        ctx.fillStyle = "black"
+        ctx.fillRect(Math.round(mousePos.x/cellsize)*W/gridsize-b/2, Math.round(mousePos.y/cellsize)*W/gridsize-b/2, b, b)
+        
+        BUFF.push("ctx.lineTo("+ Math.round(mousePos.x/cellsize)*W/gridsize +","+Math.round(mousePos.y/cellsize)*W/gridsize+")\n\
+        ctx.strokeStyle = '#ff4444'\n\
+        ctx.lineWidth = 4\n\
+        ctx.setLineDash([4, 4])\n\
+        ctx.stroke()\n\
+        ctx.fillStyle = 'black'\n\
+        ctx.fillRect("+(Math.round(mousePos.x/cellsize)*W/gridsize-b/2)+","+(Math.round(mousePos.y/cellsize)*W/gridsize-b/2)+","+b+","+b+")")
+      
+      } else {
+        if (i % 2 === 1) { // control point
+          cpx = Math.round(mousePos.x/cellsize)*W/gridsize
+          cpy = Math.round(mousePos.y/cellsize)*W/gridsize
+          code.push("  cpx = x+"+Math.round(mousePos.x/cellsize)+"*W/"+gridsize)
+          code.push("  cpy = y+"+Math.round(mousePos.y/cellsize)+"*H/"+gridsize)
+          ctx.fillStyle = "#55dd55"
+          ctx.fillRect(Math.round(mousePos.x/cellsize)*W/gridsize-b/2, Math.round(mousePos.y/cellsize)*W/gridsize-b/2, b, b)        
+          ctx.setLineDash([4, 4])
+          ctx.strokeStyle = "#ff4444"
+        } else {
+          code.push("  ictx.quadraticCurveTo(cpx, cpy, x+"+Math.round(mousePos.x/cellsize)+"*W/"+gridsize+", y+"+Math.round(mousePos.y/cellsize)+"*H/"+gridsize+")")
+          ctx.quadraticCurveTo(cpx, cpy, Math.round(mousePos.x/cellsize)*W/gridsize, Math.round(mousePos.y/cellsize)*W/gridsize)
+          ctx.strokeStyle = '#ff4444'
+          ctx.lineWidth = 4
+          ctx.setLineDash([4, 4])
+          ctx.stroke()
+          ctx.fillStyle = 'black'
+          ctx.fillRect(Math.round(mousePos.x/cellsize)*W/gridsize-b/2, Math.round(mousePos.y/cellsize)*W/gridsize-b/2, b, b)
+
+          BUFF.push("ctx.quadraticCurveTo("+cpx+","+cpy+","+Math.round(mousePos.x/cellsize)*W/gridsize+","+Math.round(mousePos.y/cellsize)*W/gridsize+")\n\
+          ctx.strokeStyle = '#ff4444'\n\
+          ctx.lineWidth = 4\n\
+          ctx.setLineDash([4, 4])\n\
+          ctx.stroke()\n\
+          ctx.fillStyle = 'black'\n\
+          ctx.fillRect("+(Math.round(mousePos.x/cellsize)*W/gridsize-b/2)+","+(Math.round(mousePos.y/cellsize)*W/gridsize-b/2)+","+ b+","+ b+")")
+        }
+      }
+    }
+  }
+  i++
+}, false)
+
+function copy () {
+  closePath()
+  showPoints()
+  let copyText = document.getElementById("text1")
+  navigator.clipboard.writeText(copyText.value)
+}
+
+function showPoints () {
+  let cap = "'"+document.getElementById("lineCap").value+"'"
+  let join = "'"+document.getElementById("lineJoin").value+"'"
+  let dash = document.getElementById("lineDash").value
+  
+  let header = "\
+  let icon = document.getElementById(\"iconCanvas\")\n\
+  let ictx = icon.getContext(\"2d\")\n\
+  let H = W = 240, x = 0, y = 0, cpx, cpy, points = []\n\
+  ictx.lineWidth = 1.5\n\
+  ictx.strokeStyle = '#000000'\n\
+  ictx.fillRect(0,0,icon.width,icon.height)\n"
+  header += "ictx.lineCap = "+cap+"\n"
+  header += "ictx.lineJoin = "+join+"\n"
+  header += "ictx.setLineDash("+dash+")\n"
+  document.getElementById("text1").value = header
+  document.getElementById("text1").value += code.join("\n")
+  document.getElementById("text1").value += "\nH = 500, W = 500"
+}
+
+function getMousePos(canvas, evt) {
+  let rect = canvas.getBoundingClientRect()
+  return {
+    x: Math.floor(evt.clientX - rect.left),
+    y: Math.floor(evt.clientY - rect.top)
+  };
+}
+
+function frameVisible () {
+  let canvas = document.getElementById('myCanvas')
+  let ctx = canvas.getContext('2d')
+  ctx.fillStyle = "#ffffff"
+  ctx.strokeStyle = "#d8d8d8"
+  ctx.lineWidth = 3
+  ctx.setLineDash([])
+  ctx.fillRect(0,0,W,H)
+  let i = 0, x = 0, y = 0
+  for (; i < gridsize; i++) {
+    if (i % 2 === 0)
+      ctx.strokeStyle = "#c0c0c0"
+    else
+      ctx.strokeStyle = "#d8d8d8"
+    ctx.beginPath()
+    ctx.moveTo(x,y)
+    ctx.lineTo(x+canvas.width, y)
+    ctx.stroke()
+    y += cellsize
+  }
+  i = 0, x = 0, y = 0
+  for (; i < gridsize; i++) {
+    if (i % 2 === 0)
+      ctx.strokeStyle = "#c0c0c0"
+    else
+      ctx.strokeStyle = "#d8d8d8"
+    ctx.beginPath()
+    ctx.moveTo(x,y)
+    ctx.lineTo(x, y+canvas.height)
+    ctx.stroke()
+    x += cellsize
+  }
+  ctx.lineWidth = 4
+}
+
+function writeMessage (canvas, message) {
+  var ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+
+function openFile () {
+  let canvas = document.getElementById('myCanvas')
+  let ctx = canvas.getContext('2d')
+  document.getElementById('uploadimage').click();
+}
+
+function resizeCanvas () {
+  let ocanvas = document.createElement('CANVAS')
+  let octx = ocanvas.getContext('2d')
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  ocanvas.height = canvas.height
+  ocanvas.width = canvas.width
+  let ar = canvas.width/canvas.height
+  if (canvas.width > 800) {
+    let W = canvas.width
+    canvas.width = 800
+    canvas.height = Math.floor(canvas.height * 800/W)
+  }
+  octx.clearRect(0,0,ocanvas.width,ocanvas.height)
+}
+
+// saveAs stuff
+
+function saveAs () {
+  document.getElementById("downloader").download = "image.png";
+  document.getElementById("downloader").href = document.getElementById("iconCanvas").toDataURL("image/png").replace(/^data:image\/[^;]/, 'data:application/octet-stream');
+}
+
+function openFileD () {
+  document.getElementById('uploadimage2').click();
+}
+
+function drawFileD () {
+  let canvas = document.getElementById('myCanvas')
+  let ctx = canvas.getContext('2d')
+  
+  let IMG = new Image()
+  let f = document.getElementById("uploadimage2").files[0]
+  let url = window.URL || window.webkitURL
+  let src = url.createObjectURL(f)
+  let timestamp = new Date().getTime()
+  IMG.src = src
+  ctx.globalAlpha = 1
+  ctx.globalCompositeOperation = "source-over"
+  IMG.onload = function () {
+  ctx.globalAlpha = 0.33
+  ctx.drawImage(IMG, 0, 0, canvas.width, canvas.height)
+   // resizeCanvas()
+    url.revokeObjectURL(src);
+    src  += timestamp
+  }
+  document.getElementById("uploadimage2").value = ""
+}
+
+</script>
+  </body>
+</html>
