@@ -18,8 +18,6 @@ function testSquares () {
  // ctx.moveTo(20,20)
  for (;i < 400;i++)
   ctx.rect(Math.random()*W,Math.random()*W,40,40)
-  
- // ctx.closePath()
   ctx.fill()
 }
 
@@ -43,6 +41,7 @@ function initOC () {
     let LINETO = false
     CELLSIZE = canvas.width/GRIDSIZE
     let dmode = document.getElementById("dmode").value
+    let fss = document.getElementById("fillstroke").value
     let mousePos = getMousePos(canvas, evt);
     ctx.fillStyle = '#000000'
     if (INDEX === 0 || dmode === "square") {
@@ -51,6 +50,8 @@ function initOC () {
       code.push("  P = 0")
       code.push("  if(document.getElementById('grungy').checked)")
       code.push("    P = 37")
+      if (fss === "stipple")
+        code.push("  resctx.save()")
       code.push("  resctx.beginPath()")
       if (dmode != "square") {
         code.push("  resctx.moveTo(x+"+Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE+"+pet(P)"+", y+"+Math.round(mousePos.y/CELLSIZE)+"*H/"+GRIDSIZE+"+pet(P)"+")")
@@ -79,7 +80,6 @@ function initOC () {
         offdctx.strokeRect(rx, ry, CELLSIZE, CELLSIZE)
         LINETO = false
         ctx.drawImage(ocd,0,0,canvas.width,canvas.height)
-       // code.push("  resctx.beginPath()")
         rx = Math.floor(rx/CELLSIZE)
         ry = Math.floor(ry/CELLSIZE)
         lastpoints.push(lastx,lasty)
@@ -128,12 +128,13 @@ function initOC () {
           offdctx.stroke()
           LINETO = false
           ctx.drawImage(ocd,0,0,canvas.width,canvas.height)
+          if (fss === "stipple")
+            code.push("  resctx.save()")
           code.push("  resctx.beginPath()")
           code.push("  cpx = x+"+Math.round(lastx/CELLSIZE)+"*W/"+GRIDSIZE+"+pet(P)")
           code.push("  cpy = y+"+Math.round(lasty/CELLSIZE)+"*H/"+GRIDSIZE+"+pet(P)")
           code.push("  resctx.arc(cpx, cpy, ("+radius/CELLSIZE+"*W/"+GRIDSIZE+"),0, Math.PI*2)")
-         // if fill
-            code.push("  resctx.closePath()")
+          code.push("  resctx.closePath()")
           lastpoints.push(lastx,lasty)
           closePath()
           INDEX = -1
@@ -163,7 +164,7 @@ function initOC () {
           ctx.strokeStyle = "#ff4444"
         } else 
         if (dmode !== "square") {
-          code.push("  resctx.quadraticCurveTo(cpx+pet(P), cpy+pet(P), x+"+Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE+", y+"+Math.round(mousePos.y/CELLSIZE)+"*H/"+GRIDSIZE+")")
+          code.push("  resctx.quadraticCurveTo(cpx+pet(P), cpy+pet(P), x+"+Math.round(mousePos.x/CELLSIZE)+"*W/"+GRIDSIZE+"+pet(P), y+"+Math.round(mousePos.y/CELLSIZE)+"*H/"+GRIDSIZE+"+pet(P))")
           ctx.quadraticCurveTo(cpx, cpy, Math.round(mousePos.x/CELLSIZE)*W/GRIDSIZE, Math.round(mousePos.y/CELLSIZE)*W/GRIDSIZE)
           ctx.strokeStyle = "#ff4444"
           ctx.lineWidth = 4
@@ -182,7 +183,6 @@ function initOC () {
     lastpoints.push(lastx,lasty)
     INDEX++
   }, false)
-
 }
 
 function clearAll () {
@@ -220,30 +220,56 @@ function closePathIf() {
     closePath()
 }
 
+function stippleRect (ctx,x,y,w,h,color) {
+  let n = 1+document.getElementById('number').value/5
+  let r = 0.5 + document.getElementById('featuresize').value/20
+  ctx.fillStyle = getselectedcolor()
+    if (color)
+        ctx.fillStyle = color
+  let i = 0
+  for (; i < n; i++) {
+    ctx.beginPath()
+    ctx.arc(x+w*Math.random(),y+h*Math.random(),r,0,Math.PI*2)
+    ctx.closePath()
+    ctx.fill()
+  }
+}
+
 function closePath () {
   let canvas = document.getElementById('myDCanvas')
   let ctx = canvas.getContext('2d')
-  let FILL = false, STROKE = false
+  let FILL = false, STROKE = false, STIPPLE = false
   let LW = document.getElementById('lwg').value*2
   let fs = document.getElementById("fillstroke").value
   let dmode = document.getElementById("dmode").value
- 
   if (fs === "fill") 
     FILL = true
+  else
+  if (fs === "stipple")
+    STIPPLE = true
   else
     STROKE = true
   if (INDEX === 0)
     return  
   ITEMS.push(lastpoints)
   lastpoints = []
-  if (document.getElementById("gradient").checked)
-    code.push("  if ("+FILL+") {\n    resctx.fillStyle = randomGradientPal()\n  n += randomPick([1,2])\n    resctx.fill()\n}")
-  else
-    code.push("  if ("+FILL+") {\n    resctx.fillStyle = getselectedcolor()/*colors[n%colors.length]*/\n  n += randomPick([1,2])\n    resctx.fill()\n}")
-  code.push("  if ("+STROKE+") {\n  resctx.lineWidth = "+LW+"\n  resctx.strokeStyle =  getselectedcolor()\n    resctx.stroke()\n  }")
+  if (STIPPLE) {
+  
+    code.push("\n    resctx.fillStyle = getselectedcolor()\n\
+    resctx.closePath()\n    resctx.clip()\n    stippleRect(resctx,0,0,canvas.width*2,canvas.height*2)\n    resctx.restore()\n")   // stipple
+
+  } else {
+    if (document.getElementById("gradient").checked)
+      code.push("  if ("+FILL+") {\n    resctx.fillStyle = randomGradientPal()\n  n += randomPick([1,2])\n    resctx.fill()\n}")
+    else
+      code.push("  if ("+FILL+") {\n    resctx.fillStyle = getselectedcolor()/*colors[n%colors.length]*/\n  n += randomPick([1,2])\n    resctx.fill()\n}")
+    code.push("  if ("+STROKE+") {\n  resctx.lineWidth = "+LW+"\n  resctx.strokeStyle =  getselectedcolor()\n    resctx.stroke()\n  }")
+  }
   code.push("  ctx.imageSmoothingEnabled = true")
   code.push("  ctx.imageSmoothingQuality = 'high'")
   code.push("  ctx.drawImage(res,0,0,res.width,res.height,0,0,canvas.width/1,canvas.height/1)")
+  code.push("  resctx.clearRect(0,0,res.width,res.height)")
+  
   ctx.setLineDash([])
   ctx.globalAlpha = 1
   ctx.strokeStyle = "#ff4444"
