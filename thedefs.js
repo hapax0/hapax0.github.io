@@ -153,9 +153,6 @@ let defs = {
   "screwAt":{"u":"screwed on tight","i":"screwe(d) up,screwed over"},
   "nailAt":{"u":"nailed it","i":"nail in the coffin"},
   "icebergAt":{"u":"mostly below the surface,more than meets the eye","i":"hazard"},
-  "mark_rothkoAt":{"u":"imagine the colors","i":"colors fade"},
-  "josef_albersAt":{"u":"imagine the colors","i":"homage to the square"},
-  "sol_lewittAt":{"u":"imagine black and white","i":"lines in four directions"},
   "compassAt":{"u":"draw a circle","i":"2\u03C0r,full circle,story arc"},
   "vinylAt":{"u":"2 sided,nostalgia,","i":"33.333333..."},
   "pillAt":{"u":"time released,easy to swallow","i":"no - not \"the\" pill,a hard pill to swallow"},
@@ -427,7 +424,117 @@ let defs = {
   "gone_silentAt":{"u":"say no more","i":"loose lips,silence is complicity,snitches get stitches"},
   "snitches_get_stitchesAt":{"u":"veiled threats (metaphorically)","i":"compliance"},
   "kioskAt":{"u":"where you're at","i":"where you're going"},
-  }
+  "trash_dayAt":{"u":"one bin week?,small reckonings","i":"two bin week?,delayed because of Monday holiday"},
+  "bokeh_At":{"u":"soft focus","i":"atmosphere"},
+  "casseroleAt":{"u":"comfort food","i":"kraft dinner (metaphorically)"},
+  "mittensAt":{"u":"protection","i":"lack of dexterity,(see SCRATCHY SWEATER)"},
+  "on_the_spectrumAt":{"u":"divergent","i":"typical"},
+  "trees_on_the_hillsideAt":{"u":"long shadows","i":"difficult terrain"},
+  "buffleheadsAt":{"u":"hard to count","i":"they were there a second ago"},
+  "enlightenmentAt":{"u":"if you meet the blind turtle on the road\\c kill him","i":"missed it...,try again"},
+  "tail_wagging_the_dogAt":{"u":"inversion of power,a distraction","i":"who's a good boy?, who is?,you is!"},
+  "check_engine_lightAt":{"u":"service needed","i":"TPMS is next,See CABIN AIR FILTER"},
+  "dnaAt":{"u":"ontogeny recapitulates phylogeny","i":"The evil that men do lives after them; the good is oft interred with their bones"},
+  "participationAt":{"u":"you did your best","i":"old-man-yells-at-cloud issue"},
+  "comedianAt":{"u":"\"but\\c is it art?\"","i":"who's laughing now?,i'll give you something to laugh about!,laughing all the way to the bank!"},
+  "butterAt":{"u":"salted","i":"unsalted"},
+  "infinityAt":{"u":"countable","i":"uncountable"},
+  "palindromeAt":{"u":"a man a plan a canal - greenland?","i":"backasswards"},
+  "propagandaAt":{"u":"\"free speech\" without fact-checking","i":"like yelling \"fire\" in a crowded democracy"},
+  "uphill_both_waysAt":{"u":"tales from childhood","i":"old-man-isms"},
+  "render_harmlessAt":{"u":"ACROSS - 6 letters","i":"... next\\c carefully lift the cup and paper at the same time..."},
+  "toilet_paperAt":{"u":"how good people hang it","i":"chaos,(how people with cats hang it)"},
+  "finger_trickAt":{"u":"amaze small children","i":"frighten small children"},
+  "art_promptAt":{"u":"do you need one?","i":"something like a clue"},
+  "surveillance_capitalismAt":{"u":"your data is for sale","i":"disable your ad tracking ID"},
+  "blue_screen_of_deathAt":{"u":"happens to us all","i":"is this the year of the linux desktop?"},
+  "starAt":{"u":"catch a falling star,and put it in your pocket","i":"never let it fade away,save if for a rainy day"},
+  "asciiAt":{"u":"declare (metaphorically)","i":"console.log(floppy)"},
+  "bending_the_knee_kissing_the_ringAt":{"u":"capitulation much?","i":"no compromise"},
+  "inner_earAt":{"u":"self-awareness","i":"guided by voices"},
+  "under_thumbAt":{"u":"feed the hand that bites","i":"knuckle under"},
+  "didn_apos_t_finish_her_drinkAt":{"u":"got a hunch about 'the case' and ran off in a hurry","i":"a waste"},
+  "rentre_chez_toi_com_ta_mère_a_fait_des_gaufresAt":{"u":"not feeling wanted","i":"hungry?,inconsistent"},
+  "babylonAt":{"u":"failed efforts","i":"why we can't have nice things"},
+  "spinelessAt":{"u":"jellyfish\\c sycophant\\c toady\\c flunky\\c bootlicker","i":"doesn't gravity suck?"},
+  "newspeakAt":{"u":"doubleplusgood","i":"doubleplusungood"},
+  "rothkoAt":{"u":"color over color","i":"colors fade"},
+  /*"albersAt":{"u":"nested","i":"homage to the square"},*/
+  "sol_lewittAt":{"u":"concept","i":"implementation,lines in four directions"},
+  "water_cycleAt":{"u":"evaporation,condensation,precipitation","i":"ignoring the science"},
+  "erasedAt":{"u":"bye-bye","i":"fade out,phased out"},
+  "toaster_falling_into_bathtubAt":{"u":"hope there's a ground fault circuit interrupter","i":"why would anyone have a toaster in their bathroom?"},
+  "lobotomyAt":{"u":"detached (metaphorically)","i":"executive functions... who needs 'em?"},
+  "pitted_olive_that_yet_has_a_pitAt":{"u":"surprised and disappointed","i":"trust no one"},
+  "mulletAt":{"u":"Shiny chrome rims never rusted,Driving through the tunnel, you might get busted","i":"You're coming off like you're Van Damme.,You've got Kenny G\\c in your Trans Am"},
+  "disco_ballAt":{"u":"flashy","i":"'Everybody in the discotheque - I hate'"},
+  "periodic_tableAt":{"u":"","i":""},
+  "world_upside_downAt":{"u":"topsy-turvy","i":"nuh uh"},
+  "fallout_shelterAt":{"u":"consequences","i":"hideaway"},
+  "got_your_noseAt":{"u":"will give it back","i":"swallows nose"},
+  "image_not_foundAt":{"u":"404 (metaphorically)","i":"<alt text here>"},
+  "credit_cardAt":{"u":"what's in you wallet?","i":"debit (metaphorically)"},
+  "tearsAt":{"u":"of joy","i":"of sorrow"},
+  "flashlightAt":{"u":"search","i":"illuminate"},
+  "climate_changeAt":{"u":"we are so f*cked!","i":"thing we ignore,things we won't face,things we won't solve"},
+  "need_helpAt":{"u":"\"rescue me\"","i":"\"rescue me\""},
+  "no_such_thing_as_a_free_lunchAt":{"u":"\"let them eat cake\"","i":"\"eat the rich\""},
+  "cul_de_sacAt":{"u":"no outlet","i":"no progress"},
+  "streetlight_effectAt":{"u":"i know it's here somewhere","i":"where the light is"},
+  "fig_leafAt":{"u":"coverup","i":"hides nothing "},
+  "pooAt":{"u":"impolite","i":"don't tread on me"},
+  "salamanderAt":{"u":"under a log,under a rock","i":"slippery (metaphorically)"},
+  "mute_swanAt":{"u":"koan: what is the call of the mute swan?","i":"silence"},
+  "trope_detective_pursuing_suspectAt":{"u":"... into a maze of shipping containers","i":"she was supposed to wait for backup"},
+  "fridgeAt":{"u":"stay cool","i":"if you want it cooler\\c, do you dial the knob up or down?"},
+  "life_cycleAt":{"u":"what goes around\\c comes around","i":"\"circle of life\""},
+  "brain_wormAt":{"u":"anti science","i":"nothing to do with an ear worm"},
+  "light_switchAt":{"u":"aha!","i":"have you tried turning it off and on again?"},
+  "thumbs_upAt":{"u":"up","i":"down"},
+  "square_peg_in_a_round_holeAt":{"u":"we can make this work","i":"clearly it fits,I don't see the problem"},
+  "taintAt":{"u":"corrupt","i":"blotch (metaphorically)"},
+  "fifty_minute_hourAt":{"u":"how does that make you feel?","i":"therapy couch (metaphorically)"},
+   "tarjetas_rojasAt":{"u":"when ICE comes knocking","i":"know your rights"},
+   "victoryAt":{"u":"\"peace for our time\"","i":"\"nixon's the one\""},
+   "algorithmAt":{"u":"procedural","i":"heuristic,(rule of thumb)"},
+   "chainsawAt":{"u":"lunatics wielding these should be avoided","i":"tax cuts for the wealthy,service cuts for everyone else"},
+   "right_over_my_headAt":{"u":"huh?","i":"\"adult books\\c,I don't understand\\c,Jackie Susann\""},
+   "unpluggedAt":{"u":"self-preservation","i":"isolationist"},
+   "don_apos_t_happy_com_be_worryAt":{"u":"let's turn that frown up side down","i":"you ok?"},
+   "phrenologyAt":{"u":"bumps ahead","i":"take your lumps"},
+   "ishihara_testAt":{"u":"color by numbers","i":"synesthesia (metaphorically)"},
+   "mid_century_modernAt":{"u":"ah\\c the good ole days","i":"regression"},
+   "off_with_their_headsAt":{"u":"they're not using them anyway","i":"\"heads will roll\""},
+   "knife_drawerAt":{"u":"need some kind of tray in there","i":"sharp!,be careful!"},
+   "reactorAt":{"u":"don't have a melt down","i":"situation critical"},
+   "optimal_dishwasher_loadingAt":{"u":"do not pre-rinse","i":"small items in top tray"},
+   "ikebanaAt":{"u":"late bloomer","i":"more like ike/bad/a"},
+   "canceledAt":{"u":"history is written by the victors","i":"say no more"},
+   "iglooAt":{"u":"cold outside,warm inside","i":"under the dome"},
+   "knock_knockAt":{"u":"who's there?,<insert bad joke>","i":"there's nobody home"},
+   "wheel_of_consumptionAt":{"u":"note to self:,\"re-order 500 pc bag of,diposable plastic dental floss picks\"","i":"unexpected boycotts"},
+   "volvelleAt":{"u":"dial it up a notch","i":"turn by turn"},
+   "disruptorAt":{"u":"mess things up (metaphorically)","i":"cut the YELLOW wire!"},
+   "votiveAt":{"u":"offering (metaphorically)","i":"extinguished"},
+   "color_modelAt":{"u":"qualia much?","i":"knowledge is power"},
+   "rock_paper_scissorsAt":{"u":"no win situation","i":"don't have a plurale tantum!"},
+   "dissatisfactionAt":{"u":"always something","i":"never enough"},
+   "empty_roomsAt":{"u":"fleeting memories","i":"past is prologue"},
+   "calculatorAt":{"u":"basic math","i":"juvenile"},
+   "symbolic_fencingAt":{"u":"(symbolically)","i":"\"barrier\""},
+   "disappearedAt":{"u":"a noun and a verb","i":"you could be next"},
+   "gunAt":{"u":"not loaded","i":"loaded"},
+   }
+
+function elementu (e) {
+}
+
+let altTitles = { // for alternatives: remove "At"
+"rentre_chez_toi_com_ta_mère_a_fait_des_gaufresAt":"Go_Back_Home_com_Your_Mother_Made_You_Waffles",
+"thumbs_upAt":"thumbs_down",
+"tarjetas_rojasAt":"red_card",
+"victoryAt":"capitulation",
+}
 
 let eightball_u = ["It is certain","It is decidedly so","Without a doubt","Yes definitely","You may rely on it","As I see it\\c yes","Most likely","Outlook good","Yes","Signs point to yes"]
 let eightball_i = ["Reply hazy, try again","Ask again later","Better not tell you now","Cannot predict now","Concentrate and ask again","Don't count on it","My reply is no","My sources say no","Outlook not so good","Very doubtful"]
@@ -440,7 +547,6 @@ function holyday () {
   else
     return "The feast of " + randomPick(words.match(/\b\w{3,}(ous|ic|ful|ive|ish(ed)?|able)\b/g)) + " " + randomPick(words.match(/\b\w{3,}(ation|ment|ion|[eaiou]nt?y)s?\b/g))
 }
-
 
 function artspeak () {
   let art = ["This work", "This piece", "This exhibit", "The artist", "The artwork"]
@@ -474,24 +580,38 @@ function artspeak () {
   let does = ["serves to", "functions to", "seems to","interrogates", "questions", "encodes", "transforms", "subverts", "imbricates", "displaces"]
   // ly and ly ed
   let adv_adv = (" - " + randomPick(ly) +" and "+randomPick(ly) +" "+randomPick(ed) +" - ")
-  return("\""+randomPick(art)+ " " +isToiz(randomPick(v_ises))+ " the "
+  return("\""+randomPick(art)+ " " +(randomPick(v_ises))+ " the "
   + randomPick(n_ality) + " of "+randomPick(things) 
   + adv_adv
   + randomPick(junc) +" " 
-  + isToiz(randomPick(v_ising))+", " + isToiz(randomPick(v_ising))+", " + isToiz(randomPick(v_ising))+" and " + isToiz(randomPick(v_ising))
+  + (randomPick(v_ising))+", " + (randomPick(v_ising))+", " + (randomPick(v_ising))+" and " + (randomPick(v_ising))
   + " the " +randomPick(pre) +randomPick(ism) +" of its "
   + randomPick(ating) + " " + randomPick(n_ality) + " "
   + randomPick(["thereby", "in so", "so by", "such that"]) + " " 
   + randomPick(ating)+" "+randomPick(ive)+" "+randomPick(ions) +".\"")
-
 }
 
-function isToiz (word) {
-  //word = word.replace(/(ises)/g,"izes")
- // word = word.replace(/(ising)/g,"izing")
-  return word
+function colorname() {
+  let color = randomPick(["cyan","magents","salmon","violet","beigh","rose","mustard","gray",'red','blue',"orange", "white","black",'green','yellow','brown','pink','purple'])
+  let word =  randomPick(words.match(/\b\w{4,11}\b/g)) 
+  if (Math.random() > 0.5)
+    return word+"-"+color
+  else  
+    return color+"-"+word
 }
 
+function artPrompt () {
+  let artwords = []
+  artwords.push( randomPick(words.match(/\b\w{4,8}(?<!(s|ing|ed|ly|er|est|ish))\b/g)) )
+  let colors = ['red','blue','green','yellow','brown','pink','purple']
+  let ly = words.match(/\b\w{3,}ly\b/g)
+  let not_adv = ["splashes", "circles", "loops","smeared","only", "family", "early", "likely", "supply", "apply", "daily", "lovely", "unlikely", "assembly", "elderly", "reply", "badly", "friendly", "fly", "holy", "rely", "silly", "billy", "kelly", "monthly", "lonely", "monopoly", "rally", "freely", "imply", "lively", "comply", "sally", "ugly", "kindly", "costly", "folly", "holly", "bodily", "jolly", "ally", "lily", "telly", "belly", "deadly", "molly", "quarterly", "butterfly", "dolly", "orderly", "multiply", "grimly", "jelly", "scholarly", "yearly", "curly", "weakly", "ghastly", "leisurely", "melancholy", "timely", "stately", "bully", "heavenly", "chilly", "willy", "tally", "sly", "hourly", "piccadilly", "earthly", "poly", "gully", "oily", "smelly", "homely", "ghostly", "woolly", "anomaly", "worldly", "lowly", "nightly", "sickly", "wally", "disorderly", "unruly", "prickly", "unfriendly", "wobbly", "burly", "filly", "cuddly", "unsightly", "northerly", "steely", "princely", "cowardly", "manly", "shapely", "hilly", "cleanly", "bubbly", "fortnightly", "courtly", "user-friendly", "priestly", "beastly", "gilly", "westerly", "ply", "grisly", "masterly", "nelly", "unholy", "southerly", "godly", "gentlemanly", "wily", "saintly", "untimely", "unseemly", "deathly", "frilly", "surly", "tilly", "pearly", "easterly", "brotherly", "ungainly", "cicely", "sprightly", "spindly", "firefly", "fiddly", "solly", "scaly", "golly", "neighbourly", "motherly", "whitely", "knightly", "lordly", "lully", "unearthly", "dragonfly", "knobbly", "caerphilly", "portly", "shelly", "gravelly", "straggly", "grizzly", "fatherly", "duopoly", "no-fly", "termly", "greenfly", "lolly", "unworldly", "environment-friendly", "gamely", "crinkly", "slovenly", "comely", "miserly", "panoply", "stubbly", "womanly", "bristly", "goodly", "underbelly", "lally", "waterlily", "dally", "welly", "brolly", "kingly", "painterly", "reapply", "superfamily", "chantilly", "crumbly", "subfamily", "ungodly", "gadfly", "homily", "oversupply", "dastardly", "half-yearly", "hurly-burly", "measly", "oligopoly", "unlovely", "bally", "twice-weekly", "whitefly", "other-worldly", "ozone-friendly", "seemly", "sisterly", "sparkly", "pally", "resupply", "rockabilly", "roly-poly", "south-westerly", "wiggly", "comradely", "read-only", "giggly", "girly", "gangly", "twice-yearly", "north-westerly", "dilly", "drizzly", "ly", "mealy", "niggardly", "matronly", "overfly", "seely", "sully", "wrinkly", "muscly", "postmultiply", "selly", "south-easterly", "ungentlemanly", "writerly", "cully", "heterosexually", "premultiply", "tiddly", "acromegaly", "hillbilly", "mayfly", "pebbly", "self-assembly", "soldierly", "unmanly", "googly", "doolally", "eco-friendly", "softly-softly", "fam'ly", "fleshly", "north-easterly", "singlehandedly", "treacly", "wifely", "crackly", "feely", "-ly", "pimply", "squally", "tinkly", "bi-weekly", "botfly", "clerkly", "disapply", "hepatomegaly", "jangly", "paly", "readerly", "reassembly", "splenomegaly", "twiddly", "two-ply", "bimonthly", "half-hourly", "maidenly", "niggly", "purply", "squiggly", "three-ply", "tingly", "blackfly", "coaly", "creepy-crawly", "doily", "sawfly", "stepfamily", "tickly", "barfly", "disassembly", "girl-friendly", "rascally", "swirly", "beggarly", "bobbly", "fruitfly", "jungly", "moly", "otherworldly", "scally", "shingly", "trebly", "underly", "wheely", "bly", "cousinly", "crawly", "dangly", "grandmotherly", "hoverfly", "marly", "microcephaly", "muddly", "rubbly", "this-worldly", "trembly", "twinkly", "undersupply", "unmannerly", "whirly", "diddly", "dolphin-friendly", "freckly", "gnarly", "housewifely", "laggardly", "philately", "scrawly", "shaly", "spangly", "spritely", "unneighbourly", "wibbly", "wriggly", "wurly", "creaturely", "damselfly", "dilly-dally", "dribbly", "freight-only", "horsefly", "hurly", "jubbly", "northwesterly", "pre-emptively", "radio-friendly", "rattly", "relly", "rolly", "rustly", "southwesterly", "subassembly", "superfly", "uncomely", "unwomanly", "wordly", "blowfly", "citizenly", "daughterly", "dimply", "pot-belly", "slatternly", "southeasterly", "stilly", "tangly", "waffly", "biweekly", "booly", "craftsmanly", "curmudgeonly", "gristly", "headly", "headmasterly", "helly", "housefly", "non-daily", "northeasterly", "potbelly", "queenly", "ruffianly", "sandfly", "scrolly", "snuffly", "unscholarly", "unwieldly", "weaselly", "wooly", "actorly", "auntly", "brambly", "business-friendly", "celly", "contumely", "crumply", "dayly", "dooly", "drawly", "drooly", "firebelly", "gobbly", "grumbly", "heav'nly", "hover-fly", "husbandly", "interactionally", "lawyerly", "lurvely", "luvverly", "mannerly", "piddly", "pully", "savourly", "schoolmasterly", "scraggly", "shuffly", "skelly", "sluggardly", "snuggly", "speckly", "toxophily", "trolly", "twirly", "unfatherly", "unshapely", "user-unfriendly", "waggly", "wibbly-wobbly", "anencephaly", "bearly", "bely", "bibliophily", "big-sisterly", "blackguardly", "brachycephaly", "brawly", "caramelly", "chiropterophily", "churchly", "cobbly", "colly", "cooly", "cranefly", "dancerly", "dealy", "designerly", "dovely", "dudely", "entomophily", "exencephaly", "family-friendly", "felly", "fishbelly", "footmanly", "gentlewomanly", "girlfriendly", "goatly", "godfatherly", "gospelly", "gradely", "grandfatherly", "growly", "gruelly", "guestly", "gurgly", "heartly", "hepatosplenomegaly", "hevenly", "hydrocephaly", "jiggly", "jingly", "jowly", "knubbly", "knuckly", "loverly", "male-friendly", "marbly", "megalencephaly", "metally", "misapply", "modelly", "nonfamily", "nubbly", "oly", "ornithophily", "outfly", "overfriendly", "peely-wally", "profamily", "protractedly", "psychobilly", "rambly", "ripply", "rumbly", "samely", "schoolmistressly", "sclerodactyly", "scrabbly", "scrambly", "scribbly", "shambly", "shoggly", "shoogly", "sightly", "skilly", "snivelly", "spinsterly", "squirrely", "statesmanly", "studly", "summerly", "swivelly", "teacherly", "test-fly", "tinselly", "towardly", "trichinopoly", "twilly", "unbrotherly", "uncleanly", "uncourtly", "unkingly", "unlively", "unmotherly", "unreflectively", "unsaintly", "unsisterly", "unsleepingly", "unsoldierly", "unwifely", "viewly", "waly", "weatherly", "weevilly", "whistly", "widdly", "winterly", "wizardly"]
+  ly = randomPick(ly.filter(word => !not_adv.includes(word)))
+  //artwords.push(ly)
+  artwords = shuffle(artwords)
+  let tech = randomPick(["color field", "fading", "surreal", "impressionistic", "portrait", "oblique", "abstract", "parallel", "mirrored", "space", "dream-like", "water color", "#putabirdonit","contrasting", "clashing", "motion", "stillness", "stormy","forms","overlapping", "strokes", "stripes", "dotted", "curves", "hollow", "flowing", "landscape", "on a grid", "rectangles", "still life", "divided", "random", "floating", "blurred", "edges","inverted", "reflections", "non-dominant hand", "threes", "oval", "liminal"])
+  return([randomPick(pantonecolors.names).toLowerCase(), tech, artwords[0], artwords[1]])
+}
 
 function testThrees () {
   let i = 0
@@ -546,8 +666,8 @@ function testCards () {
   ta.scrollTop = ta.scrollHeight
   console.log("starting TMT test...")
   i = 0
-  for (; i < 1000; i++) 
-    too_many_thingsAt(0,0,100,"#000000")
+ // for (; i < 1000; i++) 
+ //   too_many_thingsAt(0,0,100,"#000000")
   
   console.log("...done. \ncheck spelling.")
 }
