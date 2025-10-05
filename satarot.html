@@ -1,0 +1,707 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+  <style>
+    div[class='buttons'] {
+      margin-top:8px;
+      float: left;
+      white-space: nowrap;
+    }
+    input[type="color"] {
+      /*-webkit-appearance: none;*/
+      border-radius: 0;
+      border: none;
+      padding: 0px;
+      width: 50px;
+      height: 50px;
+    }
+    input[type="color"]::-webkit-color-swatch-wrapper {
+      padding: 0;
+    }
+    input[type="color"]::-webkit-color-swatch {
+      border: none;
+    }
+    .cp_wrapper {
+      overflow: hidden;
+      width: 36px;
+      height: 36px;
+      border-radius: 0%;
+      display:inline-block;
+    }
+    div[id='gridbox'] {
+      display:none;
+      position:absolute;
+      width:500px;
+      top:50px;
+      left:14px;
+      background-color:#aaa;
+      padding:8px 8px 8px 8px;
+    }
+    td {
+      white-space: nowrap;
+    }
+    body {background-color:#ccc;}
+    button {background-color:#625252;
+     border:none;
+     border-radius:8px;
+     min-width:42px;
+     padding:4px 4px 4px 4px;
+    }
+    select {width:110px;}
+    select[id='palettechoice'] {
+      width:7em;
+    }
+    select[id='smooth'] {
+      width:3em;
+    }
+    input, img, span, a{
+      vertical-align: middle;
+    }
+    i {
+      font-size: 12px;
+    }
+    input[id='lower'] {
+     -webkit-transform: rotateY(180deg);
+     -moz-transform: rotateY(180deg);
+     -ms-transform: rotateY(180deg);
+     -o-transform: rotateY(180deg);
+     transform: rotateY(180deg);
+    }
+    #lower{
+      transform: rotateY(180deg);
+    }
+    span[id='pointsta']
+    {
+      font-size:1em;
+      display:inline-block;
+      vertical-align:baseline;
+    }
+    textarea
+    {
+      font-size:1em;
+      display:inline-block;
+      vertical-align:middle;
+      width:180px;
+    }
+    input[type='text'] {
+      width: 114px;
+    }
+    input[type='number'] {
+      width: 50px;
+    }
+    span[class='sample'] {
+      display:inline-block;
+      width:32px;
+      text-align:right;
+    }
+
+    canvas[id='palettecanvas'] {
+      margin:2px;
+      border-style: solid;
+      border-color: black;
+      border-width: 1px;
+      
+    }
+    div[id=tip] {
+      position:absolute;
+      top:160px;
+      left:24px;
+      color:#c00;
+      display: none;
+      background-color: #fff;
+      border:3px solid #222222;
+      padding:8px;
+      font-size:24px;
+      z-index:2;
+    }
+    div[id='background'] {
+      background-color: #ddd8c8;
+      opacity: 1.0;
+      /*background-image:  repeating-linear-gradient(45deg, #cccccc 25%, transparent 25%, transparent 75%, #cccccc 75%, #cccccc), repeating-linear-gradient(45deg, #cccccc 25%, #ffffff 25%, #ffffff 75%, #cccccc 75%, #cccccc);
+      background-position: 0 0, 10px 10px;
+      background-size: 20px 20px;*/
+    }
+    svg {
+      background-color:#e7d7d7;
+      
+    }
+    label {
+      font-size:34px;
+    }
+    .tool {
+      margin-top: 6px;
+      margin-right: 4px;
+      vertical-align:baseline;
+      display:inline-block;
+      padding:4px;
+      background-color:#1e0707;
+    }
+    a {
+      font-size:3em;
+      text-align:justify;
+    }
+  
+  </style>
+  <script src="imports/maincode.js"></script>
+  <script src="imports/swcolors.js"></script>
+  <script src="imports/pantone.js"></script>
+  <script src="imports/wordlist2.js"></script>
+  <script src="imports/ptwords.js"></script>
+  <script src="imports/moby.js"></script>
+  <script src="imports/names.js"></script>
+  <script src="imports/frank.js"></script>
+  <script src="imports/dict.js"></script>
+  <script src="imports/mouse-paper.js"></script>
+  <script src="imports/atfunctions.js"></script>
+  <script src="imports/thedefs.js"></script>
+  <script src="imports/puzzle.js"></script>
+  <script src="imports/PeriodicTableJSON.js"></script>
+
+  <script>
+    function showTip() {
+      return
+    }
+  </script>
+  </head>
+  <body>
+   <a href="javascript:threecards()">&#9654;Tarot Reading&#9664;</a>
+
+<div style="display:none;">
+  <div style='margin:4px;white-space: nowrap;'>
+    &nbsp;&nbsp;<a href="javascript:showtools()" title="show tools">
+      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-sliders" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3h9.05zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8h2.05zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1h9.05z"/>
+  </svg></a>
+  &nbsp;<input type='file' name='img' size='65' id='uploadimage' style="display:none;">
+    <span onclick="openFile()" id="imgloader" title="open image file..."><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-upload" viewBox="0 0 16 16">
+      <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+      <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+    </svg></span>
+  &nbsp;
+  <a href="#" id="downloader" onclick="saveAs()" download="image.png" title="save as png file"
+  ><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-download" viewBox="0 0 16 16">
+    <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+    <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+  </svg></a>
+  &nbsp;
+  <a href="javascript:stack_fill()" title="fill"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-bucket" viewBox="0 0 16 16">
+    <path d="M2.522 5H2a.5.5 0 0 0-.494.574l1.372 9.149A1.5 1.5 0 0 0 4.36 16h7.278a1.5 1.5 0 0 0 1.483-1.277l1.373-9.149A.5.5 0 0 0 14 5h-.522A5.5 5.5 0 0 0 2.522 5zm1.005 0a4.5 4.5 0 0 1 8.945 0H3.527zm9.892 1-1.286 8.574a.5.5 0 0 1-.494.426H4.36a.5.5 0 0 1-.494-.426L2.58 6h10.838z"/>
+  </svg></a>
+  &nbsp;
+  
+  &nbsp;<a href="javascript:toggleGridBox()"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="whitex" style="padding:4px;" viewBox="0 0 18 18">
+    <path d="M0 1.5A1.5 1.5 0 0 1 1.5 0h13A1.5 1.5 0 0 1 16 1.5v13a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 14.5v-13zM1.5 1a.5.5 0 0 0-.5.5V5h4V1H1.5zM5 6H1v4h4V6zm1 4h4V6H6v4zm-1 1H1v3.5a.5.5 0 0 0 .5.5H5v-4zm1 0v4h4v-4H6zm5 0v4h3.5a.5.5 0 0 0 .5-.5V11h-4zm0-1h4V6h-4v4zm0-5h4V1.5a.5.5 0 0 0-.5-.5H11v4zm-1 0V1H6v4h4z"/>
+    </svg></a>
+  
+    &nbsp;<a href="javascript:stack_drawD()"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="whitex" style="padding:4px;" viewBox="0 0 18 18">
+    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+  </svg></a>
+  
+  <a href='javascript:togglerecord()' id="record" ><svg xmlns="http://www.w3.org/2000/svg" id="recordsvg" width="30" height="30" fill="black" class="nope" viewBox="0 0 16 16">
+  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+  <path d="M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+  </svg></a>
+  &nbsp;
+  <a href='javascript:playFunctions()' id="play" title="play recorded macro (when red)"><svg xmlns="http://www.w3.org/2000/svg" id="playsvg" width="30" height="30" fill="#707070" class="bi bi-bucket" viewBox="0 0 16 16">
+    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+    <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
+    </svg></a>
+  &nbsp;
+  <a href='javascript:stackToCode()' id="code" title="shoe code for macro">
+  <svg xmlns="http://www.w3.org/2000/svg" id="codesvg" width="30" height="30" fill="#707070" class="bi bi-code-slash" viewBox="0 0 16 16">
+  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" id="path2" />
+  <path d="M 9.9648918,2.9107776 A 0.40719501,0.40719501 0 1 0 9.1864797,2.6713915 L 5.9295257,13.256492 a 0.40719497,0.40719497 0 0 0 0.778412,0.239386 z M 5.3856144,4.9455597 a 0.40711925,0.40711925 0 0 1 0,0.5764808 L 2.8232058,8.0836348 5.3856144,10.645229 A 0.40763355,0.40763355 0 0 1 4.8091336,11.22171 L 1.9592987,8.3718753 a 0.40711925,0.40711925 0 0 1 0,-0.5764809 L 4.8091336,4.9455597 a 0.40711925,0.40711925 0 0 1 0.5764808,0 z m 5.1231886,0 a 0.40711925,0.40711925 0 0 0 0,0.5764808 l 2.562409,2.5615943 -2.562409,2.5615942 a 0.40763362,0.40763362 0 0 0 0.576481,0.576481 l 2.849835,-2.8498347 a 0.40711925,0.40711925 0 0 0 0,-0.5764809 L 11.085284,4.9455597 a 0.40711925,0.40711925 0 0 0 -0.576481,0 z"
+  id="path4" style="stroke-width:0.96;stroke-miterlimit:4;stroke-dasharray:none" /></svg></a>
+
+  &nbsp;
+  <a href="javascript:stack_clearOff()" title="clear offscreen">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-clipboard-x" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M6.146 7.146a.5.5 0 0 1 .708 0L8 8.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 9l1.147 1.146a.5.5 0 0 1-.708.708L8 9.707l-1.146 1.147a.5.5 0 0 1-.708-.708L7.293 9 6.146 7.854a.5.5 0 0 1 0-.708z"/>
+    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+    <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+  </svg></a>
+  &nbsp;
+  <span onclick="stack_copyToOff()" id="copybutton" title="copy canvas offscreen"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-clipboard" viewBox="0 0 16 16">
+    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+    <path d="M8 5a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 9.293V5.5A.5.5 0 0 1 8 5z"/>
+    <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+  </svg></span>
+  &nbsp;
+   <span onclick="stack_pasteFromOff()" id="pastebutton" title="paste from offscreen"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-clipboard" viewBox="0 0 16 16">
+    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+    <path d="M8 11a.5.5 0 0 0 .5-.5V6.707l1.146 1.147a.5.5 0 0 0 .708-.708l-2-2a.5.5 0 0 0-.708 0l-2 2a.5.5 0 1 0 .708.708L7.5 6.707V10.5a.5.5 0 0 0 .5.5z"/>
+    <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+  </svg></span>
+  &nbsp;
+  <span onclick="stack_swapWithOff()" id="swapbutton" title="swap with offscreen"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-clipboard" viewBox="0 0 16 16">
+    <path
+       d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"
+       id="path2" />
+    <path
+       style="stroke-width:1.875"
+       d="M 14.988281 9.3730469 A 0.9375 0.9375 0 0 0 14.634766 9.4492188 A 0.9375 0.9375 0 0 0 14.632812 9.4492188 A 0.9375 0.9375 0 0 0 14.34375 9.640625 C 14.336265 9.6477388 14.329505 9.6547598 14.322266 9.6621094 L 10.585938 13.398438 A 0.93868425 0.93868425 0 0 0 11.914062 14.726562 L 14.0625 12.576172 L 14.0625 19.421875 L 11.914062 17.271484 A 0.93868425 0.93868425 0 1 0 10.585938 18.599609 L 14.322266 22.335938 C 14.329505 22.343287 14.336265 22.350308 14.34375 22.357422 A 0.9375 0.9375 0 0 0 15.664062 22.349609 L 19.414062 18.599609 A 0.93868425 0.93868425 0 0 0 18.085938 17.271484 L 15.9375 19.421875 L 15.9375 12.576172 L 18.085938 14.726562 A 0.93868425 0.93868425 0 0 0 19.414062 13.398438 L 15.664062 9.6484375 A 0.9375 0.9375 0 0 0 14.988281 9.3730469 z "
+       transform="scale(0.53333333)"
+       id="path4" />
+    <path
+       d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"
+       id="path8" /></svg>
+  </span>
+
+
+
+
+  <a href="javascript:stack_invertColors()" title="invert colors">
+  <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="30" height="30" fill="black" class="bi bi-square" viewBox="0 0 16 16" version="1.1" id="svg4" sodipodi:docname="spiral.svg" inkscape:version="0.92.4 (5da689c313, 2019-01-14)">
+    <metadata   id="metadata10">  <rdf:RDF>    <cc:Work       rdf:about="">      <dc:format>image/svg+xml</dc:format>      <dc:type         rdf:resource="http://purl.org/dc/dcmitype/StillImage" />      <dc:title />    </cc:Work>  </rdf:RDF>
+    </metadata>
+    <defs   id="defs8" />
+    <sodipodi:namedview   pagecolor="#ffffff"   bordercolor="#666666"   borderopacity="1"   objecttolerance="10"   gridtolerance="10"   guidetolerance="10"   inkscape:pageopacity="0"   inkscape:pageshadow="2"   inkscape:window-width="2072"   inkscape:window-height="1160"   id="namedview6"   showgrid="false"   inkscape:zoom="19.666667"   inkscape:cx="1.0038413"   inkscape:cy="12.028218"   inkscape:window-x="30"   inkscape:window-y="20"   inkscape:window-maximized="1"   inkscape:current-layer="svg4" />
+    <path   style="fill:#080907;fill-opacity:0.99041533;stroke:#000000;stroke-width:0.35413408;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"   d="M 7.8490935,9.3582994 C 7.9125109,15.175258 8.0046144,15.190446 8.0046144,15.190446 4.6226405,15.292508 2.3125978,12.610557 2.3125978,9.5345523 2.3125978,6.458548 5.0547716,4.9796141 7.771333,0.99629336 7.7355147,6.4754756 7.8136598,6.1079957 7.8490935,9.3582994 Z"   id="path868"   inkscape:connector-curvature="0"   sodipodi:nodetypes="ssscs" />
+    <path   sodipodi:nodetypes="ssscs"   inkscape:connector-curvature="0"   id="path871"   d="m 8.1290313,9.3898868 c -0.063417,5.8169592 -0.2799378,5.7847662 -0.2799378,5.7847662 3.3819755,0.102062 5.4431455,-2.564096 5.4431455,-5.6400996 0,-3.0760053 -2.446648,-4.4826064 -5.1632077,-8.465928 0.035818,5.479183 0.035433,5.0709575 0,8.3212614 z"   style="fill:none;fill-opacity:0.99041533;stroke:#000000;stroke-width:0.40277886;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.99680511" />
+  </svg></a>
+  &nbsp;
+  <a href="javascript:exposureInfo()" title="exposure info"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-image" viewBox="0 0 16 16">
+    <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+    <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/>
+  </svg></a>
+   </div>
+   <div style='margin:4px;white-space: nowrap;' id="dropdowns">
+     &nbsp;
+     <button id="ff" onclick="testImage('framefunctions')" title="frame functions"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" class="white" viewBox="0 0 16 16">
+      <path d="M3.5.5A.5.5 0 0 1 4 1v13h13a.5.5 0 0 1 0 1h-2v2a.5.5 0 0 1-1 0v-2H3.5a.5.5 0 0 1-.5-.5V4H1a.5.5 0 0 1 0-1h2V1a.5.5 0 0 1 .5-.5zm2.5 3a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4H6.5a.5.5 0 0 1-.5-.5z"/>
+      </svg></button>
+     <select id="framefunctions">
+       <option value="dropshadow">drop shadow</option>
+       <option value="tissue" selected>tissue</option>
+       <option value="dropFrame">drop frame</option>
+       <option value="zoomOutImage">zoom out</option>
+       <option value="zoomImage">zoom in</option>
+     </select>
+      &nbsp;<button onclick="testImage('fadefunctions')" title="fade, darken, blur, gray"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" class="white" viewBox="0 0 16 16">
+        <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z"/>
+      </svg></button>
+      <select id="fadefunctions">
+        <option value="retro">retro</option>
+        <option value="enhanceExposure" >enhance exposure</option>
+      </select>
+      &nbsp;<button id="cf" onclick="testImage('colorfunctions')" title="color functions"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" class="white" viewBox="0 0 16 16">
+      <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z"/>
+    </svg></button>
+    <select id='colorfunctions'>
+      <option value="colorFilterOut" >filter selected</option>
+
+      </select>
+      &nbsp;
+      <button onclick="testImage('patternfunctions')" title="patterns"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" class="white" viewBox="0 0 16 16">
+      <path d="M0 .5A.5.5 0 0 1 .5 0h15a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H14v2h1.5a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H14v2h1.5a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5H2v-2H.5a.5.5 0 0 1-.5-.5v-3A.5.5 0 0 1 .5 6H2V4H.5a.5.5 0 0 1-.5-.5v-3zM3 4v2h4.5V4H3zm5.5 0v2H13V4H8.5zM3 10v2h4.5v-2H3zm5.5 0v2H13v-2H8.5zM1 1v2h3.5V1H1zm4.5 0v2h5V1h-5zm6 0v2H15V1h-3.5zM1 7v2h3.5V7H1zm4.5 0v2h5V7h-5zm6 0v2H15V7h-3.5zM1 13v2h3.5v-2H1zm4.5 0v2h5v-2h-5zm6 0v2H15v-2h-3.5z"/>
+      </svg></button>
+      <select id="patternfunctions">
+        <option value="wavyPaper">paper</option>
+        <option value="canvas1">canvas</option>
+        <option value="watercolorPaper">wc paper</option>
+        <option value="diss" >distress</option>
+        <option value="paperize">paperize</option>
+      </select>
+       &nbsp;<button onclick="testImage('drawingfunctions')" title="drawing functions">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" class="white" viewBox="0 0 16 16">
+        <path d="M15.825.12a.5.5 0 0 1 .132.584c-1.53 3.43-4.743 8.17-7.095 10.64a6.067 6.067 0 0 1-2.373 1.534c-.018.227-.06.538-.16.868-.201.659-.667 1.479-1.708 1.74a8.118 8.118 0 0 1-3.078.132 3.659 3.659 0 0 1-.562-.135 1.382 1.382 0 0 1-.466-.247.714.714 0 0 1-.204-.288.622.622 0 0 1 .004-.443c.095-.245.316-.38.461-.452.394-.197.625-.453.867-.826.095-.144.184-.297.287-.472l.117-.198c.151-.255.326-.54.546-.848.528-.739 1.201-.925 1.746-.896.126.007.243.025.348.048.062-.172.142-.38.238-.608.261-.619.658-1.419 1.187-2.069 2.176-2.67 6.18-6.206 9.117-8.104a.5.5 0 0 1 .596.04zM4.705 11.912a1.23 1.23 0 0 0-.419-.1c-.246-.013-.573.05-.879.479-.197.275-.355.532-.5.777l-.105.177c-.106.181-.213.362-.32.528a3.39 3.39 0 0 1-.76.861c.69.112 1.736.111 2.657-.12.559-.139.843-.569.993-1.06a3.122 3.122 0 0 0 .126-.75l-.793-.792zm1.44.026c.12-.04.277-.1.458-.183a5.068 5.068 0 0 0 1.535-1.1c1.9-1.996 4.412-5.57 6.052-8.631-2.59 1.927-5.566 4.66-7.302 6.792-.442.543-.795 1.243-1.042 1.826-.121.288-.214.54-.275.72v.001l.575.575zm-4.973 3.04.007-.005a.031.031 0 0 1-.007.004zm3.582-3.043.002.001h-.002z"/>
+      </svg></button>
+    <select id="drawingfunctions" >
+      <option value="twosides" >card+inverted</option>
+      <option value="threecards" selected>tarot</option>
+
+    </select>
+    &nbsp;<button onclick="testImage('paperfunctions')" title="fade, darken, blur, gray"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" class="white" viewBox="0 0 16 16">
+      <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
+    </svg></button>
+    <select id="paperfunctions">
+      <!--option value="roadmap">road map</option-->
+      <!--option value="paintcolortesterAt">SW-Paint preview</option-->
+      <option value="insertLinesAt">lines at</option>
+      
+    </select>
+     &nbsp;
+     <button onclick="testImage('transformfunctions')" title="transformations"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" class="white" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
+      <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
+      </svg></button>
+    <select id="transformfunctions">
+      <option value="wrap">wrap</option>
+    
+      </select>
+   </div>
+   
+   <div style="margin-left:8px;display:block;" id="tools">
+   <table border="0" cellpadding="4" style="margin-left:6px;">
+     <tr>
+       <td style="text-align:right;">canvas size </td><td>
+      <select id="canvassizes" onchange="resizeCanvas()">
+        <option value="square">square</option>
+        <option value="portrait" >portrait</option>
+        <option value="1:0.75" >1:0.75</option>
+        <option value="landscape">landscape</option>
+        <option value="3.5X5">3.5X5</option>
+      </select> &nbsp;<span id="redspan" style="color:red;">cut </span><input type="number" step="1" id="rednumber" style="color:red;" onchange="pushMarker()">
+      <!--input type="range" id="canvas_size" class="range" min="1" max="5" value="5" onchange="resizeCanvas()"-->
+    </td>
+       <td style="text-align:left;">&nbsp;
+       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="red" class="bi bi-thermometer-high" viewBox="0 0 16 16">
+    <path d="M9.5 12.5a1.5 1.5 0 1 1-2-1.415V2.5a.5.5 0 0 1 1 0v8.585a1.5 1.5 0 0 1 1 1.415z"/>
+    <path d="M5.5 2.5a2.5 2.5 0 0 1 5 0v7.55a3.5 3.5 0 1 1-5 0V2.5zM8 1a1.5 1.5 0 0 0-1.5 1.5v7.987l-.167.15a2.5 2.5 0 1 0 3.333 0l-.166-.15V2.5A1.5 1.5 0 0 0 8 1z"/>
+  </svg>
+  <br>&nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="blue" class="bi bi-thermometer-high" viewBox="0 0 16 16">
+    <path d="M9.5 12.5a1.5 1.5 0 1 1-2-1.415V2.5a.5.5 0 0 1 1 0v8.585a1.5 1.5 0 0 1 1 1.415z"/>
+    <path d="M5.5 2.5a2.5 2.5 0 0 1 5 0v7.55a3.5 3.5 0 1 1-5 0V2.5zM8 1a1.5 1.5 0 0 0-1.5 1.5v7.987l-.167.15a2.5 2.5 0 1 0 3.333 0l-.166-.15V2.5A1.5 1.5 0 0 0 8 1z"/>
+  </svg></td><td>
+    <button style="width:8px;height:18px;"onclick="adjustWarmth(5, null, true)">+</button>&nbsp;&nbsp;<button style="width:8px;height:18px;" onclick="adjustWarmth(-5, null, true)">-</button>
+    <br>
+    <button style="width:8px;height:18px;"onclick="adjustBlue(5, null, true)">+</button>&nbsp;&nbsp;<button style="width:8px;height:18px;" onclick="adjustBlue(-5, null, true)">-</button>
+     </td>
+     <td rowspan='4'>
+         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" viewBox="0 0 16 16">
+      <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z"/>
+    </svg>
+         lower: <input type="range" id="lower" style="width:5em;" min='0' max='100'
+  value="100" onchange="rangecheck()"> <span class='sample' id='lowsample' style="background-color:#000;">&nbsp;</span> <span id="lowerrange">0</span> %
+       &nbsp;|&nbsp;  upper: <input type="range" id="upper" style="width:5em;" min='0' max='100'
+  value="100" onchange="rangecheck()"> <span class='sample' id='highsample' style="background-color:#fff;">&nbsp;</span> <span id="upperrange">100</span> %<br>
+    <div style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
+    <div id='paletteholder' style="display: flex;flex-wrap: wrap;width:510px;height:100px;column-gap: 0;">
+      <!--canvas id="palettecanvas" width="480" height="96"></canvas><br-->
+    </div>
+      <select id="palettechoice" onchange="loadPalette(true)">
+      
+      <!--option value="seis">seis</option>
+      <option value="deiz">deiz</option>
+      <option value="halfway">color ramp</option>
+      <option value="5">5</option>
+      <option value="10">10</option-->
+      <option value="abdominales">abdominales</option>
+      <option value="bnw">b & w</option>
+      <option value="bleu">bleu</option>
+      <option value="faded poster">faded poster</option> 
+      <option value="antique card">antique card</option> 
+      <option value="carte postale">carte postale</option> 
+      <option value="sola busca">sola busca</option>
+      <option value="victorian">victorian</option> 
+      <option value="dusty cards">dusty card</option> 
+      <option value="loteria">loteria</option> 
+      <option value="tarot cards">tarot cards</option> 
+      <option value="uno">uno</option>
+      <option value="dos">dos</option>
+      <option value="poster">poster</option>
+      <option value="cmy">cmy</option>
+      <option value="primary" >primary</option>
+      <option value="vivid">vivid</option>
+      <option value="stella">stella</option>
+      
+      <option value="afklint">af klint</option>
+      <option value="lauren dela roche">lauren dela roche</option>
+      <option value="gertrudeabercrombie">abercrombie</option>
+      <option value="dali">dali</option>
+      <option value="klimt">klimt</option>
+      <option value="kahlo">kahlo</option>          
+      <option value="sabinefinkenauer">sabinefinkenauer</option> 
+      <!--option value="girlinmirror">girl in mirror</option-->     
+      <option value="nighthawks">nighthawks</option>    
+      <option value="amber">amber</option> 
+      <option value="hanafuda">hanafuda</option> 
+      <option value="noriomonma">noriomonma</option> 
+         
+      <option value="rust">rust</option>
+      <option value="post-it">post-it</option>
+      <option value="yellowed">yellowed</option>
+      <option value="darkink">dark ink</option>
+      <option value="paperink">paper ink</option>
+      <option value="rainbow">rainbow</option>
+      <option value="none">none</option>
+    </select>
+    <button><a onclick="loadPalette()" title="reload palette">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="white" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+      <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+    </svg></a>
+  </button>
+  <button><a onclick="extractPalette()" title="extract palette"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="white" viewBox="0 0 16 16">
+    <path d="M13.354.646a1.207 1.207 0 0 0-1.708 0L8.5 3.793l-.646-.647a.5.5 0 1 0-.708.708L8.293 5l-7.147 7.146A.5.5 0 0 0 1 12.5v1.793l-.854.853a.5.5 0 1 0 .708.707L1.707 15H3.5a.5.5 0 0 0 .354-.146L11 7.707l1.146 1.147a.5.5 0 0 0 .708-.708l-.647-.646 3.147-3.146a1.207 1.207 0 0 0 0-1.708l-2-2zM2 12.707l7-7L10.293 7l-7 7H2v-1.293z" id="path2" />
+      </svg></a></button>
+  <input type='file' name='img' size='65' id='openextract' style="display:none;">
+  <button><a onclick="openFileExtract()" id="paletteloader" title="extract from file..."><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="white" viewBox="0 0 16 16">
+  <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+  <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+  </svg></a></button>
+  <button>
+    <a onclick="pickRandPalette()"  title="random palette">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="white" viewBox="0 0 16 16">
+    <path d="M13 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h10zM3 0a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V3a3 3 0 0 0-3-3H3z"/>
+    <path d="M5.5 4a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm8 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-8 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm4-4a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+  </svg></a></button>
+  <button>
+  <a onclick="setRandPalette()"  title="60:30:10">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="white" viewBox="0 0 16 16">
+  <g inkscape:label="Layer 1"
+  inkscape:groupmode="layer" id="layer1"
+  transform="translate(-76.814736,-42.791309)">
+  <circle style="opacity:0.98;fill:none;stroke:#000000;stroke-width:0.809;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none"
+    id="path844" cx="84.904022" cy="50.816383" r="7.6205745" />
+  <path style="opacity:0.98;fill:none;stroke:#000000;stroke-width:0.809;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none"
+    id="path844-3" type="arc" cx="84.840073" cy="50.819775" rx="7.6205745" ry="7.6205745" start="0.87165738" end="4.712389" arc-type="slice"
+    d="m 89.744361,56.652536 a 7.6205745,7.6205745 0 0 1 -9.087586,0.536946 7.6205745,7.6205745 0 0 1 -3.117866,-8.552862 7.6205745,7.6205745 0 0 1 7.301164,-5.43742 v 7.620575 z" />
+  <path style="opacity:0.98;fill:none;stroke:#000000;stroke-width:0.809;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none"
+    id="path844-3-6" type="arc" cx="84.840073" cy="50.819775" rx="7.6205745" ry="7.6205745" start="4.7035728" end="5.2233879" arc-type="slice"
+    d="m 84.772889,43.199496 a 7.6205745,7.6205745 0 0 1 3.794016,0.973184 l -3.726832,6.647095 z" />
+</g>
+</svg></a></button>
+<button>
+  <a onclick="dropselectedcolor()" title="drop selected color">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="white" viewBox="0 0 16 16">
+      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+      <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+    </svg></a></button>
+<button>
+  <a onclick="addnewcolor()" title="add new color">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="white" viewBox="0 0 16 16">
+      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+    </svg></a></button>
+  <button>
+  <a onclick="sortByBrightness()"  title="sort by brightness">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="white" viewBox="0 0 16 16">
+    <path d="M3.5 12.5a.5.5 0 0 1-1 0V3.707L1.354 4.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.498.498 0 0 1 .7.006l2 2a.5.5 0 1 1-.707.708L3.5 3.707V12.5zm3.5-9a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zM7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z"/>
+  </svg></a></button>
+  <button>
+  <a onclick="sortByHue()"  title="sort by hue">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="white" viewBox="0 0 16 16">
+    <path d="M3.5 12.5a.5.5 0 0 1-1 0V3.707L1.354 4.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.498.498 0 0 1 .7.006l2 2a.5.5 0 1 1-.707.708L3.5 3.707V12.5zm3.5-9a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zM7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z"/>
+  </svg></a></button>
+  <button>
+    <a onclick="lightenPalette()"  title="lighten">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="white" viewBox="0 0 16 16">
+        <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+      </svg></a></button>
+  <button>
+    <a onclick="darkenPalette()"  title="darken">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="white" viewBox="0 0 16 16">
+    <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm.5-9.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 11a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm5-5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm-11 0a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9.743-4.036a.5.5 0 1 1-.707-.707.5.5 0 0 1 .707.707zm-7.779 7.779a.5.5 0 1 1-.707-.707.5.5 0 0 1 .707.707zm7.072 0a.5.5 0 1 1 .707-.707.5.5 0 0 1-.707.707zM3.757 4.464a.5.5 0 1 1 .707-.707.5.5 0 0 1-.707.707z"/>
+  </svg></a></button>
+  <button>
+    <a onclick="stepPalette()"  title="contrast">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="white" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+      </svg></a></button>
+
+  <button><a  onclick="showHex()" title="show hex values">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="white" viewBox="0 0 16 16">
+      <path d="M8.39 12.648a1.32 1.32 0 0 0-.015.18c0 .305.21.508.5.508.266 0 .492-.172.555-.477l.554-2.703h1.204c.421 0 .617-.234.617-.547 0-.312-.188-.53-.617-.53h-.985l.516-2.524h1.265c.43 0 .618-.227.618-.547 0-.313-.188-.524-.618-.524h-1.046l.476-2.304a1.06 1.06 0 0 0 .016-.164.51.51 0 0 0-.516-.516.54.54 0 0 0-.539.43l-.523 2.554H7.617l.477-2.304c.008-.04.015-.118.015-.164a.512.512 0 0 0-.523-.516.539.539 0 0 0-.531.43L6.53 5.484H5.414c-.43 0-.617.22-.617.532 0 .312.187.539.617.539h.906l-.515 2.523H4.609c-.421 0-.609.219-.609.531 0 .313.188.547.61.547h.976l-.516 2.492c-.008.04-.015.125-.015.18 0 .305.21.508.5.508.265 0 .492-.172.554-.477l.555-2.703h2.242l-.515 2.492zm-1-6.109h2.266l-.515 2.563H6.859l.532-2.563z"/>
+    </svg></a></button>
+<button><a  onclick="makeAPalette()" title="mix palette">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="white" viewBox="0 0 16 16">
+  <path d="M0 .5A.5.5 0 0 1 .5 0h5a.5.5 0 0 1 .5.5v5.277l4.147-4.131a.5.5 0 0 1 .707 0l3.535 3.536a.5.5 0 0 1 0 .708L10.261 10H15.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-.5.5H3a3 3 0 0 1-2.121-.879A3 3 0 0 1 0 13.044m6-.21 7.328-7.3-2.829-2.828L6 7.188zM4.5 13a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0M15 15v-4H9.258l-4.015 4zM0 .5v12.495zm0 12.495V13z"/>
+</svg></a></button>
+  </div>
+  <div style="background-color:#aaaadd;">
+  &nbsp;type <input type="checkbox" id="typing">
+  <select id="fontweight">
+  <option>normal</option>
+  <option>bold</option>
+  <option>italic</option>
+  <option>italic bold</option>
+  </select>
+
+  <select id="fontface">
+  <option>Arial</option>
+  <option>Arial Black</option>
+  <option>Tahoma</option>
+  <option>Trebuchet MS</option>
+  <option>Impact</option>
+  <option>Times New Roman</option>
+  <option>Georgia</option>
+  <option selected>Garamond</option>
+  <option>Courier</option>
+  <option>Verdana</option>
+  <option>Comic Sans MS</option>
+  </select>
+  kern <input type="checkbox" id="kern" checked>
+  <!--label id="sample"> The quick brown fox...</label-->
+
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#000000"  class="blue"  viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+</svg><select id="linespace" style="width:48px" title="line spacing">
+  <option>1</option>
+  <option selected>1.5</option>
+  <option>2</option>
+  </select>
+  </td>
+  </div>
+  </td>
+  <!--td rowspan="2"></div></td-->
+  </tr>
+  <tr>
+    <td style="text-align:right;">feature size</td><td><input type="range" id="featuresize" onchange="featuresizeChange()" min="0" max="500" value="100"></td>
+    <td style="text-align:right;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-camera" viewBox="0 0 16 16">
+      <path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/>
+    </svg></td><td><button onclick="sharpen2(true)">+</button>&nbsp;&nbsp;<button onclick="shrinkBlur(true)">-</button></td>
+    </tr>
+    <tr><td style="text-align:right;">quantity</td><td><input type="range" id="number" onchange="numberChange()" min="9" max="20000" value="10000">
+    </td>
+    <td style="text-align:right;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-droplet" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M7.21.8C7.69.295 8 0 8 0c.109.363.234.708.371 1.038.812 1.946 2.073 3.35 3.197 4.6C12.878 7.096 14 8.345 14 10a6 6 0 0 1-12 0C2 6.668 5.58 2.517 7.21.8zm.413 1.021A31.25 31.25 0 0 0 5.794 3.99c-.726.95-1.436 2.008-1.96 3.07C3.304 8.133 3 9.138 3 10a5 5 0 0 0 10 0c0-1.201-.796-2.157-2.181-3.7l-.03-.032C9.75 5.11 8.5 3.72 7.623 1.82z"/>
+    <path fill-rule="evenodd" d="M4.553 7.776c.82-1.641 1.717-2.753 2.093-3.13l.708.708c-.29.29-1.128 1.311-1.907 2.87l-.894-.448z"/>
+  </svg></td><td><button onclick="saturationScale(1.1,null,true)">+</button>&nbsp;&nbsp;<button onclick="saturationScale(0.9,null,true)">-</button>
+    </td>
+    </tr>
+    <tr> <td style="text-align:right;">opacity</td><td><input type="range" onchange='opacityChange()' id="opacity" min="1" max="100" value="100" ></td><td style="text-align:right;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-circle-half" viewBox="0 0 16 16">
+    <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+    </svg></td><td><button onclick="contrastImage(5,null,true)">+</button>&nbsp;&nbsp;<button onclick="contrastImage(-5,null,true)">-</button></td>
+    </tr>
+    <tr>
+<td style="text-align:right;">&nbsp;&nbsp;alt:<input type="checkbox" id="grungy" title="alternate behaviour" onchange="checkChange()"></td>
+  <td>mode: <select id="mode" style="width:150px" onchange="modeChange()">
+      <option value="source-over" selected>source-over</option>
+      <option value="source-in">source-in</option>
+      <option value="source-out">source-out</option>
+      <option value="source-atop">source-atop</option>
+      <option value="destination-over">destination-over</option>
+      <option value="destination-in">destination-in</option>
+      <option value="destination-out">destination-out</option>
+      <option value="destination-atop">destination-atop</option>
+      <option value="overlay">overlay</option>
+      <option value="darken">darken</option>
+      <option value="lighten">lighten</option>
+      <option value="difference">difference</option>
+      <option value="exclusion">exclusion</option>
+      <option value="color-dodge">color-dodge</option>
+      <option value="color-burn">color-burn</option>
+      <option value="screen">screen</option>
+      <option value="color">color</option>
+      <option value="hue">hue</option>
+      <option value="saturation">saturation</option>
+      <option value="luminosity">luminosity</option>
+      <option value="xor">xor</option>
+    </select></td>
+     
+      <td style="text-align:right;">&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-brightness-high" viewBox="0 0 16 16">
+    <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+  </svg>
+  </td><td>
+    <button onclick="adjustBrightness(5, null, true)">+</button>&nbsp;&nbsp;<button onclick="adjustBrightness(-5, null, true)">-</button>
+  </td>
+  <td rowspan='1'>
+  <input type='number' style='width: 40px;' id='angle' value='0'></input> &deg;
+
+  </td>
+  </tr>
+  </table>
+  </div>
+
+</div> 
+
+  <div class="progresslabel" id="tip" style="display:none;"></div>
+  <canvas id="marker" width='512' height='6' style="border:1px solid #000000;display:none;;" title="touch canvas: red mark shows location of clip or rip"></canvas>
+  <br>
+  <div id="background">
+  
+  <canvas id="myCanvas" tabindex='1' width="1080" height="1080" style="border:1px solid #000000;">
+  </canvas><canvas id="OC" width="1080" height="1080" style="border:1px solid #000000;display:none;"></canvas>
+  </div>
+  <div>
+  </div><br>
+   <div id="gridbox" sytle="display:none;">
+  <button onclick="toggleGridBox()" style="float:right;">X</button>
+   <canvas id="myDCanvas" sytle="border:1px solid #000000;" width="500" height="500"></canvas>
+   
+   <br><select id="gridsize" style="width:48px;" onchange="clearAll()">
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10" >10</option>
+    <option value="12">12</option>
+    <option value="14">14</option>
+    <option value="16">16</option>
+    <option value="18">18</option>
+    <option value="20">20</option>
+    <option value="24" selected>24</option>
+    <option value="32">32</option>
+    <option value="80">80</option>
+  </select>
+    &nbsp;<input type="checkbox" id="gradient"><label for="gradient"> gradient </label>
+    &nbsp;
+    mode:<select id="dmode" style="width:48px;" onchange="closePathIf()">
+      <option value="line">line</option>
+      <option value="quad">quad</option>
+      <option value="circ">circ</option>
+      <option value="square">square</option>
+    </select>
+    &nbsp;<select id="fillstroke" style="width:64px;" >
+      <option value="fill">fill</option>
+      <option value="stroke" selected>stroke</option>
+      <option value="stipple">stipple</option>
+    </select>
+    &nbsp;Item count <span id="lastitem">0</span>
+    <br>
+    <a href="javascript:drawD()" title="draw">
+    <svg xmlns="http://www.w3.org/2000/svg" class="tool" width="24" height="24" fill="black" viewBox="0 0 16 16">
+    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
+    </svg></a>
+   
+    <a href="javascript:closePath()" title="close path">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="tool" viewBox="0 0 16 16">
+  <path d="M12.5 4a.5.5 0 0 0-1 0v3.248L5.233 3.612C4.713 3.31 4 3.655 4 4.308v7.384c0 .653.713.998 1.233.696L11.5 8.752V12a.5.5 0 0 0 1 0zM5 4.633 10.804 8 5 11.367z"/>
+</svg></a>
+    <a href="javascript:undoLast()" id="undolast" title="undo last item">
+    <svg xmlns="http://www.w3.org/2000/svg" class="tool" width="24" height="24" fill="black" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
+      <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
+    </svg></a>
+    <a href="javascript:clearAll()" title="clear all">
+    <svg xmlns="http://www.w3.org/2000/svg" class="tool" width="24" height="24" fill="black" viewBox="0 0 16 16">
+    <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
+    </svg></a>
+
+    <input type='file' name='img' size='65' id='uploadimage2' style="display:none;">
+
+    <a href="javascript:openFileD()" id="imgloader2" title="open file">
+  <svg xmlns="http://www.w3.org/2000/svg" class="tool" width="24" height="24" fill="black" viewBox="0 0 16 16">
+    <rect x="0" y="0" width="100%" height="100%" fill="#ffffff" />
+    <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"></path>
+    <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"></path>
+  </svg></a>
+    <a href="javascript:downloadCode()" id="downloaderc" title="save drawing code"
+    ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="tool" viewBox="0 0 16 16">
+      <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+      <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+    </svg></a>
+    &nbsp; <label id="linewidth">lineWidth:</label>
+    <select id="lwg" style="width:48px;">
+      <option value="2">1</option>
+      <option value="4">2</option>
+      <option value="6" selected>3</option>
+      <option value="8">4</option>
+      <option value="10">5</option>
+      <option value="14">7</option>
+      <option value="20">10</option>
+      <option value="40">20</option>
+      <option value="60">30</option>
+      <option value="100">50</option>
+
+    </select>
+    <br>
+    <textarea id="text1" rows="4" cols="68" wrap="soft"  style="display:none;"></textarea>
+  </div>
+  
+    <br>
+    <div style="display:none;">
+      <canvas id="offscreen" width='513' height='513' style="display:none;"></canvas>
+    </div>
+     <div style="display:none;">
+    <canvas id="off" width='512' height='512' style="display:none;"></canvas>
+    </div>
+    <br>
+
+</body>
+</html>
