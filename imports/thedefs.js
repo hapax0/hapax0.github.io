@@ -645,8 +645,9 @@ let defs = {
     "tech_broAt":{"u":"wants to tell you about blockchain,(there is no cure),","i":"run away"},
     "about_to_walk_off_a_cliffAt":{"u":"edge condition","i":"synonym for idiot"},
     "one_trick_ponyAt":{"u":"find the darkest/purplest dot","i":"there is no cure"},
-    "judgementalAt":{"u":"I think about you sometimes","i":"just sayin'"},
+    "judgmentalAt":{"u":"I think about you sometimes","i":"just sayin'"},
     "is_it_prime_q_At":{"u":"sieve of Eratosthenes much?","i":"no free shipping"},
+    "walled_gardenAt":{"u":"all your base are belong to us","i":"stay awhile"},
   }	
 
 let diffTitle = {"zodiacAt":"true","metalAt":"true","stochastic_parrotAt":"true"}
