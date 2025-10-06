@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="37.672585mm"
+   height="22.647314mm"
+   viewBox="0 0 37.672583 22.647314"
+   version="1.1"
+   id="svg5"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2" />
+  <g
+     id="layer1"
+     transform="translate(-64.169048,-71.121074)">
+    <g
+       id="g1245"
+       transform="matrix(0.27697256,0,0,0.27697256,68.491961,53.511563)">
+      <path
+         id="rect234"
+         style="fill:#e9afc6;fill-rule:evenodd;stroke:#000000;stroke-width:0.25;stroke-linecap:square;stroke-linejoin:round"
+         d="M 0.76273674,84.300438 H 120.28286 V 145.2209 H 0.76273674 Z" />
+      <path
+         id="path237"
+         style="fill:#4d4d4d;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.25;stroke-linecap:square;stroke-linejoin:round"
+         d="M 0.76273674,84.300438 103.45723,63.70354 120.28286,84.300438 V 145.2209 H 0.76273674 L -15.482707,124.0438 Z" />
+      <path
+         id="path349"
+         style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:0.25;stroke-linecap:square;stroke-linejoin:round"
+         d="M -15.482731,63.993627 H 104.03739 V 124.91409 H -15.482731 Z" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.7556px;font-family:MathJax_Math;-inkscape-font-specification:'MathJax_Math, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.25;stroke-linecap:square;stroke-linejoin:round"
+         x="-8.9718122"
+         y="86.419739"
+         id="text1055"><tspan
+           id="tspan1053"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.7556px;font-family:MathJax_Math;-inkscape-font-specification:'MathJax_Math, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.25"
+           x="-8.9718122"
+           y="86.419739">Insert coins</tspan></text>
+      <rect
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.25;stroke-linecap:square;stroke-linejoin:round"
+         id="rect1109"
+         width="85.868828"
+         height="7.5425324"
+         x="1.4716791"
+         y="97.153336" />
+    </g>
+  </g>
+</svg>
