@@ -19521,14 +19521,13 @@ function fillOC (oc, occtx) { // ...with a paper pattern
   
   if (Math.random() > 0.5)
     wrap(oc)
-  //if (Math.random() > 0.5)
-  //  rotateRandom(oc)
 }
 
-function tapeFill (xo,yo,R, color) {
+function tapeFill (xo,yo,R,w,color) {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
   let D = 70+Math.floor(document.getElementById("featuresize").value/5)
+  D = w
   let DH = D/3
   // vary length, but not width
   D -= Math.random()*(D/2)

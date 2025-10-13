@@ -424,7 +424,7 @@ function twosides () {
   tint()
   x = 0, y = 0
   w = W/2*0.84, h = w*1.5//8 - 10
-  let funcs = ["rules_of_pokerAt"] //shuffle(recent())//shuffle(atList)
+  let funcs = ["poker_faceAt"] //shuffle(recent())//shuffle(atList)
   if (document.getElementById("palettechoice").value === "dos")
     loadPalette()
   tarotcard(x+W/4-w/2, y+H/2-h/2-10, w, h, funcs[0], cardnumber(funcs[0]), [0], true) 
@@ -972,19 +972,23 @@ function poker_faceAt (x,y,W,color,INVERT) {
   ctx.lineTo(x+19*cs+pet(d/2), y+31*cs+pet(d/2))
   ctx.stroke()
   let f = randomPick(atList)
-  let di = defs[f].i, du = defs[f].u
-  defs[f].i = "", defs[f].u = ""
   let v = document.getElementById("featuresize").value
   document.getElementById("featuresize").value /= 2
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x, y)
+  ctx.lineTo(x+W, y)
+  ctx.lineTo(x+W, y+W*1.5*0.45)
+  ctx.lineTo(x, y+W*1.5*0.45)
+  ctx.closePath()
+  ctx.clip()
   tarotcard(x+cs*10, y+cs, W*0.38, W*1.5*0.38, f, cardnumber(f), [INVERT])
+  ctx.restore()
   ctx.strokeStyle = savedS
   ctx.fillStyle = savedF
   document.getElementById("featuresize").value = v
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
-  defs[f].i = di, defs[f].u = du
   pointingAt(x+1.5*cs,y+10*cs, W*0.5, color, savedF)
- // ctx.fillStyle = savedF
- // ctx.fill()
   ctx.strokeStyle = savedS
   ctx.fillStyle = savedF
 }
@@ -4829,12 +4833,9 @@ function trompe_l_apos_oeilAt (x,y,W,color) {
   ctx.fill()
 
   ctx.closePath()
-// ctx.fillStyle = "#488fdbff"
-//  p = rotatePoint(x+3*cs+pet(d), y+6*cs+pet(d),cx,cy,angle)
-//  tapeFill(p[0],p[1],angle, "#fce1accc")
-
   p = rotatePoint(x+5*cs+pet(d), y+0*cs+pet(d),cx,cy,angle)
-  tapeFill(p[0],p[1],0, "#488fdbaa")
+  let w = W*0.18
+  tapeFill(p[0],p[1],0, w, "#488fdbaa")
   ctx.beginPath()
   p = rotatePoint(x+16*cs+pet(d), y+22*cs+pet(d) ,cx,cy,angle)
   ctx.moveTo(p[0],p[1])
