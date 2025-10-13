@@ -653,6 +653,7 @@ let defs = {
     "rules_of_pokerAt":{"u":"rules is rules","i":"rules are rules"},
     "object_permanenceAt":{"u":"peekaboo!","i":"impermanence"},
     "ceci_n_apos_est_pas_une_carteAt":{"u":"trompe-moi une fois...","i":"trompe-moi deux fois..."},
+    "poker_faceAt":{"u":"no secrets","i":"\"oklahoma forehead\",(more like a five head!),\"Top [sic] Forehead Reduction Doctors, in Oklahoma City\""},
   }	
 
 let diffTitle = {"zodiacAt":"true","metalAt":"true","stochastic_parrotAt":"true"}
