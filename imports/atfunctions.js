@@ -424,7 +424,7 @@ function twosides () {
   tint()
   x = 0, y = 0
   w = W/2*0.84, h = w*1.5//8 - 10
-  let funcs = ["poker_faceAt"] //shuffle(recent())//shuffle(atList)
+  let funcs = shuffle(recent())//shuffle(atList)
   if (document.getElementById("palettechoice").value === "dos")
     loadPalette()
   tarotcard(x+W/4-w/2, y+H/2-h/2-10, w, h, funcs[0], cardnumber(funcs[0]), [0], true) 
