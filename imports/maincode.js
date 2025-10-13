@@ -39617,7 +39617,7 @@ const saveFile = async (blob, suggestedName) => {
     try {
       // Show the file save dialog.
       const handle = await showSaveFilePicker({
-        /*suggestedName,*/
+        suggestedName
       });
       // Write the blob to the file.
       const writable = await handle.createWritable();
