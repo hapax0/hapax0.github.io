@@ -655,6 +655,8 @@ let defs = {
     "ceci_n_apos_est_pas_une_carteAt":{"u":"trompe-moi une fois...","i":"trompe-moi deux fois..."},
     "poker_faceAt":{"u":"no secrets","i":"\"oklahoma forehead\",(more like a five head!),\"Top [sic] Forehead Reduction Doctors, in Oklahoma City\""},
     "data_centerAt":{"u":"somewhere in the global south,(See NIMBY)","i":"how the slop gets made"},
+    "random_walkAt":{"u":"meander","i":"shamble"},
+    "oblique_stratagiesAt":{"u":"text by Brian Eno and Peter Schmidt","i":"text by Brian Eno and Peter Schmidt"},
   }	
 
 let diffTitle = {"zodiacAt":"true","metalAt":"true","stochastic_parrotAt":"true"}
