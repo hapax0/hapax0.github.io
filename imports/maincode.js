@@ -1516,6 +1516,47 @@ function raggedB (ctx,endX,endY,x,y, d) {
   }
 }
 
+function raggedpolyAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let  H = W
+  ctx.globalAlpha = document.getElementById("opacity").value/100
+  let size = W// 10+4*document.getElementById("featuresize").value/2
+ 
+  ctx.globalCompositeOperation = document.getElementById("mode").value
+  let radii = size//[W/4, W/3.7, W/4.3]
+  ctx.fillStyle = color
+  let N = randomPick([19,11,23,13,17])
+  let i = 0, LONG = false
+  let angle = Math.random()*2*Math.PI, inc =(Math.PI*2)/N
+  let ia = angle
+  let radius = size, cx = x, cy = y
+  let x1 = cx + radius * Math.cos(angle), 
+      y1 = cy + radius * Math.sin(angle)
+  let x0 = x1, y0 = y1
+  let mult = 0.35
+  if (document.getElementById("grungy").checked)
+    mult = 0.9
+  ctx.beginPath()
+  ctx.moveTo(x1,y1)
+  for (; i < N-1; i++) {
+    radius = size + (Math.random() * mult * size)
+    angle += inc + (pet(ia/7))
+    x = cx + radius * Math.cos(angle)
+    y = cy + radius * Math.sin(angle)
+    raggedB (ctx,x,y,x1,y1)
+    x1 = x
+    y1 = y
+    if (/*LONG === false &&*/ i > N/3 && i < N-3 && Math.random() > 0.75) {
+      angle += inc *3
+      i+=4
+      LONG = true
+    }
+  }
+  raggedB (ctx,x0,y0,x1,y1)
+  ctx.fill()
+}
+
 function raggedpoly () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -13596,7 +13637,8 @@ function multiphase () { // phase
 
 function phaseAt (x,y,W,color) { // phase
   let canvas = document.getElementById("myCanvas")
-  let ctx = canvas.getContext("2d")
+  //if (!ctx)
+  let  ctx = canvas.getContext("2d")
   let H = W
   let alt = document.getElementById("grungy").checked
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
@@ -23476,8 +23518,8 @@ function ragged (ctx,endX,endY,x,y, d) {
 }
 
 function raggedX (ctx,endX,endY,x,y) {
-  let inc = 3 + Math.floor(document.getElementById("featuresize").value/10)
-  let p = 10//1 + document.getElementById("number").value/1000
+  let inc = 3 //+ Math.floor(document.getElementById("featuresize").value/10)
+  let p = 12//1 + document.getElementById("number").value/1000
   let xdiff = x - endX, ydiff = y - endY
   let D = distance(x,y,endX,endY)
   let Dy = (endY-y)
@@ -23489,12 +23531,13 @@ function raggedX (ctx,endX,endY,x,y) {
   let xf = xdiff/(xsteps + 0.000001)
   let yf = ydiff/(ysteps + 0.000001)
 
-  while (distance(endX,endY,x,y) > inc*2) {
+  while (distance(endX,endY,x,y) > inc) {
     // add to x and y to get closer to endX,endY
     x += xinc
     y += yinc
     x += xf
     y += yf
+    //x = endX, y = endY
     ctx.lineTo(x+pet(p), y+pet(p))
   }
 }
@@ -30394,19 +30437,24 @@ function spaceText (t, width, finalwidth, x, y, ctx, fs, alt, DONE) {
 
 
 
-function splatterAt (x,y,w) {
+function splatterAt (x,y,w, c, ctx) {
   let canvas = document.getElementById("myCanvas")
-  let ctx = canvas.getContext("2d")
+  if (!ctx)
+      ctx = canvas.getContext("2d")
   ctx.fillStyle = getselectedcolor()
+  if (c)
+    ctx.fillStyle = c
+  //console.log(w)
   ctx.globalAlpha = document.getElementById("opacity")/100
   if(!x) {
-    x = LASTCLICK[0], y = LASTCLICK[1]
+  //  x = LASTCLICK[0], y = LASTCLICK[1]
     w = 3+document.getElementById("featuresize").value/5
     w += pet(w/2)
   }
   let i = 0,r = 1
   for (; i < 11; i++) {
-    r = 1+ (w*w/10)/20 * Math.random()
+    r =  1+ (w*w/10)/20 * Math.random()
+   // console.log(x,y,r)
     if (Math.random() < 1.67)
       drawBlobAt(ctx, x + Math.random()*w*7, y + Math.random()*w*7, r)
     else {
@@ -36529,16 +36577,16 @@ function rothkoAt (x,y,w, color) {
   let pad = w/22
   ctx.globalAlpha = 0.082
   ctx.fillStyle = colors[0]
-  blobsRect (x+pad,y+pad,w-pad*2,div-pad/3)
+  blobsRectOG(x+pad,y+pad,w-pad*2,div-pad/3)
   pad += pet(pad/1.8)
   ctx.globalAlpha = 0.082
   ctx.fillStyle = colors[1]
-  blobsRect (x+pad,y+div+pad*1.4, w-pad*2, (h-div)-pad*2.7)
+  blobsRectOG(x+pad,y+div+pad*1.4, w-pad*2, (h-div)-pad*2.7)
 
   ctx.globalAlpha = a
 }
 
-function blobsRect (x,y,w,h,color) {
+function blobsRectOG (x,y,w,h,color) {
   let grunge = document.getElementById("grungy").checked
   let increase = Math.PI * 2 / 40;
   let angle = 0;
@@ -36575,6 +36623,48 @@ function blobsRect (x,y,w,h,color) {
       angle += increase;
     }
     drawPath(points, 0, 0)
+  }
+}
+
+function blobsRect (x,y,w,h,color, ctx) {
+  let grunge = document.getElementById("grungy").checked
+  let increase = Math.PI * 2 / 40;
+  let angle = 0;
+  let canvas = document.getElementById("myCanvas")
+  //console.log(ctx)
+  if (!ctx)
+    ctx = canvas.getContext("2d")
+  let centx, centy
+  let alpha0 = ctx.globalAlpha
+  ctx.fillStyle = color
+  let numshapes = 1 + document.getElementById("number").value/5
+  numshapes *= 8
+  let radius = 1
+  for (let t = 0; t < numshapes; t++) {
+    let x0 = x + Math.random()*w
+    let y0 = y + Math.random()*h
+    angle = Math.floor(Math.random() * 6.42);
+    centx = x + Math.random()*w
+    centy = y + Math.random()*h
+    let edges = 19 * Math.random() + 9;
+    let rmax = document.getElementById("featuresize").value/20 // max = 500
+    let maxradius = 1 + rmax * Math.random();
+    let r0 = maxradius
+    increase = Math.PI * 2/edges*0.98;
+    points = [];
+    bez = [];
+    radius = (Math.random() * maxradius) + maxradius * 0.9;
+    for (let i = 0; i < edges; i++) {
+      if (grunge) {
+        maxradius = r0 + (Math.random()) * r0 * 2
+      }
+      radius += pet(maxradius/1)
+      x0 = radius * Math.cos(angle)+centx;
+      y0 = radius * Math.sin(angle)+centy;
+      points.push([x0, y0]);
+      angle += increase;
+    }
+    drawPath(points, x, y, ctx)
   }
 }
 

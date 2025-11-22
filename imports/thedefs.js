@@ -628,7 +628,7 @@ let defs = {
     "hierophantAt":{"u":"knowledgeable guide (ackchyually)","i":"share what you know"},
     "four_color_theoremAt":{"u":"enough","i":"is enough"},
     "knot_theoryAt":{"u":"unbound","i":"tie yourself up in knots"},
-    "evAt":{"u":"charge","i":"range"},
+    "evAt":{"u":"charge","i":"range anxiety"},
     "vaccineAt":{"u":"advice from a doctor","i":"advice from a quack"},
     "trompe_l_apos_oeilAt":{"u":"","i":""},
     "load_cellAt":{"u":"heavy","i":"forced"},
@@ -657,6 +657,19 @@ let defs = {
     "data_centerAt":{"u":"somewhere in the global south,(See NIMBY)","i":"how the slop gets made"},
     "random_walkAt":{"u":"meander","i":"shamble"},
     "oblique_stratagiesAt":{"u":"text by Brian Eno and Peter Schmidt","i":"text by Brian Eno and Peter Schmidt"},
+    "witnessAt":{"u":"I saw what you did","i":"∃x φ(x)"},
+    "inflection_pointAt":{"u":"reversals,(so derivative!)","i":"regime change"},
+    "shake_a_faceAt":{"u":"profiles in courage","i":"<snuffles loudly>"},
+    "waitingAt":{"u":"soon","i":"not soon enough"},
+    "landscapeAt":{"u":"on the horizon,whole hog,sideways,halfway to a threeway,messy","i":"(the landscape card is, neither upright nor inverted)"},
+    "yoink_exc_At":{"u":"possessive","i":"easy come\\c easy go"},
+    "rorschach_testAt":{"u":"see what you see","i":"whatever you make of it"},
+    "bug_At":{"u":"mistakes were made","i":"testing in production"},
+    "tombstoneAt":{"u":"quod erat demonstrandum","i":"U+220E"},
+    "ouijaAt":{"u":"the medium is the message,look who's talking","i":"ideomotor reflex"},
+    "desire_pathAt":{"u":"what I want","i":"shortest distance"},
+    "dog_that_didn_apos_t_barkAt":{"u":"what is the sound of...","i":"his master's voice"},
+    "quiet_piggy_exc_At":{"u":"what is the sound of an orange pig?","i":"projector in chief"},
   }	
 
 let diffTitle = {"zodiacAt":"true","metalAt":"true","stochastic_parrotAt":"true"}
