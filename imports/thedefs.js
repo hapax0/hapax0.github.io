@@ -670,6 +670,14 @@ let defs = {
     "desire_pathAt":{"u":"what I want","i":"shortest distance"},
     "dog_that_didn_apos_t_barkAt":{"u":"what is the sound of...","i":"his master's voice"},
     "quiet_piggy_exc_At":{"u":"what is the sound of an orange pig?","i":"projector in chief"},
+    "old_ageAt":{"u":"memento mori","i":"better than the alternative"},
+    "computeAt":{"u":"noun: [kəm-ˈpyüt] - things needed to make the slop","i":"\"nasty chips\",number of the beast"},
+    "divorceAt":{"u":"remedy for marriage","i":"splitsville (metaphorically)"},
+    "illnessAt":{"u":"in need of a cure","i":"get well soon"},
+    "war_crimesAt":{"u":"no survivors","i":"just following orders"},
+    "monopolyAt":{"u":"\"I want it all\"","i":"\"competition is for losers\""},
+    "alignmentAt":{"u":"red scare","i":"better dead than red"},
+    "pulfrich_effectAt":{"u":"moving target,(cat 'moves' when shaken)","i":"depth... apparently"},
   }	
 
 let diffTitle = {"zodiacAt":"true","metalAt":"true","stochastic_parrotAt":"true"}

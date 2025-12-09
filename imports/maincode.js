@@ -36652,19 +36652,15 @@ function blobsRect (x,y,w,h,color, ctx) {
     let r0 = maxradius
     increase = Math.PI * 2/edges*0.98;
     points = [];
-    bez = [];
     radius = (Math.random() * maxradius) + maxradius * 0.9;
     for (let i = 0; i < edges; i++) {
-      if (grunge) {
-        maxradius = r0 + (Math.random()) * r0 * 2
-      }
       radius += pet(maxradius/1)
       x0 = radius * Math.cos(angle)+centx;
       y0 = radius * Math.sin(angle)+centy;
       points.push([x0, y0]);
       angle += increase;
     }
-    drawPath(points, x, y, ctx)
+    drawPath(points, 0, 0, ctx)
   }
 }
 

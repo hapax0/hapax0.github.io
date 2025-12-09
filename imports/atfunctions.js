@@ -25,12 +25,12 @@ let atList = ["origamiAt", "airplaneAt", "envelopeAt", "sardinesAt", "refraction
   "redactedAt","securityAt","watering_canAt","i_chingAt","la_sandíaAt","la_campanaAt","la_peraAt","la_coronaAt","ice_creamAt","tapeAt","selectionAt","anchorAt","cometAt",
   "batten_down_the_hatchesAt","card_tableAt","goedkeuringskrulAt", "don_apos_t_care_about_why_you_switched_browsersAt","zodiacAt","story_diagramAt","coordinatesAt","number_lineAt","sisyphusAt","timelineAt", "votiveAt","disruptorAt","tearsAt","light_switchAt","tarjetas_rojasAt","thumbs_upAt","trope_detective_pursuing_suspectAt","streetlight_effectAt","bokeh_At", "trash_dayAt","kioskAt","gone_silentAt","wind_chimesAt","price_of_a_dozen_eggsAt","bicycles_are_everywhereAt","gigoAt","washing_machineAt","voidAt", "banned_bookAt","space_invaderAt","routerAt","bombAt","dungeonAt","overhead_projectorAt","maskAt","morulaAt","peace_symbolAt","bedAt","black_boxAt",
   "data_centerAt","poker_faceAt","spiral_boundAt","escalatorAt",
-  "quiet_piggy_exc_At","dog_that_didn_apos_t_barkAt","desire_pathAt","ouijaAt","tombstoneAt","bug_At","rorschach_testAt","yoink_exc_At","landscapeAt","waitingAt","shake_a_faceAt","inflection_pointAt","witnessAt", "oblique_stratagiesAt","random_walkAt",  "ceci_n_apos_est_pas_une_carteAt","object_permanenceAt","rules_of_pokerAt", "spandrelAt","संसारAt","walled_gardenAt","is_it_prime_q_At","judgmentalAt","one_trick_ponyAt","about_to_walk_off_a_cliffAt","tech_broAt","müller_hyph_lyer_illusionAt","_19th_century_capitalism_themed_cardAt","datura_stramoniumAt", "stochastic_parrotAt", "eye_contactAt","load_cellAt", "trompe_l_apos_oeilAt","vaccineAt","evAt","knot_theoryAt","four_color_theoremAt","hierophantAt","free_readingAt","lubbers_sp__lp_alt_rp_At","wokeAt","bubbleAt","flash_cardAt","mtg_cardAt","unoAt","six_of_heartsAt","sufferingAt","lubbersAt","halfCardsAt","narcissusAt","undoingAt","relicAt","untitled_drawing_appAt","acAt","triple_deckerAt","tofuAt","crossroadsAt","burnerAt","constancyAt","last_matchAt","crossword_puzzleAt","orreryAt","draw_your_own_cardAt","picture_thisAt","densityAt","have_we_learned_nothing_yet_q_At", "promisesAt","lureAt","turbulenceAt", "reductionAt","ironing_boardAt", "anendophasiaAt","ten_of_cuisenaire_rodsAt","ten_of_ironingAt","indeterminate_of_swordsAt","pre_hyph_complianceAt","horse_shoeAt","magnetAt","contentAt","sensitiveAt","big_footAt","cognitive_dissonanceAt","fertilityAt","exitAt", "nonexistent_filesAt","schröder_apos_s_staircaseAt","marginaliaAt", "requirementsAt","doom_on_a_tarot_cardAt","toy_soldierAt","hidden_variablesAt","entscheidungsproblemAt","backPatternAt","vitruvian_manAt","_3DAt","schrödinger_apos_s_catAt","what_is_a_concentration_camp_q_At","special_interestsAt","stygian_blueAt", "day_dayAt","mary_apos_s_roomAt","chinese_roomAt","matrix_multiplicationAt","meditationAt","metalAt","quantity_has_a_quality_all_its_ownAt","meridiansAt","no_signalAt","garden_pathAt","captchaAt", "cookie_policyAt","subscription_requiredAt","el_viaje_del_héroeAt", "small_handsAt","tacoAt","where_your_sleeves_meet_your_waistbandAt","krebs_cycleAt","key_exchangeAt","numerologyAt","slide_ruleAt","is_he_dead_yet_q_At","illusion_of_controlAt","palm_readingAt","printerAt","turntableAt","reading_tea_leavesAt","no_kingsAt","tin_foil_hatAt","spell_checkAt","hands_offAt","cancerAt","elementaryAt","gunAt","disappearedAt","symbolic_fencingAt","calculatorAt","empty_roomsAt","dissatisfactionAt","rock_paper_scissorsAt","color_modelAt","volvelleAt", "wheel_of_consumptionAt","iglooAt","knock_knockAt","canceledAt","ikebanaAt","optimal_dishwasher_loadingAt","reactorAt","knife_drawerAt","off_with_their_headsAt","mid_century_modernAt","ishihara_testAt","phrenologyAt","don_apos_t_happy_com_be_worryAt","unpluggedAt","right_over_my_headAt","chainsawAt", "algorithmAt","victoryAt","fifty_minute_hourAt","taintAt","square_peg_in_a_round_holeAt","brain_wormAt","life_cycleAt","fridgeAt","mute_swanAt","salamanderAt","pooAt","fig_leafAt","cul_de_sacAt","no_such_thing_as_a_free_lunchAt","need_helpAt","climate_changeAt", "flashlightAt","credit_cardAt","image_not_foundAt","got_your_noseAt","fallout_shelterAt", "world_upside_downAt","periodic_tableAt","disco_ballAt","mulletAt","pitted_olive_that_yet_has_a_pitAt","lobotomyAt","toaster_falling_into_bathtubAt","erasedAt","water_cycleAt", "sol_lewittAt","rothkoAt","newspeakAt","spinelessAt","babylonAt","rentre_chez_toi_com_ta_mère_a_fait_des_gaufresAt","didn_apos_t_finish_her_drinkAt","under_thumbAt","inner_earAt","bending_the_knee_kissing_the_ringAt","asciiAt","starAt","blue_screen_of_deathAt","surveillance_capitalismAt","art_promptAt","finger_trickAt","toilet_paperAt","render_harmlessAt","uphill_both_waysAt","propagandaAt","palindromeAt","infinityAt","comedianAt","butterAt","participationAt","check_engine_lightAt","dnaAt","tail_wagging_the_dogAt","enlightenmentAt","buffleheadsAt", "trees_on_the_hillsideAt","on_the_spectrumAt", "mittensAt","casseroleAt","snitches_get_stitchesAt","misprintAt","resistanceAt","zero_knowledge_proofAt","razorAt","not_my_circus_not_my_monkeysAt","hurricaneAt","i_apos_m_with_stupidAt","liberal_eliteAt","patriarchyAt","cellular_automataAt","local_maximaAt", "scotomaAt","snailAt","reciprocalAt","tree_hugging_communistAt","synapseAt","cat_doorAt","your_better_halfAt","cone_of_shameAt","traumaAt","convenience_store_sushiAt","red_lineAt","people_are_sayingAt","tidally_lockedAt","swimming_in_circlesAt","flowAt","concept_of_a_planAt","bomberAt","nimbyAt","sanewashingAt","artspeakAt","mass_shootingAt","hunter_bidens_laptopAt","dyslexiaAt","rear_viewAt","bobberAt","double_slitAt","burdenAt","sunporchAt","jogo_do_bichoAt","bathtub_madonnaAt","did_you_even_read_my_email_q_At","automatic_writingAt","scratchy_sweaterAt","ramenAt", "like_and_followAt","like_pulling_teethAt","agoraphobiaAt","flying_dreamAt","acrophobiaAt","accidentAt","a_trapAt","up_lateAt","soundingsAt","pants_on_fireAt","house_on_fireAt","colanderAt","deer_in_the_headlightsAt","meteor_showerAt","auroraAt","night_drivingAt","full_moonAt","asteriskAt","pat_yourself_on_the_backAt","gray_areaAt","crazy_cat_ladyAt","frogAt","transducerAt","synecdocheAt", "counterfactualAt","koanAt","pareidoliaAt","red_shirtAt","lithomancyAt","trope_they_re_shutting_down_the_x_filesAt","you_make_a_better_door_than_a_windowAt","swimming_poolAt", "sigilAt","bothsidesismAt","psychicAt","magic_8_ballAt", "mixtapeAt","homunculus_has_left_the_buildingAt","palimpsestAt","too_far_awayAt","lazy_evaluationAt","stay_in_your_laneAt","holy_days_of_obligationAt","late_stage_capitalismAt","ouroborosAt","traveling_salesmanAt","no_longer_supportedAt", "P_versus_NPAt","field_guideAt","empty_signifierAt","fallen_idolAt","idling_black_pickup_with_tinted_windowsAt","empty_tableAt","tankAt","stainAt","unhingedAt","splashdownAt","stageAt","foundationalismAt","stone_of_madnessAt","anosognosiaAt","jailAt","philosopherAt","serverAt","paperclipAt","fox_and_hareAt","kilroyAt", "copy_and_pasteAt","person_man_woman_camera_tvAt","endless_shrimpAt","chiralityAt","tracesAt","topologyAt","soldAt","perfectly_normal_cowboy_bootsAt","dogcowAt","upendedAt","self_referenceAt", "representationAt","geminiAt","punch_cardAt","invisible_handAt","unknown_birdAt", "dormerAt","skates_purseAt","shopping_cartAt","tickAt","incomingAt","passwordAt","snowmanAt", "calendarAt","gliderAt","hang_manAt","octopusAt","reel_to_reelAt","flyover_statesAt","coffee_makerAt","big_cityAt","joineryAt","missingAt","hexAt",/*"unoAt","fourofdiamondsAt",*/"space_intentionally_left_blankAt","regexAt","one_of_suitsAt","galleryAt","le_crépusculeAt","pongAt", "meanAt","quantum_tunnellingAt","mona_lisaAt", "divide_by_zeroAt","your_pointy_elbowsAt","workAt","doll_houseAt","pixelAt","game_pieceAt","gameAt","windAt","steering_wheelAt", "urgentAt", "holeAt","evidenceAt", "solar_systemAt","suburbsAt","empty_setAt","nowAt","scattered_leavesAt","cabin_air_filterAt","tape_dispenserAt","running_with_scissorsAt","free_palletsAt","whaleAt","bacteriophageAt","stone_wallAt","eyeglassesAt","blast_radiusAt","winter_stickAt","dreyAt","oocyteAt","bird_cageAt","parking_lotAt","lemonAt","dieAt","riverAt","progress_indicatorAt","postcardAt", "keyholeAt", "puzzle_pieceAt", "monitorAt", "impossibleAt", "uphillAt", "connect_the_dotsAt","dog_whistleAt"]  
-let noDraw = ["bug_At", "rules_of_pokerAt","n_of_clubsAt","about_to_walk_off_a_cliffAt","tcardAt","spiral_boundAt","six_of_heartsAt","tarjetas_rojasAt","credit_cardAt","image_not_foundAt","misprintAt","fourofdiamondsAt","unoAt"]
+ "pulfrich_effectAt", "alignmentAt","monopolyAt","war_crimesAt","illnessAt","divorceAt","computeAt","old_ageAt","quiet_piggy_exc_At","dog_that_didn_apos_t_barkAt","desire_pathAt","ouijaAt","tombstoneAt","bug_At","rorschach_testAt","yoink_exc_At","landscapeAt","waitingAt","shake_a_faceAt","inflection_pointAt","witnessAt", "oblique_stratagiesAt","random_walkAt",  "ceci_n_apos_est_pas_une_carteAt","object_permanenceAt","rules_of_pokerAt", "spandrelAt","संसारAt","walled_gardenAt","is_it_prime_q_At","judgmentalAt","one_trick_ponyAt","about_to_walk_off_a_cliffAt","tech_broAt","müller_hyph_lyer_illusionAt","_19th_century_capitalism_themed_cardAt","datura_stramoniumAt", "stochastic_parrotAt", "eye_contactAt","load_cellAt", "trompe_l_apos_oeilAt","vaccineAt","evAt","knot_theoryAt","four_color_theoremAt","hierophantAt","free_readingAt","lubbers_sp__lp_alt_rp_At","wokeAt","bubbleAt","flash_cardAt","mtg_cardAt","unoAt","six_of_heartsAt","sufferingAt","lubbersAt","halfCardsAt","narcissusAt","undoingAt","relicAt","untitled_drawing_appAt","acAt","triple_deckerAt","tofuAt","crossroadsAt","burnerAt","constancyAt","last_matchAt","crossword_puzzleAt","orreryAt","draw_your_own_cardAt","picture_thisAt","densityAt","have_we_learned_nothing_yet_q_At", "promisesAt","lureAt","turbulenceAt", "reductionAt","ironing_boardAt", "anendophasiaAt","ten_of_cuisenaire_rodsAt","ten_of_ironingAt","indeterminate_of_swordsAt","pre_hyph_complianceAt","horse_shoeAt","magnetAt","contentAt","sensitiveAt","big_footAt","cognitive_dissonanceAt","fertilityAt","exitAt", "nonexistent_filesAt","schröder_apos_s_staircaseAt","marginaliaAt", "requirementsAt","doom_on_a_tarot_cardAt","toy_soldierAt","hidden_variablesAt","entscheidungsproblemAt","backPatternAt","vitruvian_manAt","_3DAt","schrödinger_apos_s_catAt","what_is_a_concentration_camp_q_At","special_interestsAt","stygian_blueAt", "day_dayAt","mary_apos_s_roomAt","chinese_roomAt","matrix_multiplicationAt","meditationAt","metalAt","quantity_has_a_quality_all_its_ownAt","meridiansAt","no_signalAt","garden_pathAt","captchaAt", "cookie_policyAt","subscription_requiredAt","el_viaje_del_héroeAt", "small_handsAt","tacoAt","where_your_sleeves_meet_your_waistbandAt","krebs_cycleAt","key_exchangeAt","numerologyAt","slide_ruleAt","is_he_dead_yet_q_At","illusion_of_controlAt","palm_readingAt","printerAt","turntableAt","reading_tea_leavesAt","no_kingsAt","tin_foil_hatAt","spell_checkAt","hands_offAt","cancerAt","elementaryAt","gunAt","disappearedAt","symbolic_fencingAt","calculatorAt","empty_roomsAt","dissatisfactionAt","rock_paper_scissorsAt","color_modelAt","volvelleAt", "wheel_of_consumptionAt","iglooAt","knock_knockAt","canceledAt","ikebanaAt","optimal_dishwasher_loadingAt","reactorAt","knife_drawerAt","off_with_their_headsAt","mid_century_modernAt","ishihara_testAt","phrenologyAt","don_apos_t_happy_com_be_worryAt","unpluggedAt","right_over_my_headAt","chainsawAt", "algorithmAt","victoryAt","fifty_minute_hourAt","taintAt","square_peg_in_a_round_holeAt","brain_wormAt","life_cycleAt","fridgeAt","mute_swanAt","salamanderAt","pooAt","fig_leafAt","cul_de_sacAt","no_such_thing_as_a_free_lunchAt","need_helpAt","climate_changeAt", "flashlightAt","credit_cardAt","image_not_foundAt","got_your_noseAt","fallout_shelterAt", "world_upside_downAt","periodic_tableAt","disco_ballAt","mulletAt","pitted_olive_that_yet_has_a_pitAt","lobotomyAt","toaster_falling_into_bathtubAt","erasedAt","water_cycleAt", "sol_lewittAt","rothkoAt","newspeakAt","spinelessAt","babylonAt","rentre_chez_toi_com_ta_mère_a_fait_des_gaufresAt","didn_apos_t_finish_her_drinkAt","under_thumbAt","inner_earAt","bending_the_knee_kissing_the_ringAt","asciiAt","starAt","blue_screen_of_deathAt","surveillance_capitalismAt","art_promptAt","finger_trickAt","toilet_paperAt","render_harmlessAt","uphill_both_waysAt","propagandaAt","palindromeAt","infinityAt","comedianAt","butterAt","participationAt","check_engine_lightAt","dnaAt","tail_wagging_the_dogAt","enlightenmentAt","buffleheadsAt", "trees_on_the_hillsideAt","on_the_spectrumAt", "mittensAt","casseroleAt","snitches_get_stitchesAt","misprintAt","resistanceAt","zero_knowledge_proofAt","razorAt","not_my_circus_not_my_monkeysAt","hurricaneAt","i_apos_m_with_stupidAt","liberal_eliteAt","patriarchyAt","cellular_automataAt","local_maximaAt", "scotomaAt","snailAt","reciprocalAt","tree_hugging_communistAt","synapseAt","cat_doorAt","your_better_halfAt","cone_of_shameAt","traumaAt","convenience_store_sushiAt","red_lineAt","people_are_sayingAt","tidally_lockedAt","swimming_in_circlesAt","flowAt","concept_of_a_planAt","bomberAt","nimbyAt","sanewashingAt","artspeakAt","mass_shootingAt","hunter_bidens_laptopAt","dyslexiaAt","rear_viewAt","bobberAt","double_slitAt","burdenAt","sunporchAt","jogo_do_bichoAt","bathtub_madonnaAt","did_you_even_read_my_email_q_At","automatic_writingAt","scratchy_sweaterAt","ramenAt", "like_and_followAt","like_pulling_teethAt","agoraphobiaAt","flying_dreamAt","acrophobiaAt","accidentAt","a_trapAt","up_lateAt","soundingsAt","pants_on_fireAt","house_on_fireAt","colanderAt","deer_in_the_headlightsAt","meteor_showerAt","auroraAt","night_drivingAt","full_moonAt","asteriskAt","pat_yourself_on_the_backAt","gray_areaAt","crazy_cat_ladyAt","frogAt","transducerAt","synecdocheAt", "counterfactualAt","koanAt","pareidoliaAt","red_shirtAt","lithomancyAt","trope_they_re_shutting_down_the_x_filesAt","you_make_a_better_door_than_a_windowAt","swimming_poolAt", "sigilAt","bothsidesismAt","psychicAt","magic_8_ballAt", "mixtapeAt","homunculus_has_left_the_buildingAt","palimpsestAt","too_far_awayAt","lazy_evaluationAt","stay_in_your_laneAt","holy_days_of_obligationAt","late_stage_capitalismAt","ouroborosAt","traveling_salesmanAt","no_longer_supportedAt", "P_versus_NPAt","field_guideAt","empty_signifierAt","fallen_idolAt","idling_black_pickup_with_tinted_windowsAt","empty_tableAt","tankAt","stainAt","unhingedAt","splashdownAt","stageAt","foundationalismAt","stone_of_madnessAt","anosognosiaAt","jailAt","philosopherAt","serverAt","paperclipAt","fox_and_hareAt","kilroyAt", "copy_and_pasteAt","person_man_woman_camera_tvAt","endless_shrimpAt","chiralityAt","tracesAt","topologyAt","soldAt","perfectly_normal_cowboy_bootsAt","dogcowAt","upendedAt","self_referenceAt", "representationAt","geminiAt","punch_cardAt","invisible_handAt","unknown_birdAt", "dormerAt","skates_purseAt","shopping_cartAt","tickAt","incomingAt","passwordAt","snowmanAt", "calendarAt","gliderAt","hang_manAt","octopusAt","reel_to_reelAt","flyover_statesAt","coffee_makerAt","big_cityAt","joineryAt","missingAt","hexAt",/*"unoAt","fourofdiamondsAt",*/"space_intentionally_left_blankAt","regexAt","one_of_suitsAt","galleryAt","le_crépusculeAt","pongAt", "meanAt","quantum_tunnellingAt","mona_lisaAt", "divide_by_zeroAt","your_pointy_elbowsAt","workAt","doll_houseAt","pixelAt","game_pieceAt","gameAt","windAt","steering_wheelAt", "urgentAt", "holeAt","evidenceAt", "solar_systemAt","suburbsAt","empty_setAt","nowAt","scattered_leavesAt","cabin_air_filterAt","tape_dispenserAt","running_with_scissorsAt","free_palletsAt","whaleAt","bacteriophageAt","stone_wallAt","eyeglassesAt","blast_radiusAt","winter_stickAt","dreyAt","oocyteAt","bird_cageAt","parking_lotAt","lemonAt","dieAt","riverAt","progress_indicatorAt","postcardAt", "keyholeAt", "puzzle_pieceAt", "monitorAt", "impossibleAt", "uphillAt", "connect_the_dotsAt","dog_whistleAt"]  
+let noDraw = ["monopolyAt","mtg_cardAt","bug_At", "rules_of_pokerAt","n_of_clubsAt","about_to_walk_off_a_cliffAt","tcardAt","spiral_boundAt","six_of_heartsAt","tarjetas_rojasAt","credit_cardAt","image_not_foundAt","misprintAt","fourofdiamondsAt","unoAt"]
 let noCaption = ["tcardAt","spiral_boundAt"]
-let autoDraw = ["landscapeAt","rules_of_pokerAt","n_of_clubsAt","about_to_walk_off_a_cliffAt","trompe_l_apos_oeilAt","free_readingAt","flash_cardAt","mtg_cardAt","unoAt","six_of_heartsAt", "halfCardsAt"]
+let autoDraw = ["monopolyAt","landscapeAt","rules_of_pokerAt","n_of_clubsAt","about_to_walk_off_a_cliffAt","trompe_l_apos_oeilAt","free_readingAt","flash_cardAt","mtg_cardAt","unoAt","six_of_heartsAt", "halfCardsAt"]
 let apostrophy = ["skates_purseAt","hunter_bidens_laptopAt"]
-let noThe = ["quiet_piggy_exc_At","ouijaAt","bug_At","yoink_exc_At","landscapeAt","waitingAt","shake_a_faceAt","oblique_stratagiesAt","poker_faceAt","ceci_n_apos_est_pas_une_pipeAt","ceci_n_apos_est_pas_une_carteAt","object_permanenceAt","संसारAt","is_it_prime_q_At","judgmentalAt", "batten_down_the_hatchesAt", "_19th_century_capitalism_themed_cardAt","datura_stramoniumAt","goedkeuringskrulAt","eye_contactAt","trompe_l_apos_oeilAt","knot_theoryAt","wokeAt","sufferingAt","halfCardsAt","narcissusAt","untitled_drawing_appAt","tofuAt","constancyAt","draw_your_own_cardAt","picture_thisAt","densityAt","have_we_learned_nothing_yet_q_At", "promisesAt","turbulenceAt", "reductionAt","anendophasiaAt","pre_hyph_complianceAt","sensitiveAt","big_footAt","cognitive_dissonanceAt","transparent__lp_not_rp_At","fertilityAt","schröder_apos_s_staircaseAt","doom_on_a_tarot_cardAt","hidden_variablesAt","entscheidungsproblemAt","_3DAt","schrödinger_apos_s_catAt","what_is_a_concentration_camp_q_At","special_interestsAt","stygian_blueAt","day_dayAt","mary_apos_s_roomAt","matrix_multiplicationAt","meditationAt","metalAt","quantity_has_a_quality_all_its_ownAt","no_signalAt","don_apos_t_care_about_why_you_switched_browsersAt","zodiacAt","subscription_requiredAt","sisyphusAt","el_viaje_del_héroeAt","where_your_sleeves_meet_your_waistbandAt","key_exchangeAt","numerologyAt","is_he_dead_yet_q_At","palm_readingAt","reading_tea_leavesAt","no_kingsAt","hands_offAt","cancerAt","elementaryAt","gunAt","disappearedAt","symbolic_fencingAt","empty_roomsAt","dissatisfactionAt","rock_paper_scissorsAt","votiveAt","knock_knockAt","canceledAt","ikebanaAt","optimal_dishwasher_loadingAt","off_with_their_headsAt","mid_century_modernAt","phrenologyAt","don_apos_t_happy_com_be_worryAt","unpluggedAt","right_over_my_headAt","victoryAt","tarjetas_rojasAt","taintAt","square_peg_in_a_round_holeAt","thumbs_upAt","trope_detective_pursuing_suspectAt","pooAt","no_such_thing_as_a_free_lunchAt","need_helpAt","climate_changeAt","image_not_foundAt","got_your_noseAt","tearsAt","toaster_falling_into_bathtubAt","erasedAt","sol_lewittAt","albersAt","newspeakAt","babylonAt","rentre_chez_toi_com_ta_mère_a_fait_des_gaufresAt","didn_apos_t_finish_her_drinkAt","under_thumbAt","bending_the_knee_kissing_the_ringAt","surveillance_capitalismAt","toilet_paperAt","render_harmlessAt","uphill_both_waysAt","propagandaAt","infinityAt","butterAt","participationAt","dnaAt","enlightenmentAt","buffleheadsAt","trees_on_the_hillsideAt","on_the_spectrumAt","bokeh_At","trash_dayAt","snitches_get_stitchesAt","gone_silentAt","resistanceAt","bicycles_are_everywhereAt","gigoAt","not_my_circus_not_my_monkeysAt","i_apos_m_with_stupidAt","patriarchyAt","your_better_halfAt","traumaAt","convenience_store_sushiAt","people_are_sayingAt","swimming_in_circlesAt","flowAt","concept_of_a_planAt","nimbyAt","sanewashingAt","artspeakAt","hunter_bidens_laptopAt","dyslexiaAt","jogo_do_bichoAt","did_you_even_read_my_email_q_At","like_and_followAt","like_pulling_teethAt","agoraphobiaAt","flying_dreamAt","acrophobiaAt","a_trapAt","up_lateAt","soundingsAt","pants_on_fireAt","house_on_fireAt","deer_in_the_headlightsAt","night_drivingAt","pat_yourself_on_the_backAt","synecdocheAt","pareidoliaAt","lithomancyAt","trope_they_re_shutting_down_the_x_filesAt","you_make_a_better_door_than_a_windowAt","La_macetaAt","bothsidesismAt","psychicAt","lazy_evaluationAt","stay_in_your_laneAt","holy_days_of_obligationAt","late_stage_capitalismAt","P_versus_NPAt","idling_black_pickup_with_tinted_windowsAt","unhingedAt","foundationalismAt","anosognosiaAt","jailAt","fox_and_hareAt","kilroyAt", "redactedAt","copy_and_pasteAt","la_coronaAt","la_campanaAt","la_peraAt","la_sandíaAt","heads_or_tailsAt","doomscrollingAt","surface_areaAt","person_man_woman_camera_tvAt","chiralityAt","tracesAt","topologyAt","soldAt","upendedAt","self_referenceAt","representationAt","geminiAt","hang_manAt","space_intentionally_left_blankAt","le_crépusculeAt","pongAt","quantum_tunnellingAt","divide_by_zeroAt","your_pointy_elbowsAt","workAt","urgentAt","nowAt","scattered_leavesAt","running_with_scissorsAt","too_many_thingsAt","flock_of_birdsAt","aiAt","walk_it_backAt","thread_the_needleAt","indicate_by_pointingAt","press_the_buttonAt","conference_room_bAt", "ghost_in_the_machineAt", "gas_station_shrubberyAt", "greenwashingAt", "refractionAt", "clickbaotAt",  "plate_tectonicsAt",
+let noThe = ["alignmentAt","war_crimesAt","illnessAt","divorceAt","old_ageAt","quiet_piggy_exc_At","ouijaAt","bug_At","yoink_exc_At","landscapeAt","waitingAt","shake_a_faceAt","oblique_stratagiesAt","poker_faceAt","ceci_n_apos_est_pas_une_pipeAt","ceci_n_apos_est_pas_une_carteAt","object_permanenceAt","संसारAt","is_it_prime_q_At","judgmentalAt", "batten_down_the_hatchesAt", "_19th_century_capitalism_themed_cardAt","datura_stramoniumAt","goedkeuringskrulAt","eye_contactAt","trompe_l_apos_oeilAt","knot_theoryAt","wokeAt","sufferingAt","halfCardsAt","narcissusAt","untitled_drawing_appAt","tofuAt","constancyAt","draw_your_own_cardAt","picture_thisAt","densityAt","have_we_learned_nothing_yet_q_At", "promisesAt","turbulenceAt", "reductionAt","anendophasiaAt","pre_hyph_complianceAt","sensitiveAt","big_footAt","cognitive_dissonanceAt","transparent__lp_not_rp_At","fertilityAt","schröder_apos_s_staircaseAt","doom_on_a_tarot_cardAt","hidden_variablesAt","entscheidungsproblemAt","_3DAt","schrödinger_apos_s_catAt","what_is_a_concentration_camp_q_At","special_interestsAt","stygian_blueAt","day_dayAt","mary_apos_s_roomAt","matrix_multiplicationAt","meditationAt","metalAt","quantity_has_a_quality_all_its_ownAt","no_signalAt","don_apos_t_care_about_why_you_switched_browsersAt","zodiacAt","subscription_requiredAt","sisyphusAt","el_viaje_del_héroeAt","where_your_sleeves_meet_your_waistbandAt","key_exchangeAt","numerologyAt","is_he_dead_yet_q_At","palm_readingAt","reading_tea_leavesAt","no_kingsAt","hands_offAt","cancerAt","elementaryAt","gunAt","disappearedAt","symbolic_fencingAt","empty_roomsAt","dissatisfactionAt","rock_paper_scissorsAt","votiveAt","knock_knockAt","canceledAt","ikebanaAt","optimal_dishwasher_loadingAt","off_with_their_headsAt","mid_century_modernAt","phrenologyAt","don_apos_t_happy_com_be_worryAt","unpluggedAt","right_over_my_headAt","victoryAt","tarjetas_rojasAt","taintAt","square_peg_in_a_round_holeAt","thumbs_upAt","trope_detective_pursuing_suspectAt","pooAt","no_such_thing_as_a_free_lunchAt","need_helpAt","climate_changeAt","image_not_foundAt","got_your_noseAt","tearsAt","toaster_falling_into_bathtubAt","erasedAt","sol_lewittAt","albersAt","newspeakAt","babylonAt","rentre_chez_toi_com_ta_mère_a_fait_des_gaufresAt","didn_apos_t_finish_her_drinkAt","under_thumbAt","bending_the_knee_kissing_the_ringAt","surveillance_capitalismAt","toilet_paperAt","render_harmlessAt","uphill_both_waysAt","propagandaAt","infinityAt","butterAt","participationAt","dnaAt","enlightenmentAt","buffleheadsAt","trees_on_the_hillsideAt","on_the_spectrumAt","bokeh_At","trash_dayAt","snitches_get_stitchesAt","gone_silentAt","resistanceAt","bicycles_are_everywhereAt","gigoAt","not_my_circus_not_my_monkeysAt","i_apos_m_with_stupidAt","patriarchyAt","your_better_halfAt","traumaAt","convenience_store_sushiAt","people_are_sayingAt","swimming_in_circlesAt","flowAt","concept_of_a_planAt","nimbyAt","sanewashingAt","artspeakAt","hunter_bidens_laptopAt","dyslexiaAt","jogo_do_bichoAt","did_you_even_read_my_email_q_At","like_and_followAt","like_pulling_teethAt","agoraphobiaAt","flying_dreamAt","acrophobiaAt","a_trapAt","up_lateAt","soundingsAt","pants_on_fireAt","house_on_fireAt","deer_in_the_headlightsAt","night_drivingAt","pat_yourself_on_the_backAt","synecdocheAt","pareidoliaAt","lithomancyAt","trope_they_re_shutting_down_the_x_filesAt","you_make_a_better_door_than_a_windowAt","La_macetaAt","bothsidesismAt","psychicAt","lazy_evaluationAt","stay_in_your_laneAt","holy_days_of_obligationAt","late_stage_capitalismAt","P_versus_NPAt","idling_black_pickup_with_tinted_windowsAt","unhingedAt","foundationalismAt","anosognosiaAt","jailAt","fox_and_hareAt","kilroyAt", "redactedAt","copy_and_pasteAt","la_coronaAt","la_campanaAt","la_peraAt","la_sandíaAt","heads_or_tailsAt","doomscrollingAt","surface_areaAt","person_man_woman_camera_tvAt","chiralityAt","tracesAt","topologyAt","soldAt","upendedAt","self_referenceAt","representationAt","geminiAt","hang_manAt","space_intentionally_left_blankAt","le_crépusculeAt","pongAt","quantum_tunnellingAt","divide_by_zeroAt","your_pointy_elbowsAt","workAt","urgentAt","nowAt","scattered_leavesAt","running_with_scissorsAt","too_many_thingsAt","flock_of_birdsAt","aiAt","walk_it_backAt","thread_the_needleAt","indicate_by_pointingAt","press_the_buttonAt","conference_room_bAt", "ghost_in_the_machineAt", "gas_station_shrubberyAt", "greenwashingAt", "refractionAt", "clickbaotAt",  "plate_tectonicsAt",
 "furniture_at_nightAt", "misheard_lyriclet f = randomPsAt", "negative_spaceAt","nice_thingsAt", "talkAt", "connect_the_dotsAt", "entanglementAt",'get_off_my_lawnAt']
 let shortlist = ["local_maximaAt","calendarAt","nowAt"]
 
@@ -472,6 +472,429 @@ const title_author = {
   "Me and Earl and the Dying Girl":"Jesse Andrews",
   "This Book is Gay":"Juno Dawson",
   "  Sold":"Patricia McCormick"
+}
+
+function alignmentAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W, cpx, cpy, points = []
+  let savedF = ctx.fillStyle, savedS = ctx.strokeStyle, WAVEY = true
+  let cs = W/32, d = 0, i = 0, maxi = 1
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  if (WAVEY) {
+    d = cs/2, maxi = 13
+    ctx.lineWidth = 1 + document.getElementById("featuresize").value/100
+  }
+  ctx.strokeStyle = color
+  ctx.fillStyle = color
+  ctx.lineCap = "square"
+  ctx.lineJoin = "bevel"
+  for (; i < maxi; i++) { // WAVEY
+  //1
+  ctx.beginPath()
+  ctx.moveTo(x+11*cs+pet(d/2), y+22*cs+pet(d/2))
+  ctx.lineTo(x+11*cs+pet(d), y+29*cs+pet(d))
+  ctx.lineTo(x+16*cs+pet(d), y+29*cs+pet(d))
+  ctx.lineTo(x+16*cs+pet(d), y+24*cs+pet(d))
+  ctx.lineTo(x+24*cs+pet(d), y+24*cs+pet(d))
+  ctx.lineTo(x+24*cs+pet(d), y+29*cs+pet(d))
+  ctx.lineTo(x+29*cs+pet(d), y+29*cs+pet(d))
+  ctx.lineTo(x+29*cs+pet(d), y+13*cs+pet(d))
+  cpx = x+29*cs
+  cpy = y+3*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+18*cs+pet(d), y+3*cs+pet(d))
+  cpx = x+4*cs
+  cpy = y+3*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+5*cs+pet(d), y+13*cs+pet(d))
+  cpx = x+5*cs
+  cpy = y+24*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+5*cs+pet(d), y+24*cs+pet(d))
+  cpx = x+5*cs
+  cpy = y+26*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+4*cs+pet(d), y+26*cs+pet(d))
+  cpx = x+3*cs
+  cpy = y+26*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+3*cs+pet(d), y+24*cs+pet(d))
+  cpx = x+1*cs
+  cpy = y+24*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+1*cs+pet(d), y+24*cs+pet(d))
+  cpx = x+1*cs
+  cpy = y+29*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+5*cs+pet(d), y+29*cs+pet(d))
+  cpx = x+9*cs
+  cpy = y+29*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+9*cs+pet(d), y+21*cs+pet(d))
+  cpx = x+11*cs
+  cpy = y+21*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+11*cs+pet(d), y+22*cs+pet(d))
+  cpx = x+10*cs
+  cpy = y+8*cs
+  ctx.stroke()
+
+  } //WAVEY
+  hammersickleAt (x+9.5*cs,y+5*cs,W/2,"#ff0000")
+  ctx.strokeStyle = savedS
+  ctx.fillStyle = savedF
+}
+
+function hammersickleAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W, cpx, cpy, points = []
+  let savedF = ctx.fillStyle, savedS = ctx.strokeStyle, WAVEY = false
+  let cs = W/24, d = 0, i = 0, maxi = 1
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  if (WAVEY) {
+    d = cs/2, maxi = 9
+    ctx.lineWidth = 1 + document.getElementById("featuresize").value/150
+  }
+  ctx.strokeStyle = color
+  ctx.fillStyle = color
+  ctx.lineCap = "square"
+  ctx.lineJoin = "bevel"
+  for (; i < maxi; i++) { // WAVEY
+  //1
+  ctx.beginPath()
+  ctx.moveTo(x+8*cs+pet(d/2), y+16*cs+pet(d/2))
+  cpx = x+12*cs
+  cpy = y+19*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+15*cs+pet(d), y+18*cs+pet(d))
+  cpx = x+7*cs
+  cpy = y+10*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+7*cs+pet(d), y+10*cs+pet(d))
+  cpx = x+5*cs
+  cpy = y+12*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+5*cs+pet(d), y+12*cs+pet(d))
+  cpx = x+2*cs
+  cpy = y+9*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+2*cs+pet(d), y+9*cs+pet(d))
+  cpx = x+7*cs
+  cpy = y+4*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+7*cs+pet(d), y+4*cs+pet(d))
+  cpx = x+9*cs
+  cpy = y+5*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+10*cs+pet(d), y+4*cs+pet(d))
+  cpx = x+12*cs
+  cpy = y+5*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+12*cs+pet(d), y+5*cs+pet(d))
+  cpx = x+9*cs
+  cpy = y+8*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+9*cs+pet(d), y+8*cs+pet(d))
+  cpx = x+20*cs //
+  cpy = y+19*cs //
+  ctx.quadraticCurveTo(cpx,cpy,x+17*cs+pet(d/2), y+17*cs+pet(d/2))
+  cpx = x+22*cs
+  cpy = y+7*cs
+  ctx.quadraticCurveTo(cpx+pet(d/2), cpy+pet(d/2), x+11*cs+pet(d/2), y+0*cs+pet(d/2))
+  cpx = x+22*cs
+  cpy = y+4*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+22*cs+pet(d), y+13*cs+pet(d))
+  cpx = x+22*cs
+  cpy = y+18*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+19.5*cs+pet(d), y+19.5*cs+pet(d))
+  cpx = x+22*cs
+  cpy = y+22*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+22*cs+pet(d), y+22*cs+pet(d))
+  cpx = x+23*cs
+  cpy = y+23*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+22*cs+pet(d), y+24*cs+pet(d))
+  cpx = x+20*cs
+  cpy = y+25*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+19*cs+pet(d), y+23*cs+pet(d))
+  cpx = x+17*cs
+  cpy = y+21*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+17*cs+pet(d), y+21*cs+pet(d))
+  cpx = x+11*cs
+  cpy = y+23*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+8*cs+pet(d), y+19*cs+pet(d))
+  cpx = x+5*cs
+  cpy = y+22*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+5*cs+pet(d), y+22*cs+pet(d))
+  cpx = x+4*cs
+  cpy = y+23*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+3*cs+pet(d), y+22*cs+pet(d))
+  cpx = x+2*cs
+  cpy = y+21*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+3*cs+pet(d), y+20*cs+pet(d))
+  cpx = x+8*cs
+  cpy = y+16*cs
+  ctx.quadraticCurveTo(cpx+pet(d/2), cpy+pet(d/2), x+8*cs+pet(d/2), y+16*cs+pet(d/2))
+  ctx.fill()
+
+  } //WAVEY
+  ctx.strokeStyle = savedS
+  ctx.fillStyle = savedF
+}
+
+function fillcatAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W, cpx, cpy, points = []
+  ctx.fillStyle = color
+  //1
+  ctx.beginPath()
+  ctx.moveTo(x+16*W/24, y+22*H/24)
+  cpx = x+22*W/24
+  cpy = y+22*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+22*W/24, y+16*H/24)
+  cpx = x+22*W/24
+  cpy = y+2*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+22*W/24, y+2*H/24)
+  cpx = x+20*W/24
+  cpy = y+4*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+20*W/24, y+4*H/24)
+  cpx = x+18*W/24
+  cpy = y+3*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+16*W/24, y+4*H/24)
+  cpx = x+14*W/24
+  cpy = y+2*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+14*W/24, y+2*H/24)
+  cpx = x+14*W/24
+  cpy = y+5*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+14*W/24, y+5*H/24)
+  cpx = x+14*W/24
+  cpy = y+6*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+13*W/24, y+6*H/24)
+  cpx = x+2*W/24
+  cpy = y+6*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+2*W/24, y+16*H/24)
+  cpx = x+2*W/24
+  cpy = y+22*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+8*W/24, y+22*H/24)
+  cpx = x+16*W/24
+  cpy = y+22*H/24
+  ctx.quadraticCurveTo(cpx, cpy, x+16*W/24, y+22*H/24)
+  ctx.fill()
+}
+
+
+function pulfrich_effectAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W, cpx, cpy, points = []
+  let savedF = ctx.fillStyle, savedS = ctx.strokeStyle
+  let cs = W/24, d = 0, maxi = 1
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+
+  ctx.strokeStyle = color
+  ctx.fillStyle = '#000000'
+  ctx.lineCap = "square"
+  ctx.lineJoin = "bevel"
+  ctx.fillRect(x,y,W,H)
+
+  ctx.fillStyle = '#ffffff'
+  let cx = x+W/2-cs, cy = y+H/2-cs
+  let i = 0, x1 = x, y1 = y, angle = 0, r = W/3
+  ctx.save()
+  ctx.beginPath()
+  ctx.moveTo(x,y)
+  ctx.lineTo(x+W,y)
+  ctx.lineTo(x+W,y+H)
+  ctx.lineTo(x,y+H)
+  ctx.closePath()
+  ctx.clip()
+  for (; i < 290; i++) {
+    angle = 2*Math.PI * Math.random()
+    x1 = (r+Math.random()*14*cs) * Math.cos(angle)+cx
+    y1 = (r+Math.random()*14*cs)  * Math.sin(angle)+cy
+    ctx.fillRect(x1, y1, cs/2+Math.random()*cs/2, cs/2+Math.random()*cs/2)
+  }
+  ctx.restore()
+  fillcatAt(x+cs*4.8, y+cs*4.8, W/1.9, "#f7c27c38")
+  ctx.fillStyle = "#ffffff"
+  ctx.fillRect(x,y+H,W,H/8+cs/4)
+  ctx.fillStyle = "#000000"
+  let t = "gently shake this card"
+  ctx.font = (W*0.07)+"pt Arial"
+  let w = ctx.measureText(t).width
+  ctx.fillText(t, x+W/2-w/2, y+H+(W*0.1))
+  ctx.strokeStyle = savedS
+  ctx.fillStyle = savedF
+}
+
+function monopolyAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W*1.5, cpx, cpy, points = []
+  let savedF = ctx.fillStyle, savedS = ctx.strokeStyle, WAVEY = false
+  let cs = W/24, d = 0, i = 0, maxi = 1
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+
+  let monopoly_places = {
+  "MEDITER- RANEAN AVENUE":"M 60", "BALTIC AVENUE":"M 60",
+  "ORIENTAL AVENUE":"M 100", "VERMONT AVENUE":"M 100", 
+  "CONNECTICUT AVENUE":"M 120", "ST._CHARLES PLACE":"M 140", 
+  "STATES AVENUE":"M 140", "VIRGINIA AVENUE":"M 160", "ST._JAMES PLACE":"M 180", 
+  "TENNESSEE AVENUE":"M 180", "NEW_YORK AVENUE":"M 200", "KENTUCKY AVENUE":"M 220", 
+  "INDIANA AVENUE":"M 220", "ILLINOIS AVENUE":"M 240", "ATLANTIC AVENUE":"M 260", 
+  "VENTNOR AVENUE":"M 260", "MARVIN GARDENS":"M 280", "PACIFIC AVENUE":"M 300",
+  "NORTH CAROLINA AVENUE":"M 300"}
+  let monopoly_colors = {
+  "MEDITER- RANEAN AVENUE":"#6b4e3d", "BALTIC AVENUE":"#6b4e3d",
+  "ORIENTAL AVENUE":"#bed2db", "VERMONT AVENUE":"#bed2db", 
+  "CONNECTICUT AVENUE":"#bed2db", "ST._CHARLES PLACE":"#bb4194", 
+  "STATES AVENUE":"#bb4194", "VIRGINIA AVENUE":"#bb4194", "ST._JAMES PLACE":"#df942f", 
+  "TENNESSEE AVENUE":"#df942f", "NEW_YORK AVENUE":"#df942f", "KENTUCKY AVENUE":"#cb2629", 
+  "INDIANA AVENUE":"#cb2629", "ILLINOIS AVENUE":"#cb2629", 
+  "ATLANTIC AVENUE":"#f9f03a", "VENTNOR AVENUE":"#f9f03a", "MARVIN GARDENS":"#f9f03a", 
+  "PACIFIC AVENUE":"#69b060", "NORTH CAROLINA AVENUE":"#69b060"}
+  ctx.fillStyle = "#d6e1c8"
+  ctx.fillRect(x,y,W,H)
+  let place = randomPick(Object.keys(monopoly_places))
+  ctx.fillStyle = monopoly_colors[place]
+  ctx.fillRect(x,y,W,H/5)
+
+  ctx.fillStyle = "#000000"
+  let fs = W *0.08
+  ctx.font = "800 "+(fs)+"pt Futura Md BT"
+  let cost = monopoly_places[place]
+  place = (place).split(" ")
+  place[0] = place[0].replace('_', ' ')
+  let w = ctx.measureText(place[0]).width
+  ctx.fillText(place[0], x+(W/2-w/2), y + H/4+fs*1.5)
+  if (place[1]) {
+    w = ctx.measureText(place[1]).width
+    ctx.fillText(place[1], x+(W/2-w/2), y + H/4+fs*3)
+  }
+  if (place[2]) {
+    w = ctx.measureText(place[2]).width
+    ctx.fillText(place[2], x+(W/2-w/2), y + H/4+fs*4.5)
+  }
+   w = ctx.measureText(cost).width
+   ctx.fillText(cost, x+(W/2-w/2), y + H-fs*1.5)
+   ctx.strokeStyle = "#000000"
+   ctx.lineWidth = fs/8
+   ctx.beginPath()
+   ctx.moveTo(x+W/2-w/2-cs/8,        y + H-fs*2.1)
+   ctx.lineTo(x+W/2-w/2+fs*1.3-cs/8, y + H-fs*2.1)
+   ctx.stroke()
+
+   ctx.beginPath()
+   ctx.moveTo(x+W/2-w/2-cs/8,        y + H-fs*1.8)
+   ctx.lineTo(x+W/2-w/2+fs*1.3-cs/8, y + H-fs*1.8)
+   ctx.stroke()
+
+  ctx.lineWidth = cs*0.7
+  ctx.strokeStyle = "#000000"
+  ctx.strokeRect(x,y,W,H/5)
+  ctx.strokeRect(x,y,W,H)
+  if (Math.random() > 0.5)
+    greenhouseAt(x-cs/2, y+cs*0.1, cs*6, "#ff0000")
+  if (Math.random() > 0.5)
+    greenhouseAt(x+cs*5.8, y+cs*0.6, cs*6, "#ff0000")
+  if (Math.random() > 0.5)
+    greenhouseAt(x+cs*11.8, y+cs*0.1, cs*6, "#ff0000")
+  if (Math.random() > 0.5)
+    greenhouseAt(x+cs*18.3, y+cs*0.6, cs*6, "#ff0000")
+}
+
+function greenhouseAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W, cpx, cpy, points = []
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  let savedF = ctx.fillStyle, savedS = ctx.strokeStyle
+  ctx.strokeStyle = color
+  ctx.fillStyle = color
+  ctx.lineCap = "square"
+  ctx.lineJoin = "bevel"
+  let cs = W/24
+  let p = [], cp = [], lastp = []
+  let cx = x+W/2, cy = y+H/2, d = 0, angle = pet(10)
+
+  //5
+  ctx.beginPath()
+  p = rotatePoint(x+2*cs+pet(d), y+24*cs+pet(d) ,cx,cy,angle)
+  ctx.moveTo(p[0],p[1])
+  p = rotatePoint(x+2*cs+pet(d), y+4*cs+pet(d) ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  p = rotatePoint(x+12*cs+pet(d), y+0*cs+pet(d) ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  p = rotatePoint(x+22*cs+pet(d), y+4*cs+pet(d) ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  p = rotatePoint(x+22*cs+pet(d), y+24*cs+pet(d) ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  ctx.shadowBlur = cs
+  ctx.shadowColor = "#44444444"
+  ctx.shadowOffsetX = cs*3
+  ctx.shadowOffsetY  = cs*3
+  ctx.fill()
+  ctx.shadowBlur = 0
+  ctx.shadowOffsetX = 0
+  ctx.shadowOffsetY  = 0
+  //1
+  ctx.beginPath()
+  p = rotatePoint(x+12*cs+pet(d), y+0*cs+pet(d) ,cx,cy,angle)
+  ctx.moveTo(p[0],p[1])
+  p = rotatePoint(x+2*cs+pet(d), y+4*cs+pet(d) ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  p = rotatePoint(x+2*cs+pet(d), y+16*cs+pet(d) ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  p = rotatePoint(x+12*cs+pet(d), y+12*cs+pet(d) ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  p = rotatePoint(x+12*cs+pet(d), y+0*cs+pet(d) ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  ctx.fillStyle = "#66ff88"
+  ctx.fill()
+
+  //2
+  ctx.beginPath()
+  p = rotatePoint(x+12*cs+pet(d), y+0*cs+pet(d) ,cx,cy,angle)
+  ctx.moveTo(p[0],p[1])
+  p = rotatePoint(x+22*cs+pet(d), y+4*cs+pet(d) ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  p = rotatePoint(x+22*cs+pet(d), y+16*cs+pet(d) ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  p = rotatePoint(x+12*cs+pet(d), y+12*cs+pet(d) ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  ctx.fillStyle = "#029221ff"
+  ctx.fill()
+
+  //3
+  ctx.beginPath()
+  p = rotatePoint(x+12*cs+pet(d), y+12*cs+pet(d) ,cx,cy,angle)
+  ctx.moveTo(p[0],p[1])
+  p = rotatePoint(x+2*cs+pet(d), y+16*cs+pet(d) ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  p = rotatePoint(x+2*cs+pet(d), y+24*cs+pet(d) ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  p = rotatePoint(x+22*cs+pet(d), y+24*cs+pet(d) ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  p = rotatePoint(x+22*cs+pet(d), y+16*cs+pet(d) ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+   ctx.fillStyle = "#037b1dff"
+  ctx.fill()
+
+  //4
+  ctx.beginPath()
+  p = rotatePoint(x+10*cs+pet(d), y+8*cs+pet(d) ,cx,cy,angle)
+  ctx.moveTo(p[0],p[1])
+  p = rotatePoint(x+14*cs+pet(d), y+8*cs+pet(d) ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  p = rotatePoint(x+14*cs+pet(d), y+12*cs+pet(d) ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  p = rotatePoint(x+10*cs+pet(d), y+12*cs+pet(d) ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  p = rotatePoint(x+10*cs+pet(d), y+8*cs+pet(d) ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  ctx.fillStyle = "#1edd47ff"
+  ctx.fill()
+
+  //6
+  ctx.beginPath()
+  p = rotatePoint(x+10*cs+pet(d), y+8*cs+pet(d) ,cx,cy,angle)
+  ctx.moveTo(p[0],p[1])
+  p = rotatePoint(x+12*cs+pet(d), y+8*cs+pet(d) ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  p = rotatePoint(x+12*cs+pet(d), y+12*cs+pet(d) ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  p = rotatePoint(x+10*cs+pet(d), y+12*cs+pet(d) ,cx,cy,angle)
+  ctx.lineTo(p[0],p[1])
+  ctx.fillStyle = "#1bcb41ff"
+  ctx.fill()
+
+  ctx.strokeStyle = savedS
+  ctx.fillStyle = savedF
 }
 
 function tech_broAt (x,y,W,color) {
@@ -3505,7 +3928,7 @@ function tombstoneAt (x,y,W,color) { /// qed
   ctx.fillStyle = savedF
 }
 
-function alignmentAt (x,y,W,color) {
+function alignmentAt_og (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let H = W, cpx, cpy, points = []
@@ -4167,6 +4590,913 @@ function hexboltAt (x,y,W,color) {
   ctx.fillStyle = savedF
 }
 
+function computeAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W, cpx, cpy, points = []
+  let savedF = ctx.fillStyle, savedS = ctx.strokeStyle, WAVEY = false
+  let cs = W/24, d = 0, i = 0, maxi = 1
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/20
+
+  ctx.strokeStyle = color
+  ctx.fillStyle = color
+  ctx.lineCap = "butt"
+  ctx.lineJoin = "bevel"
+  
+  for (;i < 9; i++) {
+  //2
+    ctx.beginPath()
+    ctx.moveTo(x+4*cs+i*cs*2+pet(d/2), y+2*cs+pet(d/2))
+    ctx.lineTo(x+4*cs+i*cs*2+pet(d/2), y+0*cs+pet(d/2))
+    ctx.stroke()
+
+    ctx.beginPath()
+    ctx.moveTo(x+4*cs+i*cs*2+pet(d/2), y+22*cs+pet(d/2))
+    ctx.lineTo(x+4*cs+i*cs*2+pet(d/2), y+24*cs+pet(d/2))
+    ctx.stroke()
+
+    //3
+    ctx.beginPath()
+    ctx.moveTo(x+0*cs+pet(d/2), y+4*cs+pet(d/2)+i*cs*2)
+    ctx.lineTo(x+2*cs+pet(d/2), y+4*cs+pet(d/2)+i*cs*2)
+    ctx.stroke()
+
+    ctx.beginPath()
+    ctx.moveTo(x+22*cs+pet(d/2), y+4*cs+pet(d/2)+i*cs*2)
+    ctx.lineTo(x+24*cs+pet(d/2), y+4*cs+pet(d/2)+i*cs*2)
+    ctx.stroke()
+  }
+
+  //4
+  ctx.beginPath()
+  ctx.moveTo(x+2*cs+pet(d/2), y+3*cs+pet(d/2))
+  ctx.lineTo(x+3*cs+pet(d), y+2*cs+pet(d))
+  ctx.lineTo(x+21*cs+pet(d), y+2*cs+pet(d))
+  ctx.lineTo(x+22*cs+pet(d), y+3*cs+pet(d))
+  ctx.lineTo(x+22*cs+pet(d), y+21*cs+pet(d))
+  ctx.lineTo(x+21*cs+pet(d), y+22*cs+pet(d))
+  ctx.lineTo(x+3*cs+pet(d), y+22*cs+pet(d))
+  ctx.lineTo(x+2*cs+pet(d), y+21*cs+pet(d))
+  ctx.lineTo(x+2*cs+pet(d/2), y+3*cs+pet(d/2))
+  ctx.stroke()
+
+ // ctx.fillStyle = "#ffffee"
+//  ctx.fillRect(x+7*cs+pet(d/2), y+7*cs+pet(d/2), 10*cs, 10*cs)
+  ctx.strokeRect(x+7*cs+pet(d/2), y+7*cs+pet(d/2), 10*cs, 10*cs)
+ // nvidiaAt(x+7.5*cs+pet(d/2), y+7.5*cs+pet(d/2), cs*9, color)
+
+  ctx.strokeStyle = savedS
+  ctx.fillStyle = savedF
+}
+
+function nvidiaAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W, cpx, cpy, points = []
+  let savedF = ctx.fillStyle, savedS = ctx.strokeStyle, WAVEY = false
+  let cs = W/24, d = 0, i = 0, maxi = 1
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  if (WAVEY) {
+    d = cs/2, maxi = 9
+    ctx.lineWidth = 1 + document.getElementById("featuresize").value/150
+  }
+  ctx.strokeStyle = color
+  ctx.fillStyle = "#56b800ff"
+  ctx.lineCap = "square"
+  ctx.lineJoin = "bevel"
+  for (; i < maxi; i++) { // WAVEY
+  //1
+  ctx.beginPath()
+  ctx.moveTo(x+10*cs+pet(d/2), y+4*cs+pet(d/2))
+  ctx.lineTo(x+24*cs+pet(d), y+4*cs+pet(d))
+  ctx.lineTo(x+24*cs+pet(d), y+20*cs+pet(d))
+  ctx.lineTo(x+10*cs+pet(d), y+20*cs+pet(d))
+  ctx.lineTo(x+10*cs+pet(d), y+18*cs+pet(d))
+  cpx = x+18*cs
+  cpy = y+17*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+23*cs+pet(d), y+14*cs+pet(d))
+  cpx = x+20*cs
+  cpy = y+12*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+20*cs+pet(d), y+12*cs+pet(d))
+  cpx = x+16*cs
+  cpy = y+17*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+10*cs+pet(d), y+16.5*cs+pet(d))
+  cpx = x+10*cs
+  cpy = y+15*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+10*cs+pet(d), y+15*cs+pet(d))
+  cpx = x+16*cs
+  cpy = y+15*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+19*cs+pet(d), y+11*cs+pet(d))
+  cpx = x+16*cs
+  cpy = y+7*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+10*cs+pet(d), y+6.5*cs+pet(d))
+  cpx = x+10*cs
+  cpy = y+4*cs
+  ctx.quadraticCurveTo(cpx+pet(d/2), cpy+pet(d/2), x+10*cs+pet(d/2), y+4*cs+pet(d/2))
+  ctx.fill()
+
+  //2
+  ctx.beginPath()
+  ctx.moveTo(x+10*cs+pet(d/2), y+14*cs+pet(d/2))
+  cpx = x+12*cs
+  cpy = y+15*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+16*cs+pet(d), y+11*cs+pet(d))
+  cpx = x+14*cs
+  cpy = y+8*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+10*cs+pet(d), y+8*cs+pet(d))
+  cpx = x+10*cs
+  cpy = y+9*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+10*cs+pet(d), y+9*cs+pet(d))
+  cpx = x+13*cs
+  cpy = y+9*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+14*cs+pet(d), y+11*cs+pet(d))
+  cpx = x+12*cs
+  cpy = y+12*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+12*cs+pet(d), y+12*cs+pet(d))
+  cpx = x+12*cs
+  cpy = y+10*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+10*cs+pet(d), y+10*cs+pet(d))
+  cpx = x+10*cs
+  cpy = y+14*cs
+  ctx.quadraticCurveTo(cpx+pet(d/2), cpy+pet(d/2), x+10*cs+pet(d/2), y+14*cs+pet(d/2))
+  ctx.fill()
+
+  //3
+  ctx.beginPath()
+  ctx.moveTo(x+10*cs+pet(d/2), y+18*cs+pet(d/2))
+  cpx = x+4*cs
+  cpy = y+17*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+1*cs+pet(d), y+11*cs+pet(d))
+  cpx = x+4*cs
+  cpy = y+7*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+10*cs+pet(d), y+6.5*cs+pet(d))
+  cpx = x+10*cs
+  cpy = y+8*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+10*cs+pet(d), y+8*cs+pet(d))
+  cpx = x+5*cs
+  cpy = y+9*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+3*cs+pet(d), y+11*cs+pet(d))
+  cpx = x+6*cs
+  cpy = y+16*cs
+  ctx.quadraticCurveTo(cpx+pet(d/2), cpy+pet(d/2), x+10*cs+pet(d/2), y+16.5*cs+pet(d/2))
+  ctx.fill()
+
+  //4
+  ctx.beginPath()
+  ctx.moveTo(x+10*cs+pet(d/2), y+14*cs+pet(d/2))
+  cpx = x+10*cs
+  cpy = y+15*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+10*cs+pet(d), y+15*cs+pet(d))
+  cpx = x+7*cs
+  cpy = y+14*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+5*cs+pet(d), y+11*cs+pet(d))
+  cpx = x+8*cs
+  cpy = y+9*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+10*cs+pet(d), y+9*cs+pet(d))
+  cpx = x+10*cs
+  cpy = y+10*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+10*cs+pet(d), y+10*cs+pet(d))
+  cpx = x+8*cs
+  cpy = y+10*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+7*cs+pet(d), y+11*cs+pet(d))
+  cpx = x+8*cs
+  cpy = y+14*cs
+  ctx.quadraticCurveTo(cpx+pet(d/2), cpy+pet(d/2), x+10*cs+pet(d/2), y+14*cs+pet(d/2))
+  ctx.fill()
+
+  } //WAVEY
+  ctx.strokeStyle = savedS
+  ctx.fillStyle = savedF
+}
+
+function war_crimesAt (x,y,W,color,INVERT) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W, cpx, cpy, points = []
+  let savedF = ctx.fillStyle, savedS = ctx.strokeStyle, WAVEY = true
+  let cs = W/24, d = 0, i = 0, maxi = 1
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  if (WAVEY) {
+    d = cs/2, maxi = 13
+    ctx.lineWidth = 1 + document.getElementById("featuresize").value/150
+  }
+  ctx.strokeStyle = color
+  ctx.fillStyle = color
+  ctx.lineCap = "square"
+  ctx.lineJoin = "bevel"
+  for (; i < maxi; i++) { // WAVEY
+  //2
+  ctx.beginPath()
+  ctx.moveTo(x+16*cs+pet(d/2), y+12*cs+pet(d/2))
+  cpx = x+19*cs
+  cpy = y+9*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+20*cs+pet(d), y+4*cs+pet(d))
+  cpx = x+15*cs
+  cpy = y+5*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+12*cs+pet(d), y+8*cs+pet(d))
+  ctx.lineTo(x+5*cs+pet(d), y+15*cs+pet(d))
+  ctx.lineTo(x+9*cs+pet(d), y+19*cs+pet(d))
+  ctx.lineTo(x+16*cs+pet(d), y+12*cs+pet(d))
+  ctx.stroke()
+
+  //3
+  ctx.beginPath()
+  ctx.moveTo(x+0*cs+pet(d/2), y+10*cs+pet(d/2))
+  ctx.lineTo(x+3*cs+pet(d/2), y+10*cs+pet(d/2))
+  ctx.stroke()
+
+  //4
+  ctx.beginPath()
+  ctx.moveTo(x+13*cs+pet(d/2), y+23*cs+pet(d/2))
+  ctx.lineTo(x+13*cs+pet(d/2), y+20*cs+pet(d/2))
+  ctx.stroke()
+
+  //5
+  ctx.beginPath()
+  ctx.moveTo(x+21*cs+pet(d/2), y+10*cs+pet(d/2))
+  ctx.lineTo(x+24*cs+pet(d/2), y+10*cs+pet(d/2))
+  ctx.stroke()
+
+  //6
+  ctx.beginPath()
+  ctx.moveTo(x+13*cs+pet(d/2), y+3*cs+pet(d/2))
+  ctx.lineTo(x+13*cs+pet(d/2), y+0*cs+pet(d/2))
+  ctx.stroke()
+
+  //7
+  ctx.beginPath()
+  ctx.moveTo(x+13*cs+pet(d/2), y+11*cs+pet(d/2))
+  ctx.lineTo(x+13*cs+pet(d/2), y+9*cs+pet(d/2))
+  ctx.stroke()
+
+  //8
+  ctx.beginPath()
+  ctx.moveTo(x+12*cs+pet(d/2), y+10*cs+pet(d/2))
+  ctx.lineTo(x+14*cs+pet(d/2), y+10*cs+pet(d/2))
+  ctx.stroke()
+
+  //9
+  ctx.beginPath()
+  ctx.moveTo(x+7*cs+pet(d/2), y+12*cs+pet(d))
+  ctx.lineTo(x+0*cs+pet(d/2), y+17*cs+pet(d))
+  ctx.stroke()
+
+  //10
+  ctx.beginPath()
+  ctx.moveTo(x+14*cs+pet(d/2), y+15*cs+pet(d))
+  ctx.lineTo(x+7*cs+pet(d/2), y+24*cs+pet(d))
+  ctx.stroke()
+
+  //11
+  ctx.beginPath()
+  ctx.moveTo(x+8*cs+pet(d/2), y+20*cs+pet(d))
+  ctx.lineTo(x+4*cs+pet(d/2), y+24*cs+pet(d))
+  ctx.stroke()
+
+  //12
+  ctx.beginPath()
+  ctx.moveTo(x+4*cs+pet(d), y+16*cs+pet(d))
+  ctx.lineTo(x+0*cs+pet(d), y+19*cs+pet(d))
+  ctx.stroke()
+
+  //13
+  ctx.beginPath()
+  ctx.moveTo(x+6*cs+pet(d/2), y+17*cs+pet(d))
+  ctx.lineTo(x+0*cs+pet(d/2), y+24*cs+pet(d))
+  ctx.stroke()
+
+  //14
+  ctx.beginPath()
+  ctx.moveTo(x+6*cs+pet(d/2), y+20*cs+pet(d))
+  ctx.lineTo(x+3*cs+pet(d/2), y+23*cs+pet(d))
+  ctx.stroke()
+
+  //15
+  ctx.beginPath()
+  ctx.moveTo(x+1*cs+pet(d/2), y+20*cs+pet(d))
+  ctx.lineTo(x+3*cs+pet(d/2), y+18*cs+pet(d))
+  ctx.stroke()
+
+  //16
+  ctx.beginPath()
+  ctx.moveTo(x+12*cs+pet(d/2), y+19*cs+pet(d))
+  ctx.lineTo(x+11*cs+pet(d/2), y+21*cs+pet(d))
+  ctx.stroke()
+
+  //17
+  ctx.beginPath()
+  ctx.moveTo(x+2*cs+pet(d/2), y+14*cs+pet(d))
+  ctx.lineTo(x+4*cs+pet(d/2), y+13*cs+pet(d))
+  ctx.stroke()
+    //18
+  ctx.beginPath()
+  ctx.moveTo(x+17*cs+pet(d/2), y+12*cs+pet(d/2))
+  ctx.lineTo(x+16*cs+pet(d/2), y+14*cs+pet(d/2))
+  ctx.stroke()
+  } //WAVEY
+  if (INVERT)
+    warcrime_explosionAt (x,y,W,color)
+  ctx.strokeStyle = savedS
+  ctx.fillStyle = savedF
+}
+
+function bubble_cellAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W, cpx, cpy, points = []
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  let savedF = ctx.fillStyle, savedS = ctx.strokeStyle
+  ctx.strokeStyle = color
+  ctx.fillStyle = color
+  ctx.lineCap = "square"
+  ctx.lineJoin = "bevel"
+  let cs = W/24
+  let p = [], cp = [], lastp = []
+  let cx = x+W/2, cy = y+H/2, d = cs*2, angle = pet(360)
+
+  ctx.save()
+  //1
+  ctx.beginPath()
+  p = rotatePoint(x+12*cs+pet(d), y+22*cs+pet(d) ,cx,cy,angle)
+  ctx.moveTo(p[0],p[1])
+  cpx = x+19*cs+pet(d)
+  cpy = y+21*cs+pet(d)
+  cp = rotatePoint(cpx,cpy,cx,cy,angle)
+  p = rotatePoint(x+20*cs+pet(d), y+19*cs+pet(d),cx,cy,angle)
+  ctx.quadraticCurveTo(cp[0],cp[1],p[0],p[1])
+  cpx = x+22*cs+pet(d)
+  cpy = y+16*cs+pet(d)
+  cp = rotatePoint(cpx,cpy,cx,cy,angle)
+  p = rotatePoint(x+22*cs+pet(d), y+12*cs+pet(d),cx,cy,angle)
+  ctx.quadraticCurveTo(cp[0],cp[1],p[0],p[1])
+  cpx = x+22*cs+pet(d)
+  cpy = y+8*cs+pet(d)
+  cp = rotatePoint(cpx,cpy,cx,cy,angle)
+  p = rotatePoint(x+20*cs+pet(d), y+4*cs+pet(d),cx,cy,angle)
+  ctx.quadraticCurveTo(cp[0],cp[1],p[0],p[1])
+  cpx = x+16*cs+pet(d)
+  cpy = y+2*cs+pet(d)
+  cp = rotatePoint(cpx,cpy,cx,cy,angle)
+  p = rotatePoint(x+12*cs+pet(d), y+2*cs+pet(d),cx,cy,angle)
+  ctx.quadraticCurveTo(cp[0],cp[1],p[0],p[1])
+  cpx = x+8*cs+pet(d)
+  cpy = y+2*cs+pet(d)
+  cp = rotatePoint(cpx,cpy,cx,cy,angle)
+  p = rotatePoint(x+4*cs+pet(d), y+4*cs+pet(d),cx,cy,angle)
+  ctx.quadraticCurveTo(cp[0],cp[1],p[0],p[1])
+  cpx = x+2*cs+pet(d)
+  cpy = y+8*cs+pet(d)
+  cp = rotatePoint(cpx,cpy,cx,cy,angle)
+  p = rotatePoint(x+2*cs+pet(d), y+12*cs+pet(d),cx,cy,angle)
+  ctx.quadraticCurveTo(cp[0],cp[1],p[0],p[1])
+  cpx = x+2*cs+pet(d)
+  cpy = y+16*cs+pet(d)
+  cp = rotatePoint(cpx,cpy,cx,cy,angle)
+  p = rotatePoint(x+4*cs+pet(d), y+20*cs+pet(d),cx,cy,angle)
+  ctx.quadraticCurveTo(cp[0],cp[1],p[0],p[1])
+  cpx = x+8*cs+pet(d)
+  cpy = y+22*cs+pet(d)
+  cp = rotatePoint(cpx,cpy,cx,cy,angle)
+  p = rotatePoint(x+12*cs+pet(d), y+22*cs+pet(d),cx,cy,angle)
+  ctx.quadraticCurveTo(cp[0],cp[1],p[0],p[1])
+  ctx.globalAlpha /= 3
+  ctx.fill()
+  ctx.clip()
+  ctx.fillStyle = "#ffffff"
+ // draw filled arcs, blobsRect
+  let i = 0
+  //for (; i < 14; i++) {
+     blobsRect(x*W,y,W,H, "#ffffff") 
+   
+ // }
+  
+ctx.restore()
+  ctx.globalAlpha *= 3
+  ctx.strokeStyle = savedS
+  ctx.fillStyle = savedF
+}
+
+function warcrime_explosionAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W, cpx, cpy, points = []
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  let savedF = ctx.fillStyle, savedS = ctx.strokeStyle
+  ctx.strokeStyle = color
+  ctx.fillStyle = color
+  ctx.lineCap = "square"
+  ctx.lineJoin = "bevel"
+  let cs = W/24
+  let p = [], cp = [], lastp = []
+  let cx = x+W/2+cs, cy = y+H/2-cs*2, d = cs*2, angle = pet(360)
+  ctx.globalAlpha = 0.4
+  let i = 0
+  //1
+  for (; i < 6; i++) {
+    ctx.beginPath()
+    p = rotatePoint(x+12*cs+pet(d), y+17*cs+pet(d) ,cx,cy,angle)
+    ctx.moveTo(p[0],p[1])
+    cpx = x+12*cs+pet(d)
+    cpy = y+12*cs+pet(d)
+    cp = rotatePoint(cpx,cpy,cx,cy,angle)
+    p = rotatePoint(x+15*cs+pet(d), y+17*cs+pet(d),cx,cy,angle)
+    ctx.quadraticCurveTo(cp[0],cp[1],p[0],p[1])
+    cpx = x+13*cs+pet(d)
+    cpy = y+12*cs+pet(d)
+    cp = rotatePoint(cpx,cpy,cx,cy,angle)
+    p = rotatePoint(x+17*cs+pet(d), y+14*cs+pet(d),cx,cy,angle)
+    ctx.quadraticCurveTo(cp[0],cp[1],p[0],p[1])
+    cpx = x+14*cs+pet(d)
+    cpy = y+11*cs+pet(d)
+    cp = rotatePoint(cpx,cpy,cx,cy,angle)
+    p = rotatePoint(x+21*cs+pet(d), y+11*cs+pet(d),cx,cy,angle)
+    ctx.quadraticCurveTo(cp[0],cp[1],p[0],p[1])
+    cpx = x+14*cs+pet(d)
+    cpy = y+10*cs+pet(d)
+    cp = rotatePoint(cpx,cpy,cx,cy,angle)
+    p = rotatePoint(x+19*cs+pet(d), y+9*cs+pet(d),cx,cy,angle)
+    ctx.quadraticCurveTo(cp[0],cp[1],p[0],p[1])
+    cpx = x+14*cs+pet(d)
+    cpy = y+9*cs+pet(d)
+    cp = rotatePoint(cpx,cpy,cx,cy,angle)
+    p = rotatePoint(x+18*cs+pet(d), y+5*cs+pet(d),cx,cy,angle)
+    ctx.quadraticCurveTo(cp[0],cp[1],p[0],p[1])
+    cpx = x+13*cs+pet(d)
+    cpy = y+9*cs+pet(d)
+    cp = rotatePoint(cpx,cpy,cx,cy,angle)
+    p = rotatePoint(x+14*cs+pet(d), y+3*cs+pet(d),cx,cy,angle)
+    ctx.quadraticCurveTo(cp[0],cp[1],p[0],p[1])
+    cpx = x+13*cs+pet(d)
+    cpy = y+9*cs+pet(d)
+    cp = rotatePoint(cpx,cpy,cx,cy,angle)
+    p = rotatePoint(x+9*cs+pet(d), y+3*cs+pet(d),cx,cy,angle)
+    ctx.quadraticCurveTo(cp[0],cp[1],p[0],p[1])
+    cpx = x+12*cs+pet(d)
+    cpy = y+9*cs+pet(d)
+    cp = rotatePoint(cpx,cpy,cx,cy,angle)
+    p = rotatePoint(x+7*cs+pet(d), y+8*cs+pet(d),cx,cy,angle)
+    ctx.quadraticCurveTo(cp[0],cp[1],p[0],p[1])
+    cpx = x+12*cs+pet(d)
+    cpy = y+9*cs+pet(d)
+    cp = rotatePoint(cpx,cpy,cx,cy,angle)
+    p = rotatePoint(x+3*cs+pet(d), y+12*cs+pet(d),cx,cy,angle)
+    ctx.quadraticCurveTo(cp[0],cp[1],p[0],p[1])
+    cpx = x+11*cs+pet(d)
+    cpy = y+11*cs+pet(d)
+    cp = rotatePoint(cpx,cpy,cx,cy,angle)
+    p = rotatePoint(x+5*cs+pet(d), y+15*cs+pet(d),cx,cy,angle)
+    ctx.quadraticCurveTo(cp[0],cp[1],p[0],p[1])
+    cpx = x+11*cs+pet(d)
+    cpy = y+11*cs+pet(d)
+    cp = rotatePoint(cpx,cpy,cx,cy,angle)
+    p = rotatePoint(x+8*cs+pet(d), y+16*cs+pet(d),cx,cy,angle)
+    ctx.quadraticCurveTo(cp[0],cp[1],p[0],p[1])
+    cpx = x+12*cs+pet(d)
+    cpy = y+11*cs+pet(d)
+    cp = rotatePoint(cpx,cpy,cx,cy,angle)
+    p = rotatePoint(x+12*cs+pet(d), y+17*cs+pet(d),cx,cy,angle)
+    ctx.quadraticCurveTo(cp[0],cp[1],p[0],p[1])
+    ctx.fill()
+    angle = pet(360)
+  }
+  ctx.globalAlpha = 1
+  ctx.strokeStyle = savedS
+  ctx.fillStyle = savedF
+}
+
+function ai_overview_iconAt (x,y,W,color) { // gemini
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W, cpx, cpy, points = []
+  let savedF = ctx.fillStyle, savedS = ctx.strokeStyle
+  let cs = W/24, d = 0, i = 0
+
+  ctx.strokeStyle = color
+  ctx.fillStyle = color
+
+  ctx.beginPath()
+  ctx.moveTo(x+12*cs+pet(d/2), y+24*cs+pet(d/2))
+  cpx = x+14*cs
+  cpy = y+14*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+24*cs+pet(d), y+12*cs+pet(d))
+  cpx = x+14*cs
+  cpy = y+10*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+12*cs+pet(d), y+0*cs+pet(d))
+  cpx = x+10*cs
+  cpy = y+10*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+0*cs+pet(d), y+12*cs+pet(d))
+  cpx = x+10*cs
+  cpy = y+14*cs
+  ctx.quadraticCurveTo(cpx+pet(d/2), cpy+pet(d/2), x+12*cs+pet(d/2), y+24*cs+pet(d/2))
+  ctx.fillStyle = "#8ca8E8"
+  ctx.fill()
+
+  ctx.strokeStyle = savedS
+  ctx.fillStyle = savedF
+}
+
+function illnessAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W, cpx, cpy, points = []
+  let savedF = ctx.fillStyle, savedS = ctx.strokeStyle, WAVEY = true
+  let cs = W/24, d = 0, i = 0, maxi = 1
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  if (WAVEY) {
+    d = cs/2, maxi = 13
+    ctx.lineWidth = 1 + document.getElementById("featuresize").value/150
+  }
+  ctx.strokeStyle = color
+  ctx.fillStyle = color
+  ctx.lineCap = "square"
+  ctx.lineJoin = "bevel"
+  for (; i < maxi; i++) { // WAVEY
+  //1
+  ctx.beginPath()
+  ctx.moveTo(x+12*cs+pet(d/2), y+17*cs+pet(d/2))
+  cpx = x+16*cs
+  cpy = y+14*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+16*cs+pet(d), y+14*cs+pet(d))
+  cpx = x+18*cs
+  cpy = y+12*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+16*cs+pet(d), y+11*cs+pet(d))
+  cpx = x+13*cs
+  cpy = y+10*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+10*cs+pet(d), y+12*cs+pet(d))
+  cpx = x+7*cs
+  cpy = y+14*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+7*cs+pet(d), y+14*cs+pet(d))
+  ctx.lineTo(x+12*cs+pet(d/2), y+17*cs+pet(d/2))
+  ctx.stroke()
+
+  //2
+  ctx.beginPath()
+  ctx.moveTo(x+8.4*cs+pet(d/2), y+15*cs+pet(d/2))
+  ctx.lineTo(x+6*cs+pet(d/2), y+16.5*cs+pet(d/2))
+  ctx.stroke()
+
+  //3
+  ctx.beginPath()
+  ctx.moveTo(x+10*cs+pet(d/2), y+16*cs+pet(d/2))
+  ctx.lineTo(x+8*cs+pet(d/2), y+17.5*cs+pet(d/2))
+  ctx.stroke()
+
+  //4 head
+  ctx.beginPath()
+  ctx.moveTo(x+16*cs+pet(d/2), y+11*cs+pet(d/2))
+  cpx = x+18*cs
+  cpy = y+11*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+18*cs+pet(d), y+10*cs+pet(d))
+  cpx = x+18*cs
+  cpy = y+8*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+17*cs+pet(d), y+8*cs+pet(d))
+  cpx = x+15*cs
+  cpy = y+8*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+15*cs+pet(d), y+9*cs+pet(d))
+  cpx = x+15*cs
+  cpy = y+11*cs
+  ctx.quadraticCurveTo(cpx+pet(d/2), cpy+pet(d/2), x+16*cs+pet(d/2), y+11*cs+pet(d/2))
+  ctx.stroke()
+
+  //5
+  ctx.beginPath()
+  ctx.moveTo(x+16.8*cs+pet(d/2), y+13*cs+pet(d/2))
+  cpx = x+16*cs
+  cpy = y+15*cs
+  ctx.quadraticCurveTo(cpx+pet(d/2), cpy+pet(d/2), x+14*cs+pet(d/2), y+17*cs+pet(d/2))
+  ctx.stroke()
+
+  //6
+  ctx.beginPath()
+  ctx.moveTo(x+2*cs+pet(d/2), y+16*cs+pet(d/2))
+  ctx.lineTo(x+10*cs+pet(d), y+20*cs+pet(d))
+  ctx.lineTo(x+10*cs+pet(d), y+22*cs+pet(d))
+  ctx.lineTo(x+2*cs+pet(d), y+18*cs+pet(d))
+  ctx.lineTo(x+2*cs+pet(d/2), y+16*cs+pet(d/2))
+  ctx.stroke()
+
+  //7
+  ctx.beginPath()
+  ctx.moveTo(x+2*cs+pet(d), y+18*cs+pet(d))
+  ctx.lineTo(x+2*cs+pet(d), y+20*cs+pet(d))
+  ctx.stroke()
+
+  //8
+  ctx.beginPath()
+  ctx.moveTo(x+10*cs+pet(d), y+22*cs+pet(d))
+  ctx.lineTo(x+10*cs+pet(d), y+24*cs+pet(d))
+  ctx.stroke()
+
+  //9
+  ctx.beginPath()
+  ctx.moveTo(x+10*cs+pet(d/2), y+20*cs+pet(d/2))
+  ctx.lineTo(x+20*cs+pet(d), y+13.5*cs+pet(d))
+  ctx.lineTo(x+22*cs+pet(d), y+7*cs+pet(d))
+  ctx.lineTo(x+23*cs+pet(d), y+8*cs+pet(d))
+  ctx.lineTo(x+21*cs+pet(d), y+15*cs+pet(d))
+  ctx.lineTo(x+10*cs+pet(d/2), y+22*cs+pet(d/2))
+  ctx.stroke()
+
+  //10
+  ctx.beginPath()
+  ctx.moveTo(x+2*cs+pet(d/2), y+16*cs+pet(d/2))
+  ctx.lineTo(x+12*cs+pet(d), y+10*cs+pet(d))
+  ctx.lineTo(x+14*cs+pet(d), y+5*cs+pet(d))
+  ctx.lineTo(x+22*cs+pet(d/2), y+7*cs+pet(d/2))
+  ctx.stroke()
+
+  //11
+  ctx.beginPath()
+  ctx.moveTo(x+21*cs+pet(d), y+15*cs+pet(d))
+  ctx.lineTo(x+21*cs+pet(d), y+17*cs+pet(d))
+  ctx.stroke()
+
+  //1
+  ctx.beginPath()
+  ctx.moveTo(x+17*cs+pet(d/2), y+12*cs+pet(d/2))
+  ctx.lineTo(x+19*cs+pet(d), y+13*cs+pet(d))
+  cpx = x+19*cs
+  cpy = y+10*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+21*cs+pet(d), y+8*cs+pet(d))
+  cpx = x+21*cs
+  cpy = y+11*cs
+  ctx.quadraticCurveTo(cpx+pet(d/2), cpy+pet(d/2), x+19*cs+pet(d/2), y+13*cs+pet(d/2))
+  ctx.stroke()
+
+  //2
+  ctx.beginPath()
+  ctx.moveTo(x+21*cs+pet(d/2), y+8*cs+pet(d/2))
+  cpx = x+14.3*cs
+  cpy = y+6*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+14.3*cs+pet(d), y+6*cs+pet(d))
+  cpx = x+13*cs
+  cpy = y+7*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+13*cs+pet(d), y+10*cs+pet(d))
+
+  ctx.lineTo(x+14.7*cs+pet(d/2), y+10.7*cs+pet(d/2))
+  ctx.stroke()
+
+  //14
+  ctx.beginPath()
+  ctx.moveTo(x+10*cs+pet(d/2), y+6*cs+pet(d/2))
+  cpx = x+10*cs
+  cpy = y+11*cs
+  ctx.quadraticCurveTo(cpx+pet(d/2), cpy+pet(d/2), x+12*cs+pet(d/2), y+11*cs+pet(d/2))
+  ctx.stroke()
+
+  //15
+  ctx.beginPath()
+  ctx.moveTo(x+9*cs+pet(d/2), y+3*cs+pet(d/2))
+  cpx = x+9*cs
+  cpy = y+6*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+10*cs+pet(d), y+6*cs+pet(d))
+  cpx = x+11*cs
+  cpy = y+6*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+11*cs+pet(d), y+3*cs+pet(d))
+  cpx = x+9*cs
+  cpy = y+3*cs
+  ctx.quadraticCurveTo(cpx+pet(d/2), cpy+pet(d/2), x+9*cs+pet(d/2), y+3*cs+pet(d/2))
+  ctx.stroke()
+  y -= cs/2
+  //4
+  ctx.beginPath()
+  ctx.moveTo(x+7*cs+pet(d/2), y+13*cs+pet(d/2))
+  ctx.lineTo(x+7*cs+pet(d), y+2*cs+pet(d))
+  ctx.lineTo(x+10*cs+pet(d), y+2*cs+pet(d))
+  ctx.lineTo(x+10*cs+pet(d/2), y+3*cs+pet(d/2))
+  ctx.stroke()
+
+  //24
+  ctx.beginPath()
+  ctx.moveTo(x+15*cs+pet(d/2), y+4.8*cs+pet(d/2))
+  ctx.lineTo(x+15*cs+pet(d), y+1*cs+pet(d))
+  ctx.lineTo(x+19*cs+pet(d), y+2*cs+pet(d))
+  ctx.lineTo(x+19*cs+pet(d), y+6*cs+pet(d))
+  ctx.lineTo(x+15*cs+pet(d/2), y+4.8*cs+pet(d/2))
+  ctx.stroke()
+  
+  //20
+  ctx.beginPath()
+  ctx.moveTo(x+15*cs+pet(d/2), y+3*cs+pet(d/2))
+  cpx = x+17*cs
+  cpy = y+4*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+17*cs+pet(d), y+2.5*cs+pet(d))
+  cpx = x+17*cs
+  cpy = y+5*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+17*cs+pet(d), y+4.5*cs+pet(d))
+  cpx = x+17*cs
+  cpy = y+4*cs
+  ctx.quadraticCurveTo(cpx+pet(d/2), cpy+pet(d/2), x+19*cs+pet(d/2), y+4*cs+pet(d/2))
+  ctx.stroke()
+  
+  //21
+  ctx.beginPath()
+  ctx.arc(x+20*cs+pet(d/2), y+3.4*cs+pet(d/2), cs/2, 0, 2*Math.PI)
+  ctx.stroke()
+
+  //22
+  ctx.beginPath()
+  ctx.arc(x+20*cs+pet(d/2), y+5*cs+pet(d/2), cs/2, 0, 2*Math.PI)
+  ctx.stroke()
+  //8
+  ctx.beginPath()
+  ctx.moveTo(x+19*cs+pet(d/2), y+2*cs+pet(d/2))
+  ctx.lineTo(x+21*cs+pet(d), y+2.5*cs+pet(d))
+  ctx.lineTo(x+21*cs+pet(d), y+6.5*cs+pet(d))
+  ctx.lineTo(x+19*cs+pet(d/2), y+6*cs+pet(d/2))
+  ctx.stroke()
+  y += cs/2
+
+  } //WAVEY
+  ctx.strokeStyle = savedS
+  ctx.fillStyle = savedF
+}
+
+function divorceAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W, cpx, cpy, points = []
+  let savedF = ctx.fillStyle, savedS = ctx.strokeStyle, WAVEY = true
+  let cs = W/24, d = 0, i = 0, maxi = 1
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  if (WAVEY) {
+    d = cs/2, maxi = 14
+    ctx.lineWidth = 1 + document.getElementById("featuresize").value/150
+  }
+  ctx.strokeStyle = color
+  ctx.fillStyle = color
+  ctx.lineCap = "square"
+  ctx.lineJoin = "bevel"
+  let x0 = x
+  for (; i < maxi; i++) { // WAVEY
+  //1
+  if (i%2 === 0)
+    x += cs*12
+  else
+    x -= cs*12
+
+  //1
+  ctx.beginPath()
+  ctx.moveTo(x+2*cs+pet(d), y+18*cs+pet(d))
+  ctx.lineTo(x+10*cs+pet(d), y+18*cs+pet(d))
+  ctx.lineTo(x+10*cs+pet(d), y+13*cs+pet(d))
+  cpx = x+10*cs
+  cpy = y+7*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+6*cs+pet(d), y+7*cs+pet(d))
+  cpx = x+2*cs
+  cpy = y+7*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+2*cs+pet(d), y+13*cs+pet(d))
+  cpx = x+2*cs
+  cpy = y+18*cs
+  ctx.quadraticCurveTo(cpx+pet(d/2), cpy+pet(d/2), x+2*cs+pet(d/2), y+18*cs+pet(d/2))
+  ctx.stroke()
+
+  //2
+  ctx.beginPath()
+  ctx.moveTo(x+8.6*cs+pet(d), y+8*cs+pet(d))
+  cpx = x+11*cs
+  cpy = y+10*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+11*cs+pet(d), y+16*cs+pet(d))
+  ctx.stroke()
+
+  //3
+  ctx.beginPath()
+  ctx.moveTo(x+3.4*cs+pet(d), y+8*cs+pet(d))
+  cpx = x+1*cs
+  cpy = y+10*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+1*cs+pet(d), y+16*cs+pet(d))
+  ctx.stroke()
+
+  //4
+  ctx.beginPath()
+  ctx.moveTo(x+8*cs+pet(d), y+18*cs+pet(d))
+  ctx.lineTo(x+8*cs+pet(d), y+22*cs+pet(d))
+  ctx.stroke()
+
+  //5
+  ctx.beginPath()
+  ctx.moveTo(x+4*cs+pet(d), y+18*cs+pet(d))
+  ctx.lineTo(x+4*cs+pet(d), y+22*cs+pet(d))
+  ctx.stroke()
+
+  //6
+  ctx.beginPath()
+  ctx.moveTo(x+6*cs+pet(d/2), y+7*cs+pet(d/2))
+  cpx = x+8*cs
+  cpy = y+7*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+8*cs+pet(d), y+5*cs+pet(d))
+  cpx = x+8*cs
+  cpy = y+3*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+6*cs+pet(d), y+3*cs+pet(d))
+  cpx = x+4*cs
+  cpy = y+3*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+4*cs+pet(d), y+5*cs+pet(d))
+  cpx = x+4*cs
+  cpy = y+7*cs
+  ctx.quadraticCurveTo(cpx+pet(d/2), cpy+pet(d/2), x+6*cs+pet(d/2), y+7*cs+pet(d/2))
+  ctx.stroke()
+  //5
+  ctx.setLineDash([cs*1])
+  ctx.beginPath()
+  ctx.moveTo(x0+12.0*cs+pet(d), y+1*cs+pet(d))
+  ctx.lineTo(x0+12.0*cs+pet(d), y+22*cs+pet(d))
+  ctx.stroke()
+  ctx.setLineDash([])
+
+  } //WAVEY
+  ctx.strokeStyle = savedS
+  ctx.fillStyle = savedF
+}
+
+function old_ageAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W, cpx, cpy, points = []
+  let savedF = ctx.fillStyle, savedS = ctx.strokeStyle, WAVEY = true
+  let cs = W/24, d = 0, i = 0, maxi = 1
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  if (WAVEY) {
+    d = cs/1.8, maxi = 13
+    ctx.lineWidth = 1 + document.getElementById("featuresize").value/150
+  }
+  ctx.strokeStyle = color
+  ctx.fillStyle = color
+  ctx.lineCap = "square"
+  ctx.lineJoin = "bevel"
+  for (; i < maxi; i++) { // WAVEY
+  //1
+  ctx.beginPath()
+  ctx.moveTo(x+7*cs+pet(d/2), y+18*cs+pet(d/2))
+  cpx = x+17*cs
+  cpy = y+18*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+16*cs+pet(d), y+18*cs+pet(d))
+  cpx = x+17*cs
+  cpy = y+8*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+17*cs+pet(d), y+8*cs+pet(d))
+  cpx = x+17*cs
+  cpy = y+5*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+13*cs+pet(d), y+5*cs+pet(d))
+  cpx = x+8*cs
+  cpy = y+5*cs
+  ctx.quadraticCurveTo(cpx+pet(d/2), cpy+pet(d/2), x+7*cs+pet(d/2), y+18*cs+pet(d/2))
+  ctx.stroke()
+
+  //2
+  ctx.beginPath()
+  ctx.moveTo(x+10*cs+pet(d/2), y+18*cs+pet(d/2))
+  ctx.lineTo(x+9*cs+pet(d), y+23*cs+pet(d))
+  ctx.lineTo(x+11*cs+pet(d/2), y+23*cs+pet(d/2))
+  ctx.stroke()
+
+  //3
+  ctx.beginPath()
+  ctx.moveTo(x+14*cs+pet(d/2), y+18*cs+pet(d/2))
+  ctx.lineTo(x+13*cs+pet(d), y+23*cs+pet(d))
+  ctx.lineTo(x+15*cs+pet(d/2), y+23*cs+pet(d/2))
+  ctx.stroke()
+
+  //4
+  ctx.beginPath()
+  ctx.moveTo(x+19*cs+pet(d), y+23*cs+pet(d))
+  ctx.lineTo(x+20*cs+pet(d), y+15*cs+pet(d))
+  cpx = x+20*cs
+  cpy = y+14*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+19*cs+pet(d), y+14*cs+pet(d))
+  cpx = x+18*cs
+  cpy = y+14*cs
+  ctx.quadraticCurveTo(cpx+pet(d/2), cpy+pet(d/2), x+18*cs+pet(d/2), y+15*cs+pet(d/2))
+  ctx.stroke()
+
+  //5
+  ctx.beginPath()
+  ctx.moveTo(x+13*cs+pet(d/2), y+9*cs+pet(d/2))
+  ctx.lineTo(x+19*cs+pet(d/2), y+14*cs+pet(d/2))
+  ctx.stroke()
+
+  //6
+  x += cs
+  ctx.beginPath()
+  ctx.moveTo(x+13*cs+pet(d/2), y+5*cs+pet(d/2))
+  cpx = x+15*cs
+  cpy = y+5*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+16*cs+pet(d), y+3*cs+pet(d))
+  cpx = x+17*cs
+  cpy = y+0*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+14*cs+pet(d), y+0*cs+pet(d))
+  cpx = x+12*cs
+  cpy = y+0*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+11*cs+pet(d), y+2*cs+pet(d))
+  cpx = x+11*cs
+  cpy = y+5*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+13*cs+pet(d), y+5*cs+pet(d))
+  ctx.stroke()
+  x-= cs
+
+  } //WAVEY
+  ctx.strokeStyle = savedS
+  ctx.fillStyle = savedF
+}
+
 function black_holeAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -4231,6 +5561,8 @@ function black_holeAt (x,y,W,color) {
   ctx.strokeStyle = savedS
   ctx.fillStyle = savedF
 }
+
+
 
 function load_cellAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
@@ -4812,192 +6144,6 @@ function a_diceAt (N, x,y,W,color) {
   ctx.arc(x+7*cs+pet(d/2), y+7*cs+pet(d/2), cs, 0, 2*Math.PI)
   if (N === 1 || N === 5 || N === 3)
   ctx.fill()
-
-  } //WAVEY
-  ctx.strokeStyle = savedS
-  ctx.fillStyle = savedF
-}
-
-function ____At (x,y,W,color) {
-  let canvas = document.getElementById("myCanvas")
-  let ctx = canvas.getContext("2d")
-  let H = W, cpx, cpy, points = []
-  let savedF = ctx.fillStyle, savedS = ctx.strokeStyle, WAVEY = false
-  let cs = W/32, d = 0, i = 0, maxi = 1
-  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
-  if (WAVEY) {
-    d = cs/2, maxi = 9
-    ctx.lineWidth = 1 + document.getElementById("featuresize").value/150
-  }
-  ctx.strokeStyle = color
-  ctx.lineCap = "square"
-  ctx.lineJoin = "bevel"
-  for (; i < maxi; i++) { // WAVEY
-  //1
-  ctx.beginPath()
-  ctx.moveTo(x+15*cs+pet(d/2), y+10*cs+pet(d/2))
-  cpx = x+12*cs
-  cpy = y+10*cs
-  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+11*cs+pet(d), y+20*cs+pet(d))
-  cpx = x+11*cs
-  cpy = y+22*cs
-  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+10*cs+pet(d), y+24*cs+pet(d))
-  cpx = x+9*cs
-  cpy = y+26*cs
-  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+11*cs+pet(d), y+26*cs+pet(d))
-  cpx = x+13*cs
-  cpy = y+26*cs
-  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+13*cs+pet(d), y+22*cs+pet(d))
-  cpx = x+13*cs
-  cpy = y+14*cs
-  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+16*cs+pet(d), y+10*cs+pet(d))
-  cpx = x+15*cs
-  cpy = y+10*cs
-  ctx.quadraticCurveTo(cpx+pet(d/2), cpy+pet(d/2), x+15*cs+pet(d/2), y+10*cs+pet(d/2))
-  ctx.stroke()
-
-  //2
-  ctx.beginPath()
-  ctx.moveTo(x+14*cs+pet(d/2), y+10*cs+pet(d/2))
-  cpx = x+8*cs
-  cpy = y+10*cs
-  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+6*cs+pet(d), y+18*cs+pet(d))
-  cpx = x+6*cs
-  cpy = y+21*cs
-  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+7*cs+pet(d), y+21*cs+pet(d))
-  cpx = x+8*cs
-  cpy = y+21*cs
-  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+8*cs+pet(d), y+19*cs+pet(d))
-  cpx = x+9*cs
-  cpy = y+13*cs
-  ctx.quadraticCurveTo(cpx+pet(d/2), cpy+pet(d/2), x+13*cs+pet(d/2), y+10*cs+pet(d/2))
-  ctx.stroke()
-
-  //3
-  ctx.beginPath()
-  ctx.moveTo(x+13*cs+pet(d/2), y+10*cs+pet(d/2))
-  cpx = x+12*cs
-  cpy = y+6*cs
-  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+12*cs+pet(d), y+4*cs+pet(d))
-  cpx = x+12*cs
-  cpy = y+2*cs
-  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+14*cs+pet(d), y+2*cs+pet(d))
-  cpx = x+17*cs
-  cpy = y+2*cs
-  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+17*cs+pet(d), y+6*cs+pet(d))
-  cpx = x+17*cs
-  cpy = y+8*cs
-  ctx.quadraticCurveTo(cpx+pet(d/2), cpy+pet(d/2), x+16*cs+pet(d/2), y+10*cs+pet(d/2))
-  ctx.stroke()
-
-  //4
-  ctx.beginPath()
-  ctx.moveTo(x+15*cs+pet(d/2), y+10*cs+pet(d/2))
-  cpx = x+18*cs
-  cpy = y+12*cs
-  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+18*cs+pet(d), y+17*cs+pet(d))
-  cpx = x+16*cs
-  cpy = y+20*cs
-  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+17*cs+pet(d), y+22*cs+pet(d))
-  cpx = x+18*cs
-  cpy = y+23*cs
-  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+19*cs+pet(d), y+22*cs+pet(d))
-  cpx = x+21*cs
-  cpy = y+19*cs
-  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+21*cs+pet(d), y+15*cs+pet(d))
-  cpx = x+19*cs
-  cpy = y+11*cs
-  ctx.quadraticCurveTo(cpx+pet(d/2), cpy+pet(d/2), x+16*cs+pet(d/2), y+10*cs+pet(d/2))
-  ctx.stroke()
-
-  //5
-  ctx.beginPath()
-  ctx.moveTo(x+9*cs+pet(d/2), y+16*cs+pet(d/2))
-  cpx = x+9*cs
-  cpy = y+18*cs
-  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+10*cs+pet(d), y+18*cs+pet(d))
-  cpx = x+11*cs
-  cpy = y+18*cs
-  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+11*cs+pet(d), y+16*cs+pet(d))
-  cpx = x+11*cs
-  cpy = y+14*cs
-  ctx.quadraticCurveTo(cpx+pet(d/2), cpy+pet(d/2), x+10*cs+pet(d/2), y+13*cs+pet(d/2))
-  ctx.stroke()
-
-  //6
-  ctx.beginPath()
-  ctx.moveTo(x+13*cs+pet(d/2), y+10*cs+pet(d/2))
-  cpx = x+5*cs
-  cpy = y+10*cs
-  ctx.quadraticCurveTo(cpx+pet(d/2), cpy+pet(d/2), x+8*cs+pet(d/2), y+13*cs+pet(d/2))
-  ctx.stroke()
-
-  //7
-  ctx.beginPath()
-  ctx.moveTo(x+9*cs+pet(d/2), y+15*cs+pet(d/2))
-  cpx = x+9*cs
-  cpy = y+18*cs
-  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+10*cs+pet(d), y+18*cs+pet(d))
-  cpx = x+11*cs
-  cpy = y+18*cs
-  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+11*cs+pet(d), y+16*cs+pet(d))
-  cpx = x+11*cs
-  cpy = y+13*cs
-  ctx.quadraticCurveTo(cpx+pet(d/2), cpy+pet(d/2), x+10*cs+pet(d/2), y+13*cs+pet(d/2))
-  ctx.stroke()
-
-  //8
-  ctx.beginPath()
-  ctx.moveTo(x+14*cs+pet(d/2), y+14*cs+pet(d/2))
-  cpx = x+14*cs
-  cpy = y+22*cs
-  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+15*cs+pet(d), y+23*cs+pet(d))
-  cpx = x+17*cs
-  cpy = y+26*cs
-  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+16*cs+pet(d), y+32*cs+pet(d))
-  cpx = x+17*cs
-  cpy = y+32*cs
-  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+17*cs+pet(d), y+32*cs+pet(d))
-  cpx = x+18*cs
-  cpy = y+26*cs
-  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+16*cs+pet(d), y+23*cs+pet(d))
-  cpx = x+15*cs
-  cpy = y+22*cs
-  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+15*cs+pet(d), y+13*cs+pet(d))
-  cpx = x+15*cs
-  cpy = y+12*cs
-  ctx.quadraticCurveTo(cpx+pet(d/2), cpy+pet(d/2), x+15*cs+pet(d/2), y+12*cs+pet(d/2))
-  ctx.stroke()
-
-  //9
-  ctx.beginPath()
-  ctx.moveTo(x+16*cs+pet(d/2), y+10*cs+pet(d/2))
-  cpx = x+22*cs
-  cpy = y+10*cs
-  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+24*cs+pet(d), y+12*cs+pet(d))
-  cpx = x+26*cs
-  cpy = y+14*cs
-  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+26*cs+pet(d), y+18*cs+pet(d))
-  cpx = x+26*cs
-  cpy = y+20*cs
-  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+25*cs+pet(d), y+20*cs+pet(d))
-  cpx = x+23*cs
-  cpy = y+20*cs
-  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+24*cs+pet(d), y+18*cs+pet(d))
-  cpx = x+24*cs
-  cpy = y+15*cs
-  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+22*cs+pet(d), y+12*cs+pet(d))
-  cpx = x+20*cs
-  cpy = y+11*cs
-  ctx.quadraticCurveTo(cpx+pet(d/2), cpy+pet(d/2), x+17*cs+pet(d/2), y+10*cs+pet(d/2))
-  ctx.stroke()
-
-  // rows of dots offset
-  ctx.beginPath()
-  ctx.moveTo(x+13*cs+pet(d/2), y+3*cs+pet(d/2))
-
-//  to x+16*cs+pet(d/2), y+9*cs+pet(d/2))
-  ctx.stroke()
 
   } //WAVEY
   ctx.strokeStyle = savedS
@@ -9958,6 +11104,7 @@ function ailogoAt (x,y,W,color,sf,INVERT) {
 function mtg_cardAt (x,y,W,INVERT) { 
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
+  let x0 = x, y0 = y
   let H = W*1.5, cpx, cpy, points = [], cs = W/24
   ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
   let savedF = ctx.fillStyle, savedS = ctx.strokeStyle
@@ -9981,7 +11128,7 @@ function mtg_cardAt (x,y,W,INVERT) {
   document.getElementById("featuresize").value = 20
   ctx.glbalAlpha = 0.1
   let pad = 0.06*W, d=0
-  blobsRect(x+8,y+8,W-16,H-16, getselectedcolor()) // whole card
+  blobsRect(x,y,W,H, getselectedcolor()) // whole card
   y += cs
   ctx.glbalAlpha = 0.2
   const grad2=ctx.createLinearGradient(x,H, W,y)
@@ -87329,6 +88476,7 @@ function catAt (x,y,W,color) {
   ctx.quadraticCurveTo(cpx, cpy, x+16*W/24, y+22*H/24)
   ctx.stroke()
 }
+
 function inverted_catAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -97336,7 +98484,6 @@ function windowAt (x,y,W,color) {
 
 function sunAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
- // if (!ctx)
   let ctx = canvas.getContext("2d")
   let H = W, cpx, cpy, points = []
   let colors = shuffle(getCurrentPalette(true,13))
