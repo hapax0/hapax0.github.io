@@ -540,7 +540,7 @@ let defs = {
     "numerologyAt":{"u":"your lucky numbers","i":"number theory"},
     "key_exchangeAt":{"u":"private/public,(Diffie-Hellman)","i":"\"Oh! they exchanged their hearts in the dark.,In the womb they called for a song.,For a joyful kiss.\""},
     "krebs_cycleAt":{"u":"circle your wagons","i":"rounding rules"},
-    "where_your_sleeves_meet_your_waistbandAt":{"u":"no man's land","i":"border crossing"},
+    "when_your_sleeves_meet_your_waistbandAt":{"u":"no man's land","i":"border crossing"},
     "tacoAt":{"u":"saddle point (metaphorically)","i":"pli selon pli,fold,(see FLIPFLOP)"},
     "small_handsAt":{"u":"they're just a little too small","i":"whiny,petty,ignorant,humorless,cruel"},
     "el_viaje_del_héroeAt":{"u":"on your way","i":"nos vemos en la chancla"},
@@ -678,6 +678,9 @@ let defs = {
     "monopolyAt":{"u":"\"I want it all\"","i":"\"competition is for losers\""},
     "alignmentAt":{"u":"red scare","i":"better dead than red"},
     "pulfrich_effectAt":{"u":"moving target,(cat 'moves' when shaken)","i":"depth... apparently"},
+    "fonts_for_some_reasonAt":{"u":"a wasteful DEI font","i":"warrior ethos font"},
+    "changelingAt":{"u":"the more things change...","i":"constancy"},
+    "reverse_centaurAt":{"u":"serving the machine","i":"pick up the pace!"},
   }	
 
 let diffTitle = {"zodiacAt":"true","metalAt":"true","stochastic_parrotAt":"true"}

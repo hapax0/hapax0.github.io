@@ -426,7 +426,7 @@ function twosides () {
   tint()
   x = 0, y = 0
   w = W/2*0.84, h = w*1.5//8 - 10
-  let funcs = ["monopolyAt"]//shuffle(recent())//shuffle(atList)
+  let funcs = shuffle(recent())//shuffle(atList)
  // funcs.push("monopolyAt")
   if (document.getElementById("palettechoice").value === "dos")
     loadPalette()
@@ -8659,6 +8659,114 @@ function  knot_theoryAt (x,y,W,color,INVERT) {
     knotAt (x,y,W,color)
   else
     knot2At (x,y,W,color)
+}
+
+function reverse_centaurAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W, cpx, cpy, points = []
+  let savedF = ctx.fillStyle, savedS = ctx.strokeStyle, WAVEY = true
+  let cs = W/24, d = 0, i = 0, maxi = 1
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  if (WAVEY) {
+    d = cs/2, maxi = 13
+    ctx.lineWidth = 1 + document.getElementById("featuresize").value/150
+  }
+  ctx.strokeStyle = color
+  ctx.fillStyle = color
+  ctx.lineCap = "square"
+  ctx.lineJoin = "bevel"
+  for (; i < maxi; i++) { // WAVEY
+ 
+  //2
+  ctx.beginPath()
+  ctx.arc(x+11*cs+pet(d/2), y+6*cs+pet(d/2), cs/2, 0, 2*Math.PI)
+  ctx.stroke()
+
+  //3
+  ctx.beginPath()
+  ctx.arc(x+8*cs+pet(d/2), y+5*cs+pet(d/2), cs/2, 0, 2*Math.PI)
+  ctx.stroke()
+
+  //4
+  ctx.beginPath()
+  ctx.arc(x+3*cs+pet(d/2), y+9*cs+pet(d/2), cs/4, 0, 2*Math.PI)
+  ctx.stroke()
+
+  //10
+  ctx.beginPath()
+  ctx.arc(x+5*cs+pet(d/2), y+10*cs+pet(d/2), cs/4, 0, 2*Math.PI)
+  ctx.stroke()
+
+  //5
+  ctx.beginPath()
+  ctx.moveTo(x+14*cs+pet(d/2), y+18*cs+pet(d/2))
+  ctx.lineTo(x+14*cs+pet(d), y+23*cs+pet(d))
+  ctx.lineTo(x+12*cs+pet(d/2), y+23*cs+pet(d/2))
+  ctx.stroke()
+
+  //6
+  ctx.beginPath()
+  ctx.moveTo(x+11*cs+pet(d/2), y+18*cs+pet(d/2))
+  ctx.lineTo(x+11*cs+pet(d), y+23*cs+pet(d))
+  ctx.lineTo(x+9*cs+pet(d/2), y+23*cs+pet(d/2))
+  ctx.stroke()
+
+  //7
+  ctx.beginPath()
+  ctx.moveTo(x+10*cs+pet(d/2), y+3*cs+pet(d/2))
+  ctx.lineTo(x+10*cs+pet(d), y+0*cs+pet(d))
+  ctx.lineTo(x+11*cs+pet(d), y+3*cs+pet(d))
+  ctx.lineTo(x+13*cs+pet(d), y+3*cs+pet(d))
+  ctx.lineTo(x+13*cs+pet(d), y+0*cs+pet(d))
+  ctx.lineTo(x+14*cs+pet(d), y+3*cs+pet(d))
+  cpx = x+16*cs
+  cpy = y+3*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+16*cs+pet(d), y+14*cs+pet(d))
+  cpx = x+16*cs
+  cpy = y+18*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+16*cs+pet(d), y+18*cs+pet(d))
+  cpx = x+9*cs
+  cpy = y+18*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+9*cs+pet(d), y+18*cs+pet(d))
+  cpx = x+9*cs
+  cpy = y+11*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+9*cs+pet(d), y+11*cs+pet(d))
+  cpx = x+9*cs
+  cpy = y+9*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+7*cs+pet(d), y+10*cs+pet(d))
+  cpx = x+5*cs
+  cpy = y+11*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+5*cs+pet(d), y+11*cs+pet(d))
+  cpx = x+2*cs
+  cpy = y+11*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+3*cs+pet(d), y+8*cs+pet(d))
+  cpx = x+7*cs
+  cpy = y+5*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+7*cs+pet(d), y+5*cs+pet(d))
+  cpx = x+9*cs
+  cpy = y+3*cs
+  ctx.quadraticCurveTo(cpx+pet(d/2), cpy+pet(d/2), x+10*cs+pet(d/2), y+3*cs+pet(d/2))
+  ctx.stroke()
+
+  //8
+  ctx.beginPath()
+  ctx.moveTo(x+14*cs+pet(d/2), y+3*cs+pet(d/2))
+  ctx.lineTo(x+17*cs+pet(d), y+2*cs+pet(d))
+  ctx.lineTo(x+15.2*cs+pet(d), y+4*cs+pet(d))
+  ctx.lineTo(x+18*cs+pet(d), y+5*cs+pet(d))
+  ctx.lineTo(x+16*cs+pet(d), y+6*cs+pet(d))
+  ctx.lineTo(x+18*cs+pet(d), y+8*cs+pet(d))
+  ctx.lineTo(x+16*cs+pet(d), y+8*cs+pet(d))
+  ctx.lineTo(x+18*cs+pet(d), y+10.5*cs+pet(d))
+  ctx.lineTo(x+16*cs+pet(d), y+10*cs+pet(d))
+  ctx.lineTo(x+17*cs+pet(d), y+12*cs+pet(d))
+  ctx.lineTo(x+16*cs+pet(d/2), y+11*cs+pet(d/2))
+  ctx.stroke()
+
+  } //WAVEY
+  ctx.strokeStyle = savedS
+  ctx.fillStyle = savedF
 }
 
 function knotAt (x,y,W,color) {
