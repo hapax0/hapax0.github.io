@@ -1,2134 +1,920 @@
-let dict = "A (named a in the English, and most commonly ä in other languages).\n\
-_para_\n\
-Defn: The first letter of the English and of many other alphabets.\n\
-The capital A of the alphabets of Middle and Western Europe, as also\n\
-the small letter (a), besides the forms in Italic, black letter,\n\
-etc., are all descended from the old Latin A, which was borrowed from\n\
-the Greek Alpha, of the same form; and this was made from the first\n\
-letter (Aleph, and itself from the Egyptian origin. The Aleph was a\n\
-consonant letter, with a guttural breath sound that was not an\n\
-element of Greek articulation; and the Greeks took it to represent\n\
-their vowel Alpha with the ä sound, the Phoenician alphabet having no\n\
-vowel symbols. This letter, in English, is used for several different\n\
-vowel sounds. See Guide to pronunciation, §§ 43-74. The regular long\n\
-a, as in fate, etc., is a comparatively modern sound, and has taken\n\
-the place of what, till about the early part of the 17th century, was\n\
-a sound of the quality of ä (as in far).\n\
-_para_\n\
-2. (Mus.)\n\
-_para_\n\
-Defn: The name of the sixth tone in the model major scale (that in\n\
-C), or the first tone of the minor scale, which is named after it the\n\
-scale in A minor. The second string of the violin is tuned to the A\n\
-in the treble staff.\n\
- -- A sharp (A#) is the name of a musical tone intermediate between A\n\
-and B.\n\
- -- A flat (A) is the name of a tone intermediate between A and G.\n\
-_para_\n\
-A per se Etym: (L. per se by itself), one preëminent; a nonesuch.\n\
-[Obs.]\n\
-O fair Creseide, the flower and A per se Of Troy and Greece. Chaucer.\n\
-_para_\n\
-A\n\
-A (# emph. #).\n\
-_para_\n\
-1. Etym: [Shortened form of an. AS. an one. See One.]\n\
-_para_\n\
-Defn: An adjective, commonly called the indefinite article, and\n\
-signifying one or any, but less emphatically.\n\
-_para_\n\
-Defn: \"At a birth\"; \"In a word\"; \"At a blow\". Shak.\n\
-_para_\n\
-Note: It is placed before nouns of the singular number denoting an\n\
-individual object, or a quality individualized, before collective\n\
-nouns, and also before plural nouns when the adjective few or the\n\
-phrase great many or good many is interposed; as, a dog, a house, a\n\
-man; a color; a sweetness; a hundred, a fleet, a regiment; a few\n\
-persons, a great many days. It is used for an, for the sake of\n\
-euphony, before words beginning with a consonant sound [for exception\n\
-of certain words beginning with h, see An]; as, a table, a woman, a\n\
-year, a unit, a eulogy, a ewe, a oneness, such a one, etc. Formally\n\
-an was used both before vowels and consonants.\n\
-_para_\n\
-2. Etym: [Originally the preposition a (an, on).]\n\
-_para_\n\
-Defn: In each; to or for each; as, \"twenty leagues a day\", \"a hundred\n\
-pounds a year\", \"a dollar a yard\", etc.\n\
-_para_\n\
-A\n\
-A, prep. Etym: [Abbreviated form of an (AS. on). See On.]\n\
-_para_\n\
-1. In; on; at; by. [Obs.] \"A God\s name.\" \"Torn a pieces.\" \"Stand a\n\
-tiptoe.\" \"A Sundays\" Shak. \"Wit that men have now a days.\" Chaucer.\n\
-\"Set them a work.\" Robynson (More\s Utopia)\n\
-_para_\n\
-2. In process of; in the act of; into; to; -- used with verbal\n\
-substantives in -ing which begin with a consonant. This is a\n\
-shortened form of the preposition an (which was used before the vowel\n\
-sound); as in a hunting, a building, a begging. \"Jacob, when he was a\n\
-dying\" Heb. xi. 21. \"We\ll a birding together.\" \" It was a doing.\"\n\
-Shak. \"He burst out a laughing.\" Macaulay. The hyphen may be used to\n\
-connect a with the verbal substantive (as, a-hunting, a-building) or\n\
-the words may be written separately. This form of expression is now\n\
-for the most part obsolete, the a being omitted and the verbal\n\
-substantive treated as a participle.\n\
-_para_\n\
-A\n\
-A. Etym: [From AS. of off, from. See Of.]\n\
-_para_\n\
-Defn: Of. [Obs.] \"The name of John a Gaunt.\" \"What time a day is it \"\n\
-Shak. \"It\s six a clock.\" B. Jonson.\n\
-_para_\n\
-A\n\
-A.\n\
-_para_\n\
-Defn: A barbarous corruption of have, of he, and sometimes of it and\n\
-of they. \"So would I a done\" \"A brushes his hat.\" Shak.\n\
-_para_\n\
-A\n\
-A.\n\
-_para_\n\
-Defn: An expletive, void of sense, to fill up the meter\n\
-A merry heart goes all the day, Your sad tires in a mile-a. Shak.\n\
-_para_\n\
-A-\n\
-A-\n\
-_para_\n\
-Defn: A, as a prefix to English words, is derived from various\n\
-sources. (1) It frequently signifies on or in (from an, a forms of\n\
-AS. on), denoting a state, as in afoot, on foot, abed, amiss, asleep,\n\
-aground, aloft, away (AS. onweg), and analogically, ablaze, atremble,\n\
-etc. (2) AS. of off, from, as in adown (AS. ofdüne off the dun or\n\
-hill). (3) AS. a- (Goth. us-, ur-, Ger. er-), usually giving an\n\
-intensive force, and sometimes the sense of away, on, back, as in\n\
-arise, abide, ago. (4) Old English y- or i- (corrupted from the AS.\n\
-inseparable particle ge-, cognate with OHG. ga-, gi-, Goth. ga-),\n\
-which, as a prefix, made no essential addition to the meaning, as in\n\
-aware. (5) French à (L. ad to), as in abase, achieve. (6) L. a, ab,\n\
-abs, from, as in avert. (7) Greek insep. prefix a without, or\n\
-privative, not, as in abyss, atheist; akin to E. un-.\n\
-_para_\n\
-Note: Besides these, there are other sources from which the prefix a\n\
-takes its origin.\n\
-_para_\n\
-A 1\n\
-A 1. A registry mark given by underwriters (as at Lloyd\s) to ships\n\
-in first-class condition. Inferior grades are indicated by A 2 and A\n\
-3.\n\
-_para_\n\
-Note: A 1 is also applied colloquially to other things to imply\n\
-superiority; prime; first-class; first-rate.\n\
-_para_\n\
-AAM\n\
-Aam, n. Etym: [D. aam, fr. LL. ama; cf. L. hama a water bucket, Gr.\n\
-_para_\n\
-Defn: A Dutch and German measure of liquids, varying in different\n\
-cities, being at Amsterdam about 41 wine gallons, at Antwerp 36½, at\n\
-Hamburg 38¼. [Written also Aum and Awm.]\n\
-_para_\n\
-AARD-VARK\n\
-Aard\"-vark`, n. Etym: [D., earth-pig.] (Zoöl.)\n\
-_para_\n\
-Defn: An edentate mammal, of the genus Orycteropus, somewhat\n\
-resembling a pig, common in some parts of Southern Africa. It burrows\n\
-in the ground, and feeds entirely on ants, which it catches with its\n\
-long, slimy tongue.\n\
-_para_\n\
-AARD-WOLF\n\
-Aard\"-wolf`, n. Etym: [D, earth-wolf] (Zoöl.)\n\
-_para_\n\
-Defn: A carnivorous quadruped (Proteles Lalandii), of South Africa,\n\
-resembling the fox and hyena. See Proteles.\n\
-_para_\n\
-AARONIC; AARONICAL\n\
-Aa*ron\"ic, Aa*ron\"ic*al, a.\n\
-_para_\n\
-Defn: Pertaining to Aaron, the first high priest of the Jews.\n\
-_para_\n\
-AARON\S ROD\n\
-Aar\"on\s rod`. Etym: [See Exodus vii. 9 and Numbers xvii. 8]\n\
-_para_\n\
-1. (Arch.)\n\
-_para_\n\
-Defn: A rod with one serpent twined around it, thus differing from\n\
-the caduceus of Mercury, which has two.\n\
-_para_\n\
-2. (Bot.)\n\
-_para_\n\
-Defn: A plant with a tall flowering stem; esp. the great mullein, or\n\
-hag-taper, and the golden-rod.\n\
-_para_\n\
-AB-\n\
-Ab-. Etym: [Latin prep., etymologically the same as E. of, off. See\n\
-Of.]\n\
-_para_\n\
-Defn: A prefix in many words of Latin origin. It signifies from, away\n\
-, separating, or departure, as in abduct, abstract, abscond. See A-\n\
-(6).\n\
-_para_\n\
-AB\n\
-Ab, n. Etym: [Of Syriac origin.]\n\
-_para_\n\
-Defn: The fifth month of the Jewish year according to the\n\
-ecclesiastical reckoning, the eleventh by the civil computation,\n\
-coinciding nearly with August. W. Smith.\n\
-_para_\n\
-ABACA\n\
-Ab\"a*ca, n. Etym: [The native name.]\n\
-_para_\n\
-Defn: The Manila-hemp plant (Musa textilis); also, its fiber. See\n\
-Manila hemp under Manila.\n\
-_para_\n\
-ABACINATE\n\
-A*bac\"i*nate, v.t. Etym: [LL. abacinatus, p.p. of abacinare; ab off +\n\
-bacinus a basin.]\n\
-_para_\n\
-Defn: To blind by a red-hot metal plate held before the eyes. [R.]\n\
-_para_\n\
-ABACINATION\n\
-A*bac`i*na\"tion, n.\n\
-_para_\n\
-Defn: The act of abacinating. [R.]\n\
-_para_\n\
-ABACISCUS\n\
-Ab`a*cis\"cus, n. Etym: [Gr.Abacus.] (Arch.)\n\
-_para_\n\
-Defn: One of the tiles or squares of a tessellated pavement; an\n\
-abaculus.\n\
-_para_\n\
-ABACIST\n\
-Ab\"a*cist, n. Etym: [LL abacista, fr. abacus.]\n\
-_para_\n\
-Defn: One who uses an abacus in casting accounts; a calculator.\n\
-_para_\n\
-ABACK\n\
-A*back\", adv. Etym: [Pref. a- + back; AS. on bæc at, on, or toward\n\
-the back. See Back.]\n\
-_para_\n\
-1. Toward the back or rear; backward. \"Therewith aback she started.\"\n\
-Chaucer.\n\
-_para_\n\
-2. Behind; in the rear. Knolles.\n\
-_para_\n\
-3. (Naut.)\n\
-_para_\n\
-Defn: Backward against the mast;-said of the sails when pressed by\n\
-the wind. Totten. To be taken aback. (a) To be driven backward\n\
-against the mast; -- said of the sails, also of the ship when the\n\
-sails are thus driven. (b) To be suddenly checked, baffled, or\n\
-discomfited. Dickens.\n\
-_para_\n\
-ABACK\n\
-Ab\"ack, n.\n\
-_para_\n\
-Defn: An abacus. [Obs.] B. Jonson.\n\
-_para_\n\
-ABACTINAL\n\
-Ab*ac\"ti*nal, a. Etym: [L. ab + E. actinal.] (Zoöl.)\n\
-_para_\n\
-Defn: Pertaining to the surface or end opposite to the mouth in a\n\
-radiate animal; -- opposed to actinal. \"The aboral or abactinal\n\
-area.\" L. Agassiz.\n\
-_para_\n\
-ABACTION\n\
-Ab*ac\"tion, n.\n\
-_para_\n\
-Defn: Stealing cattle on a large scale. [Obs.]\n\
-_para_\n\
-ABACTOR\n\
-Ab*ac\"tor, n. Etym: [L., fr. abigere to drive away; ab+agere to\n\
-drive.] (Law)\n\
-_para_\n\
-Defn: One who steals and drives away cattle or beasts by herds or\n\
-droves. [Obs.]\n\
-_para_\n\
-ABACULUS\n\
-A*bac\"u*lus, n.; pl. Abaculi. Etym: [L., dim. of abacus.] (Arch.)\n\
-_para_\n\
-Defn: A small tile of glass, marble, or other substance, of various\n\
-colors, used in making ornamental patterns in mosaic pavements.\n\
-Fairholt.\n\
-_para_\n\
-ABACUS\n\
-Ab\"a*cus, n. E. pl. Abacuses ; L. pl. Abaci. Etym: [L. abacus, abax,\n\
-Gr.\n\
-_para_\n\
-1. A table or tray strewn with sand, anciently used for drawing,\n\
-calculating, etc. [Obs.]\n\
-_para_\n\
-2. A calculating table or frame; an instrument for performing\n\
-arithmetical calculations by balls sliding on wires, or counters in\n\
-grooves, the lowest line representing units, the second line, tens,\n\
-etc. It is still employed in China.\n\
-_para_\n\
-3. (Arch.)\n\
-(a) The uppermost member or division of the capital of a column,\n\
-immediately under the architrave. See Column.\n\
-(b) A tablet, panel, or compartment in ornamented or mosaic work.\n\
-_para_\n\
-4. A board, tray, or table, divided into perforated compartments, for\n\
-holding cups, bottles, or the like; a kind of cupboard, buffet, or\n\
-sideboard. Abacus harmonicus (Mus.), an ancient diagram showing the\n\
-structure and disposition of the keys of an instrument. Crabb.\n\
-_para_\n\
-ABADA\n\
-Ab\"a*da, n. Etym: [Pg., the female rhinoceros.]\n\
-_para_\n\
-Defn: The rhinoceros. [Obs.] Purchas.\n\
-_para_\n\
-ABADDON\n\
-A*bad\"don, n. Etym: [Heb. abaddon destruction, abyss, fr. abad to be\n\
-lost, to perish.]\n\
-_para_\n\
-1. The destroyer, or angel of the bottomless pit; -- the same as\n\
-Apollyon and Asmodeus.\n\
-_para_\n\
-2. Hell; the bottomless pit. [Poetic]\n\
-In all her gates, Abaddon rues Thy bold attempt. Milton.\n\
-_para_\n\
-ABAFT\n\
-A*baft\", prep. Etym: [Pref. a-on + OE. baft, baften, biaften, AS.\n\
-beæftan; be by + æftan behind. See After, Aft, By.] (Naut.)\n\
-_para_\n\
-Defn: Behind; toward the stern from; as, abaft the wheelhouse. Abaft\n\
-the beam. See under Beam.\n\
-_para_\n\
-ABAFT\n\
-A*baft\", adv. (Naut.)\n\
-_para_\n\
-Defn: Toward the stern; aft; as, to go abaft.\n\
-_para_\n\
-ABAISANCE\n\
-A*bai\"sance, n. Etym: [For obeisance; confused with F. abaisser, E.\n\
-abase]\n\
-_para_\n\
-Defn: Obeisance. [Obs.] Jonson.\n\
-_para_\n\
-ABAISER\n\
-A*bai\"ser, n.\n\
-_para_\n\
-Defn: Ivory black or animal charcoal. Weale.\n\
-_para_\n\
-ABAIST\n\
-A*baist\", p.p.\n\
-_para_\n\
-Defn: Abashed; confounded; discomfited. [Obs.] Chaucer.\n\
-_para_\n\
-ABALIENATE\n\
-Ab*al\"ien*ate, v.t. Etym: [L. abalienatus, p.p. of abalienare; ab +\n\
-alienus foreign, alien. See Alien.]\n\
-_para_\n\
-1. (Civil Law)\n\
-_para_\n\
-Defn: To transfer the title of from one to another; to alienate.\n\
-_para_\n\
-2. To estrange; to withdraw. [Obs.]\n\
-_para_\n\
-3. To cause alienation of (mind). Sandys.\n\
-_para_\n\
-ABALIENATION\n\
-Ab*al`ien*a\"tion, n. Etym: [L. abalienatio: cf. F. abalianation.]\n\
-_para_\n\
-Defn: The act of abalienating; alienation; estrangement. [Obs.]\n\
-_para_\n\
-ABALONE\n\
-Ab`a*lo\"ne, n. (Zoöl.)\n\
-_para_\n\
-Defn: A univalve mollusk of the genus Haliotis. The shell is lined\n\
-with mother-of-pearl, and used for ornamental purposes; the sea-ear.\n\
-Several large species are found on the coast of California, clinging\n\
-closely to the rocks.\n\
-_para_\n\
-ABAND\n\
-A*band\", v.t. Etym: [Contracted from abandon.]\n\
-_para_\n\
-1. To abandon. [Obs.]\n\
-Enforced the kingdom to aband. Spenser.\n\
-_para_\n\
-2. To banish; to expel. [Obs.] Mir. for Mag.\n\
-_para_\n\
-ABANDON\n\
-A*ban\"don, v.t. [imp. & p.p. Abandoned; p.pr. & vb.n. Abandoning.]\n\
-Etym: [OF. abandoner, F.abandonner; a (L. ad)+bandon permission,\n\
-authority, LL. bandum, bannum, public proclamation, interdiction,\n\
-bannire to proclaim, summon: of Germanic origin; cf. Goth. bandwjan\n\
-to show by signs, to designate OHG. banproclamation. The word meant\n\
-to proclaim, put under a ban, put under control; hence, as in OE., to\n\
-compel, subject, or to leave in the control of another, and hence, to\n\
-give up. See Ban.]\n\
-_para_\n\
-1. To cast or drive out; to banish; to expel; to reject. [Obs.]\n\
-That he might . . . abandon them from him. Udall.\n\
-Being all this time abandoned from your bed. Shak.\n\
-_para_\n\
-2. To give up absolutely; to forsake entirely ; to renounce utterly;\n\
-to relinquish all connection with or concern on; to desert, as a\n\
-person to whom one owes allegiance or fidelity; to quit; to\n\
-surrender.\n\
-Hope was overthrown, yet could not be abandoned. I. Taylor.\n\
-_para_\n\
-3. Reflexively : To give (one\s self) up without attempt at self-\n\
-control ; to yield (one\s self) unrestrainedly ; -- often in a bad\n\
-sense.\n\
-He abandoned himself . . . to his favorite vice. Macaulay.\n\
-_para_\n\
-4. (Mar. Law)\n\
-_para_\n\
-Defn: To relinquish all claim to; -- used when an insured person\n\
-gives up to underwriters all claim to the property covered by a\n\
-policy, which may remain after loss or damage by a peril insured\n\
-against.\n\
-_para_\n\
-Syn.\n\
- -- To give up; yield; forego; cede; surrender; resign; abdicate;\n\
-quit; relinquish; renounce; desert; forsake; leave; retire; withdraw\n\
-from.\n\
- -- To Abandon, Desert, Forsake. These words agree in representing a\n\
-person as giving up or leaving some object, but differ as to the mode\n\
-of doing it. The distinctive sense of abandon is that of giving up a\n\
-thing absolutely and finally; as, to abandon one\s friends, places,\n\
-opinions, good or evil habits, a hopeless enterprise, a shipwrecked\n\
-vessel. Abandon is more widely applicable than forsake or desert. The\n\
-Latin original of desert appears to have been originally applied to\n\
-the case of deserters from military service. Hence, the verb, when\n\
-used of persons in the active voice, has usually or always a bad\n\
-sense, implying some breach of fidelity, honor, etc., the leaving of\n\
-something which the person should rightfully stand by and support;\n\
-as, to desert one\s colors, to desert one\s post, to desert one\s\n\
-principles or duty. When used in the passive, the sense is not\n\
-necessarily bad; as, the fields were deserted, a deserted village,\n\
-deserted halls. Forsake implies the breaking off of previous habit,\n\
-association, personal connection, or that the thing left had been\n\
-familiar or frequented; as, to forsake old friends, to forsake the\n\
-paths of rectitude, the blood forsook his cheeks. It may be used\n\
-either in a good or in a bad sense.\n\
-_para_\n\
-ABANDON\n\
-A*ban\"don, n. Etym: [F. abandon. fr. abandonner. See Abandon, v.]\n\
-_para_\n\
-Defn: Abandonment; relinquishment. [Obs.]\n\
-_para_\n\
-ABANDON\n\
-A`ban`don\", n. Etym: [F. See Abandon.]\n\
-_para_\n\
-Defn: A complete giving up to natural impulses; freedom from\n\
-artificial constraint; careless freedom or ease.\n\
-_para_\n\
-ABANDONED\n\
-A*ban\"doned, a.\n\
-_para_\n\
-1. Forsaken, deserted. \"Your abandoned streams.\" Thomson.\n\
-_para_\n\
-2. Self-abandoned, or given up to vice; extremely wicked, or sinning\n\
-without restraint; irreclaimably wicked ; as, an abandoned villain.\n\
-_para_\n\
-Syn.\n\
- -- Profligate; dissolute; corrupt; vicious; depraved; reprobate;\n\
-wicked; unprincipled; graceless; vile.\n\
- -- Abandoned, Profligate, Reprobate. These adjectives agree in\n\
-expressing the idea of great personal depravity. Profligate has\n\
-reference to open and shameless immoralities, either in private life\n\
-or political conduct; as, a profligate court, a profligate ministry.\n\
-Abandoned is stronger, and has reference to the searing of conscience\n\
-and hardening of heart produced by a man\s giving himself wholly up\n\
-to iniquity; as, a man of abandoned character. Reprobate describes\n\
-the condition of one who has become insensible to reproof, and who is\n\
-morally abandoned and lost beyond hope of recovery.\n\
-God gave them over to a reprobate mind. Rom. i. 28.\n\
-_para_\n\
-ABANDONEDLY\n\
-A*ban\"doned*ly, adv.\n\
-_para_\n\
-Defn: Unrestrainedly.\n\
-_para_\n\
-ABANDONEE\n\
-A*ban`don*ee\", n. (Law)\n\
-_para_\n\
-Defn: One to whom anything is legally abandoned.\n\
-_para_\n\
-ABANDONER\n\
-A*ban\"don*er, n.\n\
-_para_\n\
-Defn: One who abandons. Beau. & Fl.\n\
-_para_\n\
-ABANDONMENT\n\
-A*ban\"don*ment, n. Etym: [Cf. F. abandonnement.]\n\
-_para_\n\
-1. The act of abandoning, or the state of being abandoned; total\n\
-desertion; relinquishment.\n\
-The abandonment of the independence of Europe. Burke.\n\
-_para_\n\
-2. (Mar. Law)\n\
-_para_\n\
-Defn: The relinquishment by the insured to the underwriters of what\n\
-may remain of the property insured after a loss or damage by a peril\n\
-insured against.\n\
-_para_\n\
-3. (Com. Law)\n\
-_para_\n\
-Defn: (a) The relinquishment of a right, claim, or privilege, as to\n\
-mill site, etc. (b) The voluntary leaving of a person to whom one is\n\
-bound by a special relation, as a wife, husband, or child; desertion.\n\
-_para_\n\
-4. Careless freedom or ease; abandon. [R.] Carlyle.\n\
-_para_\n\
-ABANDUM\n\
-A*ban\"*dum, n. Etym: [LL. See Abandon.] (Law)\n\
-_para_\n\
-Defn: Anything forfeited or confiscated.\n\
-_para_\n\
-ABANET\n\
-Ab\"a*net, n.\n\
-_para_\n\
-Defn: See Abnet.\n\
-_para_\n\
-ABANGA\n\
-A*ban\"ga, n. Etym: [Name given by the negroes in the island of St.\n\
-Thomas.]\n\
-_para_\n\
-Defn: A West Indian palm; also the fruit of this palm, the seeds of\n\
-which are used as a remedy for diseases of the chest.\n\
-_para_\n\
-ABANNATION; ABANNITION\n\
-Ab`an*na\"tion, Ab`an*nition, n. Etym: [LL. abannatio; ad + LL.\n\
-bannire to banish.] (Old Law)\n\
-_para_\n\
-Defn: Banishment. [Obs.] Bailey.\n\
-_para_\n\
-ABARTICULATION\n\
-Ab`ar*tic`u*la\"tion, n. Etym: [L. ab + E. articulation : cf. F.\n\
-abarticulation. See Article.] (Anat.)\n\
-_para_\n\
-Defn: Articulation, usually that kind of articulation which admits of\n\
-free motion in the joint; diarthrosis. Coxe.\n\
-_para_\n\
-ABASE\n\
-A*base\", v.t. [imp.&p.p. Abased; p.pr. & vb. n. Abasing.] Etym: [F.\n\
-abaisser, LL. abassare, abbassare ; ad + bassare, fr. bassus low. See\n\
-Base, a.]\n\
-_para_\n\
-1. To lower or depress; to throw or cast down; as, to abase the eye.\n\
-[Archaic] Bacon.\n\
-Saying so, he abased his lance. Shelton.\n\
-_para_\n\
-2. To cast down or reduce low or lower, as in rank, office, condition\n\
-in life, or estimation of worthiness; to depress; to humble; to\n\
-degrade.\n\
-Whosoever exalteth himself shall be abased. Luke xiv. ll.\n\
-_para_\n\
-Syn.\n\
- -- To Abase, Debase, Degrade. These words agree in the idea of\n\
-bringing down from a higher to a lower state. Abase has reference to\n\
-a bringing down in condition or feelings; as to abase one\s self\n\
-before God. Debase has reference to the bringing down of a thing in\n\
-purity, or making it base. It is, therefore, always used in a bad\n\
-sense, as, to debase the coin of the kingdom, to debase the mind by\n\
-vicious indulgence, to debase one\s style by coarse or vulgar\n\
-expressions. Degrade has reference to a bringing down from some\n\
-higher grade or from some standard. Thus, a priest is degraded from\n\
-the clerical office. When used in a moral sense, it denotes a\n\
-bringing down in character and just estimation; as, degraded by\n\
-intemperance, a degrading employment, etc. \"Art is degraded when it\n\
-is regarded only as a trade.\"\n\
-_para_\n\
-ABASED\n\
-A*based\", a.\n\
-_para_\n\
-1. Lowered; humbled.\n\
-_para_\n\
-2. (Her.) Etym: [F. abaissé.]\n\
-_para_\n\
-Defn: Borne lower than usual, as a fess; also, having the ends of the\n\
-wings turned downward towards the point of the shield.\n\
-_para_\n\
-ABASEDLY\n\
-A*bas\"ed*ly, adv.\n\
-_para_\n\
-Defn: Abjectly; downcastly.\n\
-_para_\n\
-ABASEMENT\n\
-A*base\"ment, n. Etym: [Cf. F. abaissement.]\n\
-_para_\n\
-Defn: The act of abasing, humbling, or bringing low; the state of\n\
-being abased or humbled; humiliation.\n\
-_para_\n\
-ABASER\n\
-A*bas\"er, n.\n\
-_para_\n\
-Defn: He who, or that which, abases.\n\
-_para_\n\
-ABASH\n\
-A*bash\", v.t. [imp. & p.p. Abashed; p.pr. & vb. n. Abashing.] Etym:\n\
-[OE. abaissen, abaisshen, abashen, OF.esbahir, F. ébahir, to\n\
-astonish, fr. L. ex + the interjection bah, expressing astonishment.\n\
-In OE. somewhat confused with abase. Cf. Finish.]\n\
-_para_\n\
-Defn: To destroy the self-possession of; to confuse or confound, as\n\
-by exciting suddenly a consciousness of guilt, mistake, or\n\
-inferiority; to put to shame; to disconcert; to discomfit.\n\
-Abashed, the devil stood, And felt how awful goodness is. Milton.\n\
-He was a man whom no check could abash. Macaulay.\n\
-_para_\n\
-Syn.\n\
- -- To confuse; confound; disconcert; shame.\n\
- -- To Abash, Confuse, Confound. Abash is a stronger word than\n\
-confuse, but not so strong as confound. We are abashed when struck\n\
-either with sudden shame or with a humbling sense of inferiority; as,\n\
-Peter was abashed in the presence of those who are greatly his\n\
-superiors. We are confused when, from some unexpected or startling\n\
-occurrence, we lose clearness of thought and self-possession. Thus, a\n\
-witness is often confused by a severe cross-examination; a timid\n\
-person is apt to be confused in entering a room full of strangers. We\n\
-are confounded when our minds are overwhelmed, as it were, by\n\
-something wholly unexpected, amazing, dreadful, etc., so that we have\n\
-nothing to say. Thus, a criminal is usually confounded at the\n\
-discovery of his guilt.\n\
-Satan stood Awhile as mute, confounded what to say. Milton.\n\
-_para_\n\
-ABASHEDLY\n\
-A*bash\"ed*ly, adv.\n\
-_para_\n\
-Defn: In an abashed manner.\n\
-_para_\n\
-ABASHMENT\n\
-A*bash\"ment, n. Etym: [Cf. F. ébahissement.]\n\
-_para_\n\
-Defn: The state of being abashed; confusion from shame.\n\
-_para_\n\
-ABASIA\n\
-A*ba\"si*a, n. [NL.; Gr. - not +  a step.] (Med.)\n\
-_para_\n\
-Defn: Inability to coördinate muscular actions properly in walking. -\n\
-- A*ba\"sic (#), a.\n\
-_para_\n\
-ABASSI; ABASSIS\n\
-A*bas\"si, A*bas\"sis, n. Etym: [Ar.& Per. abasi, belonging to Abas (a\n\
-king of Persia).]\n\
-_para_\n\
-Defn: A silver coin of Persia, worth about twenty cents.\n\
-_para_\n\
-ABATABLE\n\
-A*bat\"a*ble, a.\n\
-_para_\n\
-Defn: Capable of being abated; as, an abatable writ or nuisance.\n\
-_para_\n\
-ABATE\n\
-A*bate\", v.t. [imp.& p.p. Abated, p.pr. & vb.n. Abating.] Etym: [OF.\n\
-abatre to beat down, F. abattre, LL. abatere; ab or ad + batere,\n\
-battere (popular form for L. batuere to beat). Cf. Bate, Batter.]\n\
-_para_\n\
-1. To beat down; to overthrow. [Obs.]\n\
-The King of Scots . . . sore abated the walls. Edw. Hall.\n\
-_para_\n\
-2. To bring down or reduce from a higher to a lower state, number, or\n\
-degree; to lessen; to diminish; to contract; to moderate; toto cut\n\
-short; as, to abate a demand; to abate pride, zeal, hope.\n\
-His eye was not dim, nor his natural force abated. Deut. xxxiv. 7.\n\
-_para_\n\
-3. To deduct; to omit; as, to abate something from a price.\n\
-Nine thousand parishes, abating the odd hundreds. Fuller.\n\
-_para_\n\
-4. To blunt. [Obs.]\n\
-To abate the edge of envy. Bacon.\n\
-_para_\n\
-5. To reduce in estimation; to deprive. [Obs.]\n\
-She hath abated me of half my train. Shak.\n\
-_para_\n\
-6. (Law)\n\
-_para_\n\
-Defn: (a) To bring entirely down or put an end to; to do away with;\n\
-as, to abate a nuisance, to abate a writ. (b) (Eng. Law) To diminish;\n\
-to reduce. Legacies are liable to be abated entirely or in\n\
-proportion, upon a deficiency of assets. To abate a tax, to remit it\n\
-either wholly or in part.\n\
-_para_\n\
-ABATE\n\
-A*bate\", v.i. Etym: [See Abate, v.t.]\n\
-_para_\n\
-1. To decrease, or become less in strength or violence; as, pain\n\
-abates, a storm abates.\n\
-The fury of Glengarry . . . rapidly abated. Macaulay.\n\
-_para_\n\
-2. To be defeated, or come to naught; to fall through; to fail; as, a\n\
-writ abates. To abate into a freehold, To abate in lands (Law), to\n\
-enter into a freehold after the death of the last possessor, and\n\
-before the heir takes possession. See Abatement, 4.\n\
-_para_\n\
-Syn.\n\
- -- To subside; decrease; intermit; decline; diminish; lessen.\n\
- -- To Abate, Subside. These words, as here compared, imply a coming\n\
-down from some previously raised or exited state. Abate expresses\n\
-this in respect to degrees, and implies a diminution of force or of\n\
-intensity; as, the storm abates, the cold abates, the force of the\n\
-wind abates; or, the wind abates, a fever abates. Subside (to settle\n\
-down) has reference to a previous state of agitation or commotion;\n\
-as, the waves subside after a storm, the wind subsides into a calm.\n\
-When the words are used figuratively, the same distinction should be\n\
-observed. If we conceive of a thing as having different degrees of\n\
-intensity or strength, the word to be used is abate. Thus we say, a\n\
-man\s anger abates, the ardor of one\s love abates, \"Winter rage\n\
-abates\". But if the image be that of a sinking down into quiet from\n\
-preceding excitement or commotion, the word to be used is subside;\n\
-as, the tumult of the people subsides, the public mind subsided into\n\
-a calm. The same is the case with those emotions which are tumultuous\n\
-in their nature; as, his passion subsides, his joy quickly subsided,\n\
-his grief subsided into a pleasing melancholy. Yet if, in such cases,\n\
-we were thinking of the degree of violence of the emotion, we might\n\
-use abate; as, his joy will abate in the progress of time; and so in\n\
-other instances.\n\
-_para_\n\
-ABATE\n\
-A*bate, n.\n\
-_para_\n\
-Defn: Abatement. [Obs.] Sir T. Browne.\n\
-_para_\n\
-ABATEMENT\n\
-A*bate\"ment, n. Etym: [OF. abatement, F. abattement.]\n\
-_para_\n\
-1. The act of abating, or the state of being abated; a lessening,\n\
-diminution, or reduction; removal or putting an end to; as, the\n\
-abatement of a nuisance is the suppression thereof.\n\
-_para_\n\
-2. The amount abated; that which is taken away by way of reduction;\n\
-deduction; decrease; a rebate or discount allowed.\n\
-_para_\n\
-3. (Her.)\n\
-_para_\n\
-Defn: A mark of dishonor on an escutcheon.\n\
-_para_\n\
-4. (Law)\n\
-_para_\n\
-Defn: The entry of a stranger, without right, into a freehold after\n\
-the death of the last possessor, before the heir or devisee.\n\
-Blackstone. Defense in abatement, Plea in abatement, (Law), plea to\n\
-the effect that from some formal defect (e.g. misnomer, want of\n\
-jurisdiction) the proceedings should be abated.\n\
-_para_\n\
-ABATER\n\
-A*bat\"er, n.\n\
-_para_\n\
-Defn: One who, or that which, abates.\n\
-_para_\n\
-ABATIS; ABATTIS\n\
-Ab\"a*tis, Aba\"t*tis, n. Etym: [F. abatis, abattis, mass of things\n\
-beaten or cut down, fr. abattre. See Abate.] (Fort.)\n\
-_para_\n\
-Defn: A means of defense formed by felled trees, the ends of whose\n\
-branches are sharpened and directed outwards, or against the enemy.\n\
-_para_\n\
-ABATISED\n\
-Ab\"a*tised, a.\n\
-_para_\n\
-Defn: Provided with an abatis.\n\
-_para_\n\
-ABATOR\n\
-A*ba\"tor, n. (Law)\n\
-_para_\n\
-Defn: (a) One who abates a nuisance. (b) A person who, without right,\n\
-enters into a freehold on the death of the last possessor, before the\n\
-heir or devisee. Blackstone.\n\
-_para_\n\
-ABATTOIR\n\
-A`bat`toir\", n.; pl. Abattoirs. Etym: [F., fr. abattre to beat down.\n\
-See Abate.]\n\
-_para_\n\
-Defn: A public slaughterhouse for cattle, sheep, etc.\n\
-_para_\n\
-ABATURE\n\
-Ab\"a*ture, n. Etym: [F. abatture, fr. abattre. See Abate.]\n\
-_para_\n\
-Defn: Grass and sprigs beaten or trampled down by a stag passing\n\
-through them. Crabb.\n\
-_para_\n\
-ABATVOIX\n\
-A`bat`voix\", n. Etym: [F. abattre to beat down + voix voice.]\n\
-_para_\n\
-Defn: The sounding-board over a pulpit or rostrum.\n\
-_para_\n\
-ABAWED\n\
-Ab*awed\", p.p. Etym: [Perh. p.p. of a verb fr. OF. abaubir to\n\
-frighten, disconcert, fr. L. ad + balbus stammering.]\n\
-_para_\n\
-Defn: Astonished; abashed. [Obs.] Chaucer.\n\
-_para_\n\
-ABAXIAL; ABAXILE\n\
-Ab*ax\"i*al, Ab*ax\"ile, a. Etym: [L. ab + axis axle.] (Bot.)\n\
-_para_\n\
-Defn: Away from the axis or central line; eccentric. Balfour.\n\
-_para_\n\
-ABAY\n\
-A*bay\", n. Etym: [OF. abay barking.]\n\
-_para_\n\
-Defn: Barking; baying of dogs upon their prey. See Bay. [Obs.]\n\
-_para_\n\
-ABB\n\
-Abb, n. Etym: [AS. aweb, ab; pref. a- + web. See Web.]\n\
-_para_\n\
-Defn: Among weaves, yarn for the warp. Hence, abb wool is wool for\n\
-the abb.\n\
-_para_\n\
-ABBA\n\
-Ab\"ba, n. Etym: [Syriac abba father. See Abbot.]\n\
-_para_\n\
-Defn: Father; religious superior; -- in the Syriac, Coptic, and\n\
-Ethiopic churches, a title given to the bishops, and by the bishops\n\
-to the patriarch.\n\
-_para_\n\
-ABBACY\n\
-Ab\"ba*cy, n.; pl. Abbacies. Etym: [L. abbatia, fr. abbas, abbatis,\n\
-abbot. See Abbey.]\n\
-_para_\n\
-Defn: The dignity, estate, or jurisdiction of an abbot.\n\
-_para_\n\
-ABBATIAL\n\
-Ab*ba\"tial, a. Etym: [LL. abbatialis : cf. F. abbatial.]\n\
-_para_\n\
-Defn: Belonging to an abbey; as, abbatial rights.\n\
-_para_\n\
-ABBATICAL\n\
-Ab*bat\"ic*al, a.\n\
-_para_\n\
-Defn: Abbatial. [Obs.]\n\
-_para_\n\
-ABBE\n\
-Ab\"bé`, n.Etym: [F. abbé. See Abbot.]\n\
-_para_\n\
-Defn: The French word answering to the English abbot, the head of an\n\
-abbey; but commonly a title of respect given in France to every one\n\
-vested with the ecclesiastical habit or dress.\n\
-_para_\n\
-Note: * After the 16th century, the name was given, in social\n\
-parlance, to candidates for some priory or abbey in the gift of the\n\
-crown. Many of these aspirants became well known in literary and\n\
-fashionable life. By further extension, the name came to be applied\n\
-to unbeneficed secular ecclesiastics generally. Littré.\n\
-_para_\n\
-ABBESS\n\
-Ab\"bess, n. Etym: [OF.abaesse, abeesse, F. abbesse, L. abbatissa,\n\
-fem. of abbas, abbatis, abbot. See Abbot.]\n\
-_para_\n\
-Defn: A female superior or governess of a nunnery, or convent of\n\
-nuns, having the same authority over the nuns which the abbots have\n\
-over the monks. See Abbey.\n\
-_para_\n\
-ABBEY\n\
-Ab\"bey, n.; pl. Abbeys. Etym: [OF. abaïe, F. abbaye, L. abbatia, fr.\n\
-abbas abbot. See Abbot.]\n\
-_para_\n\
-1. A monastery or society of persons of either sex, secluded from the\n\
-world and devoted to religion and celibacy; also, the monastic\n\
-building or buildings.\n\
-_para_\n\
-Note: The men are called monks, and governed by an abbot; the women\n\
-are called nuns, and governed by an abbess.\n\
-_para_\n\
-2. The church of a monastery.\n\
-_para_\n\
-Note: In London, the Abbey means Westminster Abbey, and in Scotland,\n\
-the precincts of the Abbey of Holyrood. The name is also retained for\n\
-a private residence on the site of an abbey; as, Newstead Abbey, the\n\
-residence of Lord Byron.\n\
-_para_\n\
-Syn.\n\
- -- Monastery; convent; nunnery; priory; cloister. See Cloister.\n\
-_para_\n\
-ABBOT\n\
-Ab\"bot, n. Etym: [AS. abbod, abbad, L. abbas, abbatis, Gr. abba\n\
-father. Cf. Abba, AbbÉ.]\n\
-_para_\n\
-1. The superior or head of an abbey.\n\
-_para_\n\
-2. One of a class of bishops whose sees were formerly abbeys. Encyc.\n\
-Brit. Abbot of the people. a title formerly given to one of the chief\n\
-magistrates in Genoa.\n\
- -- Abbot of Misrule (or Lord of Misrule), in mediæval times, the\n\
-master of revels, as at Christmas; in Scotland called the Abbot of\n\
-Unreason. Encyc. Brit.\n\
-_para_\n\
-ABBOTSHIP\n\
-Ab\"bot*ship, n. Etym: [Abbot + -ship.]\n\
-_para_\n\
-Defn: The state or office of an abbot.\n\
-_para_\n\
-ABBREVIATE\n\
-Ab*bre\"vi*ate, v.t. [imp. & p.p. Abbreviated; p.pr. & vb.n.\n\
-Abbreviating.] Etym: [L. abbreviatus, p.p. of abbreviare; ad +\n\
-breviare to shorten, fr. brevis short. See Abridge.]\n\
-_para_\n\
-1. To make briefer; to shorten; to abridge; to reduce by contraction\n\
-or omission, especially of words written or spoken.\n\
-It is one thing to abbreviate by contracting, another by cutting off.\n\
-Bacon.\n\
-_para_\n\
-2. (Math.)\n\
-_para_\n\
-Defn: To reduce to lower terms, as a fraction.\n\
-_para_\n\
-ABBREVIATE\n\
-Ab*bre\"vi*ate, a. Etym: [L. abbreviatus, p.p.]\n\
-_para_\n\
-1. Abbreviated; abridged; shortened. [R.] \"The abbreviate form.\"\n\
-Earle.\n\
-_para_\n\
-2. (Biol.)\n\
-_para_\n\
-Defn: Having one part relatively shorter than another or than the\n\
-ordinary type.\n\
-_para_\n\
-ABBREVIATE\n\
-Ab*bre\"vi*ate, n.\n\
-_para_\n\
-Defn: An abridgment. [Obs.] Elyot.\n\
-_para_\n\
-ABBREVIATED\n\
-Ab*bre\"vi*a`ted, a.\n\
-_para_\n\
-Defn: Shortened; relatively short; abbreviate.\n\
-_para_\n\
-ABBREVIATION\n\
-Ab*bre`vi*a\"tion, n. Etym: [LL. abbreviatio: cf. F. abbréviation.]\n\
-_para_\n\
-1. The act of shortening, or reducing.\n\
-_para_\n\
-2. The result of abbreviating; an abridgment. Tylor.\n\
-_para_\n\
-3. The form to which a word or phrase is reduced by contraction and\n\
-omission; a letter or letters, standing for a word or phrase of which\n\
-they are a part; as, Gen. for Genesis; U.S.A. for United States of\n\
-America.\n\
-_para_\n\
-4. (Mus.)\n\
-_para_\n\
-Defn: One dash, or more, through the stem of a note, dividing it\n\
-respectively into quavers, semiquavers, or demi-semiquavers. Moore.\n\
-_para_\n\
-ABBREVIATOR\n\
-Ab*bre\"vi*a`tor, n. Etym: [LL.: cf. F. abbréviateur.]\n\
-_para_\n\
-1. One who abbreviates or shortens.\n\
-_para_\n\
-2. One of a college of seventy-two officers of the papal court whose\n\
-duty is to make a short minute of a decision on a petition, or reply\n\
-of the pope to a letter, and afterwards expand the minute into\n\
-official form.\n\
-_para_\n\
-ABBREVIATORY\n\
-Ab*bre\"vi*a*to*ry, a.\n\
-_para_\n\
-Defn: Serving or tending to abbreviate; shortening; abridging.\n\
-_para_\n\
-ABBREVIATURE\n\
-Ab*bre\"vi*a*ture, n.\n\
-_para_\n\
-1. An abbreviation; an abbreviated state or form. [Obs.]\n\
-_para_\n\
-2. An abridgment; a compendium or abstract.\n\
-This is an excellent abbreviature of the whole duty of a Christian.\n\
-Jer. Taylor.\n\
-_para_\n\
-ABB WOOL\n\
-Abb\" wool.\n\
-_para_\n\
-Defn: See Abb.\n\
-_para_\n\
-A B C\n\
-A B C\".\n\
-_para_\n\
-1. The first three letters of the alphabet, used for the whole\n\
-alphabet.\n\
-_para_\n\
-2. A primer for teaching the alphabet and first elements of reading.\n\
-[Obs.]\n\
-_para_\n\
-3. The simplest rudiments of any subject; as, the A B C of finance. A\n\
-B C book, a primer. Shak.\n\
-_para_\n\
-ABDAL\n\
-Ab\"dal, n. Etym: [Ar. badil, pl. abdal, a substitute, a good,\n\
-religious man, saint, fr. badala to change, substitute.]\n\
-_para_\n\
-Defn: A religious devotee or dervish in Persia.\n\
-_para_\n\
-ABDERIAN\n\
-Ab*de\"ri*an, a. Etym: [From Abdera, a town in Thrace, of which place\n\
-Democritus, the Laughing Philosopher, was a native.]\n\
-_para_\n\
-Defn: Given to laughter; inclined to foolish or incessant merriment.\n\
-_para_\n\
-ABDERITE\n\
-Ab*de\"rite, n. Etym: [L. Abderita, Abderites, fr. Gr. \\n\
-_para_\n\
-Defn: An inhabitant of Abdera, in Thrace. The Abderite, Democritus,\n\
-the Laughing Philosopher.\n\
-_para_\n\
-ABDEST\n\
-Ab\"dest, n. Etym: [Per. abdast; ab water + dast hand.]\n\
-_para_\n\
-Defn: Purification by washing the hands before prayer; -- a\n\
-Mohammedan rite. Heyse.\n\
-_para_\n\
-ABDICABLE\n\
-Ab\"di*ca*ble, a.\n\
-_para_\n\
-Defn: Capable of being abdicated.\n\
-_para_\n\
-ABDICANT\n\
-Ab\"di*cant, a. Etym: [L. abdicans, p.pr. of abdicare.]\n\
-_para_\n\
-Defn: Abdicating; renouncing; -- followed by of.\n\
-Monks abdicant of their orders. Whitlock.\n\
-_para_\n\
-ABDICANT\n\
-Ab\"di*cant, n.\n\
-_para_\n\
-Defn: One who abdicates. Smart.\n\
-_para_\n\
-ABDICATE\n\
-Ab\"di*cate, v.t. [imp. & p.p. Abdicated; p.pr. & vb.n. Abdicating.]\n\
-Etym: [L. abdicatus, p.p. of abdicare; ab + dicare to proclaim, akin\n\
-to dicere to say. See Diction.]\n\
-_para_\n\
-1. To surrender or relinquish, as sovereign power; to withdraw\n\
-definitely from filling or exercising, as a high office, station,\n\
-dignity; as, to abdicate the throne, the crown, the papacy.\n\
-_para_\n\
-Note: The word abdicate was held to mean, in the case of James II.,\n\
-to abandon without a formal surrender.\n\
-The cross-bearers abdicated their service. Gibbon.\n\
-_para_\n\
-2. To renounce; to relinquish; -- said of authority, a trust, duty,\n\
-right, etc.\n\
-He abdicates all right to be his own governor. Burke.\n\
-The understanding abdicates its functions. Froude.\n\
-_para_\n\
-3. To reject; to cast off. [Obs.] Bp. Hall.\n\
-_para_\n\
-4. (Civil Law)\n\
-_para_\n\
-Defn: To disclaim and expel from the family, as a father his child;\n\
-to disown; to disinherit.\n\
-_para_\n\
-Syn.\n\
- -- To give up; quit; vacate; relinquish; forsake; abandon; resign;\n\
-renounce; desert.\n\
- -- To Abdicate, Resign. Abdicate commonly expresses the act of a\n\
-monarch in voluntary and formally yielding up sovereign authority;\n\
-as, to abdicate the government. Resign is applied to the act of any\n\
-person, high or low, who gives back an office or trust into the hands\n\
-of him who conferred it. Thus, a minister resigns, a military officer\n\
-resigns, a clerk resigns. The expression, \"The king resigned his\n\
-crown,\" sometimes occurs in our later literature, implying that he\n\
-held it from his people.\n\
- -- There are other senses of resign which are not here brought into\n\
-view.\n\
-_para_\n\
-ABDICATE\n\
-Ab\"di*cate, v.i.\n\
-_para_\n\
-Defn: To relinquish or renounce a throne, or other high office or\n\
-dignity.\n\
-Though a king may abdicate for his own person, he cannot abdicate for\n\
-the monarchy. Burke.\n\
-_para_\n\
-ABDICATION\n\
-Ab`di*ca\"tion, n. Etym: [L. abdicatio: cf. F. abdication.]\n\
-_para_\n\
-Defn: The act of abdicating; the renunciation of a high office,\n\
-dignity, or trust, by its holder; commonly the voluntary renunciation\n\
-of sovereign power; as, abdication of the throne, government, power,\n\
-authority.\n\
-_para_\n\
-ABDICATIVE\n\
-Ab\"di*ca*tive, a. Etym: [L. abdicativus.]\n\
-_para_\n\
-Defn: Causing, or implying, abdication. [R.] Bailey.\n\
-_para_\n\
-ABDICATOR\n\
-Ab\"di*ca`tor, n.\n\
-_para_\n\
-Defn: One who abdicates.\n\
-_para_\n\
-ABDITIVE\n\
-Ab\"di*tive, a. Etym: [L. abditivus, fr. abdere to hide.]\n\
-_para_\n\
-Defn: Having the quality of hiding. [R.] Bailey.\n\
-_para_\n\
-ABDITORY\n\
-Ab\"di*to*ry, n. Etym: [L. abditorium.]\n\
-_para_\n\
-Defn: A place for hiding or preserving articles of value. Cowell.\n\
-_para_\n\
-ABDOMEN\n\
-Ab*do\"men, n. Etym: [L. abdomen (a word of uncertain etymol.): cf. F.\n\
-abdomen.]\n\
-_para_\n\
-1. (Anat.)\n\
-_para_\n\
-Defn: The belly, or that part of the body between the thorax and the\n\
-pelvis. Also, the cavity of the belly, which is lined by the\n\
-peritoneum, and contains the stomach, bowels, and other viscera. In\n\
-man, often restricted to the part between the diaphragm and the\n\
-commencement of the pelvis, the remainder being called the pelvic\n\
-cavity.\n\
-_para_\n\
-2. (Zoöl.)\n\
-_para_\n\
-Defn: The posterior section of the body, behind the thorax, in\n\
-insects, crustaceans, and other Arthropoda.\n\
-_para_\n\
-ABDOMINAL\n\
-Ab*dom\"i*nal, a. Etym: [Cf. F. abdominal.]\n\
-_para_\n\
-1. Of or pertaining to the abdomen; ventral; as, the abdominal\n\
-regions, muscles, cavity.\n\
-_para_\n\
-2. (Zoöl.)\n\
-_para_\n\
-Defn: Having abdominal fins; belonging to the Abdominales; as,\n\
-abdominal fishes. Abdominal ring (Anat.), a fancied ringlike opening\n\
-on each side of the abdomen, external and superior to the pubes; --\n\
-called also inguinal ring.\n\
-_para_\n\
-ABDOMINAL\n\
-Ab*dom\"i*nal, n.; E. pl. Abdominals, L. pl. Abdominales.\n\
-_para_\n\
-Defn: A fish of the group Abdominales.\n\
-_para_\n\
-ABDOMINALES\n\
-Ab*dom`i*na\"les, n. pl. Etym: [NL., masc. pl.] (Zoöl.)\n\
-_para_\n\
-Defn: A group including the greater part of fresh-water fishes, and\n\
-many marine ones, having the ventral fins under the abdomen behind\n\
-the pectorals.\n\
-_para_\n\
-ABDOMINALIA\n\
-Ab*dom`i*na\"li*a, n. pl. Etym: [NL., neut. pl.] (Zoöl.)\n\
-_para_\n\
-Defn: A group of cirripeds having abdominal appendages.\n\
-_para_\n\
-ABDOMINOSCOPY\n\
-Ab*dom`i*nos\"co*py, n. Etym: [L. abdomen + Gr. (Med.)\n\
-_para_\n\
-Defn: Examination of the abdomen to detect abdominal disease.\n\
-_para_\n\
-ABDOMINOTHORACIC\n\
-Ab*dom`i*no*tho*rac\"ic, a.\n\
-_para_\n\
-Defn: Relating to the abdomen and the thorax, or chest.\n\
-_para_\n\
-ABDOMINOUS\n\
-Ab*dom\"i*nous, a.\n\
-_para_\n\
-Defn: Having a protuberant belly; pot-bellied.\n\
-Gorgonius sits, abdominous and wan, Like a fat squab upon a Chinese\n\
-fan. Cowper.\n\
-_para_\n\
-ABDUCE\n\
-Ab*duce\", v.t. [imp. & p.p. Abduced; p.pr. & vb.n. Abducing.] Etym:\n\
-[L. abducere to lead away; ab + ducere to lead. See Duke, and cf.\n\
-Abduct.]\n\
-_para_\n\
-Defn: To draw or conduct away; to withdraw; to draw to a different\n\
-part. [Obs.]\n\
-If we abduce the eye unto either corner, the object will not\n\
-duplicate. Sir T. Browne.\n\
-_para_\n\
-ABDUCT\n\
-Ab*duct\", v.t. [imp. & p.p. Abducted; p.pr. & vb.n. Abducting.] Etym:\n\
-[L. abductus, p.p. of abducere. See Abduce.]\n\
-_para_\n\
-1. To take away surreptitiously by force; to carry away (a human\n\
-being) wrongfully and usually by violence; to kidnap.\n\
-_para_\n\
-2. To draw away, as a limb or other part, from its ordinary position.\n\
-_para_\n\
-ABDUCTION\n\
-Ab*duc\"tion, n. Etym: [L. abductio: cf. F. abduction.]\n\
-_para_\n\
-1. The act of abducing or abducting; a drawing apart; a carrying\n\
-away. Roget.\n\
-_para_\n\
-2. (Physiol.)\n\
-_para_\n\
-Defn: The movement which separates a limb or other part from the\n\
-axis, or middle line, of the body.\n\
-_para_\n\
-3. (Law)\n\
-_para_\n\
-Defn: The wrongful, and usually the forcible, carrying off of a human\n\
-being; as, the abduction of a child, the abduction of an heiress.\n\
-_para_\n\
-4. (Logic)\n\
-_para_\n\
-Defn: A syllogism or form of argument in which the major is evident,\n\
-but the minor is only probable.\n\
-_para_\n\
-ABDUCTOR\n\
-Ab*duc\"tor, n. Etym: [NL.]\n\
-_para_\n\
-1. One who abducts.\n\
-_para_\n\
-2. (Anat.)\n\
-_para_\n\
-Defn: A muscle which serves to draw a part out, or form the median\n\
-line of the body; as, the abductor oculi, which draws the eye\n\
-outward.\n\
-_para_\n\
-ABEAM\n\
-A*beam\", adv. Etym: [Pref. a- + beam.] (Naut.)\n\
-_para_\n\
-Defn: On the beam, that is, on a line which forms a right angle with\n\
-the ship\s keel; opposite to the center of the ship\s side.\n\
-_para_\n\
-ABEAR\n\
-A*bear\", v.t. Etym: [AS. aberan; pref. a- + beran to bear.]\n\
-_para_\n\
-1. To bear; to behave. [Obs.]\n\
-So did the faery knight himself abear. Spenser.\n\
-_para_\n\
-2. To put up with; to endure. [Prov.] Dickens.\n\
-_para_\n\
-ABEARANCE\n\
-A*bear\"ance, n.\n\
-_para_\n\
-Defn: Behavior. [Obs.] Blackstone.\n\
-_para_\n\
-ABEARING\n\
-A*bear\"ing, n.\n\
-_para_\n\
-Defn: Behavior. [Obs.] Sir. T. More.\n\
-_para_\n\
-ABECEDARIAN\n\
-A`be*ce*da\"ri*an, n. Etym: [L. abecedarius. A word from the first\n\
-four letters of the alphabet.]\n\
-_para_\n\
-1. One who is learning the alphabet; hence, a tyro.\n\
-_para_\n\
-2. One engaged in teaching the alphabet. Wood.\n\
-_para_\n\
-ABECEDARIAN; ABECEDARY\n\
-A`be*ce*da\"ri*an, A`be*ce\"da*ry, a.\n\
-_para_\n\
-Defn: Pertaining to, or formed by, the letters of the alphabet;\n\
-alphabetic; hence, rudimentary. Abecedarian psalms, hymns, etc.,\n\
-compositions in which (like the 119th psalm in Hebrew) distinct\n\
-portions or verses commence with successive letters of the alphabet.\n\
-Hook.\n\
-_para_\n\
-ABECEDARY\n\
-A`be*ce\"da*ry, n.\n\
-_para_\n\
-Defn: A primer; the first principle or rudiment of anything. [R.]\n\
-Fuller.\n\
-_para_\n\
-ABED\n\
-A*bed\", adv. Etym: [Pref. a- in, on + bed.]\n\
-_para_\n\
-1. In bed, or on the bed.\n\
-Not to be abed after midnight. Shak.\n\
-_para_\n\
-2. To childbed (in the phrase \"brought abed,\" that is, delivered of a\n\
-child). Shak.\n\
-_para_\n\
-ABEGGE\n\
-A*beg\"ge.\n\
-_para_\n\
-Defn: Same as Aby. [Obs.] Chaucer.\n\
-_para_\n\
-ABELE\n\
-A*bele\", n. Etym: [D. abeel (abeel-boom), OF. abel, aubel, fr. a dim.\n\
-of L. albus white.]\n\
-_para_\n\
-Defn: The white polar (Populus alba).\n\
-Six abeles i\ the churchyard grow. Mrs. Browning.\n\
-_para_\n\
-ABELIAN; ABELITE; ABELONIAN\n\
-A*bel\"i*an, A\"bel*ite, A`bel*o\"ni*an, n. (Eccl. Hist.)\n\
-_para_\n\
-Defn: One of a sect in Africa (4th century), mentioned by St.\n\
-Augustine, who states that they married, but lived in continence,\n\
-after the manner, as they pretended, of Abel.\n\
-_para_\n\
-ABELMOSK\n\
-A\"bel*mosk`, n. Etym: [NL. abelmoschus, fr. Ar. abu-l-misk father of\n\
-musk, i.e., producing musk. See Musk.] (Bot.)\n\
-_para_\n\
-Defn: An evergreen shrub (Hibiscus -- formerly Abelmoschus-\n\
-moschatus), of the East and West Indies and Northern Africa, whose\n\
-musky seeds are used in perfumery and to flavor coffee; -- sometimes\n\
-called musk mallow.\n\
-_para_\n\
-ABER-DE-VINE\n\
-Ab`er-de-vine\", n. (Zoöl.)\n\
-_para_\n\
-Defn: The European siskin (Carduelis spinus), a small green and\n\
-yellow finch, related to the goldfinch.\n\
-_para_\n\
-ABERR\n\
-Ab*err\", v.i. Etym: [L. aberrare. See Aberrate.]\n\
-_para_\n\
-Defn: To wander; to stray. [Obs.] Sir T. Browne.\n\
-_para_\n\
-ABERRANCE; ABERRANCY\n\
-Ab*er\"rance, Ab*er\"ran*cy, n.\n\
-_para_\n\
-Defn: State of being aberrant; a wandering from the right way;\n\
-deviation from truth, rectitude, etc. Aberrancy of curvature (Geom.),\n\
-the deviation of a curve from a circular form.\n\
-_para_\n\
-ABERRANT\n\
-Ab*er\"rant, a. Etym: [L. aberrans, -rantis, p.pr. of aberrare.]\n\
-_para_\n\
-Defn: See Aberr.]\n\
-_para_\n\
-1. Wandering; straying from the right way.\n\
-_para_\n\
-2. (Biol.)\n\
-_para_\n\
-Defn: Deviating from the ordinary or natural type; exceptional;\n\
-abnormal.\n\
-The more aberrant any form is, the greater must have been the number\n\
-of connecting forms which, on my theory, have been exterminated.\n\
-Darwin.\n\
-_para_\n\
-ABERRATE\n\
-Ab\"er*rate, v.i. Etym: [L. aberratus, p.pr. of aberrare; ab + errare\n\
-to wander. See Err.]\n\
-_para_\n\
-Defn: To go astray; to diverge. [R.]\n\
-Their own defective and aberrating vision. De Quincey.\n\
-_para_\n\
-ABERRATION\n\
-Ab`er*ra\"tion, n. Etym: [L. aberratio: cf. F. aberration. See\n\
-Aberrate.]\n\
-_para_\n\
-1. The act of wandering; deviation, especially from truth or moral\n\
-rectitude, from the natural state, or from a type. \"The aberration of\n\
-youth.\" Hall. \"Aberrations from theory.\" Burke.\n\
-_para_\n\
-2. A partial alienation of reason. \"Occasional aberrations of\n\
-intellect.\" Lingard.\n\
-Whims, which at first are the aberrations of a single brain, pass\n\
-with heat into epidemic form. I. Taylor.\n\
-_para_\n\
-3. (Astron.)\n\
-_para_\n\
-Defn: A small periodical change of position in the stars and other\n\
-heavenly bodies, due to the combined effect of the motion of light\n\
-and the motion of the observer; called annual aberration, when the\n\
-observer\s motion is that of the earth in its orbit, and dairy or\n\
-diurnal aberration, when of the earth on its axis; amounting when\n\
-greatest, in the former case, to 20.4\\, and in the latter, to 0.3\\.\n\
-Planetary aberration is that due to the motion of light and the\n\
-motion of the planet relative to the earth.\n\
-_para_\n\
-4. (Opt.)\n\
-_para_\n\
-Defn: The convergence to different foci, by a lens or mirror, of rays\n\
-of light emanating from one and the same point, or the deviation of\n\
-such rays from a single focus; called spherical aberration, when due\n\
-to the spherical form of the lens or mirror, such form giving\n\
-different foci for central and marginal rays; and chromatic\n\
-aberration, when due to different refrangibilities of the colored\n\
-rays of the spectrum, those of each color having a distinct focus.\n\
-_para_\n\
-5. (Physiol.)\n\
-_para_\n\
-Defn: The passage of blood or other fluid into parts not appropriate\n\
-for it.\n\
-_para_\n\
-6. (Law)\n\
-_para_\n\
-Defn: The producing of an unintended effect by the glancing of an\n\
-instrument, as when a shot intended for A glances and strikes B.\n\
-_para_\n\
-Syn.\n\
- -- Insanity; lunacy; madness; derangement; alienation; mania;\n\
-dementia; hallucination; illusion; delusion. See Insanity.\n\
-_para_\n\
-ABERRATIONAL\n\
-Ab`er*ra\"tion*al, a.\n\
-_para_\n\
-Defn: Characterized by aberration.\n\
-_para_\n\
-ABERUNCATE\n\
-Ab`e*run\"cate, v.t. Etym: [L. aberuncare, for aberruncare. See\n\
-Averruncate.]\n\
-_para_\n\
-Defn: To weed out. [Obs.] Bailey.\n\
-_para_\n\
-ABERUNCATOR\n\
-Ab`e*run\"ca*tor, n.\n\
-_para_\n\
-Defn: A weeding machine.\n\
-_para_\n\
-ABET\n\
-A*bet\", v.t. [imp. & p.p. Abetted; p.pr. & vb.n. Abetting.] Etym:\n\
-[OF. abeter; a (L. ad) + beter to bait (as a bear), fr. Icel. beita\n\
-to set dogs on, to feed, originally, to cause to bite, fr. Icel. bita\n\
-to bite, hence to bait, to incite. See Bait, Bet.]\n\
-_para_\n\
-1. To instigate or encourage by aid or countenance; -- used in a bad\n\
-sense of persons and acts; as, to abet an ill-doer; to abet one in\n\
-his wicked courses; to abet vice; to abet an insurrection. \"The whole\n\
-tribe abets the villany.\" South.\n\
-Would not the fool abet the stealth, Who rashly thus exposed his\n\
-wealth Gay.\n\
-_para_\n\
-2. To support, uphold, or aid; to maintain; -- in a good sense.\n\
-[Obs.].\n\
-Our duty is urged, and our confidence abetted. Jer. Taylor.\n\
-_para_\n\
-3. (Law)\n\
-_para_\n\
-Defn: To contribute, as an assistant or instigator, to the commission\n\
-of an offense.\n\
-_para_\n\
-Syn.\n\
- -- To incite; instigate; set on; egg on; foment; advocate;\n\
-countenance; encourage; second; uphold; aid; assist; support;\n\
-sustain; back; connive at.\n\
-_para_\n\
-ABET\n\
-A*bet\", n. Etym: [OF. abet, fr. abeter.]\n\
-_para_\n\
-Defn: Act of abetting; aid. [Obs.] Chaucer.\n\
-_para_\n\
-ABETMENT\n\
-A*bet\"ment, n.\n\
-_para_\n\
-Defn: The act of abetting; as, an abetment of treason, crime, etc.\n\
-_para_\n\
-ABETTAL\n\
-A*bet\"tal, n.\n\
-_para_\n\
-Defn: Abetment. [R.]\n\
-_para_\n\
-ABETTER; ABETTOR\n\
-A*bet\"ter, A*bet*tor, n.\n\
-_para_\n\
-Defn: One who abets; an instigator of an offense or an offender.\n\
-_para_\n\
-Note: The form abettor is the legal term and also in general use.\n\
-_para_\n\
-Syn.\n\
- -- Abettor, Accessory, Accomplice. These words denote different\n\
-degrees of complicity in some deed or crime. An abettor is one who\n\
-incites or encourages to the act, without sharing in its performance.\n\
-An accessory supposes a principal offender. One who is neither the\n\
-chief actor in an offense, nor present at its performance, but\n\
-accedes to or becomes involved in its guilt, either by some previous\n\
-or subsequent act, as of instigating, encouraging, aiding, or\n\
-concealing, etc., is an accessory. An accomplice is one who\n\
-participates in the commission of an offense, whether as principal or\n\
-accessory. Thus in treason, there are no abettors or accessories, but\n\
-all are held to be principals or accomplices.\n\
-_para_\n\
-ABEVACUATION\n\
-Ab`e*vac\"u*a\"tion, n. Etym: [Pref. ab- + evacuation.] (Med.)\n\
-_para_\n\
-Defn: A partial evacuation. Mayne.\n\
-_para_\n\
-ABEYANCE\n\
-A*bey\"ance, n. Etym: [OF. abeance expectation, longing; a (L. ad) +\n\
-baer, beer, to gape, to look with open mouth, to expect, F. bayer,\n\
-LL. badare to gape.]\n\
-_para_\n\
-1. (Law)\n\
-_para_\n\
-Defn: Expectancy; condition of being undetermined.\n\
-_para_\n\
-Note: When there is no person in existence in whom an inheritance (or\n\
-a dignity) can vest, it is said to be in abeyance, that is, in\n\
-expectation; the law considering it as always potentially existing,\n\
-and ready to vest whenever a proper owner appears. Blackstone.\n\
-_para_\n\
-2. Suspension; temporary suppression.\n\
-Keeping the sympathies of love and admiration in a dormant state, or\n\
-state of abeyance. De Quincey.\n\
-_para_\n\
-ABEYANCY\n\
-A*bey\"an*cy, n.\n\
-_para_\n\
-Defn: Abeyance. [R.] Hawthorne.\n\
-_para_\n\
-ABEYANT\n\
-A*bey\"ant, a.\n\
-_para_\n\
-Defn: Being in a state of abeyance.\n\
-_para_\n\
-ABGEORDNETENHAUS\n\
-Ab\"ge*ord`ne*ten*haus`, n.  [G.]\n\
-_para_\n\
-Defn: See Legislature, Austria, Prussia.\n\
-_para_\n\
-ABHAL\n\
-Ab\"hal, n.\n\
-_para_\n\
-Defn: The berries of a species of cypress in the East Indies.\n\
-_para_\n\
-ABHOMINABLE\n\
-Ab*hom\"i*na*ble, a.\n\
-_para_\n\
-Defn: Abominable.\n\
-_para_\n\
-Note: [A false orthography anciently used; h was foisted into various\n\
-words; hence abholish, for abolish, etc.]\n\
-This is abhominable, which he [Don Armado] would call abominable.\n\
-Shak. Love\s Labor\s Lost, v. 1.\n\
-_para_\n\
-ABHOMINAL\n\
-Ab*hom`i*nal, a. Etym: [L. ab away from + homo, hominis, man.]\n\
-_para_\n\
-Defn: Inhuman. [Obs.] Fuller.\n\
-_para_\n\
-ABHOR\n\
-Ab*hor\", v. t. [imp. & p. p. Abhorred; p. pr. & vb. n. Abhorring.]\n\
-Etym: [L. abhorrere; ab + horrere to bristle, shiver, shudder: cf. F.\n\
-abhorrer. See Horrid.]\n\
-_para_\n\
-1. To shrink back with shuddering from; to regard with horror or\n\
-detestation; to feel excessive repugnance toward; to detest to\n\
-extremity; to loathe.\n\
-Abhor that which is evil; cleave to that which is good. Rom. xii. 9.\n\
-_para_\n\
-2. To fill with horror or disgust. [Obs.]\n\
-It doth abhor me now I speak the word. Shak.\n\
-_para_\n\
-3. (Canon Law)\n\
-_para_\n\
-Defn: To protest against; to reject solemnly. [Obs.]\n\
-I utterly abhor, yea, from my soul Refuse you for my judge. Shak.\n\
-_para_\n\
-Syn.\n\
- -- To hate; detest; loathe; abominate. See Hate.\n\
-_para_\n\
-ABHOR\n\
-Ab*hor\", v. i.\n\
-_para_\n\
-Defn: To shrink back with horror, disgust, or dislike; to be contrary\n\
-or averse; -- with from. [Obs.] \"To abhor from those vices.\" Udall.\n\
-Which is utterly abhorring from the end of all law. Milton.\n\
-_para_\n\
-ABHORRENCE\n\
-Ab*hor\"rence, n.\n\
-_para_\n\
-Defn: Extreme hatred or detestation; the feeling of utter dislike.\n\
-_para_\n\
-ABHORRENCY\n\
-Ab*hor\"ren*cy, n.\n\
-_para_\n\
-Defn: Abhorrence. [Obs.] Locke.\n\
-_para_\n\
-ABHORRENT\n\
-Ab*hor\"rent, a. Etym: [L. abhorens, -rentis, p. pr. of abhorrere.]\n\
-_para_\n\
-1. Abhorring; detesting; having or showing abhorrence; loathing;\n\
-hence, strongly opposed to; as, abhorrent thoughts.\n\
-The persons most abhorrent from blood and treason. Burke.\n\
-The arts of pleasure in despotic courts I spurn abhorrent. Clover.\n\
-_para_\n\
-2. Contrary or repugnant; discordant; inconsistent; -- followed by\n\
-to. \"Injudicious profanation, so abhorrent to our stricter\n\
-principles.\" Gibbon.\n\
-_para_\n\
-3. Detestable. \"Pride, abhorrent as it is.\" I. Taylor.\n\
-_para_\n\
-ABHORRENTLY\n\
-Ab*hor\"rent*ly, adv.\n\
-_para_\n\
-Defn: With abhorrence.\n\
-_para_\n\
-ABHORRER\n\
-Ab*hor\"rer, n.\n\
-_para_\n\
-Defn: One who abhors. Hume.\n\
-_para_\n\
-ABHORRIBLE\n\
-Ab*hor\"ri*ble, a.\n\
-_para_\n\
-Defn: Detestable. [R.]\n\
-_para_\n\
-ABHORRING\n\
-Ab*hor\"ring, n.\n\
-_para_\n\
-1. Detestation. Milton.\n\
-_para_\n\
-2. Object of abhorrence. Isa. lxvi. 24.\n\
-_para_\n\
-ABIB\n\
-A\"bib, n. Etym: [Heb. abib, lit. an ear of corn. The month was so\n\
-called from barley being at that time in ear.]\n\
-_para_\n\
-Defn: The first month of the Jewish ecclesiastical year,\n\
-corresponding nearly to our April. After the Babylonish captivity\n\
-this month was called Nisan. Kitto.\n\
-_para_\n\
-ABIDANCE\n\
-A*bid\"ance, n.\n\
-_para_\n\
-Defn: The state of abiding; abode; continuance; compliance (with).\n\
-The Christians had no longer abidance in the holy hill of Palestine.\n\
-Fuller.\n\
-A judicious abidance by rules. Helps.\n\
-_para_\n\
-ABIDE\n\
-A*bide\", v. i. [imp. & p. p. Abode, formerly Abid(#); p. pr. & vb. n.\n\
-Abiding.] Etym: [AS. abidan; pref. a- (cf. Goth. us-, G. er-, orig.\n\
-meaning out) + bidan to bide. See Bide.]\n\
-_para_\n\
-1. To wait; to pause; to delay. [Obs.] Chaucer.\n\
-_para_\n\
-2. To stay; to continue in a place; to have one\s abode; to dwell; to\n\
-sojourn; -- with with before a person, and commonly with at or in\n\
-before a place.\n\
-Let the damsel abide with us a few days. Gen. xxiv. 55.\n\
-_para_\n\
-3. To remain stable or fixed in some state or condition; to continue;\n\
-to remain.\n\
-Let every man abide in the same calling. 1 Cor. vii. 20.\n\
-Followed by by: To abide by. (a) To stand to; to adhere; to maintain.\n\
-The poor fellow was obstinate enough to abide by what he said at\n\
-first. Fielding.\n\
-(b) To acquiesce; to conform to; as, to abide by a decision or an\n\
-award.\n\
-_para_\n\
-ABIDE\n\
-A*bide\", v. t.\n\
-_para_\n\
-1. To wait for; to be prepared for; to await; to watch for; as, I\n\
-abide my time. \"I will abide the coming of my lord.\" Tennyson.\n\
-_para_\n\
-Note: [[Obs.], with a personal object.\n\
-Bonds and afflictions abide me. Acts xx. 23.\n\
-_para_\n\
-2. To endure; to sustain; to submit to.\n\
-[Thou] shalt abide her judgment on it. Tennyson.\n\
-_para_\n\
-3. To bear patiently; to tolerate; to put up with.\n\
-She could not abide Master Shallow. Shak.\n\
-_para_\n\
-4.\n\
-_para_\n\
-Note: [Confused with aby to pay for. See Aby.]\n\
-_para_\n\
-Defn: To stand the consequences of; to answer for; to suffer for.\n\
-Dearly I abide that boast so vain. Milton.\n\
-_para_\n\
-ABIDER\n\
-A*bid\"er, n.\n\
-_para_\n\
-1. One who abides, or continues. [Obs.] \"Speedy goers and strong\n\
-abiders.\" Sidney.\n\
-_para_\n\
-2. One who dwells; a resident. Speed.\n\
-_para_\n\
-ABIDING\n\
-A*bid\"ing, a.\n\
-_para_\n\
-Defn: Continuing; lasting.\n\
-_para_\n\
-ABIDINGLY\n\
-A*bid\"ing*ly, adv.\n\
-_para_\n\
-Defn: Permanently. Carlyle.\n\
-_para_\n\
-ABIES\n\
-A\"bi*es, n. Etym: [L., fir tree.] (Bot.)\n\
-_para_\n\
-Defn: A genus of coniferous trees, properly called Fir, as the balsam\n\
-fir and the silver fir. The spruces are sometimes also referred to\n\
-this genus.\n\
-_para_\n\
-ABIETENE\n\
-Ab\"i*e*tene, n. Etym: [L. abies, abietis, a fir tree.]\n\
-_para_\n\
-Defn: A volatile oil distilled from the resin or balsam of the nut\n\
-pine (Pinus sabiniana) of California.\n\
-_para_\n\
-ABIETIC\n\
-Ab`i*et\"ic, a.\n\
-_para_\n\
-Defn: Of or pertaining to the fir tree or its products; as, abietic\n\
-acid, called also sylvic acid. Watts.\n\
-_para_\n\
-ABIETIN; ABIETINE\n\
-Ab\"i*e*tin, Ab\"i*e*tine, n. Etym: [See Abietene.] (Chem.)\n\
-_para_\n\
-Defn: A resinous obtained from Strasburg turpentine or Canada balsam.\n\
-It is without taste or smell, is insoluble in water, but soluble in\n\
-alcohol (especially at the boiling point), in strong acetic acid, and\n\
-in ether. Watts.\n\
-_para_\n\
-ABIETINIC\n\
-Ab`i*e*tin\"ic, a.\n\
-_para_\n\
-Defn: Of or pertaining to abietin; as, abietinic acid.\n\
-_para_\n\
-ABIETITE\n\
-Ab\"i*e*tite, n. (Chem.)\n\
-_para_\n\
-Defn: A substance resembling mannite, found in the needles of the\n\
-common silver fir of Europe (Abies pectinata). Eng. Cyc.\n\
-_para_\n\
-ABIGAIL\n\
-Ab\"i*gail, n. Etym: [The proper name used as an appellative.]\n\
-_para_\n\
-Defn: A lady\s waiting-maid. Pepys.\n\
-Her abigail reported that Mrs. Gutheridge had a set of night curls\n\
-for sleeping in. Leslie.\n\
-_para_\n\
-ABILIMENT\n\
-A*bil\"i*ment, n.\n\
-_para_\n\
-Defn: Habiliment. [Obs.]\n\
-_para_\n\
-ABILITY\n\
-A*bil\"i*ty, n.; pl. Abilities(#). Etym: [F. habileté, earlier\n\
-spelling habilité (with silent h), L. habilitas aptitude, ability,\n\
-fr. habilis apt. See Able.]\n\
-_para_\n\
-Defn: The quality or state of being able; power to perform, whether\n\
-physical, moral, intellectual, conventional, or legal; capacity;\n\
-skill or competence in doing; sufficiency of strength, skill,\n\
-resources, etc.; -- in the plural, faculty, talent.\n\
-Then the disciples, every man according to his ability, determined to\n\
-send relief unto the brethren. Acts xi. 29.\n\
-Natural abilities are like natural plants, that need pruning by\n\
-study. Bacon.\n\
-The public men of England, with much of a peculiar kind of ability.\n\
-Macaulay.\n\
-_para_\n\
-Syn.\n\
- -- Capacity; talent; cleverness; faculty; capability; efficiency;\n\
-aptitude; aptness; address; dexterity; skill. Ability, Capacity.\n\
-These words come into comparison when applied to the higher\n\
-intellectual powers. Ability has reference to the active exercise of\n\
-our faculties. It implies not only native vigor of mind, but that\n\
-ease and promptitude of execution which arise from mental training.\n\
-Thus, we speak of the ability with which a book is written, an\n\
-argument maintained, a negotiation carried on, etc. It always\n\
-something to be done, and the power of doing it. Capacity has\n\
-reference to the receptive powers. In its higher exercises it\n\
-supposes great quickness of apprehension and breadth of intellect,\n\
-with an uncommon aptitude for acquiring and retaining knowledge.\n\
-Hence it carries with it the idea of resources and undeveloped power.\n\
-Thus we speak of the extraordinary capacity of such men as Lord\n\
-Bacon, Blaise Pascal, and Edmund Burke. \"Capacity,\" says H. Taylor,\n\
-\"is requisite to devise, and ability to execute, a great enterprise.\"\n\
-The word abilities, in the plural, embraces both these qualities, and\n\
-denotes high mental endowments.\n\
-_para_\n\
-ABIME; ABYME\n\
-A*bime\" or A*byme\", n. Etym: [F. abîme. See Abysm.]\n\
-_para_\n\
-Defn: A abyss. [Obs.]\n\
-_para_\n\
-ABIOGENESIS\n\
-Ab`i*o*gen\"e*sis, n. Etym: [Gr. (Biol.)\n\
-_para_\n\
-Defn: The supposed origination of living organisms from lifeless\n\
-matter; such genesis as does not involve the action of living\n\
-parents; spontaneous generation; -- called also abiogeny, and opposed\n\
-to biogenesis.\n\
-I shall call the . . . doctrine that living matter may be produced by\n\
-not living matter, the hypothesis of abiogenesis. Huxley, 1870.\n\
-_para_\n\
-ABIOGENETIC\n\
-Ab`i*o*ge*net\"ic, a. (Biol.)\n\
-_para_\n\
-Defn: Of or pertaining to abiogenesis. Ab`i*o*ge*net\"ic*al*ly, adv.\n\
-_para_\n\
-ABIOGENIST\n\
-Ab`i*og\"e*nist, n. (Biol.)\n\
-_para_\n\
-Defn: One who believes that life can be produced independently of\n\
-antecedent. Huxley.\n\
-_para_\n\
-ABIOGENOUS\n\
-Ab`i*og\"e*nous, a. (Biol.)\n\
-_para_\n\
-Defn: Produced by spontaneous generation.\n\
-_para_\n\
-ABIOGENY\n\
-Ab`i*og\"e*ny, n. (Biol.)\n\
-_para_\n\
-Defn: Same as Abiogenesis.\n\
-_para_\n\
-ABIOLOGICAL\n\
-Ab`i*o*log\"ic*al, a. Etym: [Gr. biological.]\n\
-_para_\n\
-Defn: Pertaining to the study of inanimate things.\n\
-_para_\n\
-ABIRRITANT\n\
-Ab*ir\"ri*tant, n. (Med.)\n\
-_para_\n\
-Defn: A medicine that diminishes irritation.\n\
-_para_\n\
-ABIRRITATE\n\
-Ab*ir\"ri*tate, v. t. Etym: [Pref. ab- + irritate.] (Med.)\n\
-_para_\n\
-Defn: To diminish the sensibility of; to debilitate.\n\
-_para_\n\
-ABIRRITATION\n\
-Ab*ir`ri*ta\"tion, n. (Med.)\n\
-_para_\n\
-Defn: A pathological condition opposite to that of irritation;\n\
-debility; want of strength; asthenia.\n\
-_para_\n\
-ABIRRITATIVE\n\
-Ab*ir\"ri*ta*tive, a. (Med.)\n\
-_para_\n\
-Defn: Characterized by abirritation or debility.\n\
-_para_\n\
-ABIT\n\
-A*bit\",\n\
-_para_\n\
-Defn: 3d sing. pres. of Abide. [Obs.] Chaucer.\n\
-_para_\n\
-ABJECT\n\
-Ab\"ject, a. Etym: [L. abjectus, p. p. of abjicere to throw away; ab +\n\
-jacere to throw. See Jet a shooting forth.]\n\
-_para_\n\
-1. Cast down; low-lying. [Obs.]\n\
-From the safe shore their floating carcasses And broken chariot\n\
-wheels; so thick bestrown Abject and lost lay these, covering the\n\
-flood. Milton.\n\
-_para_\n\
-2. Sunk to a law condition; down in spirit or hope; degraded;\n\
-servile; groveling; despicable; as, abject posture, fortune,\n\
-thoughts. \"Base and abject flatterers.\" Addison. \"An abject liar.\"\n\
-Macaulay.\n\
-And banish hence these abject, lowly dreams. Shak.\n\
-_para_\n\
-Syn.\n\
- -- Mean; groveling; cringing; mean-spirited; slavish; ignoble;\n\
-worthless; vile; beggarly; contemptible; degraded.\n\
-_para_\n\
-ABJECT\n\
-Ab*ject\", v. t. Etym: [From Abject, a.]\n\
-_para_\n\
-Defn: To cast off or down; hence, to abase; to degrade; to lower; to\n\
-debase. [Obs.] Donne.\n\
-_para_\n\
-ABJECT\n\
-Ab\"ject, n.\n\
-_para_\n\
-Defn: A person in the lowest and most despicable condition; a\n\
-castaway. [Obs.]\n\
-Shall these abjects, these victims, these outcasts, know any thing of\n\
-pleasure I. Taylor.\n\
-_para_\n\
-ABJECTEDNESS\n\
-Ab*ject\"ed*ness, n.\n\
-_para_\n\
-Defn: A very abject or low condition; abjectness. [R.] Boyle.\n\
-_para_\n\
-ABJECTION\n\
-Ab*jec\"tion, n. Etym: [F. abjection, L. abjectio.]\n\
-_para_\n\
-1. The act of bringing down or humbling. \"The abjection of the king\n\
-and his realm.\" Joe.\n\
-_para_\n\
-2. The state of being rejected or cast out. [R.]\n\
-An adjection from the beatific regions where God, and his angels and\n\
-saints, dwell forever. Jer. Taylor.\n\
-_para_\n\
-3. A low or downcast state; meanness of spirit; abasement;\n\
-degradation.\n\
-That this should be termed baseness, abjection of mind, or servility,\n\
-is it credible Hooker.\n\
-_para_\n\
-ABJECTLY\n\
-Ab\"ject*ly, adv.\n\
-_para_\n\
-Defn: Meanly; servilely.\n\
-_para_\n\
-ABJECTNESS\n\
-Ab\"ject*ness, n.\n\
-_para_\n\
-Defn: The state of being abject; abasement; meanness; servility.\n\
-Grew.\n\
-_para_\n\
-ABJUDGE\n\
-Ab*judge\", v. t. Etym: [Pref. ab- + judge, v. Cf. Abjudicate.]\n\
-_para_\n\
-Defn: To take away by judicial decision. [R.]\n\
-_para_\n\
-ABJUDICATE\n\
-Ab*ju\"di*cate, v. t. Etym: [L. abjudicatus, p. p. of abjudicare; ab +\n\
-judicare. See Judge, and cf. Abjudge.]\n\
-_para_\n\
-Defn: To reject by judicial sentence; also, to abjudge. [Obs.] Ash.\n\
-_para_\n\
-ABJUDICATION\n\
-Ab*ju`di*ca\"tion, n.\n\
-_para_\n\
-Defn: Rejection by judicial sentence. [R.] Knowles.\n\
-_para_\n\
-ABJUGATE\n\
-Ab\"ju*gate, v. t. Etym: [L. abjugatus, p. p. of abjugare.]\n\
-_para_\n\
-Defn: To unyoke. [Obs.] Bailey.\n\
-_para_\n\
-ABJUNCTIVE\n\
-Ab*junc\"tive, a. Etym: [L. abjunctus, p. p. of abjungere; ab +\n\
-jungere to join.]\n\
-_para_\n\
-Defn: Exceptional. [R.]\n\
-It is this power which leads on from the accidental and abjunctive to\n\
-the universal. I. Taylor.\n\
-_para_\n\
-ABJURATION\n\
-Ab`ju*ra\"tion, n. Etym: [L. abjuratio: cf. F. abjuration.]\n\
-_para_\n\
-1. The act of abjuring or forswearing; a renunciation upon oath; as,\n\
-abjuration of the realm, a sworn banishment, an oath taken to leave\n\
-the country and never to return.\n\
-_para_\n\
-2. A solemn recantation or renunciation; as, an abjuration of heresy.\n\
-Oath of abjuration, an oath asserting the right of the present royal\n\
-family to the crown of England, and expressly abjuring allegiance to\n\
-the descendants of the Pretender. Brande & C.\n\
-_para_\n\
-ABJURATORY\n\
-Ab*ju\"ra*to*ry, a.\n\
-_para_\n\
-Defn: Containing abjuration.\n\
-_para_\n\
-ABJURE\n\
-Ab*jure\", v. t. [imp. & p. p. Abjured; p. pr. & vb. n. Abjuring.]\n\
-Etym: [L. abjurare to deny upon oath; ab + jurare to swear, fr. jus,\n\
-juris, right, law; cf. F. abjurer. See Jury.]\n\
-_para_\n\
-1. To renounce upon oath; to forswear; to disavow; as, to abjure\n\
-allegiance to a prince. To abjure the realm, is to swear to abandon\n\
-it forever.\n\
-_para_\n\
-2. To renounce or reject with solemnity; to recant; to abandon\n\
-forever; to reject; repudiate; as, to abjure errors. \"Magic I here\n\
-abjure.\" Shak.\n\
-_para_\n\
-Syn.\n\
- -- See Renounce.\n\
-_para_\n\
-ABJURE\n\
-Ab*jure\", v. i.\n\
-_para_\n\
-Defn: To renounce on oath. Bp. Burnet.\n\
-_para_\n\
-ABJUREMENT\n\
-Ab*jure\"ment, n.\n\
-_para_\n\
-Defn: Renunciation. [R.]\n\
-_para_\n\
-ABJURER\n\
-Ab*jur\"er, n.\n\
-_para_\n\
-Defn: One who abjures.\n\
-_para_\n\
-ABLACTATE\n\
-Ab*lac\"tate, v. t. Etym: [L. ablactatus, p. p. of ablactare; ab +\n\
-lactare to suckle, fr. lac milk.]\n\
-_para_\n\
-Defn: To wean. [R.] Bailey.\n\
-_para_\n\
-ABLACTATION\n\
-Ab`lac*ta\"tion. n.\n\
-_para_\n\
-1. The weaning of a child from the breast, or of young beasts from\n\
-their dam. Blount.\n\
-_para_\n\
-2. (Hort.)\n\
-_para_\n\
-Defn: The process of grafting now called inarching, or grafting by\n\
-approach.\n\
-_para_\n\
-ABLAQUEATE\n\
-Ab*la\"que*ate, v. t. Etym: [L. ablaqueatus, p. p. of. ablaqueare; fr.\n\
-ab + laqueus a noose.]\n\
-_para_\n\
-Defn: To lay bare, as the roots of a tree. [Obs.] Bailey.\n\
-_para_\n\
-ABLAQUEATION\n\
-Ab*la`que*a\"tion, n. Etym: [L. ablaqueatio.]\n\
-_para_\n\
-Defn: The act or process of laying bare the roots of trees to expose\n\
-them to the air and water. [Obs.] Evelyn.\n\
-_para_\n\
-ABLASTEMIC\n\
-Ab`las*tem\"ic, a. Etym: [Gr. (Biol.)\n\
-_para_\n\
-Defn: Non-germinal.\n\
-_para_\n\
-ABLATION\n\
-Ab*la\"tion, n. Etym: [L. ablatio, fr. ablatus p. p. of auferre to\n\
-carry away; ab + latus, p. p. of ferre carry: cf. F. ablation. See\n\
-Tolerate.]\n\
-_para_\n\
-1. A carrying or taking away; removal. Jer. Taylor.\n\
-_para_\n\
-2. (Med.)\n\
-_para_\n\
-Defn: Extirpation. Dunglison.\n\
-_para_\n\
-3. (Geol.)\n\
-_para_\n\
-Defn: Wearing away; superficial waste. Tyndall.\n\
-_para_\n\
-ABLATITIOUS\n\
-Ab`la*ti\"tious, a.\n\
-_para_\n\
-Defn: Diminishing; as, an ablatitious force. Sir J. Herschel.\n\
-_para_\n\
-ABLATIVE\n\
-Ab\"la*tive, a. Etym: [F. ablatif, ablative, L. ablativus fr. ablatus.\n\
-See Ablation.]\n\
-_para_\n\
-1. Taking away or removing. [Obs.]\n\
-Where the heart is forestalled with misopinion, ablative directions\n\
-are found needful to unteach error, ere we can learn truth. Bp. Hall.\n\
-_para_\n\
-2. (Gram.)\n\
-_para_\n\
-Defn: Applied to one of the cases of the noun in Latin and some other\n\
-languages, -- the fundamental meaning of the case being removal,\n\
-separation, or taking away.\n\
-_para_\n\
-ABLATIVE\n\
-Ab\"la*tive, (Gram.)\n\
-_para_\n\
-Defn: The ablative case. ablative absolute, a construction in Latin,\n\
-in which a noun in the ablative case has a participle (either\n\
-expressed or implied), agreeing with it in gender, number, and case,\n\
-both words forming a clause by themselves and being unconnected,\n\
-grammatically, with the rest of the sentence; as, Tarquinio regnante,\n\
-Pythagoras venit, i. e., Tarquinius reigning, Pythagoras came.\n\
-_para_\n\
-ABLAUT\n\
-Ab\"laut, n. Etym: [Ger., off-sound; ab off + laut sound.] (Philol.)\n\
-_para_\n\
-Defn: The substitution of one root vowel for another, thus indicating\n\
-a corresponding modification of use or meaning; vowel permutation;\n\
-as, get, gat, got; sing, song; hang, hung. Earle.\n\
-_para_\n\
-ABLAZE\n\
-A*blaze\", adv. & a. Etym: [Pref. a- + blaze.]\n\
-_para_\n\
-1. On fire; in a blaze, gleaming. Milman.\n\
-All ablaze with crimson and gold. Longfellow.\n\
-_para_\n\
-2. In a state of glowing excitement or ardent desire.\n\
-The young Cambridge democrats were all ablaze to assist Torrijos.\n\
-Carlyle.\n\
-_para_\n\
-ABLE\n\
-A\"ble, a. [Comp. Abler; superl. Ablest.] Etym: [OF. habile, L.\n\
-habilis that may be easily held or managed, apt, skillful, fr. habere\n\
-to have, hold. Cf. Habile and see Habit.]\n\
-_para_\n\
-1. Fit; adapted; suitable. [Obs.]\n\
-A many man, to ben an abbot able. Chaucer.\n\
-_para_\n\
-2. Having sufficient power, strength, force, skill, means, or\n\
-resources of any kind to accomplish the object; possessed of\n\
-qualifications rendering competent for some end; competent;\n\
-qualified; capable; as, an able workman, soldier, seaman, a man able\n\
-to work; a mind able to reason; a person able to be generous; able to\n\
-endure pain; able to play on a piano.\n\
-_para_\n\
-3. Specially: Having intellectual qualifications, or strong mental\n\
-powers; showing ability or skill; talented; clever; powerful; as, the\n\
-ablest man in the senate; an able speech.\n\
-No man wrote abler state papers. Macaulay.\n\
-_para_\n\
-4. (Law)\n\
-_para_\n\
-Defn: Legally qualified; possessed of legal competence; as, able to\n\
-inherit or devise property.\n\
-_para_\n\
-Note: Able for, is Scotticism.\n\
-\"Hardly able for such a march.\" Robertson.\n\
-_para_\n\
-Syn.\n\
- -- Competent; qualified; fitted; efficient; effective; capable;\n\
-skillful; clever; vigorous; powerful.\n\
-_para_\n\
-ABLE\n\
-A\"ble, v. t. Etym: [See Able, a.] [Obs.]\n\
-_para_\n\
-1. To make able; to enable; to strengthen. Chaucer.\n\
-_para_\n\
-2. To vouch for. \"I \ll able them.\" Shak.\n\
-_para_\n\
-ABLE; -ABLE; IBLE; -IBLE\n\
-*a*ble. Etym: [F. -able, L. -abilis.]\n\
-_para_\n\
-Defn: An adjective suffix now usually in a passive sense; able to be;\n\
-fit to be; expressing capacity or worthiness in a passive sense; as,\n\
-movable, able to be moved; amendable, able to be amended; blamable,\n\
-fit to be blamed; salable.\n\
-_para_\n\
-Note: The form ible is used in the same sense.\n\
-_para_\n\
-Note: It is difficult to say when we are not to use -able instead of\n\
--ible. \"Yet a rule may be laid down as to when we are to use it. To\n\
-all verbs, then, from the Anglo-Saxon, to all based on the\n\
-uncorrupted infinitival stems of Latin verbs of the first\n\
-conjugation, and to all substantives, whencesoever sprung, we annex -\n\
-able only.\" Fitzed. Hall.\n\
-_para_\n\
-ABLE-BODIED\n\
-A`ble-bod\"ied, a.\n\
-_para_\n\
-Defn: Having a sound, strong body; physically competent; robust.\n\
-\"Able-bodied vagrant.\" Froude.\n\
- -- A`ble-bod\"ied*ness, n..\n\
-_para_\n\
-ABLEGATE\n\
-Ab\"le*gate, v. t. Etym: [L. ablegatus, p. p. of ablegare; ab + legare\n\
-to send with a commission. See Legate.]\n\
-_para_\n\
-Defn: To send abroad. [Obs.] Bailey.\n\
-_para_\n\
-ABLEGATE\n\
-Ab\"le*gate, n. (R. C. Ch.)\n\
-_para_\n\
-Defn: A representative of the pope charged with important commissions\n\
-in foreign countries, one of his duties being to bring to a newly\n\
-named cardinal his insignia of office.\n\
-_para_\n\
-ABLEGATION\n\
-Ab`le*ga\"tion, n. Etym: [L. ablegatio.]\n\
-_para_\n\
-Defn: The act of sending abroad. [Obs.] Jer. Taylor.\n\
-_para_\n\
-ABLE-MINDED\n\
-A`ble-mind\"ed, a.\n\
-_para_\n\
-let dict = \"Defn: Having much intellectual power.\n\
- -- A`ble-mind\"ed*ness, n.\n\
-_para_\n\
-ABLENESS\n\
-A\"ble*ness, n.\n\
-_para_\n\
-Defn: Ability of body or mind; force; vigor. [Obs. or R.]\n\
-_para_\n\
-ABLEPSY\n\
-Ab\"lep*sy, n. Etym: [Gr.\n\
-_para_\n\
-Defn: Blindness. [R.] Urquhart.\n\
-_para_\n\
-ABLER\n\
-A\"bler, a.,\n\
-_para_\n\
-Defn: comp. of Able.\n\
- -- A\"blest, a.,\n\
-_para_\n\
-Defn: superl. of Able.\n\
-_para_\n\
-ABLET; ABLEN\n\
-Ab\"let, Ab\"len Etym: [F. ablet, ablette, a dim. fr. LL. abula, for\n\
-albula, dim. of albus white. Cf. Abele.] (Zoöl.)\n\
-_para_\n\
-Defn: A small fresh-water fish (Leuciscus alburnus); the bleak."
+let defs = {
+  "origamiAt":{"u":"dimensionality,adding depth,plans","i":"flatness"},
+  "airplaneAt":{"u":"motion,travel","i":"staying put"},
+  "envelopeAt":{"u":"contains a message","i":"lack of communication"},
+  "sardinesAt":{"u":"too close,cramped,need for space,'group think'","i":"alone,'room to spare',independence"},
+  "refractionAt":{"u":"an incorrect perception","i":"an incorrect conclusion"},
+  "starsAt":{"u":"far away,higher things,aspirations,fame,fate","i":"'the sky is falling',the unreachable,distant"},
+  "mountainAt":{"u":"something that can't be moved,or changed,'no getting around this'","i":"a small problem"},
+  "mothAt":{"u":"night,dreaming","i":"insomnia,lack of dreams"},
+  "firebirdAt":{"u":"rebirth","i":"stagnation"},
+  "spiralAt":{"u":"long term path,covering all ground","i":"trapped,spiraling down"},
+  "finger_gunAt":{"u":"playfulness","i":"foolishness,childish"},
+  "vineAt":{"u":"climbing,moving upward","i":"dependence,strangling"},
+  "triangleAt":{"u":"measurement,planning","i":"mistakes,measure twice: cut once"},
+  "flaskAt":{"u":"elixir,medicine","i":"poison,bad medicine"},
+  "pencilAt":{"u":"drawing,writing,expression","i":"inexpressiveness"},
+  "forestAt":{"u":"nature","i":"wasteland,lost,a parking lot"},
+  "elephantAt":{"u":"strength,matriarchy","i":"weakness,gop"},
+  "coreAt":{"u":"self,stability,centeredness","i":"hollowness,chaos"},
+  "orbitAt":{"u":"influence","i":"lack of influence"},
+  "lensAt":{"u":"focus,joining","i":"lack of focus,dispersing,distorting"},
+  "theoremAt":{"u":"logic,order","i":"irrationality,disorder,falsification"},
+  "floppyAt":{"u":"memory,nostalgia,saudade","i":"stuck in the past,obsolescence"},
+  "spiderAt":{"u":"venom,a web,a trap,(alarmist)","i":"don't squash it,just take it outside,(mercy)"},
+  "shoesAt":{"u":"preparation","i":"unpreparedness"},
+  "bee_hiveAt":{"u":"industriousness,sisterhood,'works well with others'","i":"laziness,hive mind"},
+  "mushroomAt":{"u":"necessary decay,cleaning up","i":"loose ends,unfinished business"},
+  "catAt":{"u":"warmth","i":"aloofness"},
+  "birdAt":{"u":"perspective","i":"lack of perspective"},
+  "functionAt":{"u":"relationship between two factors","i":"functionally unrelated,separate"},
+  "almost_hanged_manAt":{"u":"milquetoast,white bread","i":"stockholm syndrome,slow to throw (deserved) shade"},
+  //"pageAt":{"u":"communication,news,the written word,'on the same page'","i":"lack of communication"},
+  "urnAt":{"u":"capacity","i":"loss of capacity"},
+  "venn_diagramAt":{"u":"insight,finding commonalities","i":"ignoring commonalities"},
+  "monsterAt":{"u":"anger,irrationality,evil kirk","i":"determination,good kirk"},
+  "frameAt":{"u":"a perspective that may be limiting","i":"thinking outside of the usual"},
+  "pantsAt":{"u":"modesty","i":"lack of modesty"},
+  "tvAt":{"u":"entertainment","i":"passivity,superficiality"},
+  "duckrabbitAt":{"u":"ambiguity,tolerance","i":"rigidity,intolerance"},
+  "fishAt":{"u":"being where you belong,in your element","i":"fish out of water"},
+  "cactusAt":{"u":"withstanding drought,enduring","i":"hard to touch,prickly"},
+  "umbrellaAt":{"u":"protection","i":"lack of protection"},
+  "flameAt":{"u":"something that must be tended,or controlled","i":"out of control,or fading out,'burn out'"},
+  "bulbAt":{"u":"insight,idea,'the naked truth'","i":"ignorance"},
+  "deadlockAt":{"u":"poor planning,uncooperativeness","i":"sharing,cooperating,planning ahead"},
+  
+  "mazeAt":{"u":"motivation,a long term goal","i":"lack of goal,loss of motivation,being lost"},
+  "transomAt":{"u":"air,flow,security (door closed)","i":"stuffiness,closeted"},
+  "cameraAt":{"u":"capturing the present","i":"not being in the present"},
+  "bicycleAt":{"u":"travel","i":"being stuck"},
+  "cigarettesAt":{"u":"bad habits","i":"ending bad habits"},
+  "phoneAt":{"u":"communication","i":"lack of connectedness"},
+  "wife_beaterAt":{"u":"poor choices","i":"abuse"},
+  "gateAt":{"u":"security,privacy,protection","i":"privilege,exclusion,'gatekeeping'"},
+  "appleAt":{"u":"nutrition,health","i":"hunger,junk food"},
+  "bridgeAt":{"u":"connection,transitions","i":"isolation"},
+  "bugAt":{"u":"annoyances,errors","i":"lack of annoyances,or errors"},
+  "mailboxAt":{"u":"sending and receiving","i":"withdrawing"},
+  "jumpropeAt":{"u":"rhythm,synchronization,play","i":"monotony"},
+  "observatoryAt":{"u":"taking in a larger view,outwardness","i":"detachment,narrowness of view,inwardness,'navel gazing'"},
+  "heronAt":{"u":"gracefulness","i":"clumsiness"},
+  "crazy_wallAt":{"u":"insight from connections","i":"paranoia"},
+  "houseAt":{"u":"home,self,safety","i":"'homelessness',far from home"},
+  "falling_chairAt":{"u":"change,a tipping point","i":"chaotic change,disruption"},
+  "birdhouseAt":{"u":"virtue: helping nature,nascent process or thing,nest","i":"empty nest,hubris: why does nature need our help?"},
+  "factoryAt":{"u":"work,industriousness,productivity","i":"pollution,tedium,sweatshop,mechanization,dehumanization"},
+  "phaseAt":{"u":"change,giving way to","i":"lack of change"},
+  "mirrorAt":{"u":"self insight","i":"vanity,self-centeredness"},
+  "blind_eyeAt":{"u":"willful ignorance","i":"insight,facing the truth,'eyes wide open'"},
+  "leafAt":{"u":"nature,purity","i":"decay"},
+  "userAt":{"u":"anonymity","i":"exposure,exploitation"},
+  "heartAt":{"u":"love","i":"lack of love"},
+  "glassAt":{"u":"optimism","i":"pessimism"},
+  "prayerAt":{"u":"hopes,wishes","i":"futility"},
+  "body_of_waterAt":{"u":"abundance","i":"drought"},
+  "rainAt":{"u":"precipitate,sudden events","i":"another wet weekend"}, 
+  "cloudsAt":{"u":"obscurities,what is hidden","i":"shade"},
+  "thoughtAt":{"u":"thoughtfulness","i":"obsessive thought"},
+  "skullAt":{"u":"death,the end of something","i":"not letting go"},
+  "lampAt":{"u":"guidance","i":"lack of guidance,'in the dark'"},
+  "chairAt":{"u":"stability","i":"stagnation,inactivity"},
+  "cubeAt":{"u":"foundation,solidity","i":"shapelessness,mushiness"},
+  "full_cupAt":{"u":"fulfillment","i":"empty,spill: exposure,a lack of something"},
+  "mouseAt":{"u":"motion (mental)","i":"stagnation,repetition,carpal tunnel syndrome"},
+  "uapAt":{"u":"otherworldliness,wanting to believe","i":"'it's just a weather balloon',incredulity"},
+  "flipflopAt":{"u":"lack of conviction","i":"lack of conviction"},
+  "stairsAt":{"u":"transition,levels","i":"stagnating,failing"},
+  "treeAt":{"u":"nature,hierarchy","i":"inversion of order,revolution"},
+  "slideAt":{"u":"change of status","i":"downfall"},
+  "puzzle_pieceAt":{"u":"need all of the pieces","i":"start at the edges"},
+  "ladderAt":{"u":"opportunity","i":"lack of opportunity"},
+  "swingAt":{"u":"play,motion","i":"repetition"},
+  "unread_spreadAt":{"u":"draw again,go fish,\"UNO!\",","i":"pointless self-reference"},
+  "cakeAt":{"u":"reward,a special occasion","i":"gluttony,greed"},
+  "piechartAt":{"u":"need for data","i":"ignoring the data"},
+  "greenwashingAt":{"u":"deception,(plastics stamped with a number > 2 are rarely recycled)","i":"exposure of deception"},
+  "bribeAt":{"u":"a bad influence,moral weakness","i":"resistance to bad influences,moral strength"},
+  "postcardAt":{"u":"a message,wish you were here","i":"forgot the stamp?"},
+  "riverAt":{"u":"go with the flow","i":"swept away"},
+  "big_fishAt":{"u":"predation,competition,food chain","i":"trickle-down economics,dog-eat-dog"},
+  "clickbaitAt":{"u":"morbid curiosity,temptation,an attention trap","i":"don't look,don't fall for it,'nothing to see here'"},
+  "two_ingredient_brownieAt":{"u":"too good to be true","i":"too true to be good"},
+  "chatAt":{"u":"an interruption","i":"antisocial"},
+  "gas_station_shrubberyAt":{"u":"ugly but indestructible","i":"lingering illness"},
+  "misheard_lyricsAt":{"u":"'clowns in my coffee','you're so vein'","i" : "'clouds in my coffee','you're so vain'"},
+  "plate_tectonicsAt":{"u":"'as above - so below',recycling,karma","i":"'what goes around - comes around'"},
+  "negative_spaceAt":{"u":"when what is missing,defines what is present","i":"figure and ground,not obvious"},
+  "coneAt":{"u":"cone of uncertainty","i":"light cone,'the big crunch'"},
+  "nice_thingsAt":{"u":"this is why,we can't have...","i":"impermanence,it is already broken"},
+  "monitorAt":{"u":"heavy,bulky,old-fashioned","i":"eye strain"},
+  "fossilAt":{"u":"the past,evolution","i":"the future,extinction"},
+  "flat_tireAt":{"u":"a setback,a bumpy ride,out of the race","i":"pause and reflect,spare tire: backup plan"},
+  'get_off_my_lawnAt':{"u":"old-man-ism,frowns,shakes fist,grumpiness","i":"all are welcome"},
+  'virusAt':{"u":"not quite alive,parasite,spreading quickly","i":"horse paste won't save you"},
+  "tissue_boxAt":{"u":"eponym,save a tree,use a handkerchief","i":"wipe away your tears"},
+  "bandaidAt":{"u":"eponym,self-help","i":"not a real solution,superficial"},
+  "keyholeAt":{"u":"secrets,privacy","i":"lack of privacy"},
+  "uphillAt":{"u":"work required,switch to a lower gear","i":"(downhill),over the hill?,slow down,apply breaks"},
+  "impossibleAt":{"u":"makes no sense","i":"maybe?"},
+  "doorAt":{"u":"passing through,new frame of reference","i":"(closed),closed mind,stuffy"}, 
+  "sunAt":{"u":"warmth,power","i":"cold,powerless"}, 
+  "windowAt":{"u":"provides a view,fresh air","i":"(shades drawn),withdrawal"},
+  "parking_lotAt":{"u":"wasteland","i":"leave something for a while"},
+  "lemonAt":{"u":"sour!","i":"sweet!"},
+  "dieAt":{"u":"chance","i":"total chaos or,rigid determinism"},
+  "progress_indicatorAt":{"u":"the indeterminate,waiting,patience","i":"loading...,this may take a while"},
+  "steering_wheelAt":{"u":"control,direction","i":"illusion of control"},
+  "seedAt":{"u":"a beginning,potential,starting point","i":"'as you sow...',false starts,failed startups"},
+  "witch_huntAt":{"u":"a deflection","i":"thou who smelt it dealt it"},
+  "lighthouseAt":{"u":"guidance,safety","i":"rocky waters ahead,you're on your own"},
+  "sailboatAt":{"u":"with or without a goal in mind,effortless","i":"aimless,drifting,adrift"},
+  "heirloomAt":{"u":"a legacy,tradition,from the past","i":"overrated,break from the past"},
+  "dog_whistleAt":{"u":"coded hate,veiled message","i":"saying the quiet part out loud"},
+  "two_car_garageAt":{"u":"space never used,...for its intended purpose","i":"car hole"},
+  "racetrackAt":{"u":"rat race,no exit,no finish line,samsara","i":"breaking free,walk away from,off the grid"},
+  "entanglementAt":{"u":"lack of independence,correlated distant events","i":"spooky action at a distance"},
+  "too_expensive_burgerAt":{"u":"$78!,(but it comes with a bourbon),","i":"sign of societal decline,exaggeration,hyperbole,nonsense"},
+  "connect_the_dotsAt":{"u":"obvious conclusion (supposedly),see the bigger picture,make connections","i":"can't see the forest,for the trees"},
+  "ghost_in_the_machineAt":{"u":"dualism (metaphorically)","i":"'grandmother cell',expecting too much from a single thing"},
+  "conference_room_bAt":{"u":"important decisions,consensus,plans,agreements","i":"tedium,nothing gets done,...but there will be pizza"},
+  "waveAt":{"u":"big changes,washed away,following a trend,","i":"bucking a trend"}, 
+  "sofaAt":{"u":"cushioned,comfort-centered","i":"lazy,sad guest bed"},
+  "talkAt":{"u":"words,talk is cheap","i":"actions speak louder"},
+  "pencil_sharpenerAt":{"u":"everything looks like a pencil","i":"what's the point?"},
+  "clickAt":{"u":"action,pointing,selecting","i":"inaction,hovering around"},
+  "stumpAt":{"u":"quickly gone,a long time to replace","i":"remnant,chopped,hacked,axed"},
+  "hammerAt":{"u":"everything looks like a nail","i":"if I had a hammer"},
+  "paint_brushAt":{"u":"everything looks like a canvas","i":"the brush off"},
+  "medicationAt":{"u":"everything looks like depression","i":"mother's little helper"},
+  "paper_bagAt":{"u":"lunch,groceries,beer","i":"never plastic"},
+  "shopping_listAt":{"u":"routine,to-do,organization","i":"don't forget the cream"},
+  "press_the_buttonAt":{"u":"go ahead... press it,what could go wrong?,impulsive","i":"release the dogs,launch the missiles,drop the bombs,consequences"},
+  "screwAt":{"u":"screwed on tight","i":"screwe(d) up,screwed over"},
+  "nailAt":{"u":"nailed it","i":"nail in the coffin"},
+  "icebergAt":{"u":"mostly below the surface,more than meets the eye","i":"hazard"},
+  "compassAt":{"u":"draw a circle","i":"2\u03C0r,full circle,story arc"},
+  "vinylAt":{"u":"2 sided,nostalgia,","i":"33.333333..."},
+  "pillAt":{"u":"time released,easy to swallow","i":"no - not \"the\" pill,a hard pill to swallow"},
+  "power_linesAt":{"u":"power,low vegetation,gravel roads","i":"no climbing,humming"},
+  "cubicleAt":{"u":"where does your soul go?","i":"where does your soul go?"},
+  "furniture_at_nightAt":{"u":"seen... not clearly","i":"you know where it is"},
+  "plastic_owlAt":{"u":"once inspired fear,no longer a deterrent","i":"decoy,paper tiger,straw dog"},
+  "indicate_by_pointingAt":{"u":"dogs understand","i":"blame: point the finger"},
+  "stone_axeAt":{"u":"old school tech","i":"\"primitive\""},
+  "thread_the_needleAt":{"u":"difficult task,low margin for error","i":"easy-peasy"},
+  "islandAt":{"u":"stranded,alone,solitary","i":"tourist trap"},
+  "walk_it_backAt":{"u":"undo!,undo!,undo!","i":"insincere,regrets,moonwalk"},
+  "toy_drumAt":{"i":"full of sound and fury,signifying nothing","u":"bang your own drum, march to the beat, of a different drummer"},
+  "aiAt":{"u":"will take away your job (good?),mechanical turk","i":"will take away your job (bad?)"},
+  "antsAt":{"u":"busy","i":"may spoil a picnic"},
+  "flock_of_birdsAt":{"u":"birds of a feather","i":"migration"},
+  "rainbowAt":{"u":"storm's over,(imagine the colors)","i":"sexual anarchy,(wasn't that a band from the 80s?)"},
+  "too_many_thingsAt":{"u":"overwhelmed,hard to interpret,recursion could be a problem","i":"reduce,reuse,recycle,time for a yard sale (metaphorically)"},
+  "keyAt":{"u":"unlocks something","i":"locks something"},
+  "herdAt":{"u":"standing out in the crowd,egoist?","i":"singled out,scapegoat"},
+  "alarm_clockAt":{"u":"wake up","i":"insomnia"},
+  "checkpointAt":{"u":"crossing a border,what is the purpose of this visit?,papers please","i":"better check yourself,before you wreck yourself"},
+  "fish_hookAt":{"u":"caught up,snagged,reeled in","i":"the one that got away"},
+  "coat_hangerAt":{"u":"hang ups,hang on","i":"patriarchy"},
+  "teak_rat_sculptureAt":{"u":"rat made \"acceptable\",yard sale finds","i":"wire legs will scratch table"},
+  "winter_stickAt":{"u":"find your moorings,(after a cold season)","i":"lose your moorings"},
+  "dreyAt":{"u":"nest up high","i":"squirrelly"},
+  "oocyteAt":{"u":"half of the genes,all of the mitochondria","i":"half of the genes,all of the mitochondria"},
+  "bird_cageAt":{"u":"beauty captured","i":"set it free"},
+  "blast_radiusAt":{"u":"things that drag on,(outside the radius)","i":"things that end quickly,(inside the radius)"},
+  "eyeglassesAt":{"u":"seeing clearly","i":"not seeing clearly"},
+  "bacteriophageAt":{"u":"hijacker","i":"take control"},
+  "stone_wallAt":{"u":"what else are you going,to do with all those rocks?","i":"sisyphean tasks"},
+  "whaleAt":{"u":"'and I only am escaped,alone to tell thee'","i":"'all my means are sane, my motive and my object mad'"},
+  "free_palletsAt":{"u":"so many uses","i":"destined for the fire pit"},
+  "running_with_scissorsAt":{"u":"reckless,scissors cut paper","i":"taking a risk,rock breaks scissors"},
+  "tape_dispenserAt":{"u":"bring together","i":"sticky situation"},
+  "cabin_air_filterAt":{"u":"always needs to be replaced","i":"breathless,i just wanted an oil change"},
+  "scattered_leavesAt":{"u":"winter coming","i":"time to rake"},
+  "nowAt":{"u":"(like right now!),already past,can't be held on to","i":"time is short,and now you're even older"},
+  "empty_setAt":{"u":"nothing to see here,...move along","i":"a void"},
+  "suburbsAt":{"u":"'it's the one on the corner, with the big garage'","i":"'it's the one with the pool'"},
+  "solar_systemAt":{"u":"heliocentric much?","i":"it's turtles all the way down"},
+  "evidenceAt":{"u":"challenging what you believe","i":"confirming what you believe,confirmation bias"},
+  "holeAt":{"u":"lacuna,fill or patch,something is missing","i":"falling into,going down a rabbit hole"},
+  "urgentAt":{"u":"is it really so urgent?","i":"work stress"},
+  "windAt":{"u":"direction and speed","i":"aimless,lethargy,'hot air'"},
+  "pixelAt":{"u":"small size,may have greater depth,atomic","i":"a speck,a nothing,too zoomed in,empty magnification"},
+  "gameAt":{"u":"strategy and goal","i":"only a game"},
+  "game_pieceAt":{"u":"middle management","i":"only a pawn"},
+  "doll_houseAt":{"u":"model","i":"consumerism (metaphorically)"},
+  "workAt":{"u":"no time for anything else","i":"retirement: what to do..., with all the spare time?"},
+  "your_pointy_elbowsAt":{"u":"get you to the front of the line","i":"pushy (metaphorically)"},
+  "divide_by_zeroAt":{"u":"no!,don't do this","i":"undefined"},
+  "mona_lisaAt":{"u":"famous much!","i":"enigmatic smile (metaphorically)"},
+  "quantum_tunnellingAt":{"u":"'just passing through',when is seems you shouldn't be able to","i":"barriers"},
+  "meanAt":{"u":"just average","i":"outlier"},
+  "pongAt":{"u":"table tennis (methphorically)","i":"blip...bloop"},
+  "le_crépusculeAt":{"u":"twighlight,before dawn,after sunset","i":"deer time"},
+  "galleryAt":{"u":"there may be wine and cheese","i":"they ran out of wine and cheese"},
+  "one_of_suitsAt":{"u":"privilege,prestige,power suit","i":"clothes make the man,dress for the job you want,anachronism"},
+  "regexAt":{"u":"you solved a problem using,a regular expression...","i":"...now you have two problems"},
+  "space_intentionally_left_blankAt":{"u":"for office use only","i":"not everything needs an interpretation"},
+  "hexAt":{"u":"color of the year?","i":""},
+  "missingAt":{"u":"where do they go?","i":"they will be missed"},
+  "joineryAt":{"u":"bring together","i":"take apart"},
+  "big_cityAt":{"u":"'you can forget all your troubles, forget all your cares'","i":"'my building has every convenience,It's gonna make life easy for me'"},
+  "coffee_makerAt":{"u":"mr coffee,simple,'drinkable',not pretentious","i":"french press,so fussy!,bitter,grind your fancy beans much?"},
+  "hang_manAt":{"u":"guessing game,spell check","i":"hidden word,hung out to dry"},
+  "octopusAt":{"u":"eight arms,mimic,camoflage,shape-shifter","i":"left in a cloud of ink"},
+  "reel_to_reelAt":{"u":"analog (metaphorically)","i":"hissing"},
+  "flyover_statesAt":{"u":"ignorable,unimportant,boring","i":"self-pity,coastal elites"},
+  "gliderAt":{"u":"cellular automata (metaphorically)","i":"'rule following'"},
+  "calendarAt":{"u":"today","i":"tomorrow"},
+  "snowmanAt":{"u":"gone tomorrow","i":"big oil"},
+  "passwordAt":{"u":"does/does not meet,requirements for..., short poem","i":"oversharing,do not share"},
+  "incomingAt":{"u":"accept (metaphorically),skeuomorph","i":"decline,spam risk,why can't they just text me?"},
+  "tickAt":{"u":"anaplasmosis much?","i":"small troubles,easily confused with a pixel"},
+  "shopping_cartAt":{"u":"capitalism (metaphorically)","i":"food desert,senior hours"},
+  "tidesAt":{"u":"time and tide wait for no man,pull","i":"ebb and flow,a rising tide lifts all boats,but some boats are more equal than others"},
+  "eclipseAt":{"u":"blocking,hiding","i":"dark spot,'down in front!'"},
+  "skates_purseAt":{"u":"beach wrack,cast ashore","i":"no coins inside"},
+  "invisible_handAt":{"u":"enlightened self-interest,what could go wrong?","i":"'this is the hand...the hand that takes'"},
+  "unknown_birdAt":{"u":"you may never know","i":"definitely not a grebe"},
+  "dormerAt":{"u":"letting light in","i":"are you sleeping?"},
+  "punch_cardAt":{"u":"get with the program, it's written in the cards,punch above your weigh,analytical engine","i":"'born under punches',sucker punch"},
+  "geminiAt":{"u":"re-entry,returning","i":"twins"},
+  "representationAt":{"u":"not the actual thing","i":"'card' on a card,'it's cards all the way down'"},
+  "self_referenceAt":{"u":"it's all about me","i":"'how the sausage gets made'"},
+  "upendedAt":{"u":"flip the script","i":"back on your feet"},
+  "dogcowAt":{"u":"'iconic',(Susan Kare)","i":"moof!,pixelated"},
+  "perfectly_normal_cowboy_bootsAt":{"u":"I repeat... perfectly normal","i":"feeling tall,fascist much?"},
+  "soldAt":{"u":"should have charged more","i":"the gallery takes 40%"},
+  "topologyAt":{"u":"invariant under deformation,coffee cup equals donut","i":"stretch - but do not cut,donut equals coffee up,(ignoring sprinkles)"},
+  "tracesAt":{"u":"tells a story","i":"snowy day,drove away"},
+  "endless_shrimpAt":{"u":"be careful what you wish for","i":"there are a finite number of shrimp,so..."},
+  "chiralityAt":{"u":"mirror/mirror","i":"flip and rotate all you want,they can't be aligned"},
+  "person_man_woman_camera_tvAt":{"u":"easy memory test","i":"cognitive decline served as genius,narcissism"},
+  "bag_clipAt":{"u":"'best by' date far in the future","i":"past 'best by' date,more plastic waste"},
+  "figure_headAt":{"u": "leader","i":"in name only"},
+  "fortAt":{"u": "withstanding,defensive","i":"weakness,vulnerability"},
+  "red_flagAt":{"u": "warning,no swimming today","i":"(white flag),surrender"},
+  "wrack_lineAt":{"u": "high and dry","i":"cast ashore"},
+  "platformAt":{"u": "up a pole","i":"watching over"},
+  "covid_testAt":{"u": "negative","i":"positive"},
+  "end_of_the_worldAt":{"u": "it probably won't be an asteroid,more likely we cause it","i":"something might survive,not us - but something"},
+  "razor_wireAt":{"u": "callous and cruel","i":"blood in the water,red meat for the base"},
+  "ingredientsAt":{"u": "magical thinking about food","i":"you are what you eat"},
+  "surface_areaAt":{"u": "rotgut (200ml),","i":"4 nips (50ml), same volume,about 33% more plastic"},
+  "butterfly_effectAt" :{"u": "small changes to initial conditions,different outcomes","i":"chaos,(deterministic)"},
+  "UIAt":{"u": "you don't even notice,if well made","i":"so confusing!"},
+  "sketchbookAt":{"u": "holding outlines,brief descriptions,plans and reminders","i":"lacking details"},
+  "traffic_lightAt":{"u": "go","i":"stop"},
+  "doomscrollingAt":{"u": "take a break","i":"keep feeling bad"},
+  "combAt":{"u": "align","i":"part"},
+  "groupthinkAt":{"u": "shared beliefs","i":"cult"},
+  "copy_and_pasteAt":{"u": "taking shortcuts","i":"mass produced"},
+  "heads_or_tailsAt":{"u": "heads","i":"tails"},
+  "mobile_appAt":{"u": "so you're ALWAYS connected","i":"never as good as on the desktop"},
+  "i_chingAt":{"u": "","i":""},
+  "la_sandíaAt":{"u": "La barriga que Juan tenia ere empacho de sandia,(loteria)","i":"La barriga que Juan tenia ere empacho de sandia,(loteria)"},
+  "la_campanaAt":{"u": "La camapana y tu debajo,(loteria)","i":"La camapana y tu debajo,(loteria)"},
+  "la_peraAt":{"u": "El que espera, desespera,(loteria)","i":"El que espera, desespera,(loteria)"},
+  "la_coronaAt":{"u": "El sombrero de los reyes,(loteria)","i":"El sombrero de los reyes,(loteria)"},
+  "ice_creamAt":{"u": "happy","i":"disappointed"},
+  "tapeAt":{"u": "adhere to","i":"rips when you try to peel it off"},
+  "selectionAt":{"u": "axiom of choice","i":"survival of the fittest"},
+  "anchorAt":{"u": "anchored","i":"adrift"},
+  "cometAt":{"u": "occasional visitor","i":"sky is always cloudy when you try to view it"},
+  "snakeAt":{"u": "unfairly maligned","i":"snake in the grass"},
+  "jackknifeAt":{"u": "jack of all trades","i":"master of none"},
+  "viewfinderAt":{"u": "focus","i":"shoot"},
+  "beansAt":{"u": "staple","i":"spill"},
+  "redactedAt":{"u": "redacted","i":"the gods are not speaking"},
+  "securityAt":{"u": "nothing to hide","i":"no one is looking"},
+  "watering_canAt":{"u": "hydration (metaphorically)","i":"klein bottle,'inside versus outside' is meaningless"},
+  "routerAt":{"u": "cord cutter","i":"no connection to the internet"},
+  "bombAt":{"u": "finished (metaphorically)","i":"the end"},
+  "dungeonAt":{"u": "gather the coins","i":"avoid the monsters"},
+  "overhead_projectorAt":{"u": "freudian projection (metaphorically)","i":"not me!... you!"},
+  "maskAt":{"u": "self-protection","i":"other-protection"},
+  "morulaAt":{"u": "8-32 cell pre-implantation embryo,where gap junctions have formed","i":"\"a child\",\"In Jesus' name no more of this, that's worse than devil's madness.\""},
+  "peace_symbolAt":{"u": "only a symbol","i":"(what's so funny 'bout),peace\\c love\\c and understanding?"},
+  "space_invaderAt":{"u": "we come in peace","i":"oh\\c sure"},
+  "kilroyAt":{"u": "...was here","i":"war is hell is other people"},
+  "bedAt":{"u": "to sleep","i":"awake"},
+  "black_boxAt":{"u": "the surface is all that matters,inference","i":"you think you know what's inside,you do not know what's inside"},
+  "fox_and_hareAt":{"u": "seek","i":"evade"},
+  "paperclipAt":{"u": "stick together","i":"time is a flat circle"},
+  "serverAt":{"u": "but her emails","i":"'to serve man',(it's a cookbook!)"},
+  "philosopherAt":{"u": "what has kierkegaard done for me lately?","i":"critique of pure reason... my ass!"},
+  "jailAt":{"u": "do not pass go","i":"1% of US population incarcerated"},
+  "anosognosiaAt":{"u":"damage you can't see,obvious to others","i":"'everything is fine','I don't see the problem',denial"},
+  "stone_of_madnessAt":{"u":"the cause","i":"the cure,(trepanation)"},
+  "foundationalismAt":{"u":"'The above proposition, is occasionally useful.'","i":"it's turtles all the way up!"},
+  "stageAt":{"u":"all the world's a stage,'I laughed\\c I cried',your 15 minutes of fame","i":"show's over,take a bow,exit stage left"},
+  "splashdownAt":{"u":"'wanna come down right now'","i":"'but the little green wheels are following me'"},
+  "unhingedAt":{"u":"everything is going to be OK (NOT!)","i":"ignore everything else...,just listen to the voices"},
+  "stainAt":{"u":"out damn spot!","i":"should have used a coaster"},
+  "tankAt":{"u":"liberation","i":"invasion"},
+  "empty_tableAt":{"u":"arrived too early,asynchronous (metaphorically)","i":"arrived too late"},
+  "idling_black_pickup_with_tinted_windowsAt":{"u":"compensation","i":"'you might be in a cult'"},
+  "fallen_idolAt":{"u":"losing my religion","i":"fall from grace"},
+  "empty_signifierAt":{"u":"<something> <something> <something>\\c,signifying nothing","i":"at a loss for words"},
+  "field_guideAt":{"u":"special interests","i":"to cram for (metaphorically)"},
+  "P_versus_NPAt":{"u":"unlikely things","i":"some things just take (a lot of) time"},
+  "no_longer_supportedAt":{"u":"obsolete,e-waste (metaphorically)","i":"can't bring yourself to throw it away,lives in your junk draw (metaphorically)"},
+  "traveling_salesmanAt":{"u":"efficiency","i":"no plan (metaphorically)"},
+  "ouroborosAt":{"u":"self-centered","i":"'no step on snek!'"},
+  "late_stage_capitalismAt":{"u":"the world was destroyed but, at least my package arrived the next day","i":"this card sponsered by...,(he hates when you call it twitter)"},
+  "holy_days_of_obligationAt":{"u":"","i":""},
+  "stay_in_your_laneAt":{"u":"rule-following","i":"over-cautious"},
+  "lazy_evaluationAt":{"u":"only as needed","i":"just in time"},
+  "too_far_awayAt":{"u":"'look like specks!'","i":"should have zoomed in (metaphorically)"},
+  "palimpsestAt":{"u":"erased,reused","i":"trace of the past,showing through"},
+  "homunculus_has_left_the_buildingAt":{"u":"gone baby gone,(Cartesian theater)","i":"was never in there"},
+  "mixtapeAt":{"u":"ego","i":"insecurity"},
+  "magic_8_ballAt":{"u":"","i":""},
+  "psychicAt":{"u":"as was foretold","i":"que sera sera"},
+  "bothsidesismAt":{"u":"fear of being accused of bias,goodbye to facts and evidence","i":"fair and balanced - my ass,'next we'll hear from a flat-earther'"},
+//"La_macetaAt":{"u":"El que nace pa'maceta, no sale del corredor.,(loteria)","i":"El que nace pa'maceta, no sale del corredor.,(loteria)"}
+  "sigilAt":{"u":"lesser angels","i":"inner demons"},
+  "swimming_poolAt":{"u":"thrown into the deep end","i":"staying at the shallow end"},
+  "you_make_a_better_door_than_a_windowAt":{"u":"you are a solid citizen,(some would say dense),your lifetime achievement award came early","i":"transparency"},
+  "trope_they_re_shutting_down_the_x_filesAt":{"u":"...and they were just about to expose the conspiracy","i":"...but\\c we're getting the band back together"},
+  "lithomancyAt":{"u":"toss the bones","i":"read the stones"},
+  "red_shirtAt":{"u":"sacrificial lamb","i":"might survive the away mission"},
+  //"red_hatAt":{"u":"dunce cap","i":"self-identifies as idiot"},
+  "pareidoliaAt":{"u":"I can see HIM! ...can't you?","i":"no\\c looks random to me"},
+  "koanAt":{"u":"what is the sound of one hand clapping?","i":"if a tree falls in the forest and no living thing is around,what sound does it make?"},
+  "counterfactualAt":{"u":"\"If I was where I would be,\Then I'd be where I am not,\Here I am where I must be,\Where I would be\\c I can not\"","i":"\"I don't know half of you half as well as I should like; and I like less than half of you half as well as you deserve.\""},
+  "synecdocheAt":{"u":"part for the whole","i":"whole for the part"},
+  "transducerAt":{"u":"translator","i":"man in the middle"},
+
+  "frogAt":{"u":"\"this is fine\"","i":"\"this is fine\""},
+  "crazy_cat_ladyAt":{"u":"will not vote for you","i":"will vote for your opponent"},
+  "gray_areaAt":{"u":"easy decisions","i":"difficult decisions"},
+  "pat_yourself_on_the_backAt":{"u":"well done,you deserve it","i":"tell us all about your \"amazing\" accomplishment,blowhard"},
+  "asteriskAt":{"u":"wildcard","i":"(*footnote)"},
+  "night_drivingAt":{"u":"very late or very early","i":"don't nod off"},
+  "full_moonAt":{"u":"","i":""},
+  "auroraAt":{"u":"borealis,the sky is always overcast when 'visible' at your latitude","i":"australis"},
+  "meteor_showerAt":{"u":"one or two per minute","i":"four or five per hour,light polution (metaphorically)"},
+  "deer_in_the_headlightsAt":{"u":"frozen (metaphorically)","i":"get out of the way!"},
+  "colanderAt":{"u":"separation","i":"high and dry,feeling drained"},
+  "house_on_fireAt":{"u":"unstoppable","i":"vulnerable"},
+  "pants_on_fireAt":{"u":"liar liar","i":"fact checked"},
+  "soundingsAt":{"u":"navigation,hidden depths","i":"sunken (metaphorically)"},
+  "up_lateAt":{"u":"'I'll sleep when I'm dead'","i":"up early?"},
+  "a_trapAt":{"u":"don't fall for it","i":"bait and switch"},
+  "accidentAt":{"u":"everything happens for a reason","i":"everything happens for no reason"},
+  "acrophobiaAt":{"u":"at you peak","i":"let down"},
+  "flying_dreamAt":{"u":"above it all","i":"down to earth"},
+  "like_pulling_teethAt":{"u":"reticence","i":"please shut up!"},
+  "agoraphobiaAt":{"u":"safe inside","i":"outside your comfort zone (metaphorically)"},
+  "like_and_followAt":{"u":"I \"liked\" it but I didn't \"like\" it","i":"\u{2605}\u{272b}\u{272b}\u{272b}\u{272b},if I could\\c I would give it zero stars"},
+  "ramenAt":{"u":"dorm room feast","i":"slurp!"},
+  "scratchy_sweaterAt":{"u":"you have to wear it because your aunt Thelma made it by hand, just for you","i":"so itchy!,(looks suspiciously like ramen)"},
+  "automatic_writingAt":{"u":"receiving the messages","i":"transmission transcription"},
+  "did_you_even_read_my_email_q_At":{"u":"self-importance","i":"uh\\c no"},
+  "bathtub_madonnaAt":{"u":"backyard fatima","i":"like a virgin"},
+  "jogo_do_bichoAt":{"u":"número perdido","i":"perdedor\\c perdedor\\c perdedor"},
+  "sunporchAt":{"u":"escapism (metaphorically)","i":"retreat"},
+  "burdenAt":{"u":"carrying a load","i":"unburdened"},
+  "double_slitAt":{"u":"particle [wave]","i":"[particle] wave"},
+  "bobberAt":{"u":"which way is up?","i":"pulled down"},
+  "rear_viewAt":{"u":"only used for backing up","i":"eyes straight ahead"},
+  "dyslexiaAt":{"u":"difficult to read (metaphorically)","i":"\"read the room\""},
+  "hunter_bidens_laptopAt":{"u":"falling flat,(see \"But her emails!\")","i":"a MacGuffin"},
+  "mass_shootingAt":{"u":"every day events","i":"hopes and prayers,too soon to talk about how to fix this"},
+  "artspeakAt":{"u":"illuminating","i":"obscuring"},
+  "sanewashingAt":{"u":"interpreting/elevating/legitimizing abnormal gibberish as if it were coherent thought","i":"it is what is is,garbage in\\c garbage out"},
+  "nimbyAt":{"u":"not actually in your back yard,(unless there's an easement)","i":"use your clout to get it moved to a poor neighborhood"},
+  "bomberAt":{"u":"foreign policy (metaphorically)","i":"stealth"},
+  "concept_of_a_planAt":{"u":"methinks you have no plan","i":"stalling tactic"},
+  "flowAt":{"u":"absorption","i":"locked in"},
+  "people_are_sayingAt":{"u":"hearsay","i":"repeating lies"},
+  "swimming_in_circlesAt":{"u":"round and round","i":"not getting anywhere,bait ball (metaphorically)"},
+  "tidally_lockedAt":{"u":"always showing the same face,same old same old","i":"one rotation per orbit"},
+  "red_lineAt":{"u":"can never cross this","i":"can always re-draw this"},
+  "banned_bookAt":{"u":"taliban much?,brown shirt much?","i":"always boosts sales and readership"},
+  "convenience_store_sushiAt":{"u":"things to avoid","i":"oh my god\\c no!"},
+  "traumaAt":{"u":"'forehead'? more like fivehead!","i":"words can hurt too"},
+  "cone_of_shameAt":{"u":"it's all fun and games until someone ends up with a cone on their head","i":"oh the shame of it!"},
+  "your_better_halfAt":{"u":"there's no competition","i":"a house divided"},
+  "cat_doorAt":{"u":"departures","i":"arriavals"},
+  "synapseAt":{"u":"pre","i":"post"},
+  "tree_hugging_communistAt":{"u":"\u{1F5F9}  likes trees ,\u{1F5F9} gives hugs,\u{1F5F9} communist","i":"eco-terrorist (metaphorically)"},
+  "reciprocalAt":{"u":"reciprocity in all things","i":"opposite day"},
+  "snailAt":{"u":"slow,sluggish,(see SPIRAL)","i":"coming out of your shell,(see CHIRALITY)"},
+  "scotomaAt":{"u":"blind spot,(see REDACTED\\c ANOSOGNOSIA)","i":"both eyes open"},
+  "local_maximaAt":{"u":"think you've peaked?,(maxima)","i":"can't go any lower?,(minima)"},
+  "washing_machineAt":{"u":"it all comes out in the wash","i":"dirty laundry (metaphorically)"},
+  "cellular_automataAt":{"u":"follow the rules,predictable","i":"input\\output,(rule 110 is Turing complete)"},
+  "voidAt":{"u":"","i":""},
+  "patriarchyAt":{"u":"fight the power","i":"abolish marriage"},
+  "liberal_eliteAt":{"u":"out of touch with 'real' america,(see FLYOVER STATES),where were the jewish space lasers when we needed them?","i":"my latte is getting cold \u{2639},snowflake \u{2744}"},
+  "i_apos_m_with_stupidAt":{"u":"you are so intellegent and well informed, (and fankly\\c good-looking)...","i":"...not so much"},
+  "hurricaneAt":{"u":"disaster (repeated) (metaphorically),(see CONE OF UNCERTAINTY)","i":"\"share with me a common disaster\""},
+  "not_my_circus_not_my_monkeysAt":{"u":"\"I really don't care\\c do you?\"","i":"desensitized (metaphorically)"},
+  "price_of_a_dozen_eggsAt":{"u":"a very very very horrible number","i":"things that look worse in binary"},
+  "gigoAt":{"u":"garbage in/garbage out","i":"trash half full/trash half empty,(it's trash all the way down)"},
+  "bicycles_are_everywhereAt":{"u":"watch out (metaphorically)","i":"that can't be right,there'd be no room to move"},
+  "razorAt":{"u":"\"Never attribute to malice that which can be adequately explained by stupidity\"","i":"a close shave (metaphorically)"},
+  "wind_chimesAt":{"u":"not music,not noise","i":"a few more windy days and you will become silent"},
+  "zero_knowledge_proofAt":{"u":"know you know","i":"don't know what you know"},
+  "resistanceAt":{"u":"vive la","i":"V / I"},
+  "misprintAt":{"u":"misaligned","i":"quality failure"},
+  "gone_silentAt":{"u":"say no more","i":"loose lips,silence is complicity,snitches get stitches"},
+  "snitches_get_stitchesAt":{"u":"veiled threats (metaphorically)","i":"compliance"},
+  "kioskAt":{"u":"where you're at","i":"where you're going"},
+  "trash_dayAt":{"u":"one bin week?,small reckonings","i":"two bin week?,delayed because of Monday holiday"},
+  "bokeh_At":{"u":"soft focus","i":"atmosphere"},
+  "casseroleAt":{"u":"comfort food","i":"kraft dinner (metaphorically)"},
+  "mittensAt":{"u":"protection","i":"lack of dexterity,(see SCRATCHY SWEATER)"},
+  "on_the_spectrumAt":{"u":"divergent","i":"typical"},
+  "trees_on_the_hillsideAt":{"u":"long shadows","i":"difficult terrain"},
+  "buffleheadsAt":{"u":"hard to count","i":"they were there a second ago"},
+  "enlightenmentAt":{"u":"if you meet the blind turtle on the road\\c kill him","i":"missed it...,try again"},
+  "tail_wagging_the_dogAt":{"u":"inversion of power,a distraction","i":"who's a good boy?, who is?,you is!"},
+  "check_engine_lightAt":{"u":"service needed","i":"TPMS is next,See CABIN AIR FILTER"},
+  "dnaAt":{"u":"ontogeny recapitulates phylogeny","i":"The evil that men do lives after them; the good is oft interred with their bones"},
+  "participationAt":{"u":"you did your best","i":"old-man-yells-at-cloud issue"},
+  "comedianAt":{"u":"\"but\\c is it art?\"","i":"who's laughing now?,i'll give you something to laugh about!,laughing all the way to the bank!"},
+  "butterAt":{"u":"salted","i":"unsalted"},
+  "infinityAt":{"u":"countable","i":"uncountable"},
+  "palindromeAt":{"u":"a man a plan a canal - greenland?","i":"backasswards"},
+  "propagandaAt":{"u":"\"free speech\" without fact-checking","i":"like yelling \"fire\" in a crowded democracy"},
+  "uphill_both_waysAt":{"u":"tales from childhood","i":"old-man-isms"},
+  "render_harmlessAt":{"u":"ACROSS - 6 letters","i":"... next\\c carefully lift the cup and paper at the same time..."},
+  "toilet_paperAt":{"u":"how good people hang it","i":"chaos,(how people with cats hang it)"},
+  "finger_trickAt":{"u":"amaze small children","i":"frighten small children"},
+  "art_promptAt":{"u":"do you need one?","i":"something like a clue"},
+  "surveillance_capitalismAt":{"u":"your data is for sale","i":"disable your ad tracking ID"},
+  "blue_screen_of_deathAt":{"u":"happens to us all","i":"is this the year of the linux desktop?"},
+  "starAt":{"u":"catch a falling star,and put it in your pocket","i":"never let it fade away,save if for a rainy day"},
+  "asciiAt":{"u":"declare (metaphorically)","i":"console.log(floppy)"},
+  "bending_the_knee_kissing_the_ringAt":{"u":"capitulation much?","i":"no compromise"},
+  "inner_earAt":{"u":"self-awareness","i":"guided by voices"},
+  "under_thumbAt":{"u":"feed the hand that bites","i":"knuckle under"},
+  "didn_apos_t_finish_her_drinkAt":{"u":"got a hunch about 'the case' and ran off in a hurry","i":"a waste"},
+  "rentre_chez_toi_com_ta_mère_a_fait_des_gaufresAt":{"u":"not feeling wanted","i":"hungry?,inconsistent"},
+  "babylonAt":{"u":"failed efforts","i":"why we can't have nice things"},
+  "spinelessAt":{"u":"jellyfish\\c sycophant\\c toady\\c flunky\\c bootlicker","i":"doesn't gravity suck?"},
+  "newspeakAt":{"u":"doubleplusgood","i":"doubleplusungood"},
+  "rothkoAt":{"u":"color over color","i":"colors fade"},
+  /*"albersAt":{"u":"nested","i":"homage to the square"},*/
+  "sol_lewittAt":{"u":"concept","i":"implementation,lines in four directions"},
+  "water_cycleAt":{"u":"evaporation,condensation,precipitation","i":"ignoring the science"},
+  "erasedAt":{"u":"bye-bye","i":"fade out,phased out"},
+  "toaster_falling_into_bathtubAt":{"u":"hope there's a ground fault circuit interrupter","i":"why would anyone have a toaster in their bathroom?"},
+  "lobotomyAt":{"u":"detached (metaphorically)","i":"executive functions... who needs 'em?"},
+  "pitted_olive_that_yet_has_a_pitAt":{"u":"surprised and disappointed","i":"trust no one"},
+  "mulletAt":{"u":"Shiny chrome rims never rusted,Driving through the tunnel, you might get busted","i":"You're coming off like you're Van Damme.,You've got Kenny G\\c in your Trans Am"},
+  "disco_ballAt":{"u":"flashy","i":"'Everybody in the discotheque - I hate'"},
+  "periodic_tableAt":{"u":"","i":""},
+  "world_upside_downAt":{"u":"topsy-turvy","i":"nuh uh"},
+  "fallout_shelterAt":{"u":"consequences","i":"hideaway"},
+  "got_your_noseAt":{"u":"will give it back","i":"(swallows nose)"},
+  "image_not_foundAt":{"u":"404 (metaphorically)","i":"<alt text here>"},
+  "credit_cardAt":{"u":"what's in you wallet?","i":"debit (metaphorically)"},
+  "tearsAt":{"u":"of joy","i":"of sorrow"},
+  "flashlightAt":{"u":"search","i":"illuminate"},
+  "climate_changeAt":{"u":"we are so f*cked!","i":"thing we ignore,things we won't face,things we won't solve"},
+  "need_helpAt":{"u":"\"rescue me\"","i":"\"rescue me\""},
+  "no_such_thing_as_a_free_lunchAt":{"u":"\"let them eat cake\"","i":"\"eat the rich\""},
+  "cul_de_sacAt":{"u":"no outlet","i":"no progress"},
+  "streetlight_effectAt":{"u":"i know it's here somewhere","i":"where the light is"},
+  "fig_leafAt":{"u":"coverup","i":"hides nothing "},
+  "pooAt":{"u":"impolite","i":"don't tread on me"},
+  "salamanderAt":{"u":"under a log,under a rock","i":"slippery (metaphorically)"},
+  "mute_swanAt":{"u":"koan: what is the call of the mute swan?","i":"silence"},
+  "trope_detective_pursuing_suspectAt":{"u":"... into a maze of shipping containers","i":"she was supposed to wait for backup"},
+  "fridgeAt":{"u":"stay cool","i":"if you want it cooler\\c, do you dial the knob up or down?"},
+  "life_cycleAt":{"u":"what goes around\\c comes around","i":"\"circle of life\""},
+  "brain_wormAt":{"u":"anti science","i":"nothing to do with an ear worm"},
+  "light_switchAt":{"u":"aha!","i":"have you tried turning it off and on again?"},
+  "thumbs_upAt":{"u":"up","i":"down"},
+  "square_peg_in_a_round_holeAt":{"u":"we can make this work","i":"clearly it fits,I don't see the problem"},
+  "taintAt":{"u":"corrupt","i":"blotch (metaphorically)"},
+  "fifty_minute_hourAt":{"u":"how does that make you feel?","i":"therapy couch (metaphorically)"},
+   "tarjetas_rojasAt":{"u":"when ICE comes knocking","i":"know your rights"},
+   "victoryAt":{"u":"\"peace for our time\"","i":"\"nixon's the one\""},
+   "algorithmAt":{"u":"procedural","i":"heuristic,(rule of thumb)"},
+   "chainsawAt":{"u":"lunatics wielding these should be avoided","i":"tax cuts for the wealthy,service cuts for everyone else"},
+   "right_over_my_headAt":{"u":"huh?","i":"\"adult books\\c,I don't understand\\c,Jackie Susann\""},
+   "unpluggedAt":{"u":"self-preservation","i":"isolationist"},
+   "don_apos_t_happy_com_be_worryAt":{"u":"let's turn that frown up side down","i":"you ok?"},
+   "phrenologyAt":{"u":"bumps ahead","i":"take your lumps"},
+   "ishihara_testAt":{"u":"color by numbers","i":"synesthesia (metaphorically)"},
+   "mid_century_modernAt":{"u":"ah\\c the good ole days","i":"regression"},
+   "off_with_their_headsAt":{"u":"they're not using them anyway","i":"\"heads will roll\""},
+   "knife_drawerAt":{"u":"need some kind of tray in there","i":"sharp!,be careful!"},
+   "reactorAt":{"u":"don't have a melt down","i":"situation critical"},
+   "optimal_dishwasher_loadingAt":{"u":"do not pre-rinse","i":"small items in top tray"},
+   "ikebanaAt":{"u":"late bloomer","i":"more like ike/bad/a"},
+   "canceledAt":{"u":"history is written by the victors","i":"say no more"},
+   "iglooAt":{"u":"cold outside,warm inside","i":"under the dome"},
+   "knock_knockAt":{"u":"who's there?,<insert bad joke>","i":"there's nobody home"},
+   "wheel_of_consumptionAt":{"u":"note to self:,\"re-order 500 pc bag of,diposable plastic dental floss picks\"","i":"unexpected boycotts"},
+   "volvelleAt":{"u":"dial it up a notch","i":"turn by turn"},
+   "disruptorAt":{"u":"mess things up (metaphorically)","i":"cut the YELLOW wire!"},
+   "votiveAt":{"u":"offering (metaphorically)","i":"extinguished"},
+   "color_modelAt":{"u":"qualia much?","i":"knowledge is power"},
+   "rock_paper_scissorsAt":{"u":"no win situation","i":"don't have a plurale tantum!"},
+   "dissatisfactionAt":{"u":"always something","i":"never enough"},
+   "empty_roomsAt":{"u":"fleeting memories","i":"past is prologue"},
+   "calculatorAt":{"u":"basic math","i":"juvenile"},
+   "symbolic_fencingAt":{"u":"(symbolically)","i":"\"barrier\""},
+   "disappearedAt":{"u":"a noun and a verb","i":"you could be next"},
+   "gunAt":{"u":"not loaded","i":"loaded"},
+   "elementaryAt":{"u":"basic","i":"education"},
+   "cancerAt":{"u":"serious as a heart attack","i":"something eating you?"},
+   "hands_offAt":{"u":"power grab,hands where I can see them,keep your hands to yourself,MYOB","i":"idle hands are the devil's workshop"},
+   "spell_checkAt":{"u":"mistaeks were made","i":"nobodies perfect"},
+    "tin_foil_hatAt":{"u":"everyone's allowed to have a couple of crazy ideas","i":"just don't start a death cult"},
+    "no_kingsAt":{"u":"who died and left you in charge?","i":"no major arcana"},
+    "reading_tea_leavesAt":{"u":"","i":""},
+    "turntableAt":{"u":"something's going around","i":"spiraling in, never reaching the center"},
+    "printerAt":{"u":"save file to USB,good luck with that", "i":"tray 1 is empty"},
+    "palm_readingAt":{"u":"gimme five,up high,down low,too slow", "i":"what is the sound of one palm clapping?"},
+    "illusion_of_controlAt":{"u":"go with the flow,(see 'THE COMB')","i":"swimming against the tide"},
+    "is_he_dead_yet_q_At":{"u":"many people are asking","i":"just making sure"},
+    "slide_ruleAt":{"u":"computer","i":"obsolete: \"one who computes\""},
+    "numerologyAt":{"u":"your lucky numbers","i":"number theory"},
+    "key_exchangeAt":{"u":"private/public,(Diffie-Hellman)","i":"\"Oh! they exchanged their hearts in the dark.,In the womb they called for a song.,For a joyful kiss.\""},
+    "krebs_cycleAt":{"u":"circle your wagons","i":"rounding rules"},
+    "when_your_sleeves_meet_your_waistbandAt":{"u":"no man's land","i":"border crossing"},
+    "tacoAt":{"u":"saddle point (metaphorically)","i":"pli selon pli,fold,(see FLIPFLOP)"},
+    "small_handsAt":{"u":"they're just a little too small","i":"whiny,petty,ignorant,humorless,cruel"},
+    "el_viaje_del_héroeAt":{"u":"on your way","i":"nos vemos en la chancla"},
+    "timelineAt":{"u":"let's not do that again!","i":"history is written by..."},
+    "sisyphusAt":{"u":"no mow may,(june... july... august)","i":"futility"},
+    "number_lineAt":{"u":"\u{211D}","i":"\u{2115}"},
+    "coordinatesAt":{"u":"\u{2102}","i":"cities of the plain"},
+    "subscription_requiredAt":{"u":"your support makes this possible","i":"also\\c could you please disable your ad blocker?"},
+    "cookie_policyAt":{"u":"acceptance","i":"rejection"},
+    "captchaAt":{"u":"\u{1F5f9} I am not a robot","i":"\u{2610} I am not a robot"},
+    "story_diagramAt":{"u":"who dunnit?","i":"I've seen this one before"},
+    "zodiacAt":{"u":"what's your sign","i":"I've seen this one before"},
+    "don_apos_t_care_about_why_you_switched_browsersAt":{"u":"need to know - not!","i":"I really don't care\\c do you?"},
+    "garden_pathAt":{"u":"","i":""},
+    "no_signalAt":{"u":"ensure the correct input source is selected,(metaphorically)","i":"1. return all cards to the deck,2. reshuffle the deck,3. wait at least 60 seconds,4. layout a new spread"},
+    "meridiansAt":{"u":"connect the dots","i":"point and counterpoint"},
+    "quantity_has_a_quality_all_its_ownAt":{"u":"harder\\c better\\c faster\\c etc,","i":"more better-er"},
+    "metalAt":{"u":"your favorite band","i":"head banger"},
+    "meditationAt":{"u":"meditate on THIS!","i":"you have achieved enlightenment and may stop now"},
+    "matrix_multiplicationAt":{"u":"new hairstyle","i":"bad haircut"},
+    "mary_apos_s_roomAt":{"u":"Mary knows #FF0001\\c #EF0000\\c #FF0100\\c but not #FF0000. One day...","i":"\u{042F}\u{018E}\u{15E1}\u{042F}UM,\u{042F}\u{018E}\u{15E1}\u{042F}UM,\u{042F}\u{018E}\u{15E1}\u{042F}UM"},
+    "chinese_roomAt":{"u":"manipulative (metaphorically)","i":"look it up!"},
+    "day_dayAt":{"u":"Koan: what day of the week is it when you're retired?","i":"Friday? No\\c wait\\c Saturday?"},
+    "stygian_blueAt":{"u":"Stare at the black X for 25 seconds.,Then look at the white X.","i":"colors not seen in nature"},
+    "special_interestsAt":{"u":"","i":""},
+    "what_is_a_concentration_camp_q_At":{"u":"Alex\\c I'll take \"Things you don't associate with a democracy\" for $200.","i":"Alex\\c I'll take \"Smells like fascism\" for $400."},
+    "schrödinger_apos_s_catAt":{"u":"superposition","i":"dead,(Did you HAVE to look?)"},
+    "_3DAt":{"u":"collect them all,free viewing glasses enclosed","i":"No theatre patrons will be seated after the start of the reading"},
+    "vitruvian_manAt":{"u":"in proportion","i":"out of proportion"},
+    "backPatternAt":{"u":"this card has no face","i":"this card cannot be flipped"},
+    "entscheidungsproblemAt":{"u":"haben sie ein problem?","i":"change of state,read/write,left/right"},
+    "hidden_variablesAt":{"u":"even fools are thought wise if they keep silent","i":"faintest of hopes,veiled lies,deceptions"},
+    "toy_soldierAt":{"u":"not a real soldier,a real toy","i":"not a real toy soldier,a drawing of a toy soldier"},
+    "doom_on_a_tarot_cardAt":{"u":"to hack (metaphorically)","i":"intruder!"},
+    "requirementsAt":{"u":"judgemental","i":"I\'m good enough\\c,I\'m smart enough\\c,and doggone it\\c,people like me."},
+    "marginaliaAt":{"u":"off to the side","i":"day dreaming"},
+    "schröder_apos_s_staircaseAt":{"u":"straight or flipped","i":"kayak\\c deed\\c rotator\\c noon\\c racecar"},
+    "nonexistent_filesAt":{"u":"can we just stop talking about these now?","i":"files? what files?"},
+    "exitAt":{"u":"where do you get off?","i":"long hauls,roadside attractions"},
+    "fertilityAt":{"u":"give birth to","i":"ICSI (metaphorically)"},
+    "cognitive_dissonanceAt":{"u":"We will release the files.,There are no files.,I'm not in the files.,The files are fake.","i":"\“I’ve known Jeff for 15 years. Terrific guy\”,\"I wasn’t a big fan of Jeffrey Epstein\\c that I can tell you.\""},
+    "big_footAt":{"u":"crypto bro","i":"hairway to steven"},
+    "sensitiveAt":{"u":"nothing to see here","i":"I'm sensitive and I'd like to stay that way"},
+    "contentAt":{"u":"did you forget something?","i":"all work and no play"},
+    "magnetAt":{"u":"attractive","i":"polarizing"},
+    "horse_shoeAt":{"u":"derivative","i":"lucky"},
+    "pre_hyph_complianceAt":{"u":"cost of doing business,so sue me (not)","i":"How To Use Cowardice In a Sentence?"},
+    "indeterminate_of_swordsAt":{"u":"to the point","i":"stabby\\c stabby"},
+    "ten_of_ironingAt":{"u":"things going smoothly","i":"wrinkles"},
+    "ten_of_cuisenaire_rodsAt":{"u":"equivalence","i":"analog,wood,solid"},
+    "anendophasiaAt":{"u":"mono(logue) no aware","i":"chatty"},
+    "ironing_boardAt":{"u":"map to flat","i":"transformations"},
+    "reductionAt":{"u":"one into another","i":"reductiō,there and back again"},
+    "turbulenceAt":{"i":"There is no pilot., You are not alone., Standby.","u":"Place your tray tables in their upright\\c locked position."},
+    "lureAt":{"u":"catch as catch can","i":"hook\\c line and sinker"},
+    "promisesAt":{"u":"may come true","i":"NO mowing ahead, NO left lane closure, disappointments"},
+    "have_we_learned_nothing_yet_q_At":{"u":"yes\\c we haven't","i":"no\\c we haven't"},
+    "densityAt":{"u":"Who would win in a fight:, Frankenstein or Wittgenstein?","i":"Who would win in a fight:, Mary Shelley or Herman Melville?"},
+    "picture_thisAt":{"u":"controlling the narrative","i":"controlled by the narrative"},
+    "draw_your_own_cardAt":{"u":"<your text here>","i":"<your text here>"},
+    "orreryAt":{"u":"where things are","i":"where things will be"},
+    "crossword_puzzleAt":{"u":"across or down","i":"get a clue"},
+    "last_matchAt":{"u":"slim chance","i":"\u{1F3B5} F-I-R-E-I-N-C-A-I-R-O"},
+    "constancyAt":{"u":"the squares A and B are the same shade of gray","i":"the same\\c but not the same"},
+    "crossroadsAt":{"u":"decisions","i":"disorientated"},
+    "burnerAt":{"u":"iron in the fire","i":"noncommittal"},
+    "tofuAt":{"u":"bland (allegedly)","i":"\"I am what I am\""},
+    "triple_deckerAt":{"u":"stacked","i":"(see THE TOWER)"},
+    "acAt":{"u":"chill out","i":"lose your cool"},
+    "untitled_drawing_appAt":{"u":"self-portrait,(see SELF-REFERENCE)","i":"\"Why spend 5 minutes drawing something when you can spend 5 hours|days coding it?\""},
+    "relicAt":{"u":"","i":""},
+    "undoingAt":{"u":"one hand washes the other","i":"vicious circle"},
+    "narcissusAt":{"u":"self-assembly","i":"self-sufficient"},
+    "halfCardsAt":{"u":"half a loaf is ...","i":"half-hearted,half-baked,half-assed"},
+    "lubbersAt":{"u":"boating is not for us","i":"we prefer dry land"},
+    "sufferingAt":{"u":"...caused by ignorance and 'attachment'","i":"(see PAT YOURSELF ON THE BACK)"},
+    "six_of_heartsAt":{"u":"Kobayashi Maru","i":"\"the cards you were dealt\""},
+    "mtg_cardAt":{"u":"gather","i":"play"},
+    "flash_cardAt":{"u":"rote","i":"flash in the pan"},
+    "bubbleAt":{"u":"things that go away","i":"pop!"},
+    "wokeAt":{"u":"project all of you faux rage, onto this orange blob.,feeling better?","i":"Um\\c actually\\c there's nothing wrong with, caring about diversity\\c equity and inclusion."},
+    "lubbers_sp__lp_alt_rp_At":{"u":"strength in numbers","i":"vegetarians"},
+    "free_readingAt":{"u":"free as in free","i":"fine print"},
+    "spiral_boundAt":{"u":"joined at the hip","i":"strange bedfellows"},
+    "hierophantAt":{"u":"knowledgeable guide (ackchyually)","i":"share what you know"},
+    "four_color_theoremAt":{"u":"enough","i":"is enough"},
+    "knot_theoryAt":{"u":"unbound","i":"tie yourself up in knots"},
+    "evAt":{"u":"charge","i":"range anxiety"},
+    "vaccineAt":{"u":"advice from a doctor","i":"advice from a quack"},
+    "trompe_l_apos_oeilAt":{"u":"","i":""},
+    "load_cellAt":{"u":"heavy","i":"forced"},
+    "eye_contactAt":{"u":"never put anything smaller than your elbow in your eye","i":"don't blink"},
+    "stochastic_parrotAt":{"u":"repeate after me...","i":"mirror (metaphorically)"},
+    "goedkeuringskrulAt":{"u":"approval","i":"gesundheit"},
+    "datura_stramoniumAt":{"u":"poison (metaphorically)","i":"thorny issues"},
+     "_19th_century_capitalism_themed_cardAt":{"u":"manifest destiny,gunboat diplomacy,american exceptionalism,laissez-faire\\c qu'est-ce que c'est?",
+      "i":"jingoism,smallpox,exploitation,slavery"},
+    "card_tableAt":{"u":"all laid out in front of you","i":"ante up"},
+    "batten_down_the_hatchesAt":{"u":"protection","i":"crisis"},
+    "müller_hyph_lyer_illusionAt":{"u":"length","i":"overly absorbed with \"philosophical implications\""},
+    "escalatorAt":{"u":"progress blocked,(needs more gold plating)","i":"some times you just have to climb"},
+    "tech_broAt":{"u":"wants to tell you about blockchain,(there is no cure),","i":"run away"},
+    "about_to_walk_off_a_cliffAt":{"u":"edge condition","i":"synonym for idiot"},
+    "one_trick_ponyAt":{"u":"find the darkest/purplest dot","i":"there is no cure"},
+    "judgmentalAt":{"u":"I think about you sometimes","i":"just sayin'"},
+    "is_it_prime_q_At":{"u":"sieve of Eratosthenes much?","i":"no free shipping"},
+    "walled_gardenAt":{"u":"all your base are belong to us","i":"stay awhile"},
+    "संसारAt":{"u":"rat race","i":"round we go"},
+    "spandrelAt":{"u":"side effect","i":"chin up!"},
+    "rules_of_pokerAt":{"u":"rules is rules","i":"rules are rules"},
+    "object_permanenceAt":{"u":"peekaboo!","i":"impermanence"},
+    "ceci_n_apos_est_pas_une_carteAt":{"u":"trompe-moi une fois...","i":"trompe-moi deux fois..."},
+    "poker_faceAt":{"u":"no secrets","i":"\"oklahoma forehead\",(more like a five head!),\"Top [sic] Forehead Reduction Doctors, in Oklahoma City\""},
+    "data_centerAt":{"u":"somewhere in the global south,(See NIMBY)","i":"how the slop gets made"},
+    "random_walkAt":{"u":"meander","i":"shamble"},
+    "oblique_stratagiesAt":{"u":"text by Brian Eno and Peter Schmidt","i":"text by Brian Eno and Peter Schmidt"},
+    "witnessAt":{"u":"I saw what you did","i":"∃x φ(x)"},
+    "inflection_pointAt":{"u":"reversals,(so derivative!)","i":"regime change"},
+    "shake_a_faceAt":{"u":"profiles in courage","i":"<snuffles loudly>"},
+    "waitingAt":{"u":"soon","i":"not soon enough"},
+    "landscapeAt":{"u":"on the horizon,whole hog,sideways,halfway to a threeway,messy","i":"(the landscape card is, neither upright nor inverted)"},
+    "yoink_exc_At":{"u":"possessive","i":"easy come\\c easy go"},
+    "rorschach_testAt":{"u":"see what you see","i":"whatever you make of it"},
+    "bug_At":{"u":"mistakes were made","i":"testing in production"},
+    "tombstoneAt":{"u":"quod erat demonstrandum","i":"U+220E"},
+    "ouijaAt":{"u":"the medium is the message,look who's talking","i":"ideomotor reflex"},
+    "desire_pathAt":{"u":"what I want","i":"shortest distance"},
+    "dog_that_didn_apos_t_barkAt":{"u":"what is the sound of...","i":"his master's voice"},
+    "quiet_piggy_exc_At":{"u":"what is the sound of an orange pig?","i":"projector in chief"},
+    "old_ageAt":{"u":"memento mori","i":"better than the alternative"},
+    "computeAt":{"u":"noun: [kəm-ˈpyüt] - things needed to make the slop","i":"\"nasty chips\",number of the beast"},
+    "divorceAt":{"u":"remedy for marriage","i":"splitsville (metaphorically)"},
+    "illnessAt":{"u":"in need of a cure","i":"get well soon"},
+    "war_crimesAt":{"u":"no survivors","i":"just following orders"},
+    "monopolyAt":{"u":"\"I want it all\"","i":"\"competition is for losers\""},
+    "alignmentAt":{"u":"red scare","i":"better dead than red"},
+    "pulfrich_effectAt":{"u":"moving target,(cat 'moves' when shaken)","i":"depth... apparently"},
+    "fonts_for_some_reasonAt":{"u":"a wasteful DEI font","i":"warrior ethos font"},
+    "changelingAt":{"u":"the more things change...","i":"constancy"},
+  }	
+
+let diffTitle = {"zodiacAt":"true","metalAt":"true","stochastic_parrotAt":"true"}
+
+function differentTitle (f) {
+  if (f === "zodiacAt") {
+    let d = randomPick(["Aardonyx", "Abelisaurus", "Abrictosaurus", "Abrosaurus", "Abydosaurus", "Acanthopholis", "Achelousaurus", "Achillobator", "Acristavus", "Acrocanthosaurus", "Acrotholus", "Adamantisaurus", "Adasaurus", "Adeopapposaurus", "Aegyptosaurus", "Aeolosaurus", "Aerosteon", "Afrovenator", "Agathaumas", "Agilisaurus", "Agujaceratops", "Agustinia", "Ajkaceratops", "Alamosaurus", "Alaskacephale", "Albalophosaurus", "Albertaceratops", "Albertadromeus", "Albertonykus", "Albertosaurus", "Alectrosaurus", "Aletopelta", "Alioramus", "Allosaurus", "Altirhinus", "Alvarezsaurus", "Alwalkeria", "Alxasaurus", "Amargasaurus", "Amazonsaurus", "Ammosaurus", "Ampelosaurus", "Amphicoelias", "Amurosaurus", "Anabisetia", "Anatosaurus", "Anatotitan", "Anchiceratops", "Anchiornis", "Anchisaurus", "Andesaurus", "Angaturama", "Angolatitan", "Angulomastacator", "Animantarx", "Ankylosaurus", "Anodontosaurus", "Anserimimus", "Antarctopelta", "Antarctosaurus", "Antetonitrus", "Anzu", "Aorun", "Apatosaurus", "Appalachiosaurus", "Aquilops", "Aragosaurus", "Aralosaurus", "Archaeoceratops", "Archaeopteryx", "Archaeornithomimus", "Arcovenator", "Arcusaurus", "Argentinosaurus", "Argyrosaurus", "Aristosuchus", "Arrhinoceratops", "Astrodon", "Asylosaurus", "Atlasaurus", "Atlascopcosaurus", "Atrociraptor", "Aublysodon", "Aucasaurus", "Auroraceratops", "Australodocus", "Australovenator", "Austroraptor", "Austrosaurus", "Avaceratops", "Aviatyrannis", "Avimimus", "Bactrosaurus", "Bagaceratops", "Bagaraatan", "Bahariasaurus", "Balaur", "Bambiraptor", "Barapasaurus", "Barilium", "Barosaurus", "Barsboldia", "Baryonyx", "Batyrosaurus", "Becklespinax", "Beipiaosaurus", "Beishanlong", "Bellusaurus", "Berberosaurus", "Bicentenaria", "Bistahieversor", "Bonapartenykus", "Bonitasaura", "Borogovia", "Bothriospondylus", "Brachiosaurus", "Brachyceratops", "Brachylophosaurus", "Brachytrachelopan", "Bravoceratops", "Brontomerus", "Bruhathkayosaurus", "Buitreraptor", "Byronosaurus", "Camarasaurus", "Camarillasaurus", "Camelotia", "Camptosaurus", "Carcharodontosaurus", "Carnotaurus", "Caudipteryx", "Centrosaurus", "Cerasinops", "Ceratonykus", "Ceratosaurus", "Cetiosauriscus", "Cetiosaurus", "Changyuraptor", "Chaoyangsaurus", "Charonosaurus", "Chasmosaurus", "Chialingosaurus", "Chilantaisaurus", "Chilesaurus", "Chindesaurus", "Chirostenotes", "Chubutisaurus", "Chungkingosaurus", "Citipati", "Claosaurus", "Coahuilaceratops", "Coelophysis", "Coelurus", "Colepiocephale", "Compsognathus", "Concavenator", "Conchoraptor", "Condorraptor", "Coronosaurus", "Corythosaurus", "Crichtonsaurus", "Cruxicheiros", "Cryolophosaurus", "Cryptovolans", "Cumnoria", "Dacentrurus", "Daemonosauru", "Dahalokely", "Dakotaraptor", "Daspletosaurus", "Datousaurus", "Darwinsaurus", "Deinocheirus", "Deinodon", "Deinonychus", "Delapparentia", "Deltadromeus", "Demandasaurus", "Diabloceratops", "Diamantinasaurus", "Diceratops", "Dicraeosaurus", "Dilong", "Dilophosaurus", "Dimetrodon", "Diplodocus", "Dollodon", "Draconyx", "Dracopelta", "Dracorex", "Dracovenator", "Dravidosaurus", "Dreadnoughtus", "Drinker", "Dromaeosauroides", "Dromaeosaurus", "Dromiceiomimus", "Dryosaurus", "Dryptosaurus", "Dubreuillosaurus", "Duriavenator", "Dyoplosaurus", "Dysalotosaurus", "Dyslocosaurus", "Dystrophaeus", "Echinodon", "Edmarka", "Edmontonia", "Edmontosaurus", "Efraasia", "Einiosaurus", "Ekrixinatosaurus", "Elaphrosaurus", "Elmisaurus", "Elopteryx", "Elrhazosaurus", "Enigmosaurus", "Eoabelisaurus", "Eobrontosaurus", "Eocarcharia", "Eocursor", "Eodromaeus", "Eolambia", "Eoraptor", "Eosinopteryx", "Eotriceratops", "Eotyrannus", "Epachthosaurus", "Epidendrosaurus", "Epidexipteryx", "Equijubus", "Erectopus", "Erketu", "Erliansaurus", "Erlikosaurus", "Euhelopus", "Euoplocephalus", "Europasaurus", "Europelta", "Euskelosaurus", "Eustreptospondylus", "Fabrosaurus", "Falcarius", "Ferganasaurus", "Fruitadens", "Fukuiraptor", "Fukuisaurus", "Fulgurotherium", "Futalognkosaurus", "Gallimimus", "Gargoyleosaurus", "Garudimimus", "Gasosaurus", "Gasparinisaura", "Gastonia", "Genyodectes", "Gideonmantellia", "Giganotosaurus", "Gigantoraptor", "Gigantspinosaurus", "Gilmoreosaurus", "Giraffatitan", "Glacialisaurus", "Gobiceratops", "Gobisaurus", "Gobivenator", "Gojirasaurus", "Gondwanatitan", "Gorgosaurus", "Goyocephale", "Graciliraptor", "Gryphoceratops", "Gryponyx", "Gryposaurus", "Guaibasaurus", "Guanlong", "Hadrosaurus", "Hagryphus", "Halticosaurus", "Haplocanthosaurus", "Haplocheirus", "Harpymimus", "Haya", "Herrerasaurus", "Hesperonychus", "Hesperosaurus", "Heterodontosaurus", "Hexing", "Hexinlusaurus", "Heyuannia", "Hippodraco", "Homalocephale", "Hongshanosaurus", "Hoplitosaurus", "Huabeisaurus", "Huanghetitan", "Huaxiagnathus", "Huaxiaosaurus", "Huayangosaurus", "Huehuecanauhtlus", "Hungarosaurus", "Huxleysaurus", "Hylaeosaurus", "Hypacrosaurus", "Hypselosaurus", "Hypselospinus", "Hypsibema", "Hypsilophodon", "Ichthyovenator", "Ignavusaurus", "Iguanacolossus", "Iguanodon", "Ilokelesia", "Incisivosaurus", "Indosuchus", "Ingenia", "Irritator", "Isanosaurus", "Isisaurus", "Jainosaurus", "Janenschia", "Jaxartosaurus", "Jeholosaurus", "Jeyawati", "Jianchangosaurus", "Jinfengopteryx", "Jingshanosaurus", "Jinzhousaurus", "Jobaria", "Judiceratops", "Juratyrant", "Juravenator", "Kaatedocus", "Kaijiangosaurus", "Kazaklambia", "Kentrosaurus", "Kerberosaurus", "Khaan", "Kileskus", "Kinnareemimus", "Kol", "Koreaceratops", "Koreanosaurus", "Kosmoceratops", "Kotasaurus", "Kritosaurus", "Kryptops", "Kukufeldia", "Kulindadromeus", "Kundurosaurus", "Labocania", "Lagosuchus", "Lambeosaurus", "Lamplughsaura", "Lanzhousaurus", "Laosaurus", "Lapparentosaurus", "Laquintasaura", "Latirhinus", "Leaellynasaura", "Leinkupal", "Leonerasaurus", "Leptoceratops", "Leshansaurus", "Lesothosaurus", "Lessemsaurus", "Lexovisaurus", "Leyesaurus", "Liaoceratops", "Liaoningosaurus", "Liliensternus", "Limaysaurus", "Limusaurus", "Linhenykus", "Linheraptor", "Linhevenato", "Lophorhothon", "Lophostropheus", "Loricatosaurus", "Lourinhanosaurus", "Lourinhasaurus", "Luanchuanraptor", "Lufengosaurus", "Lurdusaurus", "Lusotitan", "Lycorhinus", "Lythronax", "Machairasaurus", "Macrogryphosaurus", "Magnapaulia", "Magnirostris", "Magnosaurus", "Magyarosaurus", "Mahakala", "Maiasaura", "Majungasaurus", "Malawisaurus", "Mamenchisaurus", "Manidens", "Mantellisaurus", "Mantellodon", "Mapusaurus", "Marshosaurus", "Martharaptor", "Masiakasaurus", "Massospondylus", "Maxakalisaurus", "Medusaceratops", "Megalosaurus", "Megapnosaurus", "Megaraptor", "Mei", "Melanorosaurus", "Mendozasaurus", "Mercuriceratops", "Metriacanthosaurus", "Microceratops", "Micropachycephalosaurus", "Microraptor", "Microvenator", "Minmi", "Minotaurasaurus", "Miragaia", "Mirischia", "Mochlodon", "Mojoceratops", "Monkonosaurus", "Monoclonius", "Monolophosaurus", "Mononykus", "Montanoceratops", "Mussaurus", "Muttaburrasaurus", "Mymoorapelta", "Nankangia", "Nanosaurus", "Nanotyrannus", "Nanshiungosaurus", "Nanuqsaurus", "Nanyangosaurus", "Nasutoceratops", "Nebulasaurus", "Nedcolbertia", "Neimongosaurus", "Nemegtomaia", "Nemegtosaurus", "Neovenator", "Neuquenraptor", "Neuquensaurus", "Nigersaurus", "Nipponosaurus", "Noasaurus", "Nodocephalosaurus", "Nodosaurus", "Nomingia", "Nothronychus", "Notohypsilophodon", "Nqwebasaurus", "Nuthetes", "Nyasasaurus", "Ojoceratops", "Olorotitan", "Omeisaurus", "Oohkotokia", "Opisthocoelicaudia", "Orkoraptor", "Ornithodesmus", "Ornitholestes", "Ornithomimus", "Ornithopsis", "Orodromeus", "Orthomerus", "Oryctodromeus", "Ostafrikasaurus", "Othnielia", "Othnielosaurus", "Ouranosaurus", "Overosaurus", "Oviraptor", "Oxalaia", "Ozraptor", "Pachycephalosaurus", "Pachyrhinosaurus", "Palaeoscincus", "Paluxysaurus", "Pampadromaeus", "Pamparaptor", "Panamericansaurus", "Panoplosaurus", "Panphagia", "Pantydraco", "Paralititan", "Paranthodon", "Pararhabdodon", "Parasaurolophus", "Parksosaurus", "Paronychodon", "Parvicursor", "Patagosaurus", "Pawpawsaurus", "Pedopenna", "Pegomastax", "Pelecanimimus", "Peloroplites", "Pelorosaurus", "Pentaceratops", "Philovenator", "Phuwiangosaurus", "Piatnitzkysaurus", "Pinacosaurus", "Pisanosaurus", "Piveteausaurus", "Planicoxa", "Plateosaurus", "Pleurocoelus", "Pneumatoraptor", "Podokesaurus", "Poekilopleuron", "Polacanthus", "Prenocephale", "Prenoceratops", "Proa", "Probactrosaurus", "Proceratosaurus", "Procompsognathus", "Propanoplosaurus", "Prosaurolophus", "Protarchaeopteryx", "Protoceratops", "Protohadros", "Psittacosaurus", "Puertasaurus", "Pyroraptor", "Qantassaurus", "Qianzhousaurus", "Qiaowanlong", "Qiupalong", "Quaesitosaurus", "Quilmesaurus", "Rahiolisaurus", "Rahonavis", "Rajasaurus", "Rapator", "Rapetosaurus", "Raptorex", "Rebbachisaurus", "Regaliceratops", "Regnosaurus", "Rhabdodon", "Rhinorex", "Rhoetosaurus", "Richardoestesia", "Rinchenia", "Rinconsaurus", "Riojasaurus", "Rubeosaurus", "Rugops", "Sahaliyania", "Saichania", "Saltasaurus", "Saltopus", "Sanjuansaurus", "Santanaraptor", "Sarahsaurus", "Sarcolestes", "Sarcosaurus", "Saturnalia", "Saurolophus", "Sauroniops", "Sauropelta", "Saurophaganax", "Sauroposeidon", "Saurornithoides", "Saurornitholestes", "Savannasaurus", "Scansoriopteryx", "Scelidosaurus", "Scipionyx", "Sciurumimus", "Scolosaurus", "Scutellosaurus", "Secernosaurus", "Seitaad", "Segisaurus", "Segnosaurus", "Seismosaurus", "Sellosaurus", "Serendipaceratops", "Shamosaurus", "Shanag", "Shantungosaurus", "Shaochilong", "Shenzhousaurus", "Shunosaurus", "Shuvosaurus", "Shuvuuia", "Siamodon", "Siamosaurus", "Siamotyrannus", "Siats", "Sigilmassasaurus", "Silvisaurus", "Similicaudipteryx", "Sinocalliopteryx", "Sinoceratops", "Sinornithoides", "Sinornithomimus", "Sinornithosaurus", "Sinosauropteryx", "Sinosaurus", "Sinotyrannus", "Sinovenator", "Sinraptor", "Sinusonasus", "Skorpiovenator", "Sonorasaurus", "Sphaerotholus", "Spinophorosaurus", "Spinops", "Spinosaurus", "Spinostropheus", "Staurikosaurus", "Stegoceras", "Stegosaurus", "Stenopelix", "Stokesosaurus", "Struthiomimus", "Struthiosaurus", "Stygimoloch", "Styracosaurus", "Suchomimus", "Sulaimanisaurus", "Supersaurus", "Suuwassea", "Suzhousaurus", "Szechuanosaurus", "Tachiraptor", "Talarurus", "Talenkauen", "Talos", "Tangvayosaurus", "Tanius", "Tanycolagreus", "Taohelong", "Tapuiasaurus", "Tarascosaurus", "Tarbosaurus", "Tarchia", "Tastavinsaurus", "Tatankacephalus", "Tatankaceratops", "Tataouinea", "Tawa", "Tazoudasaurus", "Technosaurus", "Tehuelchesaurus", "Telmatosaurus", "Tendaguria", "Tenontosaurus", "Teratophoneus", "Tethyshadros", "Texacephale", "Thecocoelurus", "Thecodontosaurus", "Theiophytalia", "Therizinosaurus", "Thescelosaurus", "Tianchisaurus", "Tianyulong", "Tianyuraptor", "Tianzhenosaurus", "Timimus", "Titanoceratops", "Titanosaurus", "Tochisaurus", "Tornieria", "Torosaurus", "Torvosaurus", "Triceratops", "Trinisaura", "Troodon", "Tsaagan", "Tsintaosaurus", "Tuojiangosaurus", "Turanoceratops", "Turiasaurus", "Tylocephale", "Tyrannosaurus Rex", "Tyrannotitan", "Uberabatitan", "Udanoceratops", "Unaysaurus", "Unenlagia", "Unescoceratops", "Urbacodon", "Utahceratops", "Utahraptor", "Uteodon", "Vagaceratops", "Vahiny", "Valdoraptor", "Valdosaurus", "Variraptor", "Velafrons", "Velociraptor", "Velocisaurus", "Venenosaurus", "Veterupristisaurus", "Vulcanodon", "Wannanosaurus", "Wellnhoferia", "Wendiceratops", "Willinakaqe", "Wintonotitan", "Wuerhosaurus", "Wulagasaurus", "Xenoceratops", "Xenoposeidon", "Xenotarsosaurus", "Xiaosaurus", "Xiaotingia", "Xinjiangtitan", "Xiongguanlong", "Xixianykus", "Xuanhanosaurus", "Xuanhuaceratops", "Xuwulong", "Yamaceratops", "Yandusaurus", "Yangchuanosaurus", "Yaverlandia", "Yi Qi", "Yimenosaurus", "Yinlong", "Yixianosaurus", "Yizhousaurus", "Yongjinglong", "Yueosaurus", "Yulong", "Yunnanosaurus", "Yutyrannus", "Zalmoxes", "Zanabazar", "Zapalasaurus", "Zby", "Zephyrosaurus", "Zhanghenglong", "Zhejiangosaurus", "Zhenyuanlong", "Zhongyuansaurus", "Zhuchengceratops", "Zhuchengosaurus", "Zhuchengtyrannus", "Zuniceratops", "Zuolong", "Zupaysaurus"])
+    defs[f] = {"u":advice(d),"i":advice(d)}
+    return d
+  }
+  let sayings = [
+    "Peent, peent, peent","Drink-your-teeeee",
+    "Kill-dee, kill-dee, kill-dee", "Drink-your-teeeee","Whip-poor-will",
+    "Trees, trees, murmuring trees",'Tow-weeee',"Tea-kettle, tea-kettle, tea-kettle",
+    "pee-oo-wee","pee-oo-wee","Bob white, bob white","Are you awake? me too",
+    "chick-a-dee, chick-a- dee-dee-dee", "peter, peter, peter","Poor Sam Peabody, Peabody, Peabody",
+    "who cooks for you, who cooks for you all?", "potato chip, potato chip","teacher, teacher, teacher"
+  ]
+  if (f === "stochastic_parrotAt")
+    return randomPick(sayings)
+  if (f === "metalAt")
+    return metal()
+}
+
+function metal () {
+  let wrd = randomWord().toUpperCase()+" "+randomWord().toUpperCase()
+  wrd = wrd.replaceAll("O", "\u{00D6}")
+  wrd = wrd.replaceAll("U", "\u{016E}")
+  wrd = wrd.replaceAll("A", "\u{00C4}")
+  wrd = wrd.replaceAll("I", "\u{0130}")
+  wrd = wrd.replaceAll("E", "\u{0116}")
+ // wrd = wrd.replaceAll("S", "\u{1E9E}")
+  wrd = wrd.replaceAll("T", "\u{0166}")
+  wrd = wrd.replaceAll("H", "\u{0126}")
+  wrd = wrd.replaceAll("D", "\u{0110}")
+  wrd = wrd.replaceAll("Y", "\u{0178}")
+  wrd = wrd.replaceAll("N", "\u{0376}")
+  console.log(wrd)
+  return(wrd)
+}
+function advice (d) {
+  let date = new Date()// .getMonth()+1
+  const months = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"]
+  let nextmonth = months[(date.getMonth()+2)%12]
+  let wis = [" shouldn't take up new hobbies just now", " should be more down to earth", " shouldn't start new relationships right now", 
+    " are best avoided at this time", " should avoid heavy lifting until "+nextmonth, " can expect rainy weekends for the next few months", " ought to smile more"]
+  if (!d.endsWith("s"))
+    d += "s"
+  return d + randomPick(wis)
+}
+
+let altTitles = { // for alternatives: remove "At"
+  "crossroadsAt":"the four_directions",
+  "rentre_chez_toi_com_ta_mère_a_fait_des_gaufresAt":"Go_Back_Home_com_Your_Mother_Made_You_Waffles",
+  "thumbs_upAt":"thumbs_down",
+  "tarjetas_rojasAt":"red_card",
+  "victoryAt":"capitulation",
+  "is_he_dead_yet_q_At":"is_he_still_dead?",
+  "stygian_blueAt":"hyperbolic_orange",
+  "fertilityAt":"infertility",
+  "what_is_a_concentration_camp_q_At":"what_is_kidnappings_by_masked_goons_q_"
+}
+
+let tealeaves_u = ["acorn", "airplane", "anchor", "apple", "arrow", "axe", "baby", "bag", "ball", "balloon", "basket", "bell", "birds", "boat", "book", "bottle", "broom", "bush", "butterfly", "candle", "cat", "chain", "chair", "circle", "clock", "clouds", "coin", "cross", "cup", "dagger", "dish", "dog", "door", "duck", "eagle", "egg", "envelope", "eye", "face", "fan", "feather", "fence", "finger", "fire", "fish", "flag", "flower", "fly", "forked line", "fruit", "gate", "water glass", "cocktail glass", "goat", "grapes", "gun", "hammer", "hand", "hat", "hawk", "heart", "horse", "horseshoe", "hourglass", "house", "insect", "jewels", "kettle", "key", "kite", "knife", "ladder", "lamp", "leaf", "letter", "lines", "lion", "lock", "man", "moon", "mountain", "mouse", "mushroom", "nail", "necklace", "nest", "needle", "oak tree", "octopus", "ostrich", "owl", "palm tree", "palm leaf", "parasol", "parrot", "pig", "pin", "pine tree", "pipe", "pistol", "plough", "purse", "question mark", "rabbit", "rainbow", "rake", "raven", "rider", "ring", "ring, broken", "rose", "scales", "scissors", "sheep", "shell", "ship", "shoe", "sickle", "snake", "spider", "spoon", "squirrel", "stairs", "star", "sun", "sword", "table", "teardrops", "tent", "thimble", "tortoise", "tower", "triangle", "turtle", "umbrella", "vase", "violin", "volcano", "wagon", "wasp", "wheel", "wings", "wolf", "zebra"]
+let tealeaves_1 = tealeaves_u
+let eightball_u = ["It is certain","It is decidedly so","Without a doubt","Yes definitely","You may rely on it","As I see it\\c yes","Most likely","Outlook good","Yes","Signs point to yes"]
+let eightball_i = ["Reply hazy, try again","Ask again later","Better not tell you now","Cannot predict now","Concentrate and ask again","Don't count on it","My reply is no","My sources say no","Outlook not so good","Very doubtful"]
+
+function relicName (relic) {
+  let saint = randomPick(names)
+  let thing = randomPick(words.match(/\b\w{3,}(ist(ic)?|able|ible|ous)\b/g))
+  return "The "+relic+" of Saint "+saint
+}
+
+function holyday () {
+  let thing = randomPick(words.match(/\b\w{3,}(ist(ic)?|able|ible|ous)\b/g))
+  let saint = randomPick(names)
+  if (Math.random() > 0.5)
+    return("Saint "+saint+" the "+thing+"'s day")
+  else
+    return "The feast of " + randomPick(words.match(/\b\w{3,}(ous|ic|ful|ive|ish(ed)?|able)\b/g)) + " " + randomPick(words.match(/\b\w{3,}(ation|ment|ion|[eaiou]nt?y)s?\b/g))
+}
+
+function randomGP () {
+  let gp = shuffle(["Fat people eat accumulates.", "Have the students who failed the exam take the supplementary.", "Helen is expecting tomorrow to be a bad day.", "Hershey Bars Protest.", "Homicide Victims Rarely Talk to Police", "Hospitals Sued by 7 Foot Doctors.", "I convinced her children are noisy.", "I know the words to that song about the queen don't rhyme.", "Mary gave the child the dog bit a Band-Aid.", "Miners Refuse to Work After Death.", "Red Tape Holds up New Bridge.", "She told me a little white lie will come back to haunt me.", "Stolen Painting Found by Tree.", "That Jill is never here hurts.", "The cotton clothing is made of grows in Mississippi.", "The dog that I had really loved bones.", "The florist sent the flowers was pleased.", "The girl told the story cried.", "The horse raced past the barn fell.", "The man who hunts ducks out on weekends.", "The woman who whistles tunes pianos. ", "The old man the boat.", "The prime number few.", "The raft floated down the river sank.", "The sour drink from the ocean.", "The tycoon sold the offshore oil tracts for a lot of money wanted to kill JR.", "Tornado Touches Down in Cemetery Hundreds Dead.", "Until the police arrest the drug dealers control the street.", "We painted the wall with cracks.", "When Fred eats food gets thrown.", "The man pushed through the door swung.", "Mary gave the child the dog bit the bandaid.", "The government plans to raise taxes were defeated.", "Until the police arrest the drug dealers control the street.", "The boy smiled at the girl tossed the ball."])
+  return randomPick(gp)
+}
+
+function artspeak () {
+  let art = ["This work", "This piece", "This exhibit", "The artist", "The artwork"]
+  let things = ["the spacial, ", "the void, ", "the real ", "the dialectic, ", "the intersectional, ", "the parallel, ","parallelism, "]
+  let ant = words.match(/\b\w{3,}ant\b/g)
+  let ates = words.match(/\b\w{3,}ates\b/g)
+  let ating = ["abbreviating","abdicating","ablating","abrogating","accelerating","accentuating","accommodating","accumulating","activating","actuating","adjudicating","administrating","adulterating","adumbrating","advocating","affiliating","agglomerating","aggravating","aggregating","agitating","alienating","alleviating","alliterating","allocating","alternating","amalgamating","ameliorating","amputating","animating","annihilating","antedating","anticipating","appreciating","appropriating","approximating","arbitrating","articulating","aspirating","assassinating","assimilating","associating","attenuating","authenticating","automating","berating","calculating","calibrating","capitulating","captivating","castigating","castrating","celebrating","circulating","cogitating","collaborating","collating","combating","commemorating","commentating","commiserating","communicating","compensating","complicating","concatenating","concentrating","conciliating","confiscating","conflating","congratulating","congregating","conjugating","consecrating","consolidating","consternating","contaminating","contemplating","cooperating","coordinating","copulating","correlating","corroborating","culminating","cultivating","deactivating","debilitating","decapitating","decelerating","decimating","decontaminating","dedicating","defecating","deflating","degenerating","dehydrating","deliberating","delineating","demarcating","demonstrating","denigrating","deprecating","depreciating","deregulating","desecrating","designating","desolating","deteriorating","detonating","devastating","deviating","dictating","differentiating","dilating","disaffiliating","disambiguating","disassociating","discriminating","disintegrating","dislocating","disorientating","disseminating","dissipating","dissociating","dominating","elaborating","elevating","eliminating","elongating","elucidating","emanating","emancipating","emasculating","emigrating","emulating","encapsulating","enervating","entreating","enumerating","enunciating","equilibrating","equivocating","eradicating","escalating","estimating","evacuating","evaluating","evaporating","exacerbating","exaggerating","exasperating","excavating","excommunicating","excruciating","exhilarating","exonerating","expostulating","expurgating","extenuating","exterminating","extrapolating","extricating","fabricating","facilitating","fascinating","fibrillating","fluctuating","fornicating","fractionating","frustrating","fulminating","germinating","gestating","gesticulating","gravitating","gyrating","hallucinating","hesitating","hibernating","humiliating","hyperventilating","hyphenating","illuminating","impersonating","implicating","impregnating","inactivating","inaugurating","incapacitating","incarcerating","incinerating","incorporating","incriminating","inculcating","indoctrinating","infiltrating","infuriating","ingratiating","initiating","innovating","inoculating","insinuating","instantiating","instigating","insulating","integrating","interpolating","interrogating","intimating","intimidating","intoxicating","invalidating","invigilating","invigorating","irradiating","irrigating","irritating","isolating","iterating","legitimating","levitating","liberating","liquidating","litigating","lubricating","luxuriating","manipulating","masticating","matriculating","mediating","meditating","menstruating","migrating","militating","mistranslating","mistreating","mitigating","moderating","modulating","motivating","mutating","mutilating","narrating","nauseating","navigating","negating","negotiating","nominating","obliterating","obviating","officiating","operating","orchestrating","originating","oscillating","oxygenating","paginating","palpitating","participating","penetrating","perambulating","percolating","permeating","perpetrating","perpetuating","pirating","placating","pollinating","pontificating","populating","postulating","precipitating","predating","predicating","predominating","prevaricating","procrastinating","procreating","proliferating","promulgating","propagating","propitiating","prostrating","pulsating","punctuating","pupating","radiating","reactivating","reallocating","reanimating","recalibrating","reciprocating","recirculating","recreating","recuperating","redecorating","reformulating","regenerating","regurgitating","rehabilitating","reincarnating","reinstating","reiterating","rejuvenating","relegating","relocating","remonstrating","renegotiating","renovating","repatriating","repeating","replicating","repudiating","resonating","restating","resuscitating","retaliating","retreating","reverberating","rollerskating","rotating","ruminating","salivating","saturating","scintillating","sedating","segregating","separating","simulating","situating","speculating","stagnating","stimulating","stipulating","subjugating","subordinating","substantiating","suffocating","superannuating","supplicating","suppurating","sweating","tabulating","terminating","titillating","tolerating","translating","transliterating","triangulating","truncating","unaccommodating","underestimating","understating","undiscriminating","undulating","unhesitating","vacillating","validating","vegetating","venerating","ventilating","vibrating","vindicating","violating","vitiating"]
+  let v_ises = words.match(/\b\w{3,}i(s|z)es\b/g)
+  let not_ises = ["cruises","demises","enterprises","pelvises","porpoises","portcullises","sunrises","tortoises","trellises",]
+  v_ises = v_ises.filter(word => !not_ises.includes(word))
+  let n_ality = words.match(/\b\w{3,}(al)?ity\b/g)
+  let ism = words.match(/\b\w{3,}(al)?ism\b/g)
+  let not_ism = ["autism","baptism","botulism","catechism","colloquialism","electromagnetism","embolism","euphemism","geomagnetism","hypnotism","journalism","judaism","mannerism","mechanism","metabolism","microorganism","neologism","nepotism","opportunism","organism","orientalism","plagiarism","rheumatism","schism","syllogism","truism","witticism"]
+  ism = ism.filter(word => !not_ism.includes(word))
+  let v_ising = words.match(/\b\w{3,}i(s|z)ing\b/g)
+  let not_ising = ["appetising","cruising","enterprising","fundraising","hairraising","liaising","practising","praising","premising","promising","surprising","symbolising","unappetising","uncompromising","unpromising","unsurprising","uprising"]
+  v_ising = v_ising.filter(word => !not_ising.includes(word))
+
+  let ive = words.match(/\b\w{3,}ive\b/g)
+  let ions = words.match(/\b\w{3,}ions\b/g)
+
+  let ly = words.match(/\b\w{3,}ly\b/g)
+  let not_adv = ["only", "family", "early", "likely", "supply", "apply", "daily", "lovely", "unlikely", "assembly", "elderly", "reply", "badly", "friendly", "fly", "holy", "rely", "silly", "billy", "kelly", "monthly", "lonely", "monopoly", "rally", "freely", "imply", "lively", "comply", "sally", "ugly", "kindly", "costly", "folly", "holly", "bodily", "jolly", "ally", "lily", "telly", "belly", "deadly", "molly", "quarterly", "butterfly", "dolly", "orderly", "multiply", "grimly", "jelly", "scholarly", "yearly", "curly", "weakly", "ghastly", "leisurely", "melancholy", "timely", "stately", "bully", "heavenly", "chilly", "willy", "tally", "sly", "hourly", "piccadilly", "earthly", "poly", "gully", "oily", "smelly", "homely", "ghostly", "woolly", "anomaly", "worldly", "lowly", "nightly", "sickly", "wally", "disorderly", "unruly", "prickly", "unfriendly", "wobbly", "burly", "filly", "cuddly", "unsightly", "northerly", "steely", "princely", "cowardly", "manly", "shapely", "hilly", "cleanly", "bubbly", "fortnightly", "courtly", "user-friendly", "priestly", "beastly", "gilly", "westerly", "ply", "grisly", "masterly", "nelly", "unholy", "southerly", "godly", "gentlemanly", "wily", "saintly", "untimely", "unseemly", "deathly", "frilly", "surly", "tilly", "pearly", "easterly", "brotherly", "ungainly", "cicely", "sprightly", "spindly", "firefly", "fiddly", "solly", "scaly", "golly", "neighbourly", "motherly", "whitely", "knightly", "lordly", "lully", "unearthly", "dragonfly", "knobbly", "caerphilly", "portly", "shelly", "gravelly", "straggly", "grizzly", "fatherly", "duopoly", "no-fly", "termly", "greenfly", "lolly", "unworldly", "environment-friendly", "gamely", "crinkly", "slovenly", "comely", "miserly", "panoply", "stubbly", "womanly", "bristly", "goodly", "underbelly", "lally", "waterlily", "dally", "welly", "brolly", "kingly", "painterly", "reapply", "superfamily", "chantilly", "crumbly", "subfamily", "ungodly", "gadfly", "homily", "oversupply", "dastardly", "half-yearly", "hurly-burly", "measly", "oligopoly", "unlovely", "bally", "twice-weekly", "whitefly", "other-worldly", "ozone-friendly", "seemly", "sisterly", "sparkly", "pally", "resupply", "rockabilly", "roly-poly", "south-westerly", "wiggly", "comradely", "read-only", "giggly", "girly", "gangly", "twice-yearly", "north-westerly", "dilly", "drizzly", "ly", "mealy", "niggardly", "matronly", "overfly", "seely", "sully", "wrinkly", "muscly", "postmultiply", "selly", "south-easterly", "ungentlemanly", "writerly", "cully", "heterosexually", "premultiply", "tiddly", "acromegaly", "hillbilly", "mayfly", "pebbly", "self-assembly", "soldierly", "unmanly", "googly", "doolally", "eco-friendly", "softly-softly", "fam'ly", "fleshly", "north-easterly", "singlehandedly", "treacly", "wifely", "crackly", "feely", "-ly", "pimply", "squally", "tinkly", "bi-weekly", "botfly", "clerkly", "disapply", "hepatomegaly", "jangly", "paly", "readerly", "reassembly", "splenomegaly", "twiddly", "two-ply", "bimonthly", "half-hourly", "maidenly", "niggly", "purply", "squiggly", "three-ply", "tingly", "blackfly", "coaly", "creepy-crawly", "doily", "sawfly", "stepfamily", "tickly", "barfly", "disassembly", "girl-friendly", "rascally", "swirly", "beggarly", "bobbly", "fruitfly", "jungly", "moly", "otherworldly", "scally", "shingly", "trebly", "underly", "wheely", "bly", "cousinly", "crawly", "dangly", "grandmotherly", "hoverfly", "marly", "microcephaly", "muddly", "rubbly", "this-worldly", "trembly", "twinkly", "undersupply", "unmannerly", "whirly", "diddly", "dolphin-friendly", "freckly", "gnarly", "housewifely", "laggardly", "philately", "scrawly", "shaly", "spangly", "spritely", "unneighbourly", "wibbly", "wriggly", "wurly", "creaturely", "damselfly", "dilly-dally", "dribbly", "freight-only", "horsefly", "hurly", "jubbly", "northwesterly", "pre-emptively", "radio-friendly", "rattly", "relly", "rolly", "rustly", "southwesterly", "subassembly", "superfly", "uncomely", "unwomanly", "wordly", "blowfly", "citizenly", "daughterly", "dimply", "pot-belly", "slatternly", "southeasterly", "stilly", "tangly", "waffly", "biweekly", "booly", "craftsmanly", "curmudgeonly", "gristly", "headly", "headmasterly", "helly", "housefly", "non-daily", "northeasterly", "potbelly", "queenly", "ruffianly", "sandfly", "scrolly", "snuffly", "unscholarly", "unwieldly", "weaselly", "wooly", "actorly", "auntly", "brambly", "business-friendly", "celly", "contumely", "crumply", "dayly", "dooly", "drawly", "drooly", "firebelly", "gobbly", "grumbly", "heav'nly", "hover-fly", "husbandly", "interactionally", "lawyerly", "lurvely", "luvverly", "mannerly", "piddly", "pully", "savourly", "schoolmasterly", "scraggly", "shuffly", "skelly", "sluggardly", "snuggly", "speckly", "toxophily", "trolly", "twirly", "unfatherly", "unshapely", "user-unfriendly", "waggly", "wibbly-wobbly", "anencephaly", "bearly", "bely", "bibliophily", "big-sisterly", "blackguardly", "brachycephaly", "brawly", "caramelly", "chiropterophily", "churchly", "cobbly", "colly", "cooly", "cranefly", "dancerly", "dealy", "designerly", "dovely", "dudely", "entomophily", "exencephaly", "family-friendly", "felly", "fishbelly", "footmanly", "gentlewomanly", "girlfriendly", "goatly", "godfatherly", "gospelly", "gradely", "grandfatherly", "growly", "gruelly", "guestly", "gurgly", "heartly", "hepatosplenomegaly", "hevenly", "hydrocephaly", "jiggly", "jingly", "jowly", "knubbly", "knuckly", "loverly", "male-friendly", "marbly", "megalencephaly", "metally", "misapply", "modelly", "nonfamily", "nubbly", "oly", "ornithophily", "outfly", "overfriendly", "peely-wally", "profamily", "protractedly", "psychobilly", "rambly", "ripply", "rumbly", "samely", "schoolmistressly", "sclerodactyly", "scrabbly", "scrambly", "scribbly", "shambly", "shoggly", "shoogly", "sightly", "skilly", "snivelly", "spinsterly", "squirrely", "statesmanly", "studly", "summerly", "swivelly", "teacherly", "test-fly", "tinselly", "towardly", "trichinopoly", "twilly", "unbrotherly", "uncleanly", "uncourtly", "unkingly", "unlively", "unmotherly", "unreflectively", "unsaintly", "unsisterly", "unsleepingly", "unsoldierly", "unwifely", "viewly", "waly", "weatherly", "weevilly", "whistly", "widdly", "winterly", "wizardly"]
+  ly = ly.filter(word => !not_adv.includes(word))
+
+  let ed = words.match(/\b\w{3,}ed\b/g)
+  let not_ed = ["aniseed","breezed","creed", "illmannered","jotted","lunged"]
+  let junc = ["while simultaneously", "while also", "at the same time", "while always already"]
+  let pre = ["para-", "proto-", "post-", "hyper-"]
+  let thing = randomPick(words.match(/\b\w{3,}(ist(ic)?|able|ible|ous)\b/g))
+  let does = ["serves to", "functions to", "seems to","interrogates", "questions", "encodes", "transforms", "subverts", "imbricates", "displaces"]
+  // ly and ly ed
+  let adv_adv = (" - " + randomPick(ly) +" and "+randomPick(ly) +" "+randomPick(ed) +" - ")
+  return("\""+randomPick(art)+ " " +(randomPick(v_ises))+ " the "
+  + randomPick(n_ality) + " of "+randomPick(things) 
+  + adv_adv
+  + randomPick(junc) +" " 
+  + (randomPick(v_ising))+", " + (randomPick(v_ising))+", " + (randomPick(v_ising))+" and " + (randomPick(v_ising))
+  + " the " +randomPick(pre) +randomPick(ism) +" of its "
+  + randomPick(ating) + " " + randomPick(n_ality) + " "
+  + randomPick(["thereby", "in so", "so by", "such that"]) + " " 
+  + randomPick(ating)+" "+randomPick(ive)+" "+randomPick(ions) +".\"")
+}
+
+function colorname() {
+  let color = randomPick(["cyan","magents","salmon","violet","beigh","rose","mustard","gray",'red','blue',"orange", "white","black",'green','yellow','brown','pink','purple'])
+  let word =  randomPick(words.match(/\b\w{4,11}\b/g)) 
+  if (Math.random() > 0.5)
+    return word+"-"+color
+  else  
+    return color+"-"+word
+}
+
+function artPrompt () {
+  let artwords = []
+  artwords.push( randomPick(words.match(/\b\w{4,8}(?<!(s|ing|ed|ly|er|est|ish))\b/g)) )
+  let colors = ['red','blue','green','yellow','brown','pink','purple']
+  let ly = words.match(/\b\w{3,}ly\b/g)
+  let not_adv = ["splashes", "circles", "loops","smeared","only", "family", "early", "likely", "supply", "apply", "daily", "lovely", "unlikely", "assembly", "elderly", "reply", "badly", "friendly", "fly", "holy", "rely", "silly", "billy", "kelly", "monthly", "lonely", "monopoly", "rally", "freely", "imply", "lively", "comply", "sally", "ugly", "kindly", "costly", "folly", "holly", "bodily", "jolly", "ally", "lily", "telly", "belly", "deadly", "molly", "quarterly", "butterfly", "dolly", "orderly", "multiply", "grimly", "jelly", "scholarly", "yearly", "curly", "weakly", "ghastly", "leisurely", "melancholy", "timely", "stately", "bully", "heavenly", "chilly", "willy", "tally", "sly", "hourly", "piccadilly", "earthly", "poly", "gully", "oily", "smelly", "homely", "ghostly", "woolly", "anomaly", "worldly", "lowly", "nightly", "sickly", "wally", "disorderly", "unruly", "prickly", "unfriendly", "wobbly", "burly", "filly", "cuddly", "unsightly", "northerly", "steely", "princely", "cowardly", "manly", "shapely", "hilly", "cleanly", "bubbly", "fortnightly", "courtly", "user-friendly", "priestly", "beastly", "gilly", "westerly", "ply", "grisly", "masterly", "nelly", "unholy", "southerly", "godly", "gentlemanly", "wily", "saintly", "untimely", "unseemly", "deathly", "frilly", "surly", "tilly", "pearly", "easterly", "brotherly", "ungainly", "cicely", "sprightly", "spindly", "firefly", "fiddly", "solly", "scaly", "golly", "neighbourly", "motherly", "whitely", "knightly", "lordly", "lully", "unearthly", "dragonfly", "knobbly", "caerphilly", "portly", "shelly", "gravelly", "straggly", "grizzly", "fatherly", "duopoly", "no-fly", "termly", "greenfly", "lolly", "unworldly", "environment-friendly", "gamely", "crinkly", "slovenly", "comely", "miserly", "panoply", "stubbly", "womanly", "bristly", "goodly", "underbelly", "lally", "waterlily", "dally", "welly", "brolly", "kingly", "painterly", "reapply", "superfamily", "chantilly", "crumbly", "subfamily", "ungodly", "gadfly", "homily", "oversupply", "dastardly", "half-yearly", "hurly-burly", "measly", "oligopoly", "unlovely", "bally", "twice-weekly", "whitefly", "other-worldly", "ozone-friendly", "seemly", "sisterly", "sparkly", "pally", "resupply", "rockabilly", "roly-poly", "south-westerly", "wiggly", "comradely", "read-only", "giggly", "girly", "gangly", "twice-yearly", "north-westerly", "dilly", "drizzly", "ly", "mealy", "niggardly", "matronly", "overfly", "seely", "sully", "wrinkly", "muscly", "postmultiply", "selly", "south-easterly", "ungentlemanly", "writerly", "cully", "heterosexually", "premultiply", "tiddly", "acromegaly", "hillbilly", "mayfly", "pebbly", "self-assembly", "soldierly", "unmanly", "googly", "doolally", "eco-friendly", "softly-softly", "fam'ly", "fleshly", "north-easterly", "singlehandedly", "treacly", "wifely", "crackly", "feely", "-ly", "pimply", "squally", "tinkly", "bi-weekly", "botfly", "clerkly", "disapply", "hepatomegaly", "jangly", "paly", "readerly", "reassembly", "splenomegaly", "twiddly", "two-ply", "bimonthly", "half-hourly", "maidenly", "niggly", "purply", "squiggly", "three-ply", "tingly", "blackfly", "coaly", "creepy-crawly", "doily", "sawfly", "stepfamily", "tickly", "barfly", "disassembly", "girl-friendly", "rascally", "swirly", "beggarly", "bobbly", "fruitfly", "jungly", "moly", "otherworldly", "scally", "shingly", "trebly", "underly", "wheely", "bly", "cousinly", "crawly", "dangly", "grandmotherly", "hoverfly", "marly", "microcephaly", "muddly", "rubbly", "this-worldly", "trembly", "twinkly", "undersupply", "unmannerly", "whirly", "diddly", "dolphin-friendly", "freckly", "gnarly", "housewifely", "laggardly", "philately", "scrawly", "shaly", "spangly", "spritely", "unneighbourly", "wibbly", "wriggly", "wurly", "creaturely", "damselfly", "dilly-dally", "dribbly", "freight-only", "horsefly", "hurly", "jubbly", "northwesterly", "pre-emptively", "radio-friendly", "rattly", "relly", "rolly", "rustly", "southwesterly", "subassembly", "superfly", "uncomely", "unwomanly", "wordly", "blowfly", "citizenly", "daughterly", "dimply", "pot-belly", "slatternly", "southeasterly", "stilly", "tangly", "waffly", "biweekly", "booly", "craftsmanly", "curmudgeonly", "gristly", "headly", "headmasterly", "helly", "housefly", "non-daily", "northeasterly", "potbelly", "queenly", "ruffianly", "sandfly", "scrolly", "snuffly", "unscholarly", "unwieldly", "weaselly", "wooly", "actorly", "auntly", "brambly", "business-friendly", "celly", "contumely", "crumply", "dayly", "dooly", "drawly", "drooly", "firebelly", "gobbly", "grumbly", "heav'nly", "hover-fly", "husbandly", "interactionally", "lawyerly", "lurvely", "luvverly", "mannerly", "piddly", "pully", "savourly", "schoolmasterly", "scraggly", "shuffly", "skelly", "sluggardly", "snuggly", "speckly", "toxophily", "trolly", "twirly", "unfatherly", "unshapely", "user-unfriendly", "waggly", "wibbly-wobbly", "anencephaly", "bearly", "bely", "bibliophily", "big-sisterly", "blackguardly", "brachycephaly", "brawly", "caramelly", "chiropterophily", "churchly", "cobbly", "colly", "cooly", "cranefly", "dancerly", "dealy", "designerly", "dovely", "dudely", "entomophily", "exencephaly", "family-friendly", "felly", "fishbelly", "footmanly", "gentlewomanly", "girlfriendly", "goatly", "godfatherly", "gospelly", "gradely", "grandfatherly", "growly", "gruelly", "guestly", "gurgly", "heartly", "hepatosplenomegaly", "hevenly", "hydrocephaly", "jiggly", "jingly", "jowly", "knubbly", "knuckly", "loverly", "male-friendly", "marbly", "megalencephaly", "metally", "misapply", "modelly", "nonfamily", "nubbly", "oly", "ornithophily", "outfly", "overfriendly", "peely-wally", "profamily", "protractedly", "psychobilly", "rambly", "ripply", "rumbly", "samely", "schoolmistressly", "sclerodactyly", "scrabbly", "scrambly", "scribbly", "shambly", "shoggly", "shoogly", "sightly", "skilly", "snivelly", "spinsterly", "squirrely", "statesmanly", "studly", "summerly", "swivelly", "teacherly", "test-fly", "tinselly", "towardly", "trichinopoly", "twilly", "unbrotherly", "uncleanly", "uncourtly", "unkingly", "unlively", "unmotherly", "unreflectively", "unsaintly", "unsisterly", "unsleepingly", "unsoldierly", "unwifely", "viewly", "waly", "weatherly", "weevilly", "whistly", "widdly", "winterly", "wizardly"]
+  ly = randomPick(ly.filter(word => !not_adv.includes(word)))
+  //artwords.push(ly)
+  artwords = shuffle(artwords)
+  let tech = randomPick(["color field", "fading", "surreal", "impressionistic", "portrait", "oblique", "abstract", "parallel", "mirrored", "space", "dream-like", "water color", "#putabirdonit","contrasting", "clashing", "motion", "stillness", "stormy","forms","overlapping", "strokes", "stripes", "dotted", "curves", "hollow", "flowing", "landscape", "on a grid", "rectangles", "still life", "divided", "random", "floating", "blurred", "edges","inverted", "reflections", "non-dominant hand", "threes", "oval", "liminal"])
+  return([randomPick(pantonecolors.names).toLowerCase(), tech, artwords[0], artwords[1]])
+}
+
+function testThrees () {
+  let i = 0
+  for (; i < 1000; i++)
+    threecards()
+}
+
+let check_duplicate_in_array = (input_array) => {
+  input_array = input_array.sort((a, b) => a - b);
+  let duplicate_elements = []
+  for (index in input_array) {
+      if (input_array[index] ===
+          input_array[index - 1]) {
+          duplicate_elements.push(
+              input_array[index]);
+      }
+  }
+  return [...new Set(duplicate_elements)];
+}
+
+function testCards () {
+  let keys = Object.keys(defs), i = 0
+  let text = "", err = "", UNUSED = []
+  let dupes = check_duplicate_in_array(atList)
+  if (dupes.length < 1)
+    dupes = "None"
+  console.log("xxx duplicates in atList: " + dupes)
+  //for (; i < 200; i++)
+ //   threecards()
+  fill()
+  i = 0
+  for (; i < keys.length;i++) {
+    tarotcard (44,187,453, 700,keys[i],cardnumber(keys[i]),undefined,[0])
+    tarotcard (44+530,187,453, 700,keys[i],cardnumber(keys[i]),undefined,[1])
+    text += keys[i].slice(0,-2) + "\n"
+    text += "  "+defs[keys[i]].u + "\n"
+    text += "  "+defs[keys[i]].i + "\n"
+    if (defs[keys[i]].u.length < 1 || defs[keys[i]].i.length < 1)
+      err = "-BLANK DEF"
+    else
+      err = ""
+    console.log(i, keys[i],err)
+    if (!atList.includes(keys[i]))
+      UNUSED.push(keys[i])
+  }
+  console.log("Unused defs: "+UNUSED)
+  let ta = document.createElement("textarea")
+  ta.style.width = "100%"
+  ta.style.height = "300px"
+  ta.value = text.replace(/_/gm, " ")
+  document.body.appendChild(ta)
+  ta.scrollTop = ta.scrollHeight
+  console.log("starting TMT test...")
+  i = 0
+ // for (; i < 1000; i++) 
+ //   too_many_thingsAt(0,0,100,"#000000")
+  
+  console.log("...done. \ncheck spelling.")
+}
+
+function showdefs () {
+  let list = shortlist, i = 0
+  let tsv = "card\tif dealt upright\tif dealt inverted"
+  for (; i < list.length; i++) {
+    tsv += "\n"
+    tsv += list[i].replace(/At/gm,"").replace(/_/gm, " ") + "\t"
+    tsv += defs[list[i]].u + "\t"
+    tsv += defs[list[i]].i
+  }
+  return tsv
+}
+
+function mobydef () {
+    let text = book.replace(/_para_/gm,"").split("\n").join(" ")
+    let sentences = text.split(/[.!?]/gm)
+    //console.log(sentences)
+    return(randomPick(sentences).trim())
+}
+
+function mobyword () {
+    let text = book.replace(/_para_/gm,"").split("\n").join(" ")
+    let sentences = text.split(/[^\w]/gm)
+    //console.log(sentences)
+    return(randomPick(sentences).trim())
+}
