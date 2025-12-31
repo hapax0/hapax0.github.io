@@ -656,7 +656,7 @@ let defs = {
     "poker_faceAt":{"u":"no secrets","i":"\"oklahoma forehead\",(more like a five head!),\"Top [sic] Forehead Reduction Doctors, in Oklahoma City\""},
     "data_centerAt":{"u":"somewhere in the global south,(See NIMBY)","i":"how the slop gets made"},
     "random_walkAt":{"u":"meander","i":"shamble"},
-    "oblique_stratagiesAt":{"u":"text by Brian Eno and Peter Schmidt","i":"text by Brian Eno and Peter Schmidt"},
+    "oblique_strategiesAt":{"u":"text by Brian Eno and Peter Schmidt","i":"text by Brian Eno and Peter Schmidt"},
     "witnessAt":{"u":"I saw what you did","i":"∃x φ(x)"},
     "inflection_pointAt":{"u":"reversals,(so derivative!)","i":"regime change"},
     "shake_a_faceAt":{"u":"profiles in courage","i":"<snuffles loudly>"},
@@ -681,7 +681,12 @@ let defs = {
     "fonts_for_some_reasonAt":{"u":"a wasteful DEI font","i":"warrior ethos font"},
     "changelingAt":{"u":"the more things change...","i":"constancy"},
     "reverse_centaurAt":{"u":"serving the machine","i":"pick up the pace!"},
-  }	
+    "tech_drawerAt":{"u":"can of worms","i":"yesterday"},
+    "transparencyAt":{"u":"nothing to hide,(see also REDACTED)","i":"the pages are so dark\\c,that not even light can escape their surface"},
+  	"org_chartAt":{"u":"you will go far in this organization","i":"consider sacrificing a goat"},
+    "t_rex_armsAt":{"u":"vestigal?","i":"don't look up!"},
+    "concentricAt":{"u":"spiral - not!","i":"insider trading"},
+  }
 
 let diffTitle = {"zodiacAt":"true","metalAt":"true","stochastic_parrotAt":"true"}
 
