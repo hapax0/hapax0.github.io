@@ -717,6 +717,17 @@ let defs = {
       "aphantasiaAt":{"u":"nothing to see (in) here","i":"look not to the things that are seen\\c,but to the things that are unseen,(can't unsee this)"},
       "mocaAt":{"u":"not the flex you think it is","i":"testing\\c 1\\c 2\\c 3"},
       "house_in_the_woodsAt":{"u":"seclusion","i":"unibomber"},
+      "b_a_u_h_a_u_sAt":{"u":"style","i":"arts and crafts"},
+      "cinder_blockAt":{"u":"concrete","i":"real"},
+      "water_markAt":{"u":"you don't own me!","i":"copyrighted (metaphorically)"},
+      "kompromatAt":{"u":"uh oh\\c your name is on the list,don't worry\\c there will be no consequences","i":"whew!,your name is NOT on the list,good boy!"},
+      "sailing_stonesAt":{"u":"\"sliders\"","i":"blowin' in the wind"},
+      "basinAt":{"u":"very attractive","i":"no escape"},
+      "death_card_with_a_bad_comb_overAt":{"u":"he's mad\\c he's bad and he's coming for you","i":"he wishes his jaw line looked this strong"},
+      "ruler_of_a_suitAt":{"u":"they rule","i":"in heavy rotation"},
+      "dancer_of_a_suitAt":{"u":"𝅘𝅥𝅮 dancing with myself,oh\\c oh\\c uh-oh 𝅘𝅥𝅮","i":"isotropic"},
+      "sitter_of_a_suitAt":{"u":"sitting all day,(go take a walk)","i":"your \"innie\""},
+      "astronaut_of_a_suitAt":{"u":"chariots of a suit","i":"𝅘𝅥𝅮 ground control to major tom 𝅘𝅥𝅮"},
     }
      
   let diffTitle = {"zodiacAt":"true","metalAt":"true","stochastic_parrotAt":"true"}
