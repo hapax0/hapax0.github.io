@@ -3483,7 +3483,7 @@ function stingAt (x,y,W,color) { // where oh death is yours?
   ctx.fillStyle = savedF
 }
 
-function gryoneAt (x,y,W,color) {
+function groyneAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let H = W, cpx, cpy, points = []
