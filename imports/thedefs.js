@@ -774,7 +774,7 @@ let defs = {
       "groyneAt":{"u":"remnants","i":"by the sea"},
       "arkoAt":{"u":"\"to stick it\"","i":"in a lather"},
       "vista_pruningAt":{"u":"can't see the forest for the trees","i":"no forest to see because of all the pruning"},
-      "nunc__lp_150260_rp_At":{"u":"past \"tense\"","i":"story points"},
+      "nunc___lp_150260_rpAt":{"u":"past \"tense\"","i":"story points"},
       "the_9_of_stingsAt":{"u":"owie! (x9)","i":"anger issues"},
       "peaceAt":{"u":"set it free","i":"a war in the hand..."},
       "stanford_marshmallow_testAt":{"u":"delayed gratification","i":"I want it now!"},
