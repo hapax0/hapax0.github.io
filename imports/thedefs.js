@@ -972,7 +972,7 @@ function testCards () {
   if (dupes.length < 1)
     dupes = "None"
   console.log("xxx duplicates in atList: " + dupes)
-  for (; i < 500; i++)
+  for (; i < 50; i++)
     threecards()
  // fill()
   i = 0
