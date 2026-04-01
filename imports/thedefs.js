@@ -728,6 +728,58 @@ let defs = {
       "dancer_of_a_suitAt":{"u":"𝅘𝅥𝅮 dancing with myself,oh\\c oh\\c uh-oh 𝅘𝅥𝅮","i":"isotropic"},
       "sitter_of_a_suitAt":{"u":"sitting all day,(go take a walk)","i":"your \"innie\""},
       "astronaut_of_a_suitAt":{"u":"chariots of a suit","i":"𝅘𝅥𝅮 ground control to major tom 𝅘𝅥𝅮"},
+      "floatAt":{"u":"still water","i":"swimming at suppertime"},
+      "an_island_in_an_islandAt":{"u":"this card is for testing purposes only,this card has no predictive value","i":"figure and ground,recursion"},
+      "explanationsAt":{"u":"","i":""},
+      "well_hyph_trodden_pathAt":{"u":"follow","i":"stray"},
+      "announcementAt":{"u":"finally!","i":"hope it comes soon"},
+      "L_apos_AtmosphèreAt":{"u":"up there,behind that,through there,","i":"I see how it is"},
+      "eigengrauAt":{"u":"eyes closed","i":"in the dark\\c all cats are grey"},
+      "_At":{"u":"","i":""},
+      "four_squared_of_clubsAt":{"u":"♣²","i":"\u{221A}♣"},
+      "ice_outAt":{"u":"meltdown","i":"down the drain"},
+      "looksmaxxingAt":{"u":"year after year\\c,on the monkey's face\\c,a monkey's mask","i":"be best"},
+      "fencedAt":{"u":"boundaries","i":"penned in"},
+      "agree_to_disagreeAt":{"u":"opposition research (metaphorically)","i":"(like) looking in a mirror"},
+      "crabAt":{"u":"cancer","i":"pinch"},
+      "facepalmAt":{"u":"really?!","i":"WTF"},
+      "on_shaky_groundAt":{"u":"🡨 🡨 🡨 🡨 🡨,🡪 🡪 🡪 🡪 🡪,🡨 🡨 🡨 🡨 🡨,🡪 🡪 🡪 🡪 🡪","i":"slip and fall"},
+      "every_instagram_reel_be_likeAt":{"u":"seen it","i":"don't care,(see also JOINERY)"},
+      "private_jokeAt":{"u":"you wouldn't get it","i":"is it better this way?"},
+      "stations_of_the_crossAt":{"u":"getting around","i":"expect delays"},
+      "tv_tableAt":{"u":"\"fancy\" people eat dinner at the coffee table","i":"crumbs nicely hidden in the shadows"},
+      "caution_cardAt":{"u":"you are sidelined for the remainder of the reading","i":"a sudden emotional outburst"},
+      "loserAt":{"u":"is this Oklahoma forehead part deux?","i":"too much snark?"},
+      "caughtAt":{"u":"wiggle room","i":"wriggle room"},
+      "against_the_grainAt":{"u":"you're such a rebel,(sure\\c keep telling yourself that)","i":"conformist"},
+      "snow_pileAt":{"u":"winter","i":"late spring"},
+      "all_the_way_downAt":{"u":"infinite regression","i":"foundations"},
+      "eagleAt":{"u":"impersonal","i":"unsurmountable"},
+      "trackingAt":{"u":"disable your advertising ID","i":"like and follow"},
+      "puzzledAt":{"u":"dazed and confused","i":"bubble sort (metaphorically)"},
+      "bad_haircutAt":{"u":"it'll grow back","i":"lookin' good"},
+      "bogeymanAt":{"u":"childhood fears","i":"wants to sell you an appliance"},
+      "maximum_lethalityAt":{"u":"AKA \"N of Graves\"","i":"rich man's war...,school girl's slaughter"},
+      "Last_night_com_I_had_that_dream_againAt":{"u":"\"I dreamt I had to take a test\\c, in a Dairy Queen\\c, on another planet\",[Laurie Anderson]","i":"\"And you\\c and you\\c and you\\c, and you were there!\",[Dorothy]"},
+      "death_card_ast_At":{"u":"*it's just a card","i":"*you are going to die now"},
+     // "_8_hyph_bit_death_cardAt":{"u":"some pun on byte/bite?","i":"GAME OVER"},
+      "_8_hyph_bit_paradiseAt":{"u":"bit\\c byte\\c word","i":"word on the street"},
+      "narrowsAt":{"u":"dire straits","i":"heimlich maneuver"},
+      "six_of_resolutionsAt":{"u":"display options (metaphorically)","i":"size matters"},
+      "gooAt":{"u":"\"My friend Goo has a real tatoo\\c,She always knows just what to do\",[Sonic Youth\\c Raymond Pettibon]","i":"\"She likes to wear green underwear\\c,And lays down most anywhere\""},
+      "time_apos_s_arrowAt":{"u":"one way","i":"asymmetry much?"},
+      "employees_must_wash_handsAt":{"u":"Out\\c damned spot!","i":"Take me to the river"},
+      "casioAt":{"u":"digital,(see also CLOCK)","i":"who needs the continuum?"},
+      "asahiAt":{"u":"the sun rises,(squinting)","i":"the sun sets"},
+      "groyneAt":{"u":"remnants","i":"by the sea"},
+      "arkoAt":{"u":"\"to stick it\"","i":"in a lather"},
+      "vista_pruningAt":{"u":"can't see the forest for the trees","i":"no forest to see because of all the pruning"},
+      "nunc__lp_150260_rp_At":{"u":"past \"tense\"","i":"story points"},
+      "the_9_of_stingsAt":{"u":"owie! (x9)","i":"anger issues"},
+      "peaceAt":{"u":"set it free","i":"a war in the hand..."},
+      "stanford_marshmallow_testAt":{"u":"delayed gratification","i":"I want it now!"},
+
+      "last_card_in_the_deckAt":{"u":"all good things (supposedly)","i":"never-ending projects"},
     }
      
   let diffTitle = {"zodiacAt":"true","metalAt":"true","stochastic_parrotAt":"true"}
@@ -782,6 +834,9 @@ function advice (d) {
 }
 
 let altTitles = { // for alternatives: remove "At"
+  "against_the_grainAt":"with_the_grain",
+  "agree_to_disagreeAt":"in_violent_agreement",
+  "an_island_in_an_islandAt":"an_island_in_an_island_in_an_island_in_an_island",
   "on_the_monkey_apos_s_face_elip_At":"...a_monkey's_mask",
   "crossroadsAt":"the four_directions",
   "rentre_chez_toi_com_ta_mère_a_fait_des_gaufresAt":"Go_Back_Home_com_Your_Mother_Made_You_Waffles",
@@ -862,6 +917,13 @@ function artspeak () {
   + randomPick(ating)+" "+randomPick(ive)+" "+randomPick(ions) +".\"")
 }
 
+function war_name () {
+  let name = "operation "
+  name += randomPick(words.match(/\b\w{3,}(ous)\b/g)) +" "
+  name += randomPick(words.match(/\b\w{3,}(er)\b/g))
+  return name
+}
+
 function colorname() {
   let color = randomPick(["cyan","magents","salmon","violet","beigh","rose","mustard","gray",'red','blue',"orange", "white","black",'green','yellow','brown','pink','purple'])
   let word =  randomPick(words.match(/\b\w{4,11}\b/g)) 
@@ -910,9 +972,9 @@ function testCards () {
   if (dupes.length < 1)
     dupes = "None"
   console.log("xxx duplicates in atList: " + dupes)
-  //for (; i < 200; i++)
- //   threecards()
-  fill()
+  for (; i < 500; i++)
+    threecards()
+ // fill()
   i = 0
   for (; i < keys.length;i++) {
     tarotcard (44,187,453, 700,keys[i],cardnumber(keys[i]),undefined,[0])
@@ -939,7 +1001,6 @@ function testCards () {
   i = 0
  // for (; i < 1000; i++) 
  //   too_many_thingsAt(0,0,100,"#000000")
-  
   console.log("...done. \ncheck spelling.")
 }
 
