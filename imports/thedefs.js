@@ -778,7 +778,31 @@ let defs = {
       "the_9_of_stingsAt":{"u":"owie! (x9)","i":"anger issues"},
       "peaceAt":{"u":"set it free","i":"a war in the hand..."},
       "stanford_marshmallow_testAt":{"u":"delayed gratification","i":"I want it now!"},
-
+      "stone_ageS̲At":{"u":"back to the future","i":"no stone unturned"},
+      "fingerprintAt":{"u":"we'd like to know a little bit about you for our files","i":"privacy?"},
+      "shield_and_weaponAt":{"u":"defense","i":"offense"},
+      "dedenkind_cutAt":{"u":"no gaps","i":"irrational"},
+      "scrabbleAt":{"u":"triple word score","i":"A\\c E\\c I\\c L\\c N\\c O\\c R\\c S\\c T and U"},
+      "skip_AdAt":{"u":"skip","i":"unskippable"},
+      "equilibrationAt":{"u":"détente,(7.4)","i":"maladjusted,(8.0)"},
+      "a_hole_in_the_screenAt":{"u":"pandora's box","i":"intrusive thoughts"},
+      "ballroomAt":{"u":"Ask not what your country can do for you,- ask what you can do for your country","i":"Roaches check in\\c but they don't check out!"},
+      "rotating_the_square_pieceAt":{"u":"futility","i":"spin again?"},
+      "this_card_says_it_apos_s_jesusAt":{"u":"blasphemy,(but you never objected to its many other sins)","i":"say your prayers"},
+      "unimpressive_optical_illusionAt":{"u":"¯\\_(ツ)_/¯","i":"when did your inner child die?"},
+      "_3_gray_housesAt":{"u":"in the dark\\c all cats are gray","i":"in the dark\\c all cats are grey"},
+      "corner_store_com_spa_com_bodegaAt":{"u":"ever heard of it?","i":"sounds made up - right?"},
+      "café_wallAt":{"u":"\"crooked\"","i":"parallel"},
+      "neon_spreadAt":{"u":"fill in the blanks","i":"glow up"},
+      "dimples_cln_causes_and_treatmentAt":{"u":"What can YOU do?","i":"K-T impact crater"},
+      "sideburnsAt":{"u":"burnout","i":"signs\\c causes\\c prevention and treatment"},
+      "why_you_can_apos_t_beat_pacmanAt":{"u":"steep cost of entry, stranded assets,ghosts","i":"rigged systems"},
+      "logAt":{"u":"unstable footing","i":"what's under it?"},
+      "owlAt":{"u":"nocturnal","i":"not a plastic owl"},
+      "resetAt":{"u":"backwards urge","i":"regrets"},
+      "transitive_propertyAt":{"u":"Ɐ a\\cb\\cc ∈ X:(aRb ∧ bRc) ⊃ aRc","i":"   \\__/ vs  __/,      /"},
+      "puffed_upAt":{"u":"bloat","i":"deflated"},
+      "QR_codeAt":{"u":"takes you somewhere","i":"prefers a paper menu"},
       "last_card_in_the_deckAt":{"u":"all good things (supposedly)","i":"never-ending projects"},
     }
      
@@ -818,7 +842,6 @@ function metal () {
   wrd = wrd.replaceAll("D", "\u{0110}")
   wrd = wrd.replaceAll("Y", "\u{0178}")
   wrd = wrd.replaceAll("N", "\u{0376}")
-  console.log(wrd)
   return(wrd)
 }
 function advice (d) {
@@ -834,6 +857,7 @@ function advice (d) {
 }
 
 let altTitles = { // for alternatives: remove "At"
+  "_3_gray_housesAt":"_3_grey_houses",
   "against_the_grainAt":"with_the_grain",
   "agree_to_disagreeAt":"in_violent_agreement",
   "an_island_in_an_islandAt":"an_island_in_an_island_in_an_island_in_an_island",
@@ -974,7 +998,13 @@ function testCards () {
   console.log("xxx duplicates in atList: " + dupes)
   for (; i < 50; i++)
     threecards()
- // fill()
+  fill()
+  console.log("3 cards done")
+  i = 0
+  for (; i < 50; i++) {
+    everythingArray()
+  }
+  console.log("everythingArray done")
   i = 0
   for (; i < keys.length;i++) {
     tarotcard (44,187,453, 700,keys[i],cardnumber(keys[i]),undefined,[0])
@@ -1002,6 +1032,78 @@ function testCards () {
  // for (; i < 1000; i++) 
  //   too_many_thingsAt(0,0,100,"#000000")
   console.log("...done. \ncheck spelling.")
+}
+
+function testsmallsize () {
+  let i = 0
+  for (; i < 10; i++)
+    everythingArray2()
+}
+
+function everythingArray3 () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let fs = document.getElementById("featuresize")
+  let W = canvas.width, H = canvas.height
+  let N = 40//randomPick([2])//7,9,11,13]) 
+  let functions = shuffle(atList)
+  let pad = 2
+  let delta = Math.round(W/N) - pad*1
+  let x = pad/2, y = pad/2, i = 0
+  let cnt = 0, f
+  ctx.fillStyle = "#fffeee"
+ // ctx.fillRect(0,0,W,H)
+  for (; i < atList.length; i++) {
+    fs.value = 1
+    f = atList[i]
+   // console.log(f)
+   try {
+    window[f](x,y,20,"#111122")
+   } catch (error) {
+    console.log(f)
+    console.error(error)
+   }
+    x += delta+pad
+    cnt++
+    if (cnt > 1 && cnt%N === 0) {
+      x = pad/2
+      y += delta+pad
+    }
+  }
+ // console.log(i)
+}
+
+function everythingArray2 () {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let fs = document.getElementById("featuresize")
+  let W = canvas.width, H = canvas.height
+  let N = 20//randomPick([2])//7,9,11,13])
+  let functions = shuffle(atList)
+  let pad = 2
+  let delta = Math.round(W/N) - pad*1
+  let x = pad/2, y = pad/2, i = 0
+  let cnt = 0, f
+  ctx.fillStyle = "#fffeee"
+  ctx.fillRect(0,0,W,H)
+  for (; i < N*N; i++) {
+    fs.value = 1
+    f = functions[i]
+   // console.log(f)
+   try {
+    window[f](x,y,delta,"#111122")
+   } catch (error) {
+    console.log(f)
+    console.error(error)
+   }
+    x += delta+pad
+    cnt++
+    if (cnt > 1 && cnt%N === 0) {
+      x = pad/2
+      y += delta+pad
+    }
+  }
+ // console.log(i)
 }
 
 function showdefs () {
