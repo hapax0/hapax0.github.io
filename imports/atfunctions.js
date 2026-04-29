@@ -379,9 +379,6 @@ function cardNamePrint (f) {
   text = text.toUpperCase()
   return text
 }
-//cinder_blockAt
-
-//giant_com_gold_com_jewel_hyph_encrusted_crucifixAt
 
 function threecards () {
   let canvas = document.getElementById("myCanvas")
