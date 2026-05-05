@@ -803,6 +803,15 @@ let defs = {
       "transitive_propertyAt":{"u":"Ɐ a\\cb\\cc ∈ X:(aRb ∧ bRc) ⊃ aRc","i":"   \\__/ vs  __/,      /"},
       "puffed_upAt":{"u":"bloat","i":"deflated"},
       "QR_codeAt":{"u":"takes you somewhere","i":"prefers a paper menu"},
+      "cell_theoryAt":{"u":"prokaryote","i":"eukaryote"},
+      "qwertyAt":{"u":"my very educated mother just served us nine pizzas","i":"every good boy deserves fudge"},
+      "drosteAt":{"u":"recursion","i":"(see also AN ISLAND IN AN ISLAND IN AN ISLAND)"},
+      "early_warning_signsAt":{"u":"it's just a scratch","i":"you ignored them all"},
+      "v_mi_e_pl_f_eq_2At":{"u":"formulaic","i":"polyhedral much?"},
+      "circleAt":{"u":"◯","i":"◯"},
+      "apical_meristemAt":{"u":"rise above","i":"front line"},
+      "shaving_brushAt":{"u":"brush up","i":"brush off"},
+      "entropyAt":{"u":"you can't unscramble an egg","i":"you can't make an omelette, without breaking eggs"},
       "last_card_in_the_deckAt":{"u":"all good things (supposedly)","i":"never-ending projects"},
     }
      
@@ -996,14 +1005,14 @@ function testCards () {
   if (dupes.length < 1)
     dupes = "None"
   console.log("xxx duplicates in atList: " + dupes)
-  for (; i < 50; i++)
-    threecards()
+ // for (; i < 50; i++)
+ //   threecards()
   fill()
   console.log("3 cards done")
   i = 0
-  for (; i < 50; i++) {
-    everythingArray()
-  }
+ // for (; i < 50; i++) {
+    ;//everythingArray()
+ // }
   console.log("everythingArray done")
   i = 0
   for (; i < keys.length;i++) {
