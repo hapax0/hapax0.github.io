@@ -774,7 +774,7 @@ let defs = {
       "groyneAt":{"u":"remnants","i":"by the sea"},
       "arkoAt":{"u":"\"to stick it\"","i":"in a lather"},
       "vista_pruningAt":{"u":"can't see the forest for the trees","i":"no forest to see because of all the pruning"},
-      "nunc___lp_150260_rpAt":{"u":"past \"tense\"","i":"story points"},
+      "nunc___lp_150260_rp_At":{"u":"past \"tense\"","i":"story points"},
       "the_9_of_stingsAt":{"u":"owie! (x9)","i":"anger issues"},
       "peaceAt":{"u":"set it free","i":"a war in the hand..."},
       "stanford_marshmallow_testAt":{"u":"delayed gratification","i":"I want it now!"},
@@ -812,6 +812,8 @@ let defs = {
       "apical_meristemAt":{"u":"rise above","i":"front line"},
       "shaving_brushAt":{"u":"brush up","i":"brush off"},
       "entropyAt":{"u":"you can't unscramble an egg","i":"you can't make an omelette, without breaking eggs"},
+      "mirror_boxAt":{"u":"see what is no longer there","i":"move what is no longer there"},
+      "holding_all_the_cardsAt":{"u":"complete control","i":"more than you can manage"},
       "last_card_in_the_deckAt":{"u":"all good things (supposedly)","i":"never-ending projects"},
     }
      

@@ -25,12 +25,12 @@ let atList = ["origamiAt", "airplaneAt", "envelopeAt", "sardinesAt", "refraction
   "redactedAt","securityAt","watering_canAt","i_chingAt","la_sandíaAt","la_campanaAt","la_peraAt","la_coronaAt","ice_creamAt","tapeAt","selectionAt","anchorAt","cometAt",
   "batten_down_the_hatchesAt","card_tableAt","goedkeuringskrulAt", "don_apos_t_care_about_why_you_switched_browsersAt","zodiacAt","story_diagramAt","coordinatesAt","number_lineAt","sisyphusAt","timelineAt", "votiveAt","disruptorAt","tearsAt","light_switchAt","tarjetas_rojasAt","thumbs_upAt","trope_detective_pursuing_suspectAt","streetlight_effectAt","bokeh_At", "trash_dayAt","kioskAt","gone_silentAt","wind_chimesAt","price_of_a_dozen_eggsAt","bicycles_are_everywhereAt","gigoAt","washing_machineAt","voidAt", "banned_bookAt","space_invaderAt","routerAt","bombAt","dungeonAt","overhead_projectorAt","maskAt","morulaAt","peace_symbolAt","bedAt","black_boxAt",
   "astronaut_of_a_suitAt","data_centerAt","poker_faceAt","spiral_boundAt","escalatorAt",
-  "entropyAt","shaving_brushAt","apical_meristemAt","circleAt","v_mi_e_pl_f_eq_2At","early_warning_signsAt","drosteAt","qwertyAt","cell_theoryAt","QR_codeAt","puffed_upAt","transitive_propertyAt","resetAt","owlAt","logAt","why_you_can_apos_t_beat_pacmanAt","sideburnsAt","dimples_cln_causes_and_treatmentAt","neon_spreadAt","café_wallAt","corner_store_com_spa_com_bodegaAt","_3_gray_housesAt","unimpressive_optical_illusionAt","this_card_says_it_apos_s_jesusAt","rotating_the_square_pieceAt","ballroomAt","a_hole_in_the_screenAt","equilibrationAt","skip_AdAt", "scrabbleAt","dedenkind_cutAt","shield_and_weaponAt","fingerprintAt","stone_ageS̲At","stanford_marshmallow_testAt","last_card_in_the_deckAt","peaceAt", "the_9_of_stingsAt","nunc___lp_150260_rpAt","vista_pruningAt","arkoAt","groyneAt","asahiAt","casioAt","employees_must_wash_handsAt","time_apos_s_arrowAt","gooAt","six_of_resolutionsAt","narrowsAt","_8_hyph_bit_paradiseAt","death_card_ast_At","Last_night_com_I_had_that_dream_againAt","maximum_lethalityAt","bogeymanAt","bad_haircutAt","puzzledAt","trackingAt","eagleAt","all_the_way_downAt","snow_pileAt","against_the_grainAt","caughtAt","loserAt","caution_cardAt","tv_tableAt", "stations_of_the_crossAt","private_jokeAt", "every_instagram_reel_be_likeAt","on_shaky_groundAt","facepalmAt", "crabAt","agree_to_disagreeAt","fencedAt","looksmaxxingAt","ice_outAt","four_squared_of_clubsAt","_At", "eigengrauAt","L_apos_AtmosphèreAt","announcementAt", "well_hyph_trodden_pathAt","explanationsAt","an_island_in_an_islandAt","floatAt","sitter_of_a_suitAt","dancer_of_a_suitAt","ruler_of_a_suitAt", "death_card_with_a_bad_comb_overAt","basinAt","sailing_stonesAt","kompromatAt","water_markAt","cinder_blockAt","b_a_u_h_a_u_sAt","house_in_the_woodsAt","mocaAt","aphantasiaAt","sketch_artistAt","wellAt","giant_com_gold_com_jewel_hyph_encrusted_crucifixAt","templateAt","auraAt","plate_spinnerAt","crop_circleAt","hand_stencilAt", "self_hyph_organized_criticalityAt","goldilocksAt", "on_the_monkey_apos_s_face_elip_At","perscriptionAt","chicken_broccoli_tortilla_and_one_other_thingAt","loopingAt","solitaireAt","on_edgeAt", "_2014_unused_day_plannerAt","brickAt","l_apos_arc_de_brutalismeAt","are_we_the_bad_guys_now_q_At","f__m__kAt","ineffectual_finger_hyph_waggingAt","greenlandAt","razor_bladeAt","a_series_of_explosionsAt", "indoor_hatAt", "you_apos_re_soaking_in_itAt","caused_by_vigorous_handshakesAt","concentricAt","t_rex_armsAt","org_chartAt","reverse_centaurAt","transparencyAt","tech_drawerAt","changelingAt","fonts_for_some_reasonAt", "pulfrich_effectAt", "alignmentAt","monopolyAt","war_crimesAt","illnessAt","divorceAt","computeAt","old_ageAt","quiet_piggy_exc_At","dog_that_didn_apos_t_barkAt","desire_pathAt","ouijaAt","tombstoneAt","bug_At","rorschach_testAt","yoink_exc_At","landscapeAt","waitingAt","shake_a_faceAt","inflection_pointAt","witnessAt", "oblique_strategiesAt","random_walkAt",  "ceci_n_apos_est_pas_une_carteAt","object_permanenceAt","rules_of_pokerAt", "spandrelAt","संसारAt","walled_gardenAt","is_it_prime_q_At","judgmentalAt","one_trick_ponyAt","about_to_walk_off_a_cliffAt","tech_broAt","müller_hyph_lyer_illusionAt","_19th_century_capitalism_themed_cardAt","datura_stramoniumAt", "stochastic_parrotAt", "eye_contactAt","load_cellAt", "trompe_l_apos_oeilAt","vaccineAt","evAt","knot_theoryAt","four_color_theoremAt","hierophantAt","free_readingAt","lubbers_sp__lp_alt_rp_At","wokeAt","bubbleAt","flash_cardAt","mtg_cardAt","unoAt","six_of_heartsAt","sufferingAt","lubbersAt","halfCardsAt","narcissusAt","undoingAt","relicAt","untitled_drawing_appAt","acAt","triple_deckerAt","tofuAt","crossroadsAt","burnerAt","constancyAt","last_matchAt","crossword_puzzleAt","orreryAt","draw_your_own_cardAt","picture_thisAt","densityAt","have_we_learned_nothing_yet_q_At", "promisesAt","lureAt","turbulenceAt", "reductionAt","ironing_boardAt", "anendophasiaAt","ten_of_cuisenaire_rodsAt","ten_of_ironingAt","indeterminate_of_swordsAt","pre_hyph_complianceAt","horse_shoeAt","magnetAt","contentAt","sensitiveAt","big_footAt","cognitive_dissonanceAt","fertilityAt","exitAt", "nonexistent_filesAt","schröder_apos_s_staircaseAt","marginaliaAt", "requirementsAt","doom_on_a_tarot_cardAt","toy_soldierAt","hidden_variablesAt","entscheidungsproblemAt","backPatternAt","vitruvian_manAt","_3DAt","schrödinger_apos_s_catAt","what_is_a_concentration_camp_q_At","special_interestsAt","stygian_blueAt", "day_dayAt","mary_apos_s_roomAt","chinese_roomAt","matrix_multiplicationAt","meditationAt","metalAt","quantity_has_a_quality_all_its_ownAt","meridiansAt","no_signalAt","garden_pathAt","captchaAt", "cookie_policyAt","subscription_requiredAt","el_viaje_del_héroeAt", "small_handsAt","tacoAt","when_your_sleeves_meet_your_waistbandAt","krebs_cycleAt","key_exchangeAt","numerologyAt","slide_ruleAt","is_he_dead_yet_q_At","illusion_of_controlAt","palm_readingAt","printerAt","turntableAt","reading_tea_leavesAt","no_kingsAt","tin_foil_hatAt","spell_checkAt","hands_offAt","cancerAt","elementaryAt","gunAt","disappearedAt","symbolic_fencingAt","calculatorAt","empty_roomsAt","dissatisfactionAt","rock_paper_scissorsAt","color_modelAt","volvelleAt", "wheel_of_consumptionAt","iglooAt","knock_knockAt","canceledAt","ikebanaAt","optimal_dishwasher_loadingAt","reactorAt","knife_drawerAt","off_with_their_headsAt","mid_century_modernAt","ishihara_testAt","phrenologyAt","don_apos_t_happy_com_be_worryAt","unpluggedAt","right_over_my_headAt","chainsawAt", "algorithmAt","victoryAt","fifty_minute_hourAt","taintAt","square_peg_in_a_round_holeAt","brain_wormAt","life_cycleAt","fridgeAt","mute_swanAt","salamanderAt","pooAt","fig_leafAt","cul_de_sacAt","no_such_thing_as_a_free_lunchAt","need_helpAt","climate_changeAt", "flashlightAt","credit_cardAt","image_not_foundAt","got_your_noseAt","fallout_shelterAt", "world_upside_downAt","periodic_tableAt","disco_ballAt","mulletAt","pitted_olive_that_yet_has_a_pitAt","lobotomyAt","toaster_falling_into_bathtubAt","erasedAt","water_cycleAt", "sol_lewittAt","rothkoAt","newspeakAt","spinelessAt","babylonAt","rentre_chez_toi_com_ta_mère_a_fait_des_gaufresAt","didn_apos_t_finish_her_drinkAt","under_thumbAt","inner_earAt","bending_the_knee_kissing_the_ringAt","asciiAt","starAt","blue_screen_of_deathAt","surveillance_capitalismAt","art_promptAt","finger_trickAt","toilet_paperAt","render_harmlessAt","uphill_both_waysAt","propagandaAt","palindromeAt","infinityAt","comedianAt","butterAt","participationAt","check_engine_lightAt","dnaAt","tail_wagging_the_dogAt","enlightenmentAt","buffleheadsAt", "trees_on_the_hillsideAt","on_the_spectrumAt", "mittensAt","casseroleAt","snitches_get_stitchesAt","misprintAt","resistanceAt","zero_knowledge_proofAt","razorAt","not_my_circus_not_my_monkeysAt","hurricaneAt","i_apos_m_with_stupidAt","liberal_eliteAt","patriarchyAt","cellular_automataAt","local_maximaAt", "scotomaAt","snailAt","reciprocalAt","tree_hugging_communistAt","synapseAt","cat_doorAt","your_better_halfAt","cone_of_shameAt","traumaAt","convenience_store_sushiAt","red_lineAt","people_are_sayingAt","tidally_lockedAt","swimming_in_circlesAt","flowAt","concept_of_a_planAt","bomberAt","nimbyAt","sanewashingAt","artspeakAt","mass_shootingAt","hunter_bidens_laptopAt","dyslexiaAt","rear_viewAt","bobberAt","double_slitAt","burdenAt","sunporchAt","jogo_do_bichoAt","bathtub_madonnaAt","did_you_even_read_my_email_q_At","automatic_writingAt","scratchy_sweaterAt","ramenAt", "like_and_followAt","like_pulling_teethAt","agoraphobiaAt","flying_dreamAt","acrophobiaAt","accidentAt","a_trapAt","up_lateAt","soundingsAt","pants_on_fireAt","house_on_fireAt","colanderAt","deer_in_the_headlightsAt","meteor_showerAt","auroraAt","night_drivingAt","full_moonAt","asteriskAt","pat_yourself_on_the_backAt","gray_areaAt","crazy_cat_ladyAt","frogAt","transducerAt","synecdocheAt", "counterfactualAt","koanAt","pareidoliaAt","red_shirtAt","lithomancyAt","trope_they_re_shutting_down_the_x_filesAt","you_make_a_better_door_than_a_windowAt","swimming_poolAt", "sigilAt","bothsidesismAt","psychicAt","magic_8_ballAt", "mixtapeAt","homunculus_has_left_the_buildingAt","palimpsestAt","too_far_awayAt","lazy_evaluationAt","stay_in_your_laneAt","holy_days_of_obligationAt","late_stage_capitalismAt","ouroborosAt","traveling_salesmanAt","no_longer_supportedAt", "P_versus_NPAt","field_guideAt","empty_signifierAt","fallen_idolAt","idling_black_pickup_with_tinted_windowsAt","empty_tableAt","tankAt","stainAt","unhingedAt","splashdownAt","stageAt","foundationalismAt","stone_of_madnessAt","anosognosiaAt","jailAt","philosopherAt","serverAt","paperclipAt","fox_and_hareAt","kilroyAt", "copy_and_pasteAt","person_man_woman_camera_tvAt","endless_shrimpAt","chiralityAt","tracesAt","topologyAt","soldAt","perfectly_normal_cowboy_bootsAt","dogcowAt","upendedAt","self_referenceAt", "representationAt","geminiAt","punch_cardAt","invisible_handAt","unknown_birdAt", "dormerAt","skates_purseAt","shopping_cartAt","tickAt","incomingAt","passwordAt","snowmanAt", "calendarAt","gliderAt","hang_manAt","octopusAt","reel_to_reelAt","flyover_statesAt","coffee_makerAt","big_cityAt","joineryAt","missingAt","hexAt",/*"unoAt","fourofdiamondsAt",*/"space_intentionally_left_blankAt","regexAt","one_of_suitsAt","galleryAt","le_crépusculeAt","pongAt", "meanAt","quantum_tunnellingAt","mona_lisaAt", "divide_by_zeroAt","your_pointy_elbowsAt","workAt","doll_houseAt","pixelAt","game_pieceAt","gameAt","windAt","steering_wheelAt", "urgentAt", "holeAt","evidenceAt", "solar_systemAt","suburbsAt","empty_setAt","nowAt","scattered_leavesAt","cabin_air_filterAt","tape_dispenserAt","running_with_scissorsAt","free_palletsAt","whaleAt","bacteriophageAt","stone_wallAt","eyeglassesAt","blast_radiusAt","winter_stickAt","dreyAt","oocyteAt","bird_cageAt","parking_lotAt","lemonAt","dieAt","riverAt","progress_indicatorAt","postcardAt", "keyholeAt", "puzzle_pieceAt", "monitorAt", "impossibleAt", "uphillAt", "connect_the_dotsAt","dog_whistleAt"]  
+  "holding_all_the_cardsAt","mirror_boxAt","entropyAt","shaving_brushAt","apical_meristemAt","circleAt","v_mi_e_pl_f_eq_2At","early_warning_signsAt","drosteAt","qwertyAt","cell_theoryAt","QR_codeAt","puffed_upAt","transitive_propertyAt","resetAt","owlAt","logAt","why_you_can_apos_t_beat_pacmanAt","sideburnsAt","dimples_cln_causes_and_treatmentAt","neon_spreadAt","café_wallAt","corner_store_com_spa_com_bodegaAt","_3_gray_housesAt","unimpressive_optical_illusionAt","this_card_says_it_apos_s_jesusAt","rotating_the_square_pieceAt","ballroomAt","a_hole_in_the_screenAt","equilibrationAt","skip_AdAt", "scrabbleAt","dedenkind_cutAt","shield_and_weaponAt","fingerprintAt","stone_ageS̲At","stanford_marshmallow_testAt","last_card_in_the_deckAt","peaceAt", "the_9_of_stingsAt","nunc___lp_150260_rp_At","vista_pruningAt","arkoAt","groyneAt","asahiAt","casioAt","employees_must_wash_handsAt","time_apos_s_arrowAt","gooAt","six_of_resolutionsAt","narrowsAt","_8_hyph_bit_paradiseAt","death_card_ast_At","Last_night_com_I_had_that_dream_againAt","maximum_lethalityAt","bogeymanAt","bad_haircutAt","puzzledAt","trackingAt","eagleAt","all_the_way_downAt","snow_pileAt","against_the_grainAt","caughtAt","loserAt","caution_cardAt","tv_tableAt", "stations_of_the_crossAt","private_jokeAt", "every_instagram_reel_be_likeAt","on_shaky_groundAt","facepalmAt", "crabAt","agree_to_disagreeAt","fencedAt","looksmaxxingAt","ice_outAt","four_squared_of_clubsAt","_At", "eigengrauAt","L_apos_AtmosphèreAt","announcementAt", "well_hyph_trodden_pathAt","explanationsAt","an_island_in_an_islandAt","floatAt","sitter_of_a_suitAt","dancer_of_a_suitAt","ruler_of_a_suitAt", "death_card_with_a_bad_comb_overAt","basinAt","sailing_stonesAt","kompromatAt","water_markAt","cinder_blockAt","b_a_u_h_a_u_sAt","house_in_the_woodsAt","mocaAt","aphantasiaAt","sketch_artistAt","wellAt","giant_com_gold_com_jewel_hyph_encrusted_crucifixAt","templateAt","auraAt","plate_spinnerAt","crop_circleAt","hand_stencilAt", "self_hyph_organized_criticalityAt","goldilocksAt", "on_the_monkey_apos_s_face_elip_At","perscriptionAt","chicken_broccoli_tortilla_and_one_other_thingAt","loopingAt","solitaireAt","on_edgeAt", "_2014_unused_day_plannerAt","brickAt","l_apos_arc_de_brutalismeAt","are_we_the_bad_guys_now_q_At","f__m__kAt","ineffectual_finger_hyph_waggingAt","greenlandAt","razor_bladeAt","a_series_of_explosionsAt", "indoor_hatAt", "you_apos_re_soaking_in_itAt","caused_by_vigorous_handshakesAt","concentricAt","t_rex_armsAt","org_chartAt","reverse_centaurAt","transparencyAt","tech_drawerAt","changelingAt","fonts_for_some_reasonAt", "pulfrich_effectAt", "alignmentAt","monopolyAt","war_crimesAt","illnessAt","divorceAt","computeAt","old_ageAt","quiet_piggy_exc_At","dog_that_didn_apos_t_barkAt","desire_pathAt","ouijaAt","tombstoneAt","bug_At","rorschach_testAt","yoink_exc_At","landscapeAt","waitingAt","shake_a_faceAt","inflection_pointAt","witnessAt", "oblique_strategiesAt","random_walkAt",  "ceci_n_apos_est_pas_une_carteAt","object_permanenceAt","rules_of_pokerAt", "spandrelAt","संसारAt","walled_gardenAt","is_it_prime_q_At","judgmentalAt","one_trick_ponyAt","about_to_walk_off_a_cliffAt","tech_broAt","müller_hyph_lyer_illusionAt","_19th_century_capitalism_themed_cardAt","datura_stramoniumAt", "stochastic_parrotAt", "eye_contactAt","load_cellAt", "trompe_l_apos_oeilAt","vaccineAt","evAt","knot_theoryAt","four_color_theoremAt","hierophantAt","free_readingAt","lubbers_sp__lp_alt_rp_At","wokeAt","bubbleAt","flash_cardAt","mtg_cardAt","unoAt","six_of_heartsAt","sufferingAt","lubbersAt","halfCardsAt","narcissusAt","undoingAt","relicAt","untitled_drawing_appAt","acAt","triple_deckerAt","tofuAt","crossroadsAt","burnerAt","constancyAt","last_matchAt","crossword_puzzleAt","orreryAt","draw_your_own_cardAt","picture_thisAt","densityAt","have_we_learned_nothing_yet_q_At", "promisesAt","lureAt","turbulenceAt", "reductionAt","ironing_boardAt", "anendophasiaAt","ten_of_cuisenaire_rodsAt","ten_of_ironingAt","indeterminate_of_swordsAt","pre_hyph_complianceAt","horse_shoeAt","magnetAt","contentAt","sensitiveAt","big_footAt","cognitive_dissonanceAt","fertilityAt","exitAt", "nonexistent_filesAt","schröder_apos_s_staircaseAt","marginaliaAt", "requirementsAt","doom_on_a_tarot_cardAt","toy_soldierAt","hidden_variablesAt","entscheidungsproblemAt","backPatternAt","vitruvian_manAt","_3DAt","schrödinger_apos_s_catAt","what_is_a_concentration_camp_q_At","special_interestsAt","stygian_blueAt", "day_dayAt","mary_apos_s_roomAt","chinese_roomAt","matrix_multiplicationAt","meditationAt","metalAt","quantity_has_a_quality_all_its_ownAt","meridiansAt","no_signalAt","garden_pathAt","captchaAt", "cookie_policyAt","subscription_requiredAt","el_viaje_del_héroeAt", "small_handsAt","tacoAt","when_your_sleeves_meet_your_waistbandAt","krebs_cycleAt","key_exchangeAt","numerologyAt","slide_ruleAt","is_he_dead_yet_q_At","illusion_of_controlAt","palm_readingAt","printerAt","turntableAt","reading_tea_leavesAt","no_kingsAt","tin_foil_hatAt","spell_checkAt","hands_offAt","cancerAt","elementaryAt","gunAt","disappearedAt","symbolic_fencingAt","calculatorAt","empty_roomsAt","dissatisfactionAt","rock_paper_scissorsAt","color_modelAt","volvelleAt", "wheel_of_consumptionAt","iglooAt","knock_knockAt","canceledAt","ikebanaAt","optimal_dishwasher_loadingAt","reactorAt","knife_drawerAt","off_with_their_headsAt","mid_century_modernAt","ishihara_testAt","phrenologyAt","don_apos_t_happy_com_be_worryAt","unpluggedAt","right_over_my_headAt","chainsawAt", "algorithmAt","victoryAt","fifty_minute_hourAt","taintAt","square_peg_in_a_round_holeAt","brain_wormAt","life_cycleAt","fridgeAt","mute_swanAt","salamanderAt","pooAt","fig_leafAt","cul_de_sacAt","no_such_thing_as_a_free_lunchAt","need_helpAt","climate_changeAt", "flashlightAt","credit_cardAt","image_not_foundAt","got_your_noseAt","fallout_shelterAt", "world_upside_downAt","periodic_tableAt","disco_ballAt","mulletAt","pitted_olive_that_yet_has_a_pitAt","lobotomyAt","toaster_falling_into_bathtubAt","erasedAt","water_cycleAt", "sol_lewittAt","rothkoAt","newspeakAt","spinelessAt","babylonAt","rentre_chez_toi_com_ta_mère_a_fait_des_gaufresAt","didn_apos_t_finish_her_drinkAt","under_thumbAt","inner_earAt","bending_the_knee_kissing_the_ringAt","asciiAt","starAt","blue_screen_of_deathAt","surveillance_capitalismAt","art_promptAt","finger_trickAt","toilet_paperAt","render_harmlessAt","uphill_both_waysAt","propagandaAt","palindromeAt","infinityAt","comedianAt","butterAt","participationAt","check_engine_lightAt","dnaAt","tail_wagging_the_dogAt","enlightenmentAt","buffleheadsAt", "trees_on_the_hillsideAt","on_the_spectrumAt", "mittensAt","casseroleAt","snitches_get_stitchesAt","misprintAt","resistanceAt","zero_knowledge_proofAt","razorAt","not_my_circus_not_my_monkeysAt","hurricaneAt","i_apos_m_with_stupidAt","liberal_eliteAt","patriarchyAt","cellular_automataAt","local_maximaAt", "scotomaAt","snailAt","reciprocalAt","tree_hugging_communistAt","synapseAt","cat_doorAt","your_better_halfAt","cone_of_shameAt","traumaAt","convenience_store_sushiAt","red_lineAt","people_are_sayingAt","tidally_lockedAt","swimming_in_circlesAt","flowAt","concept_of_a_planAt","bomberAt","nimbyAt","sanewashingAt","artspeakAt","mass_shootingAt","hunter_bidens_laptopAt","dyslexiaAt","rear_viewAt","bobberAt","double_slitAt","burdenAt","sunporchAt","jogo_do_bichoAt","bathtub_madonnaAt","did_you_even_read_my_email_q_At","automatic_writingAt","scratchy_sweaterAt","ramenAt", "like_and_followAt","like_pulling_teethAt","agoraphobiaAt","flying_dreamAt","acrophobiaAt","accidentAt","a_trapAt","up_lateAt","soundingsAt","pants_on_fireAt","house_on_fireAt","colanderAt","deer_in_the_headlightsAt","meteor_showerAt","auroraAt","night_drivingAt","full_moonAt","asteriskAt","pat_yourself_on_the_backAt","gray_areaAt","crazy_cat_ladyAt","frogAt","transducerAt","synecdocheAt", "counterfactualAt","koanAt","pareidoliaAt","red_shirtAt","lithomancyAt","trope_they_re_shutting_down_the_x_filesAt","you_make_a_better_door_than_a_windowAt","swimming_poolAt", "sigilAt","bothsidesismAt","psychicAt","magic_8_ballAt", "mixtapeAt","homunculus_has_left_the_buildingAt","palimpsestAt","too_far_awayAt","lazy_evaluationAt","stay_in_your_laneAt","holy_days_of_obligationAt","late_stage_capitalismAt","ouroborosAt","traveling_salesmanAt","no_longer_supportedAt", "P_versus_NPAt","field_guideAt","empty_signifierAt","fallen_idolAt","idling_black_pickup_with_tinted_windowsAt","empty_tableAt","tankAt","stainAt","unhingedAt","splashdownAt","stageAt","foundationalismAt","stone_of_madnessAt","anosognosiaAt","jailAt","philosopherAt","serverAt","paperclipAt","fox_and_hareAt","kilroyAt", "copy_and_pasteAt","person_man_woman_camera_tvAt","endless_shrimpAt","chiralityAt","tracesAt","topologyAt","soldAt","perfectly_normal_cowboy_bootsAt","dogcowAt","upendedAt","self_referenceAt", "representationAt","geminiAt","punch_cardAt","invisible_handAt","unknown_birdAt", "dormerAt","skates_purseAt","shopping_cartAt","tickAt","incomingAt","passwordAt","snowmanAt", "calendarAt","gliderAt","hang_manAt","octopusAt","reel_to_reelAt","flyover_statesAt","coffee_makerAt","big_cityAt","joineryAt","missingAt","hexAt",/*"unoAt","fourofdiamondsAt",*/"space_intentionally_left_blankAt","regexAt","one_of_suitsAt","galleryAt","le_crépusculeAt","pongAt", "meanAt","quantum_tunnellingAt","mona_lisaAt", "divide_by_zeroAt","your_pointy_elbowsAt","workAt","doll_houseAt","pixelAt","game_pieceAt","gameAt","windAt","steering_wheelAt", "urgentAt", "holeAt","evidenceAt", "solar_systemAt","suburbsAt","empty_setAt","nowAt","scattered_leavesAt","cabin_air_filterAt","tape_dispenserAt","running_with_scissorsAt","free_palletsAt","whaleAt","bacteriophageAt","stone_wallAt","eyeglassesAt","blast_radiusAt","winter_stickAt","dreyAt","oocyteAt","bird_cageAt","parking_lotAt","lemonAt","dieAt","riverAt","progress_indicatorAt","postcardAt", "keyholeAt", "puzzle_pieceAt", "monitorAt", "impossibleAt", "uphillAt", "connect_the_dotsAt","dog_whistleAt"]  
 let noDraw = ["skip_AdAt","six_of_resolutionsAt","six_of_resolutions2At","templateAt","on_edgeAt","monopolyAt","mtg_cardAt","bug_At", "rules_of_pokerAt","n_of_clubsAt","about_to_walk_off_a_cliffAt","tcardAt","spiral_boundAt","six_of_heartsAt","tarjetas_rojasAt","credit_cardAt","image_not_foundAt","misprintAt","fourofdiamondsAt","unoAt"]
 let noCaption = ["explanationsAt","tcardAt","spiral_boundAt"]
 let autoDraw = ["skip_AdAt","six_of_resolutionsAt","six_of_resolutions2At","explanationsAt","templateAt","on_edgeAt","monopolyAt","landscapeAt","rules_of_pokerAt","n_of_clubsAt","about_to_walk_off_a_cliffAt","trompe_l_apos_oeilAt","free_readingAt","flash_cardAt","mtg_cardAt","unoAt","six_of_heartsAt", "halfCardsAt"]
 let apostrophy = ["skates_purseAt","hunter_bidens_laptopAt"]
-let noThe = ["entropyAt","v_mi_e_pl_f_eq_2At","early_warning_signsAt","drosteAt","qwertyAt","cell_theoryAt","puffed_upAt","transitive_propertyAt","resetAt","why_you_can_apos_t_beat_pacmanAt","dimples_cln_causes_and_treatmentAt","neon_spreadAt","_3_gray_housesAt","this_card_says_it_apos_s_jesusAt","rotating_the_square_pieceAt","a_hole_in_the_screenAt","equilibrationAt","skip_AdAt","scrabbleAt","dedenkind_cutAt","shield_and_weaponAt", "peaceAt","the_9_of_stingsAt","nunc___lp_150260_rpAt","vista_pruningAt","arkoAt","employees_must_wash_handsAt","time_apos_s_arrowAt","gooAt",,"_8_hyph_bit_paradiseAt","Last_night_com_I_had_that_dream_againAt","maximum_lethalityAt","puzzledAt","trackingAt","all_the_way_downAt","against_the_grainAt","caughtAt","loserAt","every_instagram_reel_be_likeAt","on_shaky_groundAt","agree_to_disagreeAt","fencedAt","looksmaxxingAt","ice_outAt","_At","eigengrauAt","L_apos_AtmosphèreAt","an_island_in_an_islandAt","kompromatAt","b_a_u_h_a_u_sAt","house_in_the_woodsAt","mocaAt","aphantasiaAt","sketch_artistAt","giant_com_gold_com_jewel_hyph_encrusted_crucifixAt","self_hyph_organized_criticalityAt", "goldilocksAt", "on_the_monkey_apos_s_face_elip_At","chicken_broccoli_tortilla_and_one_other_thingAt","loopingAt","solitaireAt","_2014_unused_day_plannerAt","l_apos_arc_de_brutalismeAt","are_we_the_bad_guys_now_q_At","f__m__kAt","ineffectual_finger_hyph_waggingAt","greenlandAt","a_series_of_explosionsAt","you_apos_re_soaking_in_itAt","caused_by_vigorous_handshakesAt","concentricAt","t_rex_armsAt","transparencyAt","fonts_for_some_reasonAt","alignmentAt","war_crimesAt","illnessAt","divorceAt","old_ageAt","quiet_piggy_exc_At","ouijaAt","bug_At","yoink_exc_At","landscapeAt","waitingAt","shake_a_faceAt","oblique_strategiesAt","poker_faceAt","ceci_n_apos_est_pas_une_pipeAt","ceci_n_apos_est_pas_une_carteAt","object_permanenceAt","संसारAt","is_it_prime_q_At","judgmentalAt", "batten_down_the_hatchesAt", "_19th_century_capitalism_themed_cardAt","datura_stramoniumAt","goedkeuringskrulAt","eye_contactAt","trompe_l_apos_oeilAt","knot_theoryAt","wokeAt","sufferingAt","halfCardsAt","narcissusAt","untitled_drawing_appAt","tofuAt","constancyAt","draw_your_own_cardAt","picture_thisAt","densityAt","have_we_learned_nothing_yet_q_At", "promisesAt","turbulenceAt", "reductionAt","anendophasiaAt","pre_hyph_complianceAt","sensitiveAt","big_footAt","cognitive_dissonanceAt","transparent__lp_not_rp_At","fertilityAt","schröder_apos_s_staircaseAt","doom_on_a_tarot_cardAt","hidden_variablesAt","entscheidungsproblemAt","_3DAt","schrödinger_apos_s_catAt","what_is_a_concentration_camp_q_At","special_interestsAt","stygian_blueAt","day_dayAt","mary_apos_s_roomAt","matrix_multiplicationAt","meditationAt","metalAt","quantity_has_a_quality_all_its_ownAt","no_signalAt","don_apos_t_care_about_why_you_switched_browsersAt","zodiacAt","subscription_requiredAt","sisyphusAt","el_viaje_del_héroeAt","when_your_sleeves_meet_your_waistbandAt","key_exchangeAt","numerologyAt","is_he_dead_yet_q_At","palm_readingAt","reading_tea_leavesAt","no_kingsAt","hands_offAt","cancerAt","elementaryAt","gunAt","disappearedAt","symbolic_fencingAt","empty_roomsAt","dissatisfactionAt","rock_paper_scissorsAt","votiveAt","knock_knockAt","canceledAt","ikebanaAt","optimal_dishwasher_loadingAt","off_with_their_headsAt","mid_century_modernAt","phrenologyAt","don_apos_t_happy_com_be_worryAt","unpluggedAt","right_over_my_headAt","victoryAt","tarjetas_rojasAt","taintAt","square_peg_in_a_round_holeAt","thumbs_upAt","trope_detective_pursuing_suspectAt","pooAt","no_such_thing_as_a_free_lunchAt","need_helpAt","climate_changeAt","image_not_foundAt","got_your_noseAt","tearsAt","toaster_falling_into_bathtubAt","erasedAt","sol_lewittAt","albersAt","newspeakAt","babylonAt","rentre_chez_toi_com_ta_mère_a_fait_des_gaufresAt","didn_apos_t_finish_her_drinkAt","under_thumbAt","bending_the_knee_kissing_the_ringAt","surveillance_capitalismAt","toilet_paperAt","render_harmlessAt","uphill_both_waysAt","propagandaAt","infinityAt","butterAt","participationAt","dnaAt","enlightenmentAt","buffleheadsAt","trees_on_the_hillsideAt","on_the_spectrumAt","bokeh_At","trash_dayAt","snitches_get_stitchesAt","gone_silentAt","resistanceAt","bicycles_are_everywhereAt","gigoAt","not_my_circus_not_my_monkeysAt","i_apos_m_with_stupidAt","patriarchyAt","your_better_halfAt","traumaAt","convenience_store_sushiAt","people_are_sayingAt","swimming_in_circlesAt","flowAt","concept_of_a_planAt","nimbyAt","sanewashingAt","artspeakAt","hunter_bidens_laptopAt","dyslexiaAt","jogo_do_bichoAt","did_you_even_read_my_email_q_At","like_and_followAt","like_pulling_teethAt","agoraphobiaAt","flying_dreamAt","acrophobiaAt","a_trapAt","up_lateAt","soundingsAt","pants_on_fireAt","house_on_fireAt","deer_in_the_headlightsAt","night_drivingAt","pat_yourself_on_the_backAt","synecdocheAt","pareidoliaAt","lithomancyAt","trope_they_re_shutting_down_the_x_filesAt","you_make_a_better_door_than_a_windowAt","La_macetaAt","bothsidesismAt","psychicAt","lazy_evaluationAt","stay_in_your_laneAt","holy_days_of_obligationAt","late_stage_capitalismAt","P_versus_NPAt","idling_black_pickup_with_tinted_windowsAt","unhingedAt","foundationalismAt","anosognosiaAt","jailAt","fox_and_hareAt","kilroyAt", "redactedAt","copy_and_pasteAt","la_coronaAt","la_campanaAt","la_peraAt","la_sandíaAt","heads_or_tailsAt","doomscrollingAt","surface_areaAt","person_man_woman_camera_tvAt","chiralityAt","tracesAt","topologyAt","soldAt","upendedAt","self_referenceAt","representationAt","geminiAt","hang_manAt","space_intentionally_left_blankAt","le_crépusculeAt","pongAt","quantum_tunnellingAt","divide_by_zeroAt","your_pointy_elbowsAt","workAt","urgentAt","nowAt","scattered_leavesAt","running_with_scissorsAt","too_many_thingsAt","flock_of_birdsAt","aiAt","walk_it_backAt","thread_the_needleAt","indicate_by_pointingAt","press_the_buttonAt","conference_room_bAt", "ghost_in_the_machineAt", "gas_station_shrubberyAt", "greenwashingAt", "refractionAt", "clickbaotAt",  "plate_tectonicsAt",
+let noThe = ["holding_all_the_cardsAt","entropyAt","v_mi_e_pl_f_eq_2At","early_warning_signsAt","drosteAt","qwertyAt","cell_theoryAt","puffed_upAt","transitive_propertyAt","resetAt","why_you_can_apos_t_beat_pacmanAt","dimples_cln_causes_and_treatmentAt","neon_spreadAt","_3_gray_housesAt","this_card_says_it_apos_s_jesusAt","rotating_the_square_pieceAt","a_hole_in_the_screenAt","equilibrationAt","skip_AdAt","scrabbleAt","dedenkind_cutAt","shield_and_weaponAt", "peaceAt","the_9_of_stingsAt","nunc___lp_150260_rp_At","vista_pruningAt","arkoAt","employees_must_wash_handsAt","time_apos_s_arrowAt","gooAt",,"_8_hyph_bit_paradiseAt","Last_night_com_I_had_that_dream_againAt","maximum_lethalityAt","puzzledAt","trackingAt","all_the_way_downAt","against_the_grainAt","caughtAt","loserAt","every_instagram_reel_be_likeAt","on_shaky_groundAt","agree_to_disagreeAt","fencedAt","looksmaxxingAt","ice_outAt","_At","eigengrauAt","L_apos_AtmosphèreAt","an_island_in_an_islandAt","kompromatAt","b_a_u_h_a_u_sAt","house_in_the_woodsAt","mocaAt","aphantasiaAt","sketch_artistAt","giant_com_gold_com_jewel_hyph_encrusted_crucifixAt","self_hyph_organized_criticalityAt", "goldilocksAt", "on_the_monkey_apos_s_face_elip_At","chicken_broccoli_tortilla_and_one_other_thingAt","loopingAt","solitaireAt","_2014_unused_day_plannerAt","l_apos_arc_de_brutalismeAt","are_we_the_bad_guys_now_q_At","f__m__kAt","ineffectual_finger_hyph_waggingAt","greenlandAt","a_series_of_explosionsAt","you_apos_re_soaking_in_itAt","caused_by_vigorous_handshakesAt","concentricAt","t_rex_armsAt","transparencyAt","fonts_for_some_reasonAt","alignmentAt","war_crimesAt","illnessAt","divorceAt","old_ageAt","quiet_piggy_exc_At","ouijaAt","bug_At","yoink_exc_At","landscapeAt","waitingAt","shake_a_faceAt","oblique_strategiesAt","poker_faceAt","ceci_n_apos_est_pas_une_pipeAt","ceci_n_apos_est_pas_une_carteAt","object_permanenceAt","संसारAt","is_it_prime_q_At","judgmentalAt", "batten_down_the_hatchesAt", "_19th_century_capitalism_themed_cardAt","datura_stramoniumAt","goedkeuringskrulAt","eye_contactAt","trompe_l_apos_oeilAt","knot_theoryAt","wokeAt","sufferingAt","halfCardsAt","narcissusAt","untitled_drawing_appAt","tofuAt","constancyAt","draw_your_own_cardAt","picture_thisAt","densityAt","have_we_learned_nothing_yet_q_At", "promisesAt","turbulenceAt", "reductionAt","anendophasiaAt","pre_hyph_complianceAt","sensitiveAt","big_footAt","cognitive_dissonanceAt","transparent__lp_not_rp_At","fertilityAt","schröder_apos_s_staircaseAt","doom_on_a_tarot_cardAt","hidden_variablesAt","entscheidungsproblemAt","_3DAt","schrödinger_apos_s_catAt","what_is_a_concentration_camp_q_At","special_interestsAt","stygian_blueAt","day_dayAt","mary_apos_s_roomAt","matrix_multiplicationAt","meditationAt","metalAt","quantity_has_a_quality_all_its_ownAt","no_signalAt","don_apos_t_care_about_why_you_switched_browsersAt","zodiacAt","subscription_requiredAt","sisyphusAt","el_viaje_del_héroeAt","when_your_sleeves_meet_your_waistbandAt","key_exchangeAt","numerologyAt","is_he_dead_yet_q_At","palm_readingAt","reading_tea_leavesAt","no_kingsAt","hands_offAt","cancerAt","elementaryAt","gunAt","disappearedAt","symbolic_fencingAt","empty_roomsAt","dissatisfactionAt","rock_paper_scissorsAt","votiveAt","knock_knockAt","canceledAt","ikebanaAt","optimal_dishwasher_loadingAt","off_with_their_headsAt","mid_century_modernAt","phrenologyAt","don_apos_t_happy_com_be_worryAt","unpluggedAt","right_over_my_headAt","victoryAt","tarjetas_rojasAt","taintAt","square_peg_in_a_round_holeAt","thumbs_upAt","trope_detective_pursuing_suspectAt","pooAt","no_such_thing_as_a_free_lunchAt","need_helpAt","climate_changeAt","image_not_foundAt","got_your_noseAt","tearsAt","toaster_falling_into_bathtubAt","erasedAt","sol_lewittAt","albersAt","newspeakAt","babylonAt","rentre_chez_toi_com_ta_mère_a_fait_des_gaufresAt","didn_apos_t_finish_her_drinkAt","under_thumbAt","bending_the_knee_kissing_the_ringAt","surveillance_capitalismAt","toilet_paperAt","render_harmlessAt","uphill_both_waysAt","propagandaAt","infinityAt","butterAt","participationAt","dnaAt","enlightenmentAt","buffleheadsAt","trees_on_the_hillsideAt","on_the_spectrumAt","bokeh_At","trash_dayAt","snitches_get_stitchesAt","gone_silentAt","resistanceAt","bicycles_are_everywhereAt","gigoAt","not_my_circus_not_my_monkeysAt","i_apos_m_with_stupidAt","patriarchyAt","your_better_halfAt","traumaAt","convenience_store_sushiAt","people_are_sayingAt","swimming_in_circlesAt","flowAt","concept_of_a_planAt","nimbyAt","sanewashingAt","artspeakAt","hunter_bidens_laptopAt","dyslexiaAt","jogo_do_bichoAt","did_you_even_read_my_email_q_At","like_and_followAt","like_pulling_teethAt","agoraphobiaAt","flying_dreamAt","acrophobiaAt","a_trapAt","up_lateAt","soundingsAt","pants_on_fireAt","house_on_fireAt","deer_in_the_headlightsAt","night_drivingAt","pat_yourself_on_the_backAt","synecdocheAt","pareidoliaAt","lithomancyAt","trope_they_re_shutting_down_the_x_filesAt","you_make_a_better_door_than_a_windowAt","La_macetaAt","bothsidesismAt","psychicAt","lazy_evaluationAt","stay_in_your_laneAt","holy_days_of_obligationAt","late_stage_capitalismAt","P_versus_NPAt","idling_black_pickup_with_tinted_windowsAt","unhingedAt","foundationalismAt","anosognosiaAt","jailAt","fox_and_hareAt","kilroyAt", "redactedAt","copy_and_pasteAt","la_coronaAt","la_campanaAt","la_peraAt","la_sandíaAt","heads_or_tailsAt","doomscrollingAt","surface_areaAt","person_man_woman_camera_tvAt","chiralityAt","tracesAt","topologyAt","soldAt","upendedAt","self_referenceAt","representationAt","geminiAt","hang_manAt","space_intentionally_left_blankAt","le_crépusculeAt","pongAt","quantum_tunnellingAt","divide_by_zeroAt","your_pointy_elbowsAt","workAt","urgentAt","nowAt","scattered_leavesAt","running_with_scissorsAt","too_many_thingsAt","flock_of_birdsAt","aiAt","walk_it_backAt","thread_the_needleAt","indicate_by_pointingAt","press_the_buttonAt","conference_room_bAt", "ghost_in_the_machineAt", "gas_station_shrubberyAt", "greenwashingAt", "refractionAt", "clickbaotAt",  "plate_tectonicsAt",
 "furniture_at_nightAt", "misheard_lyriclet f = randomPsAt", "negative_spaceAt","nice_thingsAt", "talkAt", "connect_the_dotsAt", "entanglementAt",'get_off_my_lawnAt']
 let shortlist = ["local_maximaAt","calendarAt","nowAt"]
 let tall = ['eclipseAt', 'tarjetas_rojasAt', 'spiral_boundAt', 'maximum_lethalityAt', 'trackingAt', 'stations_of_the_crossAt', 'on_shaky_groundAt', '_At', 'L_apos_AtmosphèreAt', 'explanationsAt', 'astronaut_of_a_suitAt', 'sitter_of_a_suitAt', 'dancer_of_a_suitAt', 'ruler_of_a_suitAt', 'kompromatAt', 'b_a_u_h_a_u_sAt', 'house_in_the_woodsAt', 'mocaAt', 'templateAt', 'on_edgeAt', 'monopolyAt', 'bug_At', 'random_walkAt', 'ceci_n_apos_est_pas_une_carteAt', 'rules_of_pokerAt', 'about_to_walk_off_a_cliffAt', 'trompe_l_apos_oeilAt', 'free_readingAt', 'flash_cardAt', 'mtg_cardAt', 'unoAt', 'six_of_heartsAt', 'halfCardsAt', 'ten_of_ironingAt', 'backPatternAt', 'vitruvian_manAt', 'image_not_foundAt', 'infinityAt', 'misprintAt']
@@ -342,6 +342,9 @@ function titleize (f, INVERT) {
   if (apostrophy.includes(f)) {
     text = text.replace(/s_/g, "'s_")
   }
+  text = text.replace(/_lp_/gi, "(")
+  text = text.replace(/_ast_/gi, "*")
+  text = text.replace(/_rp_/gi, ")")
   text = text.replace(/_apos_/gi, "'")
   text = text.replace(/_pl_/gi, " + ")
   text = text.replace(/_mi_/gi, " - ")
@@ -371,6 +374,9 @@ function cardNamePrint (f) {
   if (apostrophy.includes(f)) {
     text = text.replace(/s_/g, "'s_")
   }
+  text = text.replace(/_lp_/gi, "(")
+  text = text.replace(/_ast_/gi, "*")
+  text = text.replace(/_rp_/gi, ")")
   text = text.replace(/_apos_/gi, "'")
   text = text.replace(/_pl_/gi, " + ")
   text = text.replace(/_mi_/gi, " - ")
@@ -446,7 +452,7 @@ function twosides () {
   tint()
   x = 0, y = 0
   w = W/2*0.84, h = w*1.5//8 - 10
-  let funcs = ["qwertyAt"]//shuffle(recent())//shuffle(atList)
+  let funcs = shuffle(recent())//shuffle(atList)
  // funcs.push("six_of_heartsAt")
   funcs = shuffle(funcs)
   if (document.getElementById("palettechoice").value === "dos")
@@ -1250,6 +1256,280 @@ function dystoptiaAt (x,y,W,color) {
 }
 
 /* funks ==================================================*/
+
+function holding_all_the_cardsAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let H = W, cpx, cpy, points = []
+  let savedF = ctx.fillStyle, savedS = ctx.strokeStyle, WAVEY = false
+  let cs = W/32, d = 0, i = 0, maxi = 1, y0 = y
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  if (WAVEY) {
+    d = cs/2, maxi = 13
+    ctx.lineWidth = 1 + document.getElementById("featuresize").value/150
+  }
+  ctx.strokeStyle = color
+  ctx.fillStyle = color
+  ctx.lineCap = "square"
+  ctx.lineJoin = "bevel"
+  ctx.lineWidth = cs/4
+  ctx.save()
+  //3
+  ctx.beginPath()
+  ctx.moveTo(x+28*cs+pet(d/2), y+32*cs+pet(d/2))
+  cpx = x+6*cs
+  cpy = y+32*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+6*cs+pet(d), y+32*cs+pet(d))
+  cpx = x+4*cs
+  cpy = y+32*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+4*cs+pet(d), y+30*cs+pet(d))
+  cpx = x+4*cs
+  cpy = y+28*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+6*cs+pet(d), y+28*cs+pet(d))
+  cpx = x+24*cs
+  cpy = y+28*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+24*cs+pet(d), y+28*cs+pet(d))
+  cpx = x+28*cs
+  cpy = y+28*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+28*cs+pet(d), y+24*cs+pet(d))
+  cpx = x+28*cs
+  cpy = y+20*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+28*cs+pet(d), y+20*cs+pet(d))
+  cpx = x+28*cs
+  cpy = y+16*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+31*cs+pet(d), y+16*cs+pet(d))
+  cpx = x+32*cs
+  cpy = y+16*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+32*cs+pet(d), y+17*cs+pet(d))
+  cpx = x+32*cs
+  cpy = y+26*cs
+  ctx.quadraticCurveTo(cpx+pet(d/2), cpy+pet(d/2), x+32*cs+pet(d/2), y+26*cs+pet(d/2))
+  ctx.stroke()
+
+  ctx.beginPath()
+  ctx.moveTo(x+28*cs+pet(d/2), y+24*cs+pet(d/2))
+  ctx.lineTo(x+28*cs+pet(d), y+6*cs+pet(d))
+  ctx.lineTo(x+6*cs+pet(d), y+6*cs+pet(d))
+  ctx.lineTo(x+0*cs+pet(d), y+0*cs+pet(d))
+  ctx.lineTo(x+0*cs+pet(d), y+22*cs+pet(d))
+  ctx.lineTo(x+6*cs+pet(d), y+28*cs+pet(d))
+  ctx.lineTo(x+24*cs+pet(d), y+28*cs+pet(d))
+  cpx = x+28*cs
+  cpy = y+28*cs
+  ctx.quadraticCurveTo(cpx+pet(d/2), cpy+pet(d/2), x+28*cs+pet(d/2), y+24*cs+pet(d/2))
+  ctx.clip()
+  ctx.lineWidth = cs/10
+  for (; i < 44; i++) { // WAVEY
+    ctx.beginPath()
+    ctx.moveTo(x+0*cs+pet(d/2), y+0*cs+pet(d/2))
+    ctx.lineTo(x+6*cs+pet(d), y+6*cs+pet(d))
+    ctx.lineTo(x+28*cs+pet(d/2), y+6*cs+pet(d/2))
+    ctx.stroke()
+    y += cs/2
+  }
+  y = y0
+  ctx.restore()
+  ctx.lineWidth = cs/4
+  //4
+  ctx.beginPath()
+  ctx.moveTo(x+4*cs+pet(d/2), y+30*cs+pet(d/2))
+  cpx = x+2*cs
+  cpy = y+30*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+2*cs+pet(d), y+28*cs+pet(d))
+  cpx = x+2*cs
+  cpy = y+26*cs
+  ctx.quadraticCurveTo(cpx+pet(d/2), cpy+pet(d/2), x+4*cs+pet(d/2), y+26*cs+pet(d/2))
+  ctx.stroke()
+
+  //5
+  ctx.beginPath()
+  ctx.moveTo(x+2*cs+pet(d/2), y+28*cs+pet(d/2))
+  cpx = x+0*cs
+  cpy = y+28*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+0*cs+pet(d), y+26*cs+pet(d))
+  cpx = x+0*cs
+  cpy = y+24*cs
+  ctx.quadraticCurveTo(cpx+pet(d/2), cpy+pet(d/2), x+2*cs+pet(d/2), y+24*cs+pet(d/2))
+  ctx.stroke()
+
+  //3 pinky
+  ctx.beginPath()
+  ctx.moveTo(x+0*cs+pet(d/2), y+26*cs+pet(d/2))
+  cpx = x-2*cs
+  cpy = y+26*cs
+  ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x-2*cs+pet(d), y+24*cs+pet(d))
+  cpx = x-2*cs
+  cpy = y+22*cs
+  ctx.quadraticCurveTo(cpx+pet(d/2), cpy+pet(d/2), x+0*cs+pet(d/2), y+22*cs+pet(d/2))
+  ctx.stroke()
+
+  ctx.beginPath()
+  ctx.moveTo(x+2.7*cs+pet(d/2), y+1*cs+pet(d/2))
+  ctx.lineTo(x+7*cs+pet(d), y+5*cs+pet(d))
+  ctx.lineTo(x+25.3*cs+pet(d), y+5*cs+pet(d))
+  ctx.lineTo(x+21*cs+pet(d), y+1*cs+pet(d))
+  ctx.lineTo(x+2.7*cs+pet(d/2), y+1*cs+pet(d/2))
+  ctx.stroke()
+
+  ctx.beginPath()
+  ctx.moveTo(x+0*cs+pet(d/2), y+0*cs+pet(d/2))
+  ctx.lineTo(x+6*cs+pet(d), y+6*cs+pet(d))
+  ctx.lineTo(x+28*cs+pet(d), y+6*cs+pet(d))
+  ctx.lineTo(x+22*cs+pet(d), y+0*cs+pet(d))
+  ctx.lineTo(x+0*cs+pet(d/2), y+0*cs+pet(d/2))
+  ctx.stroke()
+  
+  ctx.strokeStyle = savedS
+  ctx.fillStyle = savedF
+}
+
+function mirror_boxAt (x,y,W,color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  
+  let H = W, cpx, cpy, points = []
+  let savedF = ctx.fillStyle, savedS = ctx.strokeStyle, WAVEY = true
+  let cs = W/24, d = 0, i = 0, maxi = 1
+  W += cs*2, H = W
+  cs = W/24
+  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  if (WAVEY) {
+    d = cs/2, maxi = 13
+    ctx.lineWidth = 1 + document.getElementById("featuresize").value/150
+  }
+  ctx.strokeStyle = color
+  ctx.fillStyle = color
+  ctx.lineCap = "square"
+  ctx.lineJoin = "bevel"
+  y -= cs*2
+  for (; i < maxi; i++) { // WAVEY
+    //1
+    ctx.beginPath()
+    ctx.moveTo(x+0*cs+pet(d/2), y+12*cs+pet(d/2))
+    ctx.lineTo(x+5*cs+pet(d), y+9*cs+pet(d))
+    ctx.lineTo(x+12*cs+pet(d), y+13*cs+pet(d))
+    ctx.lineTo(x+22*cs+pet(d), y+13*cs+pet(d))
+    ctx.lineTo(x+22*cs+pet(d), y+22*cs+pet(d))
+    ctx.lineTo(x+12*cs+pet(d), y+22*cs+pet(d))
+    ctx.lineTo(x+5*cs+pet(d), y+19*cs+pet(d))
+    ctx.lineTo(x+0*cs+pet(d), y+22*cs+pet(d))
+    ctx.lineTo(x+0*cs+pet(d/2), y+12*cs+pet(d/2))
+    ctx.stroke()
+
+    //2
+    ctx.beginPath()
+    ctx.moveTo(x+5*cs+pet(d/2), y+9*cs+pet(d/2))
+    ctx.lineTo(x+5*cs+pet(d/2), y+19*cs+pet(d/2))
+    ctx.stroke()
+
+    //3
+    ctx.beginPath()
+    ctx.moveTo(x+12*cs+pet(d/2), y+13*cs+pet(d/2))
+    ctx.lineTo(x+12*cs+pet(d/2), y+22*cs+pet(d/2))
+    ctx.stroke()
+
+    //4
+    ctx.beginPath()
+    ctx.moveTo(x+16*cs+pet(d/2), y+10*cs+pet(d/2))
+    ctx.lineTo(x+19*cs+pet(d), y+15*cs+pet(d))
+    ctx.lineTo(x+16*cs+pet(d), y+19*cs+pet(d))
+    ctx.lineTo(x+14*cs+pet(d/2), y+19*cs+pet(d/2))
+    ctx.stroke()
+
+    //5
+    ctx.beginPath()
+    ctx.moveTo(x+10*cs+pet(d/2), y+19*cs+pet(d/2))
+    ctx.lineTo(x+8*cs+pet(d), y+19*cs+pet(d))
+    ctx.lineTo(x+6*cs+pet(d), y+15*cs+pet(d))
+    ctx.lineTo(x+7.5*cs+pet(d/2), y+10.5*cs+pet(d/2))
+    ctx.stroke()
+
+    //11
+    ctx.beginPath()
+    ctx.moveTo(x+5*cs+pet(d/2), y+13*cs+pet(d/2))
+    ctx.lineTo(x+12*cs+pet(d/2), y+13*cs+pet(d/2))
+    ctx.stroke()
+
+    //12
+    ctx.beginPath()
+    ctx.moveTo(x+8*cs+pet(d/2), y+13*cs+pet(d/2))
+    ctx.lineTo(x+8*cs+pet(d/2), y+11*cs+pet(d/2))
+    ctx.stroke()
+
+    //6
+    ctx.beginPath()
+    ctx.arc(x+9*cs+pet(d/2), y+17.7*cs+pet(d/2), cs, 0, 2*Math.PI)
+    ctx.stroke()
+
+    //7
+    ctx.beginPath()
+    ctx.arc(x+15*cs+pet(d/2), y+17.7*cs+pet(d/2), cs, 0, 2*Math.PI)
+    ctx.stroke()
+
+    //8
+    ctx.beginPath()
+    ctx.moveTo(x+16*cs+pet(d/2), y+13*cs+pet(d/2))
+    cpx = x+16*cs
+    cpy = y+10*cs
+    ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+16*cs+pet(d), y+10*cs+pet(d))
+    cpx = x+16*cs
+    cpy = y+8*cs
+    ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+12*cs+pet(d), y+8*cs+pet(d))
+    cpx = x+8*cs
+    cpy = y+8*cs
+    ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+8*cs+pet(d), y+10*cs+pet(d))
+    ctx.lineTo(x+8*cs+pet(d/2), y+11*cs+pet(d/2))
+    ctx.stroke()
+
+    //16 nose
+    ctx.beginPath()
+    ctx.moveTo(x+12.5*cs+pet(d/2), y+5*cs+pet(d/2))
+    ctx.lineTo(x+12*cs+pet(d), y+6*cs+pet(d))
+    ctx.lineTo(x+12.5*cs+pet(d/2), y+6*cs+pet(d/2))
+    ctx.stroke()
+
+    //15
+    ctx.beginPath()
+    ctx.moveTo(x+12*cs+pet(d/2), y+8*cs+pet(d/2))
+    cpx = x+15*cs
+    cpy = y+8*cs
+    ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+15*cs+pet(d), y+5*cs+pet(d))
+    cpx = x+15*cs
+    cpy = y+2*cs
+    ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+13*cs+pet(d), y+2*cs+pet(d))
+    cpx = x+10*cs
+    cpy = y+2*cs
+    ctx.quadraticCurveTo(cpx+pet(d), cpy+pet(d), x+10*cs+pet(d), y+5*cs+pet(d))
+    cpx = x+10*cs
+    cpy = y+8*cs
+    ctx.quadraticCurveTo(cpx+pet(d/2), cpy+pet(d/2), x+12*cs+pet(d/2), y+8*cs+pet(d/2))
+    ctx.stroke()
+
+    //10
+    if (i === 0) {
+      ctx.beginPath()
+      ctx.moveTo(x+0*cs+pet(d/2), y+22*cs+pet(d/2))
+      ctx.lineTo(x+12*cs+pet(d), y+22*cs+pet(d))
+      ctx.lineTo(x+5*cs+pet(d/2), y+19*cs+pet(d/2))
+      ctx.globalAlpha = 0.4
+      ctx.fill()
+
+      //14
+      ctx.beginPath()
+      ctx.moveTo(x+0*cs+pet(d/2), y+22*cs+pet(d/2))
+      ctx.lineTo(x+5*cs+pet(d), y+19*cs+pet(d))
+      ctx.lineTo(x+5*cs+pet(d), y+9*cs+pet(d))
+      ctx.lineTo(x+0*cs+pet(d/2), y+12*cs+pet(d/2))
+      ctx.globalAlpha = 0.1
+      ctx.fill()
+      ctx.globalAlpha = 1
+    }
+
+  } //WAVEY
+  ctx.strokeStyle = savedS
+  ctx.fillStyle = savedF
+}
+
 function letterkeyAt (x,y,W,color,letter) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -7142,7 +7422,7 @@ function the_9_of_stingsAt (x,y,W,color) {
   ctx.fillStyle = savedF
 }
 
-function  nunc___lp_150260_rpAt (x,y,W,color) { //150260
+function  nunc___lp_150260_rp_At (x,y,W,color) { //150260
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let H = W, cpx, cpy, points = []
