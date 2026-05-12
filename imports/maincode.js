@@ -99,10 +99,10 @@ function drawD () {
 
 let WD = 0, WS = 0, TEMP = 0, CONDITIONS = ""// windAt
 let LEFTX = 0
-window.onload = function () {
+ window.onload = function () {
   let myCanvas = document.getElementById("myCanvas")
-  //let ctx = myCanvas.getContext("2d")
-  const ctx = myCanvas.getContext('2d', {willReadFrequently: true});
+  let ctx = myCanvas.getContext("2d")
+  //const ctx = myCanvas.getContext('2d', {willReadFrequently: true});
   document.addEventListener('keydown', (event) => {    
     let key = event.key
     if (!document.getElementById("typing").checked) {
@@ -118,7 +118,7 @@ window.onload = function () {
   });
   WD = wd()
   myCanvas.getContext("2d")
-  ctx.willReadFrequently = true
+ // ctx.willReadFrequently = true
   resizeCanvas()
   LASTCLICK[0] = myCanvas.width/2
   LASTCLICK[1] = myCanvas.height/2
@@ -887,8 +887,24 @@ if (type === 'faded poster') {
     b = ["#9f1233", "#3b463c", "#763c08", "#28545c", "#644e17", "#944300", "#a03b43", "#d4a070", "#c6ab66", "#e8ab1c", "#89c0c2", "#92c1bb", "#dbba82", "#f6d9ad"]
     updateExtraColors(b)
   } else
+  if (type === 'flora') {
+    b = ["#a44565", "#b84541", "#b75b61", "#a87a90", "#d67c09", "#719370", "#7d936d", "#ef775d", "#ced4ac", "#ffd05e", "#ffd766", "#f3d1c9", "#ffd7a4", "#e8e3b9", "#fee2b2", "#fffcc4"]
+    updateExtraColors(b)
+  } else
   if (type === 'carte postale') {
     b = ["#e1e0e0", "#bdb493", "#c1af5b", "#a6a178", "#b09c3c", "#9a977f", "#2e425f", "#4e3b28", "#94271e", "#273347", "#5a1f1f", "#282622"]
+    updateExtraColors(b)
+  } else
+    if (type === 'sepia') {
+    b = ["#512b10", "#61350f", "#70522e", "#b49c7e", "#bba991", "#e7d7c1"]
+    updateExtraColors(b)
+  } else
+  if (type === 'science') {
+  b = ["#11121b", "#3621ba", "#2b3358", "#483029", "#a21c1b", "#892496", "#bd2344", "#b12492", "#943f11", "#3c5b28", "#b37359", "#7c8190", "#758e3d", "#5d956b", "#c48897", "#d99a41", "#91c24d", "#a8b79c", "#e3d855", "#e1d7b7"]
+  updateExtraColors(b)
+} else
+  if (type === 'comix') {
+    b = ["#11100e", "#541e1d", "#ac2227", "#504947", "#b55e4f", "#7f7920", "#5d7ea5", "#da7596", "#9e9479", "#e07ebf", "#94a7bc", "#e49978", "#dbb149", "#d5c6a3", "#f3de56", "#faf7e8"]
     updateExtraColors(b)
   } else
   if (type === 'dali') {
@@ -899,6 +915,10 @@ if (type === 'faded poster') {
   b = ["#2a3c4c", "#4d4535", "#a84d2b", "#705f4b", "#556883", "#9b93af", "#e49174", "#c5a466", "#bfbaa3", "#e4ddb9"]
   updateExtraColors(b)
 } else
+  if (type === 'browning') {
+    b = ["#f7e9d5", "#e2d2a9", "#cfb677", "#cf9976", "#c89352", "#a64e3b", "#6c5761", "#94365d", "#733e30", "#443654"]
+    updateExtraColors(b)
+  } else
   if (type === 'jogo do bicho') {
     b = ["#342422", "#2e3948", "#b42d05", "#415440", "#a7411f", "#645742", "#b7a195", "#b8a483", "#d9a23b", "#caa85f", "#a2b4c5", "#cdb69d"]
     updateExtraColors(b)
@@ -1215,6 +1235,8 @@ function pushMarker() {
 }
 
 function syncMarker (NOSHOW) {
+  let marker = document.getElementById("marker")
+  let ctx = marker.getContext("2d")
   let m = document.getElementById("marker")
   let w = document.getElementById("myCanvas").width
   let h = document.getElementById("myCanvas").height
@@ -2639,6 +2661,7 @@ function sortByHue (colors) {
 function extractPalette (canvas) {
   if (!canvas)
     canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d");
   if (isCanvasBlank(canvas))
     return
   let colors = colorSamplePalette(canvas, false, false)
@@ -6666,7 +6689,6 @@ function stack_pasteFromOff () {
   OCctx.closePath()
   OCctx.clip()
   multiScraps(OC)
-  
 
   ctx.globalAlpha = 1.0
   let mode = ctx.globalCompositeOperation
@@ -6709,15 +6731,14 @@ async function copyToOff () {
 function swapWithOff () {
   let OC = document.getElementById('OC')
   let canvas = document.getElementById('myCanvas')
+  let ctx = canvas.getContext('2d')
   if (isCanvasBlank(OC)) {
-    //console.log('blank')
     OC.height = canvas.height
     OC.width = canvas.width
   }
  // console.log(canvas.width, OC.width)
   let mode = document.getElementById("mode").value
   if (OC && OC.width > 0) {
-    let ctx = canvas.getContext('2d')
     ctx.globalCompositeOperation = "source-over"
     let OCctx = OC.getContext('2d')
     OCctx.globalCompositeOperation = "source-over"
@@ -9013,12 +9034,11 @@ function randomAtItemAt () {
   window[randomPick(functions)](x,y,w,getselectedcolor(),Math.random()> 0.5)
 }
 
-  
 function everythingArray () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let W = canvas.width, H = canvas.height
-  let N = 10//randomPick([2])//7,9,11,13])
+  let N = 7//randomPick([2])//7,9,11,13])
   let functions = shuffle(atList)
   let pad = 2
   let delta = Math.round(W/N) - pad*1
@@ -9036,7 +9056,6 @@ function everythingArray () {
       y += delta+pad
     }
   }
- // console.log(i)
 }
 
 function cameraAt (x,y,W,color) {
@@ -39272,6 +39291,7 @@ function pasteFromOff () {
 }
 
 function smearrandom (c, d) {
+  let canvas
   if (c)
     canvas = c
   else
