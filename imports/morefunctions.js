@@ -54712,7 +54712,6 @@ function image_not_foundAt (x,y,W,color) {
   
   let savedF = ctx.fillStyle
   let savedS = ctx.strokeStyle
- // ctx.strokeStyle = color
   ctx.fillStyle = color
   ctx.lineCap = "square"
   ctx.lineJoin = "bevel"

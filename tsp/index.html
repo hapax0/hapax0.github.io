@@ -69,6 +69,7 @@
       height: 460px;
       margin-left: 1%;
       font-size:16px;
+      font-family:"Courier";
       tab-size : 4;
       background-color:#fbf7e9;
     }
@@ -98,7 +99,7 @@
       margin:2px 3px 0px 1px;
     }
     .number {
-      width:40px;
+      width:42px;
       height:20px;
       vertical-align: 50%;
     }
@@ -163,12 +164,13 @@
 <body>
 <div class="container">
 <div class="row">
-  <div class="column" style="width:270px;">
+  <div class="column" style="width:280px;">
     <span class="grouping">
    <label for="numpoints">N</label> 
    <input type="number" id="numpoints" value="50" class="number" min="3">
     <label for="testcases">points </label><select id="testcases" title="configuration">
       <option>random</option>
+      <option>u_dist</option>
       <option>costal</option>
       <option>disc</option>
       <option>ellipse</option>
@@ -243,11 +245,11 @@
     </span>
     <br>
     <span class="grouping">
-    <a href="javascript:dispatch('heuristic');" title="heuristic">
+    <!--a href="javascript:dispatch('heuristic');" title="heuristic">
     <svg xmlns="http://www.w3.org/2000/svg" class="solve" width="24" height="24" viewBox="0 0 240 240" version="1.1">
       <path fill-opacity="1.000" d="M 98 4.490 C 88.254 6.159, 79.206 8.554, 73.647 10.937 C 61.102 16.315, 49.108 26.653, 42.941 37.406 C 33.830 53.289, 30.398 79.901, 35.726 93.349 C 38.616 100.646, 46.103 110.089, 54.194 116.643 C 65.785 126.031, 71.280 132.029, 74.677 139 C 81.197 152.378, 83 165.216, 83 198.256 C 83 224.180, 83.452 226.851, 88.516 230.834 C 93.231 234.543, 100.591 236.146, 115.500 236.710 C 136.929 237.522, 149.173 234.679, 154.395 227.679 C 156.390 225.006, 156.534 223.262, 157.153 194.179 C 157.839 161.933, 158.617 155.449, 163.195 143.783 C 166.881 134.392, 171.845 128.134, 182.489 119.459 C 193.616 110.390, 201.586 100.749, 204.540 92.784 C 207.305 85.330, 207.100 66.744, 204.128 55.500 C 197.928 32.034, 182.158 15.498, 159.160 8.345 C 142.746 3.240, 115.372 1.514, 98 4.490 M 103.500 18.156 C 81.510 20.616, 66.190 28.475, 57.229 41.895 C 52.185 49.448, 49.402 57.773, 47.889 69.830 C 46.015 84.761, 48.411 91.568, 59.274 102.175 C 61.598 104.444, 66.010 108.146, 69.078 110.401 C 82.840 120.514, 92.224 137.677, 95.513 158.750 L 96.176 163 119.985 163 L 143.795 163 144.964 156.250 C 148.434 136.210, 157.449 120.397, 171.155 110.307 C 179.449 104.201, 186.618 96.607, 189.852 90.500 C 192.218 86.032, 192.486 84.490, 192.371 75.996 C 192.137 58.797, 187.055 45.055, 177.334 35.334 C 162.877 20.877, 135.703 14.555, 103.500 18.156 M 113 54 C 113 61.700, 112.769 68, 112.487 68 C 112.204 68, 105.631 64.823, 97.880 60.940 C 90.129 57.057, 83.663 54.019, 83.512 54.190 C 83.361 54.360, 81.868 57.231, 80.196 60.569 L 77.154 66.638 90.077 73.038 C 97.185 76.558, 103 79.691, 103 80 C 103 80.309, 97.185 83.442, 90.077 86.962 L 77.154 93.362 80.196 99.431 C 81.868 102.769, 83.361 105.640, 83.512 105.810 C 83.663 105.981, 90.129 102.943, 97.880 99.060 C 105.631 95.177, 112.204 92, 112.487 92 C 112.769 92, 113 98.300, 113 106 L 113 120 120 120 L 127 120 127 106 C 127 98.300, 127.231 92, 127.513 92 C 127.796 92, 134.369 95.177, 142.120 99.060 C 149.871 102.943, 156.337 105.981, 156.488 105.810 C 156.639 105.640, 158.132 102.769, 159.804 99.431 L 162.846 93.362 149.923 86.962 C 142.815 83.442, 137 80.309, 137 80 C 137 79.691, 142.815 76.558, 149.923 73.038 L 162.846 66.638 159.804 60.569 C 158.132 57.231, 156.639 54.360, 156.488 54.190 C 156.337 54.019, 149.871 57.057, 142.120 60.940 C 134.369 64.823, 127.796 68, 127.513 68 C 127.231 68, 127 61.700, 127 54 L 127 40 120 40 L 113 40 113 54 M 111.500 178.543 C 96.403 181.067, 97 180.861, 97 183.545 C 97 186.696, 97.006 186.696, 119.347 182.983 C 142.427 179.146, 143 179.024, 143 177.921 C 143 176.556, 120.755 176.995, 111.500 178.543 M 120 187.056 C 110.925 188.621, 102.037 190.169, 100.250 190.496 C 97.628 190.976, 97 191.565, 97 193.545 C 97 196.696, 97.006 196.696, 119.347 192.983 C 144.642 188.778, 143 189.234, 143 186.421 C 143 183.299, 141.560 183.339, 120 187.056 M 120 197.056 C 110.925 198.621, 102.037 200.169, 100.250 200.496 C 97.628 200.976, 97 201.565, 97 203.545 C 97 206.696, 97.006 206.696, 119.347 202.983 C 144.642 198.778, 143 199.234, 143 196.421 C 143 193.299, 141.560 193.339, 120 197.056 M 120 207.056 C 110.925 208.621, 102.037 210.169, 100.250 210.496 C 97.628 210.976, 97 211.565, 97 213.545 C 97 216.696, 97.006 216.696, 119.347 212.983 C 144.642 208.778, 143 209.234, 143 206.421 C 143 203.299, 141.560 203.339, 120 207.056 M 118.665 217.274 C 104.510 219.695, 101.208 220.548, 102.665 221.405 C 105.278 222.943, 133.409 222.772, 138.750 221.185 C 142.509 220.069, 143 219.581, 143 216.961 C 143 214.264, 142.710 214.010, 139.750 214.112 C 137.963 214.173, 128.474 215.596, 118.665 217.274 " stroke="none" fill="black" fill-rule="evenodd"/>
     </svg>
-    </a>
+    </a-->
     <a href="javascript:dispatch('tidy');" title="tidy">
     <svg width="24" height="24" viewBox="0 0 6.3500004 6.3499998" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"> <rect x="49.384789" y="2.6351275" width="20.998407" height="33.791702" id="rect1400" /> <linearGradient id="linearGradient4589"> <stop style="stop-color:#ffffff;stop-opacity:1;" offset="0" id="stop4587" /> </linearGradient> <linearGradient id="linearGradient2621"> <stop style="stop-color:#ffffff;stop-opacity:1;" offset="0" id="stop2619" /> </linearGradient> </defs> <text xml:space="preserve" style="font-size:3.21502px;fill:none;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.608577" x="3.9980211" y="6.1156888" id="text1222" transform="scale(0.9967304,1.0032803)"><tspan id="tspan1220" style="stroke-width:0.608576" x="3.9980211" y="6.1156888" /></text> <text xml:space="preserve" style="font-size:3.21502px;fill:none;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.608577" x="4.1855493" y="5.8531489" id="text1276" transform="scale(0.9967304,1.0032803)"><tspan id="tspan1274" style="stroke-width:0.608576" x="4.1855493" y="5.8531489" /></text> <text xml:space="preserve" transform="matrix(0.26704261,0,0,0.26879745,0.10550286,0.0383962)" id="text1398" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;font-family:'DejaVu Serif';-inkscape-font-specification:'DejaVu Serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect1400);display:inline;fill:#000000;fill-opacity:0.99;fill-rule:evenodd;stroke:none;stroke-width:2.2715" /> <path style="fill:#bfbfbf;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.406164;stroke-miterlimit:1.9;stroke-dasharray:none;stroke-opacity:1" d="M 12.674805,6.0607157 17.980066,1.9371681" id="path1036" /> <path style="fill:none;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.33459;stroke-linecap:round" d="M 5.9412368,0.27740919 2.7769031,3.8766871" id="path376" /> <g id="g513" transform="matrix(0.7593228,0.66927923,-0.66490983,0.76431263,3.2595847,-1.062463)"> <path style="fill:none;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.247121" d="M 1.6180093,5.8813839 C 1.6089604,5.2977285 1.5999073,4.7138044 1.8150499,4.4171789 2.0301925,4.1205533 2.4692582,4.1115005 2.6865361,4.1069766 c 0.2172778,-0.00452 0.2127478,-0.00452 0.2079568,-0.00452" id="path432" /> <path style="fill:none;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.247121" d="M 4.117467,5.8813839 C 4.1265158,5.2977285 4.1355688,4.7138044 3.9204262,4.4171789 3.7052835,4.1205533 3.2662178,4.1115005 3.0489399,4.1069766 2.8316621,4.1024528 2.8361921,4.1024528 2.8409831,4.1024528" id="path436" /> <path style="fill:none;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.250749" d="M 1.7332736,4.774652 4.0149161,4.788214" id="path496" /> <path style="fill:none;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.247121" d="M 2.0728969,4.8631802 2.0593169,5.881652" id="path498" /> <path style="fill:none;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.247121" d="M 2.6020636,4.8631802 2.5884836,5.881652" id="path500" /> <path style="fill:none;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.247121" d="M 3.1312303,4.8631802 3.1176503,5.881652" id="path502" /> <path style="fill:none;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.247121" d="M 3.660397,4.8631802 3.646817,5.881652" id="path504" /> </g> </svg>
     </a>
@@ -267,82 +269,106 @@
     <a href="javascript:dispatch('poke_acute_angles')" class="act"  title="poke acute angles">
     <svg width="24" height="24" viewBox="0 0 240 240" version="1.1" id="svg471" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs475" /> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:11.5276;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none" d="m 6.4084636,159.75438 c 40.1676274,0.1472 22.5227104,-0.30309 54.6470064,-0.49801 15.03911,-1.24843 33.232871,-9.20867 34.491791,-27.42363 1.07418,-20.23724 0.59995,-18.88272 0,-27.58191 -0.90408,-15.909323 0.70307,-18.151657 24.423359,-18.552662 25.09722,0.167055 26.34836,0.265092 47.87377,0 9.48317,-9.912701 8.93762,-21.861009 -1.5556,-30.029279 -25.17336,-1.112562 -30.77469,0.06028 -62.32313,0 -67.827858,-0.454079 -37.063487,-0.749523 -98.0631534,0" id="path625" /> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:11.5276;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none" d="m 192.22621,97.539499 27.00624,19.348261" id="path1183" /> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:11.5276;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none" d="M 192.22621,43.181282 219.23245,23.833021" id="path1185" /> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:11.5276;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none" d="m 199.08013,71.072174 33.2191,-0.427539" id="path1187" /> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:11.5276;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none" d="M 195.51998,150.79007 92.769594,211.8324 H 207.14202" id="path1283" /> </svg>
     </a>
+    
     </span>
     <input type="file" id="fileInput" style="display:none;">
-  <!--span class="grouping">
-    <label for="search">run </label><select id="search">
-      <option >nearest_first_n</option>
-      <option >nearest_far_n</option>
-      <option>twoway_n</option>
-      <option >anneal</option>
-      <option selected>brute_force</option>
-    </select>
-    <a href="javascript:runsearch();" title="search for path">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-play" viewBox="0 0 16 16">
-    <path d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z"/>
-    </svg>
-    </a>
-    </span-->
     <br>
-    <!--span class="grouping">
-    <!--a href="javascript:topology(true)" class="act"  title="topology">
-      <svg width="24" height="24" viewBox="0 0 10.583334 10.583333" version="1.1" id="svg5" inkscape:version="1.2.2 (b0a8486541, 2022-12-01)" sodipodi:docname="top.svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <sodipodi:namedview id="namedview7" pagecolor="#ffffff" bordercolor="#000000" borderopacity="0.25" inkscape:showpageshadow="2" inkscape:pageopacity="0.0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#d1d1d1" inkscape:document-units="mm" showgrid="false" inkscape:zoom="6.8132435" inkscape:cx="30.015073" inkscape:cy="23.777221" inkscape:window-width="1280" inkscape:window-height="648" inkscape:window-x="0" inkscape:window-y="0" inkscape:window-maximized="1" inkscape:current-layer="layer1" /> <defs id="defs2"> <inkscape:path-effect effect="bspline" id="path-effect20051" is_visible="true" lpeversion="1" weight="33.333333" steps="2" helper_size="0" apply_no_weight="true" apply_with_weight="true" only_selected="false" /> <inkscape:path-effect effect="bspline" id="path-effect19268" is_visible="true" lpeversion="1" weight="33.333333" steps="2" helper_size="0" apply_no_weight="true" apply_with_weight="true" only_selected="false" /> <inkscape:path-effect effect="bspline" id="path-effect19264" is_visible="true" lpeversion="1" weight="33.333333" steps="2" helper_size="0" apply_no_weight="true" apply_with_weight="true" only_selected="false" /> <inkscape:path-effect effect="bspline" id="path-effect19260" is_visible="true" lpeversion="1" weight="33.333333" steps="2" helper_size="0" apply_no_weight="true" apply_with_weight="true" only_selected="false" /> <inkscape:path-effect effect="bspline" id="path-effect19202" is_visible="true" lpeversion="1" weight="33.333333" steps="2" helper_size="0" apply_no_weight="true" apply_with_weight="true" only_selected="false" /> <inkscape:path-effect effect="bspline" id="path-effect18427" is_visible="true" lpeversion="1" weight="33.333333" steps="2" helper_size="0" apply_no_weight="true" apply_with_weight="true" only_selected="false" /> <inkscape:path-effect effect="bspline" id="path-effect18423" is_visible="true" lpeversion="1" weight="33.333333" steps="2" helper_size="0" apply_no_weight="true" apply_with_weight="true" only_selected="false" /> <inkscape:path-effect effect="bspline" id="path-effect18411" is_visible="true" lpeversion="1" weight="33.333333" steps="2" helper_size="0" apply_no_weight="true" apply_with_weight="true" only_selected="false" /> <inkscape:path-effect effect="bspline" id="path-effect18407" is_visible="true" lpeversion="1" weight="33.333333" steps="2" helper_size="0" apply_no_weight="true" apply_with_weight="true" only_selected="false" /> <inkscape:path-effect effect="bspline" id="path-effect16122" is_visible="true" lpeversion="1" weight="33.333333" steps="2" helper_size="0" apply_no_weight="true" apply_with_weight="true" only_selected="false" /> <inkscape:path-effect effect="bspline" id="path-effect16118" is_visible="true" lpeversion="1" weight="33.333333" steps="2" helper_size="0" apply_no_weight="true" apply_with_weight="true" only_selected="false" /> <inkscape:path-effect effect="spiro" id="path-effect14662" is_visible="true" lpeversion="1" /> <inkscape:path-effect effect="bspline" id="path-effect14654" is_visible="true" lpeversion="1" weight="33.333333" steps="2" helper_size="0" apply_no_weight="true" apply_with_weight="true" only_selected="false" /> <inkscape:path-effect effect="bspline" id="path-effect14650" is_visible="true" lpeversion="1" weight="33.333333" steps="2" helper_size="0" apply_no_weight="true" apply_with_weight="true" only_selected="false" /> <inkscape:path-effect effect="bspline" id="path-effect14646" is_visible="true" lpeversion="1" weight="33.333333" steps="2" helper_size="0" apply_no_weight="true" apply_with_weight="true" only_selected="false" /> <inkscape:path-effect effect="bspline" id="path-effect11646" is_visible="true" lpeversion="1" weight="33.333333" steps="2" helper_size="0" apply_no_weight="true" apply_with_weight="true" only_selected="false" /> <inkscape:path-effect effect="bspline" id="path-effect11642" is_visible="true" lpeversion="1" weight="33.333333" steps="2" helper_size="0" apply_no_weight="true" apply_with_weight="true" only_selected="false" /> <inkscape:path-effect effect="bspline" id="path-effect11638" is_visible="true" lpeversion="1" weight="33.333333" steps="2" helper_size="0" apply_no_weight="true" apply_with_weight="true" only_selected="false" /> <inkscape:path-effect effect="bspline" id="path-effect11634" is_visible="true" lpeversion="1" weight="33.333333" steps="2" helper_size="0" apply_no_weight="true" apply_with_weight="true" only_selected="false" /> <inkscape:path-effect effect="bspline" id="path-effect11630" is_visible="true" lpeversion="1" weight="33.333333" steps="2" helper_size="0" apply_no_weight="true" apply_with_weight="true" only_selected="false" /> <inkscape:path-effect effect="bspline" id="path-effect11626" is_visible="true" lpeversion="1" weight="33.333333" steps="2" helper_size="0" apply_no_weight="true" apply_with_weight="true" only_selected="false" /> <inkscape:path-effect effect="spiro" id="path-effect4711" is_visible="true" lpeversion="1" /> <inkscape:path-effect effect="bspline" id="path-effect4651" is_visible="true" lpeversion="1" weight="33.333333" steps="2" helper_size="0" apply_no_weight="true" apply_with_weight="true" only_selected="false" /> <linearGradient id="linearGradient4589" inkscape:swatch="solid"> <stop style="stop-color:#ffffff;stop-opacity:1;" offset="0" id="stop4587" /> </linearGradient> <linearGradient id="linearGradient2621" inkscape:swatch="solid"> <stop style="stop-color:#ffffff;stop-opacity:1;" offset="0" id="stop2619" /> </linearGradient> <inkscape:path-effect effect="bspline" id="path-effect2586" is_visible="true" lpeversion="1" weight="33.333333" steps="2" helper_size="0" apply_no_weight="true" apply_with_weight="true" only_selected="false" /> <inkscape:path-effect effect="bspline" id="path-effect2582" is_visible="true" lpeversion="1" weight="33.333333" steps="2" helper_size="0" apply_no_weight="true" apply_with_weight="true" only_selected="false" /> <inkscape:path-effect effect="bspline" id="path-effect2578" is_visible="true" lpeversion="1" weight="33.333333" steps="2" helper_size="0" apply_no_weight="true" apply_with_weight="true" only_selected="false" /> <inkscape:path-effect effect="spiro" id="path-effect2574" is_visible="true" lpeversion="1" /> <inkscape:path-effect effect="spiro" id="path-effect2570" is_visible="true" lpeversion="1" /> <inkscape:path-effect effect="spiro" id="path-effect2566" is_visible="true" lpeversion="1" /> <inkscape:path-effect effect="spiro" id="path-effect2562" is_visible="true" lpeversion="1" /> <inkscape:path-effect effect="spiro" id="path-effect2558" is_visible="true" lpeversion="1" /> <inkscape:path-effect effect="spiro" id="path-effect2558-3" is_visible="true" lpeversion="1" /> <inkscape:path-effect effect="spiro" id="path-effect2562-6" is_visible="true" lpeversion="1" /> <inkscape:path-effect effect="spiro" id="path-effect2566-7" is_visible="true" lpeversion="1" /> <inkscape:path-effect effect="spiro" id="path-effect2570-5" is_visible="true" lpeversion="1" /> <inkscape:path-effect effect="spiro" id="path-effect2574-3" is_visible="true" lpeversion="1" /> <inkscape:path-effect effect="bspline" id="path-effect2578-5" is_visible="true" lpeversion="1" weight="33.333333" steps="2" helper_size="0" apply_no_weight="true" apply_with_weight="true" only_selected="false" /> <inkscape:path-effect effect="bspline" id="path-effect2582-6" is_visible="true" lpeversion="1" weight="33.333333" steps="2" helper_size="0" apply_no_weight="true" apply_with_weight="true" only_selected="false" /> <inkscape:path-effect effect="spiro" id="path-effect4711-2" is_visible="true" lpeversion="1" /> </defs> <g inkscape:label="Layer 1" inkscape:groupmode="layer" id="layer1" transform="translate(0.70652757,0.64974422)"> <circle style="fill:none;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.605;stroke-dasharray:none" id="path18403" cx="5.8693871" cy="3.0228522" r="4.979939" transform="rotate(18.131126)" /> <path style="fill:#bfbfbf;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.601001;stroke-dasharray:none" d="M 1.1681647,1.5408501 C 1.6700398,1.3010721 2.2852475,1.3520237 2.5826629,1.5750628 2.8800783,1.798102 2.8597741,2.1928462 2.6860713,2.5091168 2.5123684,2.8253874 2.1854242,3.0634197 2.0970338,3.3398842 2.0086434,3.6163487 2.158495,3.9310339 2.2257747,4.3293643 2.2930545,4.7276947 2.2779207,5.2095853 2.0894011,5.644835 1.9008816,6.0800846 1.539155,6.4688512 1.1728272,6.5561432 0.80649939,6.6434352 0.43524485,6.4293443 0.18642821,6.1424991 -0.06238843,5.855654 -0.18868161,5.4958447 -0.21775212,4.9334872 -0.24682263,4.3711298 -0.1785181,3.606234 0.04972981,2.9585655 0.27797771,2.310897 0.66628958,1.7806281 1.1681647,1.5408501 Z" id="path19258" inkscape:path-effect="#path-effect19260" inkscape:original-d="M 1.0547795,1.2501161 C 1.6700094,1.3014393 2.2852169,1.3523929 2.9004023,1.4029709 2.880117,1.798104 2.859816,2.1928484 2.8394887,2.5872268 2.512554,2.8256423 2.1856096,3.0636744 1.8586367,3.301338 2.0085166,3.6164091 2.1583683,3.9310942 2.3082005,4.2454122 2.2930885,4.7276958 2.2779548,5.2095864 2.2627984,5.6911134 1.9010803,6.0802695 1.539354,6.4690364 1.1775976,6.8574361 0.80634331,6.6437059 0.43508872,6.429615 0.06379062,6.2151381 -0.06248543,5.855688 -0.18877861,5.4958787 -0.31509695,5.1356873 -0.24676764,4.3711347 -0.17846294,3.6062389 -0.11017931,2.8409545 0.27817019,2.311038 0.66648206,1.7807691 1.0547795,1.2501161 Z" sodipodi:nodetypes="ccccccccccc" /> <path style="fill:#bfbfbf;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.601001;stroke-dasharray:none" d="M 7.2426179,0.81528306 C 6.6067744,0.65467963 5.7055134,0.6052955 5.14358,0.88315851 4.5816467,1.1610215 4.3594182,1.7659772 4.4151078,2.3216443 4.4707973,2.8773114 4.8041403,3.3834988 5.1806168,3.4574102 5.5570934,3.5313216 5.9768504,3.1732936 6.3226773,3.1240463 6.6685042,3.074799 6.9401169,3.3340659 6.8782359,3.6981692 6.8163549,4.0622725 6.4212896,4.5314129 6.3905425,4.9945446 6.3597953,5.4576762 6.6931314,5.9144701 6.9584493,5.9760933 7.2237671,6.0377165 7.4212999,5.7043807 7.6807552,5.574738 7.9402105,5.4450953 8.2612005,5.51917 8.3536231,5.8649355 8.4460456,6.210701 8.3102422,6.8279901 8.48314,6.9636858 8.6560377,7.0993815 9.1375333,6.7536925 9.4091197,6.0994709 9.680706,5.4452493 9.7424364,4.4822586 9.5758579,3.66743 9.4092794,2.8526013 9.014206,2.1859155 8.6315242,1.7167074 8.2488424,1.2474994 7.8784615,0.97588649 7.2426179,0.81528306 Z" id="path19266" inkscape:path-effect="#path-effect19268" inkscape:original-d="M 7.5077749,0.70404949 C 6.6067607,0.65492897 5.7054997,0.60554484 4.8039383,0.55589416 4.5819655,1.1611386 4.359737,1.7660943 4.1372394,2.3707976 4.4708604,2.8772699 4.8042034,3.3834573 5.1372884,3.8893903 5.5573354,3.5316054 5.9770925,3.1735774 6.3966101,2.8152635 6.6684981,3.0748053 6.9401108,3.3340722 7.2114643,3.5930797 6.81664,4.0625127 6.4215748,4.5316531 6.0262215,5.0005566 6.359842,5.4576421 6.6931781,5.914436 7.0262696,6.3709927 7.224079,6.0379013 7.4216118,5.7045655 7.618892,5.3709449 7.940166,5.4452886 8.2611559,5.5193632 8.5819006,5.5931778 8.4463535,6.2107687 8.3105501,6.8280579 8.1744738,7.4451195 8.6562531,7.0996814 9.1377487,6.7539924 9.618989,6.4080321 9.6809864,5.4452673 9.7427169,4.4822766 9.8041838,3.519002 9.4093591,2.8525541 9.0142859,2.1858682 8.6189399,1.5189044 8.2488087,1.2475453 7.8784278,0.97593239 7.5077749,0.70404949 Z" sodipodi:nodetypes="ccccccccccccccc" /> <path style="fill:#bfbfbf;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.601001;stroke-dasharray:none" d="M 5.3898896,6.7659753 C 5.5235282,7.0849228 5.6106992,7.5591147 5.4532411,7.8914865 5.2957831,8.2238583 4.8939089,8.4140994 4.4171651,8.495556 3.9404213,8.5770127 3.3889603,8.5498098 3.1584295,8.2398717 2.9278987,7.9299337 3.0179391,7.3373481 3.2851722,7.0713846 3.5524053,6.8054212 3.9971844,6.8660577 4.295482,6.7619542 4.5937797,6.6578506 4.7452465,6.3889212 4.9108088,6.3361455 5.0763711,6.2833698 5.256251,6.4470278 5.3898896,6.7659753 Z" id="path20049" inkscape:path-effect="#path-effect20051" inkscape:original-d="M 5.4363927,6.6109241 C 5.5232149,7.0849804 5.6103859,7.5591723 5.6979057,8.0334996 5.2956662,8.2236114 4.8937928,8.4138541 4.4922589,8.6042343 3.9404271,8.5768944 3.3889661,8.5496915 2.8378425,8.5226237 2.9275376,7.9298788 3.0175781,7.3372932 3.107969,6.7448314 3.5524171,6.8053347 3.9971962,6.8659711 4.4423327,6.9267446 4.5934571,6.6576689 4.7449238,6.3887394 4.8967424,6.1199403 c 0.1795382,0.163529 0.3594181,0.327187 0.5396503,0.4909838 z" /> </g>
-      </svg>
-     </a>
-     <a href="javascript:showRings()" class="act"  title="rings">
-     <svg width="24" height="24" viewBox="0 0 6.3500004 6.3499998" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"> <rect x="49.384789" y="2.6351275" width="20.998407" height="33.791702" id="rect1400" /> <linearGradient id="linearGradient4589"> <stop style="stop-color:#ffffff;stop-opacity:1;" offset="0" id="stop4587" /> </linearGradient> <linearGradient id="linearGradient2621"> <stop style="stop-color:#ffffff;stop-opacity:1;" offset="0" id="stop2619" /> </linearGradient> </defs> <text xml:space="preserve" style="font-size:3.46038px;fill:none;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.655021;stroke-linecap:square" x="3.8287318" y="5.5606661" id="text1222"><tspan id="tspan1220" style="stroke-width:0.65502;stroke-linecap:square" x="3.8287318" y="5.5606661" /></text> <text xml:space="preserve" style="font-size:3.46038px;fill:none;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.02645833;stroke-linecap:square;stroke-dasharray:none" x="4.0305715" y="5.278091" id="text1276"><tspan id="tspan1274" style="stroke-width:0.02645833;stroke-linecap:square;stroke-dasharray:none" x="4.0305715" y="5.278091" /></text> <text xml:space="preserve" transform="matrix(0.2883649,0,0,0.2883649,-0.36047298,-0.98055192)" id="text1398" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;font-family:'DejaVu Serif';-inkscape-font-specification:'DejaVu Serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect1400);display:inline;fill:#000000;fill-opacity:0.99;fill-rule:evenodd;stroke:none;stroke-width:2.2715;stroke-linecap:square" /> <path id="path3308" style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.47;stroke-linecap:square;stroke-dasharray:none" d="M 1.852623,0.36708698 A 1.5752364,1.5752364 0 0 0 0.27700851,1.9421847 1.5752364,1.5752364 0 0 0 1.5963078,3.496095 1.5752364,1.5752364 0 0 0 1.214419,4.522389 1.5752364,1.5752364 0 0 0 2.7895167,6.0980034 1.5752364,1.5752364 0 0 0 4.3594467,4.6500298 1.5752364,1.5752364 0 0 0 4.5139593,4.658298 1.5752364,1.5752364 0 0 0 6.0890569,3.0832003 1.5752364,1.5752364 0 0 0 4.5139593,1.5081026 1.5752364,1.5752364 0 0 0 3.4277206,1.9432182 a 1.5752364,1.5752364 0 0 0 0,-0.00103 A 1.5752364,1.5752364 0 0 0 1.852623,0.36708698 Z" /> </svg>   
-     </a>
-    <a href="javascript:allConnections(true)" title="connections">
-    <svg width="24" height="24" viewBox="0 0 6.3500004 6.3499998" version="1.1" id="svg5" sodipodi:docname="cons.svg" inkscape:version="1.2.2 (b0a8486541, 2022-12-01)" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <sodipodi:namedview id="namedview204" pagecolor="#ffffff" bordercolor="#000000" borderopacity="0.25" inkscape:showpageshadow="2" inkscape:pageopacity="0.0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#d1d1d1" showgrid="false" inkscape:zoom="19.916667" inkscape:cx="8.7112971" inkscape:cy="5.7740586" inkscape:window-width="1280" inkscape:window-height="648" inkscape:window-x="0" inkscape:window-y="0" inkscape:window-maximized="1" inkscape:current-layer="svg5" /> <defs id="defs2"> <rect x="49.384789" y="2.6351275" width="20.998407" height="33.791702" id="rect1400" /> <linearGradient id="linearGradient4589"> <stop style="stop-color:#ffffff;stop-opacity:1;" offset="0" id="stop4587" /> </linearGradient> <linearGradient id="linearGradient2621"> <stop style="stop-color:#ffffff;stop-opacity:1;" offset="0" id="stop2619" /> </linearGradient> </defs> <path style="color:#000000;fill:#000000;fill-rule:evenodd;stroke-width:0.39687501;stroke-dasharray:none" d="M 3.5429688,1.7949219 1.2910156,3.4863281 1.4570312,3.7050781 3.3574219,2.2773438 3.71875,4.1621094 3.9882813,4.1113281 Z" id="path323" /> <path style="color:#000000;fill:#000000;fill-rule:evenodd;stroke-width:0.39687501;stroke-dasharray:none" d="M 1.2363281,1.1035156 V 3.6953125 L 3.7753906,4.1796875 3.8261719,3.9101563 1.5097656,3.46875 V 1.4863281 L 3.3808594,2.125 3.46875,1.8671875 Z" id="path329" /> <path style="color:#000000;fill:#000000;fill-rule:evenodd;stroke-width:0.39687501;stroke-dasharray:none" d="M 3.6152344,0.27734375 3.265625,2.0351563 3.5332031,2.0878906 3.8828125,0.33007813 Z" id="path333" /> <path style="color:#000000;fill:#000000;fill-rule:evenodd;stroke-width:0.396875;stroke-dasharray:none" d="M 1.3808594,3.5527344 1.1855469,3.7441406 3.09375,5.6875 3.2383804,5.4454116 Z" id="path335" sodipodi:nodetypes="ccccc" /> <path style="color:#000000;fill:#000000;fill-rule:evenodd;stroke-width:0.396875;stroke-dasharray:none" d="M 3.71875,4.0478265 3.0175781,5.3954828 3.1710721,5.6725295 3.9609375,4.1728265 Z" id="path337" sodipodi:nodetypes="ccccc" /> <path style="color:#000000;fill:#000000;fill-rule:evenodd;stroke-width:0.39687501;stroke-dasharray:none" d="M 3.5585938,1.9570312 3.421875,2.1933594 5.5019531,3.3925781 3.8730469,3.96875 3.9628906,4.2265625 6.1523437,3.453125 Z" id="path339" /> <path style="color:#000000;fill:#000000;fill-rule:evenodd;stroke-width:0.39687501;stroke-dasharray:none" d="M 0.62304687,0.16601562 0.41015625,0.33789063 1.2929687,1.4335937 1.5058594,1.2617187 Z" id="path341" /> <path style="color:#000000;fill:#000000;fill-rule:evenodd;stroke-width:0.396875;stroke-dasharray:none" d="M 1.21875,3.6416266 0.40820313,6.0283453 3.1825922,5.6845953 3.1347656,5.4131109 0.80859375,5.7021734 1.4765625,3.7295172 Z" id="path343" sodipodi:nodetypes="ccccccc" /> <path style="color:#000000;fill:#000000;fill-rule:evenodd;stroke-width:0.39687501;stroke-dasharray:none" d="m 3.9335938,4.0761719 -0.1875,0.1972656 1.8691406,1.7714844 0.1875,-0.1972657 z" id="path345" /> </svg>    </a>
-     </a>
-    <a href="javascript:uncross_segments()" title="prune segemnts">
-    <svg width="24" height="24" viewBox="0 0 6.3500004 6.3499998" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"> <rect x="49.384789" y="2.6351275" width="20.998407" height="33.791702" id="rect1400" /> <linearGradient id="linearGradient4589"> <stop style="stop-color:#ffffff;stop-opacity:1;" offset="0" id="stop4587" /> </linearGradient> <linearGradient id="linearGradient2621"> <stop style="stop-color:#ffffff;stop-opacity:1;" offset="0" id="stop2619" /> </linearGradient> </defs> <path style="fill:none;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.247121;stroke-linecap:round" d="M 3.0438696,6.1498351 3.0302906,1.600661" id="path354" /> <path style="fill:none;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.247121;stroke-linecap:round" d="M 3.0438704,1.6549795 3.7771699,0.2970169" id="path356" /> <path style="fill:none;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.247121;stroke-linecap:round" d="M 3.0167102,1.6006608 2.2562516,0.28343726" id="path358" /> <path style="fill:none;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.247121;stroke-linecap:round" d="M 3.1253472,3.5968658 3.8858068,2.9043046" id="path360" /> <path style="fill:none;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.247121;stroke-linecap:round" d="M 4.917858,2.0080496 5.7869544,1.2204317" id="path362" /> <path style="fill:none;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.247121;stroke-linecap:round" d="M 3.0438699,4.6153378 1.4278946,2.9586233 1.4414744,1.5870809" id="path364" /> <path style="fill:none;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.247121;stroke-linecap:round" d="M 1.4957925,3.0401012 0.36868384,1.9944697" id="path366" /> <path id="rect574" style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.34541;stroke-linecap:round" d="M 6.0055979,3.2511781 C 5.0336706,4.1443333 6.0064947,3.2836968 5.010724,4.1755255 L 4.7798306,2.8928033 Z" /> </svg>    </a>
-  
-   
-    <a href="javascript:findPaths()" title="find paths">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-compass" viewBox="0 0 16 16">
-      <path d="M8 16.016a7.5 7.5 0 0 0 1.962-14.74A1 1 0 0 0 9 0H7a1 1 0 0 0-.962 1.276A7.5 7.5 0 0 0 8 16.016m6.5-7.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"/>
-      <path d="m6.94 7.44 4.95-2.83-2.83 4.95-4.949 2.83 2.828-4.95z"/>
-    </svg>
-    </a>
-    <a href="javascript:dispatch('findAllSpurs')" title="find spurs">
-    <svg width="24" height="24" viewBox="0 0 6.3500004 6.3499998" version="1.1" id="svg5" sodipodi:docname="spurs.svg" inkscape:version="1.2.2 (b0a8486541, 2022-12-01)" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <sodipodi:namedview id="namedview150" pagecolor="#ffffff" bordercolor="#000000" borderopacity="0.25" inkscape:showpageshadow="2" inkscape:pageopacity="0.0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#d1d1d1" showgrid="false" inkscape:zoom="18.583333" inkscape:cx="12.538117" inkscape:cy="9.6860988" inkscape:window-width="1280" inkscape:window-height="652" inkscape:window-x="0" inkscape:window-y="0" inkscape:window-maximized="1" inkscape:current-layer="svg5" /> <defs id="defs2"> <rect x="49.384789" y="2.6351275" width="20.998407" height="33.791702" id="rect1400" /> <linearGradient id="linearGradient4589"> <stop style="stop-color:#ffffff;stop-opacity:1;" offset="0" id="stop4587" /> </linearGradient> <linearGradient id="linearGradient2621"> <stop style="stop-color:#ffffff;stop-opacity:1;" offset="0" id="stop2619" /> </linearGradient> </defs> <g id="g1906"> <text xml:space="preserve" style="font-size:3.46038px;fill:none;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.655021;stroke-linecap:square" x="3.9102094" y="5.6693034" id="text1222"><tspan id="tspan1220" style="stroke-width:0.65502;stroke-linecap:square" x="3.9102094" y="5.6693034" /></text> <text xml:space="preserve" style="font-size:3.46038px;fill:none;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.655021;stroke-linecap:square" x="4.1120491" y="5.3867283" id="text1276"><tspan id="tspan1274" style="stroke-width:0.65502;stroke-linecap:square" x="4.1120491" y="5.3867283" /></text> <text xml:space="preserve" transform="matrix(0.2883649,0,0,0.2883649,-0.27899526,-0.87191453)" id="text1398" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;font-family:'DejaVu Serif';-inkscape-font-specification:'DejaVu Serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect1400);display:inline;fill:#000000;fill-opacity:0.99;fill-rule:evenodd;stroke:none;stroke-width:2.2715;stroke-linecap:square" /> <path style="fill:#b3b3b3;fill-rule:evenodd;stroke-width:0.423966;stroke-linecap:square" d="m 4.9845306,2.7618291 0.014802,0.014798" id="path1064" /> <path style="fill:#b3b3b3;fill-rule:evenodd;stroke:#000000;stroke-width:0.430365;stroke-linecap:square;stroke-opacity:1" d="M 0.35526714,3.2080463 6.0173461,3.1848457" id="path1794" /> <path style="fill:#b3b3b3;fill-rule:evenodd;stroke:#000000;stroke-width:0.430365;stroke-linecap:square;stroke-opacity:1" d="m 3.1747063,0.36540654 0.0232,5.66207896" id="path1796" /> <path style="fill:#b3b3b3;fill-rule:evenodd;stroke:#000000;stroke-width:0.430365;stroke-linecap:square;stroke-opacity:1" d="M 1.1774262,1.201623 5.1951868,5.1912691" id="path1802" /> <path style="fill:#b3b3b3;fill-rule:evenodd;stroke:#000000;stroke-width:0.430365;stroke-linecap:square;stroke-opacity:1" d="M 5.1811296,1.1875658 1.1914833,5.2053262" id="path1804" /> </g> </svg>
-    </a>
-    </span-->
-    
-    <span class="grouping">
-    <a href="javascript:cluster();" title="cluster">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-arrows-angle-contract" viewBox="0 0 16 16">
-    <path fill-rule="evenodd" d="M.172 15.828a.5.5 0 0 0 .707 0l4.096-4.096V14.5a.5.5 0 1 0 1 0v-3.975a.5.5 0 0 0-.5-.5H1.5a.5.5 0 0 0 0 1h2.768L.172 15.121a.5.5 0 0 0 0 .707M15.828.172a.5.5 0 0 0-.707 0l-4.096 4.096V1.5a.5.5 0 1 0-1 0v3.975a.5.5 0 0 0 .5.5H14.5a.5.5 0 0 0 0-1h-2.768L15.828.879a.5.5 0 0 0 0-.707"/>
-    </svg></a>
-    <a href="javascript:popClusters();" title="uncluster">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-arrows-angle-expand" viewBox="0 0 16 16">
-    <path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707m4.344-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707"/></svg>
-    </a>
-    <a href="javascript:clusterbyvoids()" title="show clusters">
-    <svg width="24" height="24" viewBox="0 0 6.3500004 6.3499998" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"> <rect x="49.384789" y="2.6351275" width="20.998407" height="33.791702" id="rect1400" /> <linearGradient id="linearGradient4589"> <stop style="stop-color:#ffffff;stop-opacity:1;" offset="0" id="stop4587" /> </linearGradient> <linearGradient id="linearGradient2621"> <stop style="stop-color:#ffffff;stop-opacity:1;" offset="0" id="stop2619" /> </linearGradient> </defs> <text xml:space="preserve" style="font-size:3.175px;fill:none;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.601001" x="3.8437192" y="6.0017614" id="text1222"><tspan id="tspan1220" style="stroke-width:0.601" x="3.8437192" y="6.0017614" /></text> <text xml:space="preserve" style="font-size:3.175px;fill:none;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.601001" x="4.028913" y="5.7424903" id="text1276"><tspan id="tspan1274" style="stroke-width:0.601" x="4.028913" y="5.7424903" /></text> <text xml:space="preserve" transform="scale(0.26458333)" id="text1398" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;font-family:'DejaVu Serif';-inkscape-font-specification:'DejaVu Serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect1400);display:inline;fill:#000000;fill-opacity:0.99;fill-rule:evenodd;stroke:none;stroke-width:2.2715" /> <path style="fill:#bfbfbf;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.401108;stroke-miterlimit:1.9;stroke-dasharray:none;stroke-opacity:1" d="M 12.453548,5.9279034 17.709951,1.8690035" id="path1036" /> <rect style="fill:none;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.3;stroke-dasharray:none" id="rect305" width="1.2629052" height="1.2764845" x="0.40976095" y="1.8500117" /> <rect style="fill:none;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.3;stroke-dasharray:none" id="rect971" width="2.0632241" height="2.0854084" x="1.4793828" y="3.9539714" /> <rect style="fill:none;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.24712084;stroke-dasharray:none" id="rect310" width="0.64283109" height="0.64974302" x="2.785094" y="0.29677078" /> <rect style="fill:none;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.3;stroke-dasharray:none" id="rect301" width="1.2629052" height="1.2764845" x="4.5530233" y="1.4318842" /> <rect style="fill:none;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.24712084;stroke-dasharray:none" id="rect303" width="0.64283109" height="0.64974302" x="5.0277777" y="4.4146924" /> </svg>
-    </a>
-    <a href="javascript:voidcost();" title="voids">
-    <svg width="24" height="24" viewBox="0 0 240 240" version="1.1" id="svg471" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs475" /> <circle style="fill:#d4aa00;fill-rule:evenodd;stroke-width:11.0948;stroke-linecap:square" id="circle429" cx="182.76497" cy="149.87422" r="25.93446" /> <circle style="fill:#d4aa00;fill-rule:evenodd;stroke-width:11.0948;stroke-linecap:square" id="circle431" cx="123.69202" cy="149.87422" r="25.93446" /> <circle style="fill:#d4aa00;fill-rule:evenodd;stroke-width:11.0948;stroke-linecap:square" id="circle433" cx="64.619095" cy="149.87422" r="25.93446" /> <circle style="fill:#d4aa00;fill-rule:evenodd;stroke-width:11.0948;stroke-linecap:square" id="circle469" cx="150.03815" cy="207.6575" r="25.93446" /> <circle style="fill:#9e841b;fill-rule:evenodd;stroke-width:11.0948;stroke-linecap:square;fill-opacity:1" id="circle471" cx="90.965202" cy="207.6575" r="25.93446" /> <circle style="fill:#5f6836;fill-rule:evenodd;stroke-width:11.0948;stroke-linecap:square;fill-opacity:1" id="circle475" cx="209.11108" cy="207.6575" r="25.93446" /> <circle style="fill:#d4aa00;fill-rule:evenodd;stroke-width:11.0948;stroke-linecap:square" id="circle479" cx="150.03815" cy="92.090935" r="25.93446" /> <circle style="fill:#5f6836;fill-rule:evenodd;stroke-width:11.0948;stroke-linecap:square;fill-opacity:1" id="circle483" cx="31.892271" cy="92.090935" r="25.93446" /> <circle style="fill:#d4aa00;fill-rule:evenodd;stroke-width:11.0948;stroke-linecap:square" id="circle485" cx="209.11108" cy="92.090935" r="25.93446" /> <circle style="fill:#214c52;fill-rule:evenodd;stroke-width:11.0948;stroke-linecap:square;fill-opacity:1" id="circle491" cx="62.329231" cy="34.307644" r="25.93446" /> <circle style="fill:#5f6836;fill-rule:evenodd;stroke-width:11.0948;stroke-linecap:square;fill-opacity:1" id="circle495" cx="180.47511" cy="34.307644" r="25.93446" /> </svg> 
-    </a>
-  <a href="javascript:voidcost_inverted();" title="voids (inverted)">
-  <svg width="24" height="24" class="invert" viewBox="0 0 240 240" version="1.1" id="svg471" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs475" /> <g id="g566" transform="matrix(1.0267857,0,0,1.0267857,-3.2277417,0.28710479)" style="fill:#000000;fill-opacity:1"> <circle style="fill:#ffffff;fill-rule:evenodd;stroke-width:10.8054;stroke-linecap:square;fill-opacity:1" id="circle429" cx="181.14073" cy="145.68484" r="25.25791" /> <circle style="fill:#ffffff;fill-rule:evenodd;stroke-width:10.8054;stroke-linecap:square;fill-opacity:1" id="circle431" cx="123.60882" cy="145.68484" r="25.25791" /> <circle style="fill:#ffffff;fill-rule:evenodd;stroke-width:10.8054;stroke-linecap:square;fill-opacity:1" id="circle433" cx="66.07692" cy="145.68484" r="25.25791" /> </g> <g id="g571" transform="matrix(1.0267857,0,0,1.0267857,-3.2277417,-4.8264679)" style="fill:#ffffff;fill-opacity:1"> <circle style="fill:#ffffff;fill-rule:evenodd;stroke-width:10.8054;stroke-linecap:square;fill-opacity:1" id="circle469" cx="149.26765" cy="206.94092" r="25.25791" /> <circle style="fill:#ffffff;fill-rule:evenodd;stroke-width:10.8054;stroke-linecap:square;fill-opacity:1" id="circle471" cx="91.735741" cy="206.94092" r="25.25791" /> <circle style="fill:#ffffff;fill-rule:evenodd;stroke-width:10.8054;stroke-linecap:square;fill-opacity:1" id="circle475" cx="206.79956" cy="206.94092" r="25.25791" /> </g> <g id="g561" transform="matrix(1.0267857,0,0,1.0267857,-3.2277417,-1.2469675)" style="fill:#ffffff;fill-opacity:1"> <circle style="fill:#ffffff;fill-rule:evenodd;stroke-width:10.8054;stroke-linecap:square;fill-opacity:1" id="circle479" cx="149.26765" cy="90.903" r="25.25791" /> <circle style="fill:#ffffff;fill-rule:evenodd;stroke-width:10.8054;stroke-linecap:square;fill-opacity:1" id="circle483" cx="34.203838" cy="90.903" r="25.25791" /> <circle style="fill:#ffffff;fill-rule:evenodd;stroke-width:10.8054;stroke-linecap:square;fill-opacity:1" id="circle485" cx="206.79956" cy="90.903" r="25.25791" /> </g> <g id="g556" transform="matrix(1.0267857,0,0,1.0267857,-3.2277417,-4.8264679)" style="fill:#ffffff;fill-opacity:1"> <circle style="fill:#ffffff;fill-rule:evenodd;stroke-width:10.8054;stroke-linecap:square;fill-opacity:1" id="circle491" cx="63.84679" cy="38.113224" r="25.25791" /> <circle style="fill:#ffffff;fill-rule:evenodd;stroke-width:10.8054;stroke-linecap:square;fill-opacity:1" id="circle495" cx="178.91061" cy="38.113224" r="25.25791" /> </g> </svg>     
-  </a>
-      <!--a href="javascript:crossings_bw();" title="crossings">
-<svg class="invert" width="24" height="24" viewBox="0 0 240 240" version="1.1" id="svg471" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs475" /> <path id="rect1213" style="fill:#ffffff;fill-rule:evenodd;stroke-width:1.91922;stroke-linecap:square;fill-opacity:1" d="M 4.5298585,4.4859958 H 63.477084 V 61.433226 h 56.841676 l 0.94723,-56.9472302 h 56.94722 l -0.10555,56.9472302 h 58 v 57.894454 l -58,-0.10555 c 0.46286,57.42766 0,115.89445 0,115.89445 l -56.84167,-0.94723 -0.94723,-56.94722 H 63.477084 v 56.94722 L 4.5298585,235.11658 V 177.22213 H 63.544847 l -0.747023,-58.82825 -58.2679655,0.9338 V 61.433226 Z" /> </svg>     
-</a-->   
-<!--a href="javascript:pruneByCost()" title="prune">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-scissors" viewBox="0 0 16 16">
-     <path d="M3.5 3.5c-.614-.884-.074-1.962.858-2.5L8 7.226 11.642 1c.932.538 1.472 1.616.858 2.5L8.81 8.61l1.556 2.661a2.5 2.5 0 1 1-.794.637L8 9.73l-1.572 2.177a2.5 2.5 0 1 1-.794-.637L7.19 8.61zm2.5 10a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0m7 0a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0"/>
-    </svg></a-->
-    
-    <input type="number" value="15" id="voidsize" class="number" title="void size" min="10" max="150">
-    </span>
-  <br>
   <span class="grouping">
-    <a href="javascript:dispatch('simplify180')" class="act"  title="simplify 180ish">
-    <svg class="order" width="24" height="24" viewBox="0 0 240 240" version="1.1" id="svg2919" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2923"> <marker style="overflow:visible" id="TriangleStart" refX="0" refY="0" orient="auto-start-reverse" markerWidth="5.3244081" markerHeight="6.155385" viewBox="0 0 5.3244081 6.1553851" preserveAspectRatio="xMidYMid"> <path transform="scale(0.5)" style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt" d="M 5.77,0 -2.88,5 V -5 Z" id="path135" /> </marker> </defs> <path style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:9.96675;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1" d="m 235.0196,183.14427 c -76.65698,0.1615 -153.31549,0.32301 -229.9755715,0.48452" id="path903" /> <g id="g884" transform="translate(-1.4940592,0.4980306)"> <circle style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:6.46299;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1" id="path961" cx="123.27134" cy="182.8885" r="23.573496" /> <circle style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:21.5664;stroke-linecap:round;stroke-dasharray:none" id="circle1497" cx="35.122368" cy="182.8885" r="23.573496" /> <circle style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:21.5664;stroke-linecap:round;stroke-dasharray:none" id="circle1499" cx="211.42032" cy="182.8885" r="23.573496" /> </g> <path style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:15.2968;stroke-linecap:square;stroke-linejoin:round;stroke-opacity:1" d="M 170.62304,28.940865 76.164809,136.19473" id="path1852" /> <path style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:15.2968;stroke-linecap:square;stroke-linejoin:round;stroke-opacity:1" d="M 170.12252,136.76914 76.665336,28.366437" id="path1868" /> </svg>   </a>
-    <a href="javascript:distributePoints()" class="act"  title="map to distribute">
+  <!--a href="javascript:cluster();" title="cluster">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-arrows-angle-contract" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M.172 15.828a.5.5 0 0 0 .707 0l4.096-4.096V14.5a.5.5 0 1 0 1 0v-3.975a.5.5 0 0 0-.5-.5H1.5a.5.5 0 0 0 0 1h2.768L.172 15.121a.5.5 0 0 0 0 .707M15.828.172a.5.5 0 0 0-.707 0l-4.096 4.096V1.5a.5.5 0 1 0-1 0v3.975a.5.5 0 0 0 .5.5H14.5a.5.5 0 0 0 0-1h-2.768L15.828.879a.5.5 0 0 0 0-.707"/>
+  </svg></a>
+  <a href="javascript:popClusters();" title="uncluster">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-arrows-angle-expand" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707m4.344-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707"/></svg>
+  </a>
+  <a href="javascript:clusterbyvoids()" title="cluster by voids">
+  <svg width="24" height="24" viewBox="0 0 6.3500004 6.3499998" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"> <rect x="49.384789" y="2.6351275" width="20.998407" height="33.791702" id="rect1400" /> <linearGradient id="linearGradient4589"> <stop style="stop-color:#ffffff;stop-opacity:1;" offset="0" id="stop4587" /> </linearGradient> <linearGradient id="linearGradient2621"> <stop style="stop-color:#ffffff;stop-opacity:1;" offset="0" id="stop2619" /> </linearGradient> </defs> <text xml:space="preserve" style="font-size:3.175px;fill:none;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.601001" x="3.8437192" y="6.0017614" id="text1222"><tspan id="tspan1220" style="stroke-width:0.601" x="3.8437192" y="6.0017614" /></text> <text xml:space="preserve" style="font-size:3.175px;fill:none;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.601001" x="4.028913" y="5.7424903" id="text1276"><tspan id="tspan1274" style="stroke-width:0.601" x="4.028913" y="5.7424903" /></text> <text xml:space="preserve" transform="scale(0.26458333)" id="text1398" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;font-family:'DejaVu Serif';-inkscape-font-specification:'DejaVu Serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect1400);display:inline;fill:#000000;fill-opacity:0.99;fill-rule:evenodd;stroke:none;stroke-width:2.2715" /> <path style="fill:#bfbfbf;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.401108;stroke-miterlimit:1.9;stroke-dasharray:none;stroke-opacity:1" d="M 12.453548,5.9279034 17.709951,1.8690035" id="path1036" /> <circle style="fill:#ff6600;fill-opacity:0;fill-rule:evenodd;stroke:#000000;stroke-width:0.26458334;stroke-linecap:square;stroke-opacity:1;stroke-dasharray:none" id="path913" cx="1.0574253" cy="-3.8599308" r="0.69304419" transform="scale(1,-1)" /> <circle style="fill:#ff6600;fill-opacity:0;fill-rule:evenodd;stroke:#000000;stroke-width:0.26458334;stroke-linecap:square;stroke-opacity:1;stroke-dasharray:none" id="circle1537" cx="2.5240998" cy="-5.5361304" r="0.4583351" transform="scale(1,-1)" /> <circle style="fill:#ff6600;fill-opacity:0;fill-rule:evenodd;stroke:#000000;stroke-width:0.26458334;stroke-linecap:square;stroke-opacity:1;stroke-dasharray:none" id="circle1539" cx="5.0867519" cy="-1.1280478" r="0.69304419" transform="scale(1,-1)" /> <circle style="fill:#ff6600;fill-opacity:0;fill-rule:evenodd;stroke:#000000;stroke-width:0.26458334;stroke-linecap:square;stroke-opacity:1;stroke-dasharray:none" id="circle1541" cx="1.8149388" cy="-1.2328104" r="0.81730193" transform="scale(1,-1)" /> <circle style="fill:#ff6600;fill-opacity:0;fill-rule:evenodd;stroke:#000000;stroke-width:0.26458334;stroke-linecap:square;stroke-opacity:1;stroke-dasharray:none" id="circle2517" cx="4.6072612" cy="-4.194365" r="1.1313978" transform="scale(1,-1)" /> <circle style="fill:#ff6600;fill-opacity:0;fill-rule:evenodd;stroke:#000000;stroke-width:0.26458334;stroke-linecap:square;stroke-opacity:1;stroke-dasharray:none" id="circle2519" cx="3.4669623" cy="-2.215965" r="0.4583351" transform="scale(1,-1)" /> </svg>    </a>
+  <a href="javascript:voidcost();" title="voids">
+  <svg width="24" height="24" viewBox="0 0 240 240" version="1.1" id="svg471" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs475" /> <circle style="fill:#d4aa00;fill-rule:evenodd;stroke-width:11.0948;stroke-linecap:square" id="circle429" cx="182.76497" cy="149.87422" r="25.93446" /> <circle style="fill:#d4aa00;fill-rule:evenodd;stroke-width:11.0948;stroke-linecap:square" id="circle431" cx="123.69202" cy="149.87422" r="25.93446" /> <circle style="fill:#d4aa00;fill-rule:evenodd;stroke-width:11.0948;stroke-linecap:square" id="circle433" cx="64.619095" cy="149.87422" r="25.93446" /> <circle style="fill:#d4aa00;fill-rule:evenodd;stroke-width:11.0948;stroke-linecap:square" id="circle469" cx="150.03815" cy="207.6575" r="25.93446" /> <circle style="fill:#9e841b;fill-rule:evenodd;stroke-width:11.0948;stroke-linecap:square;fill-opacity:1" id="circle471" cx="90.965202" cy="207.6575" r="25.93446" /> <circle style="fill:#5f6836;fill-rule:evenodd;stroke-width:11.0948;stroke-linecap:square;fill-opacity:1" id="circle475" cx="209.11108" cy="207.6575" r="25.93446" /> <circle style="fill:#d4aa00;fill-rule:evenodd;stroke-width:11.0948;stroke-linecap:square" id="circle479" cx="150.03815" cy="92.090935" r="25.93446" /> <circle style="fill:#5f6836;fill-rule:evenodd;stroke-width:11.0948;stroke-linecap:square;fill-opacity:1" id="circle483" cx="31.892271" cy="92.090935" r="25.93446" /> <circle style="fill:#d4aa00;fill-rule:evenodd;stroke-width:11.0948;stroke-linecap:square" id="circle485" cx="209.11108" cy="92.090935" r="25.93446" /> <circle style="fill:#214c52;fill-rule:evenodd;stroke-width:11.0948;stroke-linecap:square;fill-opacity:1" id="circle491" cx="62.329231" cy="34.307644" r="25.93446" /> <circle style="fill:#5f6836;fill-rule:evenodd;stroke-width:11.0948;stroke-linecap:square;fill-opacity:1" id="circle495" cx="180.47511" cy="34.307644" r="25.93446" /> </svg> 
+  </a>
+  <a href="javascript:clusterbypolar();" title="cluster by polar">
+  <svg width="24" height="24" viewBox="0 0 6.3500004 6.3499998" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"> <rect x="49.384789" y="2.6351275" width="20.998407" height="33.791702" id="rect1400" /> <linearGradient id="linearGradient4589"> <stop style="stop-color:#ffffff;stop-opacity:1;" offset="0" id="stop4587" /> </linearGradient> <linearGradient id="linearGradient2621"> <stop style="stop-color:#ffffff;stop-opacity:1;" offset="0" id="stop2619" /> </linearGradient> </defs> <circle style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.244482;stroke-linecap:round" id="path305" cx="3.1796362" cy="3.1691077" r="3.0227861" /> <circle style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.270601;stroke-linecap:round" id="path1015" cx="3.1796362" cy="3.1691077" r="0.49070615" /> <path style="fill:none;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.236545;stroke-linecap:round" d="M 0.50262881,1.8521058 3.1000388,3.0952271" id="path1017" /> </svg>
+  </a-->   
+  <input type="number" value="60" id="voidsize" class="number" title="void size" min="1" max="500">
+  <a href="javascript:setthreshold();" title="set threshold and neighbors">
+  <svg class="order" width="24" height="24" viewBox="0 0 240 240" version="1.1" id="svg2919" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2923" /> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:13.79;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 15.294816,19.182317 14.990233,222.94566 H 226.36803" id="path3857" /> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:14.79;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:44.37, 29.58;stroke-dashoffset:0;stroke-opacity:1" d="M 30.523779,132.99262 H 231.24132" id="path4183" /> <path style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:19.8946;stroke-dasharray:39.7893, 19.8946" d="M 85.348002,14.305183 125.94295,97.036658 168.07949,14.305183 Z" id="path296" /> </svg>
+  </a>
+    
+<!--a href="javascript:setAllNeighbors()" title="set neighbors">
+ <svg class="order" width="24" height="24" viewBox="0 0 240 240" version="1.1" id="svg2919" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2923" /> <path style="fill:#000000;fill-rule:evenodd;stroke:#000000;stroke-width:9.38247;stroke-linecap:butt;stroke-dasharray:none;stroke-opacity:1" d="M 7.3793033,120.14873 76.034654,119.793" id="path1078" /> <path style="fill:#000000;fill-rule:evenodd;stroke:#000000;stroke-width:9.38247;stroke-linecap:butt;stroke-dasharray:none;stroke-opacity:1" d="M 164.71447,120.14873 233.36982,119.793" id="path1080" /> <path style="fill:#000000;fill-rule:evenodd;stroke:#000000;stroke-width:9.38247;stroke-linecap:butt;stroke-dasharray:none;stroke-opacity:1" d="M 35.839548,38.10307 87.265807,85.792478" id="path1084" /> <path style="fill:#000000;fill-rule:evenodd;stroke:#000000;stroke-width:9.38247;stroke-linecap:butt;stroke-dasharray:none;stroke-opacity:1" d="m 118.94424,6.8504578 0.35758,68.2991202" id="path1094" /> <path style="fill:#000000;fill-rule:evenodd;stroke:#000000;stroke-width:9.20367;stroke-linecap:butt;stroke-dasharray:none;stroke-opacity:1" d="m 118.95101,167.27573 0.34402,68.3121" id="path1096" /> <ellipse style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:14.2065;stroke-linecap:round;stroke-dasharray:none" id="path345" cx="119.12303" cy="120.6823" rx="42.0014" ry="41.78347" /> <path style="fill:#000000;fill-rule:evenodd;stroke:#000000;stroke-width:9.38247;stroke-linecap:butt;stroke-dasharray:none;stroke-opacity:1" d="M 153.12574,152.54846 204.552,200.23787" id="path1051" /> <path style="fill:#000000;fill-rule:evenodd;stroke:#000000;stroke-width:9.38247;stroke-linecap:butt;stroke-dasharray:none;stroke-opacity:1" d="M 154.15467,87.52749 202.09281,36.368059" id="path1053" /> <path style="fill:#000000;fill-rule:evenodd;stroke:#000000;stroke-width:9.38247;stroke-linecap:butt;stroke-dasharray:none;stroke-opacity:1" d="m 34.365399,201.97289 47.93814,-51.15943" id="path1055" /> </svg>
+</a-->
+<a href="javascript:showPathlite();" title="path only">
+  <svg width="24" height="24" class="invert" viewBox="0 0 240 240" version="1.1" id="svg2919" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2923" /> <path style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:11.8;stroke-linecap:square;fill-opacity:1;stroke-opacity:1;stroke-dasharray:none;stroke-linejoin:round" d="m 36.006173,223.25023 53.91048,-38.37696 36.244897,45.99143 63.04786,-21.9297 -27.41213,-32.28537 65.1799,-19.49305 L 173.3713,101.11404 221.19018,77.661472 207.48415,28.015092 158.7515,16.136509 141.08592,67.914939 147.78665,103.2461 106.6685,134.92232 83.21592,86.494255 122.81118,39.589091 87.784603,24.664725 19.558908,39.589091 58.240439,120.91169 19.558908,141.31847 68.596122,167.20768 Z" id="path319" /> </svg>  
+</a>
+
+<a href="javascript:hidePath()" class="act"  title="show/hide path">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-eye-slash" viewBox="0 0 16 16">
+  <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7 7 0 0 0-2.79.588l.77.771A6 6 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755q-.247.248-.517.486z"/>
+  <path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829"/>
+  <path d="M3.35 5.47q-.27.24-.518.487A13 13 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7 7 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12z"/>
+</svg>
+</a> 
+<a href="javascript:zoomin()" class="act"  title="zoom in">
+ <svg width="24" height="24" fill="black" class="bi bi-search" viewBox="0 0 16 16" version="1.1" id="svg189" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs193" /> <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" id="path187" /> <path style="fill:#000000;fill-rule:evenodd;stroke:#000000;stroke-width:1.14394;stroke-dasharray:none" d="M 2.2568638,6.5378836 H 10.703853" id="path373" /> <path style="fill:#000000;fill-rule:evenodd;stroke:#000000;stroke-width:1.14394;stroke-dasharray:none" d="M 6.4803584,10.761378 V 2.314389" id="path1079" /> </svg>
+</a>
+<a href="javascript:zoomout()" class="act"  title="zoom out">
+<svg width="24" height="24" fill="black" class="bi bi-search" viewBox="0 0 16 16" version="1.1" id="svg189" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs193" /> <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" id="path187" /> <path style="fill:#000000;fill-rule:evenodd;stroke:#000000;stroke-width:1.14394;stroke-dasharray:none" d="M 2.2568638,6.5378836 H 10.703853" id="path373" /> </svg>
+</a>
+</span>
+<span class="grouping">
+
+<a href="javascript:show_discs()" title="show discs">
+<svg width="24" height="24" fill="black" class="invert" viewBox="0 0 16 16" version="1.1" id="svg158" sodipodi:docname="showdiscs.svg" inkscape:version="1.2.2 (b0a8486541, 2022-12-01)" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <sodipodi:namedview id="namedview241" pagecolor="#ffffff" bordercolor="#000000" borderopacity="0.25" inkscape:showpageshadow="2" inkscape:pageopacity="0.0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#d1d1d1" showgrid="false" inkscape:zoom="20.416667" inkscape:cx="16.702041" inkscape:cy="4.4571429" inkscape:window-width="1280" inkscape:window-height="692" inkscape:window-x="0" inkscape:window-y="0" inkscape:window-maximized="1" inkscape:current-layer="svg158" /> <defs id="defs162" /> <circle style="fill:#009fff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.86445;stroke-linecap:square" id="path477" cx="3.2024696" cy="3.4007204" r="1.8579319" /> <circle style="fill:#009fff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.86445;stroke-linecap:square" id="circle1292" cx="6.2888703" cy="2.5275939" r="1.8579319" /> <circle style="fill:#009fff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.86445;stroke-linecap:square" id="circle1294" cx="2.4511755" cy="10.730921" r="1.8579319" /> <circle style="fill:#009fff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.86445;stroke-linecap:square" id="circle1296" cx="6.7355857" cy="7.2587209" r="1.8579319" /> <circle style="fill:#009fff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.86445;stroke-linecap:square" id="circle1298" cx="8.786418" cy="12.761447" r="1.8579319" /> <circle style="fill:#009fff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.86445;stroke-linecap:square" id="circle1300" cx="6.0045967" cy="13.959456" r="1.8579319" /> <circle style="fill:#009fff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.86445;stroke-linecap:square" id="circle1302" cx="13.375408" cy="12.091372" r="1.8579319" /> <circle style="fill:#009fff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.86445;stroke-linecap:square" id="circle1304" cx="11.811902" cy="7.8678761" r="1.8579319" /> <circle style="fill:#009fff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.86445;stroke-linecap:square" id="circle1306" cx="13.883039" cy="2.5478964" r="1.8579319" /> <circle style="fill:#009fff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.86445;stroke-linecap:square" id="circle1308" cx="11.507324" cy="4.7611709" r="1.8579319" /> </svg>
+</a>
+
+<a href="javascript:show_allneighbors();" title="simplicals">
+<svg width="24" height="24" fill="black" class="invert" viewBox="0 0 16 16" version="1.1" id="svg158" sodipodi:docname="search allneighbors.svg" inkscape:version="1.2.2 (b0a8486541, 2022-12-01)" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <sodipodi:namedview id="namedview139" pagecolor="#ffffff" bordercolor="#000000" borderopacity="0.25" inkscape:showpageshadow="2" inkscape:pageopacity="0.0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#d1d1d1" showgrid="false" inkscape:zoom="20.416667" inkscape:cx="10.922449" inkscape:cy="-1.4693878" inkscape:window-width="1280" inkscape:window-height="692" inkscape:window-x="0" inkscape:window-y="0" inkscape:window-maximized="1" inkscape:current-layer="svg158" /> <defs id="defs162" /> <path style="fill:none;fill-opacity:0.0901961;fill-rule:evenodd;stroke:#fff311;stroke-width:0.783431;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1" d="M 8.4444604,1.2519895 2.891848,6.8529498 11.620511,9.1758833 Z" id="path324" /> <circle style="fill:none;fill-rule:evenodd;stroke:#fff311;stroke-width:0.73;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1" id="circle923" cx="13.639377" cy="2.8118665" r="0.82236332" /> <g id="g930" transform="rotate(17.869777,2.3770093,15.210848)" style="stroke:#fff311;stroke-opacity:1"> <path style="fill:#000000;fill-opacity:0.0901961;fill-rule:evenodd;stroke:#fff311;stroke-width:0.782;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1" d="M 7.4643297,11.213059 2.8595264,13.861747" id="path354" /> <circle style="fill:none;fill-rule:evenodd;stroke:#fff311;stroke-width:0.73;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1" id="path905" cx="8.4006176" cy="10.609089" r="0.82236332" /> <circle style="fill:none;fill-rule:evenodd;stroke:#fff311;stroke-width:0.73;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1" id="circle925" cx="1.8623219" cy="14.446783" r="0.82236332" /> </g> </svg>  
+</a>
+  
+<a href="javascript:hole_detector();" title="holes">
+ <svg class="order" width="24" height="24" viewBox="0 0 240 240" version="1.1" id="svg2919" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2923" /> <ellipse style="fill:#000000;fill-rule:evenodd;stroke:#000000;stroke-width:13.01;stroke-linecap:butt;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;fill-opacity:1" id="path4174" cx="119.61311" cy="120.92919" rx="101.64246" ry="104.55347" /> </svg>
+</a>
+
+<a href="javascript:holes_barcode()" title="holes barcode">
+ <svg class="order" width="24" height="24" viewBox="0 0 240 240" version="1.1" id="svg2919" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2923" /> <circle style="fill:#000000;fill-rule:evenodd;stroke:#000000;stroke-width:14.8391" id="path303" cx="38.071487" cy="31.850256" r="18.701233" /> <circle style="fill:#000000;fill-rule:evenodd;stroke:#000000;stroke-width:14.8391" id="circle307" cx="38.071487" cy="207.53648" r="18.701233" /> <g id="g380" transform="translate(6.0915826,-4.6207423)"> <circle style="fill:#000000;fill-rule:evenodd;stroke:#000000;stroke-width:14.8391" id="circle309" cx="94.924194" cy="153.59515" r="18.701233" /> <circle style="fill:#000000;fill-rule:evenodd;stroke:#000000;stroke-width:14.8391" id="circle315" cx="31.979904" cy="153.59515" r="18.701233" /> </g> <g id="g376" transform="translate(6.0915826,-4.2036941)"> <circle style="fill:#000000;fill-rule:evenodd;stroke:#000000;stroke-width:14.8391" id="circle311" cx="158.74103" cy="94.616028" r="18.701233" /> <circle style="fill:#000000;fill-rule:evenodd;stroke:#000000;stroke-width:14.8391" id="circle313" cx="94.924194" cy="94.616028" r="18.701233" /> <circle style="fill:#000000;fill-rule:evenodd;stroke:#000000;stroke-width:14.8391" id="circle317" cx="31.979904" cy="94.616028" r="18.701233" /> </g> </svg>
+</a>
+
+<a href="javascript:hole_detector(true);" title="holes inverted">
+ <svg class="invert" width="24" height="24" viewBox="0 0 240 240" version="1.1" id="svg2919" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2923" /> <ellipse style="fill:#ffffff;fill-rule:evenodd;stroke:#ffffff;stroke-width:13.0015748;stroke-linecap:butt;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;fill-opacity:1" id="path4174" cx="119.61311" cy="120.92919" rx="101.64246" ry="104.55347" /> </svg>
+</a>
+
+<a href="javascript:holes_barcode_inverted()" title="holes barcode inverted">
+ <svg class="invert" width="24" height="24" viewBox="0 0 240 240" version="1.1" id="svg2919" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2923" /> <circle style="fill:#ffffff;fill-rule:evenodd;stroke:#ffffff;stroke-width:14.8391" id="path303" cx="38.071487" cy="31.850256" r="18.701233" /> <circle style="fill:#ffffff;fill-rule:evenodd;stroke:#ffffff;stroke-width:14.8391" id="circle307" cx="38.071487" cy="207.53648" r="18.701233" /> <g id="g380" transform="translate(6.0915826,-4.6207423)"> <circle style="fill:#ffffff;fill-rule:evenodd;stroke:#ffffff;stroke-width:14.8391" id="circle309" cx="94.924194" cy="153.59515" r="18.701233" /> <circle style="fill:#ffffff;fill-rule:evenodd;stroke:#ffffff;stroke-width:14.8391" id="circle315" cx="31.979904" cy="153.59515" r="18.701233" /> </g> <g id="g376" transform="translate(6.0915826,-4.2036941)"> <circle style="fill:#ffffff;fill-rule:evenodd;stroke:#ffffff;stroke-width:14.8391" id="circle311" cx="158.74103" cy="94.616028" r="18.701233" /> <circle style="fill:#ffffff;fill-rule:evenodd;stroke:#ffffff;stroke-width:14.8391" id="circle313" cx="94.924194" cy="94.616028" r="18.701233" /> <circle style="fill:#ffffff;fill-rule:evenodd;stroke:#ffffff;stroke-width:14.8391" id="circle317" cx="31.979904" cy="94.616028" r="18.701233" /> </g> </svg>
+</a>
+<!-- placeholder for prune
+ <svg width="24" height="24" viewBox="0 0 6.3500004 6.3499998" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"> <rect x="49.384789" y="2.6351275" width="20.998407" height="33.791702" id="rect1400" /> <linearGradient id="linearGradient4589"> <stop style="stop-color:#ffffff;stop-opacity:1;" offset="0" id="stop4587" /> </linearGradient> <linearGradient id="linearGradient2621"> <stop style="stop-color:#ffffff;stop-opacity:1;" offset="0" id="stop2619" /> </linearGradient> </defs> <g id="g2761" transform="matrix(0.90084768,0.25980156,-0.25980156,0.90084768,1.0735994,-0.31699536)" style="stroke-width:0.423333;stroke-dasharray:none"> <path style="fill:#000000;fill-rule:evenodd;stroke:#000000;stroke-width:0.423333;stroke-linecap:round;stroke-dasharray:none" d="M 1.4163227,0.27954345 3.7019197,4.0654908" id="path1118" /> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.423333;stroke-dasharray:none" d="M 3.6971795,4.0515986 C 4.0758099,4.6085815 4.5793508,5.2247642 4.4137466,5.5609619 4.218088,5.958174 3.6698128,6.1719501 3.2245508,5.8887539 2.8064329,5.6228219 2.8265038,5.1348983 2.9348748,4.6690658 3.0557549,4.1494631 3.3895624,3.5990798 3.6971795,4.0515986 Z" id="path1237" /> </g> <g id="g2757" style="stroke-width:0.423333;stroke-dasharray:none" transform="matrix(0.93756247,0,0,0.93756247,0.1540928,0.33528064)"> <path style="fill:#000000;fill-rule:evenodd;stroke:#000000;stroke-width:0.423333;stroke-linecap:round;stroke-dasharray:none" d="M 0.48198524,1.1384647 4.1070905,3.7357362" id="path562" /> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.423333;stroke-dasharray:none" d="M 4.0840017,3.7102177 C 4.6409846,4.0888481 5.2571673,4.592389 5.593365,4.4267848 5.9905771,4.2311262 6.2043532,3.682851 5.921157,3.237589 5.655225,2.8194711 5.1673014,2.839542 4.7014689,2.947913 4.1818662,3.0687931 3.6314829,3.4026006 4.0840017,3.7102177 Z" id="path1239" /> </g> </svg> 
+-->
+ <br>
+ <a href="javascript:show_closestpoints(true)" title="show closest points">
+ <svg class="order" width="24" height="24" viewBox="0 0 240 240" version="1.1" id="svg2919" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2923" /> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:17.02;stroke-linecap:square;stroke-dasharray:none" d="M 14.360877,41.609079 H 169.65392" id="path857" /> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:17.02;stroke-linecap:square;stroke-dasharray:none" d="m 193.32739,227.71745 h 37.29355" id="path859" /> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:17.02;stroke-linecap:square;stroke-dasharray:none" d="M 68.726898,121.36981 H 181.41643" id="path861" /> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:17.02;stroke-linecap:square;stroke-dasharray:none" d="m 143.27628,201.13054 h 37.29355" id="path426" /> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:17.02;stroke-linecap:square;stroke-dasharray:none" d="m 14.970043,68.195989 h 37.29355" id="path430" /> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:17.02;stroke-linecap:square;stroke-dasharray:none" d="M 14.778433,94.782899 H 111.66472" id="path432" /> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:17.02;stroke-linecap:square;stroke-dasharray:none" d="m 116.93294,174.54363 h 14.34035" id="path436" /> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:17.02;stroke-linecap:square;stroke-dasharray:none" d="M 81.109237,147.95672 H 107.09496" id="path438" /> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:17.02;stroke-linecap:square;stroke-dasharray:none" d="m 14.970043,15.022169 h 39.46045" id="path440" /> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:10.2109;stroke-linecap:square;stroke-dasharray:none" d="M 95.966928,230.78583 V 10.20427" id="path911" /> </svg>  
+</a>
+<a href="javascript:persistent_homology();" title="barcode">
+ <svg class="order" width="24" height="24" viewBox="0 0 240 240" version="1.1" id="svg2919" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2923" /> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:17.02;stroke-linecap:square;stroke-dasharray:none" d="M 14.360877,41.609079 H 169.65392" id="path857" /> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:17.02;stroke-linecap:square;stroke-dasharray:none" d="m 193.32739,227.71745 h 37.29355" id="path859" /> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:17.02;stroke-linecap:square;stroke-dasharray:none" d="M 68.726898,121.36981 H 181.41643" id="path861" /> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:17.02;stroke-linecap:square;stroke-dasharray:none" d="m 143.27628,201.13054 h 37.29355" id="path426" /> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:17.02;stroke-linecap:square;stroke-dasharray:none" d="m 14.970043,68.195989 h 37.29355" id="path430" /> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:17.02;stroke-linecap:square;stroke-dasharray:none" d="M 14.778433,94.782899 H 111.66472" id="path432" /> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:17.02;stroke-linecap:square;stroke-dasharray:none" d="m 116.93294,174.54363 h 14.34035" id="path436" /> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:17.02;stroke-linecap:square;stroke-dasharray:none" d="M 81.109237,147.95672 H 107.09496" id="path438" /> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:17.02;stroke-linecap:square;stroke-dasharray:none" d="m 14.970043,15.022169 h 39.46045" id="path440" /> </svg>  
+</a>
+</span>
+<span class="grouping">
+ <a href="javascript:quicklandscape();" title="quick landscape">
+ <svg class="order" width="24" height="24" viewBox="0 0 240 240" version="1.1" id="svg2919" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2923" /> <circle style="fill:#f3722c;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:13.9742;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1" id="path383" cx="113.63132" cy="139.73584" r="92.866867" /> <circle style="fill:#90be6d;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:10.9495;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1" id="circle1147" cx="157.44228" cy="72.168228" r="65.074852" /> <ellipse style="fill:#277da1;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:11.1793;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1" id="circle1151" cx="96.199524" cy="116.44199" rx="32.471851" ry="31.854795" /> </svg>
+</a>
+ <a href="javascript:hex_voids();" title="hex clusters">
+  <svg width="24" height="24" class="invert" viewBox="0 0 240 240" version="1.1" id="svg471" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs475" /> <circle style="fill:#00bfff;fill-rule:evenodd;stroke-width:11.0948;stroke-linecap:square;fill-opacity:1" id="circle429" cx="182.76497" cy="149.87422" r="25.93446" /> <circle style="fill:#00bfff;fill-rule:evenodd;stroke-width:11.0948;stroke-linecap:square;fill-opacity:1" id="circle431" cx="123.69202" cy="149.87422" r="25.93446" /> <circle style="fill:#ffbb13;fill-rule:evenodd;stroke-width:11.0948;stroke-linecap:square;fill-opacity:1" id="circle433" cx="64.619095" cy="149.87422" r="25.93446" /> <circle style="fill:#ffbb13;fill-rule:evenodd;stroke-width:11.0948;stroke-linecap:square;fill-opacity:1" id="circle469" cx="150.03815" cy="207.6575" r="25.93446" /> <circle style="fill:#ffbb13;fill-rule:evenodd;stroke-width:11.0948;stroke-linecap:square;fill-opacity:1" id="circle471" cx="90.965202" cy="207.6575" r="25.93446" /> <circle style="fill:#ffbb13;fill-rule:evenodd;stroke-width:11.0948;stroke-linecap:square;fill-opacity:1" id="circle475" cx="209.11108" cy="207.6575" r="25.93446" /> <circle style="fill:#ffbb13;fill-opacity:1;fill-rule:evenodd;stroke-width:11.0948;stroke-linecap:square" id="circle479" cx="150.03815" cy="93.222527" r="25.93446" /> <circle style="fill:#ffbb13;fill-opacity:1;fill-rule:evenodd;stroke-width:11.0948;stroke-linecap:square" id="circle483" cx="31.892271" cy="93.222527" r="25.93446" /> <circle style="fill:#ffbb13;fill-opacity:1;fill-rule:evenodd;stroke-width:11.0948;stroke-linecap:square" id="circle485" cx="209.11108" cy="93.222527" r="25.93446" /> <circle style="fill:#ffbb13;fill-rule:evenodd;stroke-width:11.0948;stroke-linecap:square;fill-opacity:1" id="circle491" cx="62.329231" cy="34.307644" r="25.93446" /> <circle style="fill:#ffbb13;fill-rule:evenodd;stroke-width:11.0948;stroke-linecap:square;fill-opacity:1" id="circle495" cx="180.47511" cy="34.307644" r="25.93446" /> <circle style="fill:#ffbb13;fill-opacity:1;fill-rule:evenodd;stroke-width:11.0948;stroke-linecap:square" id="circle775" cx="32.013748" cy="207.6575" r="25.93446" /> <circle style="fill:#00bfff;fill-rule:evenodd;stroke-width:11.0948;stroke-linecap:square;fill-opacity:1" id="circle777" cx="91.102066" cy="93.222527" r="25.93446" /> <circle style="fill:#00bfff;fill-opacity:1;fill-rule:evenodd;stroke-width:11.0948;stroke-linecap:square" id="circle779" cx="121.86455" cy="34.307644" r="25.93446" /> </svg>
+ </a>
+ <a href="javascript:persistent_module();" title="persistent module">
+  <svg width="24" height="24" viewBox="0 0 240 240" version="1.1" id="svg471" class="invert" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs475" /> <rect style="fill:#ffbb13;fill-opacity:1;fill-rule:evenodd;stroke-width:0.850239;stroke-linecap:square" id="rect306" width="78.656364" height="78.276802" x="1.6702108" y="-238.21893" transform="rotate(89.975994)" /> <rect style="fill:#ffbb13;fill-rule:evenodd;stroke-width:0.850239;stroke-linecap:square;fill-opacity:1" id="rect308" width="78.656364" height="78.276802" x="80.975548" y="-238.21893" transform="rotate(89.975994)" /> <rect style="fill:#00bfff;fill-rule:evenodd;stroke-width:0.850239;stroke-linecap:square" id="rect364" width="78.656364" height="78.276802" x="160.28088" y="-238.21893" transform="rotate(89.975994)" /> <rect style="fill:#ffbb13;fill-opacity:1;fill-rule:evenodd;stroke-width:0.850239;stroke-linecap:square" id="rect1127" width="78.656364" height="78.276802" x="1.365628" y="-159.02838" transform="rotate(89.975994)" /> <rect style="fill:#ffbb13;fill-rule:evenodd;stroke-width:0.850239;stroke-linecap:square;fill-opacity:1" id="rect1129" width="78.656364" height="78.276802" x="80.670967" y="-159.02838" transform="rotate(89.975994)" /> <rect style="fill:#ffbb13;fill-rule:evenodd;stroke-width:0.850239;stroke-linecap:square;fill-opacity:1" id="rect1131" width="78.656364" height="78.276802" x="159.97629" y="-159.02838" transform="rotate(89.975994)" /> <rect style="fill:#ffbb13;fill-opacity:1;fill-rule:evenodd;stroke-width:0.850239;stroke-linecap:square" id="rect1133" width="78.656364" height="78.276802" x="1.6702108" y="-79.837845" transform="rotate(89.975994)" /> <rect style="fill:#ffbb13;fill-rule:evenodd;stroke-width:0.850239;stroke-linecap:square;fill-opacity:1" id="rect1135" width="78.656364" height="78.276802" x="80.975548" y="-79.837845" transform="rotate(89.975994)" /> <rect style="fill:#ffbb13;fill-rule:evenodd;stroke-width:0.850239;stroke-linecap:square;fill-opacity:1" id="rect1137" width="78.656364" height="78.276802" x="160.28088" y="-79.837845" transform="rotate(89.975994)" /> <rect style="fill:#00bfff;fill-rule:evenodd;stroke-width:0.239473;stroke-linecap:square" id="rect1208" width="22.598639" height="21.61301" x="29.699766" y="-51.506618" transform="matrix(4.0265298e-4,0.99999992,-0.9999999,4.3597681e-4,0,0)" /> <rect style="fill:#00bfff;fill-rule:evenodd;stroke-width:0.352827;stroke-linecap:square" id="rect1210" width="32.33791" height="32.78677" x="24.523928" y="-136.28305" transform="matrix(4.2685923e-4,0.99999991,-0.99999992,4.1125353e-4,0,0)" /> <rect style="fill:#00bfff;fill-rule:evenodd;stroke-width:0.440599;stroke-linecap:square" id="rect1212" width="39.742668" height="41.602058" x="21.122946" y="-219.88068" transform="matrix(4.4071293e-4,0.9999999,-0.99999992,3.9832588e-4,0,0)" /> <rect style="fill:#00bfff;fill-rule:evenodd;stroke-width:0.525395;stroke-linecap:square" id="rect1214" width="47.391457" height="49.6087" x="96.607162" y="-65.501175" transform="matrix(4.4071293e-4,0.9999999,-0.99999992,3.9832588e-4,0,0)" /> <rect style="fill:#00bfff;fill-rule:evenodd;stroke-width:0.593107;stroke-linecap:square" id="rect1216" width="53.499176" height="56.002174" x="93.247086" y="-147.88846" transform="matrix(4.4071293e-4,0.9999999,-0.99999992,3.9832588e-4,0,0)" /> <rect style="fill:#00bfff;fill-rule:evenodd;stroke-width:0.625015;stroke-linecap:square" id="rect1218" width="56.377304" height="59.014961" x="92.110962" y="-228.5854" transform="matrix(4.4071293e-4,0.9999999,-0.99999992,3.9832588e-4,0,0)" /> <rect style="fill:#00bfff;fill-rule:evenodd;stroke-width:0.687576;stroke-linecap:square" id="rect1358" width="62.020473" height="64.92215" x="168.59799" y="-73.156181" transform="matrix(4.4071293e-4,0.9999999,-0.99999992,3.9832588e-4,0,0)" /> <rect style="fill:#00bfff;fill-rule:evenodd;stroke-width:0.730479;stroke-linecap:square" id="rect1360" width="67.653275" height="67.175926" x="165.08029" y="-153.1264" transform="matrix(4.1804479e-4,0.99999991,-0.99999991,4.1992478e-4,0,0)" /> </svg>
+</a>
+ <a href="javascript:landscape();" title="landscape">
+ <svg class="order" width="24" height="24" viewBox="0 0 240 240" version="1.1" id="svg2919" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2923" /> <path style="fill:#00bfff;fill-rule:evenodd;stroke-width:13.8988;stroke-linecap:square" d="M 4.6345339,236.34713 60.975324,7.6083086 100.13316,131.30294 124.17411,72.766838 162.50948,196.2722 l 35.97782,-49.34749 36.10435,89.88353" id="path331" /> </svg>
+</a>
+
+</span>
+<!--span class="grouping">
+       <a href="javascript:distributePoints()" class="act"  title="map to distribute">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-pin-map" viewBox="0 0 16 16">
       <path fill-rule="evenodd" d="M3.1 11.2a.5.5 0 0 1 .4-.2H6a.5.5 0 0 1 0 1H3.75L1.5 15h13l-2.25-3H10a.5.5 0 0 1 0-1h2.5a.5.5 0 0 1 .4.2l3 4a.5.5 0 0 1-.4.8H.5a.5.5 0 0 1-.4-.8z"/>
       <path fill-rule="evenodd" d="M8 1a3 3 0 1 0 0 6 3 3 0 0 0 0-6M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999z"/>
@@ -353,23 +379,19 @@
     </svg></a>
     <a href="javascript:dispatch('smooth_5pt')" class="act"  title="smooth">
     <svg class="order" width="24" height="24" viewBox="0 0 240 240" version="1.1" id="svg2919" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2923" /> <path id="path346" style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:13.0016;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1" d="M 215.83895,101.66035 C 203.03218,77.92424 190.22513,54.187661 177.80178,30.450595 165.37842,54.187666 152.57138,77.924248 139.9525,101.66035 127.33362,77.924238 114.52658,54.187665 101.3562,30.450595 88.185813,54.187663 75.378774,77.92425 62.759895,101.66035 50.141015,77.92424 37.333974,54.187662 24.526675,30.450594" /> <path id="path1128" style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:13.0016;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1" d="m 218.82705,197.20023 c -28.24528,0.66669 -11.66936,-27.89137 -38.03718,-28.22165 -32.34402,0.33027 -12.28195,27.89236 -42.58044,28.22165 -27.31037,-0.32934 -12.95668,-27.99538 -41.335409,-28.22165 -29.604956,0.82829 -12.530972,26.89629 -39.592317,28.22165 -29.053449,0.16871 -9.98742,-26.39733 -31.759017,-28.22165" /> </svg>
-      </a>
-    <a href="javascript:dispatch('polar')" class="act"  title="polar">
-    <svg class="order" width="24" height="24" viewBox="0 0 240 240" version="1.1" id="svg2919" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2923" /> <circle style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:13.0016;stroke-linecap:square" id="path347" cx="119.3989" cy="122.65215" r="84.662865" /> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:13.0016;stroke-linecap:square" d="M 220.63371,26.253759 V 219.05053" id="path476" /> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:13.0016;stroke-linecap:square" d="M 17.940888,26.253767 V 219.05052" id="path478" /> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:13.0016;stroke-linecap:square" d="m 19.546533,122.65214 c 66.578245,0 133.136487,0 199.704737,0" id="path538" /> </svg>
     </a>
     <a href="javascript:unmap()" class="act"  title="unmap">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" id="invert" class="invert" viewBox="0 0 16 16">
       <path d="M7.729 5.055a.5.5 0 0 0-.52.038l-3.5 2.5a.5.5 0 0 0 0 .814l3.5 2.5A.5.5 0 0 0 8 10.5V8.614l3.21 2.293A.5.5 0 0 0 12 10.5v-5a.5.5 0 0 0-.79-.407L8 7.386V5.5a.5.5 0 0 0-.271-.445"/>
       <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8"/>
-    </svg></a>
-     </span>
-    <br>
+    </svg>
+  </a>
+  </span-->
+  <br>
   <span class="grouping">
     <!--a href="javascript:find_invags();" title="find invaginations">
    <svg class="order" width="24" height="24" viewBox="0 0 240 240" version="1.1" id="svg2919" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2923" /> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:17.0079;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none" d="m 51.758144,27.997441 c 17.130367,1.797647 20.919997,11.027277 28.483512,34.983146 8.370272,31.999762 0.171289,61.253473 40.706124,63.094553 38.03077,-3.97124 27.36415,-31.730823 35.68036,-66.665244 6.08831,-25.786857 9.03068,-31.635006 35.07048,-33.55277 15.83223,-1.166003 24.744,15.037163 28.65896,28.092378 8.77989,42.198987 24.94185,133.024336 -14.62509,157.013146 -32.41201,16.15813 -57.22934,20.05734 -83.95459,20.25954 C 96.600431,232.34564 77.626179,228.66264 52.677966,219.01684 -9.0989725,195.06202 10.233567,109.09971 16.392574,59.026189 22.713363,42.000549 32.296195,27.708302 51.758144,27.997441 Z" id="path446" /> </svg>
    </a-->
-
-
    <a href="javascript:rotations();" title="rotations: cw/ccw">
    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-clock" viewBox="0 0 16 16">
     <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
@@ -386,49 +408,25 @@
 
   <a href="javascript:lengths();" title="segment lengths">
 <svg width="24" height="24" viewBox="0 0 240 240" version="1.1" id="svg471" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs475" /> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:12.28724409;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none" d="M 50.28577,210.21502 16.406082,168.7975 190.45363,26.425922 224.33332,67.843431" id="path1283" /> </svg>  </a> 
-  <!--a href="javascript:clouds();" title="clouds">
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-cloud" viewBox="0 0 16 16">
-  <path d="M4.406 3.342A5.53 5.53 0 0 1 8 2c2.69 0 4.923 2 5.166 4.579C14.758 6.804 16 8.137 16 9.773 16 11.569 14.502 13 12.687 13H3.781C1.708 13 0 11.366 0 9.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383m.653.757c-.757.653-1.153 1.44-1.153 2.056v.448l-.445.049C2.064 6.805 1 7.952 1 9.318 1 10.785 2.23 12 3.781 12h8.906C13.98 12 15 10.988 15 9.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 4.825 10.328 3 8 3a4.53 4.53 0 0 0-2.941 1.1z"/>
-</svg></a-->
+
 <a href="javascript:close_passes()"" title="close passes">
   <svg class="order" width="24" height="24" viewBox="0 0 240 240" version="1.1" id="svg2919" sodipodi:docname="close_but.svg" inkscape:version="1.2.2 (b0a8486541, 2022-12-01)" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <sodipodi:namedview id="namedview140" pagecolor="#ffffff" bordercolor="#000000" borderopacity="0.25" inkscape:showpageshadow="2" inkscape:pageopacity="0.0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#d1d1d1" showgrid="false" inkscape:zoom="18.75" inkscape:cx="10.826667" inkscape:cy="9.0133333" inkscape:window-width="1280" inkscape:window-height="652" inkscape:window-x="0" inkscape:window-y="0" inkscape:window-maximized="1" inkscape:current-layer="svg2919" /> <defs id="defs2923" /> <circle style="fill:#000000;fill-rule:evenodd;stroke-width:163.296;stroke-linecap:square" id="circle913" cx="81.40741" cy="119.41506" r="21.912748" /> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:13.0016;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1" d="m 14.673137,22.562167 c 71.214066,97.034143 0.639096,1.009747 72.743941,96.917943 -69.829936,97.90023 -0.0053,1.51375 -70.751885,98.80264" id="path390" sodipodi:nodetypes="ccc" /> <circle style="fill:#000000;fill-rule:evenodd;stroke-width:163.296;stroke-linecap:square" id="circle1042" cx="-160.0285" cy="119.41506" r="21.912748" transform="scale(-1,1)" /> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:13.0016;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1" d="m 226.76277,22.562167 c -71.21406,97.034143 -0.63909,1.009747 -72.74394,96.917943 69.82994,97.90023 0.005,1.51375 70.75189,98.80264" id="path1044" sodipodi:nodetypes="ccc" /> </svg>
 </a>
 <a href="javascript:half_distance();" title="avg half distance">
   <svg class="order" width="24" height="24" viewBox="0 0 240 240" version="1.1" id="svg2919" sodipodi:docname="half.svg" inkscape:version="1.2.2 (b0a8486541, 2022-12-01)" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <sodipodi:namedview id="namedview152" pagecolor="#ffffff" bordercolor="#000000" borderopacity="0.25" inkscape:showpageshadow="2" inkscape:pageopacity="0.0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#d1d1d1" showgrid="false" inkscape:zoom="18.75" inkscape:cx="13.6" inkscape:cy="5.2266667" inkscape:window-width="1280" inkscape:window-height="652" inkscape:window-x="0" inkscape:window-y="0" inkscape:window-maximized="1" inkscape:current-layer="svg2919" /> <defs id="defs2923"> <inkscape:path-effect effect="bspline" id="path-effect1273" is_visible="true" lpeversion="1" weight="33.333333" steps="2" helper_size="0" apply_no_weight="true" apply_with_weight="true" only_selected="false" /> </defs> <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:133.333px;font-family:FreeMono;-inkscape-font-specification:'FreeMono, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:10.2047;stroke-linecap:round;stroke-opacity:1" x="14.76088" y="101.60915" id="text903"><tspan sodipodi:role="line" id="tspan901" style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:133.3329964px;font-family:FreeMono;-inkscape-font-specification:'FreeMono, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:10.2047;stroke-opacity:1" x="14.76088" y="101.60915">1</tspan></text> <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:133.333px;font-family:FreeMono;-inkscape-font-specification:'FreeMono, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:10.2047;stroke-linecap:round;stroke-opacity:1" x="144.74326" y="212.67462" id="text1165"><tspan sodipodi:role="line" id="tspan1163" style="stroke-width:10.2047;-inkscape-font-specification:'FreeMono, Bold';font-family:FreeMono;font-weight:bold;font-style:normal;font-stretch:normal;font-variant:normal;font-size:133.3329964px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal" x="144.74326" y="212.67462">2</tspan></text> <path style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:10.2047;stroke-linecap:round;stroke-opacity:1" d="M 32.689478,210.85498 C 92.783421,149.765 152.87745,88.674945 212.97155,27.584806" id="path1271" inkscape:path-effect="#path-effect1273" inkscape:original-d="M 32.689478,210.85498 C 92.793502,149.77492 152.88753,88.684864 212.97155,27.584806" /> </svg>
 </a>
-<a href="javascript:desirepaths()" title="desire paths">
-<svg width="24" height="24" class="invert" viewBox="0 0 240 240" version="1.1" id="svg471" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs475" /> <path style="fill:none;fill-rule:evenodd;stroke:#ff60ff;stroke-width:12.2872;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none" d="M 50.783784,211.21106 21.884272,158.33916 88.304948,149.63918 40.181726,36.355665 111.58255,46.580307 195.93182,15.967589 224.83133,68.839476" id="path1283" /> <path style="fill:none;fill-rule:evenodd;stroke:#ff60ff;stroke-width:12.2872;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none" d="m 194.57513,16.730862 28.89951,52.8719 -37.03766,32.106768 30.0378,49.91852 -20.75991,72.82732 -61.9385,-43.09376 -84.349274,30.61272 -28.89951,-52.87188" id="path411" /> <path style="fill:none;fill-rule:evenodd;stroke:#ff60ff;stroke-width:7.55906;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none" d="M 89.756673,150.43837 132.0881,180.56839 184.37987,105.11883 113.66148,48.842936 71.330062,99.640658" id="path467" /> </svg>
-</a>
+
 </span>
-<br>
 <span class="grouping">
-    <a href="javascript:crossings_bw();" title="add guide points">
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-node-plus" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M11 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8M6.025 7.5a5 5 0 1 1 0 1H4A1.5 1.5 0 0 1 2.5 10h-1A1.5 1.5 0 0 1 0 8.5v-1A1.5 1.5 0 0 1 1.5 6h1A1.5 1.5 0 0 1 4 7.5zM11 5a.5.5 0 0 1 .5.5v2h2a.5.5 0 0 1 0 1h-2v2a.5.5 0 0 1-1 0v-2h-2a.5.5 0 0 1 0-1h2v-2A.5.5 0 0 1 11 5M1.5 7a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5z"/>
-  </svg></a>
 
-  <a href="javascript:removeGuidePoints()" class="act"  title="remove guide points">
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-node-minus" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M11 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8M6.025 7.5a5 5 0 1 1 0 1H4A1.5 1.5 0 0 1 2.5 10h-1A1.5 1.5 0 0 1 0 8.5v-1A1.5 1.5 0 0 1 1.5 6h1A1.5 1.5 0 0 1 4 7.5zM1.5 7a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM8 8a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5A.5.5 0 0 1 8 8"/>
-</svg></a>
-  </span>
-  <span class="grouping">
-    <a href="javascript:setWeights()" class="act"  title="random weights">
-    <svg width="24" height="24" viewBox="0 0 240 240" version="1.1" id="svg471" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs475" /> <path id="rect326" style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:18.8639;stroke-linecap:square;stroke-linejoin:round" d="M 60.806832,83.365344 H 183.58839 L 228.13806,228.7753 H 16.257167 Z" /> <circle style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:17.4992;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none" id="path1767" cx="122.19762" cy="39.494724" r="29.382992" /> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:17.4992;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none" d="m 82.814625,155.53263 78.765975,-0.498" id="path1877" /> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:17.4992;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none" d="m 121.94861,115.90064 0.498,78.76598" id="path1905" /> </svg> 
+<!--a href="javascript:bestPaths()" title="best paths"-->
+    <input type="checkbox" class="lower" id="drawmode" title="add points "/> 
+    <label for="drawmode" class="lower">draw mode</label>
 
-    <a href="javascript:clearWeights()" class="act"  title="clear weights">
-    <svg width="24" height="24" viewBox="0 0 240 240" version="1.1" id="svg471" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs475" /> <path id="rect326" style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:18.8639;stroke-linecap:square;stroke-linejoin:round" d="M 60.806832,83.365344 H 183.58839 L 228.13806,228.7753 H 16.257167 Z" /> <circle style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:17.4992;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none" id="path1767" cx="122.19762" cy="39.494724" r="29.382992" /> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:17.4992;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none" d="m 82.814625,155.53263 78.765975,-0.498" id="path1877" /> </svg> 
-    </a>
-    </span>
-    <span class="grouping">
-<a href="javascript:hidePath()" class="act"  title="show/hide path">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-eye-slash" viewBox="0 0 16 16">
-      <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7 7 0 0 0-2.79.588l.77.771A6 6 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755q-.247.248-.517.486z"/>
-      <path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829"/>
-      <path d="M3.35 5.47q-.27.24-.518.487A13 13 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7 7 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12z"/>
-    </svg>
-    </a>  
-     </span>
+  <a href="javascript:removeMarkedA()" class="act"  title="remove added points">
+ <svg class="order" width="24" height="24" viewBox="0 0 240 240" version="1.1" id="svg2919" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2923"> <marker style="overflow:visible" id="TriangleStart" refX="0" refY="0" orient="auto-start-reverse" markerWidth="5.3244081" markerHeight="6.155385" viewBox="0 0 5.3244081 6.1553851" preserveAspectRatio="xMidYMid"> <path transform="scale(0.5)" style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt" d="M 5.77,0 -2.88,5 V -5 Z" id="path135" /> </marker> </defs> <path style="fill:#ff0400;fill-opacity:1;fill-rule:evenodd;stroke:#ff0000;stroke-width:21.9212598;stroke-linecap:square;stroke-linejoin:round;stroke-opacity:1;stroke-dasharray:none" d="M 186.65964,44.216708 51.295417,197.91782" id="path1852" /> <path style="fill:#ff0400;fill-opacity:1;fill-rule:evenodd;stroke:#ff0000;stroke-width:21.9212598;stroke-linecap:square;stroke-linejoin:round;stroke-opacity:1;stroke-dasharray:none" d="M 185.94236,198.74099 52.012702,43.393518" id="path1868" /> </svg>
+  </a>
+</span>
 <br>
 <span class="grouping">
    <input type="checkbox" class="lower" checked id="oib" title="only if better"/>
@@ -568,6 +566,10 @@
     <a href="javascript:box_counts_path();" title="boxes path">
       <svg class="invert" width="24" height="24" viewBox="0 0 240 240" version="1.1" id="svg2919" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2923" /> <path style="fill:#d4aa00;fill-rule:evenodd;stroke-width:115.049;stroke-linecap:square" d="M 17.696265,49.469401 180.04974,98.773063" id="path671" /> <path style="fill:#ffffff;fill-rule:evenodd;stroke:none;stroke-width:5.5;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1" d="M 48.206922,142.39952 22.306586,94.182374 33.842054,32.610986 75.39754,20.811284 l 14.36485,38.477292 -6.351582,42.128574 30.464022,36.87812 43.09456,-46.172735 -14.36486,-55.920336 56.9464,-14.877888 23.45054,57.051475 -3.44237,64.023724 -17.51684,41.16082 -38.93153,-11.62898 -24.61042,54.60517 -41.042431,-4.36076 -17.443037,-43.3511 -56.613555,9.54985 z" id="path1389" /> </svg>
     </a>
+    <a href="javascript:hull();" title="convex hull">
+<svg width="24" height="24" class="invert" viewBox="0 0 240 240" version="1.1" id="svg471" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs475" /> <path style="fill:none;fill-rule:evenodd;stroke:#dd00ff;stroke-width:12.2872;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 50.783784,211.21106 21.884272,158.33916 11.112337,93.861299 40.181726,36.355665 95.147996,11.221111 181.98735,32.900165" id="path1283" /> <path style="fill:none;fill-rule:evenodd;stroke:#dd00ff;stroke-width:12.2834646;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1" d="m 189.09696,37.647569 31.8876,35.441309 9.2779,42.067102 c -9.5751,37.05639 -22.18665,73.11784 -34.54759,109.29939 -48.584,-6.3128 -92.95543,-8.21609 -141.805613,-11.48501" id="path411" /> <circle style="fill:#ffffff;fill-rule:evenodd;stroke:#ffffff;stroke-width:7.55906;stroke-linecap:square;stroke-opacity:1;fill-opacity:1" id="path502" cx="62.365757" cy="161.01082" r="8.9643068" /> <circle style="fill:#ffffff;fill-rule:evenodd;stroke:#ffffff;stroke-width:7.55906;stroke-linecap:square;stroke-opacity:1;fill-opacity:1" id="path502-3" cx="100.91312" cy="58.836079" r="8.9643068" /> <circle style="fill:#ffffff;fill-rule:evenodd;stroke:#ffffff;stroke-width:7.55906;stroke-linecap:square;stroke-opacity:1;fill-opacity:1" id="path502-6" cx="182.27307" cy="125.83136" r="8.9643068" /> <circle style="fill:#ffffff;fill-rule:evenodd;stroke:#ffffff;stroke-width:7.55906;stroke-linecap:square;stroke-opacity:1;fill-opacity:1" id="path502-7" cx="130.13333" cy="186.66667" r="8.9643068" /> </svg>    </a>
+    <a href="javascript:white_area();" title="area">
+    <svg class="invert" width="24" height="24" viewBox="0 0 240 240" version="1.1" id="svg471" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs475" /> <path id="rect1208" style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke-width:8.13226;stroke-linecap:square" d="M 26.441727,33.640323 120.4713,146.15436 c 0,0 84.47483,-98.047942 84.38552,-96.976385 L 104.66577,8.9943914 183.96136,203.48291 11.70776,84.53952 60.73172,235.09401 230.57431,92.040453 Z" /> </svg>    </a>
     <a href="javascript:showCG();" title="show center of gravity">
     <svg class="order" width="24" height="24" viewBox="0 0 240 240" version="1.1" id="svg2919" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2923" /> <circle style="fill:#ff0000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:18.2022;stroke-linecap:square;stroke-opacity:1" id="path373" cx="122.76706" cy="119.41503" r="52.291763" /> </svg>
     </a>
@@ -583,6 +585,9 @@
   
   <div class="column" style="width:380px;padding-left: 10px;">
     <span class="grouping">
+      <a href="javascript:showfd();" title="fractal dimension">
+      <svg width="24" height="24" viewBox="0 0 6.3500004 6.3499998" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"> <rect x="49.384789" y="2.6351275" width="20.998407" height="33.791702" id="rect1400" /> <linearGradient id="linearGradient4589"> <stop style="stop-color:#ffffff;stop-opacity:1;" offset="0" id="stop4587" /> </linearGradient> <linearGradient id="linearGradient2621"> <stop style="stop-color:#ffffff;stop-opacity:1;" offset="0" id="stop2619" /> </linearGradient> </defs> <text xml:space="preserve" style="font-size:3.46038px;fill:none;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.655021;stroke-linecap:square" x="3.8287318" y="5.5606661" id="text1222"><tspan id="tspan1220" style="stroke-width:0.65502;stroke-linecap:square" x="3.8287318" y="5.5606661" /></text> <text xml:space="preserve" style="font-size:3.46038px;fill:none;fill-opacity:0.99;fill-rule:evenodd;stroke:#000000;stroke-width:0.02645833;stroke-linecap:square;stroke-dasharray:none" x="4.0305715" y="5.278091" id="text1276"><tspan id="tspan1274" style="stroke-width:0.02645833;stroke-linecap:square;stroke-dasharray:none" x="4.0305715" y="5.278091" /></text> <text xml:space="preserve" transform="matrix(0.2883649,0,0,0.2883649,-0.36047298,-0.98055192)" id="text1398" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;font-family:'DejaVu Serif';-inkscape-font-specification:'DejaVu Serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect1400);display:inline;fill:#000000;fill-opacity:0.99;fill-rule:evenodd;stroke:none;stroke-width:2.2715;stroke-linecap:square" /> <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.70853px;font-family:FreeMono;-inkscape-font-specification:'FreeMono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:0.580112;stroke-linecap:square" x="0.72814846" y="5.5767426" id="text610" transform="scale(0.98669521,1.0134842)"><tspan id="tspan608" style="stroke-width:0.580111" x="0.72814846" y="5.5767426">D</tspan></text> </svg>
+    </a>
        <a href="javascript:info();" title="path info">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-info-circle" viewBox="0 0 16 16">
       <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
@@ -624,10 +629,10 @@
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-arrows-fullscreen" viewBox="0 0 16 16">
     <path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707m4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707m0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707m-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707"/>
   </svg></a>
-    <a href="javascript:openGrid();" title="open point editor">
+    <!--a href="javascript:openGrid();" title="open point editor">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" class="bi bi-pencil" viewBox="0 0 16 16">
     <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
-    </svg></a>
+    </svg></a-->
   </span>
     <textarea id="textarea" width="450" rows="24" spellcheck="false"></textarea>
   </div>
@@ -653,8 +658,9 @@ function point (x,y,i,w) {
   this.arms_length = 0
   this.mark = ""
   this.weight = 1
-  //this.PEN = false
- // this.lin = 0
+  this.next = ""
+  this.prev = ""
+  this.threshold = 0
   this.neighbors = []
   this.segs = []
   this.spurs = []//-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1] // 20 directions
@@ -778,27 +784,27 @@ function half_distance (m) { // try 'mod distance' pt, pt+N/3, 4, 5
   i = 0
   for (; i < points.length/2; i++) { 
     let d = round(distance (points[i], points[Math.floor((i+N/m)%N)]))
-    if (d < avg*1.7) {
+   // if (d < avg*1.7) {
       ctx.beginPath()
       ctx.moveTo(points[i].x, points[i].y)
       ctx.lineTo(points[Math.floor((i+N/2)%N)].x, points[Math.floor((i+N/2)%N)].y)
       ctx.strokeStyle = 'red'
       ctx.stroke()
-    }
+   // }
   }
   ctx.fillStyle = '#00ffff60'
   let bp = boundingPoints()
   let extent = distance(bp[0], bp[1])
   //console.log(extent)
   i = 0
-  for (; i < points.length; i++) { 
+/*  for (; i < points.length; i++) { 
     dcg = distance(points[i], cg)
     if (dcg < extent*0.2) {
       ctx.beginPath()
       ctx.arc(points[i].x, points[i].y, 8, 0, 2*Math.PI)
       ctx.fill()
     }
-  }
+  }*/
  // message(res)
   message("half_distances: x̄:"+avg+", ∿:"+round(inflections) +", ▽:"+round(sd_))
 }
@@ -899,11 +905,13 @@ function cluster () { // by .neighbors
   // merge neighbors with ANY in common
   clusters = mergeClusters(clusters)
   clusters = mergeClusters(clusters)
-  let cgs = []
+  let cgs = [], cleaned = []
+
   i = 0
   for (; i < clusters.length; i++) {
     if (clusters[i].length > 0) {
       cgs.push(CGfromIndicies (clusters[i]))
+      cleaned.push(clusters[i])
     }
   }
   // do something different. smooth points w/i each cluster 
@@ -926,6 +934,7 @@ function cluster () { // by .neighbors
   drawPath(points)
   topology()
   message("cluster "+initial+" => "+points.length+" ◣ (was "+saved+")")
+  return (cleaned)
 }
 
 function popClusters () {
@@ -1018,7 +1027,18 @@ function CGfromIndicies (idx) {
   return (p)
 }
 
-function showClusters () {
+function getCurrentOrdering () {
+  if (points.length < 1) { 
+    return
+  }
+  let ordering = {}, i = 0
+  for (; i < points.length; i++) {
+    ordering[points[i].index] = i
+  }
+  return ordering
+}
+
+function showClusters (fs) {
   if (points.length < 1) {
     return
   }
@@ -1041,7 +1061,35 @@ function showClusters () {
   // merge neighbors with ANY in common
   clusters = mergeClusters(clusters)
   clusters = mergeClusters(clusters)
-  showClusters_(clusters)
+  i = 0
+  res = ""
+  for (; i < clusters.length; i++) {
+    if (clusters[i].length > 0) {
+      res += "["
+      j = 0
+      for (; j < clusters[i].length; j++) 
+        res += clusters[i][j]+","
+      res+= "]\n"
+    }
+  }
+ // message(res)
+  let copy2 = copyOf(points), index, pt
+ // unmap()
+  i = 0
+  for (; i < copy2.length; i++) {
+    index = copy2[i].index
+    pt = pointByIndex(index)
+    pt.neighbors = copy2[i].neighbors
+  }
+  let cleaned = []
+  i = 0
+  for (; i < clusters.length; i++) {
+    if (clusters[i].length > 0)
+      cleaned.push(clusters[i])
+  }
+ //console.log(clusters)
+  showClusters_(clusters, fs)//, NOOUTLINE)
+  return cleaned
 }
 
 function closestSegs () {
@@ -1095,7 +1143,16 @@ function covariance (pts) {
   return s
 }
 
-function showClusters_ (c) {
+function max_distance(cg, pts) {
+  let max = 0, i = 0, d
+  for (; i < pts.length; i++) {
+    d = distance(cg, pts[i])
+    max = (d > max)? d: max;
+  }
+  return max
+}
+
+function showClusters_ (c, fs) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let colors = ["#a6cee3","#1f78b4","#b2df8a","#33a02c","#fb9a99","#e31a1c","#fdbf6f","#ff7f00","#cab2d6","#6a3d9a","#ffff99","#b15928"]
@@ -1103,23 +1160,44 @@ function showClusters_ (c) {
   ctx.strokeStyle = "#00ffff"
   ctx.lineWidth = 2
   let voidsize = +document.getElementById("voidsize").value
-  let i = 0, pts = [], res = [], count = 0, j = 0
+  let i = 0, pts = [], res = [], count = 0, j = 0, cg, r
   for (; i < c.length; i++) {
     if (c[i].length > 0) {
-      text += "> "+c[i]+"\n"
+    //  text += "> "+c[i]+"\n"
       pts = indiciesToPoints(c[i]) // use bounding box of cluster points
       bp = boundingPoints(pts)
-      ctx.strokeStyle = colors[(i % colors.length)]
-      ctx.strokeRect(bp[0].x-6, bp[0].y-6, bp[1].x-bp[0].x +12, bp[1].y-bp[0].y+12)
-      j = 0
-      for (; j < pts.length; j++) {
-        ctx.beginPath()
-        ctx.arc(pts[j].x, pts[j].y, 5, 0, 2*Math.PI)
-        ctx.stroke()
-      }
+      cg = center(pts)
+      r = max_distance(cg, pts) *1.2
+      ctx.strokeStyle = "#202020ff"
+      ctx.fillStyle = (fs)?fs:"#7070ffff"
+
+      ctx.shadowBlur = 6
+      ctx.shadowColor = "#20202090"
+      ctx.shadowOffsetX = 2
+      ctx.shadowOffsetY = 8
+      ctx.beginPath()
+      ctx.arc(cg.x, cg.y, r*1.2, 0, 2*Math.PI)
+      ctx.fill()
+      
+      ctx.shadowBlur = 0
+      ctx.shadowOffsetX = 0
+      ctx.shadowOffsetY  = 0
+      ctx.stroke()
+ 
+/*
+      if (!NO) {
+        j = 0
+        for (; j < pts.length; j++) {
+          ctx.beginPath()
+          ctx.arc(pts[j].x, pts[j].y, 5, 0, 2*Math.PI)
+          ctx.stroke()
+        }
+      }*/
       count++
     }
   }
+  i = 0
+
   ctx.lineWidth = 1
   message("clusters:"+count+" (voidsize:"+voidsize+")")
 }
@@ -1131,6 +1209,15 @@ function indiciesToPoints (idxs) {
   }
   return pts
 }
+
+function indiciesToPoints2 (pts, idxs) {
+  let i = 0, result = []
+  for (; i < idxs.length; i++) {
+    result.push(pointByIndex2(pts, idxs[i]))
+  }
+  return result
+}
+
 // return point given an index field
 function pointByIndex (idx) { 
   let i = 0
@@ -1140,7 +1227,24 @@ function pointByIndex (idx) {
   }
 }
 
-function indexByPoint (point) {
+function pointByIndex2 (pts, idx) { 
+  let i = 0
+  for (; i < pts.length; i++) {
+    if (pts[i].index == idx)
+      return pts[i]
+  }
+}
+
+// return point's position in points array given an index field
+function iByIndex (idx) { 
+  let i = 0
+  for (; i < points.length; i++) {
+    if (points[i].index == idx)
+      return i
+  }
+}
+
+function indexByPoint (point) { // returns points position in points
   let i = 0
   for (; i < points.length; i++) {
     if (points.index === point)
@@ -1157,7 +1261,6 @@ function mergeClusters (c) {
       if (c[j].length > 0 && c[i].length > 0 && arraysIntersect(c[i], c[j])) {
         c[i] = mergeArray(c[i],c[j])
         res.push(c[i])
-        //console.log("m")
         c[j] = []
       }
     }
@@ -1532,35 +1635,6 @@ function padSegs() {
   }
 }
 
-function find_invags () {
-  if (points.length < 1)
-    return
-  let cg = center()
-  showCG()
-  let i = 0, count = 0, found = []
-  //copyToClipboard() 
-  let canvas = document.getElementById("myCanvas")
-  let ctx = canvas.getContext("2d")
-  ctx.fillStyle = "#00ffff60"
-  let L = points.length
-  for (; i < L; i++) {
-    let prev =  (i === 0)? L-1: i-1
-    let pprev = (i === 0)? L-2: i-2
-    if (i === 1)
-      pprev = L-1
-    let dpp = distance(cg, points[pprev])
-    let dp = distance(cg, points[prev])
-    let d = distance(cg, points[i])
-    if (d < dp && d < dpp) {
-      ctx.beginPath()
-      ctx.arc(points[i].x, points[i].y, 8, 0, 2*Math.PI)
-      ctx.fill()
-      count++
-    }
-  }
-  console.log(count)
-}
-
 function findPaths () { // prune?
   if (points.length < 1)
     return
@@ -1616,8 +1690,7 @@ function cons (s) {
 }
 
 function drawsegPath (path, al) {
-
-al *= 1.2
+  al *= 1.2
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   ctx.lineWidth = 0.75
@@ -1760,6 +1833,22 @@ function random () { // rename this
   showPoints()
 }
 
+function u_dist () { // rename this
+  let n = +document.getElementById("numpoints").value, i = 0, pt
+  points = []
+  while (i < n) {
+    pt = new point(7+Math.random() * 486, 7+Math.random() * 486)
+    if (!pointInRect(pt, 150, 0, 350, 360)) {
+      points.push(pt)
+      i++
+    }
+  }
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  ctx.clearRect(0,0,canvas.width, canvas.height)
+  showPoints()
+}
+
 let mappers = ["polar", "smooth_5pt", "simplify180"] // other mappers are NOT dispatched
 
 function dispatch (fn, args) {
@@ -1769,6 +1858,7 @@ function dispatch (fn, args) {
     console.log(fn)
     document.getElementById("save_prev").checked = false
   }
+
   let star = ""
   let LS = LOWSCORE
   let t1 = new Date()
@@ -1781,9 +1871,11 @@ function dispatch (fn, args) {
   let stack = copyOf(functionStack)
   let v = document.getElementById("textarea").value
   window [fn] (args)
+  //console.log(orderingOf(points), orderingOf(copy))
+  let reorder = same_odering(orderingOf(points), orderingOf(copy)) // not the points, but their ordering
   functionStack = stack
   pushFunction("dispatch", fn)
-  let m = measurePath(points,true)
+  let m = measurePath(points, true)
   if (OIB && m > m1) {
     points = copy
     drawPath()
@@ -1793,7 +1885,6 @@ function dispatch (fn, args) {
   if (m < LS) {
     star = "*"
     recordToLog(fn)
-    //console.log(fd())
   }
  // showMarked()
  let flag = ""
@@ -1802,6 +1893,8 @@ function dispatch (fn, args) {
   showCG()
   document.getElementById("textarea").value = m +star+" "+ fn+ " \t("+t2+" [s])"+flag+"\n"+v
   document.getElementById("textarea").scroll(0,0)
+  if (reorder === false && OIB === false)
+    message("point order changed")
 }
 
 function currentFunction () {
@@ -1992,6 +2085,40 @@ function ordering (verbose) {
   }
   return vector
 }
+
+function orderingOf (pts) {
+  let order = "", i = 0, vector = []
+  for (; i < pts.length; i++) {
+ //   if (+pts[i].index < 10)
+ //     order+="0"
+  //  order+=pts[i].index+" "
+    vector.push(+pts[i].index)
+  }
+  return vector
+}
+
+function same_odering (a1, a2) {
+  let start = a1[0]
+  let a2i = a2.indexOf(start)
+  let i = 0, SAME = true
+  for (; i < a1.length;i++){
+    if (a1[i] !== a2[(a2i)])
+      SAME = false
+    a2i = (a2i+1) % a2.length
+  }
+  if (SAME)
+    return true
+  SAME = true, i = 0
+  a2 = a2.reverse()
+  a2i = a2.indexOf(start)
+  for (; i < a1.length;i++){
+    if (a1[i] !== a2[(a2i)])
+      SAME = false
+    a2i = (a2i+1) % a2.length
+  }
+  return SAME
+}
+
 function shuffled_h () {
   let min = 2e20, minindex = 0, i = 0, m = 2e20, d = 0
   let old = measurePath(points, true), news = -2e20
@@ -2117,14 +2244,14 @@ function tidy () {
     setAngles()
 }
 
-function mini_tidy () { 
-  swapAcross()
-  insert_run()
-  segmentswap()
-  uncross_paths()
-  swapAcross()
-  insert_run()
-  segmentswap()
+function mini_tidy (NOSHOW) { 
+  swapAcross(NOSHOW)
+  insert_run(NOSHOW)
+  segmentswap(NOSHOW)
+  uncross_paths(NOSHOW)
+  swapAcross(NOSHOW)
+  insert_run(NOSHOW)
+  segmentswap(NOSHOW)
  // let funcs = shuffle(["swapAcross","insert_run","segmentswap"])
  // window [funcs[0]] ()
  // window [funcs[1]] ()
@@ -2291,31 +2418,7 @@ end for
 return A
 */
 
-function brute_force (NOSHOW) { // brute force 
-  if (points.length < 1)
-    return
-  let pts = copyOf(points)
-  if (pts.length > 10) {
-    // 10 points takes about 45 sec
-    alert("No more that 10 points.\n")
-    return
-  }
-  let pmin = [], i = 0
-  let L_min = 1e20, l = 0
-  let perms = permutator(pts)
-  starttime = new Date()
-  for (; i < perms.length; i++) { //perms.length
-    l = measurePath(perms[i],true)
-    if (l < L_min) {
-      L_min = l
-      pmin = perms[i]
-    }
-  }
-  let endtime = new Date()
-  //console.log((endtime-starttime)/1000,"[s]")
-  points = pmin
-  drawPath(pmin)
-}
+
 
 let GP = [0,1,2,3]
 function nextPerm_ () {
@@ -2562,11 +2665,12 @@ function printPoints () {
   ta = document.getElementById("textarea")
   let str = JSON.stringify(points, null, 2);
   str = str.replace(new RegExp("\\n\\s+(-?[0-9]+,)",'gm'), "$1")
-  console.log(str)
+ // console.log(str)
   ta.value = str//JSON.stringify(points, null, 2);
 }
 
 function log_path_length () {
+  showScale()
   if (points.length < 1)
     return
   message("path length:"+measurePath())
@@ -2684,11 +2788,14 @@ function anneal () {
 
 let A = 0, B = 0
 
-function segmentswap () {
+function segmentswap (NOSHOW) {
   let copy = copyOf(points)
   copy = chunkswap_run(copy)
   points = copy
-  let m = drawPath(points)
+  if (NOSHOW)
+    m = measurePath()
+  else
+    m = drawPath()
   return m
 }
 
@@ -2770,7 +2877,7 @@ function jiggle (t,index) {
   showPoints()
 }
 
-function insert_run () {
+function insert_run (NOSHOW) {
   //if (points.length < 1)
   //  return
   let v = document.getElementById("textarea").value
@@ -2782,7 +2889,12 @@ function insert_run () {
         insert_inner(i,j)
     }
   }
-  drawPath(points)
+
+  if (NOSHOW)
+    m = measurePath()
+  else
+    m = drawPath()
+  return(m)
   //document.getElementById("textarea").value = Math.round(10*measurePath(points,true))/10 + " insert\n" + v
   //pushFunction("insert_run")
 }
@@ -2817,6 +2929,26 @@ function insertAt (i, offset) {
   }
   swap(i,ip)
   return (ip)
+}
+
+function better_fd () { // oib by fd
+  if (points.length < 1)
+    return
+  document.getElementById("oib").checked = false
+  let D = fd(), d = 5
+  let copy = copyOf(points)
+  //shuffle_points()
+  tidy()
+  d = round2dp(fd())
+  console.log(D,d)
+  if (d > D) { // restore original 
+    console.log("restored")
+    points = copy
+    drawPath()
+    let l = measurePath()
+  message (l+", "+d)
+  }
+  
 }
 
 function untangle () {
@@ -2943,7 +3075,6 @@ function message (m) {
   let v = document.getElementById("textarea").value
   document.getElementById("textarea").value = m + "\n" + v
   document.getElementById("textarea").scroll(0,0)
-
 }
 
 function simplify_solve () {
@@ -2991,10 +3122,22 @@ function showxy () {
   message(res)
 }
 
+function removeMarkedA () {
+  if (points.length < 1)
+    return
+  let unmarked = [], i = 0
+  for (; i < points.length; i++) {
+    if (points[i].mark !== "A")
+      unmarked.push(points[i])
+  }
+  points = unmarked
+  drawPath()
+}
+
 function unmap () {
   if (CLIPBOARD.length < 1)
     return
-  let  dest = JSON.parse(CLIPBOARD)
+  let dest = JSON.parse(CLIPBOARD)
   if (dest.length === points.length)
     copyOrder(points, dest)
   drawPath()
@@ -3035,6 +3178,7 @@ function nearestPoint (pt) {
   }
   return (mini)
 }
+
 /* fractal dimension ref ... 
 A simple but useful equation was found to be: 
 D = log(n)/[log(n) + log(d/L)], 
@@ -3089,6 +3233,20 @@ function spacing () {
   }
   return (T/points.length)
 }
+
+function setAllNeighbors () {
+  if (points.length < 1)
+    return 0
+  let i = 0, cn, j = 0
+  for (; i < points.length; i++) {
+    cn = closestNeighbors(i, points)
+    points[i].neighbors = []
+    j = 0
+    for (; j < cn.length; j++)
+      points[i].neighbors.push(cn[j].index)
+  }
+}
+
 
 function angle_deg(p1,p2) {
   return angle(p1,p2) * 180/Math.PI
@@ -3291,6 +3449,265 @@ function void_distance (p1, p2, vs) {
   return cost
 }
 
+function persistent_homology () { // topology, filter, barcode
+  if (points.length < 1)
+    return
+  let v = 40, i = 0, max = 64, c
+  let saved = document.getElementById("textarea").value
+  let clusterobject = {}, cl, L = 0
+  let vs = document.getElementById("voidsize")
+  let savedvs = +vs.value, counts = [], count = 0
+  v = +savedvs
+  if (v%2 === 1)
+    v += 1
+  clearNeighbors()
+  for (; i < max; i++) {
+    clust = []
+    let clust2 = new Array()
+    vs.value = v
+    c = show_closestpoints()
+    c = mergeClusters(c)
+    c = mergeClusters(c)
+    count = c.length
+    j = 0
+    for (; j < c.length; j++) {
+      if (c[j].length > 0) {
+       c[j].sort((a, b) => a - b)
+        if (!clusterobject["("+c[j]+")"])
+          clusterobject["("+c[j]+")"] = new Array()
+        clusterobject["("+c[j]+")"].push(v)
+      }
+    }
+    v += 2
+    counts.push(count)
+  }
+  // 174 -2, console.log(v)
+  message(JSON.stringify(clusterobject).replaceAll("],", "],\n"))
+  document.getElementById("textarea").value = saved
+  show_closestpoints(true)
+  vs.value = savedvs
+  drawBarChart(clusterobject)
+}
+
+function drawBarChart (data) {
+ // console.log(data)
+  let res = "persistence                                        cluster\n", line = "", i = 0, j = 0
+  let keys = Object.keys(data)
+  let vals = Object.values(data), trunc = "", sizes = "", cnt = 0
+  let start = +document.getElementById("voidsize").value
+  if (start % 2 === 1)
+    start+= 1
+  let res2 = ""+start
+  for (; i < keys.length; i++) {
+    line = ""
+    j = start
+    if (vals[i].length > 0) { // was > 1
+      for (; j <= start+100; j += 2) {
+        if (vals[i].includes(j)) 
+          line += "▆"
+        else
+          line += "."
+      }
+      trunc = keys[i]
+      if (trunc.length > 70)
+        trunc = trunc.substring(0,67)+"...)"
+      res += line+trunc+"\n"
+    }
+  }
+  res += res2+"                                                 "+(start+126)
+  message(res)
+}
+
+let ARCS = []
+function holes_barcode () { // pass INVERT & remove alternate version 
+  let i = 0, r = [], all_clusters, vs = +document.getElementById("voidsize").value
+  let saved_vs = vs
+  let buff = document.getElementById("textarea").value
+  let previous, j, k, res = "", v, ID = 0, radius_
+  let clusterobject = {}, holedata, string = " T  holes\n", s = 0, dot = "•", icons = []
+  ARCS = []
+  for (; i < 64; i++) {
+    // if (INVERT)
+    //holedata = hole_detector(INVERT)
+    //else
+    holedata = hole_detector()
+    if (holedata && holedata[2] && holedata[2][0] < 100) 
+      holedata[2][0] = " "+holedata[2][0] 
+    if (holedata && holedata[2] && holedata[2][0] < 10) 
+      holedata[2][0] = " "+holedata[2][0] 
+    string += holedata[2][0]
+    s = 0
+    icons = []
+    for (; s < holedata[2][1]; s++) {
+      radius_ = holedata[1][s]
+      if (radius_ < 5) {
+        icons.push("·")
+      }
+      if (radius_ < 13 && radius_ >= 5) {
+        icons.push("•")
+      }
+      else
+      if (radius_ < 34 && radius_ >= 13)
+       {
+        icons.push("●")
+       }
+      else
+      if (radius_ >= 34)
+       {
+        icons.push("⬤")
+       }
+    }
+    icons.sort().reverse()
+    string += " "+icons.join(" ")+"\n"
+    if (holedata) {
+      r = holedata[0]
+      r = (r < 5)? 5: r;
+      j = 0
+      for (; j < r.length; j++) {
+        r[j].sort((a, b) => a - b)
+        if (!clusterobject[r[j]])
+          clusterobject[r[j]] = []
+        clusterobject[r[j]].push(vs)
+      }
+    }
+    vs += 2
+    document.getElementById("voidsize").value  = vs
+    setthreshold()
+  }
+  hidePath()
+  let ctx = document.getElementById("myCanvas").getContext("2d")  
+  ctx.strokeStyle = "#1e88e5"
+  ctx.fillStyle = "#ffffffb0"
+  ctx.lineWidth = 1
+  j = 0
+  let x, y, radius
+  i = 0
+  for (; i < ARCS.length; i++) {
+    if (ARCS[i].length > 0) {
+      x = ARCS[i][0].x
+      y = ARCS[i][0].y
+      radius = ARCS[i][1]
+      if (radius < 10)
+        radius = 10
+      ctx.beginPath()
+      ctx.arc(x,y,radius,0,2*Math.PI)
+      ctx.stroke()
+    }
+  }
+  showPathlite()
+  document.getElementById("voidsize").value = saved_vs
+  setthreshold()
+  document.getElementById("textarea").value = buff
+  string += "-----------------------------------"
+  message(string)
+}
+
+function holes_barcode_inverted () {
+  let i = 0, r = [], all_clusters, vs = +document.getElementById("voidsize").value
+  let saved_vs = vs
+  let buff = document.getElementById("textarea").value
+  let previous, j, k, res = "", v, ID = 0, radius_
+  let clusterobject = {}, holedata, string = "T   holes\n", s = 0, dot = "•", icons = []
+  ARCS = []
+  for (; i < 64; i++) {
+    holedata = hole_detector(true) // invert colors
+    if (holedata && holedata[2] && holedata[2][0] < 100) 
+      holedata[2][0] = " "+holedata[2][0] 
+    string += holedata[2][0]
+    s = 0
+    icons = []
+    for (; s < holedata[2][1]; s++) {
+      radius_ = holedata[1][s]
+      
+      if (radius_ < 5) {
+        icons.push("·")
+     //   string += " ·"
+      }
+      if (radius_ < 13 && radius_ >= 5) {
+        icons.push("•")
+     //   string += " •" 
+      }
+      else
+      if (radius_ < 34 && radius_ >= 13)
+       {
+        icons.push("●")
+      //  string += " ●" 
+       }
+      else
+      if (radius_ >= 34)
+       {
+        icons.push("⬤")
+       // string += " ⬤" 
+       }
+    }
+    icons.sort().reverse()
+    string += " "+icons.join(" ")+"\n"
+    if (holedata) {
+      r = holedata[0]
+      j = 0
+      for (; j < r.length; j++) {
+        r[j].sort((a, b) => a - b)
+        if (!clusterobject[r[j]])
+          clusterobject[r[j]] = []
+        clusterobject[r[j]].push(vs)
+      }
+    }
+    vs += 2
+    document.getElementById("voidsize").value  = vs
+    setthreshold()
+  }
+  hidePath()
+  let ctx = document.getElementById("myCanvas").getContext("2d")  
+  ctx.strokeStyle = "orange"//"#1e88e5"
+  ctx.lineWidth = 1
+ // ctx.fillStyle = "#ffffffb0"
+  j = 0
+  let x, y, radius
+  i = 0
+  for (; i < ARCS.length; i++) {
+    if (ARCS[i].length > 0) {
+      x = ARCS[i][0].x
+      y = ARCS[i][0].y
+      radius = ARCS[i][1]
+      if (radius < 6)
+        radius = 6
+      ctx.beginPath()
+      ctx.arc(x,y,radius,0,2*Math.PI)
+      ctx.stroke()
+    }
+  }
+  console.log("here")
+  showPathlite()
+  document.getElementById("voidsize").value = saved_vs
+  setthreshold()
+  document.getElementById("textarea").value = buff
+  string += "-----------------------------------"
+  message(string)
+}
+
+function similar (a1, a2) {
+ // if (a1.length < 1 || a2.length < 1)
+ //   return false
+  let i = 0, sim = 0
+  for (; i < a1.length; i++) {
+    sim += (a2.includes(a1[i]))? 1 :0;
+    if (sim > 0)
+      return true
+  }
+  return false
+}
+
+function samearray (a1, a2) { // same items in arrays
+  if (a1.length !== a2.length)
+    return false
+  let i = 0
+  for (; i < a1.length; i++) {
+    if (!a2.includes(a1[i]))
+    return false
+  }
+  return true
+}
+
 function clusterbyvoids () { 
   if (points.length < 1)    // use same logic as local cluster func. w/ void distance measure
     return 0
@@ -3298,11 +3715,12 @@ function clusterbyvoids () {
   let found = []
   clearNeighbors()
   let vs = voids(true) // NOSHOW
-
+  let threshold = +document.getElementById("voidsize").value
   let voids_ = vs[0], costs = vs[1] // set up neighbors
   let L = points.length
   for (; i < L; i++) {
     points[i].neighbors = []
+    points[i].threshold = threshold*2
     j = 0
     for (; j < L; j++) {
       d = 0
@@ -3310,10 +3728,11 @@ function clusterbyvoids () {
         d = void_distance(points[i], points[j], vs)
         if (d < 1)
           points[i].neighbors.push(points[j].index)
-      }
+      }180
     }
   }
-  showClusters()
+  let cleaned = showClusters()
+  return cleaned
 }
 
 function turnings () {
@@ -3351,13 +3770,29 @@ function turnings () {
   message(result)
   return sum
 }
+function polar_only () {
+  polar (points, false)
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  ctx.lineWidth = 1
+  ctx.strokeStyle = "#ccee0080"
+  let i = 0, y = 50*1.4
+  for (; i < 6; i++) {180
+    ctx.beginPath()
+    ctx.moveTo(0, y)
+    ctx.lineTo(canvas.width, y)
+    ctx.stroke()
+    y += 50*1.4
+  }
+}
 
-function polar () {
+function polar (NO_CLUSTER) {
   if (points.length < 1)
     return 0
+  unmap()
   copyToClipboard()
-  let i = 0, cg = center(points), dy, a = 0
-  let polarized = sortedByAngle(copyOf(points)) // around cg
+  let i = 0, cg = center(points), dy, a = 0, scale = 1.4
+  let polarized = points//sortedByAngle(copyOf(points)) // around cg
   points = polarized
   // sort by angle 0 - 2*Math.PI
   for (; i < polarized.length; i++) {
@@ -3366,22 +3801,237 @@ function polar () {
     a = angle(cg, p)
     if (a < 0) {
       a += 2*Math.PI
-    //  console.log(p.index, Math.floor(100*a)/100)
     }
-   // console.log(p.index, Math.floor(100*a)/100)
     p.x = (a) * 500/(2*Math.PI)
-    // p.y == distance from cg
-    p.y = dy
-    
+    // p.y equals distance from cg
+    p.y = dy * scale
   }
-  drawPath(polarized) 
-  // draw cg
+  polarPath (polarized, NO_CLUSTER) // need special draw 
+}
+
+function polarPath (pts, NO_CLUSTER) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
-  ctx.fillStyle = "red"
-  ctx.beginPath()
-  ctx.arc(cg.x, cg.y, 4, 0, 2*Math.PI)
-  ctx.fill()
+  ctx.fillStyle = "#000000"
+  ctx.fillRect(0,0,500,500)
+  ctx.strokeStyle = "#eeee0060"
+  ctx.fillStyle = "orange"
+  ctx.lineWidth = 2
+  let scale = 1
+  ctx.font = "12px sans-serif"
+
+  let i = 0, xof = 0
+  for (; i < pts.length; i++) {
+   // ctx.beginPath()
+   // ctx.moveTo(pts[i].x, 0)
+   // ctx.lineTo(pts[i].x, pts[i].y*scale)
+  //  ctx.stroke()
+    ctx.fillStyle = "orange"
+    ctx.beginPath()
+    ctx.arc(pts[i].x, pts[i].y*scale, 3, 0, 2*Math.PI)
+    ctx.fill()
+    ctx.fillStyle = "white"
+    if (pts[i].x > 486)
+      xoff = -24
+    else
+      xoff = 0
+    ctx.fillText(pts[i].index, pts[i].x+6+xoff, pts[i].y*scale+6)
+  }
+  if (!NO_CLUSTER)
+    clusterbypolar()
+  smooth_polar(copyOf(pts))
+}
+
+function smooth_polar (ptz) {
+  let pts = copyOf(ptz)
+  pts = sortedBy_x(pts)
+  if (pts.length < 5)
+    return 0
+  let i = 0180
+  let smoothed = [], avgx = 0, avgy = 0, j = 0, k = 0
+  for (; i < pts.length; i++) {
+    avgx = 0, avgy = 0, j = i - 2
+    if (j < -1) j = pts.length -2
+    if (j < 0) j = pts.length -1
+    k = 0
+    for (; k < 5; k++) {
+      avgx += pts[j%pts.length].x
+      avgy += pts[j%pts.length].y
+      j++
+    }
+    let p = new point(avgx/5,avgy/5)//new point(pts[i].x,avgy/5)
+    smoothed.push(p)
+  }
+  draw_line(smoothed)
+}
+
+function draw_line (pts) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  ctx.lineWidth = 2
+  ctx.strokeStyle = '#ccccff'
+  let i = 1, cpx, cpy
+  ctx.moveTo(pts[i].x, pts[i].y)
+  for (; i < pts.length; i+=1) {
+    cpx = pts[i].x, cpy = pts[i].y
+    ctx.lineTo(pts[i].x, pts[i].y)
+  }
+  //ctx.lineTo(pts[0].x, pts[0].y)
+  ctx.closePath()
+  ctx.stroke()
+}
+
+function polar_angles (NO_CLUSTER) {
+  if (points.length < 1)
+    return 0
+  unmap()
+  let copy2 = copyOf(points)
+  let copy = copyOf(points)
+  let i = 0, cg = center(copy), dy, a = 0, scale = 1.4
+  let polarized = sortedByAngle(copy) // around cg
+  let px, plast
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  ctx.strokeStyle = "#eeee0060"
+  for (; i < polarized.length; i++) {
+    let p = polarized[i]
+  //  ctx.beginPath()
+   // ctx.moveTo(cg.x, cg.y)
+   // ctx.lineTo(p.x,p.y)
+  //  ctx.stroke()
+  }
+  points = copy2
+ // polarPath (polarized, NO_CLUSTER=true) 
+  smooth_polar(polarized)
+}
+
+function clusterbypolar (fs) { // not bipoloar
+  if (points.length < 1)    // use same logic as local cluster func. w/ void distance measure
+    return 0
+  let clusters = [], i = 0, d = 0, j = 0
+  let found = []
+  let threshold = +document.getElementById("voidsize").value
+  clearNeighbors()
+  let L = points.length
+  for (; i < L; i++) {
+    points[i].neighbors = []
+    points[i].threshold = threshold
+    j = 0
+    for (; j < L; j++) {
+      d = 0
+      if (i !== j) {
+        d = distance(points[i], points[j], /*vs*/) // polar distance === distance
+        if (d < threshold)
+          points[i].neighbors.push(points[j].index)
+      }
+    }
+  }
+  return showClusters(fs) // true for no outline of points
+}
+
+function clusterbydistance (pts) { // used by hole_detector
+  if (points.length < 1)    // use same logic as local cluster func. w/ void distance measure
+    return 0
+  let clusters = [], i = 0, d = 0, j = 0
+  let found = []
+  let threshold = 27 // same value as hole detector +3 or so
+  let L = pts.length
+  for (; i < L; i++) {
+    pts[i].neighbors = []
+    j = i+1
+    for (; j < L; j++) {
+      d = 0
+      if (i !== j) {
+        d = distance(pts[i], pts[j])
+        if (d < threshold)
+          pts[i].neighbors.push(pts[j].index)
+      }
+    }
+  }
+  let r = []
+  r = showClustersDist(pts)
+  return r
+}
+
+function showClustersDist (pts) {
+  let initial = pts.length
+  let copy = pts, i = 0
+  let clusters = [] // array of arrays of points indexes
+  let used = [], temp
+  let j = 0, k = 0
+  for (; i < pts.length; i++) {
+    temp = []
+    if (pts[i].neighbors.length === 0) {
+      used.push(pts[i].index)
+    }
+    if (!temp.includes(pts[i].neighbors))
+      temp = (pts[i].neighbors)
+    if (!temp.includes(pts[i].index))
+      temp.push(pts[i].index)
+    clusters.push(temp)
+  }
+  // merge neighbors with ANY in common
+  clusters = mergeClusters(clusters)
+  clusters = mergeClusters(clusters)
+  let cleaned = []
+  i = 0
+  for (; i < clusters.length; i++) {
+    if (clusters[i].length > 0)
+      cleaned.push(clusters[i])
+  }
+  let final = [], p, EDGE = false
+  i = 0
+  // copy clusters to final if none of the points are very near a canvas edge
+  for (; i < cleaned.length; i++) {
+    EDGE = false
+    j = 0
+    for (; j < cleaned[i].length; j++) { 
+      p = pointByIndex2(pts, cleaned[i][j])
+      if (edgePoint(p)) {
+        EDGE = true
+        break;
+      }
+    }
+    if (!EDGE)
+      final.push(cleaned[i])
+  }
+  hidePath()
+  let c, cg, bounds, cgs = []
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  ctx.lineWidth = 2
+  ctx.strokeStyle = "#1e88e5"
+  i = 0
+  let result = [], count = 0, rads = []
+  for (; i < final.length; i++) {
+    c = indiciesToPoints2(pts, final[i])
+    if (c.length > 0) {
+      count++
+      result.push(final[i])
+      bounds = boundingPoints(c)
+      let r = distance(bounds[0],bounds[1])/2
+      r = Math.abs(bounds[0].x - bounds[1].x)*0.5
+      rads.push(r)
+      let r2 = Math.abs(bounds[0].y - bounds[1].y)*0.5
+      cg = center(c)
+      ARCS.push([cg, r, r2])
+      ctx.beginPath()
+      r = (r < 6)? 6 : r;
+      ctx.arc(cg.x,cg.y,r, 0, 2*Math.PI)
+      ctx.stroke()
+    }
+  } 
+  showPathlite()
+  let counts = [points[0].threshold, count]
+  message(count+ " holes found, " + points[0].threshold)
+  return ([result, rads, counts])
+}
+
+function edgePoint (pt) {
+  if (pt.x < 15 || pt.y < 15 || pt.x > 485 || pt.y > 485)
+    return (true)
+  else
+    return (false)
 }
 
 function showCG () {
@@ -3568,6 +4218,13 @@ function boundingBox () {
   return "w "+w+", h "+h
 }
 
+function sum (array) {
+  let i = 0, m = 0
+  for (; i < array.length; i++)
+    m += array[i]
+  return m
+}
+
 function mean (array) {
   let i = 0, m = 0
   for (; i < array.length; i++)
@@ -3633,8 +4290,6 @@ function pasteFromClipboard () {
     points = jobj
     let canvas = document.getElementById("myCanvas")
     let ctx = canvas.getContext("2d")
-   // ctx.fillStyle = "#000000"
-   // ctx.fillRect(0,0,canvas.width, canvas.height)
     showPoints(points)
     redrawPath()
     let v = document.getElementById("textarea").value
@@ -3668,13 +4323,298 @@ function shortestLength () {
   return best
 }
 
+function bestPaths () {
+  if (points.length < 5)
+    return
+  let i = 0
+  for (; i < points.length; i++)
+    threebest(i)
+}
+
+function threebest (i) { // pass index (ID) of a point pointByIndex
+  let ctx = document.getElementById("myCanvas").getContext("2d")
+  let index = iByIndex(i)
+  let v = +document.getElementById("voidsize").value
+  best = closestNeighbors(index, points).slice(0,v)
+  let j = 1
+  ctx.strokeStyle = "#fff311"
+  for (; j < best.length; j++) {
+    ctx.beginPath()
+    ctx.moveTo(best[0].x, best[0].y)
+    ctx.lineTo(best[j].x, best[j].y)
+    ctx.stroke()
+  }
+  return best
+}
+
+function findallsegs () {
+  if (points.length < 1)
+    return
+  let ctx = document.getElementById("myCanvas").getContext("2d")
+  ctx.lineWidth = 2
+  ctx.strokeStyle = "orange"
+  let segs = [], i = 0, j = 1, pt1, pt2
+  let T = +document.getElementById("voidsize").value
+  for ( ; i < points.length; i++) {
+    pt1 = points[i]
+    ctx.beginPath()
+    ctx.arc(pt1.x,pt1.y, 3, 0, 2*Math.PI)
+    ctx.stroke()
+    j = i+1
+    for ( ; j < points.length; j++) {
+      pt2 = points[j]
+      if (distance(pt1,pt2) < T) {
+        if (!segs.includes([pt1.index,pt2.index]))  {
+          segs.push([pt1.index,pt2.index])
+          // draw the segs
+          ctx.beginPath()
+          ctx.moveTo(pt1.x,pt1.y)
+          ctx.lineTo(pt2.x,pt2.y)
+          ctx.stroke()
+        }
+      }
+    }
+  }
+  message("Segments:"+segs.length+", T:"+T)
+  return(segs.length)
+}
+
+function show_closestpoints (TELL) {
+   if (points.length < 1)
+    return
+  //drawPath()
+
+  let i = 0, j = 0, neighbors = [], indicies = [], allclusters = [], pt, total
+  let t = +document.getElementById("voidsize").value
+  for ( ; i < points.length; i++) {
+    points[i].threshold = t
+    neighbors = closestpoints(points[i], t)
+    neighbors.push(points[i].index)
+    points[i].neighbors = neighbors
+    if (neighbors.length > 0) { // neighbors include the point itself
+      allclusters.push(neighbors)
+      if (neighbors.length > 0 && TELL) {
+        total += simplicals_2(neighbors, true)
+      }
+    }
+  }
+  let cleaned = mergeClusters(allclusters).filter((x) => x.length > 0)
+  if (TELL) {
+    message(cleaned.length+" clusters")
+  }
+  return cleaned
+}
+
+function quicklandscape () {
+  let i = 0, max = 10
+  let saved_vs = +document.getElementById("voidsize").value
+  document.getElementById("voidsize").value = 108
+  let ramp = ["#e3f2fd","#bbdefb","#90caf9","#64b5f6","#42a5f5","#2196f3","#1e88e5","#1976d2","#1565c0","#0d47a1"]
+  ramp = ["#f94144","#f3722c","#f8961e","#f9844a","#f9c74f","#90be6d","#43aa8b","#4d908e","#577590","#277da1"]
+
+  for (; i < 10; i++) {
+    clusterbypolar(ramp[i]+"a0")
+    document.getElementById("voidsize").value -=  9
+  }
+  document.getElementById("voidsize").value = saved_vs
+  showPoints()
+  let ctx = document.getElementById("myCanvas").getContext("2d")
+  ctx.strokeStyle = "#ffffff"
+  //drawPath_light(ctx)
+}
+
+function show_allneighbors (INVERT) {
+  findallsegs(INVERT)
+}
+
+function clear_allneighbors () {
+  let i = 0
+  for (; i < points.length; i++)
+    points[i].neighbors = []
+}
+
+function show_myneighbors (index) {
+  if (!index)
+    index = +document.getElementById("findpoint").value
+  let ctx = document.getElementById("myCanvas").getContext("2d")
+  let i = 0, j = 0, neighbors = [], indicies = [], allclusters = [], pt, tot = 0
+  let t = +document.getElementById("voidsize").value
+  pt = pointByIndex(index)
+  neighbors = pt.neighbors
+  //if (neighbors.length > 0)
+    tot += simplicals_2(neighbors)
+  return tot
+}
+
+function landscape () { 
+  if (points.length < 1)
+    return
+  let ctx = document.getElementById("myCanvas").getContext("2d")
+  let r = +document.getElementById("voidsize").value
+  let ramp = ["#e3f2fd","#bbdefb","#90caf9","#64b5f6","#42a5f5","#2196f3","#1e88e5","#1976d2","#1565c0","#0d47a1"]
+  //ramp = ["#f94144","#f3722c","#f8961e","#f9844a","#f9c74f","#90be6d","#43aa8b","#4d908e","#577590","#277da1"]
+  ctx.fillStyle = ramp[0]
+  ctx.fillRect(0,0,500,500)
+  let i = 0, step = 25
+  r += 9*step
+  for (; i < 10; i++) {
+    document.getElementById("voidsize").value = r
+    ctx.fillStyle = ramp[i]
+    show_discs_landscape (ramp[i])
+    r -= step
+  }
+  showPoints()
+  ctx.strokeStyle = "#ffffff"
+  drawPath_light(ctx)
+} 
+
+function show_discs_landscape (color) {
+  if (points.length < 1)
+    return
+  let ctx = document.getElementById("myCanvas").getContext("2d")
+  if (!color)
+    color = "#4040aa"
+ // drawPath()
+  show_closestpoints(true)
+  let i = 0
+  let r = points[0].threshold
+  if (r < 1)
+    r = document.getElementById("voidsize").value
+    ctx.fillStyle = color
+    for (; i < points.length; i++) {
+    ctx.beginPath()
+    ctx.arc(points[i].x, points[i].y, r/2, 0, 2*Math.PI)
+    ctx.fill()
+  }
+}
+
+function show_discs (INVERT) {
+  if (points.length < 1)
+    return
+  let ctx = document.getElementById("myCanvas").getContext("2d")
+  hidePath()
+  ctx.fillStyle = "#009fff"
+  if (INVERT) {
+    ctx.fillRect(0,0,500,500)
+    ctx.fillStyle = "#000000"
+  }
+  let i = 0
+  let r = points[0].threshold
+  if (r < 1)
+    r = document.getElementById("voidsize").value
+  for (; i < points.length; i++) {
+    ctx.beginPath()
+    ctx.arc(points[i].x, points[i].y, r/2, 0, 2*Math.PI)
+    ctx.fill()
+  }
+  show_allneighbors(INVERT) 
+}
+
+
+function simplicals (indecies, NF) {
+  let ctx = document.getElementById("myCanvas").getContext("2d")
+  ctx.strokeStyle = "orange"
+  ctx.fillStyle = "#8080dd"
+  ctx.lineWidth = 1
+  let i = 0, L = indecies.length, pt1, pt2, pt3
+  let start = 0, end = start+2, count = 0
+  let T = +points[0].threshold, d = 0
+  for (; i < points.length; i++) {
+    pt1 = points[i]
+    ctx.beginPath()
+    ctx.arc(pt1.x, pt1.y, 3, 0, 2*Math.PI)
+    ctx.stroke()
+  }
+  while (start < L) {
+    pt1 = pointByIndex(indecies[start])
+    pt2 = pointByIndex(indecies[(start+1)%L])
+    pt3 = pointByIndex(indecies[(start+2)%L])
+    if(distance(pt1, pt2) <= T && distance(pt1, pt3) <= T && distance(pt3, pt2) <= T) {
+      ctx.beginPath()
+      ctx.moveTo(pt1.x, pt1.y)
+      ctx.lineTo(pt2.x, pt2.y)
+      ctx.lineTo(pt3.x, pt3.y)
+      ctx.closePath()
+      ctx.stroke()
+      count += 2
+    } 
+    if (distance(pt1, pt2) <= T) {
+      ctx.beginPath()
+      ctx.moveTo(pt1.x, pt1.y)
+      ctx.lineTo(pt2.x, pt2.y)
+      ctx.stroke()
+      count += 1
+    }  
+    if (distance(pt1, pt3) <= T) {
+      ctx.beginPath()
+      ctx.moveTo(pt1.x, pt1.y)
+      ctx.lineTo(pt3.x, pt3.y)
+      ctx.stroke()
+      count += 1
+    }  
+    if (distance(pt2, pt3) <= T) {
+      ctx.beginPath()
+      ctx.moveTo(pt2.x, pt2.y)
+      ctx.lineTo(pt3.x, pt3.y)
+      ctx.stroke()
+      count += 1
+    } 
+    start++
+  }
+  return count
+}
+
+function simplicals_2 (indecies) {
+  let ctx = document.getElementById("myCanvas").getContext("2d")
+  ctx.strokeStyle = "orange"
+  ctx.fillStyle = "#8080dd"
+  ctx.lineWidth = 1
+  let segs = []
+  let i = 0, L = indecies.length, pt1, pt2, pt3
+  let start = 0, end = start+2, count = 0
+  let T = +points[0].threshold, d = 0
+  for (; i < points.length; i++) {
+    pt1 = points[i]
+    ctx.beginPath()
+    ctx.arc(pt1.x, pt1.y, 3, 0, 2*Math.PI)
+    ctx.stroke()
+  }
+  while (start < L) {
+    pt1 = pointByIndex(indecies[start])
+    pt2 = pointByIndex(indecies[(start+1)%L])
+    
+    if (distance(pt1, pt2) <= T) {
+      ctx.beginPath()
+      ctx.moveTo(pt1.x, pt1.y)
+      ctx.lineTo(pt2.x, pt2.y)
+      ctx.stroke()
+      segs.push([pt1.index,pt2.index])
+      count += 1
+    }  
+   
+    start++
+  }
+ // console.log(segs, count)
+  return count
+}
+
+function closestpoints (p, threshold) {
+  let i = 0, d = 0, result = []
+  for (; i < points.length; i++) {
+    d = distance(p, points[i])
+    if (d > 0 && d <= threshold) {
+      result.push(points[i].index)
+    }
+  }
+  return result
+}
+
 function stochastic_walk () {
   if (points.length < 1)
     return
   let i = 0, L = points.length, ns = []
   let copy = (copyOf(points))
   for (; i < L; i++) {
-    //console.log(copy[i])
     ns = closestNeighbors(i, copy).slice(1,5)
     let p2 = randomPick(ns)
     let j = positionOf(p2, copy)
@@ -3943,41 +4883,9 @@ function twoway (pts,idx,P) {
   return drawPath(res, P)
 }
 
-function drawPath2 (pts) {
-  if (points.length < 1)
-    return
-  if (!pts)
-    pts = points
-  let canvas = document.getElementById("myCanvas")
-  let ctx = canvas.getContext("2d")
-
-  let ss = ctx.fillStyle
- // ctx.fillStyle = "#000000"
- // ctx.fillRect(0,0,canvas.width, canvas.height)
-  ctx.fillStyle = ss
-
- // ctx.clearRect(0,0,canvas.width, canvas.height)
-  ctx.strokeStyle= "#00aa00"
-  let nwpts = [], k = 0
-  for (; k < pts.length; k++) {
-    nwpts.push(pts[k])
-  }
-  let i = 1
-  ctx.lineWidth = 2
-  ctx.beginPath()
-  ctx.moveTo(nwpts[0].x, nwpts[0].y)
-  for (; i < nwpts.length; i +=1) {
-    ctx.lineTo(nwpts[i].x, nwpts[i].y)
-  }
-  ctx.lineTo(nwpts[0].x, nwpts[0].y)
-  ctx.stroke()
-  showPoints(pts, "#000000")
-  ctx.globalAlpha = 1
-}
-
 function drawPath (pts,NOSHOW) {
   if (points.length < 1)
-    return
+   ;//return
   if (!pts)
     pts = points
   let canvas = document.getElementById("myCanvas")
@@ -3986,26 +4894,31 @@ function drawPath (pts,NOSHOW) {
   let ss = ctx.fillStyle
   ctx.fillStyle = "#000000"
   ctx.fillRect(0,0,canvas.width, canvas.height)
+  if (pts.length < 1)
+    return (0)
   ctx.fillStyle = ss
 
  // ctx.clearRect(0,0,canvas.width, canvas.height)
-  ctx.strokeStyle= "#00aa00"
+  ctx.strokeStyle= "#ffffff"
   let nwpts = [], k = 0
   for (; k < pts.length; k++) {
     nwpts.push(pts[k])
   }
-  let i = 1
+  let i = 0
   ctx.lineWidth = 2
   ctx.beginPath()
-  ctx.moveTo(nwpts[0].x, nwpts[0].y)
-  for (; i < nwpts.length; i +=1) {
-    ctx.lineTo(nwpts[i].x, nwpts[i].y)
-  }
-  ctx.lineTo(nwpts[0].x, nwpts[0].y)
   
+  for (; i < nwpts.length; i +=1) {
+    if (i === 0)
+      ctx.moveTo(nwpts[i].x, nwpts[i].y)
+    else
+      ctx.lineTo(nwpts[i].x, nwpts[i].y)
+  }
+//  ctx.lineTo(nwpts[0].x, nwpts[0].y)
+  ctx.closePath()
   ctx.globalAlpha = 0.15
   ctx.fillStyle = "#ccee00"
-  ctx.fill()
+ // ctx.fill()
   ctx.globalAlpha = 1
   ctx.stroke()
 
@@ -4025,6 +4938,73 @@ function drawPath_light (ctx) {
   }
   ctx.lineTo(points[0].x, points[0].y)
   ctx.stroke()
+}
+
+function showScale () {
+  let ctx = document.getElementById("myCanvas").getContext("2d")
+  ctx.strokeStyle = "#ffffff"
+  ctx.fillStyle = "#ffffff"
+  let saved = ctx.font
+  ctx.lineWidth = 2
+  let L = +document.getElementById("voidsize").value
+  ctx.beginPath()
+  ctx.moveTo(10,490)
+  ctx.lineTo(10,495)
+  ctx.lineTo(10+L, 495)
+  ctx.lineTo(10+L, 490)
+  ctx.stroke()
+  ctx.font = "14px sans-serif"
+  let w = ctx.measureText(L).width
+  ctx.fillText(L, (10+L/2)-w/2, 490)
+  ctx.font = saved
+}
+
+function showPathlite () {
+  let ctx = document.getElementById("myCanvas").getContext("2d")
+  ctx.strokeStyle = "#ffffff"
+  ctx.lineWidth = 2
+  drawPath_light(ctx)
+  showPoints()
+}
+
+function heavypath () {
+  if (points.length < 1)
+    requestFullscreen
+  let ctx = document.getElementById("myCanvas").getContext("2d")
+  ctx.strokeStyle = "#000000"
+  let lw = +document.getElementById("voidsize").value *1.5
+  ctx.fillStyle = "#000000"
+  ctx.fillRect(0,0,500,500)
+  ctx.lineJoin = "bevel"
+  ctx.lineCap = "round"
+  let i = 0, L = points.length
+ 
+  for (; i < L; i++) {
+    /*
+    ctx.lineWidth = lw
+    ctx.strokeStyle = "#000000"
+    ctx.beginPath()
+    ctx.moveTo(points[i].x, points[i].y)
+    ctx.lineTo(points[(i+1)%L].x, points[(i+1)%L].y)
+    ctx.stroke()
+    */
+    ctx.lineWidth = lw/2
+    ctx.strokeStyle = "#00c3ff"
+    ctx.beginPath()
+    ctx.moveTo(points[i].x, points[i].y)
+    ctx.lineTo(points[(i+1)%L].x, points[(i+1)%L].y)
+    ctx.stroke()
+  }
+}
+
+function setthreshold () {
+  if (points.length < 1)
+    return
+  let i = 0
+  let t = +document.getElementById("voidsize").value
+  for (; i < points.length; i++)
+    points[i].threshold = t
+  setAllNeighbors()
 }
 
 function bandwPath (pts,NOSHOW) {
@@ -4075,6 +5055,83 @@ function bandwPoints (pts,NOSHOW) {
   }
 }
 
+function indexToxy (i, W, H) {
+  let x = i % W
+  let y = Math.floor(i/W)
+  //console.log(x,y)
+  return ([x,y])
+}
+
+function hole_detector (INVERT) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  ctx.fillStyle = "#000000"
+  if (INVERT)
+    ctx.fillStyle = "#009fff"
+  ctx.fillRect(0,0,500,500)
+  show_discs(INVERT)
+  ctx.fillStyle = "orange"
+  let i = 0, d, pixels, x = 0, y = 0, L = 4, ct = 0
+  let pts = [], pt
+  let max = 5000, k = 0, line = 0
+  let space = 12,  yspace = 0.8 * space
+  d = ctx.getImageData(x,y,500,500)
+  pixels = d.data;
+  for (; k < max; k++) {
+    i = (x + y*500) * 4
+    total = 0
+    total = Math.round(pixels[i])
+    total += Math.round(pixels[i+1])
+    total += Math.round(pixels[i+2])
+    if (total < 25) {
+     // ctx.beginPath()
+     // ctx.arc(x,y,2,0,2*Math.PI)
+     // ctx.fill()
+      pt = new point(x,y)
+      pt.index = k
+      pts.push(pt)
+    }
+    x += space
+    if (x >= 500) {
+      line++
+      if (line % 2 === 1)
+        x = space/2
+      else
+        x = 0
+      y += space//yspace
+    }
+    if (y > 500)
+      break;
+  }
+  let r = clusterbydistance(pts)
+  return r
+}
+
+function countwhitepixels () { // whitePixelCount
+  bandwPath()
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+ // ctx.fillStyle = "#ffffff"
+ // ctx.fillRect(0,0,500/2,500/2)
+ // let wpc = whitePixelCount(0,0,canvas.width,canvas.height,ctx)
+ // console.log("wpc:", wpc)
+  let imgData = ctx.getImageData(0,0,canvas.width,canvas.height)
+  let pixels = imgData.data;
+  let i = 0, brightness = 0, count = 0
+  for (; i < pixels.length; i += 4) {
+    brightness = (pixels[i]/255+pixels[i+1]/255+pixels[i+2]/255)
+    if (brightness > 1.6)
+      count++
+  }
+  return (round(count))
+}
+
+function white_area () {
+  let a = round(calculatePolygonArea())
+  let wp = countwhitepixels()
+  message("wt pixels: "+wp+", area: "+a+", Δ: "+ round(wp - a))
+}
+
 function calculatePolygonArea () {
   let vertices = points
  	if (vertices.length < 3) return 0;
@@ -4085,7 +5142,7 @@ function calculatePolygonArea () {
  	 	area += vertices[i].x * vertices[j].y;
  	 	area -= vertices[j].x * vertices[i].y;
  	}
- 	 	return Math.abs(area / 2);
+ 	return Math.abs(area/2)
 }
 
 function zoomin () {
@@ -4102,6 +5159,7 @@ function zoomin () {
     points[i].y -= 250*f - 250
   }
   drawPath()
+  message("zoomed in")
 }
 
 function zoomout () {
@@ -4118,6 +5176,7 @@ function zoomout () {
     points[i].y /= f
   }
   drawPath()
+  message("zoomed out")
 }
 
 function length_vs_d () {
@@ -4199,6 +5258,7 @@ function info () {
   redrawPath()
   pushFunction("info")
 }
+
 
 function marklog () {
   message("----------------------")
@@ -4381,7 +5441,7 @@ function topology_ish (ctx) {
   for (; i < TEMPS.length; i++) {
     x = xfromindex(i)+offset, y = yfromindex(i)+offset
     color = colorOf(ctx,x,y,cellsize)
-    if (color === "#ffa500") {
+    if (color === "#fff311") {
       TEMPS[i] = 5
       count++
     }
@@ -4758,6 +5818,7 @@ function averageArmsLength () {
 }
 
 function lengths () {
+  showScale()
   message(showlongArms())
 }
 
@@ -4829,6 +5890,67 @@ function poke_point (index) {
   drawPath(points)
 }
 
+let WALKDATA = []
+
+function walk (index) {
+  if (points.length < 1)
+    return
+  if (!index)
+    index = +document.getElementById("findpoint").value
+  copyToClipboard()
+  document.getElementById("oib").checked = false
+  document.getElementById("save_prev").checked = false
+  let copy = copyOf(points)
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  ctx.strokeStyle = "#00ffff"
+  let pt = pointByIndex(index)
+  let idx = points.indexOf(pt)
+  let p = copy[idx]
+  let cent = new point(p.x,p.y)
+  let minx = p.x - 36, miny = p.y - 36
+  let maxx = p.x + 37, maxy = p.y + 37
+  let x = minx, y = miny, i = 0
+  for (; i < 49; i++) {
+    p.x = x
+    p.y = y
+    np = new point(x,y)
+    np.index = "walk"+WALKDATA.length
+    WALKDATA.push(np)
+    x += 12
+    if (x >= maxx) {
+      x = minx
+      y += 12
+    }
+    tidy()
+    let oc = same_odering(orderingOf(copy), orderingOf(points))
+    if (oc === false) {
+      message("order changed:"+i)
+      np.mark = "red"
+    }
+  }
+  i = 0
+  pasteFromClipboard()
+  ctx.globalAlpha = 0.75
+  for (; i < WALKDATA.length; i++) {
+    ctx.beginPath()
+    ctx.arc(WALKDATA[i].x, WALKDATA[i].y, 3 ,0,Math.PI*2)
+    if (WALKDATA[i].mark === "red")
+      ctx.fillStyle = 'red'
+    else
+      ctx.fillStyle = "#aaaaff"
+    ctx.fill()
+  }
+  ctx.globalAlpha = 1
+  showPoints()
+}
+
+function clearwalkdata () {
+  WALKDATA = []
+  document.getElementById("oib").checked = true
+  document.getElementById("save_prev").checked = true
+}
+
 function findPoint (index) {
   if (points.length < 1)
     return
@@ -4836,7 +5958,6 @@ function findPoint (index) {
     index = +document.getElementById("findpoint").value
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
- // ctx.globalAlpha = 0.75
   ctx.strokeStyle = "#00ffff"
   ctx.lineWidth = 1
   let p = pointByIndex(index)
@@ -4845,7 +5966,6 @@ function findPoint (index) {
     ctx.arc(p.x, p.y, 13, 0, 2*Math.PI) // pointFromIndex
     ctx.stroke()
   }
-  ctx.globalAlpha = 1
 }
 
 function testHeatMap () { // topology_ish
@@ -4907,6 +6027,7 @@ function box_counts_points (pts) {
 }
 
 function whitePixelCount (x,y,w,h, ctx) {
+ 
   let imgData = ctx.getImageData(x, y, w, h)
   let pixels = imgData.data, whitecount = 0
   let i = 0, r = 0, g = 0, b = 0, threshold = 230*3
@@ -5025,7 +6146,6 @@ function crossings_bw (cs) {
   let m = measurePath()
   message (added+' points added ◥ '+m)
   drawPath()
-  //drawPath2()
   //edge_overlay(dots)
 }
 
@@ -5136,9 +6256,72 @@ function sampling_radial (cs) {
   }
  // message("h:("+filter_reps(H)+")")
   //message("H:("+H+"), sd:"+roundto(sd(H),2))
- // drawPath2()
   edge_overlay(dots)
   showCG()
+}
+
+function crossings_all () {
+  if (points.length < 1)
+    return
+   bandwPath()
+   let i = points.length - 1
+  // while (i >= 0)
+    crossings_point(0)
+  showPoints()
+}
+
+function crossings_point (idx) { 
+  if (points.length < 1)
+    return
+ // console.log(idx)
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let cellsize = 10
+  let halfsize = cellsize/2
+  let pt, wpc = 0, last_wpc = 0
+  let changesH = 0, H = [], dots = []
+  let cg = pointByIndex(idx), angle = 0, r = 5
+  let x = cg.x, y = cg.y
+  let initial = whitePixelCount(x-halfsize, y-halfsize, cellsize, cellsize, ctx)
+  initial = (initial > 50)? 1: 0;
+  last_wpc = initial
+  let i = 0, N = points.length
+  let pt2 = pointByIndex((idx+5)%N)
+  for (; i < 50; i++) {
+    r = 5
+    last_wpc = initial
+    angle = Math.atan2(pt2.y - cg.y, pt2.x - cg.x)
+    console.log(angle)
+    x = cg.x + r * Math.cos(angle)
+    y = cg.y + r * Math.sin(angle)
+    pt = new point(x,y)
+    while (pointInRect(pt,0,0,500,500)) {
+      wpc = whitePixelCount(x-halfsize, y-halfsize, cellsize, cellsize, ctx)
+      wpc = (wpc > 50)? 1: 0;
+      if (wpc !== last_wpc) {
+        changesH += 1
+        dots.push(new point(x,y))
+      }
+      last_wpc = wpc
+      r += 5
+      //console.log(r, angle)
+      x = cg.x + r * Math.cos(angle)
+      y = cg.y + r * Math.sin(angle)
+      pt = new point(x,y)
+     // if (distance(pt, cg) >= distance(cg, pt2))
+      //  break
+    }
+    if (initial === 1 && last_wpc === 1) {
+      changesH += 1 // don't bother drawing the dot
+      //console.log(x,y)
+    }
+    H.push(changesH)
+    changesH = 0
+  }
+ // message("h:("+filter_reps(H)+")")
+ let pad = (idx < 10)? " ":"";
+  message(pad+idx+":"+H[0])//+roundto(sum(H)),2)
+  edge_overlay(dots)
 }
 
 function crossings_radial (cs) { 
@@ -5198,7 +6381,6 @@ function crossings_radial (cs) {
   }
  // message("h:("+filter_reps(H)+")")
   message("H:("+H+"), sd:"+roundto(sd(H),2))
- // drawPath2()
   edge_overlay(dots)
   showCG()
 }
@@ -5315,7 +6497,7 @@ function sigil () {
       y += cellsize
     }
   }
-  drawPath2()
+  //drawPath2()
   //console.log(ct, cellsize*cellsize)
 }
 
@@ -5465,14 +6647,14 @@ function voids (NOSHOW) {
   if (points.length < 1)
     return
   let voidsize = +document.getElementById("voidsize").value
-  let i = 0, max = ROWS*ROWS /* 21*21*/, voids = []
+  let i = 0, voids = []
   let cellsize = 25//, r = cellsize/2.1
-  max = Math.pow((500/voidsize+1),2)
+  let max = Math.pow((500/voidsize+1),2.4)
   cellsize = voidsize//, r = cellsize/2.1
   let x = 0, y = 0, count = 0, pt, offset = 0
   i = 0
   for (; i < max; i++) {
-    pt = new point()
+    pt = new point() 
     pt.x = x
     pt.y = y
     let idx =  nearestPoint(pt)
@@ -5481,9 +6663,11 @@ function voids (NOSHOW) {
     }
     x += cellsize
     if (x > 500) {
-      y += cellsize
+      y += cellsize *0.8
       offset = (offset === 0)? cellsize/2: 0;
       x = offset
+      if (y > 500 + cellsize)
+        break;
     }
   }
   let scores = score_voids(voids, NOSHOW)
@@ -5532,7 +6716,6 @@ function score_voids (v, NOSHOW) {
     path = new Path2D() 
     path.arc(v[i].x,v[i].y,r, 0,Math.PI*2)
     ctx.lineWidth = 1
-    
     j = 0, a = 0, score = 0
     for (; j < v.length; j++) {
       if (ctx.isPointInPath(path, v[j].x, v[j].y)) 
@@ -5550,6 +6733,207 @@ function score_voids (v, NOSHOW) {
   return scores
 }
 
+function hex_voids (NOSHOW) { 
+  if (points.length < 1)
+    return
+  let voidsize = +document.getElementById("voidsize").value
+  let i = 0, voids = [], nonvoids = []
+  let max = Math.pow(500/(voidsize-1),3)
+  let cellsize = voidsize
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  ctx.fillStyle = "#ffffff"
+  let x = 0, y = 0, count = 0, pt, offset = 0, line = 0, a = 0
+  i = 0
+  for (; i < max; i++) {
+    pt = new point()
+    pt.y = y
+    pt.x = x
+    let idx =  nearestPoint(pt)
+    if (distance(pt, points[idx]) > cellsize) {
+      voids.push(pt)
+    } else
+      nonvoids.push(pt)
+    x += cellsize
+    if (x > 500 + cellsize*1.5) {
+      line++
+      y += cellsize*0.88
+      offset = (offset === 0)? cellsize/2: 0;
+      x = offset
+      if (y > 500 + cellsize)
+        break;
+    }
+  }
+  let scores = show_hex_voids(voids, nonvoids, NOSHOW)
+  return ([voids,scores])
+}
+
+function show_hex_voids (v, nv, NOSHOW) {
+  let scores = {}, i = 0
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let voidsize = document.getElementById("voidsize").value
+  let path, r = voidsize*1.5// was /1.5
+  drawPath()
+  ctx.lineWidth = 1
+  ctx.fillStyle = "#DDA000"
+  for (; i < v.length; i++) {
+    path = new Path2D() 
+    path.arc(v[i].x, v[i].y, r, 0,Math.PI*2)
+    
+    j = 0, a = 0, score = 0
+    for (; j < v.length; j++) {
+      if (ctx.isPointInPath(path, v[j].x, v[j].y)) 
+        score++
+    }
+    if (!NOSHOW) {
+      drawhex(ctx, v[i].x, v[i].y, voidsize/2*1.13, Math.PI/6)
+    }
+    scores[i] = score
+  }
+  i = 0
+  ctx.fillStyle = "#00aaff"
+  for (; i < nv.length; i++) {
+    path = new Path2D() 
+    path.arc(nv[i].x, nv[i].y, r, 0,Math.PI*2)
+    ctx.lineWidth = 1
+    j = 0, a = 0, score = 0
+    for (; j < nv.length; j++) {
+      if (ctx.isPointInPath(path, nv[j].x, nv[j].y)) 
+        score++
+    }
+    if (!NOSHOW) {
+      drawhex(ctx,nv[i].x, nv[i].y, voidsize/2*1.13, Math.PI/6)
+    }
+    scores[i] = score
+  }
+  ctx.strokeStyle = "white"
+  drawPath_light(ctx)
+  showPoints()
+  ctx.globalCompositeOperation = "source-over"
+  return scores
+}
+
+
+// offscreen 
+
+function persistent_module () {
+  if (points.length < 1)
+    return
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let i = 0, vs = +document.getElementById("voidsize").value
+  let saved_vs = vs, off, W = 500, w = 500/3, x = 0, y = 0, x1 = x, y1 = y
+  for (; i < 9; i++) {
+    off = hex_voids_off(vs)
+    ctx.drawImage(off, x,y,W,W, x1,y1,w,w)
+    ctx.strokeStyle = "#000000"
+    ctx.strokeRect(x1,y1,w,w)
+    x1 += w
+    if (x1 >= W) {
+      x1 = 0
+      y1 += w
+    }
+    vs += 5
+  }
+}
+
+function hex_voids_off (vs) { 
+  if (points.length < 1)
+    return
+  let voidsize = +document.getElementById("voidsize").value
+  let i = 0, voids = [], nonvoids = []
+  let max = Math.pow(500/(voidsize-1),3)
+  if(vs)
+    voidsize = vs
+  let cellsize = voidsize
+  let x = 0, y = 0, count = 0, pt, offset = 0, line = 0, a = 0
+  i = 0
+  for (; i < max; i++) {
+    pt = new point()
+    pt.y = y
+    pt.x = x
+    let idx =  nearestPoint(pt)
+    if (distance(pt, points[idx]) > cellsize) {
+      voids.push(pt)
+    } else
+      nonvoids.push(pt)
+      x += cellsize
+    if (x > 500 + cellsize*1.5) {
+      line++
+      y += cellsize*0.88
+      offset = (offset === 0)? cellsize/2: 0;
+      x = offset
+      if (y > 500 + cellsize)
+        break;
+    }
+  }
+  let off = show_hex_voids_off(voids, nonvoids, vs)
+  return (off)
+}
+
+function show_hex_voids_off (v, nv, vs) {
+  let scores = {}, i = 0
+  let canvas = document.getElementById("myCanvas")
+  //let vs = document.getElementById("voidsize").value
+  let ctx = canvas.getContext("2d")
+
+  let off = document.createElement("canvas")
+  let ctxoff = off.getContext("2d")
+  off.width = 500, off.height = 500
+  ctxoff.fillStyle = "#000000"
+  ctxoff.fillRect(0,0,500,500)
+
+  let voidsize = vs//document.getElementById("voidsize").value
+  let path, r = voidsize*1.5
+  //drawPath()
+  ctxoff.lineWidth = 1
+  ctxoff.fillStyle = "#DDA000"
+  for (; i < v.length; i++) {
+    path = new Path2D() 
+    path.arc(v[i].x, v[i].y, r, 0,Math.PI*2)
+    j = 0, a = 0, score = 0
+    for (; j < v.length; j++) {
+      if (ctxoff.isPointInPath(path, v[j].x, v[j].y)) 
+        score++
+    }
+    drawhex(ctxoff, v[i].x, v[i].y, voidsize/2*1.1, Math.PI/6)
+    scores[i] = score
+  }
+  i = 0
+  ctxoff.fillStyle = "#00aaff"
+  for (; i < nv.length; i++) {
+    path = new Path2D() 
+    path.arc(nv[i].x, nv[i].y, r, 0,Math.PI*2)
+    ctxoff.lineWidth = 1
+    j = 0, a = 0, score = 0
+    for (; j < nv.length; j++) {
+      if (ctxoff.isPointInPath(path, nv[j].x, nv[j].y)) 
+        score++
+    }
+    drawhex(ctxoff,nv[i].x, nv[i].y, voidsize/2*1.1, Math.PI/6)
+  }
+  ctxoff.strokeStyle = "#ffffff"
+  ctxoff.lineWidth = 5
+  drawPath_light(ctxoff)
+  return off
+}
+
+function drawhex (ctx, x, y, r, a) {
+  let angle = a
+  let x1, y1, i = 1
+  ctx.beginPath()
+  x1 = x + r * Math.cos(angle)
+  y1 = y + r * Math.sin(angle)
+  ctx.moveTo(x1,y1)
+  for (; i < 6; i++) {
+    angle += Math.PI/3
+    x1 = x + r * Math.cos(angle)
+    y1 = y + r * Math.sin(angle)
+    ctx.lineTo(x1,y1)
+  }
+  ctx.fill()
+}
 
 function score_voids_bw (v, NOSHOW) { // need to fill w/ black befor drawng the white dots
   let scores = {}, i = 0             
@@ -5564,7 +6948,6 @@ function score_voids_bw (v, NOSHOW) { // need to fill w/ black befor drawng the 
     path = new Path2D() 
     path.arc(v[i].x,v[i].y,r, 0,Math.PI*2)
     ctx.lineWidth = 1
-    
     j = 0, a = 0, score = 0
     for (; j < v.length; j++) {
       if (ctx.isPointInPath(path, v[j].x, v[j].y)) 
@@ -5572,7 +6955,6 @@ function score_voids_bw (v, NOSHOW) { // need to fill w/ black befor drawng the 
     }
     if (!NOSHOW) {
       ctx.fillStyle = "#ffffff"
-    //ctx.fillRect(v[i].x-voidsize/2, v[i].y-voidsize/2, voidsize+1, voidsize+1)
       ctx.beginPath()
       ctx.arc(v[i].x, v[i].y, voidsize/1.6, 0, 2*Math.PI)
       ctx.fill()
@@ -5634,7 +7016,6 @@ function clouds () { // topology_ish
   }
   ctx.globalAlpha = 1
 }
-
 
 function close_passes () {
   if (points.length < 1)
@@ -5708,7 +7089,7 @@ function showRings (pts, R) {
   let off = document.createElement('CANVAS')
   let ctxoff = off.getContext("2d")
   off.width = 500, off.height = 500
-  ctxoff.fillStyle = "#ffa500"
+  ctxoff.fillStyle = "#fff311"
   ctxoff.fillRect(0,0,off.width,off.height)
   // Spurs
   let i = 0
@@ -5871,7 +7252,7 @@ function randomPick (a) {
 function shuffle_points (NODRAW) {
   points = shuffle(points)
   if (!NODRAW)
-  drawPath(points)
+    drawPath(points)
 }
 
 function shuffle_a_few () {
@@ -5988,17 +7369,20 @@ function macroFD () { // must be NO_OIB
   drawPath()
 }
 
-function uncross_paths () {
+function uncross_paths (NOSHOW) {
   let result = checkIntersects(points)
   let ct = 0
   while(result[1].length > 0) {
     points = uncross(result[0], result[1])
     result = checkIntersects(points)
     ct++
-    if (ct > 20) 
+    if (ct > 100) 
       break;
   }
-  let m = drawPath(points)
+  if (NOSHOW)
+    m = measurePath()
+  else
+    m = drawPath()
 }
 
 function uncross (pts,found) {
@@ -6209,7 +7593,7 @@ function populateDistances () {
     j = 0
     DIST.push([])
     for (; j < points.length; j++) {
-      d = distance_(points[i],points[j])
+      d = distance(points[i],points[j])
       DIST[+points[i].index].push(d)
     }
   }
@@ -6290,6 +7674,16 @@ function sortedByAngle (points) {
   return copy
 }
 
+function sortedBy_x (points) {
+  const sortBy_x = (pts) => {
+    const sorter = (a, b) => a.x -b.x
+    pts.sort(sorter)
+  }
+  let copy = copyOf(points)
+  sortBy_x(copy)
+  return copy
+}
+
 function farthestNeighbors (index, points) {
   const sortByDistance = (pts, pt) => {
     const sorter = (a, b) => distance(b, pt) - distance(a, pt)
@@ -6299,7 +7693,7 @@ function farthestNeighbors (index, points) {
   return points
 }
 
-function swapAcross () {
+function swapAcross (NOSHOW) {
  // if (points.length < 1)
  //   return
   let copy = copyOf(points)
@@ -6324,7 +7718,11 @@ function swapAcross () {
       }
     }
   }
-  let m = drawPath()
+  let m = 0
+  if (NOSHOW)
+    m = measurePath()
+  else
+    m = drawPath()
   return m
 }
 
@@ -6425,6 +7823,78 @@ function shortestChunk () {
   return result
 }
 
+function cross(a, b, o) {
+   return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0])
+}
+
+function hull (pts, color) {
+  let copy = copyOf(points)
+   if (pts)
+    copy = pts
+  let temp = convexHull(copy)
+
+  // show temp
+  let i = 1
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  ctx.strokeStyle = "#dd00dd"
+  if (color)
+    ctx.strokeStyle = color
+  if (color)
+    ctx.fillStyle = color+"10"
+  ctx.globalAlpha = 1
+  ctx.lineWidth = 1
+  ctx.beginPath()
+  ctx.moveTo(temp[0].x, temp[0].y)
+  for ( ; i < temp.length; i++)
+    ctx.lineTo(temp[i].x, temp[i].y)
+  ctx.closePath()
+  if (color)
+    ctx.fill()
+  ctx.stroke()
+}
+
+function orientation (p, q, r) {
+  let val = (q.y - p.y) * (r.x - q.x) - (q.x - p.x) * (r.y - q.y);
+  if (val === 0) {
+    return 0; // Collinear
+  } else if (val > 0) {
+    return 1; // Clockwise
+  } else {
+    return 2; // Counterclockwise
+  }
+}
+
+function convexHull (points) {
+  //sorce: https://codepal.ai/code-generator/query/DhozHyfi/javascript-convex-hull-algorithm
+ //console.log(points)
+  const n = points.length;
+  if (n < 3) {
+    return []; // Convex hull not possible
+  }
+  // Find the leftmost point
+  let leftmost = 0;
+  for (let i = 1; i < n; i++) {
+    if (points[i].x < points[leftmost].x) {
+      leftmost = i;
+    }
+  }
+  let hull = [];
+  let p = leftmost;
+  let q;
+  do {
+    hull.push(points[p]);
+    q = (p + 1) % n;
+  for (let i = 0; i < n; i++) {
+    if (orientation(points[p], points[i], points[q]) === 2) {
+      q = i;
+    }
+  }
+  p = q;
+  } while (p !== leftmost);
+  return hull;
+}
+
 function longestChunk () {
   let result = []
   if (points.length < 1)
@@ -6449,6 +7919,8 @@ function loadpoints (f) {
   CLUSTERS = []
   SEGMENTS = []
   LOG = ""
+  // clear 
+  CLIPBOARD = ""
   //populateDistances()
   let v = document.getElementById("textarea").value
   let n = document.getElementById("numpoints").value
@@ -6459,7 +7931,10 @@ function loadpoints (f) {
   document.getElementById("textarea").value = f + " "+n+" points ("+m+")🡄\n" + v
   recordToLog(f)
   SHOWINGPATH = true
+  clearwalkdata()
   hidePath()
+  setAllNeighbors()
+  setthreshold()
 }
 
 function runsearch (f) {
@@ -6526,19 +8001,42 @@ window.onload = function () {
   let filePicker = document.getElementById("fileInput")
   filePicker.addEventListener("click", function(){this.value = null;}, false);
   filePicker.addEventListener("change", function(){processFiles(this.files);}, false);
+
+  function findPointbyMouse (event) {
+    let rect = myCanvas.getBoundingClientRect();
+    let x = event.clientX - rect.left;
+    let y = event.clientY - rect.top;
+    let p = new point(x,y)
+    let index = nearestPoint(p)
+    document.getElementById("findpoint").value = points[index].index
+  }
+  // mouseover show tip (pt index)
+  myCanvas.addEventListener("mousemove", (event) => {
+    if (points.length < 1)
+      return
+    //setTimeout(findPointbyMouse, 500, event)
+  })
+
   myCanvas.addEventListener('click', function(event) { // mouse clicks
     var rect = myCanvas.getBoundingClientRect();
     var x = event.clientX - rect.left;
     var y = event.clientY - rect.top;
     let p = new point(x,y)
-    //console.log(x,y)
-    let index = nearestPoint(p)
-    let cellsize = 500/ROWS
-    if (index || index === 0) {
-      message(JSON.stringify(points[index], null, 2), "myCanvas")
-      document.getElementById("findpoint").value = points[index].index
-      if (event.ctrlKey) {
-        poke_point(points[index].index)
+    let draw = document.getElementById("drawmode").checked
+   // console.log(x,y,draw) 
+    if (draw) {
+      p.mark = "A"
+      points.push(p)
+      showPoints(points)
+    } else {
+      let index = nearestPoint(p)
+      let cellsize = 500/ROWS
+      if (index || index === 0) {
+        message(JSON.stringify(points[index], null, 2), "myCanvas")
+        document.getElementById("findpoint").value = points[index].index
+        if (event.ctrlKey) {
+          poke_point(points[index].index)
+        }
       }
     }
   }, false);
@@ -6552,11 +8050,12 @@ window.onload = function () {
   tc.addEventListener('change', function(event) {
       loadpoints()   
   }, false);
-  /*
-  let s = document.getElementById("search")
-  s.addEventListener('change', function(event) {
-      runsearch()   
-  }, false);*/
+
+  let vs = document.getElementById("voidsize")
+  vs.addEventListener('change', function(event) {
+      setthreshold()
+      setAllNeighbors()
+  }, false);
 }
 
 function indexOf (pt) {
@@ -6734,42 +8233,50 @@ function cat_ears () {
   {
     "x": 125,
     "y": 41.666666666666664,
-    "index": 0
+    "index": 0,
+    "weight": 1
   },
   {
     "x": 145,
     "y": 370,
-    "index": 1
+    "index": 1,
+    "weight": 1
   },
   {
     "x": 250,
     "y": 375,
-    "index": 2
+    "index": 2,
+    "weight": 1
   },
   {
     "x": 333.3333333333333,
     "y": 375,
-    "index": 3
+    "index": 3,
+    "weight": 1
   },
   {
     "x": 458.3333333333333,
     "y": 187.5,
-    "index": 4
+    "index": 4,
+    "weight": 1
   },
   {
     "x": 375,
     "y": 41.666666666666664,
-    "index": 5
+    "index": 5,
+    "weight": 1
   },
   {
     "x": 320.6666666666667,
     "y": 187.5,
-    "index": 6
+    "index": 6,
+    "weight": 1
   },
   {
     "x": 250,
     "y": 187.5,
-    "index": 7
+    "index": 7,
+    "weight": 1
   }
   ]
   showPoints (points)
@@ -7040,6 +8547,7 @@ function desirepaths () {
   if (points.length < 1)
     return
   copyToClipboard()
+  let voidsize = document.getElementById("voidsize").value
   document.getElementById("oib").checked = false
   document.getElementById("save_prev").checked = false
   let ta = document.getElementById("textarea").value
@@ -7052,11 +8560,11 @@ function desirepaths () {
   ctx.fillStyle = "#000000"
   ctx.fillRect(0,0,500,500)
   let i = 0, j = 0
-  let max = 100//points.length?
+  let max = 50//points.length? /2?
   for (; j < max; j++) {
-    shuffle_points()
-    mini_tidy()
-    //mutate2way()
+    shuffle_points(true)
+    //mini_tidy(true)
+    mutate2way()
     segs = {}
     segs = record_segemnts(points)
     segarray.push(segs)
@@ -7064,6 +8572,7 @@ function desirepaths () {
   }
   // consolidate and score
   let allsegs = consolidate_segs(segarray, scorearray) 
+  
   let conf = point_confidence(allsegs)
   let finalists = drawSegs(allsegs, ctx)
   // do something with finalists
@@ -7083,10 +8592,13 @@ function desirepaths () {
     if (allsegs[keys[i]] > 4)
       str += keys[i]+":"+allsegs[keys[i]]+"\n"
   }
-  message(res)
-  message("desire paths "+ finalists.length + " "+round((t2-t1)/1000)+"[s]")
+ // message(res)
+  message("desire paths "+ finalists.length + ", threshold: " +voidsize+ ", "+round((t2-t1)/1000)+"[s]")
   document.getElementById("oib").checked = true
   document.getElementById("save_prev").checked = true
+
+ // console.log(allsegs)
+  set_next_prev(allsegs)
 }
 
 function segsToPoints(finalists, allsegs) {
@@ -7268,6 +8780,27 @@ function record_segemnts (pts) {
      }
   }
   return segs
+}
+
+function set_next_prev (segs) {
+  i = 0
+  for (; i < points.length; i++) {
+    points[i].next = ""
+    points[i].prev = ""
+  }
+  let keys = Object.keys(segs), pair, pt, idx
+  let temp = copyOf(points)
+  let threshold = +document.getElementById("voidsize").value, t
+  i = 0
+  for (; i < keys.length; i++) {
+    t = +segs[keys[i]]
+    pair = keys[i].split(">")
+    pt = pointByIndex(pair[0])
+    idx = points.indexOf(pt)
+    if (t > threshold)
+      temp[idx].next = pair[1]
+  }
+  points = temp
 }
 
 function inversions () {
@@ -7645,7 +9178,68 @@ function setNumPoints (n) {
   document.getElementById("numpoints").value = +n
 }
 
+function brute_force (NOSHOW) { // brute force 
+ // loadpoints() // temp fix 
+  if (points.length < 1)
+    return
+  let pts = copyOf(points)
+  if (pts.length > 10) {
+    // 10 points takes about 45 sec
+    alert("No more that 10 points.\n")
+    return
+  }
+  let pmin = [], i = 0
+  let L_min = 1e20, l = 0
+  let perms = permutator(pts)
+  starttime = new Date()
+  for (; i < perms.length; i++) { //perms.length
+    l = measurePath(perms[i],true)
+    if (l < L_min) {
+      L_min = l
+      pmin = perms[i]
+    }
+  }
+  let endtime = new Date()
+  points = pmin
+  drawPath(pmin)
+ // return true
+}
+
 // macro stuff below --------------------------------
+
+function saved_macro () { // always saved for quick replay?
+  let i = 0
+  // uncheck autosave. later save if (m2 > m1)
+  message("------ saved macro -------")
+  loadpoints()
+  document.getElementById("save_prev").checked = false
+  brute_force()
+  let copy = copyOf(points) // restore after each loop
+  let m1 = measurePath(), m2 = 0, FAIL = false
+  message(m1+" (N!)")
+  i = 0
+  for (; i < 10; i++) {
+    shuffle_points()
+    m2 = swapAcross()
+    if (m2 > m1) 
+      m2 = swapAcross() // second pass required
+    if (m2 > m1) 
+      m2 = insert_run() // third pass required
+    if (m2 > m1) 
+      m2 = insert_run() // 4th pass required
+    if (m2 > m1) 
+      m2 = swapAcross() // 5th pass required
+    if (m2 > m1) {
+      message(m2+" (shuffle > swapAcross)")
+      FAIL = true
+      copyToClipboard()
+    }
+    points = copy
+  }
+  if (FAIL === false)
+    message("all pass")
+  message("---------------------")
+}
 
 let RECORDING = false
 let LATESTFUNCTION = ""
@@ -7772,3 +9366,4 @@ function playAllFunctions () {
 }
 </script>
 </body>
+ 
