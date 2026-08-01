@@ -19921,7 +19921,7 @@ function stanford_marshmallow_testAt (x,y,W,color,INVERT) {
     marshmellowAt(x-cs*2,y,W/1.4,color)
     marshmellowAt(x+W/3,y+cs*7,W/1.4,color)
   } else
-    marshmellowAt(x+W/8,y+cs*2,W/1.4,savedF+00,INVERT)
+    marshmellowAt(x+W/8,y+cs*2,W/1.4,savedF+"00",INVERT)
   ctx.strokeStyle = savedS
   ctx.fillStyle = savedF
 }
