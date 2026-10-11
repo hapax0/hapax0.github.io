@@ -9034,6 +9034,34 @@ function randomAtItemAt () {
   window[randomPick(functions)](x,y,w,getselectedcolor(),Math.random()> 0.5)
 }
 
+function randomAtItemAtxy (color) {
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d")
+  let W = canvas.width, H = canvas.height
+  if (W !== 336) {
+    document.getElementById("canvassizes").value = "3.5X5"
+    canvas.width = 336, canvas.height = 480 
+    resizeCanvas()
+    document.getElementById("featuresize").value = 130
+  }
+  let w = 330
+  let x = 2, y = 75
+  if (!color)
+    color = "#000000"
+  ctx.fillStyle = "#eeeeee"
+  ctx.fillRect(0,0,2,2)
+  clearCanvas()
+  let functions = shuffle(atList) 
+  let copy = shuffle(copyOf(atList))
+  let filtered = []
+  i = 0
+  for (; i < copy.length; i++) {
+    if (!(noDraw.includes(copy[i]) || autoDraw.includes(copy[i]) || tall.includes(copy[i])))
+      filtered.push(copy[i])
+  }
+  window[randomPick(filtered)](x,y,w,color,Math.random()> 0.5)
+}
+
 function everythingArray () {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -33487,6 +33515,35 @@ function stiches (pad) {
   ctx.globalAlpha = alpha/100
 }
 
+function stiches_At (x, pad, len) {
+  if (!pad)
+    pad = 20
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d")
+  let alpha = document.getElementById("opacity").value
+  ctx.fillStyle = "#cccccc"
+  ctx.globalAlpha = 1
+  ctx.shadowColor = "#ffffff"
+  ctx.shadowBlur = 7 + Math.random() * 1
+  ctx.shadowOffsetY = -3//2+ Math.random() * 1
+  ctx.shadowOffsetX = -4 + Math.random() * 1
+  let i = 1
+  let h = len//(canvas.height - pad*2)/9
+ //let x = canvas.width/2-1, y = 0
+  for (; i < 9; i++) {
+    ctx.beginPath()
+    y = i*h+pad
+    ctx.moveTo(x,y)
+    ctx.arc(x+pet(1),y,3+pet(1),0,Math.PI*2)
+    ctx.fill()
+    ctx.closePath()
+  }
+  ctx.shadowBlur = 0
+  ctx.shadowOffsetY = 0
+  ctx.shadowOffsetX = 0
+  ctx.globalAlpha = alpha/100
+}
+
 function h_shadowAt (x,y,W,H) { // 
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
@@ -39659,14 +39716,11 @@ function resizeCanvas () {
 
   document.getElementById("canvassizes").setAttribute('title', "W:"+canvas.width+" H:"+canvas.height)
   syncBackground(canvas)
- // document.getElementById("canvaswidth").value = canvas.width
- // document.getElementById("canvasheight").value = canvas.height
- // ctx.imageSmoothingEnabled = false
+
   syncBackground(canvas)
   ctx.drawImage(ocanvas,0,0,canvas.width,canvas.height)
   octx.clearRect(0,0,ocanvas.width,ocanvas.height)
- // document.getElementById("canvaswidth").value = canvas.width
- // document.getElementById("canvasheight").value = canvas.height
+
   ctx.globalCompositeOperation = mode
   syncMarker()
   //displayRatio()
