@@ -137,7 +137,8 @@
     svg[class=blue] { background-color:#aaaadd;}
   </style>
   <script src="imports/maincode.js"></script>
-  <script src="imports/swcolors.js"></script>
+  <script src="imports/swcolors.js"></script>  
+  <script src="imports/aphorisms.js"></script>
   <script src="imports/pantone.js"></script>
   <script src="imports/wordlist2.js"></script>
   <script src="imports/ptwords.js"></script>
@@ -152,6 +153,7 @@
   <script src="imports/puzzle.js"></script>
   <script src="imports/PeriodicTableJSON.js"></script>
   <script src="imports/oblique.js"></script>
+  <script src="imports/rhill-voronoi-core.js"></script>
   </head>
   <body>
   <div style='margin:4px;white-space: nowrap;'>
@@ -368,6 +370,7 @@
       <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z"/>
     </svg></button>
     <select id='colorfunctions'>
+      <option value="asciify">asciify</option>
       <option value="colorFilterOut" >filter selected</option>
       <option value="colorFilter">filter unselected</option>
       <option value="alphaWhite">filter light</option>
@@ -376,7 +379,7 @@
       <option value="highContrast">high contrast</option>
       <option value="threshold">threshold</option>
       <option value="threshold_soft">threshold soft</option>
-      <option value="pixelate" selected>pixelate</option>
+      <option value="pixelate">pixelate</option>
       <option value="posterize" >posterize</option>
       <option value="palettetint" >palette tint</option>
       <option value="tintByCloseness" >extracted tint</option>
@@ -460,6 +463,7 @@
       <option value="twosides" selected>card+inverted</option>
       <option value="threecards" >tarot</option>
       <option value="everythingArray">symbol array</option>
+      <option value="randomAtItemAtxy">kobo</option>
       <option value="script">script</option>
       <option value="autoAt">auto</option>
       <option value="placeTextAt">word</option>
@@ -668,11 +672,16 @@
       <option value="faded poster">faded poster</option> 
       <option value="antique card">antique card</option> 
       <option value="carte postale">carte postale</option> 
+      <option value="sepia">sepia</option>
       <option value="sola busca">sola busca</option>
       <option value="victorian">victorian</option> 
+      <option value="flora">flora</option>
+      <option value="comix">comix</option>
+      <option value="science">science</option>
+      <option value="browning">browning</option>
       <option value="dusty cards">dusty card</option> 
       <option value="loteria">loteria</option> 
-      <option value="tarot cards">tarot cards</option> 
+      <option value="tarot cards" selected>tarot cards</option> 
       <option value="uno">uno</option>
       <option value="dos">dos</option>
       <option value="poster">poster</option>

@@ -187,12 +187,41 @@
       b.src = "tsp/svgs/insertcoins_2.svg"
     }
 
+
+    function cardfromtime () {
+      let d = new Date()
+      return atList[d.getTime() % atList.length]
+    }
+    
+    let NUMCARDS = 0
+    let PICKED = []
+
+    function drawacard() {
+      let f = cardfromtime() // click
+      while (PICKED.includes(f))
+        f = cardfromtime()
+      PICKED.push(f)
+      let canvas = document.getElementById("myCanvas")
+      let ctx = canvas.getContext("2d")
+      let W = canvas.width, H = canvas.height
+      if (NUMCARDS > 2 || NUMCARDS === 0) {
+        ctx.fillStyle = "#eeddee"
+        ctx.fillRect(0,0,W,H)
+      }
+      if (NUMCARDS > 2)
+        PICKED = [] // empty
+      if (NUMCARDS < 3) {
+        let x = W/3 * NUMCARDS, y = 120+pet(33)
+        tarotcard(x+20,y,W/3.4,W/1.7,f,cardnumber(f),0,true)
+      }
+      NUMCARDS = (NUMCARDS+1)%4
+    }
   </script>
   </head>
   <body>
   <div class="topbar">
-    Tarot reading: <button  onclick="threecards()" id="coins"><img src="tsp/svgs/insertcoins_2.svg" onmouseover="pressButton(this)" onmouseout="unpressButton(this)" />
-  </button>
+    Next card: <button  onclick="drawacard()" id="coins"><img src="tsp/svgs/insertcoins_2.svg" onmouseover="pressButton(this)" onmouseout="unpressButton(this)" />
+    </button>
   </div>
 
 <div style="display:none;">
@@ -393,7 +422,6 @@
   value="100" onchange="rangecheck()"> <span class='sample' id='highsample' style="background-color:#fff;">&nbsp;</span> <span id="upperrange">100</span> %<br>
     <div style="border-style:solid;margin:1px;border-color:#a0a0a0;padding:2px;">
     <div id='paletteholder' style="display: flex;flex-wrap: wrap;width:510px;height:100px;column-gap: 0;">
-      <!--canvas id="palettecanvas" width="480" height="96"></canvas><br-->
     </div>
       <select id="palettechoice" onchange="loadPalette(true)">
       
