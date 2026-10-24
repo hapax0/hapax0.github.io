@@ -969,7 +969,7 @@ let altTitles = { // for alternatives: remove "At"
   "is_he_dead_yet_q_At":"is_he_still_dead?",
   "stygian_blueAt":"hyperbolic_orange",
   "fertilityAt":"infertility",
-  "what_is_a_concentration_camp_q_At":"what_is_kidnappings_by_masked_goons_q_"
+  "what_is_a_concentration_camp_q_":"what_is_kidnappings_by_masked_goons_q_"
 }
 
 let tealeaves_u = ["acorn", "airplane", "anchor", "apple", "arrow", "axe", "baby", "bag", "ball", "balloon", "basket", "bell", "birds", "boat", "book", "bottle", "broom", "bush", "butterfly", "candle", "cat", "chain", "chair", "circle", "clock", "clouds", "coin", "cross", "cup", "dagger", "dish", "dog", "door", "duck", "eagle", "egg", "envelope", "eye", "face", "fan", "feather", "fence", "finger", "fire", "fish", "flag", "flower", "fly", "forked line", "fruit", "gate", "water glass", "cocktail glass", "goat", "grapes", "gun", "hammer", "hand", "hat", "hawk", "heart", "horse", "horseshoe", "hourglass", "house", "insect", "jewels", "kettle", "key", "kite", "knife", "ladder", "lamp", "leaf", "letter", "lines", "lion", "lock", "man", "moon", "mountain", "mouse", "mushroom", "nail", "necklace", "nest", "needle", "oak tree", "octopus", "ostrich", "owl", "palm tree", "palm leaf", "parasol", "parrot", "pig", "pin", "pine tree", "pipe", "pistol", "plough", "purse", "question mark", "rabbit", "rainbow", "rake", "raven", "rider", "ring", "ring, broken", "rose", "scales", "scissors", "sheep", "shell", "ship", "shoe", "sickle", "snake", "spider", "spoon", "squirrel", "stairs", "star", "sun", "sword", "table", "teardrops", "tent", "thimble", "tortoise", "tower", "triangle", "turtle", "umbrella", "vase", "violin", "volcano", "wagon", "wasp", "wheel", "wings", "wolf", "zebra"]
