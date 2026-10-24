@@ -18723,6 +18723,9 @@ function nvidiaAt (x,y,W,color) {
     ctx.lineWidth = 1 + document.getElementById("featuresize").value/150
   }
   ctx.strokeStyle = color
+  ctx.fillStyle = "#ffffff"
+  ctx.fillRect(x, y+4*cs, W, cs*16)
+
   ctx.fillStyle = "#56b800ff"
   ctx.lineCap = "square"
   ctx.lineJoin = "bevel"
@@ -23585,15 +23588,14 @@ function one_trick_ponyAt (x,y,W,color,INVERT) {
   let x0 = x, offset = r * 4.8
   y += offset/1.5, x += offset/1.5
   for (; i < 9; i++) {
+   if (i > 0 && i % 3 === 0) {
+      x = x0 + offset/1.5
+      y += offset
+    }
     ctx.beginPath()
     ctx.arc(x, y, r, 0, 2*Math.PI) 
     ctx.fill()
     x += offset
-    if (x > x0 +W-offset/1.5) {
-      x = x0 + offset/1.5
-      y += offset
-    }
-    
   }
 
   ctx.fillStyle = savedF
@@ -54712,6 +54714,7 @@ function image_not_foundAt (x,y,W,color) {
   
   let savedF = ctx.fillStyle
   let savedS = ctx.strokeStyle
+ // ctx.strokeStyle = color
   ctx.fillStyle = color
   ctx.lineCap = "square"
   ctx.lineJoin = "bevel"
@@ -88423,7 +88426,8 @@ function UIAt (x,y,W,color) {
   document.getElementById("featuresize").value = s/7
   let i = 0, y1 = 4.3*W/24
   for (; i < 9; i++) {
-    window [randomPick(atList)] (x+2*W/24 + W/80, y+y1, 2*W/34,color)
+    let f = randomPick(atList)
+    window [f] (x+2*W/24 + W/80, y+y1, 2*W/34,color)
     y1 += 2*W/24
   }
   
@@ -109493,8 +109497,6 @@ function philosopherAt (x,y,W,color) {
          y1 += W1 +space
          x1 = pad
        } 
-       //console.log(x+x1,y+y1,W1)
-       //sigilAt(x+x1,y+y1,W1, color)
        window [atList[index%atList.length]] (x+x1,y+y1,W1,color)
        x1 += W1 + space
        index++

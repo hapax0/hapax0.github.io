@@ -872,7 +872,6 @@ let defs = {
       "zen_gardenAt":{"u":"polish the mirror","i":"there is no mirror"},
       "waterfallAt":{"u":"...in the sense of endless distracting thoughts","i":"... in the sense of software management ideology:,story points assigned to each distracting thought\\c to better meet sprint goals"},
       "anti_hyph_homeless_architectureAt":{"u":"cruel to be kind,design against humanity","i":"out of sight\\c,out of mind"},
-     // "ascentionAt":{"u":"up in the air","i":"riser"},
       "house_of_cardsAt":{"u":"unreliable","i":"all fall down"},
       "folding_tableAt":{"u":"you will attend a yards sale featuring only used baby clothes and christmas decorations","i":"(folded),all good things must come to an end"},
       "influencerAt":{"u":"blow up","i":"𝅘𝅥𝅮 you look better when I don't look back 𝅘𝅥𝅮"},
@@ -893,6 +892,11 @@ let defs = {
       "monoblocAt":{"u":"full stack developer","i":"mono no aware"},
       "in_this_house_we_say_elip_At":{"u":"what's in a name?","i":"ministry of truth"},
       "live_streamAt":{"u":"the revolution will not be televised","i":"maximum lethality is the new normal"},
+      "marching_antsAt":{"u":"fever dream","i":"progress (reversed)"},
+
+      "humanitarianAt":{"i":"\"Nothing bad can happen\\c, it can only good happen.\"","u":"\"You keep using that word\\c, I do not think it means, what you think it means.\""},
+      
+      
       "last_card_in_the_deckAt":{"u":"all good things (supposedly)","i":"never-ending projects"}
   }
      //u: in the sense of endless distracting thoughts
