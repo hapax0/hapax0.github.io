@@ -4921,11 +4921,10 @@ function explanationsAt (x,y,W,color,INVERT) {
   let linelength = W/20, yoff = 0
   ctx.lineWidth = 3
   for (; i < 6; i++) {
-    
     x = x0+(W*0.76)*Math.random()
     y = y0+yoff+(H/6)*Math.random()
     if (i === 5) {
-      y = y0+ H
+      y = y0+ H*0.9
       yoff = 0
       x = x0+W/12
     }
@@ -12980,7 +12979,7 @@ function tech_drawerAt (x,y,W,color) {
   cordplugAtAt(x+Math.random()*W, y+H*Math.random(),W/7,getselectedcolor(),angle*180/Math.PI)
   cordplugAtAt(x+Math.random()*W, y+H*Math.random(),W/8,getselectedcolor(),angle*180/Math.PI)
   cordplugAtAt(x+Math.random()*W, y+H*Math.random(),W/9,getselectedcolor(),angle*180/Math.PI)
-  for (; i < 31; i++) {
+  for (; i < 21; i++) {
     spiralcordAt(x,y,W)
   }
   cordplugAtAt(x+Math.random()*W, y+H*Math.random(),W/8,getselectedcolor(),angle*180/Math.PI)
@@ -13120,11 +13119,11 @@ function spiralcordAt (x,y,W,color) {
   let cy = y+H/2
   let C = x+W/2 + (Math.random() - 0.5) * W/4
 
-  ctx.lineWidth = 2+document.getElementById("featuresize").value/20
-  ctx.lineWidth += pet(ctx.lineWidth/2)
+  ctx.lineWidth = 1 + W/50 + pet(W/150) 
+
   let radius = W/30 + Math.random() * W/20
   let angle = Math.random() * 6.28
-  let n = 0, end = 3000
+  let n = 0, end = 1200
   let turnAt = W/6+ Math.random() * W/6
   let inc = false, dec = false
   let turn = false
@@ -13133,8 +13132,6 @@ function spiralcordAt (x,y,W,color) {
   var y = y0+Math.random()*H
   let pf = 19
 
-  let dis = distance(x,y,C,C)
-  
   // draw plug head at start at angle
   cordplugAtAt(x-W/18,y-W/18,W/9,color,angle*180/Math.PI)
   ctx.beginPath();
@@ -13143,7 +13140,7 @@ function spiralcordAt (x,y,W,color) {
     x = x + Math.sin(angle) * 1
     y = y + Math.cos(angle) * 1
     ctx.lineTo(x, y);
-    let gs = distance(x,y,cx,cy) - dis
+    let gs = distance(x,y,cx,cy)
     if (gs > 0) {
       turn = true
       angle += gs/W * 0.02 + pet(1)/pf
@@ -33422,6 +33419,7 @@ function hidden_variablesAt (x,y,W,color) {
   paperize()
   paperize()
   ctx.restore()
+  ctx.globalAlpha = 1
 }
 
 
@@ -51152,7 +51150,7 @@ function clockAt (x,y,W,color) {
   let canvas = document.getElementById("myCanvas")
   let ctx = canvas.getContext("2d")
   let H = W, cpx, cpy, points = []
-  ctx.lineWidth = 1 + document.getElementById("featuresize").value/50
+  ctx.lineWidth = 1 + W/50
   ctx.strokeStyle = color
   ctx.fillStyle = color
   ctx.lineCap = "square"
@@ -123867,7 +123865,7 @@ function wife_beaterAt (x,y,W,color) {
     cpx = x+23*W/24
     cpy = y+3*H/24
     cp = rotatePoint(cpx,cpy,cx,cy,angle)
-    p = rotatePoint(x+23*W/24, y+12*H/24,cx,cy,angle)
+    p  = rotatePoint(x+23*W/24, y+12*H/24,cx,cy,angle)
     ctx.quadraticCurveTo(cp[0],cp[1],p[0],p[1])
     cpx = x+22*W/24
     cpy = y+23*H/24
